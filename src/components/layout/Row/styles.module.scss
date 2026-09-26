@@ -1,6 +1,8 @@
 .row {
   display: flex;
   flex-direction: row;
+  /* `--row-gap` is read by `Col` as well as applied here, so a column's basis
+     and the space between columns can never disagree. */
   gap: var(--row-gap, 0.5rem);
   align-items: var(--row-align, center);
   justify-content: var(--row-justify, flex-start);

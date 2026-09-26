@@ -7,8 +7,9 @@ import { ComponentsPage } from './pages/ComponentsPage';
 import { PlaygroundPage } from './pages/PlaygroundPage';
 import { TokensPage } from './pages/TokensPage';
 import { EcosystemPage } from './pages/EcosystemPage';
-import { CommercePage } from './pages/CommercePage';
+import { ShopPage } from './pages/ShopPage';
 import { DataEnginePage } from './pages/DataEnginePage';
+import { GeneratedDocsPage } from './pages/GeneratedDocsPage';
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState('/');
@@ -36,8 +37,10 @@ export default function App() {
         return <ComponentsPage category="data-display" />;
       case '/components/overlays':
         return <ComponentsPage category="overlays" />;
-      case '/components/commerce':
-        return <CommercePage />;
+      case '/components/shop':
+        return <ShopPage />;
+      case '/docs/generated':
+        return <GeneratedDocsPage />;
       default:
         return <HomePage onNavigate={setCurrentPath} />;
     }

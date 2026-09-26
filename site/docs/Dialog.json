@@ -1,0 +1,12 @@
+{
+  "name": "Dialog",
+  "source": "src/components/overlays/Modal/index.tsx",
+  "description": null,
+  "propsInterface": null,
+  "extendsBases": [
+    "ModalProps"
+  ],
+  "props": [],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.873Z"
+}

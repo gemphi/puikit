@@ -1,0 +1,47 @@
+{
+  "name": "PortalSidebar",
+  "source": "src/components/layout/Portal/PortalSidebar.tsx",
+  "description": null,
+  "propsInterface": "PortalSidebarProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "title",
+      "optional": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "sections",
+      "optional": false,
+      "type": "PortalSection[]",
+      "description": null
+    },
+    {
+      "name": "activeItemId",
+      "optional": true,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "onSelectItem",
+      "optional": false,
+      "type": "(id: string) => void",
+      "description": null
+    },
+    {
+      "name": "onToggleSidebar",
+      "optional": true,
+      "type": "() => void",
+      "description": null
+    },
+    {
+      "name": "className",
+      "optional": true,
+      "type": "string",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.746Z"
+}

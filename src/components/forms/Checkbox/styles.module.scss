@@ -1,10 +1,24 @@
 .wrapper {
-  display: inline-flex;
+  display: flex;
+  width: 100%;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--phi-control-gap);
   cursor: pointer;
   font-size: var(--phi-font-size-sm);
   color: var(--phi-color-text-primary);
+  /* The control and its label are one target, and the whole row responds. */
+  padding: var(--phi-control-row-padding);
+  margin-inline: calc(var(--phi-control-row-padding) * -1);
+  border-radius: var(--phi-control-radius);
+  /* A long option wraps to a second line rather than being clipped, and the
+     control stays level with the first line instead of centring against a
+     two-line block. */
+  align-items: flex-start;
+  transition: background-color var(--phi-transition-fast);
+
+  &:hover {
+    background-color: var(--phi-color-background-secondary);
+  }
 }
 
 .input {
@@ -15,20 +29,44 @@
 }
 
 .box {
-  width: 1.25rem;
-  height: 1.25rem;
-  border: 1px solid var(--phi-color-border);
-  border-radius: var(--phi-radius-sm);
+  flex: 0 0 auto;
+  /* Optically centred against a single line of label text. */
+  margin-block-start: 0.1em;
+  width: var(--phi-control-size);
+  height: var(--phi-control-size);
+  border: var(--phi-control-border-width) solid var(--phi-color-border-strong, var(--phi-color-border));
+  /* Shared with the radio and the colour swatches, so the three line up. */
+  border-radius: var(--phi-control-radius);
   background-color: var(--phi-color-background);
-  transition: border-color var(--phi-transition-fast), background-color var(--phi-transition-fast);
+  transition:
+    border-color var(--phi-transition-fast),
+    background-color var(--phi-transition-fast),
+    box-shadow var(--phi-transition-fast);
+}
+
+.wrapper:hover .box {
+  border-color: var(--phi-color-primary);
 }
 
 .input:checked + .box {
   background-color: var(--phi-color-primary);
   border-color: var(--phi-color-primary);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+  /* `currentColor` on the mark would inherit the label colour; the tick is
+     drawn as a mask so it always reads against the filled box. */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 0.7rem 0.7rem;
+}
+
+.input:focus-visible + .box {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--phi-color-background), 0 0 0 4px var(--phi-color-primary);
+}
+
+.input:disabled + .box {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .error {
@@ -36,5 +74,10 @@
 }
 
 .label {
-  line-height: 1.25;
+  line-height: 1.3;
+  /* The label owns the remaining width, which is what lets a facet push its
+     count to the right rather than trailing the text. */
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }

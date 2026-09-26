@@ -1,0 +1,41 @@
+{
+  "name": "Callout",
+  "source": "src/components/feedback/Callout/index.tsx",
+  "description": null,
+  "propsInterface": "CalloutProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "intent",
+      "optional": true,
+      "type": "CalloutIntent",
+      "description": null
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "icon",
+      "optional": true,
+      "type": "React.ReactNode | null",
+      "description": null
+    },
+    {
+      "name": "compact",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "children",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.526Z"
+}

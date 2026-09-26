@@ -7,6 +7,7 @@ export const SPAN_VARIANTS = {
   BOLD: 'bold',
   MUTED: 'muted',
   SM: 'sm',
+  CODE: 'code',
 } as const;
 
 export type SpanVariant = (typeof SPAN_VARIANTS)[keyof typeof SPAN_VARIANTS];

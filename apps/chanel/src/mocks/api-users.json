@@ -1,0 +1,10 @@
+[
+  {
+    "id": "riya",
+    "email": "riya.sharma@example.com",
+    "username": "riya",
+    "firstName": "Riya",
+    "lastName": "Sharma",
+    "isGuest": false
+  }
+]

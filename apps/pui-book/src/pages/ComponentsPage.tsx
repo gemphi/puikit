@@ -25,7 +25,7 @@ export const ComponentsPage: React.FC<{ category?: string }> = ({ category }) =>
       description="Pure, state-agnostic React primitives and composite layout structures."
       badge={<Tag intent="primary" round>{filtered.length} Components</Tag>}
     >
-      <Card elevation={1}>
+      <Card>
         <Title level={5} style={{ marginBottom: '16px' }}>Interactive Demonstrations</Title>
         <Stack direction="column" gap={4}>
           <ButtonExample />
@@ -38,7 +38,7 @@ export const ComponentsPage: React.FC<{ category?: string }> = ({ category }) =>
         </Stack>
       </Card>
 
-      <Card elevation={1}>
+      <Card>
         <Title level={5} style={{ marginBottom: '16px' }}>Component API Specifications</Title>
         <Table headers={headers} rows={rows} />
       </Card>

@@ -1,0 +1,32 @@
+{
+  "name": "Header",
+  "source": "src/components/layout/Header/index.tsx",
+  "description": null,
+  "propsInterface": "HeaderProps",
+  "extendsBases": [
+    "React.HTMLAttributes",
+    "StyleProps"
+  ],
+  "props": [
+    {
+      "name": "sticky",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "className",
+      "optional": true,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "children",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.704Z"
+}

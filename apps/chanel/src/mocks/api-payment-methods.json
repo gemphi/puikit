@@ -1,0 +1,4 @@
+[
+  { "id": "pm-1", "userId": "riya", "cardholderName": "Riya Sharma", "lastFour": "4242", "expiry": "09/29", "brand": "visa", "isDefault": true },
+  { "id": "pm-2", "userId": "riya", "cardholderName": "Riya Sharma", "lastFour": "5518", "expiry": "02/28", "brand": "mastercard", "isDefault": false }
+]

@@ -3,6 +3,7 @@ import { BRAND_THEMES } from '../../../providers/themes';
 import { BrandTheme } from '../../../providers/types';
 import { cn } from '../../../utils/cn';
 import { ChevronDown, Palette } from 'lucide-react';
+import { Box } from '../../layout/Box';
 import styles from './styles.module.scss';
 
 export interface BrandSelectorProps {
@@ -58,7 +59,7 @@ export const BrandSelector: React.FC<BrandSelectorProps> = ({
   };
 
   return (
-    <div ref={containerRef} className={cn(styles.brandSelector, className)}>
+    <Box ref={containerRef} className={cn(styles.brandSelector, className)}>
       <button
         type="button"
         className={styles.trigger}
@@ -75,7 +76,7 @@ export const BrandSelector: React.FC<BrandSelectorProps> = ({
       </button>
 
       {isOpen && (
-        <div className={styles.dropdown} role="listbox">
+        <Box className={styles.dropdown} role="listbox">
           {BRAND_THEMES.map((theme) => {
             const isCurrent = theme.id === selectedId;
             return (
@@ -95,9 +96,9 @@ export const BrandSelector: React.FC<BrandSelectorProps> = ({
               </button>
             );
           })}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };
 

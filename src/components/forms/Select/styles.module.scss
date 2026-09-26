@@ -1,27 +1,145 @@
-.select {
+.wrapper {
+  position: relative;
+  display: block;
+  /* Fills a block parent, but lets a flex row size the control instead of
+     reserving the whole line for it. */
+  width: auto;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+/* ---------------------------------------------------------------------------
+   Trigger — the same shape, height and radius as a Button or an Input, because
+   it takes them from the shared control tokens rather than restating them.
+   --------------------------------------------------------------------------- */
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--phi-control-gap);
   width: 100%;
-  padding: 0.5rem 0.75rem;
+  min-height: var(--phi-control-height-md);
+  padding: 0 0.75rem;
   border: 1px solid var(--phi-color-border);
   border-radius: var(--phi-radius-md);
   background-color: var(--phi-color-background);
   color: var(--phi-color-text-primary);
   font-family: var(--phi-font-family);
   font-size: var(--phi-font-size-base);
+  line-height: 1;
+  text-align: start;
   cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23717a7a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.75rem center;
-  padding-right: 2.25rem;
-  transition: border-color var(--phi-transition-fast), box-shadow var(--phi-transition-fast);
+  transition:
+    border-color var(--phi-transition-fast),
+    box-shadow var(--phi-transition-fast),
+    background-color var(--phi-transition-fast);
 }
 
-.select:focus {
+.sm { min-height: var(--phi-control-height-sm); font-size: var(--phi-font-size-sm); }
+.md { min-height: var(--phi-control-height-md); }
+.lg { min-height: var(--phi-control-height-lg); font-size: var(--phi-font-size-lg); }
+
+.trigger:hover:not(:disabled) {
+  border-color: var(--phi-color-primary);
+}
+
+.trigger:focus-visible,
+.trigger[aria-expanded='true'] {
   outline: none;
   border-color: var(--phi-color-primary);
-  box-shadow: 0 0 0 2px var(--phi-color-primary-light);
+  box-shadow: 0 0 0 3px var(--phi-color-primary-light);
 }
 
-.error {
-  border-color: var(--phi-color-error);
+.trigger:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.error { border-color: var(--phi-color-error); }
+
+.value {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.placeholder { color: var(--phi-color-text-muted); }
+
+.chevron {
+  flex: 0 0 auto;
+  color: var(--phi-color-text-secondary);
+  transition: transform var(--phi-transition-fast);
+}
+
+.trigger[aria-expanded='true'] .chevron { transform: rotate(180deg); }
+
+/* ---------------------------------------------------------------------------
+   Listbox
+   --------------------------------------------------------------------------- */
+
+.listbox {
+  position: absolute;
+  z-index: 200;
+  inset-inline: 0;
+  top: calc(100% + var(--phi-space-2));
+  max-height: 16rem;
+  overflow-y: auto;
+  padding: var(--phi-space-2);
+  margin: 0;
+  list-style: none;
+  border: 1px solid var(--phi-color-border);
+  border-radius: var(--phi-radius-md);
+  background-color: var(--phi-color-background-card);
+  background-image: var(--phi-gradient-card-wash, none);
+  box-shadow: var(--phi-shadow-md);
+  animation: selectIn var(--phi-transition-fast) ease-out;
+}
+
+.above {
+  top: auto;
+  bottom: calc(100% + var(--phi-space-2));
+}
+
+@keyframes selectIn {
+  from { opacity: 0; transform: translateY(-2px); }
+  to { opacity: 1; transform: none; }
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--phi-control-gap);
+  padding: var(--phi-control-row-padding);
+  border-radius: var(--phi-control-radius);
+  color: var(--phi-color-text-primary);
+  font-size: var(--phi-font-size-sm);
+  cursor: pointer;
+}
+
+.option[aria-selected='true'] {
+  color: var(--phi-color-primary);
+  font-weight: var(--phi-font-weight-semibold, 600);
+}
+
+.active {
+  background-color: var(--phi-color-background-secondary);
+}
+
+.option[aria-disabled='true'] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tick {
+  flex: 0 0 auto;
+  color: var(--phi-color-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .listbox { animation: none; }
+  .chevron { transition: none; }
 }

@@ -1,0 +1,10 @@
+{
+  "name": "Card",
+  "source": "src/components/display/card/card.tsx",
+  "description": "The foundational surface primitive. Appearance is variant- and token-driven\nthrough `styles.module.scss` (all `var(--phi-*)` tokens, no hardcoded colors)\nplus the `data-variant`/state class hooks. Derivative components compose this\nsurface rather than reinventing card markup.\n\nPadding: by default Card is padded (`.padded` class -> `padding: var(--phi-space-4)`)\nso `<Card>content</Card>` renders correctly with no extra wrapper. Pass\n`flush` when composing with `CardHeader`/`CardBody`/`CardFooter` role\nchildren so those role files own the padding instead.",
+  "propsInterface": null,
+  "extendsBases": [],
+  "props": [],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.458Z"
+}

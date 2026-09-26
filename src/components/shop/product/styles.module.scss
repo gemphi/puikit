@@ -1,0 +1,188 @@
+/* ---------------------------------------------------------------------------
+   Media: the wishlist control sits on the image, not under it. Without this
+   the button was laid out as a sibling of the image and pushed the card's
+   content down by its own height.
+   --------------------------------------------------------------------------- */
+
+[data-media='true'] {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--phi-radius-md);
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* The colourways sit on the art itself, down its left edge, so the palette
+     reads as part of the piece rather than as a caption under it. */
+  [data-over='true'] {
+    position: absolute;
+    top: var(--phi-space-4);
+    inset-inline-start: var(--phi-space-4);
+    z-index: 1;
+    padding: calc(var(--phi-control-gap) / 2);
+    border-radius: var(--phi-radius-lg);
+    background-color: color-mix(in srgb, var(--phi-color-background) 60%, transparent);
+    backdrop-filter: blur(6px);
+  }
+
+  [data-wishlist='true'] {
+    position: absolute;
+    top: var(--phi-space-2);
+    inset-inline-end: var(--phi-space-2);
+    z-index: 1;
+    background-color: color-mix(in srgb, var(--phi-color-background) 78%, transparent);
+    backdrop-filter: blur(6px);
+    border-radius: var(--phi-radius-full);
+  }
+
+  [data-wishlist='true'][data-active='true'] {
+    background-color: color-mix(in srgb, var(--phi-color-background) 90%, transparent);
+  }
+}
+
+/* A card-variant tile gets a consistent frame, so a row of them is a row of
+   equal tiles whatever the source imagery is. The art is full-bleed: it runs
+   out past the card's own padding to the card edge, which is what stops a
+   product card reading as a picture pasted inside a box. */
+[data-variant='card'] [data-media='true'] {
+  aspect-ratio: var(--product-card-ratio, 1 / 1);
+  margin: calc(var(--card-padding) * -1) calc(var(--card-padding) * -1) 0;
+  width: calc(100% + var(--card-padding) * 2);
+  border-start-start-radius: var(--phi-radius-lg);
+  border-start-end-radius: var(--phi-radius-lg);
+  border-end-start-radius: 0;
+  border-end-end-radius: 0;
+  flex-shrink: 0;
+}
+
+/* The body takes the slack and the actions sit on the floor of the card, so a
+   row of cards has its prices and buttons on one line no matter how long the
+   titles are. */
+[data-variant='card'] .cardBody {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+[data-variant='card'] .cardActions {
+  margin-top: auto;
+  padding-top: var(--phi-space-3);
+}
+
+.cardTitle {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---------------------------------------------------------------------------
+   Overlay variant: the label and price sit on the image, over a scrim that
+   runs bottom to top — colour at the foot, transparent by the middle — so the
+   text stays legible on any imagery without a second surface behind it.
+   --------------------------------------------------------------------------- */
+
+.overlayCard {
+  position: relative;
+  isolation: isolate;
+  /* A fixed frame, so a row of tiles is a row of equal tiles whatever the
+     source imagery is, and the scrim always has the full card to fade across. */
+  aspect-ratio: var(--product-overlay-ratio, 4 / 5);
+}
+
+.overlayMedia {
+  position: absolute;
+  inset: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* The scrim, not a brand tint: this one has to guarantee contrast. */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.72) 0%,
+      rgba(0, 0, 0, 0.45) 18%,
+      rgba(0, 0, 0, 0.16) 38%,
+      transparent 58%
+    );
+    pointer-events: none;
+  }
+}
+
+.overlayBody {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: var(--phi-space-3, 24px);
+  color: #fff;
+
+  /* Text on the scrim is white by definition, so the tokens that would
+     otherwise colour it are overridden for this subtree only. */
+  --phi-color-text-primary: #fff;
+  --phi-color-text-secondary: rgba(255, 255, 255, 0.82);
+  --phi-color-text-muted: rgba(255, 255, 255, 0.68);
+}
+
+/* ---------------------------------------------------------------------------
+   Colourway swatches
+   --------------------------------------------------------------------------- */
+
+.swatches {
+  display: flex;
+  gap: calc(var(--phi-control-gap) / 2);
+  align-items: center;
+}
+
+.swatch {
+  /* Two thirds of the control size: a chip on a card, not a control to hit. */
+  width: calc(var(--phi-control-size) * 0.66);
+  height: calc(var(--phi-control-size) * 0.66);
+  /* Rounded rectangles on the shared control radius, so a swatch, a checkbox
+     and a radio are recognisably the same family of control. */
+  border-radius: var(--phi-control-radius);
+  border: 1px solid var(--phi-color-border);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  flex: 0 0 auto;
+  padding: 0;
+}
+
+/* Interactive swatches are hit targets, so they take the full control size and
+   show which colourway is on screen. */
+[data-over='true'] .swatch {
+  width: var(--phi-control-size);
+  height: var(--phi-control-size);
+  cursor: pointer;
+  transition: transform var(--phi-transition-fast), box-shadow var(--phi-transition-fast);
+
+  &:hover { transform: scale(1.12); }
+
+  &[aria-checked='true'] {
+    box-shadow: 0 0 0 2px var(--phi-color-background), 0 0 0 4px var(--phi-color-primary);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--phi-color-background), 0 0 0 4px var(--phi-color-primary);
+  }
+}
+
+.overlayBody .swatch {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.swatchMore {
+  font-size: var(--phi-font-size-xs, 0.75rem);
+  color: var(--phi-color-text-muted);
+}

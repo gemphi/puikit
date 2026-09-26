@@ -1,0 +1,14 @@
+.code {
+  margin: 0;
+  padding: var(--phi-space-4);
+  border: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
+  border-radius: var(--phi-radius-md);
+  background-color: var(--phi-color-background-secondary);
+  color: var(--phi-color-text-primary);
+  font-family: var(--phi-font-family-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-size: var(--phi-font-size-sm);
+  line-height: 1.6;
+  /* Wide samples scroll inside the block, so the page body never does. */
+  overflow-x: auto;
+  white-space: pre;
+}

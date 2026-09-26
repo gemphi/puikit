@@ -7,7 +7,7 @@ import '@pui/styles/core.scss';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <PuiProvider defaultTheme="system" defaultBrand="foundry">
+    <PuiProvider defaultTheme="light" defaultThemeStyle="gradient" defaultBrand="foundry">
       <App />
     </PuiProvider>
   </React.StrictMode>

@@ -3,6 +3,7 @@
 import React from 'react';
 import { Info, CheckCircle2, AlertTriangle, AlertCircle } from 'lucide-react';
 import { cn } from '../../../utils/cn';
+import { Box } from '../../layout/Box';
 import styles from './styles.module.scss';
 
 export type CalloutIntent = 'primary' | 'success' | 'warning' | 'error' | 'none';
@@ -35,7 +36,7 @@ export const Callout: React.FC<CalloutProps> = ({
   const iconElement = icon !== undefined ? icon : defaultIcons[intent];
 
   return (
-    <div
+    <Box
       className={cn(
         styles.callout,
         styles[`intent-${intent}`],
@@ -45,12 +46,12 @@ export const Callout: React.FC<CalloutProps> = ({
       role="region"
       {...props}
     >
-      {iconElement && <div className={styles.iconWrapper}>{iconElement}</div>}
-      <div className={styles.content}>
+      {iconElement && <Box className={styles.iconWrapper}>{iconElement}</Box>}
+      <Box className={styles.content}>
         {title && <h5 className={styles.title}>{title}</h5>}
-        {children && <div className={styles.body}>{children}</div>}
-      </div>
-    </div>
+        {children && <Box className={styles.body}>{children}</Box>}
+      </Box>
+    </Box>
   );
 };
 

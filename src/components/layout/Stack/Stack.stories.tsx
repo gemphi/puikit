@@ -1,13 +1,29 @@
-import type { Meta, StoryObj } from '@storybook/react';
+/**
+ * Stack usage examples (documentation source).
+ *
+ * Plain, framework-agnostic example descriptors consumed textually by
+ * `scripts/generate-docs.mjs`. No Storybook or external documentation framework
+ * dependency (Requirements 13.4, 14.4).
+ */
 import { Stack } from './index';
 
-const meta: Meta<typeof Stack> = {
+/** Local, self-contained example descriptor (no external framework). */
+interface PuiExample {
+  args?: Record<string, unknown>;
+  render?: () => unknown;
+}
+
+interface PuiExampleMeta {
+  title: string;
+  component: unknown;
+}
+
+const meta: PuiExampleMeta = {
   title: 'Layout/Stack',
   component: Stack,
 };
 
 export default meta;
-type Story = StoryObj<typeof Stack>;
 
 const Box = () => (
   <div
@@ -20,7 +36,7 @@ const Box = () => (
   />
 );
 
-export const Vertical: Story = {
+export const Vertical: PuiExample = {
   render: () => (
     <Stack gap={4}>
       <Box />
@@ -30,7 +46,7 @@ export const Vertical: Story = {
   ),
 };
 
-export const Horizontal: Story = {
+export const Horizontal: PuiExample = {
   render: () => (
     <Stack direction="row" gap={4} align="center">
       <Box />

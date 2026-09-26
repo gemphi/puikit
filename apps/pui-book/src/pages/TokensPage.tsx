@@ -28,12 +28,12 @@ export const TokensPage: React.FC = () => {
       description="Centralized CSS custom properties powering light/dark themes, spacing, and elevation."
       badge={<Tag intent="primary" round>--phi-* Standard</Tag>}
     >
-      <Card elevation={1}>
+      <Card>
         <Title level={5} style={{ marginBottom: '16px' }}>Core Color & Surface Tokens</Title>
         <Table headers={headers} rows={coreRows} />
       </Card>
 
-      <Card elevation={1}>
+      <Card>
         <Title level={5} style={{ marginBottom: '16px' }}>Elevation & Shadow Levels</Title>
         <Table headers={headers} rows={elevationRows} />
       </Card>

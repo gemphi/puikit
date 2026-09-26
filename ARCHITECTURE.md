@@ -7,7 +7,7 @@
 ## 1. Architectural Goals
 
 1. **Palantir Blueprint Parity**: Pure composable primitives engineered for dense, complex, enterprise web applications and AI agent cockpits.
-2. **Zero Business Logic Coupling**: Strictly state-library agnostic (supports Zustand, Redux, Jotai, or plain React state). No e-commerce domain carts or mock store services in the core library.
+2. **Zero Business Logic Coupling**: Strictly state-library agnostic (supports Zustand, Redux, Jotai, or plain React state). No e-shop domain carts or mock store services in the core library.
 3. **Multi-Brand Theming**: Built-in Foundry Blue, Blueprint Slate, Emerald, Midnight, and Amber palettes with instant light/dark mode and flat/elevated/glass surface modes.
 4. **Strict Token System**: Centralized design tokens in `src/tokens/tokens.scss` using `--phi-*` custom properties with zero runtime JavaScript overhead.
 5. **Standalone Applications (`apps/`)**: Replaces heavy third-party storybooks with lightweight, tailored Vite applications (`pui-book` for `puijs.com`, `demo-app`, `landing-app`).

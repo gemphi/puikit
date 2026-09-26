@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button, Dialog, Drawer, Stack, Text, ProgressBar } from '@pui/components';
+import { Button, Dialog, Drawer, Stack, Text, ProgressBar , Box } from '@pui/components';
 
 export const OverlayExample: React.FC = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -15,18 +15,18 @@ export const OverlayExample: React.FC = () => {
       </Stack>
 
       <Dialog isOpen={dialogOpen} onClose={() => setDialogOpen(false)} title="Ontology Inspector">
-        <div style={{ padding: '16px 0' }}>
+        <Box paddingY={3}>
           <Text>Inspecting entity schema for FinanceTransaction with strict typing invariants.</Text>
-          <div style={{ marginTop: '16px' }}>
+          <Box marginTop={3}>
             <ProgressBar value={0.85} intent="primary" />
-          </div>
-        </div>
+          </Box>
+        </Box>
       </Dialog>
 
       <Drawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} title="Live Telemetry" position="right">
-        <div style={{ padding: '20px' }}>
-          <Text variant="sm" color="secondary">Streaming telemetry data from Phiano phase manifold.</Text>
-        </div>
+        <Box padding={4}>
+          <Text size="sm" intent="secondary">Streaming telemetry data from Phiano phase manifold.</Text>
+        </Box>
       </Drawer>
     </Stack>
   );

@@ -1,0 +1,82 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Gradient-by-Default snapshot + custom properties (Req 4.1, 4.2) > applies no gradient-by-default in a non-gradient style (apple) > apple-style-markup 1`] = `
+<section
+  data-gradient-parent="true"
+  data-testid="gradient-parent"
+>
+  <div
+    data-gradient-child="true"
+    data-testid="gradient-child"
+  >
+    Gradient content
+  </div>
+</section>
+`;
+
+exports[`Gradient-by-Default snapshot + custom properties (Req 4.1, 4.2) > captures the gradient markup and applied gradient custom properties in gradient style > gradient-style-custom-properties 1`] = `
+{
+  "child": "radial-gradient(ellipse 55% 45% at 85% 0%, rgba(59, 130, 246, 0.025), transparent 55%), linear-gradient(180deg, var(--phi-color-surface-raised, transparent), var(--phi-color-surface, transparent))",
+  "dataGradientDefault": "true",
+  "parent": "radial-gradient(ellipse 60% 45% at 25% 0%, rgba(59, 130, 246, 0.05), transparent 55%), radial-gradient(ellipse 45% 45% at 85% 100%, rgba(59, 130, 246, 0.035), transparent 55%), linear-gradient(180deg, var(--phi-color-surface-raised, transparent), var(--phi-color-surface, transparent))",
+}
+`;
+
+exports[`Gradient-by-Default snapshot + custom properties (Req 4.1, 4.2) > captures the gradient markup and applied gradient custom properties in gradient style > gradient-style-markup 1`] = `
+<section
+  data-gradient-parent="true"
+  data-testid="gradient-parent"
+>
+  <div
+    data-gradient-child="true"
+    data-testid="gradient-child"
+  >
+    Gradient content
+  </div>
+</section>
+`;
+
+exports[`Responsive gradient behavior at two viewport conditions (Req 4.3, 9.3) > captures the responsive contract side-by-side at both widths > responsive-contract-two-widths 1`] = `
+{
+  "narrow (<576px)": {
+    "child": "radial-gradient(ellipse 55% 45% at 85% 0%, rgba(59, 130, 246, 0.025), transparent 55%), linear-gradient(180deg, var(--phi-color-surface-raised, transparent), var(--phi-color-surface, transparent))",
+    "dataGradientDefault": "true",
+    "parent": "radial-gradient(ellipse 60% 45% at 25% 0%, rgba(59, 130, 246, 0.05), transparent 55%), radial-gradient(ellipse 45% 45% at 85% 100%, rgba(59, 130, 246, 0.035), transparent 55%), linear-gradient(180deg, var(--phi-color-surface-raised, transparent), var(--phi-color-surface, transparent))",
+    "width": 375,
+  },
+  "wide (>=992px)": {
+    "child": "radial-gradient(ellipse 55% 45% at 85% 0%, rgba(59, 130, 246, 0.025), transparent 55%), linear-gradient(180deg, var(--phi-color-surface-raised, transparent), var(--phi-color-surface, transparent))",
+    "dataGradientDefault": "true",
+    "parent": "radial-gradient(ellipse 60% 45% at 25% 0%, rgba(59, 130, 246, 0.05), transparent 55%), radial-gradient(ellipse 45% 45% at 85% 100%, rgba(59, 130, 246, 0.035), transparent 55%), linear-gradient(180deg, var(--phi-color-surface-raised, transparent), var(--phi-color-surface, transparent))",
+    "width": 1280,
+  },
+}
+`;
+
+exports[`Responsive gradient behavior at two viewport conditions (Req 4.3, 9.3) > holds the gradient token/attribute contract at narrow (<576px) > responsive-markup-narrow (<576px) 1`] = `
+<section
+  data-gradient-parent="true"
+  data-testid="gradient-parent"
+>
+  <div
+    data-gradient-child="true"
+    data-testid="gradient-child"
+  >
+    Gradient content
+  </div>
+</section>
+`;
+
+exports[`Responsive gradient behavior at two viewport conditions (Req 4.3, 9.3) > holds the gradient token/attribute contract at wide (>=992px) > responsive-markup-wide (>=992px) 1`] = `
+<section
+  data-gradient-parent="true"
+  data-testid="gradient-parent"
+>
+  <div
+    data-gradient-child="true"
+    data-testid="gradient-child"
+  >
+    Gradient content
+  </div>
+</section>
+`;

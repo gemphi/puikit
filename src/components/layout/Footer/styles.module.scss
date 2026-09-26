@@ -1,5 +1,8 @@
 .footer {
   width: 100%;
+  /* The footer carried no vertical padding, so its links sat on the page edge. */
+  padding-block: var(--phi-space-6, 48px);
+  margin-top: var(--phi-space-6, 48px);
   background: var(--phi-gradient-navbar, var(--phi-color-background-card));
   border-top: 1px solid var(--phi-color-border-subtle);
 }

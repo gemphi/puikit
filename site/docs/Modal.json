@@ -1,0 +1,53 @@
+{
+  "name": "Modal",
+  "source": "src/components/overlays/Modal/index.tsx",
+  "description": null,
+  "propsInterface": "ModalProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "isOpen",
+      "optional": false,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "onClose",
+      "optional": false,
+      "type": "() => void",
+      "description": null
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    },
+    {
+      "name": "children",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    },
+    {
+      "name": "footer",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "ModalSize",
+      "description": null
+    },
+    {
+      "name": "className",
+      "optional": true,
+      "type": "string",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.868Z"
+}

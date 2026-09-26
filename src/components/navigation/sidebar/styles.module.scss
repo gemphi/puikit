@@ -1,0 +1,238 @@
+/* ============================
+   Sidebar — App Shell (default)
+   Uses absolute positioning + spacer pattern
+   ============================ */
+
+.sidebarSpacerCollapsed {
+  width: var(--phi-sidebar-collapsed-spacer, 88px);
+  flex-shrink: 0;
+  transition: width var(--phi-animation-speed, 0.3s) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebarSpacerExpanded {
+  width: var(--phi-sidebar-expanded-spacer, 272px);
+  flex-shrink: 0;
+  transition: width var(--phi-animation-speed, 0.3s) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar {
+  width: var(--phi-sidebar-collapsed-width, 72px);
+  min-width: var(--phi-sidebar-collapsed-width, 72px);
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  /* Sticky, not absolute: absolute pinned the rail to the viewport box, so it
+     was always exactly one screen tall however long the page was, and its
+     content had to scroll inside a nested scroller. */
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  /* In a parent with a definite height — an app shell owning the viewport —
+     the rail runs the full height rather than stopping at its content, so
+     there is never a dead band under the nav. Content-height parents are
+     unaffected: 100% of an auto height resolves to nothing. */
+  min-height: 100%;
+  max-height: 100vh;
+  z-index: 100;
+  transition:
+    width var(--phi-animation-speed, 0.3s) cubic-bezier(0.4, 0, 0.2, 1),
+    min-width var(--phi-animation-speed, 0.3s) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Default: the rail sits on the page, not in a panel floating above it. It
+   contributes a single dividing edge and the brand wash, and nothing else —
+   no card border, no radius, no shadow, no margin. That is what makes it read
+   as part of the layout rather than as a second surface stacked on top of it,
+   and it hands the inset space back to the content. */
+.sidebar.flush {
+  background-color: transparent;
+  background-image: var(--phi-gradient-rail, none);
+  /* The rail floats: breathing room top and bottom, the theme's own (apple)
+     corner radius, one quiet outline — nothing hardcoded. */
+  border: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
+  border-radius: var(--phi-radius-xl, var(--phi-radius-lg, 16px));
+  box-shadow: none;
+  margin: var(--phi-layout-rail-margin, var(--phi-space-3, 12px));
+  margin-inline-end: 0;
+  top: var(--phi-layout-rail-margin, var(--phi-space-3, 12px));
+  max-height: calc(100vh - var(--phi-layout-rail-margin, var(--phi-space-3, 12px)) * 2);
+  overflow: hidden;
+}
+
+/* Opt-in: the rail as a raised panel, for layouts that want it detached. */
+.sidebar.panel {
+  background-color: var(--phi-color-background-card);
+  background-image: var(--phi-gradient-rail, none);
+  border: var(--phi-elevation-border, 1px solid var(--phi-color-border));
+  border-radius: var(--phi-radius-lg, 16px);
+  box-shadow: var(--phi-elevation-shadow, var(--phi-shadow-sm));
+  margin: var(--phi-layout-sidebar-margin, 12px);
+  top: var(--phi-layout-sidebar-margin, 12px);
+  max-height: calc(100vh - var(--phi-layout-sidebar-margin, 12px) * 2);
+}
+
+.sidebarExpanded {
+  width: var(--phi-sidebar-expanded-width, 260px);
+  min-width: var(--phi-sidebar-expanded-width, 260px);
+}
+
+.sidebarCollapsed {
+  width: var(--phi-sidebar-collapsed-width, 72px);
+  min-width: var(--phi-sidebar-collapsed-width, 72px);
+}
+
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  min-height: var(--phi-sidebar-header-height, 64px);
+  /* Matches the body's inset exactly, so the heading and the items below it
+     share one left edge. */
+  padding: var(--phi-sidebar-body-padding, var(--phi-space-4, 16px));
+  border-bottom: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
+
+  /* The header's content row takes the full width, so a title + close-button
+     row can actually push the button to the far edge — content-sized, the
+     close icon sat glued to the title. */
+  > * {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
+.sidebarBody {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  /* The rail's content must not sit on its own border. This is the one place
+     the inset is decided, so a facet rail and a docs rail breathe alike — and
+     it wins over the Card padding scale, or the two would stack up. */
+  padding: var(--phi-sidebar-body-padding, var(--phi-space-4, 16px));
+  padding-bottom: 0;
+}
+
+.sidebarFooter {
+  padding: 2px var(--phi-sidebar-body-padding, var(--phi-space-4, 16px));
+  border-top: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
+}
+
+.overlay {
+  display: none;
+}
+
+/* ============================
+   Inline mode (for Portals & embedded layouts)
+   ============================ */
+
+.sidebarInline {
+  position: static;
+  width: 100%;
+  min-width: 0;
+  top: auto;
+  left: auto;
+  bottom: auto;
+  border-radius: 0;
+  border: none;
+  border-right: 1px solid var(--phi-color-border-subtle);
+  box-shadow: none;
+  background-color: var(--phi-color-background-secondary);
+  background-image: var(--phi-gradient-rail, none);
+  overflow-y: auto;
+  height: calc(100vh - 65px);
+  z-index: auto;
+}
+
+/* ============================
+   Docs Portal Override
+   ============================ */
+
+:global([data-portal-variant='docs']) .sidebarSpacerCollapsed,
+:global([data-portal-variant='docs']) .sidebarSpacerExpanded {
+  display: none;
+}
+
+:global([data-portal-variant='docs']) .sidebar,
+:global([data-portal-variant='docs']) .sidebarExpanded,
+:global([data-portal-variant='docs']) .sidebarCollapsed {
+  position: static;
+  width: 100%;
+  min-width: 0;
+  top: auto;
+  left: auto;
+  bottom: auto;
+  border-radius: 0;
+  border: none;
+  border-right: 1px solid var(--phi-color-border-subtle);
+  box-shadow: none;
+  background-color: var(--phi-color-background-secondary);
+  background-image: var(--phi-gradient-rail, none);
+  overflow-y: auto;
+  height: calc(100vh - 65px);
+  z-index: auto;
+}
+
+/* ============================
+   Blog Portal Override
+   ============================ */
+
+:global([data-portal-variant='blog']) .sidebarSpacerCollapsed,
+:global([data-portal-variant='blog']) .sidebarSpacerExpanded {
+  display: none;
+}
+
+:global([data-portal-variant='blog']) .sidebar,
+:global([data-portal-variant='blog']) .sidebarExpanded,
+:global([data-portal-variant='blog']) .sidebarCollapsed {
+  position: static;
+  width: 100%;
+  min-width: 0;
+  top: auto;
+  left: auto;
+  bottom: auto;
+  border-radius: 0;
+  border: none;
+  border-right: 1px solid var(--phi-color-border-subtle);
+  box-shadow: none;
+  background-color: var(--phi-color-background-secondary);
+  background-image: var(--phi-gradient-rail, none);
+  overflow-y: auto;
+  height: calc(100vh - 65px);
+  z-index: auto;
+}
+
+/* ============================
+   Mobile: all variants collapse
+   ============================ */
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebarExpanded {
+    width: var(--phi-sidebar-expanded-width, 260px);
+    min-width: var(--phi-sidebar-expanded-width, 260px);
+    transform: translateX(0);
+  }
+
+  .overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: var(--phi-color-overlay);
+    z-index: 90;
+    backdrop-filter: blur(2px);
+    animation: fadeIn 0.3s ease;
+  }
+
+  :global([data-portal-variant='docs']) .sidebar,
+  :global([data-portal-variant='blog']) .sidebar,
+  .sidebarInline {
+    height: auto;
+    max-height: 50vh;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

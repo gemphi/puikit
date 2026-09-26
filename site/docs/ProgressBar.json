@@ -1,0 +1,35 @@
+{
+  "name": "ProgressBar",
+  "source": "src/components/feedback/ProgressBar/index.tsx",
+  "description": null,
+  "propsInterface": "ProgressBarProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "value",
+      "optional": true,
+      "type": "number",
+      "description": null
+    },
+    {
+      "name": "intent",
+      "optional": true,
+      "type": "ProgressBarIntent",
+      "description": "0 to 1, or undefined for indeterminate"
+    },
+    {
+      "name": "animate",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "striped",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.540Z"
+}

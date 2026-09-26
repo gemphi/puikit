@@ -10,6 +10,7 @@ import {
   Callout,
   useService,
   TelemetryService,
+  Box,
 } from '@pui/components';
 import { Activity, Send, Terminal } from 'lucide-react';
 
@@ -54,22 +55,28 @@ export const ServiceExample: React.FC = () => {
           </Button>
         </Stack>
 
-        <div style={{ background: '#0f172a', padding: '1rem', borderRadius: 6, color: '#38bdf8', fontFamily: 'monospace', fontSize: '0.8125rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8, color: '#94a3b8' }}>
+        <Box
+          background="var(--phi-color-background-secondary)"
+          color="var(--phi-color-text-primary)"
+          padding={3}
+          minHeight="80px"
+          style={{ borderRadius: 'var(--phi-radius-md)', fontFamily: 'var(--phi-font-mono)', fontSize: 'var(--phi-font-size-sm)', lineHeight: 1.6, border: '1px solid var(--phi-color-border)' }}
+        >
+          <Box color="var(--phi-color-text-secondary)" marginBottom={2} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
             <Terminal size={14} /> Service Event Stream ({events.length} received):
-          </div>
+          </Box>
           {events.length === 0 ? (
             <span style={{ color: '#64748b' }}>No events emitted yet. Click a button above.</span>
           ) : (
             events.map((ev, i) => (
-              <div key={i} style={{ marginBottom: 4 }}>
+              <Box key={i} marginBottom={1}>
                 <span style={{ color: '#a855f7' }}>[{ev.timestamp.slice(11, 19)}]</span>{' '}
                 <span style={{ color: '#22c55e', fontWeight: 600 }}>{ev.event}</span>{' '}
                 <span style={{ color: '#94a3b8' }}>{JSON.stringify(ev.payload)}</span>
-              </div>
+              </Box>
             ))
           )}
-        </div>
+        </Box>
       </Stack>
     </Card>
   );

@@ -1,0 +1,65 @@
+{
+  "name": "Tag",
+  "source": "src/components/primitives/Tag/index.tsx",
+  "description": null,
+  "propsInterface": "TagProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "intent",
+      "optional": true,
+      "type": "TagIntent",
+      "description": null
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "TagSize",
+      "description": null
+    },
+    {
+      "name": "interactive",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "minimal",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "round",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "icon",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    },
+    {
+      "name": "rightIcon",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    },
+    {
+      "name": "onRemove",
+      "optional": true,
+      "type": "(e: React.MouseEvent<HTMLButtonElement>) => void",
+      "description": null
+    },
+    {
+      "name": "children",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.916Z"
+}

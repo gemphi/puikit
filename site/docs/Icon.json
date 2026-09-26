@@ -1,0 +1,35 @@
+{
+  "name": "Icon",
+  "source": "src/components/primitives/Icon/index.tsx",
+  "description": null,
+  "propsInterface": "IconProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "name",
+      "optional": true,
+      "type": "LucideIcon",
+      "description": null
+    },
+    {
+      "name": "icon",
+      "optional": true,
+      "type": "LucideIcon",
+      "description": null
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "IconSize | number",
+      "description": null
+    },
+    {
+      "name": "className",
+      "optional": true,
+      "type": "string",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.907Z"
+}

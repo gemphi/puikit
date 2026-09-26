@@ -16,27 +16,27 @@ export const EcosystemPage: React.FC = () => {
         PUI provides the visual and interaction layer for all GemPhi AI agents, continuous phase manifolds, and ontology schemas.
       </Callout>
 
-      <Grid columns="repeat(auto-fit, minmax(280px, 1fr))" gap={4}>
-        <Card elevation={1}>
+      <Grid columns={{ xs: 1, sm: 2, lg: 3 }} gap={4}>
+        <Card>
           <Cpu size={20} style={{ color: 'var(--phi-color-primary)', marginBottom: '8px' }} />
           <Title level={5}>PhiADK Agent Mesh</Title>
-          <Text variant="sm" color="secondary">
+          <Text size="sm" intent="secondary">
             phiadk.agents.phigen, phirag, and phibus emit telemetry streams rendered directly in PUI dashboards.
           </Text>
         </Card>
 
-        <Card elevation={1}>
+        <Card>
           <Activity size={20} style={{ color: 'var(--phi-color-success)', marginBottom: '8px' }} />
           <Title level={5}>Phiano Phase Manifold</Title>
-          <Text variant="sm" color="secondary">
+          <Text size="sm" intent="secondary">
             Continuous phase representations, Kuramoto coupling, and 16-layer memory octave continuum visualizers.
           </Text>
         </Card>
 
-        <Card elevation={1}>
+        <Card>
           <Database size={20} style={{ color: 'var(--phi-color-warning)', marginBottom: '8px' }} />
           <Title level={5}>Axiomatic Ontologies</Title>
-          <Text variant="sm" color="secondary">
+          <Text size="sm" intent="secondary">
             Topos schemas: GeoProperty, MediaProperty, CipherProperty, and ActionTypeMetadata.
           </Text>
         </Card>

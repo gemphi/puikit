@@ -42,12 +42,22 @@
 }
 
 .count {
-  position: absolute;
-  top: -0.25rem;
-  right: -0.25rem;
+  /* Static by default. Absolute positioning with no positioned ancestor sent a
+     standalone count badge to the corner of the page, so it is only pinned
+     when it actually has something to pin to — a button or another anchor. */
+  position: static;
   min-width: 1.25rem;
   height: 1.25rem;
   padding: 0 0.25rem;
   background-color: var(--phi-color-error);
   color: var(--phi-color-text-inverse);
+}
+
+/* Pinned to the corner of the control it counts. `Button` sets
+   `position: relative` for exactly this. */
+button > .count,
+[data-badge-anchor] > .count {
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
 }

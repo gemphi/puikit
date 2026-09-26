@@ -1,0 +1,22 @@
+/* uaiagency.org global chrome — everything else uses puijs tokens. */
+
+:root {
+  --uaia-font-display: 'Space Grotesk', 'Inter', sans-serif;
+  --uaia-font-micro: 'Chakra Petch', 'Space Grotesk', monospace;
+  --uaia-ink: #05070f;
+  --uaia-cyan: #22d3ee;
+  --uaia-indigo: #818cf8;
+  --uaia-line: rgba(148, 197, 255, 0.14);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--phi-color-background, var(--uaia-ink));
+}
+
+h1, h2, h3, h4, h5 { font-family: var(--uaia-font-display); letter-spacing: -0.01em; }
+
+::selection { background: rgba(34, 211, 238, 0.35); }

@@ -18,3 +18,14 @@
 .sm {
   font-size: var(--phi-font-size-sm);
 }
+
+/* Inline code: monospace on a faint tinted chip, for symbol and token names. */
+.code {
+  font-family: var(--phi-font-mono);
+  font-size: 0.9em;
+  padding-inline: var(--phi-space-1);
+  padding-block: 0.1em;
+  border-radius: var(--phi-radius-sm);
+  background: var(--phi-color-background-secondary);
+  border: 1px solid var(--phi-color-border);
+}

@@ -1,0 +1,53 @@
+{
+  "name": "OrderCard",
+  "source": "src/components/commerce/order/card.tsx",
+  "description": "An order card composed exclusively from puijs primitives: the Card\nfamily provides the surface/regions, Stack the layout, Text\nthe typography (status via token-driven `intent`), Price the money,\nand Button the action. No per-component stylesheet, no raw layout\n`<div>`, no inline style, and no hardcoded colors.",
+  "propsInterface": "OrderCardProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "id",
+      "optional": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "date",
+      "optional": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "total",
+      "optional": false,
+      "type": "number",
+      "description": null
+    },
+    {
+      "name": "status",
+      "optional": false,
+      "type": "OrderStatus",
+      "description": null
+    },
+    {
+      "name": "items",
+      "optional": false,
+      "type": "OrderItemSummary[]",
+      "description": null
+    },
+    {
+      "name": "onViewDetails",
+      "optional": true,
+      "type": "(id: string) => void",
+      "description": null
+    },
+    {
+      "name": "className",
+      "optional": true,
+      "type": "string",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.400Z"
+}

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { ChevronRight, ChevronDown, Folder, File } from 'lucide-react';
 import { cn } from '../../../utils/cn';
+import { Box } from '../../layout/Box';
 import { TreeNode } from './types';
 import styles from './styles.module.scss';
 
@@ -40,7 +41,7 @@ export const TreeNodeItem: React.FC<TreeNodeItemProps> = ({
 
   return (
     <li className={cn(styles.treeItem, node.isDisabled && styles.disabled)}>
-      <div
+      <Box
         className={cn(styles.treeRow, node.isSelected && styles.selected, node.isDisabled && styles.disabledRow)}
         style={{ paddingLeft: `${depth * 16 + 8}px` }}
         onClick={() => !node.isDisabled && onNodeClick?.(node, path)}
@@ -57,7 +58,7 @@ export const TreeNodeItem: React.FC<TreeNodeItemProps> = ({
         </span>
         <span className={styles.treeLabel}>{node.label}</span>
         {node.secondaryLabel && <span className={styles.treeSecondaryLabel}>{node.secondaryLabel}</span>}
-      </div>
+      </Box>
 
       {hasChildren && expanded && (
         <ul className={styles.treeSublist}>

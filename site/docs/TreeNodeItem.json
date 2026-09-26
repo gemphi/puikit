@@ -1,0 +1,47 @@
+{
+  "name": "TreeNodeItem",
+  "source": "src/components/display/Tree/TreeNodeItem.tsx",
+  "description": null,
+  "propsInterface": "TreeNodeItemProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "node",
+      "optional": false,
+      "type": "TreeNode",
+      "description": null
+    },
+    {
+      "name": "path",
+      "optional": false,
+      "type": "number[]",
+      "description": null
+    },
+    {
+      "name": "depth",
+      "optional": false,
+      "type": "number",
+      "description": null
+    },
+    {
+      "name": "onNodeClick",
+      "optional": true,
+      "type": "(node: TreeNode, nodePath: number[]) => void",
+      "description": null
+    },
+    {
+      "name": "onNodeCollapse",
+      "optional": true,
+      "type": "(node: TreeNode, nodePath: number[]) => void",
+      "description": null
+    },
+    {
+      "name": "onNodeExpand",
+      "optional": true,
+      "type": "(node: TreeNode, nodePath: number[]) => void",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.516Z"
+}

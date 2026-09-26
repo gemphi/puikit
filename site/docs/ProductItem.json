@@ -1,0 +1,89 @@
+{
+  "name": "ProductItem",
+  "source": "src/components/commerce/product/item.tsx",
+  "description": "A single variant-driven product entry composed exclusively from puijs\nprimitives (Card, Stack, Price, Button).\nThe `variant` selects row/card/compact density and affordances purely via\nthe `data-variant` attribute + tokens — no per-component stylesheet, no raw\nlayout `<div>`, no inline style, and no hardcoded colors.",
+  "propsInterface": "ProductItemProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "id",
+      "optional": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "title",
+      "optional": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "category",
+      "optional": true,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "price",
+      "optional": false,
+      "type": "number",
+      "description": null
+    },
+    {
+      "name": "salePrice",
+      "optional": true,
+      "type": "number",
+      "description": null
+    },
+    {
+      "name": "image",
+      "optional": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "rating",
+      "optional": true,
+      "type": "number",
+      "description": null
+    },
+    {
+      "name": "inWishlist",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "variant",
+      "optional": true,
+      "type": "ProductItemVariant",
+      "description": "Selects the presentation. Defaults to `row`."
+    },
+    {
+      "name": "onAddToCart",
+      "optional": true,
+      "type": "(id: string) => void",
+      "description": null
+    },
+    {
+      "name": "onToggleWishlist",
+      "optional": true,
+      "type": "(id: string) => void",
+      "description": null
+    },
+    {
+      "name": "onClick",
+      "optional": true,
+      "type": "(id: string) => void",
+      "description": null
+    },
+    {
+      "name": "className",
+      "optional": true,
+      "type": "string",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.436Z"
+}

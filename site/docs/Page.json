@@ -1,0 +1,61 @@
+{
+  "name": "Page",
+  "source": "src/components/layout/Page/index.tsx",
+  "description": null,
+  "propsInterface": "PageProps",
+  "extendsBases": [
+    "Omit"
+  ],
+  "props": [
+    {
+      "name": "header",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    },
+    {
+      "name": "sidebar",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    },
+    {
+      "name": "footer",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    },
+    {
+      "name": "direction",
+      "optional": true,
+      "type": "StackProps['direction']",
+      "description": null
+    },
+    {
+      "name": "gap",
+      "optional": true,
+      "type": "StackProps['gap']",
+      "description": null
+    },
+    {
+      "name": "mainProps",
+      "optional": true,
+      "type": "PageSectionProps",
+      "description": null
+    },
+    {
+      "name": "className",
+      "optional": true,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "children",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.714Z"
+}

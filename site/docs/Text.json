@@ -1,0 +1,56 @@
+{
+  "name": "Text",
+  "source": "src/components/primitives/Text/index.tsx",
+  "description": null,
+  "propsInterface": "TextProps",
+  "extendsBases": [
+    "Omit",
+    "StyleProps"
+  ],
+  "props": [
+    {
+      "name": "intent",
+      "optional": true,
+      "type": "TextIntent",
+      "description": null
+    },
+    {
+      "name": "variant",
+      "optional": true,
+      "type": "TextIntent",
+      "description": null
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "TextSize",
+      "description": null
+    },
+    {
+      "name": "weight",
+      "optional": true,
+      "type": "TextWeight",
+      "description": null
+    },
+    {
+      "name": "align",
+      "optional": true,
+      "type": "TextAlign",
+      "description": null
+    },
+    {
+      "name": "as",
+      "optional": true,
+      "type": "'p' | 'span' | 'div' | 'label'",
+      "description": null
+    },
+    {
+      "name": "children",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.922Z"
+}

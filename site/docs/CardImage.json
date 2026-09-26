@@ -1,0 +1,10 @@
+{
+  "name": "CardImage",
+  "source": "src/components/display/card/image.tsx",
+  "description": "Card image role file.",
+  "propsInterface": null,
+  "extendsBases": [],
+  "props": [],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.469Z"
+}

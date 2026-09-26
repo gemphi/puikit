@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
+import { Page } from '@pui/components';
 import { AppHeader } from './AppHeader';
 import { AppSidebar } from './AppSidebar';
-import { InspectorDrawer } from './InspectorDrawer';
 
 interface AppLayoutProps {
   currentPath: string;
@@ -13,29 +13,27 @@ interface AppLayoutProps {
   children: React.ReactNode;
 }
 
+/**
+ * Root layout for pui-book.
+ *
+ * The docs shell is the same `Page` composition every puijs app uses — header,
+ * sidebar rail, main — so the library's own documentation is rendered by the
+ * library's own layout primitive rather than by a hand-rolled flex box. There
+ * is no inline style here: `Page` owns the structure and the tokens own the
+ * spacing, which is what makes a theme or density change reach these docs at
+ * the same time it reaches an app.
+ */
 export const AppLayout: React.FC<AppLayoutProps> = ({
   currentPath,
   onNavigate,
   searchQuery,
   onSearchChange,
   children,
-}) => {
-  const [inspectorOpen, setInspectorOpen] = useState(false);
-
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: 'var(--phi-color-background)' }}>
-      <AppHeader
-        onOpenInspector={() => setInspectorOpen(true)}
-        searchQuery={searchQuery}
-        onSearchChange={onSearchChange}
-      />
-      <div style={{ display: 'flex', flex: 1 }}>
-        <AppSidebar currentPath={currentPath} onNavigate={onNavigate} />
-        <div style={{ flex: 1, padding: '32px 40px', overflowY: 'auto' }}>
-          {children}
-        </div>
-      </div>
-      <InspectorDrawer isOpen={inspectorOpen} onClose={() => setInspectorOpen(false)} />
-    </div>
-  );
-};
+}) => (
+  <Page
+    header={<AppHeader searchQuery={searchQuery} onSearchChange={onSearchChange} />}
+    sidebar={<AppSidebar currentPath={currentPath} onNavigate={onNavigate} />}
+  >
+    {children}
+  </Page>
+);

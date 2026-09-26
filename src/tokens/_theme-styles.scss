@@ -5,12 +5,22 @@
   --phi-color-background-card: rgba(255, 255, 255, 0.78);
   --phi-color-border: rgba(0, 0, 0, 0.08);
   --phi-color-border-subtle: rgba(0, 0, 0, 0.04);
-  --phi-radius-xs: 6px;
-  --phi-radius-sm: 8px;
-  --phi-radius-md: 12px;
-  --phi-radius-lg: 16px;
-  --phi-radius-xl: 20px;
-  --phi-radius-2xl: 24px;
+  /* Rebase radius tokens for the `apple` style. The `*-base` values are
+     restated here so the shared `--phi-radius-scale` still multiplies the
+     apple-specific defaults; the emitted `--phi-radius-*` tokens keep the
+     same names and remain scale-responsive. */
+  --phi-radius-xs-base: 6px;
+  --phi-radius-sm-base: 8px;
+  --phi-radius-md-base: 12px;
+  --phi-radius-lg-base: 16px;
+  --phi-radius-xl-base: 20px;
+  --phi-radius-2xl-base: 24px;
+  --phi-radius-xs: calc(var(--phi-radius-xs-base) * var(--phi-radius-scale, 1));
+  --phi-radius-sm: calc(var(--phi-radius-sm-base) * var(--phi-radius-scale, 1));
+  --phi-radius-md: calc(var(--phi-radius-md-base) * var(--phi-radius-scale, 1));
+  --phi-radius-lg: calc(var(--phi-radius-lg-base) * var(--phi-radius-scale, 1));
+  --phi-radius-xl: calc(var(--phi-radius-xl-base) * var(--phi-radius-scale, 1));
+  --phi-radius-2xl: calc(var(--phi-radius-2xl-base) * var(--phi-radius-scale, 1));
   --phi-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 8px rgba(0, 0, 0, 0.04);
   --phi-shadow-2: 0 4px 16px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
   --phi-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.10), 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -49,10 +59,16 @@
 }
 
 :root[data-theme-style='glass'] {
-  --phi-radius-md: 12px;
-  --phi-radius-lg: 18px;
-  --phi-radius-xl: 24px;
-  --phi-radius-2xl: 32px;
+  /* Rebase radius tokens for the `glass` style so the shared
+     `--phi-radius-scale` still applies. */
+  --phi-radius-md-base: 12px;
+  --phi-radius-lg-base: 18px;
+  --phi-radius-xl-base: 24px;
+  --phi-radius-2xl-base: 32px;
+  --phi-radius-md: calc(var(--phi-radius-md-base) * var(--phi-radius-scale, 1));
+  --phi-radius-lg: calc(var(--phi-radius-lg-base) * var(--phi-radius-scale, 1));
+  --phi-radius-xl: calc(var(--phi-radius-xl-base) * var(--phi-radius-scale, 1));
+  --phi-radius-2xl: calc(var(--phi-radius-2xl-base) * var(--phi-radius-scale, 1));
   --phi-gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.68) 0%, rgba(255, 255, 255, 0.48) 100%);
   --phi-glass-surface: rgba(255, 255, 255, 0.64);
   --phi-glass-border: rgba(255, 255, 255, 0.48);
@@ -73,9 +89,14 @@
 }
 
 :root[data-theme-style='gradient'] {
-  --phi-radius-md: 10px;
-  --phi-radius-lg: 14px;
-  --phi-radius-xl: 18px;
+  /* Rebase radius tokens for the `gradient` style so the shared
+     `--phi-radius-scale` still applies inside this style. */
+  --phi-radius-md-base: 10px;
+  --phi-radius-lg-base: 14px;
+  --phi-radius-xl-base: 18px;
+  --phi-radius-md: calc(var(--phi-radius-md-base) * var(--phi-radius-scale, 1));
+  --phi-radius-lg: calc(var(--phi-radius-lg-base) * var(--phi-radius-scale, 1));
+  --phi-radius-xl: calc(var(--phi-radius-xl-base) * var(--phi-radius-scale, 1));
   --phi-gradient-main: linear-gradient(180deg, #ffffff 0%, #f8fafc 48%, #eef2ff 100%);
   --phi-gradient-card: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
   --phi-gradient-navbar: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
@@ -86,4 +107,63 @@
   --phi-gradient-main: linear-gradient(180deg, #0b0f19 0%, #0f172a 48%, #111827 100%);
   --phi-gradient-card: linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.86) 100%);
   --phi-gradient-navbar: linear-gradient(180deg, rgba(11, 15, 25, 0.92) 0%, rgba(15, 23, 42, 0.88) 100%);
+}
+
+/* ============================================================
+   Gradient-by-default bindings
+   ------------------------------------------------------------
+   When Theme_Style is `gradient`, PuiProvider sets
+   `data-gradient-default="true"` on the document root and exposes
+   `--phi-gradient-parent`, `--phi-gradient-child` and `--phi-gradient-accent`
+   as custom properties derived from the active Brand_Theme.
+
+   Each value is a *layered* background-image: wide, low-alpha radial brand
+   tints over a vertical surface-to-surface gradient. The treatment is ambient
+   lighting, not a painted panel — nothing reaches full brand saturation, so
+   text contrast on a gradient surface is unaffected and no responsive extent
+   tuning is needed (a radial tint scales with its box).
+
+   Mark a container `data-gradient-parent` and a nested surface
+   `data-gradient-child`; the child treatment is roughly half strength and lit
+   from the opposing corner, so nesting never compounds the tint. No consumer
+   CSS and no hardcoded colors are required.
+   ============================================================ */
+
+:root[data-gradient-default='true'] [data-gradient-parent] {
+  background-image: var(--phi-gradient-parent, none);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+:root[data-gradient-default='true'] [data-gradient-child] {
+  background-image: var(--phi-gradient-child, none);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Optional lit top rim. Opt in per element; never applied automatically. */
+:root[data-gradient-default='true'] [data-gradient-accent] {
+  position: relative;
+}
+
+:root[data-gradient-default='true'] [data-gradient-accent]::before {
+  content: '';
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  block-size: 1px;
+  background-image: var(--phi-gradient-accent, none);
+  pointer-events: none;
+}
+
+/* Respect reduced-transparency preferences: drop the ambient tints and keep
+   only the flat surface beneath them. */
+@media (prefers-reduced-transparency: reduce) {
+  :root[data-gradient-default='true'] [data-gradient-parent],
+  :root[data-gradient-default='true'] [data-gradient-child] {
+    background-image: none;
+  }
+  :root[data-gradient-default='true'] [data-gradient-accent]::before {
+    background-image: none;
+  }
 }

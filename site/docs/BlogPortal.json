@@ -1,0 +1,65 @@
+{
+  "name": "BlogPortal",
+  "source": "src/components/layout/Portal/BlogPortal.tsx",
+  "description": null,
+  "propsInterface": "BlogPortalProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "posts",
+      "optional": false,
+      "type": "BlogPost[]",
+      "description": null
+    },
+    {
+      "name": "initialPostId",
+      "optional": true,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "activePostId",
+      "optional": true,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "onPostChange",
+      "optional": true,
+      "type": "(id: string) => void",
+      "description": null
+    },
+    {
+      "name": "brandTitle",
+      "optional": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "version",
+      "optional": true,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "dark",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "onToggleDark",
+      "optional": true,
+      "type": "() => void",
+      "description": null
+    },
+    {
+      "name": "className",
+      "optional": true,
+      "type": "string",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.720Z"
+}

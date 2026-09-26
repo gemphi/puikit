@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { cn } from '../../../utils/cn';
+import { Box } from '../../layout/Box';
 import styles from './styles.module.scss';
 
 export interface NonIdealStateProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
@@ -22,13 +23,13 @@ export const NonIdealState: React.FC<NonIdealStateProps> = ({
   ...props
 }) => {
   return (
-    <div className={cn(styles.nonIdealState, className)} {...props}>
-      {icon && <div className={styles.visual}>{icon}</div>}
+    <Box className={cn(styles.nonIdealState, className)} {...props}>
+      {icon && <Box className={styles.visual}>{icon}</Box>}
       {title && <h4 className={styles.heading}>{title}</h4>}
-      {description && <div className={styles.description}>{description}</div>}
-      {action && <div className={styles.action}>{action}</div>}
+      {description && <Box className={styles.description}>{description}</Box>}
+      {action && <Box className={styles.action}>{action}</Box>}
       {children}
-    </div>
+    </Box>
   );
 };
 

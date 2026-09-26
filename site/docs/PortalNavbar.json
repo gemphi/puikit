@@ -1,0 +1,89 @@
+{
+  "name": "PortalNavbar",
+  "source": "src/components/layout/Portal/PortalNavbar.tsx",
+  "description": null,
+  "propsInterface": "PortalNavbarProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "brandTitle",
+      "optional": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "version",
+      "optional": true,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "searchQuery",
+      "optional": true,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "searchPlaceholder",
+      "optional": true,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "onSearchChange",
+      "optional": true,
+      "type": "(query: string) => void",
+      "description": null
+    },
+    {
+      "name": "searchResults",
+      "optional": true,
+      "type": "PortalSearchResult[]",
+      "description": null
+    },
+    {
+      "name": "onSelectSearchResult",
+      "optional": true,
+      "type": "(id: string) => void",
+      "description": null
+    },
+    {
+      "name": "onToggleSidebar",
+      "optional": true,
+      "type": "() => void",
+      "description": null
+    },
+    {
+      "name": "onHome",
+      "optional": true,
+      "type": "() => void",
+      "description": null
+    },
+    {
+      "name": "onBackToApp",
+      "optional": true,
+      "type": "() => void",
+      "description": null
+    },
+    {
+      "name": "backToAppLabel",
+      "optional": true,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "dark",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "onToggleDark",
+      "optional": true,
+      "type": "() => void",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.741Z"
+}

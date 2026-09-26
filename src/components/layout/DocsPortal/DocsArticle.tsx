@@ -10,8 +10,8 @@ import { Button } from '../../primitives/Button';
 import { Divider } from '../../primitives/Divider';
 import { Span } from '../../primitives/Span';
 import { Callout } from '../../feedback/Callout';
-import { Card, CardHeader, CardBody } from '../../display/Card';
-import { List, ListItem } from '../../display/List';
+import { Card, CardHeader, CardBody } from '../../display/card';
+import { List, ListItem } from '../../display/list';
 import { Table, Thead, Tbody, Tr, Th, Td } from '../../display/Table';
 import styles from './DocsArticle.module.scss';
 

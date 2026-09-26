@@ -1,0 +1,63 @@
+.swatchGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--phi-control-gap);
+  /* The swatch grid sits on the same row rhythm as the checkbox rows above it. */
+  padding-block: var(--phi-control-row-padding);
+}
+
+.swatchButton {
+  width: var(--phi-control-size);
+  height: var(--phi-control-size);
+  border-radius: var(--phi-control-radius);
+  border: var(--phi-control-border-width) solid var(--phi-color-border);
+  padding: 0;
+  cursor: pointer;
+  background-clip: padding-box;
+  transition: box-shadow var(--phi-transition-fast), transform var(--phi-transition-fast);
+
+  &:hover { transform: scale(1.08); }
+
+  &[aria-pressed='true'] {
+    box-shadow: 0 0 0 2px var(--phi-color-background), 0 0 0 4px var(--phi-color-primary);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--phi-color-background), 0 0 0 4px var(--phi-color-primary);
+  }
+}
+
+.more {
+  align-self: flex-start;
+}
+
+/* The group heading is a full-width row: the title reads from the left edge
+   like every other label in the rail, with the chevron pinned to the right. */
+/* `button.` so this beats the size class's own horizontal padding — otherwise
+   the heading sits 12px in while its options sit 8px in, and the group reads
+   as misaligned. */
+button.groupToggle {
+  width: 100%;
+  justify-content: flex-start;
+  text-align: start;
+  /* The same token the option rows use, so heading and options share one left
+     edge. (`--phi-space-1` is 4px, not 8 — using it here put the heading 4px
+     out from everything below it.) */
+  padding: var(--phi-control-row-padding);
+  margin-inline: calc(var(--phi-control-row-padding) * -1);
+}
+
+.groupToggleRow {
+  width: 100%;
+}
+
+/* Button wraps its children in an anonymous span that sizes to content, which
+   pinned the chevron right next to the heading text. The span must hand the
+   row the button's full width so `justify: between` can push the arrow to the
+   far edge. */
+button.groupToggle > span {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+}

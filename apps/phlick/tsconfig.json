@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@pui": ["../../src"],
+      "@pui/*": ["../../src/*"],
+      "@pui/components": ["../../src/components"],
+      "@pui/shop": ["../../src/components/shop"],
+      "@pui/social": ["../../src/components/social"],
+      "@pui/types": ["../../src/types"],
+      "@pui/store": ["../../src/store"],
+      "@pui/services": ["../../src/services"],
+      "@pui/api": ["../../src/api"],
+      "@pui/hooks": ["../../src/hooks"],
+      "@pui/providers": ["../../src/providers"],
+      "puijs": ["../../src"],
+      "puijs/*": ["../../src/*"]
+    }
+  },
+  "include": ["src"]
+}

@@ -4,7 +4,7 @@ import { Badge } from '../../primitives/Badge';
 import { Button } from '../../primitives/Button';
 import { Text } from '../../primitives/Text';
 import { Title } from '../../primitives/Title';
-import { Card } from '../../display/Card';
+import { Card } from '../../display/card';
 import { Stack } from '../Stack';
 import { Portal } from './Portal';
 import { PortalNavbar } from './PortalNavbar';
@@ -26,6 +26,8 @@ export interface BlogPortalProps {
   version?: string;
   dark?: boolean;
   onToggleDark?: () => void;
+  /** Opens the shared preference surface from the portal navbar. */
+  onOpenPreferences?: () => void;
   className?: string;
 }
 
@@ -38,6 +40,7 @@ export const BlogPortal: React.FC<BlogPortalProps> = ({
   version,
   dark,
   onToggleDark,
+  onOpenPreferences,
   className = '',
 }) => {
   const [internalPostId, setInternalPostId] = useState(initialPostId || posts[0]?.id || '');
@@ -86,6 +89,7 @@ export const BlogPortal: React.FC<BlogPortalProps> = ({
           onHome={() => selectPost(visiblePosts[0].id)}
           dark={dark}
           onToggleDark={onToggleDark}
+          onOpenPreferences={onOpenPreferences}
         />
       )}
       sidebar={<PortalSidebar title="Posts" sections={sections} activeItemId={activePost.id} onSelectItem={selectPost} />}

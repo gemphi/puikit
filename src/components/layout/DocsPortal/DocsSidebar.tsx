@@ -8,12 +8,14 @@ interface DocsSidebarProps {
   categories: Record<string, DocGuide[]>;
   activeGuideId: string;
   onSelectGuide: (id: string) => void;
+  onToggleSidebar?: () => void;
 }
 
 export const DocsSidebar: React.FC<DocsSidebarProps> = ({
   categories,
   activeGuideId,
   onSelectGuide,
+  onToggleSidebar,
 }) => {
   const sections = useMemo<PortalSection[]>(() => {
     return Object.entries(categories).map(([title, guides]) => ({
@@ -28,6 +30,7 @@ export const DocsSidebar: React.FC<DocsSidebarProps> = ({
       sections={sections}
       activeItemId={activeGuideId}
       onSelectItem={onSelectGuide}
+      onToggleSidebar={onToggleSidebar}
       className={styles.sidebar}
     />
   );

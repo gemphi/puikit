@@ -1,0 +1,7 @@
+[
+  { "slug": "handbags", "name": "Handbags", "tagline": "Quilted lambskin, chain straps, and the codes of the house.", "order": 1 },
+  { "slug": "ready-to-wear", "name": "Ready-to-Wear", "tagline": "Tweed jackets and silhouettes cut for movement.", "order": 2 },
+  { "slug": "fragrance", "name": "Fragrance", "tagline": "Compositions from the maison's perfumers.", "order": 3 },
+  { "slug": "watches", "name": "Watches & Fine Jewellery", "tagline": "Ceramic, gold, and diamond-set pieces.", "order": 4 },
+  { "slug": "eyewear", "name": "Eyewear", "tagline": "Acetate and metal frames with signature detailing.", "order": 5 }
+]

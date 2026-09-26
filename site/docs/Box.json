@@ -1,0 +1,13 @@
+{
+  "name": "Box",
+  "source": "src/components/layout/Box/index.tsx",
+  "description": "The single base primitive.\n\n`Box` renders the element named by its `as` prop (default `'div'`), forwards\nits `ref` to that element, and passes `className`, `style`, and the remaining\nDOM props (`data-*`, `aria-*`, event handlers, etc.) straight through. It is a\ndrop-in replacement for a bare `<div ref className style {...rest}>`.\n\n`Box` optionally integrates the shared `StyleProps` helper so callers may pass\ntoken-driven style props (`background`, `padding`, `color`, …) the same way\n`Stack` does. Computed StyleProps CSS is merged first and an explicit `style`\nprop wins over it. No hardcoded colors are introduced — all color/background\nvalues resolve to `--phi-*` custom properties via the shared helpers\n(Requirement 16.1, 16.3).",
+  "propsInterface": "BoxProps",
+  "extendsBases": [
+    "BoxOwnProps",
+    "Omit"
+  ],
+  "props": [],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.642Z"
+}

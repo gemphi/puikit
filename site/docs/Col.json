@@ -1,0 +1,73 @@
+{
+  "name": "Col",
+  "source": "src/components/layout/Col/index.tsx",
+  "description": null,
+  "propsInterface": "ColProps",
+  "extendsBases": [
+    "Omit"
+  ],
+  "props": [
+    {
+      "name": "span",
+      "optional": true,
+      "type": "ColSize",
+      "description": null
+    },
+    {
+      "name": "gap",
+      "optional": true,
+      "type": "ResponsiveValue<ColGap>",
+      "description": null
+    },
+    {
+      "name": "align",
+      "optional": true,
+      "type": "ResponsiveValue<ColAlign>",
+      "description": null
+    },
+    {
+      "name": "justify",
+      "optional": true,
+      "type": "ResponsiveValue<ColJustify>",
+      "description": null
+    },
+    {
+      "name": "fill",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "xs",
+      "optional": true,
+      "type": "ColSpec",
+      "description": null
+    },
+    {
+      "name": "sm",
+      "optional": true,
+      "type": "ColSpec",
+      "description": null
+    },
+    {
+      "name": "md",
+      "optional": true,
+      "type": "ColSpec",
+      "description": null
+    },
+    {
+      "name": "lg",
+      "optional": true,
+      "type": "ColSpec",
+      "description": null
+    },
+    {
+      "name": "xl",
+      "optional": true,
+      "type": "ColSpec",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.647Z"
+}

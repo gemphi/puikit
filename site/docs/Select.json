@@ -1,0 +1,43 @@
+{
+  "name": "Select",
+  "source": "src/components/forms/Select/index.tsx",
+  "description": null,
+  "propsInterface": "SelectProps",
+  "extendsBases": [
+    "Omit"
+  ],
+  "props": [
+    {
+      "name": "options",
+      "optional": true,
+      "type": "SelectOption[]",
+      "description": null
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "'sm' | 'md' | 'lg'",
+      "description": null
+    },
+    {
+      "name": "error",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "className",
+      "optional": true,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "children",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.615Z"
+}

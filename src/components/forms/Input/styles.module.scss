@@ -7,7 +7,9 @@
 
 .input {
   width: 100%;
-  padding: 0.5rem 0.75rem;
+  min-width: 0;
+  min-height: var(--phi-control-height-md);
+  padding: 0 0.75rem;
   border: 1px solid var(--phi-color-border);
   border-radius: var(--phi-radius-md);
   background-color: var(--phi-color-background);

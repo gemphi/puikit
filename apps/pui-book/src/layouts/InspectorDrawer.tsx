@@ -16,7 +16,7 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({ isOpen, onClos
       <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
         <div>
           <Title level={5}>Live Design System Controls</Title>
-          <Text variant="sm" color="secondary">
+          <Text size="sm" intent="secondary">
             Mutates root CSS custom properties in real-time.
           </Text>
         </div>
@@ -46,7 +46,7 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({ isOpen, onClos
           />
         </FormGroup>
 
-        <Stack direction="row" gap={2} wrap="wrap">
+        <Stack direction="row" gap={2} wrap>
           <Tag intent="primary">puijs.com</Tag>
           <Tag intent="success">Decoupled Architecture</Tag>
         </Stack>

@@ -1,0 +1,26 @@
+{
+  "name": "Footer",
+  "source": "src/components/layout/Footer/index.tsx",
+  "description": null,
+  "propsInterface": "FooterProps",
+  "extendsBases": [
+    "React.HTMLAttributes",
+    "StyleProps"
+  ],
+  "props": [
+    {
+      "name": "className",
+      "optional": true,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "children",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.690Z"
+}

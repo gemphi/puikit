@@ -10,6 +10,7 @@ Applications and workbenches for Phient UI (`@pui/components`), structured accor
 |:---|:---|:---|
 | [`pui-book`](./pui-book) | `3001` | **Component Documentation & Live Playground (`puijs.com`)**: Interactive workbench with real-time props inspector, token switcher, and live code examples (replaces legacy Storybook). |
 | [`demo-app`](./demo-app) | `3002` | **Enterprise Operations Showcase**: Full operational cockpit featuring agent swarms, ontology Topos trees, dense data tables, and metrics telemetry. |
+| [`uaia`](./uaia) | `3005` | **UAIA (`uaiagency.org`)**: Unified Artificial Intelligence Agency — 16-page regulatory-body site on the `uaia` brand theme. |
 | [`landing-app`](./landing-app) | `3003` | **Design System Landing Page**: Showcase and overview of Phient UI's design philosophy, Palantir Blueprint parity, and theming capabilities. |
 
 ---

@@ -24,7 +24,7 @@ export const PageShell: React.FC<PageShellProps> = ({
           {badge}
         </Stack>
         {description && (
-          <Text variant="base" color="secondary" style={{ marginTop: '8px' }}>
+          <Text size="md" intent="secondary" style={{ marginTop: '8px' }}>
             {description}
           </Text>
         )}

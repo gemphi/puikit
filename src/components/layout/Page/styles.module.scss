@@ -6,9 +6,16 @@
 }
 
 .sidebarWrapper {
-  flex-shrink: 0;
+  /* `Section` sets `width: 100%`, which inside a flex row resolves against the
+     whole page and pushes the content column off-screen. The rail must size to
+     its own content (its spacer) instead. */
+  width: auto;
+  flex: 0 0 auto;
+  align-self: stretch;
   z-index: 100;
-  position: relative;
+  /* `static`, so a sticky rail inside can resolve against the page rather than
+     against this wrapper — a positioned ancestor would trap it. */
+  position: static;
 }
 
 .contentWrapper {
@@ -29,6 +36,15 @@
 
 .main {
   flex: 1 1 auto;
+  /* Every page breathes the same way: a consistent band between the header
+     and the content, and between the content and the footer — decided once
+     here instead of re-remembered on every page. `--phi-page-padding-block`
+     lets an app tune or zero it (a full-bleed surface passes 0). */
+  padding-block: var(--phi-page-padding-block, var(--phi-space-6));
+  display: flex;
+  flex-direction: column;
+  /* Sibling sections stacked directly in the main region keep a uniform gap. */
+  gap: var(--phi-page-gap, var(--phi-space-6));
 }
 
 .footer {

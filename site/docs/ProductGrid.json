@@ -1,0 +1,41 @@
+{
+  "name": "ProductGrid",
+  "source": "src/components/commerce/product/grid.tsx",
+  "description": "A responsive grid of product cards. Layout is delegated entirely to the\nshared Grid primitive and the loading state is composed from the\nshared Skeleton primitive inside the Card family — no raw\nlayout `<div>`, no per-component stylesheet, no inline style, and no\nhardcoded colors. Appearance is driven by tokens + primitives only.",
+  "propsInterface": "ProductGridProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "products",
+      "optional": false,
+      "type": "Array<ProductCardProps>",
+      "description": null
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "skeletonCount",
+      "optional": true,
+      "type": "number",
+      "description": null
+    },
+    {
+      "name": "columns",
+      "optional": true,
+      "type": "ResponsiveValue<number>",
+      "description": "Responsive column count for the underlying Grid primitive.\nDefaults to a responsive 1→2→3→4 progression across breakpoints."
+    },
+    {
+      "name": "className",
+      "optional": true,
+      "type": "string",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.431Z"
+}

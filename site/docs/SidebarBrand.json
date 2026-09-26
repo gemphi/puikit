@@ -1,0 +1,65 @@
+{
+  "name": "SidebarBrand",
+  "source": "src/components/navigation/sidebar/brand.tsx",
+  "description": "`SidebarBrand` — a puijs-native, Kiro-style collapsible AppShell sidebar\ncomposed **exclusively** from existing puijs (puikit family) components\n(Sidebar, SidebarHeader, SidebarBody,\nSidebarFooter, Button, Text, MenuItem,\nAvatar, plus the Stack layout primitive and Icon) and\n`lucide-react` icons.\n\nStructure: a logo row + collapse control, an Automations section, a New\nSession action, a recent-sessions panel, and a footer account menu. Open\nstate renders labels; collapsed state renders icon-only controls.\n\nAppearance is driven by tokens + variants + data attributes only — there are\nno raw layout `<div>`s, no per-component `.module.scss`, no inline `style`,\nand no hardcoded colors here. The collapse control toggles internal state and\nmirrors it as `data-collapsed=\"true\"|\"false\"` on the sidebar root (via the\nSidebar rest-prop forwarding); open state renders labels while\ncollapsed state renders icon-only controls.\n\nTheming is automatic: the component consumes usePuiTheme, so the\nactive theme mode/style/brand and gradient-by-default (applied by\n`PuiProvider` on the document root) flow through the shared `--phi-*` tokens\nand data attributes. The archetype `variant` is emitted as\n`data-variant=\"<archetypeId>\"`, defaulting to the active `archetypeId` when\nomitted; all per-archetype appearance is token- and data-attribute-driven.",
+  "propsInterface": "SidebarBrandProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "logoLabel",
+      "optional": false,
+      "type": "string",
+      "description": "Brand/logo label shown in the header row (hidden when collapsed)."
+    },
+    {
+      "name": "automations",
+      "optional": false,
+      "type": "SidebarSession[]",
+      "description": "Entries rendered in the \"Automations\" section."
+    },
+    {
+      "name": "recentSessions",
+      "optional": false,
+      "type": "SidebarSession[]",
+      "description": "Entries rendered in the recent-sessions panel."
+    },
+    {
+      "name": "account",
+      "optional": false,
+      "type": "SidebarBrandAccount",
+      "description": "Footer account descriptor; avatar is used when available, else initial."
+    },
+    {
+      "name": "defaultCollapsed",
+      "optional": true,
+      "type": "boolean",
+      "description": "Initial collapsed state; mirrored as `data-collapsed` on the sidebar root."
+    },
+    {
+      "name": "onNewSession",
+      "optional": true,
+      "type": "() => void",
+      "description": "Invoked when the \"New session\" control is activated."
+    },
+    {
+      "name": "onSelectSession",
+      "optional": true,
+      "type": "(id: string) => void",
+      "description": "Invoked with the session id when a session/automation entry is selected."
+    },
+    {
+      "name": "variant",
+      "optional": true,
+      "type": "string",
+      "description": "Archetype-driven appearance variant. Emitted as `data-variant` on the\nsidebar root; per-archetype appearance is token- and data-attribute-driven.\nDefaults to the active `archetypeId` (from usePuiTheme) when\nomitted, so the sidebar structurally matches the active Site_Archetype."
+    },
+    {
+      "name": "className",
+      "optional": true,
+      "type": "string",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.825Z"
+}

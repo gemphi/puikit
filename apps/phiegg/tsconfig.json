@@ -16,7 +16,7 @@
       "@pui": ["../../src"],
       "@pui/*": ["../../src/*"],
       "@pui/components": ["../../src/components"],
-      "@pui/commerce": ["../../src/components/commerce"],
+      "@pui/shop": ["../../src/components/shop"],
       "@pui/store": ["../../src/store"],
       "@pui/services": ["../../src/services"],
       "@pui/api": ["../../src/api"],

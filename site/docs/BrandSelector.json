@@ -1,0 +1,35 @@
+{
+  "name": "BrandSelector",
+  "source": "src/components/navigation/BrandSelector/index.tsx",
+  "description": null,
+  "propsInterface": "BrandSelectorProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "value",
+      "optional": true,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "onChange",
+      "optional": true,
+      "type": "(brand: BrandTheme) => void",
+      "description": null
+    },
+    {
+      "name": "className",
+      "optional": true,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "storageKey",
+      "optional": true,
+      "type": "string",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.778Z"
+}

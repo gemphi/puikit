@@ -1,0 +1,38 @@
+{
+  "name": "Title",
+  "source": "src/components/primitives/Title/index.tsx",
+  "description": null,
+  "propsInterface": "TitleProps",
+  "extendsBases": [
+    "React.HTMLAttributes",
+    "StyleProps"
+  ],
+  "props": [
+    {
+      "name": "variant",
+      "optional": true,
+      "type": "TitleVariant",
+      "description": null
+    },
+    {
+      "name": "level",
+      "optional": true,
+      "type": "1 | 2 | 3 | 4 | 5 | 6 | '1' | '2' | '3' | '4' | '5' | '6'",
+      "description": null
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'",
+      "description": null
+    },
+    {
+      "name": "children",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.926Z"
+}

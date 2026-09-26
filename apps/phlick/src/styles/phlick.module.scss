@@ -1,0 +1,283 @@
+/* App-level looks: the shell's proportions and the wordmark. Everything else
+   comes from the library. */
+
+.wordmark {
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
+}
+
+.wordmarkAccent {
+  color: var(--phi-color-primary);
+}
+
+/* Rail section label (the Categories heading over the topic menu). */
+.navSection {
+  display: block;
+  padding: var(--phi-space-2) var(--phi-space-2) 0;
+  font-size: var(--phi-font-size-xs, 0.75rem);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* The shell: rail + stage, the stage owning exactly the viewport. */
+.shell {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.stage {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  overflow-y: auto;
+  /* The stage itself is bare: the feed runs edge to edge with no band around
+     the frames, and document-style pages bring their own padding. */
+  padding: 0;
+}
+
+.pagePad {
+  padding-block: var(--phi-page-padding-block, var(--phi-space-6));
+}
+
+/* The feed page fills the stage exactly; the snap feed does the scrolling. */
+.feedStage {
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* The category header sits level with the rail's logo row: same height, same
+   dividing line, so the two read as one bar across the top of the screen. */
+.feedTabs {
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+  flex: 0 0 auto;
+  height: var(--phi-sidebar-header-height, 64px);
+  min-height: var(--phi-sidebar-header-height, 64px);
+  padding: 2px var(--phi-space-5) 0;
+  border-bottom: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
+}
+
+.feedTabsRow {
+  flex: 1 1 auto;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar { display: none; }
+}
+
+.feedTab {
+  align-self: stretch;
+  min-height: 40px;
+  padding-block: 2px;
+  border-bottom: 2px solid transparent;
+  border-radius: var(--phi-radius-sm, 6px) var(--phi-radius-sm, 6px) 0 0;
+}
+
+.feedTab:hover:not(:disabled) {
+  background: var(--phi-color-background-secondary);
+}
+
+.feedTab[aria-selected='true'] {
+  border-bottom-color: var(--phi-color-primary);
+}
+
+/* The feed and its docked comments panel share a row: the panel takes its
+   width and the playing feed compresses — pushed, never covered. */
+/* A scrolling page body under the fixed category header. */
+.explorePad {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding-block: var(--phi-page-padding-block, var(--phi-space-6));
+}
+
+.feedRow {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  /* The floating comments panel anchors to this row's right edge. */
+  position: relative;
+}
+
+.headerControls {
+  flex: 0 0 auto;
+  margin-inline-start: auto;
+}
+
+.notifications {
+  min-width: 16rem;
+  padding: var(--phi-space-2);
+}
+
+.postPanelBox {
+  height: min(82vh, 46rem);
+  display: flex;
+
+  > * {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
+.feedBody {
+  flex: 1 1 auto;
+  min-width: 0;
+
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.footNote {
+  margin-top: auto;
+}
+
+/* The upload drop stage: tall, centred, and obviously a target. */
+.dropStage {
+  min-height: 18rem;
+  text-align: center;
+  border: 2px dashed var(--phi-color-border);
+  border-radius: var(--phi-radius-lg);
+  padding: var(--phi-space-5);
+}
+
+/* The post page's frame: tall like the feed, but inside a scrolling page.
+   The height must reach the frame itself, or it collapses beside its rail. */
+/* The stage column pins while the thread beside it scrolls: sticky against
+   the row, which is as tall as the longer (comment) column. */
+.stickyCol {
+  position: sticky;
+  top: var(--phi-space-5, 20px);
+  align-self: flex-start;
+}
+
+.postStage {
+  height: min(82vh, 46rem);
+}
+
+.postStage > * {
+  height: 100%;
+  min-height: 0;
+}
+
+/* The collapsed rail's one header control: logo at rest, toggler on hover or
+   focus. Both faces occupy the same cell; opacity swaps them. */
+/* The rail's two parts: the icon strip and the active tab's panel. */
+.railSplit {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+}
+
+.railStrip {
+  flex: 0 0 auto;
+  width: var(--phi-sidebar-collapsed-width, 72px);
+  padding: 2px 0 0;
+  border-inline-end: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
+}
+
+.stripTab {
+  min-width: var(--phi-sidebar-collapsed-width, 72px);
+  align-items: center;
+  gap: 2px;
+  text-align: center;
+}
+
+.stripTab button {
+  width: 40px;
+  height: 40px;
+}
+
+.stripLabel {
+  font-size: var(--phi-font-size-xs, 0.75rem);
+}
+
+/* An open surface lights its strip control: the viewer sees where they are. */
+button.stripOn,
+button.stripOn:hover:not(:disabled) {
+  background-color: var(--phi-color-background-secondary);
+}
+
+.stripSpacer {
+  flex: 1 1 auto;
+}
+
+.railPanel {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-y: auto;
+  padding: 2px var(--phi-sidebar-body-padding, var(--phi-space-4, 16px)) 0;
+}
+
+/* Panel entries are text, not buttons: no wash at rest or hover — the color
+   is the whole state. The Sign up call is the one filled control. */
+button.navText,
+button.navText:hover:not(:disabled) {
+  min-height: 40px;
+  background: none;
+  justify-content: flex-start;
+  padding: 2px 0;
+  color: var(--phi-color-text-secondary, var(--phi-color-text-primary));
+}
+
+button.navText[aria-current] {
+  color: var(--phi-color-primary);
+}
+
+button.navText:hover:not(:disabled) .navTextLabel {
+  color: var(--phi-color-text-primary);
+}
+
+/* Dresses the library Button: room for the two faces, nothing else. */
+.logoToggle {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.logoFace,
+.togglerFace {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity var(--phi-transition-fast);
+}
+
+.togglerFace { opacity: 0; }
+
+.logoToggle:hover .logoFace,
+.logoToggle:focus-visible .logoFace { opacity: 0; }
+
+.logoToggle:hover .togglerFace,
+.logoToggle:focus-visible .togglerFace { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .logoFace, .togglerFace { transition: none; }
+}
+
+/* The brand wall: each mark on a wash derived from its own identity hue. */
+.brandCard {
+  text-align: center;
+}
+
+.brandTile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--phi-radius-lg, 12px);
+}
+
+.brandTag {
+  min-height: 2.5em;
+}

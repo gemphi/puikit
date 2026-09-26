@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '../../../utils/cn';
 import { responsiveCSSVars, type Breakpoint, type ResponsiveValue } from '../../shared/responsive';
+import { Box } from '../Box';
 import styles from './styles.module.scss';
 
 export type ColGap = 1 | 2 | 3 | 4 | 6 | 8;
@@ -70,12 +71,12 @@ export const Col: React.FC<ColProps> = ({
   };
 
   return (
-    <div
+    <Box
       className={cn(styles.col, !hasSpan && styles.colAuto, fill && styles.fill, ...bpClasses, className)}
       style={dynamicStyle}
       {...props}
     >
       {children}
-    </div>
+    </Box>
   );
 };

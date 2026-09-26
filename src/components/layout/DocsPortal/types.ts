@@ -16,5 +16,7 @@ export interface DocsPortalProps {
   backToAppLabel?: string;
   dark?: boolean;
   onToggleDark?: () => void;
+  /** Opens the shared preference surface from the portal navbar. */
+  onOpenPreferences?: () => void;
   className?: string;
 }

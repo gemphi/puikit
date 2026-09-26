@@ -46,6 +46,7 @@
   --phi-color-text-inverse: #ffffff;
   --phi-color-border: var(--phi-color-gray-200);
   --phi-color-border-subtle: var(--phi-color-gray-100);
+  --phi-color-overlay: rgba(15, 23, 42, 0.4);
 
   /* Shadows */
   --phi-shadow-0: none;
@@ -72,25 +73,76 @@
   --phi-glass-border: rgba(255, 255, 255, 0.48);
   --phi-backdrop-blur: blur(16px) saturate(180%);
 
-  /* Unified Rounding Tokens */
+  /* Unified Rounding Tokens
+     ---------------------------------------------------------------
+     The `*-base` custom properties hold the raw default numeric value
+     for each radius token. The public `--phi-radius-*` tokens then
+     multiply their base by the unitless `--phi-radius-scale` (default
+     1) via `calc()`, so the PuiProvider can rescale every radius in the
+     UI live by writing a single custom property on the document root.
+     `--phi-radius-none` and `--phi-radius-full` are intentionally not
+     scaled: 0 stays 0 and the pill radius stays pill-shaped. */
   --phi-radius-none: 0px;
-  --phi-radius-xs: 4px;
-  --phi-radius-sm: 6px;
-  --phi-radius-md: 8px;
-  --phi-radius-lg: 10px;
-  --phi-radius-xl: 12px;
-  --phi-radius-2xl: 16px;
+  --phi-radius-xs-base: 4px;
+  --phi-radius-sm-base: 6px;
+  --phi-radius-md-base: 8px;
+  --phi-radius-lg-base: 10px;
+  --phi-radius-xl-base: 12px;
+  --phi-radius-2xl-base: 16px;
+  --phi-radius-xs: calc(var(--phi-radius-xs-base) * var(--phi-radius-scale, 1));
+  --phi-radius-sm: calc(var(--phi-radius-sm-base) * var(--phi-radius-scale, 1));
+  --phi-radius-md: calc(var(--phi-radius-md-base) * var(--phi-radius-scale, 1));
+  --phi-radius-lg: calc(var(--phi-radius-lg-base) * var(--phi-radius-scale, 1));
+  --phi-radius-xl: calc(var(--phi-radius-xl-base) * var(--phi-radius-scale, 1));
+  --phi-radius-2xl: calc(var(--phi-radius-2xl-base) * var(--phi-radius-scale, 1));
   --phi-radius-full: 9999px;
 
-  /* Spacing */
-  --phi-space-1: 4px;
-  --phi-space-2: 8px;
-  --phi-space-3: 12px;
-  --phi-space-4: 16px;
-  --phi-space-5: 24px;
-  --phi-space-6: 32px;
-  --phi-space-8: 48px;
-  --phi-space-10: 64px;
+  /* Spacing
+     ---------------------------------------------------------------
+     Same pattern as radius: `*-base` holds the raw default; the public
+     `--phi-space-*` tokens multiply the base by `--phi-space-scale`
+     (default 1). Rescaling density on the provider updates every space
+     token simultaneously. */
+  --phi-space-1-base: 4px;
+  --phi-space-2-base: 8px;
+  --phi-space-3-base: 12px;
+  --phi-space-4-base: 16px;
+  --phi-space-5-base: 24px;
+  --phi-space-6-base: 32px;
+  --phi-space-8-base: 48px;
+  --phi-space-10-base: 64px;
+  --phi-space-1: calc(var(--phi-space-1-base) * var(--phi-space-scale, 1));
+  --phi-space-2: calc(var(--phi-space-2-base) * var(--phi-space-scale, 1));
+  --phi-space-3: calc(var(--phi-space-3-base) * var(--phi-space-scale, 1));
+  --phi-space-4: calc(var(--phi-space-4-base) * var(--phi-space-scale, 1));
+  --phi-space-5: calc(var(--phi-space-5-base) * var(--phi-space-scale, 1));
+  --phi-space-6: calc(var(--phi-space-6-base) * var(--phi-space-scale, 1));
+  --phi-space-8: calc(var(--phi-space-8-base) * var(--phi-space-scale, 1));
+  --phi-space-10: calc(var(--phi-space-10-base) * var(--phi-space-scale, 1));
+
+  /* Controls
+     ---------------------------------------------------------------
+     One size, one radius and one row rhythm for every small control —
+     checkbox box, radio circle, colour swatch, facet chip. Declaring
+     them here is what makes a swatch and a checkbox line up: nothing
+     downstream picks its own dimension, so a radius or density change
+     moves all of them together.
+
+     `--phi-control-height-*` does the same for the tall controls, so a
+     button, an input and a select on one row are the same height. */
+  --phi-control-size-base: 18px;
+  --phi-control-size: calc(var(--phi-control-size-base) * var(--phi-space-scale, 1));
+  --phi-control-radius: calc(var(--phi-radius-md) * 1.4);
+  --phi-control-border-width: 1.5px;
+  --phi-control-gap: var(--phi-space-2);
+  --phi-control-row-padding: var(--phi-space-2);
+
+  --phi-control-height-sm-base: 32px;
+  --phi-control-height-md-base: 40px;
+  --phi-control-height-lg-base: 48px;
+  --phi-control-height-sm: calc(var(--phi-control-height-sm-base) * var(--phi-space-scale, 1));
+  --phi-control-height-md: calc(var(--phi-control-height-md-base) * var(--phi-space-scale, 1));
+  --phi-control-height-lg: calc(var(--phi-control-height-lg-base) * var(--phi-space-scale, 1));
 
   --phi-transition-fast: 0.12s ease;
   --phi-transition-normal: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -184,4 +236,5 @@
   --phi-color-text-inverse: #0b0f19;
   --phi-color-border: rgba(255, 255, 255, 0.08);
   --phi-color-border-subtle: rgba(255, 255, 255, 0.04);
+  --phi-color-overlay: rgba(0, 0, 0, 0.6);
 }

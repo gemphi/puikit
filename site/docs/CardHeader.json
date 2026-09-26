@@ -1,0 +1,10 @@
+{
+  "name": "CardHeader",
+  "source": "src/components/display/card/header.tsx",
+  "description": "Card header role file. Layout is delegated to the Stack primitive.",
+  "propsInterface": null,
+  "extendsBases": [],
+  "props": [],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.465Z"
+}

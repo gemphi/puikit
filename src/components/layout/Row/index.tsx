@@ -2,6 +2,7 @@ import React from 'react';
 import { cn } from '../../../utils/cn';
 import styles from './styles.module.scss';
 import { responsiveCSSVars, type Breakpoint, type ResponsiveValue } from '../../shared/responsive';
+import { Box } from '../Box';
 
 export type RowGap = 1 | 2 | 3 | 4 | 6 | 8;
 export type RowAlign = 'start' | 'center' | 'end' | 'stretch' | 'baseline';
@@ -67,7 +68,7 @@ export const Row = React.forwardRef<HTMLDivElement, RowProps>(
     const resolvedWrap: ResponsiveValue<boolean> = wrap ?? true;
 
     return (
-      <div
+      <Box
         ref={ref}
         className={cn(styles.row, ...responsiveClasses, className)}
         style={{
@@ -80,7 +81,7 @@ export const Row = React.forwardRef<HTMLDivElement, RowProps>(
         {...props}
       >
         {children}
-      </div>
+      </Box>
     );
   }
 );

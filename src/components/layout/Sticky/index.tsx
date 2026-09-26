@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '../../../utils/cn';
 import { responsiveCSSVars, type ResponsiveValue } from '../../shared/responsive';
+import { Box } from '../Box';
 import styles from './styles.module.scss';
 
 type StickyProps = {
@@ -27,9 +28,9 @@ export const Sticky = ({
   };
 
   return (
-    <div className={cn(styles.sticky, className)} style={style}>
+    <Box className={cn(styles.sticky, className)} style={style}>
       {children}
-    </div>
+    </Box>
   );
 };
 

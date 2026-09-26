@@ -1,6 +1,9 @@
 .navbar {
   width: 100%;
-  padding: 0 var(--phi-space-2, 16px);
+  /* A full gutter, not a hairline: at the old inset the trailing control in
+     the end section sat flush against the viewport edge. */
+  padding-inline: var(--phi-space-4, 32px);
+  padding-block: 0;
   border-bottom: var(--phi-elevation-border, 1px solid var(--phi-color-border));
   background: var(--phi-color-background-card);
   transition: background var(--phi-animation-speed, 0.3s) ease, backdrop-filter var(--phi-animation-speed, 0.3s) ease;
@@ -37,7 +40,11 @@
 }
 
 .section {
-  flex: 1;
+  /* `flex-basis: 0` makes the three sections share the bar evenly regardless of
+     their content width; `min-width: 0` lets a long child shrink rather than
+     forcing the bar to overflow. */
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .align-start {
@@ -46,7 +53,6 @@
 
 .align-center {
   justify-content: center;
-  flex: 0;
 }
 
 .align-end {

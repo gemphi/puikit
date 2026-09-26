@@ -1,0 +1,10 @@
+{
+  "name": "SidebarNav",
+  "source": "src/components/navigation/sidebar/nav.tsx",
+  "description": "The sidebar navigation composition. Layout is delegated to the Stack\nprimitive and the Accordion surface; collapsed/expanded appearance is\ndriven by tokens + the `data-collapsed` attribute + class hooks (no inline\nstyle, no hardcoded colors).",
+  "propsInterface": null,
+  "extendsBases": [],
+  "props": [],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.832Z"
+}

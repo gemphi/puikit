@@ -1,0 +1,12 @@
+{
+  "footer": [
+    { "title": "services", "links": [ { "label": "contact", "href": "#/about" }, { "label": "shipping", "href": "#/about" }, { "label": "care", "href": "#/about" }, { "label": "appointment", "href": "#/about" } ] },
+    { "title": "maison", "links": [ { "label": "about", "href": "#/about" }, { "label": "sustainability", "href": "#/about" }, { "label": "careers", "href": "#/about" }, { "label": "press", "href": "#/about" } ] },
+    { "title": "legal", "links": [ { "label": "terms", "href": "#/about" }, { "label": "privacy", "href": "#/about" }, { "label": "cookies", "href": "#/about" }, { "label": "accessibility", "href": "#/about" } ] }
+  ],
+  "account": [
+    { "label": "orders", "path": "/account/orders" },
+    { "label": "addresses", "path": "/account/addresses" },
+    { "label": "payments", "path": "/account/payments" }
+  ]
+}

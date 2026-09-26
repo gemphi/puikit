@@ -4,6 +4,5 @@ export * from './useAPI';
 export * from './useQuery';
 export * from './useMutation';
 export * from './useStream';
-export * from './useCommerce';
 export * from './usePage';
 export * from './useTheme';

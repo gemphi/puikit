@@ -1,0 +1,13 @@
+/* One entry's cell. It stretches to the tallest item in its row and passes
+   that height down, which is what keeps a grid or a slider from rendering a
+   row of ragged cards. */
+.cell {
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.cell > * {
+  flex: 1 1 auto;
+  min-width: 0;
+}

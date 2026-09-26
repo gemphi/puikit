@@ -27,6 +27,11 @@
 }
 
 .drawer {
+  /* The drawer is a reading surface over arbitrary content — imagery, video —
+     so its ground is opaque whatever the theme style. A glassy card wash here
+     let the page bleed through the text. */
+  background-color: var(--phi-color-background-card);
+  background-image: none;
   position: absolute;
   top: 0;
   height: 100%;
@@ -78,4 +83,41 @@
 
 .footer {
   justify-content: flex-end;
+}
+
+/* Respect reduced motion: land on the end state immediately rather than
+   animating in. Without this the entry animation is the only thing that makes
+   the overlay visible, so it must not simply be disabled. */
+@media (prefers-reduced-motion: reduce) {
+  [class*='overlay'],
+  [class*='backdrop'],
+  [class*='content'],
+  [class*='panel'],
+  [class*='toast'] {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The drawer is the rail's sibling surface: an opaque page ground with the
+   same mirrored rail gradient and the same dividing edge — one skin, shared
+   tokens, no hardcoded second look. */
+.overlay .drawer {
+  background-color: var(--phi-color-background);
+  background-image: var(--phi-gradient-rail-reverse, none);
+  border: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
+  /* Floating, apple-cornered, from the theme's own tokens. */
+  border-radius: var(--phi-radius-xl, var(--phi-radius-lg, 16px));
+  top: var(--phi-layout-rail-margin, var(--phi-space-3, 12px));
+  height: calc(100% - var(--phi-layout-rail-margin, var(--phi-space-3, 12px)) * 2);
+}
+.overlay .drawer.right { right: var(--phi-layout-rail-margin, var(--phi-space-3, 12px)); }
+.overlay .drawer.left { left: var(--phi-layout-rail-margin, var(--phi-space-3, 12px)); }
+.overlay .drawer.left {
+  background-image: var(--phi-gradient-rail, none);
+  border-inline-end: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
+}
+.overlay .drawer.right {
+  border-inline-start: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
 }

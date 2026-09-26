@@ -1,0 +1,41 @@
+{
+  "name": "NonIdealState",
+  "source": "src/components/feedback/NonIdealState/index.tsx",
+  "description": null,
+  "propsInterface": "NonIdealStateProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "icon",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    },
+    {
+      "name": "title",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    },
+    {
+      "name": "description",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    },
+    {
+      "name": "action",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    },
+    {
+      "name": "children",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.534Z"
+}

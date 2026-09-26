@@ -2,6 +2,7 @@ import React from 'react';
 import { cn } from '../../../utils/cn';
 import styles from './styles.module.scss';
 import { responsiveCSSVars, type Breakpoint, type ResponsiveValue } from '../../shared/responsive';
+import { Box } from '../Box';
 
 export type GridGap = 1 | 2 | 3 | 4 | 6 | 8;
 
@@ -40,14 +41,14 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
     };
 
     return (
-      <div
+      <Box
         ref={ref}
         className={cn(styles.grid, ...responsiveClasses, className)}
         style={baseStyle}
         {...props}
       >
         {children}
-      </div>
+      </Box>
     );
   }
 );

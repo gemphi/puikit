@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 | Module | Exports & Capabilities |
 |:---|:---|
 | **Presentation Primitives** | `Button`, `Tag`, `Badge`, `Callout`, `Card`, `Table`, `Tree`, `Dialog`, `Drawer`, `Toast` |
-| **Commerce Suite** | `Price`, `ProductCard`, `ProductGrid`, `CartDrawer`, `CartItem`, `CartSummary`, `OrderCard`, `FacetFilter` |
+| **Shop Suite** | `Price`, `ProductCard`, `ProductGrid`, `CartDrawer`, `CartItem`, `CartSummary`, `OrderCard`, `FacetFilter` |
 | **Reactive Store Layer** | `createStore`, `useStore` (`useSyncExternalStore`), `cartStore`, `wishlistStore`, `persist`, `logger` |
 | **Service Layer & DI** | `ServiceContainer`, `BaseService`, `EventEmitter`, `useService`, `TelemetryService`, `CartService` |
 | **API & Streaming Engine**| `ApiClient`, `QueryCache`, `StreamClient`, `useQuery`, `useMutation`, `useStream`, `useAPI` |
@@ -46,7 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 ## 3. Usage Examples
 
-### Pure UI & Commerce
+### Pure UI & Shop
 ```tsx
 import { ProductCard, Price, useCart } from '@phiace/puijs';
 

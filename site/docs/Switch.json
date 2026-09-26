@@ -1,0 +1,29 @@
+{
+  "name": "Switch",
+  "source": "src/components/forms/Switch/index.tsx",
+  "description": null,
+  "propsInterface": "SwitchProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "label",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    },
+    {
+      "name": "size",
+      "optional": true,
+      "type": "'sm' | 'md' | 'lg'",
+      "description": null
+    },
+    {
+      "name": "inline",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.630Z"
+}

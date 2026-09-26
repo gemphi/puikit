@@ -1,0 +1,134 @@
+/**
+ * Chanel storefront skin.
+ *
+ * The *only* app-level stylesheet. Everything here is either typographic
+ * (the house voice: serif display, wide-tracked uppercase labels) or a layout
+ * affordance puijs has no opinion about. No colour is written literally —
+ * every value resolves to a `--phi-*` token, so the skin inherits whatever
+ * brand and theme the provider resolves.
+ */
+
+:root {
+  --chanel-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --chanel-track-wide: 0.42em;
+  --chanel-track-label: 0.14em;
+}
+
+/* --- Typographic voice ---------------------------------------------------- */
+
+.wordmark {
+  font-family: var(--chanel-serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: var(--chanel-track-wide);
+  text-indent: var(--chanel-track-wide);
+  line-height: 1;
+}
+
+.display {
+  font-family: var(--chanel-serif);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+}
+
+.display--xl { font-size: clamp(2.5rem, 6vw, 4.5rem); }
+.display--lg { font-size: clamp(2rem, 4vw, 3rem); }
+.display--md { font-size: clamp(1.5rem, 3vw, 2rem); }
+
+.label {
+  text-transform: uppercase;
+  letter-spacing: var(--chanel-track-label);
+  font-size: var(--phi-font-size-sm);
+}
+
+/* --- Affordances ---------------------------------------------------------- */
+
+/* A button that carries no chrome, used where a link must trigger navigation. */
+.plainButton {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-align: inherit;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  padding-block: var(--phi-space-6, 48px);
+}
+
+.heroInner { max-width: 34rem; }
+
+/* Category tiles: a square-ish editorial crop with the label over the art. */
+.categoryTile {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 1px solid var(--phi-color-border);
+  border-radius: var(--phi-radius-md);
+  background-size: cover;
+  background-position: center;
+  transition: transform var(--phi-transition-normal, 200ms) ease;
+}
+
+.categoryTile:hover { transform: scale(1.01); }
+
+.categoryTileLabel {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  padding: var(--phi-space-4);
+  background: linear-gradient(180deg, transparent, rgb(0 0 0 / 55%));
+  color: #fff;
+}
+
+.rail {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(15rem, 1fr);
+  gap: var(--phi-space-4);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: var(--phi-space-2);
+}
+
+.rail > * { scroll-snap-align: start; }
+
+.swatch {
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  border-radius: var(--phi-radius-full);
+  border: 1px solid var(--phi-color-border);
+  cursor: pointer;
+}
+
+.swatch[aria-pressed='true'] {
+  outline: 2px solid var(--phi-color-primary);
+  outline-offset: 2px;
+}
+
+.productMedia {
+  inline-size: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: var(--phi-radius-md);
+}
+
+.stickyPanel { position: sticky; top: var(--phi-space-6); }
+
+.divider { border-block-start: 1px solid var(--phi-color-border); }
+
+/* The sort control sizes to its content so it can share a row with the count
+   rather than pushing it onto its own line. */
+.sortControl {
+  width: auto;
+  min-width: 14rem;
+  flex: 0 0 auto;
+}

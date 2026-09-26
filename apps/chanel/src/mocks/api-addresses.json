@@ -1,0 +1,4 @@
+[
+  { "id": "addr-1", "userId": "riya", "label": "Home", "recipient": "Riya Sharma", "street": "18 Rue Cambon", "city": "Paris", "postalCode": "75001", "country": "France", "isDefault": true },
+  { "id": "addr-2", "userId": "riya", "label": "Atelier", "recipient": "Riya Sharma", "street": "31 Avenue Montaigne", "city": "Paris", "postalCode": "75008", "country": "France", "isDefault": false }
+]

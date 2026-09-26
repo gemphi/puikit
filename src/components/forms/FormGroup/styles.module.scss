@@ -61,3 +61,70 @@
   .label { color: var(--phi-color-warning); }
   .helperText { color: var(--phi-color-warning); }
 }
+
+/* ---------------------------------------------------------------------------
+   Floating labels. The label rests where a placeholder would, and floats to
+   the field's top edge — riding the border on a small colour chip of the
+   field's own background — once the control is focused or filled. Everything
+   is driven by the controls themselves: `:focus-within`, `:placeholder-shown`
+   on native inputs, and `data-filled` from the library Select.
+   --------------------------------------------------------------------------- */
+
+.floating .field {
+  position: relative;
+}
+
+.floatingLabel {
+  position: absolute;
+  top: calc(var(--phi-control-height-md) / 2);
+  inset-inline-start: 0.75rem;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--phi-space-2);
+  font-size: var(--phi-font-size-sm);
+  color: var(--phi-color-text-muted);
+  pointer-events: none;
+  transition: top var(--phi-transition-fast), transform var(--phi-transition-fast),
+    color var(--phi-transition-fast), font-size var(--phi-transition-fast);
+  max-width: calc(100% - 1.5rem);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Multi-line fields anchor the resting label to their first line, not their
+   vertical middle. */
+.floating .field:has(textarea) .floatingLabel {
+  top: calc(var(--phi-control-height-md) / 2);
+}
+
+/* The float: focused, or holding a value. */
+.floating .field:focus-within .floatingLabel,
+.floating .field:has(input:not(:placeholder-shown)) .floatingLabel,
+.floating .field:has(textarea:not(:placeholder-shown)) .floatingLabel,
+.floating .field:has([data-filled='true']) .floatingLabel {
+  top: 0;
+  font-size: var(--phi-font-size-xs);
+  color: var(--phi-color-text-secondary);
+  background-color: var(--phi-color-background);
+  padding-inline: calc(var(--phi-space-1) * 1.5);
+  inset-inline-start: calc(0.75rem - var(--phi-space-1));
+  border-radius: var(--phi-radius-full);
+}
+
+.floating .field:focus-within .floatingLabel {
+  color: var(--phi-color-primary);
+}
+
+/* While the label is resting in the field, the control's own placeholder
+   stays silent — two ghost texts in one box read as a mistake. */
+.floating .field input::placeholder,
+.floating .field textarea::placeholder {
+  color: transparent;
+  transition: color var(--phi-transition-fast);
+}
+
+.floating .field:focus-within input::placeholder,
+.floating .field:focus-within textarea::placeholder {
+  color: var(--phi-color-text-muted);
+}

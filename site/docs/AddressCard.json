@@ -1,0 +1,41 @@
+{
+  "name": "AddressCard",
+  "source": "src/components/commerce/address/card.tsx",
+  "description": "An address card composed exclusively from puijs primitives: the Card\nfamily provides the selectable surface, Stack the layout,\nText/Span the typography (icon color via token-driven\n`intent`), and Button the edit action. No per-component stylesheet,\nno raw layout `<div>`, no inline style, and no hardcoded colors.",
+  "propsInterface": "AddressCardProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "address",
+      "optional": false,
+      "type": "AddressModel",
+      "description": null
+    },
+    {
+      "name": "selected",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "onSelect",
+      "optional": true,
+      "type": "(id: string) => void",
+      "description": null
+    },
+    {
+      "name": "onEdit",
+      "optional": true,
+      "type": "(id: string) => void",
+      "description": null
+    },
+    {
+      "name": "className",
+      "optional": true,
+      "type": "string",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.379Z"
+}

@@ -1,0 +1,17 @@
+{
+  "looks": [
+    { "id": "look-01", "eyebrow": "Look 01", "title": "Tweed, reworked", "body": "A cropped jacket over a bias silk skirt.", "href": "#/category/ready-to-wear" },
+    { "id": "look-02", "eyebrow": "Look 02", "title": "The long line", "body": "Wool crepe cut to the ankle, chain-weighted.", "href": "#/category/ready-to-wear" },
+    { "id": "look-03", "eyebrow": "Look 03", "title": "Ivory and gold", "body": "Bouclé with gilt buttons and pearl detail.", "href": "#/category/ready-to-wear" },
+    { "id": "look-04", "eyebrow": "Look 04", "title": "Black on black", "body": "Satin lapels against matte crepe.", "href": "#/category/ready-to-wear" },
+    { "id": "look-05", "eyebrow": "Look 05", "title": "The camellia", "body": "The house flower, in silk faille.", "href": "#/category/ready-to-wear" },
+    { "id": "look-06", "eyebrow": "Look 06", "title": "Chain and leather", "body": "Quilted lambskin worn across the body.", "href": "#/category/handbags" }
+  ],
+  "shows": [
+    { "id": "show-cruise", "eyebrow": "Cruise", "title": "Cruise 2026/27", "body": "Presented in Marseille, under the calanques.", "href": "#/about" },
+    { "id": "show-couture", "eyebrow": "Haute Couture", "title": "Autumn–Winter Couture", "body": "Thirty-eight passages at the Grand Palais.", "href": "#/about" },
+    { "id": "show-metiers", "eyebrow": "Métiers d'art", "title": "Métiers d'art", "body": "The house ateliers, in one collection.", "href": "#/about" },
+    { "id": "show-rtw", "eyebrow": "Ready-to-Wear", "title": "Spring–Summer", "body": "Tweed in lighter weights, in new proportions.", "href": "#/category/ready-to-wear" },
+    { "id": "show-fine", "eyebrow": "Fine Jewellery", "title": "Comète", "body": "The 1932 collection, revisited.", "href": "#/category/watches" }
+  ]
+}

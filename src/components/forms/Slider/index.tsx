@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../../../utils/cn';
+import { Box } from '../../layout/Box';
 import { Stack } from '../../layout/Stack';
 import styles from './styles.module.scss';
 
@@ -50,9 +51,9 @@ export const Slider = ({
           {showValue && <span className={styles.sliderValue}>{currentValue}</span>}
         </Stack>
       )}
-      <div className={styles.sliderWrapper}>
-        <div className={styles.track} />
-        <div className={styles.fill} style={{ width: `${percentage}%` }} />
+      <Box className={styles.sliderWrapper}>
+        <Box className={styles.track} />
+        <Box className={styles.fill} style={{ width: `${percentage}%` }} />
         <input
           type="range"
           min={min}
@@ -64,7 +65,7 @@ export const Slider = ({
           className={styles.input}
           aria-label={label}
         />
-      </div>
+      </Box>
     </Stack>
   );
 };

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "banner-spring",
+    "eyebrow": "The new collection",
+    "title": "Spring–Summer",
+    "body": "Tweed reworked in lighter weights, and the codes of the house in new proportions.",
+    "ctaLabel": "Discover",
+    "ctaHref": "#/category/ready-to-wear"
+  },
+  {
+    "id": "banner-handbags",
+    "eyebrow": "The house codes",
+    "title": "Quilted lambskin",
+    "body": "Chain straps, turnlock closures, and the proportions that define them.",
+    "ctaLabel": "See handbags",
+    "ctaHref": "#/category/handbags"
+  },
+  {
+    "id": "banner-fragrance",
+    "eyebrow": "Fragrance",
+    "title": "The N°5 family",
+    "body": "A composition first bottled in 1921, and the compositions that followed it.",
+    "ctaLabel": "Explore fragrance",
+    "ctaHref": "#/category/fragrance"
+  }
+]

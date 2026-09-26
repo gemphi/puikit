@@ -1,0 +1,29 @@
+{
+  "name": "DocsTOC",
+  "source": "src/components/layout/DocsPortal/DocsTOC.tsx",
+  "description": null,
+  "propsInterface": "DocsTOCProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "items",
+      "optional": true,
+      "type": "string[]",
+      "description": null
+    },
+    {
+      "name": "activeItem",
+      "optional": true,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "onSelectItem",
+      "optional": true,
+      "type": "(item: string) => void",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.686Z"
+}

@@ -2,15 +2,50 @@ import React from 'react';
 import { cn } from '../../../utils/cn';
 import styles from './styles.module.scss';
 
-type TableProps = React.TableHTMLAttributes<HTMLTableElement> & {
+export type TableProps = React.TableHTMLAttributes<HTMLTableElement> & {
   className?: string;
   children?: React.ReactNode;
+  /**
+   * Header cells. Supplying `headers`/`rows` renders a simple table without
+   * hand-writing `Thead`/`Tbody` — the shape most tables actually are. Pass
+   * `children` instead when a table needs bespoke markup, and
+   * {@link DataTable} when it is a list of records with typed columns.
+   */
+  headers?: React.ReactNode[];
+  rows?: React.ReactNode[][];
 };
 
-export const Table = ({ className = '', children, ...props }: TableProps) => {
+export const Table = ({ className = '', children, headers, rows, ...props }: TableProps) => {
+  const shorthand = Boolean(headers || rows);
+
   return (
     <table className={cn(styles.table, className)} {...props}>
-      {children}
+      {shorthand ? (
+        <>
+          {headers && (
+            <Thead>
+              <Tr>
+                {headers.map((h, i) => (
+                  <Th key={i} scope="col">{h}</Th>
+                ))}
+              </Tr>
+            </Thead>
+          )}
+          {rows && (
+            <Tbody>
+              {rows.map((row, r) => (
+                <Tr key={r}>
+                  {row.map((cell, c) => (
+                    <Td key={c}>{cell}</Td>
+                  ))}
+                </Tr>
+              ))}
+            </Tbody>
+          )}
+        </>
+      ) : (
+        children
+      )}
     </table>
   );
 };

@@ -1,0 +1,37 @@
+{
+  "name": "Sidebar",
+  "source": "src/components/navigation/sidebar/sidebar.tsx",
+  "description": "The Sidebar surface. Composed from the Card family (surface) and\nStack (spacer layout); appearance is token- and class-driven through\n`styles.module.scss` (all `var(--phi-*)` tokens, no inline style, no\nhardcoded colors).\n\nAny additional DOM attributes (e.g. `data-collapsed`, `data-variant`) are\nforwarded to the Card root element, so compositions such as\nSidebarBrand can express collapse/variant state as data attributes on\nthe sidebar root without introducing raw layout wrappers.",
+  "propsInterface": "SidebarProps",
+  "extendsBases": [
+    "React.HTMLAttributes"
+  ],
+  "props": [
+    {
+      "name": "children",
+      "optional": false,
+      "type": "ReactNode",
+      "description": null
+    },
+    {
+      "name": "defaultCollapsed",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "className",
+      "optional": true,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "disableSpacer",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.839Z"
+}

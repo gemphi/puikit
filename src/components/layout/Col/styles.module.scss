@@ -47,8 +47,13 @@
 
 @for $i from 1 through 12 {
   .col-#{$i} {
-    flex: 0 0 calc(#{$i} / 12 * 100%);
+    // `flex-shrink: 1` lets sibling columns give up the gap between them
+    // instead of wrapping. `flex-basis` still sets the intended proportion.
+    /* The basis must account for the row's gaps, or a set of spans summing
+       to 12 overflows the row by the total gap and wraps. */
+    flex: 1 1 calc(#{$i} / 12 * (100% + var(--row-gap, 0px)) - var(--row-gap, 0px));
     max-width: calc(#{$i} / 12 * 100%);
+    min-width: 0;
   }
   .offset-#{$i} {
     margin-left: calc(#{$i} / 12 * 100%);
@@ -72,8 +77,11 @@
     }
     @for $i from 1 through 12 {
       .col-#{$bp}-#{$i} {
-        flex: 0 0 calc(#{$i} / 12 * 100%);
+        /* The basis must account for the row's gaps, or a set of spans summing
+       to 12 overflows the row by the total gap and wraps. */
+    flex: 1 1 calc(#{$i} / 12 * (100% + var(--row-gap, 0px)) - var(--row-gap, 0px));
         max-width: calc(#{$i} / 12 * 100%);
+        min-width: 0;
       }
       .offset-#{$bp}-#{$i} {
         margin-left: calc(#{$i} / 12 * 100%);
@@ -91,3 +99,10 @@
 @include col-bp(md, 768px);
 @include col-bp(lg, 992px);
 @include col-bp(xl, 1200px);
+
+/* `fill`: take the remaining space on the row, ignoring any span proportion. */
+.fill {
+  flex: 1 1 0%;
+  max-width: 100%;
+  min-width: 0;
+}

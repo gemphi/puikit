@@ -72,7 +72,7 @@ export const StoreExample: React.FC = () => {
           Pure observable state container decoupled from React rendering tree with zero unnecessary re-renders.
         </Callout>
 
-        <Stack direction="row" align="center" justify="space-between">
+        <Stack direction="row" align="center" justify="between">
           <Stack direction="row" align="center" gap={3}>
             <Text style={{ fontSize: '2rem', fontWeight: 700 }}>{count}</Text>
             <Badge variant="primary">{history.length} snapshots</Badge>

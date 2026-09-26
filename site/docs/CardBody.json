@@ -1,0 +1,10 @@
+{
+  "name": "CardBody",
+  "source": "src/components/display/card/body.tsx",
+  "description": "Card body role file.",
+  "propsInterface": null,
+  "extendsBases": [],
+  "props": [],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.455Z"
+}

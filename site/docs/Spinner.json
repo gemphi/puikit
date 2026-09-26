@@ -1,0 +1,10 @@
+{
+  "name": "Spinner",
+  "source": "src/components/feedback/Spinner/index.tsx",
+  "description": null,
+  "propsInterface": null,
+  "extendsBases": [],
+  "props": [],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.552Z"
+}

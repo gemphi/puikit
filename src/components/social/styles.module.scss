@@ -1,0 +1,827 @@
+/* ===========================================================================
+   Social module — the immersive feed, its rail, and the grid tiles.
+   Everything sizes from tokens; the only literals are the black scrims that
+   guarantee text contrast on top of arbitrary imagery.
+   =========================================================================== */
+
+/* ------------------------------------------------------------- snap feed */
+
+.snapFeed {
+  position: relative;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  gap: var(--phi-space-4);
+}
+
+.snapTrack {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar { display: none; }
+}
+
+.snapSlide {
+  height: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: var(--phi-space-4);
+}
+
+/* The slide's one child is the immersive post row; it takes the slide's whole
+   height, or the frame's `height: 100%` resolves against nothing and the
+   video collapses to a zero-height strip beside its own rail. */
+.snapSlide > * {
+  height: 100%;
+  min-height: 0;
+}
+
+/* The up/down pager, docked to the feed's right edge like the reference. */
+.pager {
+  position: absolute;
+  inset-inline-end: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--phi-space-2);
+  z-index: 2;
+}
+
+/* ------------------------------------------------------------- the frame */
+
+.frame {
+  position: relative;
+  cursor: pointer;
+  height: 100%;
+  aspect-ratio: 9 / 16;
+  max-width: 100%;
+  border-radius: var(--phi-radius-lg);
+  overflow: hidden;
+  background-color: #000;
+  isolation: isolate;
+}
+
+.poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* The still breathes like a paused video rather than sitting like a photo. */
+  animation: kenburns 16s ease-in-out infinite alternate;
+}
+
+/* Photo-mode: the slides stack in the frame and crossfade as the deck plays
+   left to right. `object-fit: cover` keeps every still full-bleed — no bands,
+   no letterboxing, whatever the source ratio. */
+.slideImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.slideImg[data-current='true'] {
+  opacity: 1;
+  animation: kenburns 16s ease-in-out infinite alternate;
+}
+
+/* The small horizontal bar: one segment per slide, the played ones filled,
+   the current one filling — the reference's photo-post indicator. */
+.slideBar {
+  position: absolute;
+  top: var(--phi-space-2);
+  inset-inline: var(--phi-space-4);
+  z-index: 3;
+  display: flex;
+  gap: calc(var(--phi-space-1) / 2);
+}
+
+.slideSegment {
+  flex: 1 1 0;
+  height: 3px;
+  border: none;
+  padding: 0;
+  border-radius: var(--phi-radius-full);
+  background-color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  &[data-played='true']::after { transform: scaleX(1); }
+
+  &[data-current='true']::after {
+    animation: slideFill var(--slide-ms, 3500ms) linear forwards;
+  }
+}
+
+@keyframes slideFill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes kenburns {
+  from { transform: scale(1) translateY(0); }
+  to { transform: scale(1.08) translateY(-1.5%); }
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.72) 0%,
+    rgba(0, 0, 0, 0.3) 22%,
+    transparent 45%
+  );
+}
+
+.frameTop {
+  position: absolute;
+  top: var(--phi-space-3);
+  inset-inline: var(--phi-space-3);
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Caption block, pinned to the frame's foot over the scrim. */
+.caption {
+  position: absolute;
+  inset-inline: var(--phi-space-4);
+  bottom: var(--phi-space-4);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--phi-space-1);
+  color: #fff;
+  --phi-color-text-primary: #fff;
+  --phi-color-text-secondary: rgba(255, 255, 255, 0.85);
+  --phi-color-text-muted: rgba(255, 255, 255, 0.7);
+}
+
+.captionBody {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.hashtag {
+  font-weight: var(--phi-font-weight-semibold, 600);
+}
+
+/* The sound row: a marquee when the title overflows, exactly one line tall. */
+.sound {
+  display: flex;
+  align-items: center;
+  gap: var(--phi-space-1);
+  max-width: 85%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.soundText {
+  display: inline-block;
+  animation: marquee 9s linear infinite;
+  padding-inline-end: var(--phi-space-6);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ------------------------------------------------------------- the rail */
+
+.rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--phi-space-4);
+  align-self: flex-end;
+  padding-block-end: var(--phi-space-2);
+}
+
+.railGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--phi-space-1) / 2);
+}
+
+.railButton {
+  width: calc(var(--phi-control-height-md) + 8px);
+  height: calc(var(--phi-control-height-md) + 8px);
+  border-radius: var(--phi-radius-full);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Glass is an OPACITY gradient of the theme's own lightness — top a touch
+     brighter than the foot — never a colored fill. */
+  background-color: transparent;
+  background-image: var(--phi-social-glass-gradient, linear-gradient(180deg, color-mix(in srgb, var(--phi-color-text-primary) 16%, transparent), color-mix(in srgb, var(--phi-color-text-primary) 5%, transparent)));
+  color: var(--phi-color-text-primary);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform var(--phi-transition-fast), background-image var(--phi-transition-fast), color var(--phi-transition-fast);
+
+  &:hover {
+    transform: scale(1.06);
+    background-image: var(--phi-social-glass-gradient-hover, linear-gradient(180deg, color-mix(in srgb, var(--phi-color-text-primary) 26%, transparent), color-mix(in srgb, var(--phi-color-text-primary) 10%, transparent)));
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--phi-color-background), 0 0 0 4px var(--phi-color-primary);
+  }
+}
+
+.railButton[data-active='true'] {
+  color: var(--phi-color-primary);
+}
+
+.railAvatar {
+  position: relative;
+}
+
+/* The follow affordance riding the avatar's chin, as on the reference. */
+.followBadge {
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--phi-color-primary);
+  color: var(--phi-color-text-inverse);
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--phi-color-background), 0 0 0 4px var(--phi-color-primary);
+  }
+}
+
+.followBadge[data-following='true'] {
+  background-color: var(--phi-color-background-secondary);
+  color: var(--phi-color-primary);
+}
+
+/* ------------------------------------------------------------ grid tile */
+
+.tile {
+  position: relative;
+  display: block;
+  border: none;
+  padding: 0;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: var(--phi-radius-md);
+  overflow: hidden;
+  background-color: #000;
+  isolation: isolate;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--phi-color-background), 0 0 0 4px var(--phi-color-primary);
+  }
+}
+
+.tileScrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.65) 0%, transparent 38%);
+}
+
+.tileMeta {
+  position: absolute;
+  inset-inline: var(--phi-space-2);
+  bottom: var(--phi-space-2);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--phi-space-1) / 2);
+  color: #fff;
+  --phi-color-text-primary: #fff;
+  --phi-color-text-secondary: rgba(255, 255, 255, 0.85);
+  --phi-color-text-muted: rgba(255, 255, 255, 0.72);
+}
+
+.tileCaption {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.views {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--phi-space-1) / 2);
+}
+
+/* A catalogue declares its tiles' shape; portrait stays the default. */
+.tile[data-ratio='square'] { aspect-ratio: 1 / 1; }
+.tile[data-ratio='wide'] { aspect-ratio: 16 / 9; }
+
+.tileBadge {
+  position: absolute;
+  top: var(--phi-space-2);
+  inset-inline-end: var(--phi-space-2);
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--phi-space-1) / 2);
+  padding: calc(var(--phi-space-1) / 2) var(--phi-space-1);
+  border-radius: var(--phi-radius-full);
+  background-color: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: var(--phi-font-size-xs, 0.75rem);
+  backdrop-filter: blur(4px);
+}
+
+/* Reply threads hang off a vertical rule that runs down from the CENTER of
+   the parent's avatar — the thread visibly belongs to its author, and the
+   same 2px rule repeats at every depth. The negative inline margin walks the
+   rule back from the text column to the avatar's midline. */
+.replies {
+  margin-block-start: var(--phi-space-2);
+  margin-inline-start: calc(-1 * (var(--phi-avatar-size-sm, 1.5rem) / 2 + var(--phi-space-2, 8px)));
+  padding-inline-start: calc(var(--phi-avatar-size-sm, 1.5rem) / 2 + var(--phi-space-2, 8px) + var(--phi-space-3, 12px));
+  border-inline-start: 2px solid var(--phi-color-border, rgba(128, 128, 128, 0.35));
+  display: flex;
+  flex-direction: column;
+  gap: var(--phi-space-3);
+
+  /* Rows run the full width, so every depth's actions align at the same
+     right edge — only the left padding differs. */
+  > * {
+    width: 100%;
+  }
+}
+
+.replyToggle {
+  align-self: flex-start;
+}
+
+/* ------------------------------------------------------------- comments */
+
+.commentMain {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Controls that ride on top of imagery are glass, not filled: a translucent
+   wash over whatever is behind them, tokenised so a brand can retune it. */
+button.glassControl,
+.glassControl {
+  background-color: transparent;
+  background-image: var(--phi-social-glass-gradient, linear-gradient(180deg, color-mix(in srgb, var(--phi-color-text-primary) 16%, transparent), color-mix(in srgb, var(--phi-color-text-primary) 5%, transparent)));
+  color: var(--phi-color-text-primary);
+  border: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+button.glassControl:hover:not(:disabled),
+.glassControl:hover:not(:disabled) {
+  background-image: var(--phi-social-glass-gradient-hover, linear-gradient(180deg, color-mix(in srgb, var(--phi-color-text-primary) 26%, transparent), color-mix(in srgb, var(--phi-color-text-primary) 10%, transparent)));
+}
+
+/* ------------------------------------------------------ the post overlay */
+
+/* A post opened in place — from a profile grid, say — rather than on its own
+   page: the immersive frame on a dimmed stage, with the comment thread in a
+   side panel the viewer can toggle like a drawer. */
+.postOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+}
+
+.postOverlayBackdrop {
+  position: absolute;
+  inset: 0;
+  background-color: color-mix(in srgb, #000 78%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.postOverlayStage {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--phi-space-6);
+}
+
+/* The stage's one child is the immersive post row; give it the stage's
+   height or the 9/16 frame resolves against nothing. */
+.postOverlayStage .frame {
+  aspect-ratio: 1 / 1;
+  height: auto;
+  width: min(100%, 46rem);
+  max-height: 100%;
+}
+
+.postOverlayStage > [data-variant='immersive'] {
+  height: 100%;
+  min-height: 0;
+}
+
+.postOverlayClose {
+  position: absolute;
+  top: var(--phi-space-4);
+  inset-inline-start: var(--phi-space-4);
+  z-index: 2;
+}
+
+.postOverlayPanelToggle {
+  position: absolute;
+  top: var(--phi-space-4);
+  inset-inline-end: var(--phi-space-4);
+  z-index: 2;
+}
+
+/* The panel scrolls by itself; the stage never moves. */
+.postOverlayPanel {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  width: min(26rem, 42vw);
+  display: flex;
+  min-height: 0;
+  overflow: hidden;
+  background-color: var(--phi-color-background);
+  border-radius: var(--phi-radius-xl, var(--phi-radius-lg, 16px));
+  margin: var(--phi-layout-rail-margin, var(--phi-space-3, 12px));
+  animation: postOverlayPanelIn var(--phi-transition-medium, 0.25s) ease;
+
+  > * {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+@keyframes postOverlayPanelIn {
+  from { transform: translateX(100%); }
+  to { transform: none; }
+}
+
+/* A comment's heart: quiet, borderless, no wash — the thread stays text. */
+.commentLike {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--phi-space-1);
+  border: none;
+  border-radius: var(--phi-radius-full);
+  background: none;
+  cursor: pointer;
+  color: var(--phi-color-text-muted, inherit);
+
+  &:hover { color: var(--phi-color-text-primary); }
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--phi-color-background), 0 0 0 4px var(--phi-color-primary);
+  }
+}
+.commentLike[data-active='true'] { color: var(--phi-color-primary); }
+
+/* --------------------------------------------------------- the post stage */
+
+/* A post with the stage to itself: close top-left, prev/next on the right. */
+.stageBox {
+  position: relative;
+  height: 100%;
+}
+/* An opened post shows as a SQUARE: the frame trades its 9/16 for 1/1. */
+.stageBox[data-shape='square'] [class*='frame'],
+.stageBox[data-shape='square'] .frame {
+  aspect-ratio: 1 / 1;
+  height: auto;
+  width: 100%;
+  max-height: 100%;
+}
+
+.stageBox > [data-variant='immersive'] {
+  height: 100%;
+  min-height: 0;
+}
+.stageClose {
+  position: absolute;
+  top: var(--phi-space-3);
+  inset-inline-start: var(--phi-space-3);
+  z-index: 2;
+}
+.stageNav {
+  position: absolute;
+  /* Top right, clear of both the engagement rail and a spotlight's own
+     arrows, which hold the row's vertical middle. */
+  top: var(--phi-space-4);
+  inset-inline-end: calc(var(--phi-control-height-md, 40px) + 8px + var(--phi-space-3) * 2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--phi-space-2);
+  z-index: 4;
+}
+.railButton:disabled {
+  opacity: 0.4;
+  cursor: default;
+
+  &:hover {
+    transform: none;
+    background-image: var(--phi-social-glass-gradient, linear-gradient(180deg, color-mix(in srgb, var(--phi-color-text-primary) 16%, transparent), color-mix(in srgb, var(--phi-color-text-primary) 5%, transparent)));
+  }
+}
+
+/* --------------------------------------------------- the spotlight reel */
+
+/* A photo reel of 4..7 stills shows three at once: the middle a square on
+   2/3 of the row, the neighbours on 1/6 each. Advancing hands the middle to
+   the next image, which EXPANDS into place — the cells are keyed by image,
+   so the flex-basis transition is the animation. Glass arrows, rounded
+   corners, all from the theme's own tokens. */
+.spotlightFrame {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--phi-space-3);
+  cursor: pointer;
+}
+
+/* A spotlight slide runs the whole stage — full width minus the rail. */
+.spotlightSlide {
+  width: 100%;
+}
+
+.spotlightRow {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* No gap: the neighbours slide half of themselves UNDER the active square. */
+  gap: 0;
+}
+
+.spotCell {
+  position: relative;
+  border: none;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: var(--phi-radius-lg);
+  min-width: 0;
+  transition:
+    flex-basis var(--phi-animation-speed, 0.35s) cubic-bezier(0.4, 0, 0.2, 1),
+    opacity var(--phi-transition-fast);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+/* Every view is a SQUARE — the active one on 1/2 of the cells, each
+   neighbour on 1/4, so the active edge is twice a side's. Only the ACTIVE
+   image shows in full: each neighbour slides half of itself underneath it,
+   cut off by the active square riding on top. `aspect-ratio` carries the
+   heights; the max-height transfer keeps everything inside any stage. */
+.spotCell {
+  aspect-ratio: 1 / 1;
+}
+
+.spotCell[data-role='mid'] {
+  flex: 1 1 50%;
+  max-height: 100%;
+  position: relative;
+  z-index: 2;
+  box-shadow: var(--phi-shadow-lg, 0 12px 32px rgba(0, 0, 0, 0.35));
+}
+
+.spotCell[data-role='side'] {
+  flex: 1 1 25%;
+  max-height: 50%;
+  position: relative;
+  z-index: 1;
+  opacity: 0.55;
+
+  &:hover { opacity: 0.85; }
+}
+
+/* Half of each neighbour disappears beneath the active square. */
+.spotCell[data-role='side']:first-of-type { margin-inline-end: -12.5%; }
+.spotCell[data-role='side']:last-of-type { margin-inline-start: -12.5%; }
+
+/* Both arrows ride together at the RIGHT of the slider — beside the images,
+   never on top of them — with a clear gap from the end. */
+.spotNavCol {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--phi-space-2);
+  margin-inline-start: var(--phi-space-4);
+  margin-inline-end: var(--phi-space-4);
+  z-index: 3;
+}
+
+.spotMeta {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--phi-space-1) / 2);
+}
+
+/* ---------------------------------------------------- the comments panel */
+
+/* One surface for comments everywhere, wearing the rail's own skin: the same
+   subtle tokens, mirrored for a panel docked right. Docked, not floated — in
+   a flex row it pushes the stage aside instead of covering it. */
+.commentsPanel {
+  width: min(23rem, 100%);
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  background-color: transparent;
+  background-image: var(--phi-gradient-rail-reverse, none);
+  /* The drawer floats like the rail: block margins, the theme's corners. */
+  border: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
+  border-radius: var(--phi-radius-xl, var(--phi-radius-lg, 16px));
+  margin: var(--phi-layout-rail-margin, var(--phi-space-3, 12px));
+  margin-inline-start: 0;
+  overflow: hidden;
+  animation: commentsPanelIn var(--phi-transition-medium, 0.25s) ease;
+}
+
+/* Enough room beside the rail: the panel floats there — over the row's empty
+   band, so the playing frame does not move at all. */
+.commentsPanelFloat {
+  position: absolute;
+  inset-block: var(--phi-layout-rail-margin, var(--phi-space-3, 12px));
+  inset-inline-end: var(--phi-layout-rail-margin, var(--phi-space-3, 12px));
+  margin: 0;
+  z-index: 3;
+}
+
+@keyframes commentsPanelIn {
+  from { transform: translateX(110%); }
+  to { transform: none; }
+}
+
+.commentsPanelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--phi-space-2);
+  min-height: var(--phi-sidebar-header-height, 64px);
+  padding: 0 var(--phi-space-4);
+  border-block-end: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
+  flex: 0 0 auto;
+}
+
+.commentsPanelTitle {
+  margin: 0;
+  font-size: var(--phi-font-size-base);
+}
+
+.commentsPanelBody {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--phi-sidebar-body-padding, var(--phi-space-4, 16px));
+  display: flex;
+  flex-direction: column;
+  gap: var(--phi-space-3);
+}
+
+.commentsPanelFooter {
+  flex: 0 0 auto;
+  padding: var(--phi-space-3) var(--phi-sidebar-body-padding, var(--phi-space-4, 16px));
+  border-block-start: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
+  display: flex;
+  flex-direction: column;
+  gap: var(--phi-space-2);
+}
+
+/* The composer always runs the panel's full width. */
+.commentsComposer {
+  display: flex;
+  align-items: center;
+  gap: var(--phi-space-2);
+  width: 100%;
+
+  > :first-child {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
+.commentMeta {
+  align-items: baseline;
+}
+
+.commentReply {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--phi-color-text-muted, inherit);
+  font-size: var(--phi-font-size-xs, 0.75rem);
+  font-weight: var(--phi-font-weight-medium, 500);
+
+  &:hover { color: var(--phi-color-text-primary); }
+}
+
+.commentBody {
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .poster { animation: none; }
+  .slideImg[data-current='true'] { animation: none; }
+  .slideSegment[data-current='true']::after { animation: none; transform: scaleX(1); }
+  .soundText { animation: none; }
+  .snapTrack { scroll-behavior: auto; }
+  .railButton:hover { transform: none; }
+  .postOverlayPanel { animation: none; }
+  .commentsPanel { animation: none; }
+  .spotCell { transition: none; }
+}
+
+/* On a phone the panel takes the screen — a full drawer, not a sliver —
+   and the up/down pager stands down: the thumb already scrolls the feed. */
+@media (max-width: 640px) {
+  .pager { display: none; }
+
+  .commentsPanel {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    z-index: 1100;
+    background-color: var(--phi-color-background);
+  }
+
+  .postOverlayPanel {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    z-index: 2;
+  }
+}

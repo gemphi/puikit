@@ -1,0 +1,71 @@
+.root {
+  inline-size: 100%;
+}
+
+.step {
+  flex: 1;
+  position: relative;
+  padding-block: var(--phi-space-2);
+  color: var(--phi-color-text-muted);
+}
+
+/* The connector between steps, drawn from each step except the first. */
+.horizontal .step + .step::before {
+  content: '';
+  position: absolute;
+  inset-block-start: calc(var(--phi-space-2) + 0.875rem);
+  inset-inline-end: 50%;
+  inline-size: 100%;
+  block-size: 1px;
+  background: var(--phi-color-border);
+}
+
+.horizontal .step.complete + .step::before,
+.horizontal .step.active + .step::before {
+  background: var(--phi-color-primary);
+}
+
+.marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  border-radius: var(--phi-radius-full);
+  border: 1px solid var(--phi-color-border);
+  background: var(--phi-color-background-card);
+  font-size: var(--phi-font-size-sm);
+  position: relative;
+  z-index: 1;
+}
+
+.complete {
+  color: var(--phi-color-text-secondary);
+}
+
+.complete .marker {
+  border-color: var(--phi-color-primary);
+  background: var(--phi-color-primary);
+  color: var(--phi-color-text-inverse);
+}
+
+.active {
+  color: var(--phi-color-text-primary);
+}
+
+.active .marker {
+  border-color: var(--phi-color-primary);
+  color: var(--phi-color-primary);
+}
+
+.active .label {
+  font-weight: 600;
+}
+
+.navigable {
+  cursor: pointer;
+}
+
+.vertical .step {
+  flex: initial;
+}

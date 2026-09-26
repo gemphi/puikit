@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { cn } from '../../../utils/cn';
+import { Box } from '../../layout/Box';
 import styles from './styles.module.scss';
 
 export type ProgressBarIntent = 'primary' | 'success' | 'warning' | 'error' | 'none';
@@ -25,7 +26,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   const percentage = isIndeterminate ? 100 : Math.min(Math.max(value * 100, 0), 100);
 
   return (
-    <div
+    <Box
       className={cn(
         styles.progressBar,
         styles[`intent-${intent}`],
@@ -40,8 +41,8 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
       aria-valuemax={100}
       {...props}
     >
-      <div className={styles.meter} style={{ width: `${percentage}%` }} />
-    </div>
+      <Box className={styles.meter} style={{ width: `${percentage}%` }} />
+    </Box>
   );
 };
 

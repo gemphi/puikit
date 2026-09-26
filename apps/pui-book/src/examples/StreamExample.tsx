@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Card, Button, Stack, ProgressBar, Callout, useStream } from '@pui/components';
+import { Card, Button, Stack, ProgressBar, Callout, useStream , Box } from '@pui/components';
 import { Play, Square, Sparkles } from 'lucide-react';
 
 const STREAM_PROMPT =
@@ -38,9 +38,15 @@ export const StreamExample: React.FC = () => {
           </Button>
         </Stack>
 
-        <ProgressBar value={progress} max={100} intent="primary" animate={isStreaming} />
+        <ProgressBar value={progress / 100} intent="primary" animate={isStreaming} />
 
-        <div style={{ background: '#090d16', padding: '1rem', borderRadius: 6, minHeight: 80, color: '#e2e8f0', fontFamily: 'monospace', fontSize: '0.875rem', lineHeight: 1.6, border: '1px solid #1e293b' }}>
+        <Box
+          background="var(--phi-color-background-secondary)"
+          color="var(--phi-color-text-primary)"
+          padding={3}
+          minHeight="80px"
+          style={{ borderRadius: 'var(--phi-radius-md)', fontFamily: 'var(--phi-font-mono)', fontSize: 'var(--phi-font-size-sm)', lineHeight: 1.6, border: '1px solid var(--phi-color-border)' }}
+        >
           {tokens ? (
             <span>
               {tokens}
@@ -49,7 +55,7 @@ export const StreamExample: React.FC = () => {
           ) : (
             <span style={{ color: '#475569' }}>Click "Start Token Stream" to observe live chunk emission...</span>
           )}
-        </div>
+        </Box>
       </Stack>
     </Card>
   );

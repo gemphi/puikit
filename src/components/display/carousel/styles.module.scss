@@ -1,0 +1,75 @@
+.carousel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--phi-space-2, 16px);
+}
+
+.track {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: stretch;
+  gap: var(--carousel-gap, var(--phi-space-4, 32px));
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scroll-padding-inline: var(--carousel-edge, 0px);
+  /* The scrollbar is replaced by the arrow controls; the track stays keyboard
+     scrollable, which is what actually matters. */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: var(--phi-space-1, 8px);
+
+  &::-webkit-scrollbar { display: none; }
+}
+
+.slide {
+  flex: 0 0 calc(
+    (100% - (var(--carousel-slides, 4) - 1) * var(--carousel-gap, var(--phi-space-4, 32px)))
+    / var(--carousel-slides, 4)
+  );
+  min-width: 0;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: stretch;
+
+  > * {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 1023px) {
+  .slide { flex-basis: calc((100% - var(--carousel-gap, 32px)) / 2); }
+}
+
+@media (max-width: 639px) {
+  .slide { flex-basis: 100%; }
+}
+
+.header {
+  display: block;
+  width: 100%;
+}
+
+/* Prev, track, next on one line: the arrows flank the strip rather than
+   floating above it, so they read as belonging to the thing they scroll. */
+.viewport {
+  display: flex;
+  align-items: center;
+  gap: var(--phi-space-3, 24px);
+  min-width: 0;
+}
+
+.control {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 639px) {
+  .control { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track { scroll-behavior: auto; }
+}

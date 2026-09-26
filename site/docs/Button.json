@@ -1,0 +1,25 @@
+{
+  "name": "Button",
+  "source": "src/components/primitives/Button/index.tsx",
+  "description": null,
+  "propsInterface": null,
+  "extendsBases": [
+    "ButtonAsButton | ButtonAsLink"
+  ],
+  "props": [],
+  "stories": {
+    "file": "src/components/primitives/Button/Button.stories.tsx",
+    "title": "Primitives/Button",
+    "examples": [
+      "Primary",
+      "Secondary",
+      "Outline",
+      "Ghost",
+      "Danger",
+      "WithIcon",
+      "Loading",
+      "IconOnly"
+    ]
+  },
+  "generatedAt": "2026-08-30T14:47:34.899Z"
+}

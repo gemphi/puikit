@@ -2,6 +2,7 @@ import React from 'react';
 import { cn } from '../../../utils/cn';
 import { StyleProps, stylePropsToCSS } from '../../shared/styleProps';
 import { responsiveCSSVars, type ResponsiveValue } from '../../shared/responsive';
+import { Box } from '../Box';
 import styles from './styles.module.scss';
 
 export const CONTAINER_SIZES = {
@@ -42,9 +43,9 @@ export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
     const { background, padding, paddingTop, paddingBottom, paddingLeft, paddingRight, paddingX, paddingY, margin, marginTop, marginBottom, color, maxWidth, minWidth, minHeight, align, textDecoration, opacity, textTransform, letterSpacing, ...rest } = props;
 
     return (
-      <div ref={ref} className={cn(styles.container, sizeClass, className)} style={computedStyle} {...rest}>
+      <Box ref={ref} className={cn(styles.container, sizeClass, className)} style={computedStyle} {...rest}>
         {children}
-      </div>
+      </Box>
     );
   }
 );

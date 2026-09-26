@@ -1,0 +1,59 @@
+{
+  "name": "CartSummary",
+  "source": "src/components/commerce/cart/summary.tsx",
+  "description": "An order/cart summary composed exclusively from puijs primitives\n(Card, Stack, Text, Price, Button).\nNo per-component stylesheet, no raw layout `<div>`, no inline style, and no\nhardcoded colors — discount/free emphasis flows through token-driven Text.",
+  "propsInterface": "CartSummaryProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "subtotal",
+      "optional": false,
+      "type": "number",
+      "description": null
+    },
+    {
+      "name": "shipping",
+      "optional": true,
+      "type": "number",
+      "description": null
+    },
+    {
+      "name": "tax",
+      "optional": true,
+      "type": "number",
+      "description": null
+    },
+    {
+      "name": "discount",
+      "optional": true,
+      "type": "number",
+      "description": null
+    },
+    {
+      "name": "currency",
+      "optional": true,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "onCheckout",
+      "optional": true,
+      "type": "() => void",
+      "description": null
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "className",
+      "optional": true,
+      "type": "string",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.394Z"
+}

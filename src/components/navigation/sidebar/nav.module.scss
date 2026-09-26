@@ -1,0 +1,53 @@
+.sidebarNav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--phi-space-1, 8px);
+}
+
+.collapsed {
+  align-items: center;
+}
+
+.collapsedItem {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.collapsedBtn {
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: all var(--phi-transition-fast, 0.15s) ease;
+
+  &:hover {
+    background: var(--phi-color-background-secondary);
+    border-radius: var(--phi-radius-md);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.groupHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--phi-space-1, 8px);
+}
+
+.groupMenu {
+  padding-left: var(--phi-space-3, 24px);
+  margin-left: var(--phi-space-2, 16px);
+  border-left: 2px solid var(--phi-color-border);
+  padding-bottom: var(--phi-space-1, 8px);
+}
+
+.activeItem {
+  background: var(--phi-brand-gradient);
+  color: var(--phi-color-text-inverse);
+  font-weight: 600;
+}

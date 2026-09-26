@@ -1,0 +1,190 @@
+{
+  "brand": {
+    "name": "phlick",
+    "tagline": "Short video, long evenings.",
+    "disclaimer": "A reference feed built with @phiace/puijs. Fictional creators, fictional videos."
+  },
+  "nav": {
+    "forYou": "For You",
+    "following": "Following",
+    "explore": "Explore",
+    "live": "LIVE",
+    "upload": "Upload",
+    "profile": "Profile",
+    "search": "Search",
+    "searchLabel": "Search phlick",
+    "logIn": "Log in",
+    "company": "Company",
+    "program": "Program",
+    "terms": "Terms & Policies",
+    "collapse": "Collapse sidebar",
+    "expand": "Expand sidebar",
+    "topics": "Categories",
+    "home": "Home",
+    "chat": "Chat",
+    "menu": "Menu",
+    "more": "More",
+    "recent": "Recent",
+    "create": "Create",
+    "signUp": "Sign up",
+    "settings": "Settings",
+    "yourProfile": "Your profile"
+  },
+  "feed": {
+    "emptyFollowingTitle": "Nothing here yet",
+    "emptyFollowingBody": "Follow a creator from the For You feed and their posts will land here.",
+    "browse": "Go to For You",
+    "previous": "Previous post",
+    "next": "Next post",
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "allTopics": "All",
+    "emptyTopicTitle": "No {topic} yet",
+    "emptyTopicBody": "Nothing has been posted here — check back once the category warms up.",
+    "browseAll": "Back to the full feed"
+  },
+  "rail": {
+    "like": "Like",
+    "comment": "Comments",
+    "save": "Save",
+    "share": "Share",
+    "follow": "Follow",
+    "following": "Following"
+  },
+  "comments": {
+    "title": "Comments ({count})",
+    "placeholder": "Add a comment…",
+    "post": "Post",
+    "empty": "Be the first to comment",
+    "likeComment": "Like this comment",
+    "viewReplies": "View {count} replies",
+    "viewReply": "View 1 reply",
+    "hideReplies": "Hide replies",
+    "like": "Like comment",
+    "reply": "Reply",
+    "replyingTo": "Replying to @{handle}",
+    "cancelReply": "Cancel",
+    "close": "Close"
+  },
+  "explore": {
+    "title": "Explore",
+    "body": "What the whole feed is watching right now.",
+    "emptyTitle": "Nothing trending",
+    "emptyBody": "Check back once the feed warms up."
+  },
+  "profile": {
+    "following": "Following",
+    "followers": "Followers",
+    "likes": "Likes",
+    "follow": "Follow",
+    "unfollow": "Following",
+    "videos": "Videos",
+    "notFoundTitle": "Creator not found",
+    "notFoundBody": "This account may have changed its handle.",
+    "back": "Back to the feed",
+    "videosTab": "Videos",
+    "likedTab": "Liked",
+    "likedEmptyTitle": "No liked videos yet",
+    "likedEmptyBody": "Videos this account likes will appear here."
+  },
+  "share": {
+    "copied": "Link copied"
+  },
+  "live": {
+    "title": "LIVE",
+    "body": "Creators on air right now.",
+    "badge": "LIVE",
+    "viewers": "watching"
+  },
+  "upload": {
+    "title": "Upload",
+    "body": "Post a video to your followers.",
+    "dropTitle": "Select a video to upload",
+    "dropBody": "Or drag and drop it here. Up to 10 minutes, MP4 or WebM.",
+    "choose": "Select file",
+    "captionLabel": "Caption",
+    "captionPlaceholder": "Describe your video…",
+    "hashtagsLabel": "Hashtags",
+    "hashtagsPlaceholder": "#dance #tutorial",
+    "soundLabel": "Sound",
+    "soundPlaceholder": "Original sound",
+    "post": "Post",
+    "discard": "Discard",
+    "postedTitle": "Posted",
+    "postedBody": "Your video is live. It will appear in feeds within a few minutes."
+  },
+  "post": {
+    "notFoundTitle": "Post not found",
+    "notFoundBody": "It may have been removed.",
+    "back": "Back to the feed",
+    "commentsTitle": "Comments ({count})",
+    "close": "Close"
+  },
+  "overlay": {
+    "close": "Close",
+    "showComments": "Show comments",
+    "hideComments": "Hide comments"
+  },
+  "search": {
+    "title": "Search",
+    "resultsFor": "Results for “{query}”",
+    "creators": "Creators",
+    "videos": "Videos",
+    "emptyTitle": "No results",
+    "emptyBody": "Try a different search — a topic, a hashtag, or a creator."
+  },
+  "topics": {
+    "chaps": "Chaps",
+    "chats": "Chats",
+    "clubs": "Clubs",
+    "coins": "Coins",
+    "hosts": "Hosts",
+    "reels": "Reels",
+    "rides": "Rides",
+    "shots": "Shots",
+    "shows": "Shows",
+    "snaps": "Snaps",
+    "zones": "Zones"
+  },
+  "header": {
+    "theme": "Toggle theme",
+    "notifications": "Notifications",
+    "notificationsEmpty": "Nothing new yet"
+  },
+  "notifications": {
+    "follow": "@{handle} started following you",
+    "like": "@{handle} liked your video",
+    "comment": "@{handle} commented on your video",
+    "mention": "@{handle} mentioned you in a comment"
+  },
+  "sections": {
+    "snaps": "Snaps",
+    "reels": "Reels",
+    "shows": "Shows",
+    "looks": "Looks",
+    "zones": "Zones",
+    "snips": "Snips",
+    "hosts": "Hosts",
+    "rides": "Rides",
+    "body": "What the feed is watching in {name} right now.",
+    "lands": "Lands",
+    "shops": "Shops",
+    "itemsBody": "{count} picks in {name} right now.",
+    "brands": "Brands"
+  },
+  "shopCategories": {
+    "fashion": "High-end fashion",
+    "jewelry": "Jewelry",
+    "watches": "Watches",
+    "travel": "Travel",
+    "leisure": "Leisure",
+    "tropicals": "Tropicals",
+    "couture": "Couture",
+    "hiphop": "Hip-hop",
+    "sport": "Sport"
+  },
+  "brands": {
+    "title": "Brands",
+    "body": "The phi ecosystem — sixteen marks, one design system."
+  }
+}

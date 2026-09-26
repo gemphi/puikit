@@ -1,0 +1,83 @@
+{
+  "name": "ProductCard",
+  "source": "src/components/commerce/product/card.tsx",
+  "description": "A product card composed exclusively from puijs primitives: the Card\nfamily provides the surface, Stack the layout, Price the\nprice treatment and Button the actions. No per-component stylesheet,\nno raw layout `<div>`, no inline style, and no hardcoded colors — icon color\nflows from token-driven Text/Span wrappers via `currentColor`.",
+  "propsInterface": "ProductCardProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "id",
+      "optional": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "title",
+      "optional": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "category",
+      "optional": true,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "price",
+      "optional": false,
+      "type": "number",
+      "description": null
+    },
+    {
+      "name": "salePrice",
+      "optional": true,
+      "type": "number",
+      "description": null
+    },
+    {
+      "name": "image",
+      "optional": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "rating",
+      "optional": true,
+      "type": "number",
+      "description": null
+    },
+    {
+      "name": "inWishlist",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "onAddToCart",
+      "optional": true,
+      "type": "(id: string) => void",
+      "description": null
+    },
+    {
+      "name": "onToggleWishlist",
+      "optional": true,
+      "type": "(id: string) => void",
+      "description": null
+    },
+    {
+      "name": "onClick",
+      "optional": true,
+      "type": "(id: string) => void",
+      "description": null
+    },
+    {
+      "name": "className",
+      "optional": true,
+      "type": "string",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.412Z"
+}

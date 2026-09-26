@@ -1,0 +1,59 @@
+{
+  "name": "FormGroup",
+  "source": "src/components/forms/FormGroup/index.tsx",
+  "description": null,
+  "propsInterface": "FormGroupProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "label",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    },
+    {
+      "name": "labelFor",
+      "optional": true,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "labelInfo",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    },
+    {
+      "name": "helperText",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    },
+    {
+      "name": "intent",
+      "optional": true,
+      "type": "'none' | 'primary' | 'success' | 'warning' | 'error'",
+      "description": null
+    },
+    {
+      "name": "inline",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "disabled",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "children",
+      "optional": true,
+      "type": "React.ReactNode",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.599Z"
+}

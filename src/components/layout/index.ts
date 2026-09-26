@@ -1,4 +1,6 @@
+export * from './Box';
 export * from './Stack';
+export * from './ResizablePanel';
 export * from './Container';
 export * from './Row';
 export * from './Col';

@@ -49,7 +49,7 @@
   left: 2px;
   width: 16px;
   height: 16px;
-  background-color: #ffffff;
+  background-color: var(--phi-color-switch-thumb, var(--phi-color-background-card));
   border-radius: var(--phi-radius-full);
   box-shadow: var(--phi-shadow-1);
   transition: transform var(--phi-transition-fast);

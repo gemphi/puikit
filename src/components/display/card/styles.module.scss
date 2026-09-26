@@ -1,0 +1,124 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  /* Fills the cell it is given, so sibling cards in a row match. */
+  height: 100%;
+  background: var(--phi-gradient-card, var(--phi-color-background-card));
+  border: var(--phi-elevation-border, 1px solid var(--phi-color-border));
+  border-radius: var(--phi-radius-lg);
+  overflow: hidden;
+  transition: box-shadow var(--phi-transition-fast), transform var(--phi-transition-fast);
+}
+
+/* Every card carries the brand wash: colour at one edge, gone by the middle.
+   It runs bottom to top by default so the tint pools under the content rather
+   than behind it, and it is layered over the card colour rather than replacing
+   it. `data-gradient-direction="reverse"` puts the tint at the head instead. */
+.card {
+  background-image: var(--phi-gradient-card-wash, none);
+}
+
+.card[data-gradient-direction='reverse'] {
+  background-image: var(--phi-gradient-card-wash-reverse, none);
+}
+
+.card[data-gradient-direction='none'] {
+  background-image: none;
+}
+
+/**
+ * Default padding: applied when Card is used bare (no role children).
+ * Compositional callers can pass `flush` to Card so `CardHeader`/`CardBody`/
+ * `CardFooter` own the padding via their own `.header`/`.body`/`.footer`
+ * rules. As a safety net for compositions that don't opt into `flush`, the
+ * `:has()` clause below neutralizes the default padding when a role child is
+ * present so those compositions never double-pad. Padding scales with
+ * `--phi-space-scale` (Density preference) via the token.
+ */
+.padded {
+  padding: var(--card-padding, var(--phi-space-5, 24px));
+}
+
+/* Inner padding follows the card's size, so a dense tile and a feature panel
+   are not both given the same inset. */
+.paddingSm { --card-padding: var(--phi-space-4); }  /* 16px */
+.paddingMd { --card-padding: var(--phi-space-5); }  /* 24px */
+.paddingLg { --card-padding: var(--phi-space-6); }  /* 32px */
+
+.padded:has(> .header, > .body, > .footer) {
+  padding: 0;
+}
+
+/* A composed card pushes the same inset down to its role children, so the
+   padding stays one decision whichever way the card is built. */
+.paddingSm > .header, .paddingSm > .body, .paddingSm > .footer,
+.paddingMd > .header, .paddingMd > .body, .paddingMd > .footer,
+.paddingLg > .header, .paddingLg > .body, .paddingLg > .footer {
+  padding: var(--card-padding);
+}
+
+.hoverable:hover {
+  box-shadow: var(--phi-shadow-md);
+  transform: translateY(-2px);
+}
+
+.selected {
+  border-color: var(--phi-color-primary);
+  box-shadow: 0 0 0 2px var(--phi-color-primary-light);
+}
+
+.flat {
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.compact .body {
+  padding: 0.75rem;
+}
+
+.hero .image {
+  height: 12rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--phi-color-border);
+}
+
+.headerContent {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.headerAction {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.body {
+  flex: 1;
+  padding: 1rem;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-top: 1px solid var(--phi-color-border);
+}
+
+.image {
+  width: 100%;
+  height: 10rem;
+  object-fit: cover;
+}

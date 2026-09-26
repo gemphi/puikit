@@ -1,0 +1,41 @@
+{
+  "name": "ProductList",
+  "source": "src/components/commerce/product/list.tsx",
+  "description": "A variant-driven list of products. Renders its rows through the shared\nProductItem composition; the `variant` selects density/affordances\nfor the whole list rather than proliferating separate list components.\n\nLayout is delegated to the shared Grid (card variant) and\nStack (row/compact variants) primitives, and the loading state is\ncomposed from the shared Skeleton primitive inside the Card\nfamily — no per-component stylesheet, no raw layout `<div>`, no inline\nstyle, and no hardcoded colors.",
+  "propsInterface": "ProductListProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "products",
+      "optional": false,
+      "type": "Array<Omit<ProductItemProps, 'variant'>>",
+      "description": null
+    },
+    {
+      "name": "variant",
+      "optional": true,
+      "type": "ProductItemVariant",
+      "description": "Presentation variant applied to the list and propagated to each row.\nDrives layout (rows vs. grid of cards) via `data-variant` + tokens only.\nDefaults to `row`."
+    },
+    {
+      "name": "loading",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "skeletonCount",
+      "optional": true,
+      "type": "number",
+      "description": null
+    },
+    {
+      "name": "className",
+      "optional": true,
+      "type": "string",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.440Z"
+}

@@ -34,7 +34,7 @@ export const FormExample: React.FC = () => {
           min={0}
           max={100}
           value={sliderVal}
-          onChange={(e) => setSliderVal(Number(e.target.value))}
+          onChange={setSliderVal}
         />
       </FormGroup>
     </Stack>

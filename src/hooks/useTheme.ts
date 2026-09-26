@@ -1,1 +1,1 @@
-export { usePuiTheme, usePhiTheme, usePTheme, useVvidTheme } from '../providers/PuiProvider';
+export { usePuiTheme, usePhiTheme, usePTheme } from '../providers/PuiProvider';

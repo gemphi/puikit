@@ -7,7 +7,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@pui/components': path.resolve(__dirname, '../../src/components'),
-      '@pui/commerce': path.resolve(__dirname, '../../src/components/commerce'),
+      '@pui/shop': path.resolve(__dirname, '../../src/components/shop'),
+      '@pui/types': path.resolve(__dirname, '../../src/types'),
       '@pui/store': path.resolve(__dirname, '../../src/store'),
       '@pui/services': path.resolve(__dirname, '../../src/services'),
       '@pui/api': path.resolve(__dirname, '../../src/api'),
@@ -16,6 +17,7 @@ export default defineConfig({
       '@pui/styles': path.resolve(__dirname, '../../src/styles'),
       '@pui/tokens': path.resolve(__dirname, '../../src/tokens'),
       '@pui': path.resolve(__dirname, '../../src'),
+      '@site-docs': path.resolve(__dirname, '../../site/docs'),
       'puijs': path.resolve(__dirname, '../../src'),
       'next/link': path.resolve(__dirname, './src/mocks/Link.tsx'),
       'react': path.resolve(__dirname, './node_modules/react'),

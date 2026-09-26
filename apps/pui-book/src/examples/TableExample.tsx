@@ -1,34 +1,50 @@
 'use client';
 
 import React from 'react';
-import { Table, Tag, ProgressBar, Button, Stack } from '@pui/components';
+import { DataTable, Stack, Tag, Button, ProgressBar, Text } from '@pui/components';
 import { Cpu, Database, Shield } from 'lucide-react';
 
-export const TableExample: React.FC = () => {
-  const headers = ['Agent Name', 'Domain', 'Harmonic Resonance (r)', 'Status', 'Actions'];
-  const rows = [
-    [
-      <Stack direction="row" gap={2} align="center"><Cpu size={14} /><strong>PhiGen</strong></Stack>,
-      'Code Generation',
-      <ProgressBar value={0.96} intent="success" />,
-      <Tag intent="success" round>Active</Tag>,
-      <Button variant="outline" size="sm">Inspect</Button>,
-    ],
-    [
-      <Stack direction="row" gap={2} align="center"><Database size={14} /><strong>PhiRAG</strong></Stack>,
-      'Vector Manifold',
-      <ProgressBar value={0.91} intent="primary" />,
-      <Tag intent="primary" round>Tuning</Tag>,
-      <Button variant="outline" size="sm">Inspect</Button>,
-    ],
-    [
-      <Stack direction="row" gap={2} align="center"><Shield size={14} /><strong>PhiLog</strong></Stack>,
-      'Telemetry Stream',
-      <ProgressBar value={0.88} intent="info" />,
-      <Tag intent="info" round>Streaming</Tag>,
-      <Button variant="outline" size="sm">Inspect</Button>,
-    ],
-  ];
+interface AgentRow {
+  id: string;
+  name: string;
+  icon: React.ReactNode;
+  domain: string;
+  health: number;
+  status: string;
+  intent: 'success' | 'primary';
+}
 
-  return <Table headers={headers} rows={rows} />;
-};
+const ROWS: AgentRow[] = [
+  { id: 'phigen', name: 'PhiGen', icon: <Cpu size={14} />, domain: 'Code Generation', health: 0.96, status: 'Active', intent: 'success' },
+  { id: 'phirag', name: 'PhiRAG', icon: <Database size={14} />, domain: 'Vector Manifold', health: 0.91, status: 'Tuning', intent: 'primary' },
+  { id: 'philog', name: 'PhiLog', icon: <Shield size={14} />, domain: 'Telemetry Stream', health: 0.88, status: 'Streaming', intent: 'primary' },
+];
+
+/** Columns declared once; the header and the cells cannot drift apart. */
+export const TableExample: React.FC = () => (
+  <DataTable
+    rows={ROWS}
+    getKey={(row) => row.id}
+    columns={[
+      {
+        id: 'agent',
+        header: 'Agent',
+        cell: (row) => (
+          <Stack direction="row" gap={2} align="center">
+            {row.icon}
+            <Text as="span" weight="semibold">{row.name}</Text>
+          </Stack>
+        ),
+      },
+      { id: 'domain', header: 'Domain', cell: (row) => row.domain },
+      { id: 'health', header: 'Health', width: '10rem', cell: (row) => <ProgressBar value={row.health} intent={row.intent} /> },
+      { id: 'status', header: 'Status', cell: (row) => <Tag intent={row.intent} round>{row.status}</Tag> },
+      {
+        id: 'actions',
+        header: '',
+        align: 'right',
+        cell: () => <Button variant="outline" size="sm">Inspect</Button>,
+      },
+    ]}
+  />
+);

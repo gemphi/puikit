@@ -19,10 +19,12 @@ export const DocsPortal: React.FC<DocsPortalProps> = ({
   backToAppLabel = 'Open App',
   dark,
   onToggleDark,
+  onOpenPreferences,
   className = '',
 }) => {
   const [internalGuideId, setInternalGuideId] = useState<string>(initialGuideId);
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(true);
   const activeGuideId = controlledGuideId ?? internalGuideId;
 
   useEffect(() => {
@@ -54,6 +56,21 @@ export const DocsPortal: React.FC<DocsPortalProps> = ({
     return grouped;
   }, [filteredGuides]);
 
+  const searchResults = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    if (!query) return [];
+    return filteredGuides.slice(0, 8).map((guide) => ({
+      id: guide.id,
+      title: guide.title,
+      category: guide.category,
+    }));
+  }, [filteredGuides, searchQuery]);
+
+  const selectSearchResult = (id: string) => {
+    selectGuide(id);
+    setSearchQuery('');
+  };
+
   const activeGuide = useMemo(() => {
     return visibleGuides.find((guide) => guide.id === activeGuideId) || visibleGuides[0];
   }, [visibleGuides, activeGuideId]);
@@ -76,14 +93,25 @@ export const DocsPortal: React.FC<DocsPortalProps> = ({
           version={version}
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
+          searchResults={searchResults}
+          onSelectSearchResult={selectSearchResult}
+          onToggleSidebar={() => setSidebarOpen((open) => !open)}
           onHome={() => selectGuide(visibleGuides[0]?.id || initialGuideId)}
           onBackToApp={onBackToApp}
           backToAppLabel={backToAppLabel}
           dark={dark}
           onToggleDark={onToggleDark}
+        onOpenPreferences={onOpenPreferences}
         />
       )}
-      sidebar={<DocsSidebar categories={categories} activeGuideId={activeGuide.id} onSelectGuide={selectGuide} />}
+      sidebar={sidebarOpen ? (
+        <DocsSidebar
+          categories={categories}
+          activeGuideId={activeGuide.id}
+          onSelectGuide={selectGuide}
+          onToggleSidebar={() => setSidebarOpen(false)}
+        />
+      ) : undefined}
       aside={<DocsTOC items={tocItems} onSelectItem={scrollToHeading} />}
     >
       <DocsArticle

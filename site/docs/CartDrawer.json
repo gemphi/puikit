@@ -1,0 +1,47 @@
+{
+  "name": "CartDrawer",
+  "source": "src/components/commerce/cart/drawer.tsx",
+  "description": "A cart drawer composed exclusively from puijs primitives: the\nDrawer overlay hosts a Stack layout of CartItems and\na CartSummary, with Button/Text for the header and\nempty state. No per-component stylesheet, no raw layout `<div>`, no inline\nstyle, and no hardcoded colors.",
+  "propsInterface": "CartDrawerProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "isOpen",
+      "optional": false,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "onClose",
+      "optional": false,
+      "type": "() => void",
+      "description": null
+    },
+    {
+      "name": "items",
+      "optional": false,
+      "type": "CartItemProps[]",
+      "description": null
+    },
+    {
+      "name": "onUpdateQuantity",
+      "optional": true,
+      "type": "(id: string, qty: number) => void",
+      "description": null
+    },
+    {
+      "name": "onRemoveItem",
+      "optional": true,
+      "type": "(id: string) => void",
+      "description": null
+    },
+    {
+      "name": "onCheckout",
+      "optional": true,
+      "type": "() => void",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.385Z"
+}

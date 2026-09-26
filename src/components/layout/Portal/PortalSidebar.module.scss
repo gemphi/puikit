@@ -1,0 +1,61 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: var(--phi-space-2);
+  padding: 0 var(--phi-space-3);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--phi-space-4);
+  padding: var(--phi-space-3);
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+}
+
+.groupHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: var(--phi-space-2);
+  padding: var(--phi-space-1) var(--phi-space-2);
+  margin: 0;
+  border: none;
+  border-radius: var(--phi-radius-sm);
+  background: transparent;
+  color: var(--phi-color-text-secondary);
+  font-family: var(--phi-font-family);
+  font-size: var(--phi-font-size-xs);
+  font-weight: var(--phi-font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background-color var(--phi-transition-fast), color var(--phi-transition-fast);
+}
+
+.groupHeader:hover {
+  background: var(--phi-color-background-secondary);
+  color: var(--phi-color-text-primary);
+}
+
+.groupHeader svg {
+  flex-shrink: 0;
+}
+
+.groupTitle {
+  text-align: left;
+}
+
+.groupItems {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: var(--phi-space-1);
+}

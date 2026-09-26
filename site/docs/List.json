@@ -1,0 +1,10 @@
+{
+  "name": "List",
+  "source": "src/components/display/list/list.tsx",
+  "description": "The foundational list surface. Rendered as `ul`/`ol`; appearance is\ntoken-driven through `styles.module.scss` (no hardcoded colors, no inline\nstyle). Rows are provided by the shared ListItem composition.",
+  "propsInterface": null,
+  "extendsBases": [],
+  "props": [],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.476Z"
+}

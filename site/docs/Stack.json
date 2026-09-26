@@ -1,0 +1,57 @@
+{
+  "name": "Stack",
+  "source": "src/components/layout/Stack/index.tsx",
+  "description": null,
+  "propsInterface": "StackProps",
+  "extendsBases": [
+    "Omit",
+    "Omit"
+  ],
+  "props": [
+    {
+      "name": "direction",
+      "optional": true,
+      "type": "ResponsiveValue<StackDirection>",
+      "description": null
+    },
+    {
+      "name": "gap",
+      "optional": true,
+      "type": "ResponsiveValue<StackGap>",
+      "description": null
+    },
+    {
+      "name": "align",
+      "optional": true,
+      "type": "ResponsiveValue<StackAlign>",
+      "description": null
+    },
+    {
+      "name": "justify",
+      "optional": true,
+      "type": "ResponsiveValue<StackJustify>",
+      "description": null
+    },
+    {
+      "name": "wrap",
+      "optional": true,
+      "type": "ResponsiveValue<boolean>",
+      "description": null
+    },
+    {
+      "name": "ref",
+      "optional": true,
+      "type": "React.Ref<HTMLDivElement>",
+      "description": null
+    }
+  ],
+  "stories": {
+    "file": "src/components/layout/Stack/Stack.stories.tsx",
+    "title": "Layout/Stack",
+    "examples": [
+      "Vertical",
+      "Horizontal"
+    ]
+  },
+  "generatedAt": "2026-08-30T14:47:34.761Z"
+}

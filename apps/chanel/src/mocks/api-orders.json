@@ -1,0 +1,5 @@
+[
+  { "id": "CH-4821", "userId": "riya", "date": "2026-08-14", "status": "delivered", "addressId": "addr-1", "paymentMethodId": "pm-1", "lines": [ { "productId": "cf-11-classic", "quantity": 1 }, { "productId": "fr-no5-edp", "quantity": 1 } ] },
+  { "id": "CH-4907", "userId": "riya", "date": "2026-08-22", "status": "shipped", "addressId": "addr-1", "paymentMethodId": "pm-1", "lines": [ { "productId": "rw-tweed-jacket", "quantity": 1 } ] },
+  { "id": "CH-4998", "userId": "riya", "date": "2026-08-28", "status": "processing", "addressId": "addr-2", "paymentMethodId": "pm-2", "lines": [ { "productId": "ey-square-sun", "quantity": 1 }, { "productId": "fr-bleu", "quantity": 1 }, { "productId": "ey-round-optical", "quantity": 1 } ] }
+]

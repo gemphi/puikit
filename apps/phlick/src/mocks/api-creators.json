@@ -1,0 +1,112 @@
+[
+ {
+  "handle": "aria.moves",
+  "name": "Aria Okafor",
+  "bio": "Dance, one hallway at a time.",
+  "verified": true,
+  "stats": {
+   "followers": 2400000,
+   "following": 248,
+   "likes": 33600000
+  }
+ },
+ {
+  "handle": "sundaybakes",
+  "name": "Theo Marchetti",
+  "bio": "Bread by Sunday, chaos by Monday.",
+  "verified": false,
+  "stats": {
+   "followers": 812000,
+   "following": 786,
+   "likes": 11368000
+  }
+ },
+ {
+  "handle": "lofi.lena",
+  "name": "Lena Kovacs",
+  "bio": "Beats from a bedroom in Vienna.",
+  "verified": true,
+  "stats": {
+   "followers": 1100000,
+   "following": 730,
+   "likes": 13200000
+  }
+ },
+ {
+  "handle": "trailtomas",
+  "name": "Tomás Rivera",
+  "bio": "Every trailhead within a tank of fuel.",
+  "verified": false,
+  "stats": {
+   "followers": 540000,
+   "following": 570,
+   "likes": 5940000
+  }
+ },
+ {
+  "handle": "kit.paints",
+  "name": "Kit Ashworth",
+  "bio": "Watercolour, timelapsed.",
+  "verified": false,
+  "stats": {
+   "followers": 690000,
+   "following": 891,
+   "likes": 10350000
+  }
+ },
+ {
+  "handle": "prof.pixel",
+  "name": "Dr. Maya Chen",
+  "bio": "Physics you can see.",
+  "verified": true,
+  "stats": {
+   "followers": 3200000,
+   "following": 604,
+   "likes": 32000000
+  }
+ },
+ {
+  "handle": "stray.cafe",
+  "name": "Jun Park",
+  "bio": "Feeding the neighbourhood cats.",
+  "verified": false,
+  "stats": {
+   "followers": 1900000,
+   "following": 597,
+   "likes": 30400000
+  }
+ },
+ {
+  "handle": "velo.vera",
+  "name": "Vera Lindqvist",
+  "bio": "Fixed gear, wet cobbles.",
+  "verified": false,
+  "stats": {
+   "followers": 430000,
+   "following": 321,
+   "likes": 8600000
+  }
+ },
+ {
+  "handle": "midnightmise",
+  "name": "Sam Delacroix",
+  "bio": "Line cook. 11pm energy.",
+  "verified": true,
+  "stats": {
+   "followers": 980000,
+   "following": 83,
+   "likes": 7840000
+  }
+ },
+ {
+  "handle": "plantdadphil",
+  "name": "Phil Nguyen",
+  "bio": "60 plants and counting.",
+  "verified": false,
+  "stats": {
+   "followers": 350000,
+   "following": 459,
+   "likes": 5950000
+  }
+ }
+]

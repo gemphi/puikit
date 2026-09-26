@@ -27,7 +27,7 @@ export const TreeExample: React.FC = () => {
   ];
 
   return (
-    <Card elevation={1}>
+    <Card>
       <Stack direction="row" justify="between" align="center" style={{ marginBottom: '12px' }}>
         <Text weight="semibold">Hierarchical Tree View (Palantir Blueprint)</Text>
         <Tag intent="primary" round>Selected: {selected}</Tag>

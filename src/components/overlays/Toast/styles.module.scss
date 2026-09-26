@@ -43,3 +43,18 @@
   background-color: var(--phi-color-info-light);
   color: var(--phi-alert-info-text, #1e40af);
 }
+
+/* Respect reduced motion: land on the end state immediately rather than
+   animating in. Without this the entry animation is the only thing that makes
+   the overlay visible, so it must not simply be disabled. */
+@media (prefers-reduced-motion: reduce) {
+  [class*='overlay'],
+  [class*='backdrop'],
+  [class*='content'],
+  [class*='panel'],
+  [class*='toast'] {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "name": "CartItem",
+  "source": "src/components/commerce/cart/item.tsx",
+  "description": "A cart line item composed exclusively from puijs primitives\n(Card, Stack, Text, Price, Button).\nNo per-component stylesheet, no raw layout `<div>`, no inline style, and no\nhardcoded colors — the quantity stepper and remove action are icon buttons.",
+  "propsInterface": "CartItemProps",
+  "extendsBases": [],
+  "props": [
+    {
+      "name": "id",
+      "optional": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "title",
+      "optional": false,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "price",
+      "optional": false,
+      "type": "number",
+      "description": null
+    },
+    {
+      "name": "quantity",
+      "optional": false,
+      "type": "number",
+      "description": null
+    },
+    {
+      "name": "image",
+      "optional": true,
+      "type": "string",
+      "description": null
+    },
+    {
+      "name": "readonly",
+      "optional": true,
+      "type": "boolean",
+      "description": null
+    },
+    {
+      "name": "onUpdateQuantity",
+      "optional": true,
+      "type": "(id: string, qty: number) => void",
+      "description": null
+    },
+    {
+      "name": "onRemove",
+      "optional": true,
+      "type": "(id: string) => void",
+      "description": null
+    },
+    {
+      "name": "className",
+      "optional": true,
+      "type": "string",
+      "description": null
+    }
+  ],
+  "stories": null,
+  "generatedAt": "2026-08-30T14:47:34.389Z"
+}
