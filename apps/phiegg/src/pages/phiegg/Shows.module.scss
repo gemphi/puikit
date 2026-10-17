@@ -1,0 +1,19 @@
+// Shows slider: square stage in the middle, neighbours faded either side. Tokens only.
+.slider { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, min(35rem, 64vw)) minmax(0, 1fr); align-items: center; gap: clamp(0.625rem, 2.4vw, 1.75rem); }
+.side { width: min(100%, 18.75rem); opacity: 0.5; transition: opacity 0.25s, transform 0.25s; &:hover { opacity: 0.8; } }
+.left { justify-self: end; &:hover { transform: translateX(-4px); } }
+.right { justify-self: start; &:hover { transform: translateX(4px); } }
+.stage { position: relative; box-shadow: var(--phi-shadow-lg); border-radius: calc(var(--phi-radius-xl) * 1.6); overflow: hidden;
+  &:hover .arrow { opacity: 1; } }
+.pos { position: absolute; top: 1rem; right: 1rem; z-index: 2; padding: 0.25rem 0.75rem; border-radius: var(--phi-radius-full); background: color-mix(in srgb, var(--phi-color-gray-900) 55%, transparent); color: var(--phi-color-gray-50); font-size: 0.75rem; font-weight: 700; }
+.round { position: absolute; top: 50%; z-index: 2; display: grid; place-items: center; border: 0; border-radius: var(--phi-radius-full); cursor: pointer;
+  background: color-mix(in srgb, var(--phi-color-background) 86%, transparent); color: var(--phi-color-text-primary); backdrop-filter: blur(8px); transition: opacity 0.2s, transform 0.2s;
+  &:focus-visible { outline: 2px solid var(--phi-color-primary); outline-offset: 2px; opacity: 1; } }
+.arrow { width: 2.5rem; height: 3.5rem; transform: translateY(-50%); opacity: 0; border-radius: var(--phi-radius-2xl); border: 1px solid var(--phi-color-border); box-shadow: var(--phi-shadow-sm);
+  background: color-mix(in srgb, var(--phi-color-background) 82%, transparent); &:hover { background: var(--phi-color-background); } }
+.prev { left: 0.75rem; }
+.next { right: 0.75rem; }
+.play { left: 50%; width: 5.25rem; height: 5.25rem; transform: translate(-50%, -50%); background: var(--phi-color-background); box-shadow: var(--phi-shadow-md);
+  &:hover { transform: translate(-50%, -50%) scale(1.08); } }
+.foot { display: flex; align-items: center; gap: 0.875rem; width: min(100%, 35rem); margin: 0 auto; > :first-child { flex: 1; } }
+@media (max-width: 640px) { .slider { grid-template-columns: minmax(0, 1fr); } .side { display: none; } .arrow { opacity: 1; } }

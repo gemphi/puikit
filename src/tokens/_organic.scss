@@ -1,0 +1,114 @@
+/* Organic — the Phiace theme style (Phiegg, Phient, Phisum…).
+   Cream-and-sand ground, terracotta primary, sage second voice, Caprasimo
+   headings over Figtree, pills and over-rounded containers.
+   Use: <PuiProvider defaultThemeStyle="organic" defaultBrand="phiegg">.
+   Fonts: load Caprasimo + Figtree in the app's index.html. */
+:root[data-theme-style='organic'] {
+  color-scheme: light;
+  --phi-organic-accent-100: #fff2eb;
+  --phi-organic-accent-200: #ffe1d0;
+  --phi-organic-accent-300: #ffc6a5;
+  --phi-organic-accent-400: #f6a06b;
+  --phi-organic-accent-500: #d67f48;
+  --phi-organic-accent-600: #b2622d;
+  --phi-organic-accent-700: #8c491a;
+  --phi-organic-accent-800: #643312;
+  --phi-organic-accent-900: #402310;
+  --phi-organic-sage-100: #f0fae1;
+  --phi-organic-sage-200: #e1eecc;
+  --phi-organic-sage-300: #ccdbb2;
+  --phi-organic-sage-400: #aebf92;
+  --phi-organic-sage-500: #8fa073;
+  --phi-organic-sage-600: #728157;
+  --phi-organic-sage-700: #56633f;
+  --phi-organic-sage-800: #3d472b;
+  --phi-organic-sage-900: #272e1b;
+  --phi-color-gray-50: #f9f4ed; --phi-color-gray-100: #f9f4ed; --phi-color-gray-200: #eee7db; --phi-color-gray-300: #dcd3c4;
+  --phi-color-gray-400: #c0b6a5; --phi-color-gray-500: #a19786; --phi-color-gray-600: #82796a; --phi-color-gray-700: #645c50;
+  --phi-color-gray-800: #474238; --phi-color-gray-900: #2e2b25; --phi-color-gray-950: #201e1d;
+  --phi-color-background: #f5ead8;
+  --phi-color-background-secondary: #ebddc5;
+  --phi-color-background-card: #f9f4ed;
+  --phi-color-surface-tint: linear-gradient(180deg, color-mix(in oklch, #c67139 10%, transparent), transparent);
+  --phi-color-text-primary: #201e1d;
+  --phi-color-text-secondary: #645c50;
+  --phi-color-text-muted: #82796a;
+  --phi-color-text-inverse: #ffffff;
+  --phi-color-text-accent: #8c491a;
+  --phi-color-border: color-mix(in srgb, #201e1d 16%, transparent);
+  --phi-color-border-subtle: color-mix(in srgb, #201e1d 8%, transparent);
+  --phi-color-overlay: color-mix(in srgb, #2e2b25 45%, transparent);
+  --phi-radius-xs-base: 6px; --phi-radius-sm-base: 8px; --phi-radius-md-base: 16px;
+  --phi-radius-lg-base: 28px; --phi-radius-xl-base: 28px; --phi-radius-2xl-base: 36px;
+  --phi-radius-xs: calc(var(--phi-radius-xs-base) * var(--phi-radius-scale, 1));
+  --phi-radius-sm: calc(var(--phi-radius-sm-base) * var(--phi-radius-scale, 1));
+  --phi-radius-md: calc(var(--phi-radius-md-base) * var(--phi-radius-scale, 1));
+  --phi-radius-lg: calc(var(--phi-radius-lg-base) * var(--phi-radius-scale, 1));
+  --phi-radius-xl: calc(var(--phi-radius-xl-base) * var(--phi-radius-scale, 1));
+  --phi-radius-2xl: calc(var(--phi-radius-2xl-base) * var(--phi-radius-scale, 1));
+  --phi-shadow-1: 0 1px 2px color-mix(in srgb, #2e2b25 14%, transparent);
+  --phi-shadow-2: 0 3px 10px color-mix(in srgb, #2e2b25 16%, transparent);
+  --phi-shadow-3: 0 12px 32px color-mix(in srgb, #2e2b25 22%, transparent);
+  --phi-shadow-4: 0 24px 48px color-mix(in srgb, #2e2b25 26%, transparent);
+  /* Brand-aware: every tint follows --phi-color-primary, so Emerald/Amber/… keep their gradients. */
+  --phi-gradient-main: radial-gradient(90% 60% at 0% 0%, color-mix(in oklch, var(--phi-color-primary, #c67139) 12%, transparent) 0%, transparent 60%), radial-gradient(70% 50% at 100% 100%, color-mix(in oklch, #7a8a5e 12%, transparent) 0%, transparent 60%), linear-gradient(180deg, #f5ead8 0%, #f9f4ed 100%);
+  --phi-gradient-main-lr: linear-gradient(to right, #f5ead8 0%, #f9f4ed 100%);
+  --phi-gradient-card: linear-gradient(180deg, color-mix(in oklch, var(--phi-color-primary, #c67139) 10%, #f9f4ed) 0%, transparent 100%);
+  --phi-gradient-navbar: linear-gradient(180deg, #f5ead8 0%, #f9f4ed 100%);
+  --phi-gradient-sidebar: linear-gradient(90deg, color-mix(in oklch, var(--phi-color-primary, #c67139) 22%, #f5ead8) 0%, transparent 100%);
+  --phi-gradient-rail: linear-gradient(180deg, color-mix(in oklch, var(--phi-color-primary, #c67139) 30%, #f5ead8) 0%, transparent 100%);
+  --phi-gradient-accent: linear-gradient(to right, color-mix(in oklch, var(--phi-color-primary, #c67139) 22%, #fff4ec) 0%, #e1eecc 100%);
+  --phi-gradient-table-header: linear-gradient(180deg, #eee7db 0%, #ebddc5 100%);
+  --phi-glass-surface: color-mix(in srgb, #f9f4ed 80%, transparent);
+  --phi-glass-border: color-mix(in srgb, #201e1d 10%, transparent);
+  --phi-font-family: "Figtree", system-ui, sans-serif;
+  --phi-font-heading: "Caprasimo", system-ui, sans-serif;
+  --phi-font-size-base: 0.9375rem;
+  --phi-font-weight-semibold: 600;
+  --phi-font-weight-bold: 700;
+  --phi-control-height-md-base: 44px;
+}
+
+:root[data-theme='dark'][data-theme-style='organic'],
+:root.dark[data-theme-style='organic'] {
+  color-scheme: dark;
+  --phi-color-background: #1f1b17;
+  --phi-color-background-secondary: #2e2924;
+  --phi-color-background-card: #29241f;
+  --phi-color-text-primary: #f5ead8;
+  --phi-color-text-secondary: #dcd3c4;
+  --phi-color-text-muted: #a19786;
+  --phi-color-text-inverse: #201e1d;
+  --phi-color-text-accent: #ffc6a5;
+  --phi-color-border: color-mix(in srgb, #f5ead8 16%, transparent);
+  --phi-color-border-subtle: color-mix(in srgb, #f5ead8 8%, transparent);
+  --phi-gradient-main: radial-gradient(90% 60% at 0% 0%, color-mix(in oklch, var(--phi-color-primary, #c67139) 16%, transparent) 0%, transparent 60%), radial-gradient(70% 50% at 100% 100%, color-mix(in oklch, #7a8a5e 14%, transparent) 0%, transparent 60%), linear-gradient(180deg, #1f1b17 0%, #29241f 100%);
+  --phi-gradient-main-lr: linear-gradient(to right, #1f1b17 0%, #29241f 100%);
+  --phi-gradient-card: linear-gradient(180deg, color-mix(in oklch, var(--phi-color-primary, #c67139) 14%, #29241f) 0%, transparent 100%);
+  --phi-gradient-navbar: linear-gradient(180deg, color-mix(in oklch, var(--phi-color-primary, #c67139) 8%, #1f1b17) 0%, #1f1b17 100%);
+  --phi-gradient-accent: linear-gradient(to right, color-mix(in oklch, var(--phi-color-primary, #c67139) 28%, #29241f) 0%, color-mix(in oklch, #7a8a5e 24%, #29241f) 100%);
+  --phi-gradient-sidebar: linear-gradient(90deg, color-mix(in oklch, var(--phi-color-primary, #c67139) 20%, #1f1b17) 0%, transparent 100%);
+  --phi-gradient-rail: linear-gradient(180deg, color-mix(in oklch, var(--phi-color-primary, #c67139) 26%, #1f1b17) 0%, transparent 100%);
+  --phi-gradient-table-header: linear-gradient(180deg, #2e2924 0%, #29241f 100%);
+  --phi-shadow-1: 0 0 0 1px color-mix(in srgb, #f5ead8 8%, transparent);
+  --phi-shadow-2: 0 4px 14px rgba(0, 0, 0, 0.45);
+  --phi-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.55);
+}
+
+/* Pills: Organic's controls are fully round until a corner preset is picked — the radius picker always wins. */
+:root[data-theme-style='organic']:not([data-radius='small']):not([data-radius='medium']):not([data-radius='large']) {
+  --phi-control-radius: var(--phi-radius-full);
+  --phi-chip-radius: var(--phi-radius-full);
+}
+:root[data-theme-style='organic'] :is(h1, h2, h3, h4) {
+  font-family: var(--phi-font-heading);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+:root[data-theme-style='organic'] :focus-visible {
+  outline: 2px solid var(--phi-color-primary);
+  outline-offset: 2px;
+}
+:root[data-theme-style='organic'] ::selection {
+  background: var(--phi-organic-accent-200);
+}

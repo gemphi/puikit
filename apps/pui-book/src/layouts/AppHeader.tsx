@@ -1,17 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import {
-  Navbar,
-  NavbarSection,
-  Button,
-  Input,
-  Stack,
-  Tag,
-  Text,
-  PreferencesModal,
-  usePuiTheme,
-} from '@pui/components';
+import { Box, Button, Input, Navbar, NavbarSection, PreferencesModal, Stack, Tag, Text, usePuiTheme } from '@pui/components';
 import { Search, Sun, Moon, SlidersHorizontal } from 'lucide-react';
 import { UserMenu } from './UserMenu';
 
@@ -23,7 +13,7 @@ interface AppHeaderProps {
 /**
  * The docs utility bar, built from `Navbar` so it inherits the sticky
  * behaviour, the surface treatment and the section grid that every other
- * puijs app gets — rather than a hand-positioned `<header>`. The preferences
+ * puijs app gets — rather than a hand-positioned `<Box as="header">`. The preferences
  * modal is opened from here, so theme, brand, radius and density can be
  * exercised against the documentation itself.
  */

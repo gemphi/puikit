@@ -10,6 +10,8 @@ export interface ProgressStep {
   label: string;
   /** Optional supporting line, e.g. the value chosen at a completed step. */
   description?: string;
+  /** Marker glyph for this step (an icon). Shown until the step is complete, then a check takes over. */
+  icon?: React.ReactNode;
 }
 
 export interface ProgressStepsProps {
@@ -62,7 +64,7 @@ export const ProgressSteps: React.FC<ProgressStepsProps> = ({
           onClick={navigable ? () => onStepClick?.(i, step) : undefined}
         >
           <Span className={styles.marker} aria-hidden="true">
-            {state === 'complete' ? '' : i + 1}
+            {state === 'complete' ? '✓' : (step.icon ?? i + 1)}
           </Span>
           <Stack direction="column" gap={0} align={orientation === 'vertical' ? 'start' : 'center'}>
             <Text as="span" size="sm" className={styles.label}>

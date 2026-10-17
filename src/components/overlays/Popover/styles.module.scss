@@ -12,10 +12,13 @@
   position: absolute;
   z-index: 1000;
   min-width: 200px;
-  background-color: var(--phi-color-background-card);
+  /* Opaque even when the theme's card colour is translucent (Apple, Glass): a popover often sits inside a
+     backdrop-filtered bar, where its own blur cannot reach the page — so paint the card tone over the ground. */
+  background-color: var(--phi-color-background);
+  background-image: linear-gradient(var(--phi-color-background-card), var(--phi-color-background-card));
   border: 1px solid var(--phi-color-border);
-  border-radius: var(--phi-radius-md);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  border-radius: var(--phi-radius-lg);
+  box-shadow: var(--phi-shadow-3, 0 4px 24px rgba(0, 0, 0, 0.12));
   padding: 0.5rem;
   animation: popoverIn 0.15s ease;
 }

@@ -31,13 +31,15 @@ import type {
 /** The 19 registered Brand_Theme ids (e.g. 'phi', 'foundry', 'blueprint'). */
 export const BRAND_IDS: readonly string[] = BRAND_THEMES.map((b) => b.id);
 
-/** The 5 Theme_Style values applied via `data-theme-style`. */
+/** The 7 Theme_Style values applied via `data-theme-style`. */
 export const THEME_STYLES: readonly ThemeStyle[] = [
   'apple',
   'flat',
   'gradient',
   'elevated',
   'glass',
+  'organic',
+  'spacex',
 ];
 
 /** The 3 Theme_Mode values applied via `data-theme` / `dark` class. */

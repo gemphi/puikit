@@ -1,0 +1,19 @@
+// Phiegg header: brand · back + crumbs | search · Phipad · account (wallet, cart, theme and mode live in the account menu).
+// Folds at site.compactBelow (tagline, labels) and below 720px (crumbs → back, search → icon + row).
+.bar { padding-inline: 1rem !important; gap: 0.75rem; box-shadow: none !important; border-bottom: 1px solid var(--phi-color-border) !important; backdrop-filter: var(--phi-backdrop-blur, none); -webkit-backdrop-filter: var(--phi-backdrop-blur, none); }
+.start { flex: 1 1 auto !important; gap: 0.75rem !important; }
+.end { flex: 0 1 auto !important; gap: 0.5rem !important; justify-content: flex-end; }
+.searchSlot { flex: 0 1 auto; width: 22rem; min-width: 10rem; display: flex; margin-right: 0.25rem; }
+.compact .searchSlot { width: 15rem; }
+.searchRow { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--phi-color-border); background: var(--phi-color-background); display: flex; > * { flex: 1; max-width: none; } }
+.pop { min-width: 17rem; padding: 0.75rem !important; right: 0; }
+.item { justify-content: flex-start !important; width: 100%; }
+.avatar { margin-left: 0.25rem; display: grid; place-items: center; }
+
+.searchSlot input { background: var(--phi-color-hover, color-mix(in srgb, var(--phi-color-text-primary) 5%, transparent)); border-color: transparent; }
+.searchSlot input:focus { background: var(--phi-color-background-card); }
+.avatar { position: relative; }
+.dot { position: absolute; top: -4px; right: -6px; min-width: 1.05rem; height: 1.05rem; padding: 0 0.25rem; border-radius: var(--phi-radius-full); background: var(--phi-color-primary); display: grid; place-items: center; }
+.coins { padding: 0.25rem 0.5rem 0.25rem 2.25rem; font-variant-numeric: tabular-nums; }
+.item > span:last-of-type { flex: 1; min-width: 0; }
+.coinLinks { display: flex; flex-direction: column; align-items: flex-start; }

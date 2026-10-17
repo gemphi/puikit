@@ -4,12 +4,8 @@
 .railBtn { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; border: 0; background: transparent; color: var(--phi-color-text-primary); cursor: pointer; text-decoration: none;
   &:hover { background: var(--phi-organic-accent-200); } }
 .railOn { background: var(--phi-color-background-card); box-shadow: var(--phi-shadow-1); }
-.spacer { flex: 1; }
 .menu { width: 252px; flex: none; display: flex; flex-direction: column; gap: 4px; padding: 18px 12px; background: var(--phi-gradient-sidebar); overflow-y: auto; z-index: 42; }
 .menuHead { display: flex; gap: 12px; align-items: center; padding: 4px 8px 14px; }
-.mark { width: 44px; height: 44px; flex: none; border-radius: 50%; display: grid; place-items: center; color: #fff; }
-.menuTitle { font-family: var(--phi-font-heading); font-size: 24px; line-height: 1.1; margin: 0; }
-.menuSub { font-size: 12px; color: var(--phi-color-text-secondary); margin: 2px 0 0; }
 .item { display: flex; width: 100%; gap: 10px; align-items: center; min-height: 44px; padding: 0 14px; border: 0; border-radius: var(--phi-control-radius, var(--phi-radius-md)); background-color: var(--phi-control-shade, var(--phi-control-bg, transparent)); background-image: none; transition: background-color var(--phi-transition-normal), color var(--phi-transition-normal), transform var(--phi-duration-fast) var(--phi-ease-spring); color: inherit; font: inherit; font-weight: 500; cursor: pointer; text-align: left;
   &:hover { background-image: var(--phi-gradient-control-fade); } }
 .itemOn { background-image: var(--phi-gradient-control-fade); color: var(--phi-color-primary); font-weight: 700; box-shadow: inset 3px 0 0 var(--phi-color-primary); }
@@ -42,7 +38,6 @@
 .input { flex: 1; min-width: 0; min-height: 44px; border-radius: var(--phi-radius-full); border: 1px solid var(--phi-color-border); background: var(--phi-color-background); padding: 0 16px; font: inherit; color: inherit; }
 .term { background: #201e1d; color: #f5ead8; font-family: var(--phi-font-mono); font-size: 13px; border-radius: var(--phi-radius-lg); padding: 18px; min-height: 300px; display: flex; flex-direction: column; gap: 4px; white-space: pre-wrap; }
 .termIn { flex: 1; background: transparent; border: 0; color: inherit; font: inherit; outline: none; }
-.coin { min-height: 44px; border-radius: var(--phi-radius-full); border: 1px solid var(--phi-color-border); background: var(--phi-color-background); padding: 0 14px; font: inherit; color: inherit; }
 .backdrop { display: none; }
 @keyframes slideIn { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
 @media (max-width: 760px) {
@@ -54,5 +49,7 @@
   .right { position: absolute; top: 0; right: 0; bottom: 0; }
 }
 
-.figure { display: flex; flex-direction: column; gap: 8px; margin: 0; max-width: 980px; }
 .figImg { width: 100%; height: auto; border-radius: var(--phi-radius-lg); background: var(--phi-color-background-card); border: 1px solid var(--phi-color-border-subtle); }
+
+/* A record's plain fields in the right-bar: one line each, a hairline that fades out. */
+.fieldRow { border-bottom: 1px solid color-mix(in srgb, var(--phi-color-border) 70%, transparent); }

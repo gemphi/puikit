@@ -1,0 +1,301 @@
+{
+  "source": "phiber v2 theme/palette (11) + 5 Phiegg",
+  "themes": [
+    {
+      "id": "sphere",
+      "name": "Sphere",
+      "seed": "#3B4657",
+      "lightSeed": null,
+      "accent": [
+        212,
+        58,
+        55
+      ],
+      "lightAccent": null,
+      "source": "phiber default",
+      "accent2": [
+        142,
+        70,
+        45
+      ]
+    },
+    {
+      "id": "graphite",
+      "name": "Graphite",
+      "seed": "#3D3D3D",
+      "lightSeed": null,
+      "accent": [
+        28,
+        95,
+        54
+      ],
+      "lightAccent": null,
+      "source": "Blender grey + orange",
+      "accent2": [
+        142,
+        70,
+        45
+      ]
+    },
+    {
+      "id": "tokyo",
+      "name": "Tokyo",
+      "seed": "#3B4261",
+      "lightSeed": null,
+      "accent": [
+        220.8,
+        88.7,
+        72.4
+      ],
+      "lightAccent": null,
+      "source": "Tokyo Night",
+      "accent2": [
+        142,
+        70,
+        45
+      ]
+    },
+    {
+      "id": "onyx",
+      "name": "Onyx",
+      "seed": "#2A2A2A",
+      "lightSeed": null,
+      "accent": [
+        331,
+        71.2,
+        49
+      ],
+      "lightAccent": null,
+      "source": "concept-car magenta",
+      "accent2": [
+        142,
+        70,
+        45
+      ]
+    },
+    {
+      "id": "grey",
+      "name": "Grey",
+      "seed": "#7A7A7A",
+      "lightSeed": "#C4C6C9",
+      "accent": [
+        32.4,
+        80.4,
+        53.9
+      ],
+      "lightAccent": [
+        223.8,
+        73.1,
+        56.3
+      ],
+      "source": "Boldland orange / Tesla blue light",
+      "accent2": [
+        142,
+        70,
+        45
+      ]
+    },
+    {
+      "id": "apple",
+      "name": "Apple",
+      "seed": "#38383A",
+      "lightSeed": "#CBCBCD",
+      "accent": [
+        210.1,
+        100,
+        52
+      ],
+      "lightAccent": [
+        211.3,
+        100,
+        50
+      ],
+      "source": "macOS window greys",
+      "accent2": [
+        142,
+        70,
+        45
+      ]
+    },
+    {
+      "id": "swift",
+      "name": "Swift",
+      "seed": "#3F3532",
+      "lightSeed": null,
+      "accent": [
+        11.2,
+        100,
+        60
+      ],
+      "lightAccent": null,
+      "source": "Swift orange",
+      "accent2": [
+        142,
+        70,
+        45
+      ]
+    },
+    {
+      "id": "barbie",
+      "name": "Barbie",
+      "seed": "#4D2A3E",
+      "lightSeed": null,
+      "accent": [
+        327.8,
+        85.3,
+        52
+      ],
+      "lightAccent": null,
+      "source": "hot pink",
+      "accent2": [
+        142,
+        70,
+        45
+      ]
+    },
+    {
+      "id": "fenty",
+      "name": "Fenty",
+      "seed": "#4E3F33",
+      "lightSeed": null,
+      "accent": [
+        25.5,
+        56.6,
+        58.4
+      ],
+      "lightAccent": null,
+      "source": "earth + bronze",
+      "accent2": [
+        142,
+        70,
+        45
+      ]
+    },
+    {
+      "id": "cyberpunk",
+      "name": "Cyberpunk",
+      "seed": "#2C1C42",
+      "lightSeed": null,
+      "accent": [
+        174.1,
+        100,
+        50
+      ],
+      "lightAccent": null,
+      "source": "neon cyan",
+      "accent2": [
+        142,
+        70,
+        45
+      ]
+    },
+    {
+      "id": "chanel",
+      "name": "Chanel",
+      "seed": "#3E3A30",
+      "lightSeed": null,
+      "accent": [
+        41.2,
+        38.6,
+        67.5
+      ],
+      "lightAccent": null,
+      "source": "mushroom + champagne",
+      "accent2": [
+        82,
+        19,
+        45
+      ]
+    },
+    {
+      "id": "opal",
+      "name": "Opal",
+      "seed": "#4A4036",
+      "lightSeed": "#F5EAD8",
+      "accent": [
+        24,
+        55,
+        50
+      ],
+      "lightAccent": null,
+      "source": "Phiegg organic cream + terracotta",
+      "accent2": [
+        82,
+        19,
+        45
+      ]
+    },
+    {
+      "id": "nebula",
+      "name": "Nebula",
+      "seed": "#2A2140",
+      "lightSeed": null,
+      "accent": [
+        328,
+        100,
+        59
+      ],
+      "lightAccent": null,
+      "source": "Phiegg brand magenta",
+      "accent2": [
+        262,
+        60,
+        62
+      ]
+    },
+    {
+      "id": "naimia",
+      "name": "Naimia",
+      "seed": "#4A3A1F",
+      "lightSeed": null,
+      "accent": [
+        38,
+        90,
+        55
+      ],
+      "lightAccent": null,
+      "source": "saffron capital",
+      "accent2": [
+        16,
+        70,
+        50
+      ]
+    },
+    {
+      "id": "sage",
+      "name": "Sage",
+      "seed": "#3A4230",
+      "lightSeed": null,
+      "accent": [
+        84,
+        19,
+        45
+      ],
+      "lightAccent": null,
+      "source": "Phiegg sage",
+      "accent2": [
+        30,
+        55,
+        50
+      ]
+    },
+    {
+      "id": "velour",
+      "name": "Velour",
+      "seed": "#3D1F2A",
+      "lightSeed": null,
+      "accent": [
+        345,
+        60,
+        45
+      ],
+      "lightAccent": null,
+      "source": "wine velvet",
+      "accent2": [
+        150,
+        30,
+        45
+      ]
+    }
+  ]
+}

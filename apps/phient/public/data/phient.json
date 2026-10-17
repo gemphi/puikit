@@ -1,0 +1,972 @@
+{
+  "app": "phient",
+  "nav": [
+    {
+      "id": "home",
+      "label": "Home",
+      "icon": "home"
+    },
+    {
+      "id": "run",
+      "label": "Run",
+      "icon": "terminal",
+      "items": [
+        {
+          "id": "agent",
+          "label": "Agent",
+          "icon": "chat",
+          "image": "phiegg:worlds/gen/w_gx_fable_works.webp",
+          "pull": {
+            "n": 5,
+            "kind": "agentSpec",
+            "label": "label",
+            "sub": "role",
+            "art": [
+              "phiegg:worlds/gen/w_gx_cordelia_mill.webp",
+              "phiegg:worlds/gen/w_gx_dune_row.webp",
+              "phiegg:worlds/gen/w_epac.webp",
+              "phiegg:worlds/gen/w_gx_briar_row.webp",
+              "phiegg:worlds/gen/w_gx_quill_guild.webp",
+              "phiegg:worlds/gen/w_gx_umber_maison.webp",
+              "phiegg:worlds/gen/w_gx_foxglove_mill.webp",
+              "phiegg:worlds/gen/w_gx_linden_maison.webp",
+              "phiegg:worlds/w_mesa.png",
+              "phiegg:worlds/w_nimbus.png",
+              "phiegg:worlds/gen/w_gx_fable_row.webp",
+              "phiegg:worlds/gen/w_gx_delphine_house.webp"
+            ]
+          }
+        },
+        {
+          "id": "tasks",
+          "label": "Tasks",
+          "icon": "check",
+          "image": "phiegg:worlds/gen/w_gx_cordelia_row.webp",
+          "pull": {
+            "n": 5,
+            "kind": "quest",
+            "sort": "reward",
+            "label": "title",
+            "sub": "kind",
+            "join": [
+              "worldId"
+            ],
+            "image": "world.image",
+            "fields": [
+              "reward",
+              "rewardCoin",
+              "entrants",
+              "endsAt"
+            ],
+            "open": "phiegg",
+            "art": [
+              "phiegg:worlds/w_sable.png",
+              "phiegg:worlds/w_swanlake.png",
+              "phiegg:worlds/w_oasis_nine.png",
+              "phiegg:worlds/w_petal_park.png",
+              "phiegg:worlds/w_ivory_tower.png",
+              "phiegg:worlds/w_midnight_mall.png",
+              "phiegg:worlds/w_cashmere_peaks.png",
+              "phiegg:worlds/w_ember_coast.png",
+              "phiegg:worlds/gen/w_ponte.webp",
+              "phiegg:worlds/w_acro_world.png",
+              "phiegg:worlds/gen/w_gx_bramble_house.webp",
+              "phiegg:worlds/gen/w_chatty.webp"
+            ]
+          }
+        },
+        {
+          "id": "models",
+          "label": "Models",
+          "icon": "box",
+          "image": "phiegg:worlds/w_saffron_sands.png"
+        },
+        {
+          "id": "terminal",
+          "label": "Terminal",
+          "icon": "terminal",
+          "image": "phiegg:worlds/gen/w_naimia.webp"
+        }
+      ]
+    },
+    {
+      "id": "learn",
+      "label": "Learn",
+      "icon": "compass",
+      "items": [
+        {
+          "id": "platform",
+          "label": "Platform",
+          "icon": "cpu",
+          "image": "phiegg:worlds/gen/w_epac.webp"
+        },
+        {
+          "id": "news",
+          "label": "News",
+          "icon": "chat",
+          "image": "phiegg:worlds/w_silk_atlas.png"
+        },
+        {
+          "id": "about",
+          "label": "About",
+          "icon": "compass",
+          "image": "phiegg:worlds/gen/w_gx_dune_salon.webp"
+        },
+        {
+          "id": "faq",
+          "label": "FAQ",
+          "icon": "vote",
+          "image": "phiegg:worlds/w_coral_arcade.png"
+        },
+        {
+          "id": "docs",
+          "label": "Docs",
+          "icon": "file",
+          "image": "phiegg:worlds/gen/w_gx_dune_mill.webp"
+        }
+      ]
+    }
+  ],
+  "views": {
+    "agent": {
+      "title": "Your digital human",
+      "sub": "Tell Phient what you need; it works across your Phiace apps.",
+      "blocks": [
+        {
+          "kind": "chat",
+          "title": "",
+          "persona": "Phient",
+          "system": "You are Phient, a digital human that does work on the user's behalf across the Phiace ecosystem (Phiegg clubs, Phipad funding, Phinux trading, Phiber worlds, Phidao votes). Reply in under 60 words, plainly, and say which app you would use.",
+          "messages": [
+            {
+              "role": "assistant",
+              "text": "Morning. Your Nightfall club has two quest submissions to review and a Phidao vote closes tonight. Want me to take either?"
+            }
+          ],
+          "placeholder": "Ask Phient to do something",
+          "fallback": "On it. I will draft that and check with you before anything goes out."
+        }
+      ]
+    },
+    "tasks": {
+      "title": "Tasks",
+      "sub": "Work Phient is doing for you.",
+      "blocks": [
+        {
+          "kind": "table",
+          "title": "",
+          "cols": [
+            "Task",
+            "App",
+            "Status"
+          ],
+          "rows": [
+            [
+              "Review quest submissions",
+              "phiegg",
+              "Waiting for you"
+            ],
+            [
+              "Draft Phipad application",
+              "phipad",
+              "In progress"
+            ],
+            [
+              "Rebalance within limits",
+              "phinux",
+              "Scheduled"
+            ],
+            [
+              "Vote on proposal 14",
+              "phidao",
+              "Needs approval"
+            ]
+          ]
+        }
+      ]
+    },
+    "models": {
+      "title": "Models",
+      "sub": "Open-source models on this machine.",
+      "blocks": [
+        {
+          "kind": "grid",
+          "title": "Library",
+          "items": [
+            {
+              "title": "phiano",
+              "sub": "Phase LLM",
+              "body": "The default model for Phient and personas.",
+              "action": "Pull",
+              "done": "Pulled",
+              "meta": "phient run phiano",
+              "image": "phiegg:worlds/gen/w_skim.webp",
+              "genImage": true
+            },
+            {
+              "title": "phinet",
+              "sub": "Phase operators",
+              "body": "The network from the Phinet papers.",
+              "action": "Pull",
+              "done": "Pulled",
+              "meta": "phient run phinet",
+              "image": "phiegg:worlds/w_opalia.png",
+              "genImage": true
+            },
+            {
+              "title": "persona",
+              "sub": "Personas",
+              "body": "Character voices for Phiace.",
+              "action": "Pull",
+              "done": "Pulled",
+              "meta": "phient run persona",
+              "image": "phiegg:worlds/gen/w_gx_quill_guild.webp",
+              "genImage": true
+            },
+            {
+              "title": "quest",
+              "sub": "Quest oracle",
+              "body": "Grows the relations graph.",
+              "action": "Pull",
+              "done": "Pulled",
+              "meta": "phient run quest",
+              "image": "phiegg:worlds/gen/w_gx_quill_guild.webp",
+              "genImage": true
+            },
+            {
+              "title": "phiora-7b",
+              "sub": "model · general",
+              "body": "A balanced model for most tasks.",
+              "action": "Pull",
+              "done": "Pulled",
+              "gen": true,
+              "image": "phiegg:worlds/w_ribbon_rise.png"
+            },
+            {
+              "title": "phiscore",
+              "sub": "model · review",
+              "body": "Tuned for scoring quests and entries.",
+              "action": "Pull",
+              "done": "Pulled",
+              "gen": true,
+              "image": "phiegg:worlds/w_marquee.png"
+            },
+            {
+              "title": "phidraft",
+              "sub": "model · writing",
+              "body": "Long form drafts for applications.",
+              "action": "Pull",
+              "done": "Pulled",
+              "gen": true,
+              "image": "phiegg:worlds/gen/w_gx_quill_guild.webp"
+            },
+            {
+              "title": "phivote",
+              "sub": "model · governance",
+              "body": "Reads proposals and explains them.",
+              "action": "Pull",
+              "done": "Pulled",
+              "gen": true,
+              "image": "phiegg:worlds/gen/w_gx_calla_society.webp"
+            }
+          ]
+        }
+      ]
+    },
+    "terminal": {
+      "title": "Terminal",
+      "sub": "The same runner, from the command line.",
+      "blocks": [
+        {
+          "kind": "terminal",
+          "title": "",
+          "lines": [
+            "phient 0.1 · serving on localhost:11535"
+          ],
+          "commands": {
+            "phient list": [
+              "phiano     4.1 GB   2 days ago",
+              "persona    1.2 GB   5 days ago"
+            ],
+            "phient run phiano": [
+              ">>> loaded phiano. Type a message, /bye to exit."
+            ],
+            "phient pull phinet": [
+              "pulling manifest",
+              "pulling phinet … done"
+            ],
+            "phient serve": [
+              "listening on localhost:11535"
+            ]
+          }
+        }
+      ]
+    },
+    "docs": {
+      "title": "phient docs",
+      "sub": "Phient runs work for you across Phiace apps and runs open models locally.",
+      "blocks": [
+        {
+          "kind": "grid",
+          "title": "",
+          "items": [
+            {
+              "title": "Overview",
+              "sub": "Your digital human",
+              "body": "Phient runs work for you across Phiace apps and runs open models locally."
+            },
+            {
+              "title": "Getting started",
+              "sub": "First steps",
+              "body": "phient pull phiano, then phient serve. Sign in with your Phiace profile."
+            },
+            {
+              "title": "Phisum and SUM",
+              "sub": "How it is funded",
+              "body": "Every function Phient runs for you is logged to your profile and counts toward your Phisum and SUM rewards.",
+              "action": "Open Phisum",
+              "done": "Opened",
+              "app": "phisum"
+            }
+          ]
+        },
+        {
+          "kind": "table",
+          "title": "PFT functions in phient",
+          "cols": [
+            "Function",
+            "What it does here"
+          ],
+          "rows": [
+            [
+              "delegate",
+              "run your PFT functions for you, one approval each"
+            ],
+            [
+              "quest",
+              "enter quests you have approved"
+            ],
+            [
+              "host",
+              "open rooms you schedule"
+            ]
+          ]
+        },
+        {
+          "kind": "grid",
+          "title": "Read more",
+          "items": [
+            {
+              "title": "PFTs 101",
+              "sub": "Profile Fungible Tokens",
+              "body": "What PFTs are, how functions work, how they link to Phisum.",
+              "action": "Read",
+              "done": "Open",
+              "href": "../Phiegg Papers.dc.html"
+            }
+          ]
+        }
+      ]
+    },
+    "home": {
+      "title": "",
+      "sub": "",
+      "blocks": [
+        {
+          "kind": "hero",
+          "heading": "Phient",
+          "subtitle": "Your digital human across Phiace.",
+          "body": "Phient does your work for you — reviewing quests, drafting applications, voting, rebalancing — across every Phiace app, and runs open models locally on your machine.",
+          "actions": [
+            {
+              "label": "Open Phient",
+              "view": "agent"
+            },
+            {
+              "label": "Read docs",
+              "view": "docs"
+            }
+          ],
+          "image": "phiegg:worlds/gen/w_gx_calla_works.webp",
+          "genImage": true
+        },
+        {
+          "kind": "stats",
+          "title": "At a glance",
+          "gen": true,
+          "items": [
+            {
+              "label": "Agents",
+              "value": "",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "agentSpec"
+              }
+            },
+            {
+              "label": "Quests to review",
+              "value": "",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "quest"
+              }
+            },
+            {
+              "label": "Pools",
+              "value": "",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "pool"
+              }
+            },
+            {
+              "label": "Events",
+              "value": "",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "event"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "grid",
+          "title": "Agents on duty",
+          "sub": "What Phient can run for you.",
+          "pull": {
+            "kind": "agentSpec",
+            "n": 8,
+            "label": "label",
+            "sub": "role",
+            "body": "muse",
+            "fields": [
+              "role",
+              "strategy"
+            ],
+            "art": [
+              "phiegg:worlds/gen/w_gx_cordelia_mill.webp",
+              "phiegg:worlds/gen/w_gx_dune_row.webp",
+              "phiegg:worlds/gen/w_epac.webp",
+              "phiegg:worlds/gen/w_gx_briar_row.webp",
+              "phiegg:worlds/gen/w_gx_quill_guild.webp",
+              "phiegg:worlds/gen/w_gx_umber_maison.webp",
+              "phiegg:worlds/gen/w_gx_foxglove_mill.webp",
+              "phiegg:worlds/gen/w_gx_linden_maison.webp",
+              "phiegg:worlds/w_mesa.png",
+              "phiegg:worlds/w_nimbus.png",
+              "phiegg:worlds/gen/w_gx_fable_row.webp",
+              "phiegg:worlds/gen/w_gx_delphine_house.webp"
+            ]
+          },
+          "gen": true
+        },
+        {
+          "kind": "grid",
+          "title": "Pools",
+          "sub": "The portfolio: every pool in Phiora, by supply.",
+          "pull": {
+            "kind": "pool",
+            "sort": "supply",
+            "label": "name",
+            "sub": "category",
+            "body": "desc",
+            "join": [
+              "worldId"
+            ],
+            "image": "world.image",
+            "fields": [
+              "supply",
+              "floorUsd",
+              "royaltyPct",
+              "drop"
+            ],
+            "open": "phiegg",
+            "n": 8,
+            "art": [
+              "phiegg:worlds/gen/w_loraland.webp",
+              "phiegg:worlds/gen/w_skim.webp",
+              "phiegg:worlds/w_aria.png",
+              "phiegg:worlds/w_chiffon_heights.png",
+              "phiegg:worlds/w_gilded_grove.png",
+              "phiegg:worlds/w_kaleido.png",
+              "phiegg:worlds/w_moonlace.png",
+              "phiegg:worlds/w_obsidian_bay.png",
+              "phiegg:worlds/w_plume.png",
+              "phiegg:worlds/w_saffron_sands.png",
+              "phiegg:worlds/w_acro_world.png",
+              "phiegg:worlds/gen/w_ponte.webp"
+            ]
+          },
+          "gen": true
+        },
+        {
+          "kind": "grid",
+          "title": "Quests",
+          "sub": "Paying out now, biggest rewards first.",
+          "pull": {
+            "kind": "quest",
+            "sort": "reward",
+            "label": "title",
+            "sub": "kind",
+            "join": [
+              "worldId"
+            ],
+            "image": "world.image",
+            "fields": [
+              "reward",
+              "rewardCoin",
+              "entrants",
+              "endsAt"
+            ],
+            "open": "phiegg",
+            "n": 8,
+            "art": [
+              "phiegg:worlds/w_sable.png",
+              "phiegg:worlds/w_swanlake.png",
+              "phiegg:worlds/w_oasis_nine.png",
+              "phiegg:worlds/w_petal_park.png",
+              "phiegg:worlds/w_ivory_tower.png",
+              "phiegg:worlds/w_midnight_mall.png",
+              "phiegg:worlds/w_cashmere_peaks.png",
+              "phiegg:worlds/w_ember_coast.png",
+              "phiegg:worlds/gen/w_ponte.webp",
+              "phiegg:worlds/w_acro_world.png",
+              "phiegg:worlds/gen/w_gx_bramble_house.webp",
+              "phiegg:worlds/gen/w_chatty.webp"
+            ]
+          },
+          "gen": true
+        },
+        {
+          "kind": "grid",
+          "title": "Coming up",
+          "sub": "Events and drops with the most people going.",
+          "pull": {
+            "kind": "event",
+            "sort": "rsvps",
+            "label": "title",
+            "sub": "kind",
+            "join": [
+              "worldId"
+            ],
+            "image": "world.image",
+            "fields": [
+              "startsAt",
+              "rsvps"
+            ],
+            "open": "phiegg",
+            "n": 4,
+            "art": [
+              "phiegg:worlds/gen/w_gx_linden_row.webp",
+              "phiegg:worlds/gen/w_gx_quill_house.webp",
+              "phiegg:worlds/gen/w_gx_vesper_atelier.webp",
+              "phiegg:worlds/gen/w_naimia.webp",
+              "phiegg:worlds/gen/w_gx_calla_atelier.webp",
+              "phiegg:worlds/gen/w_gx_cordelia_row.webp",
+              "phiegg:worlds/gen/w_gx_dune_salon.webp",
+              "phiegg:worlds/gen/w_gx_garnet_guild.webp",
+              "phiegg:worlds/w_sable.png",
+              "phiegg:worlds/w_swanlake.png",
+              "phiegg:worlds/w_coral_arcade.png",
+              "phiegg:worlds/w_aurum.png"
+            ]
+          },
+          "gen": true
+        },
+        {
+          "kind": "grid",
+          "title": "Explore",
+          "from": "menus",
+          "gen": true
+        },
+        {
+          "kind": "news",
+          "title": "Latest",
+          "from": "page",
+          "page": "news",
+          "limit": 4,
+          "gen": true
+        }
+      ]
+    },
+    "news": {
+      "title": "News",
+      "sub": "Latest from Phient.",
+      "blocks": [
+        {
+          "kind": "news",
+          "items": [
+            {
+              "tag": "Models",
+              "title": "Pull a model with one command",
+              "body": "phient pull fetches a model, checks it and gets it ready to run on your machine.",
+              "gen": true,
+              "date": "Oct 12, 2026",
+              "image": "phiegg:worlds/gen/w_gx_garnet_society.webp"
+            },
+            {
+              "tag": "Tasks",
+              "title": "Phient reviews quests for hosts",
+              "body": "Hosts hand over quest scoring. Phient reads each entry and drafts a score with notes.",
+              "gen": true,
+              "date": "Oct 8, 2026",
+              "image": "phiegg:worlds/gen/w_gx_azalea_row.webp"
+            },
+            {
+              "tag": "Stories",
+              "title": "An application written overnight",
+              "body": "Ravi asked Phient to apply to Cohort 7. It filled every step and left him two questions.",
+              "gen": true,
+              "date": "Oct 4, 2026",
+              "image": "phiegg:worlds/w_veil.png"
+            },
+            {
+              "date": "Oct 3, 2026",
+              "tag": "Models",
+              "title": "phiano 4.1 is the new default",
+              "body": "Faster local inference and better tool use. Pull it with phient pull phiano.",
+              "image": "phiegg:worlds/gen/w_gx_thistle_salon.webp",
+              "genImage": true
+            },
+            {
+              "tag": "Agent",
+              "title": "Votes you can explain",
+              "body": "When Phient votes for you, it writes down why, and you can change the vote before it closes.",
+              "gen": true,
+              "date": "Sep 30, 2026",
+              "image": "phiegg:worlds/w_gossamer.png"
+            },
+            {
+              "tag": "Models",
+              "title": "Phiano runs on phones",
+              "body": "The small Phiano model now runs on most phones for quick tasks.",
+              "gen": true,
+              "date": "Sep 26, 2026",
+              "image": "phiegg:worlds/w_crystalline.png"
+            },
+            {
+              "tag": "Tasks",
+              "title": "Rebalance on a schedule",
+              "body": "Set your wallet mix once and Phient keeps it there every week.",
+              "gen": true,
+              "date": "Sep 22, 2026",
+              "image": "phiegg:worlds/w_pearl_ridge.png"
+            },
+            {
+              "date": "Sep 20, 2026",
+              "tag": "Agent",
+              "title": "Approvals, one tap",
+              "body": "Phient now batches the day's actions into a single approval card each morning.",
+              "image": "phiegg:worlds/w_prism_port.png",
+              "genImage": true
+            },
+            {
+              "tag": "Stories",
+              "title": "The host who took a holiday",
+              "body": "While Noor was away, Phient ran her two weekly events, paid the DJs and posted the photos.",
+              "gen": true,
+              "date": "Sep 18, 2026",
+              "image": "phiegg:worlds/w_prism_port.png"
+            },
+            {
+              "tag": "Terminal",
+              "title": "Terminal gets history",
+              "body": "Scroll back through every command and see what each one changed.",
+              "gen": true,
+              "date": "Sep 14, 2026",
+              "image": "phiegg:worlds/w_mosaic.png"
+            },
+            {
+              "tag": "Agent",
+              "title": "Ask before acting",
+              "body": "Turn on ask mode and Phient checks with you before each step.",
+              "gen": true,
+              "date": "Sep 10, 2026",
+              "image": "phiegg:worlds/w_organza.png"
+            },
+            {
+              "date": "Sep 6, 2026",
+              "tag": "Release",
+              "title": "Phient 0.1 serves locally",
+              "body": "Run every persona and function on localhost with no data leaving your machine.",
+              "image": "phiegg:worlds/w_indigo_drift.png",
+              "genImage": true
+            }
+          ]
+        }
+      ]
+    },
+    "about": {
+      "title": "About Phient",
+      "sub": "",
+      "blocks": [
+        {
+          "kind": "prose",
+          "lead": "Phient is a digital human that acts on your behalf across the Phiace ecosystem and runs entirely on open models you control.",
+          "sections": [
+            {
+              "title": "What it does",
+              "body": "Delegate the functions you hold — quests, hosting, voting, trading within limits — and Phient runs them for you, each with a single approval."
+            },
+            {
+              "title": "Local first",
+              "body": "Models run on your machine over localhost. Nothing is sent anywhere unless you ask Phient to use a networked app."
+            },
+            {
+              "title": "Funded by Phisum",
+              "body": "Every function Phient runs is logged to your profile and counts toward your Phisum and $SUM rewards."
+            }
+          ]
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ",
+      "sub": "Common questions.",
+      "blocks": [
+        {
+          "kind": "faq",
+          "items": [
+            {
+              "q": "Does my data leave my machine?",
+              "a": "No. Models run locally; Phient only touches a networked app when a task you approved needs it."
+            },
+            {
+              "q": "What can it act on?",
+              "a": "Only the PFT functions you hold and have approved, each with its own confirmation."
+            },
+            {
+              "q": "Which models?",
+              "a": "Open models like phiano and phinet, pulled and served locally."
+            },
+            {
+              "q": "Does Phient need the internet?",
+              "a": "Local models run offline. Tasks that touch apps sync when you are online.",
+              "gen": true
+            },
+            {
+              "q": "Can it sign for me?",
+              "a": "Only in the apps you delegate and only up to your limits.",
+              "gen": true
+            },
+            {
+              "q": "Which model should I use?",
+              "a": "Start with Phiano for quick tasks and a larger model for long writing.",
+              "gen": true
+            },
+            {
+              "q": "Can I see what it did?",
+              "a": "Every task has a log with each step and change.",
+              "gen": true
+            },
+            {
+              "q": "Can I stop a task?",
+              "a": "Yes, from Tasks or by typing stop in the terminal.",
+              "gen": true
+            }
+          ]
+        }
+      ]
+    },
+    "platform": {
+      "title": "Platform",
+      "sub": "The agents your digital human works through: PhiBot runs playbooks, PhiBrd onboards.",
+      "blocks": [
+        {
+          "kind": "agent",
+          "agent": "phibot",
+          "title": "Automation · PhiBot",
+          "intro": "List the automation playbooks and run one.",
+          "presets": [
+            {
+              "verb": "list_playbooks",
+              "label": "Playbooks",
+              "params": {}
+            },
+            {
+              "verb": "execute_playbook",
+              "label": "Run a playbook",
+              "params": {
+                "playbook_id": "weekly_report"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "agent",
+          "agent": "phibrd",
+          "title": "Onboarding · PhiBrd",
+          "intro": "The onboarding checklist across HR, identity, docs and automation, and an onboarding run.",
+          "presets": [
+            {
+              "verb": "get_checklist",
+              "label": "Checklist",
+              "params": {}
+            },
+            {
+              "verb": "onboard_employee",
+              "label": "Onboard",
+              "params": {
+                "employee_data": {
+                  "name": "Noor Hale",
+                  "email": "noor.hale@phiace.dev",
+                  "role": "Creator"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "profile": {
+    "sections": [
+      {
+        "title": "Your projects",
+        "kind": "phisumProject",
+        "fields": [
+          "name",
+          "vertical",
+          "status",
+          "funding_ask",
+          "submittedAt"
+        ],
+        "empty": "No projects yet.",
+        "action": {
+          "label": "Submit a project",
+          "view": "apply",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Your rounds",
+        "kind": "phisumFunding",
+        "fields": [
+          "name",
+          "amount",
+          "coin",
+          "closesAt",
+          "status"
+        ],
+        "empty": "No rounds yet.",
+        "action": {
+          "label": "Open a round",
+          "view": "open-round",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Your pledges",
+        "kind": "phisumPledge",
+        "fields": [
+          "name",
+          "amount",
+          "coin",
+          "status",
+          "submittedAt"
+        ],
+        "empty": "No pledges yet.",
+        "action": {
+          "label": "Back a round",
+          "view": "back-round",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Your pool stakes",
+        "kind": "phisumPoolStake",
+        "fields": [
+          "name",
+          "amount",
+          "coin",
+          "lock",
+          "status"
+        ],
+        "empty": "No stakes yet.",
+        "action": {
+          "label": "Back a pool",
+          "view": "back-pool",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Grants you asked for",
+        "kind": "phisumGrant",
+        "fields": [
+          "name",
+          "amount",
+          "status",
+          "deadline"
+        ],
+        "empty": "No grant requests yet.",
+        "action": {
+          "label": "Request a grant",
+          "view": "grant",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Milestones you reported",
+        "kind": "phisumMilestone",
+        "fields": [
+          "name",
+          "status",
+          "proof",
+          "submittedAt"
+        ],
+        "empty": "No milestone reports yet.",
+        "action": {
+          "label": "Report a milestone",
+          "view": "milestone",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Backer profile",
+        "kind": "phisumBacker",
+        "fields": [
+          "name",
+          "type",
+          "ticket",
+          "focus"
+        ],
+        "empty": "Not a backer yet.",
+        "action": {
+          "label": "Become a backer",
+          "view": "backer",
+          "app": "phisum"
+        }
+      }
+    ],
+    "totals": [
+      {
+        "label": "Pledged",
+        "kind": "phisumPledge",
+        "sum": "amount",
+        "sub": "Across your pledges"
+      },
+      {
+        "label": "Staked in pools",
+        "kind": "phisumPoolStake",
+        "sum": "amount",
+        "sub": "Locked in the portfolio"
+      },
+      {
+        "label": "Raised for your rounds",
+        "kind": "phisumPledge",
+        "sum": "amount",
+        "via": {
+          "kind": "phisumFunding",
+          "field": "fundingId"
+        },
+        "sub": "Pledged by backers"
+      },
+      {
+        "label": "Grants asked",
+        "kind": "phisumGrant",
+        "sum": "amount",
+        "sub": "SUM, waiting on Phidao"
+      }
+    ]
+  }
+}

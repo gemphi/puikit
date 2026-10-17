@@ -2,23 +2,31 @@
   position: relative;
   width: 100%;
   height: 8px;
-  background-color: var(--phi-color-gray-200);
+  /* one colour: the track is the meter's own colour, faint (no grey that ignores the theme) */
+  --pui-progress: var(--phi-color-primary);
+  background-color: color-mix(in srgb, var(--pui-progress) 16%, transparent);
   border-radius: var(--phi-radius-full);
   overflow: hidden;
 }
 
+.size-sm { height: 4px; }
+.size-md { height: 8px; }
+.size-lg { height: 12px; }
+
 .meter {
   height: 100%;
   border-radius: inherit;
-  background-color: var(--phi-color-primary);
+  background-color: var(--pui-progress);
+  background-image: none;
   transition: width var(--phi-transition-normal);
 }
 
-.intent-primary .meter { background-color: var(--phi-color-primary); }
-.intent-success .meter { background-color: var(--phi-color-success); }
-.intent-warning .meter { background-color: var(--phi-color-warning); }
-.intent-error .meter { background-color: var(--phi-color-error); }
-.intent-none .meter { background-color: var(--phi-color-gray-500); }
+.intent-primary { --pui-progress: var(--phi-color-primary); }
+.intent-success { --pui-progress: var(--phi-color-success); }
+.intent-warning { --pui-progress: var(--phi-color-warning); }
+.intent-error { --pui-progress: var(--phi-color-error); }
+.intent-info { --pui-progress: var(--phi-color-info); }
+.intent-none { --pui-progress: var(--phi-color-gray-500); }
 
 .indeterminate .meter {
   width: 30% !important;

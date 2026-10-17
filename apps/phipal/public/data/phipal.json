@@ -1,0 +1,1371 @@
+{
+  "app": "phipal",
+  "nav": [
+    {
+      "id": "home",
+      "label": "Home",
+      "icon": "home"
+    },
+    {
+      "id": "muse",
+      "label": "Muse",
+      "icon": "users",
+      "items": [
+        {
+          "id": "muse",
+          "label": "Muse",
+          "icon": "compass",
+          "image": "phiegg:worlds/w_prism_port.png",
+          "pull": {
+            "n": 5,
+            "kind": "pool",
+            "sort": "supply",
+            "label": "name",
+            "sub": "category",
+            "body": "desc",
+            "join": [
+              "worldId"
+            ],
+            "image": "world.image",
+            "fields": [
+              "supply",
+              "floorUsd",
+              "royaltyPct",
+              "drop"
+            ],
+            "open": "phiegg",
+            "art": [
+              "phiegg:worlds/gen/w_gx_wren_house.webp",
+              "phiegg:worlds/gen/w_ohhc.webp",
+              "phiegg:worlds/gen/w_verbum.webp",
+              "phiegg:worlds/w_bijou.png",
+              "phiegg:worlds/w_couture_coast.png",
+              "phiegg:worlds/w_gossamer.png",
+              "phiegg:worlds/w_lustre.png",
+              "phiegg:worlds/w_nebula.png",
+              "phiegg:worlds/gen/w_bp.webp",
+              "phiegg:worlds/gen/w_gx_amber_salon.webp",
+              "phiegg:worlds/gen/w_gx_dune_row.webp",
+              "phiegg:worlds/gen/w_gx_cordelia_mill.webp"
+            ]
+          }
+        },
+        {
+          "id": "agents",
+          "label": "Agents",
+          "icon": "users",
+          "image": "phiegg:worlds/w_orchid_rain.png",
+          "pull": {
+            "n": 5,
+            "kind": "agentSpec",
+            "label": "label",
+            "sub": "role",
+            "art": [
+              "phiegg:worlds/gen/w_gx_delphine_house.webp",
+              "phiegg:worlds/gen/w_gx_fable_row.webp",
+              "phiegg:worlds/gen/w_gx_azalea_row.webp",
+              "phiegg:worlds/gen/w_gx_calla_society.webp",
+              "phiegg:worlds/gen/w_gx_saffron_mill.webp",
+              "phiegg:worlds/gen/w_gx_xanthe_mill.webp",
+              "phiegg:worlds/gen/w_gx_juniper_maison.webp",
+              "phiegg:worlds/gen/w_gx_marigold_society.webp",
+              "phiegg:worlds/w_brocade.png",
+              "phiegg:worlds/w_crystalline.png",
+              "phiegg:worlds/w_carousel.png",
+              "phiegg:worlds/gen/w_wondrous.webp"
+            ]
+          }
+        },
+        {
+          "id": "phient",
+          "label": "Phient",
+          "icon": "layers",
+          "image": "phiegg:worlds/w_saffron_sands.png"
+        },
+        {
+          "id": "phiecs",
+          "label": "Phiecs",
+          "icon": "grid",
+          "image": "phiegg:worlds/gen/w_bozo.webp"
+        }
+      ]
+    },
+    {
+      "id": "connect",
+      "label": "Connect",
+      "icon": "chat",
+      "items": [
+        {
+          "id": "news",
+          "label": "News",
+          "icon": "chat",
+          "gen": true,
+          "image": "phiegg:worlds/gen/w_gx_kestrel_row.webp"
+        },
+        {
+          "id": "api",
+          "label": "API",
+          "icon": "chart",
+          "image": "phiegg:worlds/w_velvet_dunes.png"
+        },
+        {
+          "id": "talk",
+          "label": "Talk",
+          "icon": "chat",
+          "image": "phiegg:worlds/w_kaleido.png"
+        },
+        {
+          "id": "faq",
+          "label": "FAQ",
+          "icon": "vote",
+          "image": "phiegg:worlds/gen/w_venus.webp"
+        }
+      ]
+    }
+  ],
+  "views": {
+    "home": {
+      "title": "",
+      "sub": "",
+      "blocks": [
+        {
+          "kind": "hero",
+          "heading": "Phipal",
+          "subtitle": "Your personal agent for world economies.",
+          "body": "Phipal is the agent you talk to on the Phiegg marketplace. Give it a goal and it spawns a team of agents that play the economy for you: finding the records, moving the money, staking the treasury, signing as you. Like a payments company on the surface; underneath, game theory over worlds, clubs and PFTs.",
+          "actions": [
+            {
+              "label": "Meet the agents",
+              "view": "agents"
+            },
+            {
+              "label": "Talk to Phipal",
+              "view": "talk"
+            }
+          ],
+          "image": "phiegg:worlds/w_couture_coast.png",
+          "genImage": true
+        },
+        {
+          "kind": "stats",
+          "title": "",
+          "items": [
+            {
+              "label": "Agents",
+              "value": "7",
+              "sub": "One orchestrator, six specialists"
+            },
+            {
+              "label": "Strategies",
+              "value": "4",
+              "sub": "Hold, bid, swap, stake"
+            },
+            {
+              "label": "API calls",
+              "value": "22",
+              "sub": "One shared record"
+            },
+            {
+              "label": "Settles in",
+              "value": "$EGG",
+              "sub": "With $SUM and USD"
+            }
+          ]
+        },
+        {
+          "kind": "grid",
+          "title": "The team Phipal spawns",
+          "items": [
+            {
+              "title": "Phipal",
+              "sub": "The orchestrator",
+              "body": "Your personal agent on the Phiegg marketplace. Tell it a goal; it plays the economy for you.",
+              "meta": "spawns phiegg, phipay, phisum, phione, phient, phiecs"
+            },
+            {
+              "title": "Phiegg agent",
+              "sub": "The marketplace",
+              "body": "Finds, bids and lists on the Phiegg marketplace: looks, pools, lots, drops.",
+              "meta": "3 tasks · 4 calls"
+            },
+            {
+              "title": "Phipay",
+              "sub": "Payments",
+              "body": "The PayPal of the ecosystem: holds the wallet, swaps coins, settles orders.",
+              "meta": "3 tasks · 4 calls"
+            },
+            {
+              "title": "Phisum agent",
+              "sub": "Treasury and ventures",
+              "body": "Stakes the treasury: pools, cohorts and the ventures the fund backs.",
+              "meta": "2 tasks · 3 calls"
+            },
+            {
+              "title": "Phione agent",
+              "sub": "Identity",
+              "body": "Signs for you: sessions, delegation and consent for every agent Phipal spawns.",
+              "meta": "2 tasks · 3 calls"
+            },
+            {
+              "title": "Phient",
+              "sub": "The Ollama of Phinet",
+              "body": "The local model runtime of the network: every agent's reasoning runs on Phient models pulled to Phinet nodes, nothing leaves the network.",
+              "meta": "3 tasks · 2 calls"
+            },
+            {
+              "title": "Phiecs",
+              "sub": "Robotics",
+              "body": "The robotics platform: embodied agents that run on Phinet machines and think on Phient models.",
+              "meta": "3 tasks · 3 calls"
+            }
+          ]
+        },
+        {
+          "kind": "stats",
+          "title": "At a glance",
+          "gen": true,
+          "items": [
+            {
+              "label": "Agents",
+              "value": "",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "agentSpec"
+              }
+            },
+            {
+              "label": "Pools to play",
+              "value": "",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "pool"
+              }
+            },
+            {
+              "label": "Quests",
+              "value": "",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "quest"
+              }
+            },
+            {
+              "label": "Clubs",
+              "value": "",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "club"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "grid",
+          "title": "Agents",
+          "sub": "The team Phipal sends to work.",
+          "pull": {
+            "kind": "agentSpec",
+            "n": 8,
+            "label": "label",
+            "sub": "role",
+            "body": "muse",
+            "fields": [
+              "role",
+              "strategy"
+            ],
+            "art": [
+              "phiegg:worlds/gen/w_gx_delphine_house.webp",
+              "phiegg:worlds/gen/w_gx_fable_row.webp",
+              "phiegg:worlds/gen/w_gx_azalea_row.webp",
+              "phiegg:worlds/gen/w_gx_calla_society.webp",
+              "phiegg:worlds/gen/w_gx_saffron_mill.webp",
+              "phiegg:worlds/gen/w_gx_xanthe_mill.webp",
+              "phiegg:worlds/gen/w_gx_juniper_maison.webp",
+              "phiegg:worlds/gen/w_gx_marigold_society.webp",
+              "phiegg:worlds/w_brocade.png",
+              "phiegg:worlds/w_crystalline.png",
+              "phiegg:worlds/w_carousel.png",
+              "phiegg:worlds/gen/w_wondrous.webp"
+            ]
+          },
+          "gen": true
+        },
+        {
+          "kind": "grid",
+          "title": "Pools",
+          "sub": "The portfolio: every pool in Phiora, by supply.",
+          "pull": {
+            "kind": "pool",
+            "sort": "supply",
+            "label": "name",
+            "sub": "category",
+            "body": "desc",
+            "join": [
+              "worldId"
+            ],
+            "image": "world.image",
+            "fields": [
+              "supply",
+              "floorUsd",
+              "royaltyPct",
+              "drop"
+            ],
+            "open": "phiegg",
+            "n": 8,
+            "art": [
+              "phiegg:worlds/gen/w_gx_wren_house.webp",
+              "phiegg:worlds/gen/w_ohhc.webp",
+              "phiegg:worlds/gen/w_verbum.webp",
+              "phiegg:worlds/w_bijou.png",
+              "phiegg:worlds/w_couture_coast.png",
+              "phiegg:worlds/w_gossamer.png",
+              "phiegg:worlds/w_lustre.png",
+              "phiegg:worlds/w_nebula.png",
+              "phiegg:worlds/gen/w_bp.webp",
+              "phiegg:worlds/gen/w_gx_amber_salon.webp",
+              "phiegg:worlds/gen/w_gx_dune_row.webp",
+              "phiegg:worlds/gen/w_gx_cordelia_mill.webp"
+            ]
+          },
+          "gen": true
+        },
+        {
+          "kind": "grid",
+          "title": "Quests",
+          "sub": "Paying out now, biggest rewards first.",
+          "pull": {
+            "kind": "quest",
+            "sort": "reward",
+            "label": "title",
+            "sub": "kind",
+            "join": [
+              "worldId"
+            ],
+            "image": "world.image",
+            "fields": [
+              "reward",
+              "rewardCoin",
+              "entrants",
+              "endsAt"
+            ],
+            "open": "phiegg",
+            "n": 8,
+            "art": [
+              "phiegg:worlds/w_cobalt_cove.png",
+              "phiegg:worlds/w_glasshouse.png",
+              "phiegg:worlds/gen/w_velvetlip.webp",
+              "phiegg:worlds/w_atelier_nine.png",
+              "phiegg:worlds/gen/w_gx_vesper_atelier.webp",
+              "phiegg:worlds/gen/w_naimia.webp",
+              "phiegg:worlds/gen/w_gx_linden_row.webp",
+              "phiegg:worlds/gen/w_gx_quill_house.webp",
+              "phiegg:worlds/gen/w_bp.webp",
+              "phiegg:worlds/gen/w_gx_amber_salon.webp",
+              "phiegg:worlds/w_midnight_mall.png",
+              "phiegg:worlds/w_ivory_tower.png"
+            ]
+          },
+          "gen": true
+        },
+        {
+          "kind": "grid",
+          "title": "Coming up",
+          "sub": "Events and drops with the most people going.",
+          "pull": {
+            "kind": "event",
+            "sort": "rsvps",
+            "label": "title",
+            "sub": "kind",
+            "join": [
+              "worldId"
+            ],
+            "image": "world.image",
+            "fields": [
+              "startsAt",
+              "rsvps"
+            ],
+            "open": "phiegg",
+            "n": 4,
+            "art": [
+              "phiegg:worlds/w_rosegold.png",
+              "phiegg:worlds/w_solstice.png",
+              "phiegg:worlds/w_veranda.png",
+              "phiegg:worlds/gen/w_deer.webp",
+              "phiegg:worlds/w_halo.png",
+              "phiegg:worlds/w_marquee.png",
+              "phiegg:worlds/w_neon_atelier.png",
+              "phiegg:worlds/w_paisley.png",
+              "phiegg:worlds/gen/w_gx_kestrel_row.webp",
+              "phiegg:worlds/gen/w_gx_petal_works.webp",
+              "phiegg:worlds/w_mosaic.png",
+              "phiegg:worlds/w_loom.png"
+            ]
+          },
+          "gen": true
+        },
+        {
+          "kind": "grid",
+          "title": "Explore",
+          "from": "menus",
+          "gen": true
+        },
+        {
+          "kind": "news",
+          "title": "Latest",
+          "from": "page",
+          "page": "news",
+          "limit": 4,
+          "gen": true
+        }
+      ]
+    },
+    "muse": {
+      "title": "The muse",
+      "sub": "What Phipal is for a business in the Phiegg ecosystem.",
+      "blocks": [
+        {
+          "kind": "prose",
+          "title": "Payments with a brain",
+          "body": "PayPal moved money; Phipal moves money with intent. Every transfer belongs to a strategy: a bid it funds, a stake it feeds, a listing it clears. A club running a drop does not watch dashboards; it tells Phipal the target and the limits, and the agents bid, price and settle inside them."
+        },
+        {
+          "kind": "prose",
+          "title": "Game theory, not gambling",
+          "body": "The marketplace is a repeated game with visible moves: minted counts, holders, volume, the change log. Phipal prices every move by expected value, assumes the other players do too, and prefers positions that stay good when everyone plays well. Limits are hard: it stops at your ceiling, never above it."
+        },
+        {
+          "kind": "stats",
+          "title": "The four strategies",
+          "items": [
+            {
+              "label": "Hold",
+              "value": "EV+",
+              "sub": "Scarce records near sell-out"
+            },
+            {
+              "label": "Bid",
+              "value": "Under floor",
+              "sub": "Offers the seller should take"
+            },
+            {
+              "label": "Swap",
+              "value": "Ahead of need",
+              "sub": "The coin the next move wants"
+            },
+            {
+              "label": "Stake",
+              "value": "Spread",
+              "sub": "Pools by yield and traffic"
+            }
+          ]
+        },
+        {
+          "kind": "prose",
+          "title": "For business",
+          "body": "A maison plugs Phipal into its own drops: it clears offers, settles orders with the checkout steps, stakes the proceeds and reports each move. The specs, tasks and calls of every agent are records in the one database (kind agentSpec), so your systems read the same source the agents run on."
+        }
+      ]
+    },
+    "agents": {
+      "title": "The agents",
+      "sub": "Each agent fully described: what it does, its tasks and the calls it makes.",
+      "blocks": [
+        {
+          "kind": "grid",
+          "title": "",
+          "items": [
+            {
+              "title": "Phipal",
+              "sub": "The orchestrator",
+              "body": "Your personal agent on the Phiegg marketplace. Tell it a goal; it plays the economy for you.",
+              "meta": "spawns phiegg, phipay, phisum, phione, phient, phiecs",
+              "image": "phiegg:worlds/gen/w_verbum.webp",
+              "genImage": true
+            },
+            {
+              "title": "Phiegg agent",
+              "sub": "The marketplace",
+              "body": "Finds, bids and lists on the Phiegg marketplace: looks, pools, lots, drops.",
+              "meta": "3 tasks · 4 calls",
+              "image": "phiegg:worlds/w_bijou.png",
+              "genImage": true
+            },
+            {
+              "title": "Phipay",
+              "sub": "Payments",
+              "body": "The PayPal of the ecosystem: holds the wallet, swaps coins, settles orders.",
+              "meta": "3 tasks · 4 calls",
+              "image": "phiegg:worlds/w_tulle_valley.png",
+              "genImage": true
+            },
+            {
+              "title": "Phisum agent",
+              "sub": "Treasury and ventures",
+              "body": "Stakes the treasury: pools, cohorts and the ventures the fund backs.",
+              "meta": "2 tasks · 3 calls",
+              "image": "phiegg:worlds/gen/w_gx_cobalt_studio.webp",
+              "genImage": true
+            },
+            {
+              "title": "Phione agent",
+              "sub": "Identity",
+              "body": "Signs for you: sessions, delegation and consent for every agent Phipal spawns.",
+              "meta": "2 tasks · 3 calls",
+              "image": "phiegg:worlds/w_brocade.png",
+              "genImage": true
+            },
+            {
+              "title": "Phient",
+              "sub": "The Ollama of Phinet",
+              "body": "The local model runtime of the network: every agent's reasoning runs on Phient models pulled to Phinet nodes, nothing leaves the network.",
+              "meta": "3 tasks · 2 calls",
+              "image": "phiegg:worlds/w_cobalt_cove.png",
+              "genImage": true
+            },
+            {
+              "title": "Phiecs",
+              "sub": "Robotics",
+              "body": "The robotics platform: embodied agents that run on Phinet machines and think on Phient models.",
+              "meta": "3 tasks · 3 calls",
+              "image": "phiegg:worlds/gen/w_gx_garnet_society.webp",
+              "genImage": true
+            }
+          ]
+        },
+        {
+          "kind": "grid",
+          "title": "Phipal tasks",
+          "items": [
+            {
+              "title": "Understand the goal",
+              "sub": "Phipal",
+              "body": "Turn a sentence like win the Calla drop under 2,000 USD into limits, deadlines and a target.",
+              "image": "phiegg:worlds/gen/w_gx_juniper_maison.webp",
+              "genImage": true
+            },
+            {
+              "title": "Pick the strategy",
+              "sub": "Phipal",
+              "body": "Hold, bid, swap or stake. The plan is a tree of moves with fallbacks, not a single action.",
+              "image": "phiegg:worlds/w_velvet_dunes.png",
+              "genImage": true
+            },
+            {
+              "title": "Spawn the agents",
+              "sub": "Phipal",
+              "body": "One agent per front: phiegg hunts the records, phipay moves the money, phisum stakes, phione signs.",
+              "image": "phiegg:worlds/gen/w_gx_garnet_society.webp",
+              "genImage": true
+            },
+            {
+              "title": "Watch and adapt",
+              "sub": "Phipal",
+              "body": "Reads the change log and reprices the plan when the market moves.",
+              "image": "phiegg:worlds/w_echo_bloom.png",
+              "genImage": true
+            },
+            {
+              "title": "Settle and report",
+              "sub": "Phipal",
+              "body": "Closes positions, writes the order records, reports what each move earned.",
+              "image": "phiegg:worlds/w_starling.png",
+              "genImage": true
+            }
+          ]
+        },
+        {
+          "kind": "grid",
+          "title": "Phiegg agent tasks",
+          "items": [
+            {
+              "title": "Scout the records",
+              "sub": "Phiegg agent",
+              "body": "Reads looks, pools and lots with their live prices and minted counts.",
+              "image": "phiegg:worlds/gen/w_gx_dune_row.webp",
+              "genImage": true
+            },
+            {
+              "title": "Bid and buy",
+              "sub": "Phiegg agent",
+              "body": "Places offers at or under the plan price; buys outright when the clock matters.",
+              "image": "phiegg:worlds/w_ivory_tower.png",
+              "genImage": true
+            },
+            {
+              "title": "List holdings",
+              "sub": "Phiegg agent",
+              "body": "Puts owned looks back on the market when the strategy says sell.",
+              "image": "phiegg:worlds/gen/w_chatty.webp",
+              "genImage": true
+            }
+          ]
+        },
+        {
+          "kind": "grid",
+          "title": "Phipay tasks",
+          "items": [
+            {
+              "title": "Fund the plan",
+              "sub": "Phipay",
+              "body": "Moves the right amount into the right coin before the agents act.",
+              "image": "phiegg:worlds/gen/w_gx_quill_house.webp",
+              "genImage": true
+            },
+            {
+              "title": "Swap coins",
+              "sub": "Phipay",
+              "body": "EGG, SUM, USD and ETH at the house rate with the house fee.",
+              "image": "phiegg:worlds/w_swanlake.png",
+              "genImage": true
+            },
+            {
+              "title": "Settle orders",
+              "sub": "Phipay",
+              "body": "Writes the order record with the delivery and shipping the checkout steps collected.",
+              "image": "phiegg:worlds/w_zephyr.png",
+              "genImage": true
+            }
+          ]
+        },
+        {
+          "kind": "grid",
+          "title": "Phisum agent tasks",
+          "items": [
+            {
+              "title": "Stake pools",
+              "sub": "Phisum agent",
+              "body": "Enters and leaves pools as APR and quest traffic move.",
+              "image": "phiegg:worlds/gen/w_gx_ivory_house.webp",
+              "genImage": true
+            },
+            {
+              "title": "Fund ventures",
+              "sub": "Phisum agent",
+              "body": "Reads the project and funding records and backs the round the strategy picks.",
+              "image": "phiegg:worlds/w_glasshouse.png",
+              "genImage": true
+            }
+          ]
+        },
+        {
+          "kind": "grid",
+          "title": "Phione agent tasks",
+          "items": [
+            {
+              "title": "Hold the session",
+              "sub": "Phione agent",
+              "body": "Signs the moves the other agents make, as you.",
+              "image": "phiegg:worlds/w_veranda.png",
+              "genImage": true
+            },
+            {
+              "title": "Delegate narrowly",
+              "sub": "Phione agent",
+              "body": "Scopes each agent to its task and revokes when it settles.",
+              "image": "phiegg:worlds/w_indigo_drift.png",
+              "genImage": true
+            }
+          ]
+        },
+        {
+          "kind": "grid",
+          "title": "Phient tasks",
+          "items": [
+            {
+              "title": "Pull models",
+              "sub": "Phient",
+              "body": "Fetches and pins a model on a Phinet node, like pulling an image.",
+              "image": "phiegg:worlds/gen/w_gx_willow_parlour.webp",
+              "genImage": true
+            },
+            {
+              "title": "Serve the agents",
+              "sub": "Phient",
+              "body": "Answers every /chat call in the ecosystem from the nearest node.",
+              "image": "phiegg:worlds/gen/w_gx_saffron_mill.webp",
+              "genImage": true
+            },
+            {
+              "title": "Health",
+              "sub": "Phient",
+              "body": "Reports which nodes are warm and what they serve.",
+              "image": "phiegg:worlds/gen/w_epac.webp",
+              "genImage": true
+            }
+          ]
+        },
+        {
+          "kind": "grid",
+          "title": "Phiecs tasks",
+          "items": [
+            {
+              "title": "Know the fleet",
+              "sub": "Phiecs",
+              "body": "Reads the Phinet nodes, endpoints and firewall before a unit moves.",
+              "image": "phiegg:worlds/w_veranda.png",
+              "genImage": true
+            },
+            {
+              "title": "Run a task",
+              "sub": "Phiecs",
+              "body": "Executes a plan step on a machine and logs every action.",
+              "image": "phiegg:worlds/w_mosaic.png",
+              "genImage": true
+            },
+            {
+              "title": "Report",
+              "sub": "Phiecs",
+              "body": "Streams its log back so you can follow every step.",
+              "image": "phiegg:worlds/w_zephyr.png",
+              "genImage": true
+            }
+          ]
+        }
+      ]
+    },
+    "phient": {
+      "title": "Phient",
+      "sub": "The Ollama of Phinet: the local model runtime every agent thinks on.",
+      "blocks": [
+        {
+          "kind": "prose",
+          "title": "Pull once, run everywhere",
+          "body": "Phient pulls models to Phinet nodes the way a container runtime pulls images: pinned, versioned, local. Every agent call in the ecosystem routes to the nearest warm model, and nothing leaves the network. The /chat endpoint the apps already use is Phient's front door."
+        },
+        {
+          "kind": "terminal",
+          "title": "",
+          "lines": [
+            "phient 0.9 on phinet-node-03",
+            "3 models warm · 2 nodes idle"
+          ],
+          "commands": {
+            "phient pull strategist": [
+              "pulling strategist:latest",
+              "verifying layers",
+              "pinned on phinet-node-03"
+            ],
+            "phient run strategist": [
+              "strategist ready",
+              "> price the Calla drop under 2,000 USD",
+              "hold until minted 4 of 5, then bid 1,840"
+            ],
+            "phient ps": [
+              "strategist  warm  node-03",
+              "appraiser   warm  node-01",
+              "signer      warm  node-07"
+            ]
+          }
+        },
+        {
+          "kind": "table",
+          "title": "Phient calls",
+          "cols": [
+            "Method",
+            "Path",
+            "What"
+          ],
+          "rows": [
+            [
+              "POST",
+              "/chat",
+              "Run a model"
+            ],
+            [
+              "GET",
+              "/health",
+              "Runtime health"
+            ]
+          ]
+        }
+      ]
+    },
+    "phiecs": {
+      "title": "Phiecs",
+      "sub": "The robotics platform: the same strategies, on real floors.",
+      "blocks": [
+        {
+          "kind": "prose",
+          "title": "Embodied agents",
+          "body": "A Phiecs unit is a Phipal plan with wheels: it reads the Phinet fleet, thinks on Phient models, and executes plan steps in ateliers and warehouses. Every action streams back into the one database as log records, the same audit trail the marketplace agents leave."
+        },
+        {
+          "kind": "grid",
+          "title": "What a unit uses",
+          "items": [
+            {
+              "title": "Phinet",
+              "sub": "The fleet",
+              "body": "Nodes, endpoints and the firewall: where a unit may act.",
+              "image": "phiegg:worlds/w_couture_coast.png",
+              "genImage": true
+            },
+            {
+              "title": "Phient",
+              "sub": "The mind",
+              "body": "Plans and perception run on local models, pulled to the unit's node.",
+              "image": "phiegg:worlds/w_veil.png",
+              "genImage": true
+            },
+            {
+              "title": "Phiora",
+              "sub": "The memory",
+              "body": "Every record a unit reads or writes is kept and shared.",
+              "image": "phiegg:worlds/gen/w_gx_delphine_salon.webp",
+              "genImage": true
+            },
+            {
+              "title": "Phipay",
+              "sub": "The settle",
+              "body": "Work done becomes orders and payments like any other move.",
+              "image": "phiegg:worlds/w_saffron_sands.png",
+              "genImage": true
+            }
+          ]
+        },
+        {
+          "kind": "table",
+          "title": "Phiecs calls",
+          "cols": [
+            "Method",
+            "Path",
+            "What"
+          ],
+          "rows": [
+            [
+              "GET",
+              "/tree?kind=phiNode,phiEndpoint",
+              "The machines and their doors"
+            ],
+            [
+              "GET",
+              "/tree/item/phiNode/<nodeId>",
+              "One machine"
+            ],
+            [
+              "GET",
+              "/tree?kind=phiLog",
+              "What the units did"
+            ]
+          ]
+        }
+      ]
+    },
+    "api": {
+      "title": "The calls",
+      "sub": "Every declared call of every agent, matched and tested against the live Phiora.",
+      "blocks": [
+        {
+          "kind": "table",
+          "title": "Phipal · The orchestrator",
+          "cols": [
+            "Method",
+            "Path",
+            "What"
+          ],
+          "rows": [
+            [
+              "POST",
+              "/chat",
+              "Talk to your agent"
+            ],
+            [
+              "GET",
+              "/tree/change?n=20",
+              "Watch the market move"
+            ],
+            [
+              "GET",
+              "/me",
+              "Who it acts for"
+            ]
+          ]
+        },
+        {
+          "kind": "table",
+          "title": "Phiegg agent · The marketplace",
+          "cols": [
+            "Method",
+            "Path",
+            "What"
+          ],
+          "rows": [
+            [
+              "GET",
+              "/tree?kind=look,pool,lot",
+              "Scout the records"
+            ],
+            [
+              "GET",
+              "/tree/item/look/<lookId>",
+              "One record with its owner"
+            ],
+            [
+              "POST",
+              "/shop/buy",
+              "Buy at list price"
+            ],
+            [
+              "POST",
+              "/shop/offer",
+              "Place an offer"
+            ]
+          ]
+        },
+        {
+          "kind": "table",
+          "title": "Phipay · Payments",
+          "cols": [
+            "Method",
+            "Path",
+            "What"
+          ],
+          "rows": [
+            [
+              "GET",
+              "/me",
+              "Wallet and history"
+            ],
+            [
+              "POST",
+              "/wallet/swap",
+              "Swap coins"
+            ],
+            [
+              "POST",
+              "/wallet/spend",
+              "Pay for a move"
+            ],
+            [
+              "POST",
+              "/tree/item",
+              "Write the order record"
+            ]
+          ]
+        },
+        {
+          "kind": "table",
+          "title": "Phisum agent · Treasury and ventures",
+          "cols": [
+            "Method",
+            "Path",
+            "What"
+          ],
+          "rows": [
+            [
+              "GET",
+              "/tree?kind=phisumProject,phisumFunding",
+              "The ventures and rounds"
+            ],
+            [
+              "GET",
+              "/app/phisum",
+              "The fund's own pages"
+            ],
+            [
+              "PUT",
+              "/state/economy",
+              "Positions and stakes"
+            ]
+          ]
+        },
+        {
+          "kind": "table",
+          "title": "Phione agent · Identity",
+          "cols": [
+            "Method",
+            "Path",
+            "What"
+          ],
+          "rows": [
+            [
+              "GET",
+              "/me",
+              "The signed-in identity"
+            ],
+            [
+              "GET",
+              "/auth/demo-user",
+              "The demo founders"
+            ],
+            [
+              "POST",
+              "/auth/logout",
+              "Revoke the session"
+            ]
+          ]
+        },
+        {
+          "kind": "table",
+          "title": "Phient · The Ollama of Phinet",
+          "cols": [
+            "Method",
+            "Path",
+            "What"
+          ],
+          "rows": [
+            [
+              "POST",
+              "/chat",
+              "Run a model"
+            ],
+            [
+              "GET",
+              "/health",
+              "Runtime health"
+            ]
+          ]
+        },
+        {
+          "kind": "table",
+          "title": "Phiecs · Robotics",
+          "cols": [
+            "Method",
+            "Path",
+            "What"
+          ],
+          "rows": [
+            [
+              "GET",
+              "/tree?kind=phiNode,phiEndpoint",
+              "The machines and their doors"
+            ],
+            [
+              "GET",
+              "/tree/item/phiNode/<nodeId>",
+              "One machine"
+            ],
+            [
+              "GET",
+              "/tree?kind=phiLog",
+              "What the units did"
+            ]
+          ]
+        }
+      ]
+    },
+    "talk": {
+      "title": "Talk to Phipal",
+      "sub": "The orchestrator, on the model proxy.",
+      "blocks": [
+        {
+          "kind": "chat",
+          "app": "phipal",
+          "persona": "Phipal, the personal agent for the Phiegg marketplace. You plan strategies (hold, bid, swap, stake), spawn phiegg, phipay, phisum, phione agents, respect limits, settle in EGG, SUM and USD.",
+          "fallback": "Noted. I will plan that as a hold until the drop opens, then bid under your ceiling.",
+          "messages": [
+            {
+              "role": "assistant",
+              "text": "Give me a goal and a ceiling. I will plan the moves and spawn the team."
+            }
+          ]
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ",
+      "sub": "",
+      "blocks": [
+        {
+          "kind": "faq",
+          "items": [
+            {
+              "q": "Is Phipal a wallet?",
+              "a": "It uses one. Phipay holds the wallet; Phipal decides what the money is for."
+            },
+            {
+              "q": "Where do the agents live?",
+              "a": "Their specs, tasks and calls are shared records. The apps and this page read the same source."
+            },
+            {
+              "q": "What model does it think on?",
+              "a": "Whatever Phient serves. Phient is the local model runtime of Phinet: models are pulled to nodes and every call runs inside the network."
+            },
+            {
+              "q": "Can it act without me?",
+              "a": "Only inside the limits you set, signed through Phione with the narrowest delegation that completes the task."
+            },
+            {
+              "q": "Can my agent spend without asking?",
+              "a": "Only inside the cap you set for each goal.",
+              "gen": true
+            },
+            {
+              "q": "Where does the model run?",
+              "a": "On your machine by default. You can switch to a hosted model in settings.",
+              "gen": true
+            },
+            {
+              "q": "Can I stop a goal halfway?",
+              "a": "Yes. Every goal has a stop button and a log of what was done.",
+              "gen": true
+            },
+            {
+              "q": "Does Phipal see my messages?",
+              "a": "Only the threads you share with it.",
+              "gen": true
+            }
+          ]
+        }
+      ]
+    },
+    "news": {
+      "title": "News",
+      "sub": "Latest from Phipal.",
+      "gen": true,
+      "blocks": [
+        {
+          "kind": "news",
+          "items": [
+            {
+              "tag": "Agents",
+              "title": "Phipal now plans a whole weekend",
+              "body": "Ask for a weekend in Bijou and it books the ride, holds a table and buys the entry PFT in one go.",
+              "gen": true,
+              "date": "Oct 12, 2026",
+              "image": "phiegg:worlds/w_bijou.png"
+            },
+            {
+              "tag": "Stories",
+              "title": "An agent that saved a club treasury",
+              "body": "When floor prices fell, Ines set her Phipal to stake idle SUM. The club ended the month ahead.",
+              "gen": true,
+              "date": "Oct 8, 2026",
+              "image": "phiegg:worlds/w_plume.png"
+            },
+            {
+              "tag": "Muse",
+              "title": "Muse learns your taste in looks",
+              "body": "Muse now ranks new drops by the looks you wear most, not by what is trending.",
+              "gen": true,
+              "date": "Oct 4, 2026",
+              "image": "phiegg:worlds/w_halo.png"
+            },
+            {
+              "tag": "Safety",
+              "title": "Spending limits per goal",
+              "body": "Every goal now carries a cap. Your agent stops and asks before it goes over.",
+              "gen": true,
+              "date": "Sep 30, 2026",
+              "image": "phiegg:worlds/gen/w_gx_delphine_atelier.webp"
+            },
+            {
+              "tag": "Agents",
+              "title": "Teams of agents share one plan",
+              "body": "Scout, buyer and treasurer agents now write to one plan you can read and edit.",
+              "gen": true,
+              "date": "Sep 26, 2026",
+              "image": "phiegg:worlds/gen/w_gx_calla_mill.webp"
+            },
+            {
+              "tag": "Stories",
+              "title": "The ferry ticket nobody had to buy",
+              "body": "Kofi asked for the cheapest way to Aurum. Phipal found a rental PFT that came with the ride.",
+              "gen": true,
+              "date": "Sep 22, 2026",
+              "image": "phiegg:worlds/gen/w_gx_vesper_atelier.webp"
+            },
+            {
+              "tag": "Models",
+              "title": "Smaller model, same answers",
+              "body": "The on device model is now half the size and runs on most laptops without a fan.",
+              "gen": true,
+              "date": "Sep 18, 2026",
+              "image": "phiegg:worlds/w_gilded_grove.png"
+            },
+            {
+              "tag": "Muse",
+              "title": "Muse writes your club notes",
+              "body": "After an event, Muse drafts the notes and tags the members who were there.",
+              "gen": true,
+              "date": "Sep 14, 2026",
+              "image": "phiegg:worlds/gen/w_gx_garnet_society.webp"
+            },
+            {
+              "tag": "Safety",
+              "title": "Sign as you, only where you say",
+              "body": "Delegation now lists each app your agent may sign in, and you can revoke one at a time.",
+              "gen": true,
+              "date": "Sep 10, 2026",
+              "image": "phiegg:worlds/gen/w_loon.webp"
+            },
+            {
+              "tag": "Agents",
+              "title": "Bids that wait for the right price",
+              "body": "Set a floor and a ceiling. The buyer agent watches the pool and bids only inside them.",
+              "gen": true,
+              "date": "Sep 6, 2026",
+              "image": "phiegg:worlds/w_coral_arcade.png"
+            },
+            {
+              "tag": "Stories",
+              "title": "A first sale while asleep",
+              "body": "Lena listed three PFTs before bed. Her agent matched two offers by morning.",
+              "gen": true,
+              "date": "Sep 2, 2026",
+              "image": "phiegg:worlds/gen/w_gx_juniper_studio.webp"
+            },
+            {
+              "tag": "Talk",
+              "title": "Voice talk arrives",
+              "body": "Talk to Phipal out loud on desktop. Replies come back as text and voice.",
+              "gen": true,
+              "date": "Aug 29, 2026",
+              "image": "phiegg:worlds/w_mesa.png"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "profile": {
+    "sections": [
+      {
+        "title": "Your projects",
+        "kind": "phisumProject",
+        "fields": [
+          "name",
+          "vertical",
+          "status",
+          "funding_ask",
+          "submittedAt"
+        ],
+        "empty": "No projects yet.",
+        "action": {
+          "label": "Submit a project",
+          "view": "apply",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Your rounds",
+        "kind": "phisumFunding",
+        "fields": [
+          "name",
+          "amount",
+          "coin",
+          "closesAt",
+          "status"
+        ],
+        "empty": "No rounds yet.",
+        "action": {
+          "label": "Open a round",
+          "view": "open-round",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Your pledges",
+        "kind": "phisumPledge",
+        "fields": [
+          "name",
+          "amount",
+          "coin",
+          "status",
+          "submittedAt"
+        ],
+        "empty": "No pledges yet.",
+        "action": {
+          "label": "Back a round",
+          "view": "back-round",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Your pool stakes",
+        "kind": "phisumPoolStake",
+        "fields": [
+          "name",
+          "amount",
+          "coin",
+          "lock",
+          "status"
+        ],
+        "empty": "No stakes yet.",
+        "action": {
+          "label": "Back a pool",
+          "view": "back-pool",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Grants you asked for",
+        "kind": "phisumGrant",
+        "fields": [
+          "name",
+          "amount",
+          "status",
+          "deadline"
+        ],
+        "empty": "No grant requests yet.",
+        "action": {
+          "label": "Request a grant",
+          "view": "grant",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Milestones you reported",
+        "kind": "phisumMilestone",
+        "fields": [
+          "name",
+          "status",
+          "proof",
+          "submittedAt"
+        ],
+        "empty": "No milestone reports yet.",
+        "action": {
+          "label": "Report a milestone",
+          "view": "milestone",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Backer profile",
+        "kind": "phisumBacker",
+        "fields": [
+          "name",
+          "type",
+          "ticket",
+          "focus"
+        ],
+        "empty": "Not a backer yet.",
+        "action": {
+          "label": "Become a backer",
+          "view": "backer",
+          "app": "phisum"
+        }
+      }
+    ],
+    "totals": [
+      {
+        "label": "Pledged",
+        "kind": "phisumPledge",
+        "sum": "amount",
+        "sub": "Across your pledges"
+      },
+      {
+        "label": "Staked in pools",
+        "kind": "phisumPoolStake",
+        "sum": "amount",
+        "sub": "Locked in the portfolio"
+      },
+      {
+        "label": "Raised for your rounds",
+        "kind": "phisumPledge",
+        "sum": "amount",
+        "via": {
+          "kind": "phisumFunding",
+          "field": "fundingId"
+        },
+        "sub": "Pledged by backers"
+      },
+      {
+        "label": "Grants asked",
+        "kind": "phisumGrant",
+        "sum": "amount",
+        "sub": "SUM, waiting on Phidao"
+      }
+    ]
+  }
+}

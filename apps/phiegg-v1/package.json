@@ -1,0 +1,29 @@
+{
+  "name": "@phiace/phiegg",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Phiegg — the social home for fashion clubs: feed, explore, clubs, Phipad and the Laura's Spark shop. @phiace/puijs (Organic) + phi-kit.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "predev": "node cleanup-v1.mjs",
+    "prebuild": "node cleanup-v1.mjs"
+  },
+  "dependencies": {
+    "@phiace/puijs": "file:../..",
+    "lucide-react": "^1.24.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^5.0.0",
+    "sass": "^1.101.0",
+    "typescript": "^5",
+    "vite": "^6.0.0"
+  }
+}

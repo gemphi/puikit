@@ -1,0 +1,1095 @@
+{
+  "app": "phiace",
+  "nav": [
+    {
+      "id": "home",
+      "label": "Home",
+      "icon": "home"
+    },
+    {
+      "id": "studio",
+      "label": "Studio",
+      "icon": "layers",
+      "items": [
+        {
+          "id": "workspace",
+          "label": "Workspace",
+          "icon": "layers",
+          "image": "phiegg:worlds/gen/w_gx_thistle_salon.webp",
+          "pull": {
+            "n": 5,
+            "kind": "phiaceSession",
+            "label": "name",
+            "sub": "status",
+            "art": [
+              "phiegg:worlds/w_aurum.png",
+              "phiegg:worlds/w_coral_arcade.png",
+              "phiegg:worlds/w_glimmer.png",
+              "phiegg:worlds/w_lumen_gardens.png",
+              "phiegg:worlds/w_naimia.png",
+              "phiegg:worlds/w_orchid_rain.png",
+              "phiegg:worlds/w_quartz_quarter.png",
+              "phiegg:worlds/w_sequin_sea.png",
+              "phiegg:worlds/w_veil.png",
+              "phiegg:worlds/gen/w_calder.webp",
+              "phiegg:worlds/w_acro_world.png",
+              "phiegg:worlds/gen/w_ponte.webp"
+            ]
+          }
+        },
+        {
+          "id": "assistant",
+          "label": "Assistant",
+          "icon": "chat",
+          "image": "phiegg:worlds/w_solstice.png",
+          "pull": {
+            "n": 5,
+            "kind": "phiaceBookmark",
+            "label": "title",
+            "sub": "folder",
+            "art": [
+              "phiegg:worlds/gen/w_halomodels.webp",
+              "phiegg:worlds/gen/w_once.webp",
+              "phiegg:worlds/gen/w_gx_moss_row.webp",
+              "phiegg:worlds/gen/w_gx_sorrel_guild.webp",
+              "phiegg:worlds/gen/w_gx_fable_works.webp",
+              "phiegg:worlds/gen/w_gx_juniper_studio.webp",
+              "phiegg:worlds/gen/w_gx_calla_works.webp",
+              "phiegg:worlds/gen/w_gx_delphine_salon.webp",
+              "phiegg:worlds/gen/w_chatty.webp",
+              "phiegg:worlds/gen/w_gx_bramble_house.webp",
+              "phiegg:worlds/w_gossamer.png",
+              "phiegg:worlds/w_couture_coast.png"
+            ]
+          }
+        },
+        {
+          "id": "personas",
+          "label": "Personas",
+          "icon": "users",
+          "image": "phiegg:worlds/w_rosegold.png",
+          "pull": {
+            "n": 5,
+            "kind": "agentSpec",
+            "label": "label",
+            "sub": "role",
+            "art": [
+              "phiegg:worlds/w_starling.png",
+              "phiegg:worlds/w_verdigris.png",
+              "phiegg:worlds/gen/w_epac.webp",
+              "phiegg:worlds/gen/w_gx_briar_row.webp",
+              "phiegg:worlds/w_mesa.png",
+              "phiegg:worlds/w_nimbus.png",
+              "phiegg:worlds/w_pearl_ridge.png",
+              "phiegg:worlds/w_runway_isle.png",
+              "phiegg:worlds/gen/w_gx_quill_guild.webp",
+              "phiegg:worlds/gen/w_gx_umber_maison.webp",
+              "phiegg:worlds/gen/w_gx_amber_atelier.webp",
+              "phiegg:worlds/w_zephyr.png"
+            ]
+          }
+        },
+        {
+          "id": "memory",
+          "label": "Memory",
+          "icon": "db",
+          "image": "phiegg:worlds/w_cobalt_cove.png",
+          "pull": {
+            "n": 5,
+            "kind": "phiaceHistory",
+            "label": "title",
+            "sub": "url",
+            "art": [
+              "phiegg:worlds/gen/w_chatty.webp",
+              "phiegg:worlds/gen/w_gx_bramble_house.webp",
+              "phiegg:worlds/gen/w_gx_calla_works.webp",
+              "phiegg:worlds/gen/w_gx_delphine_salon.webp",
+              "phiegg:worlds/gen/w_gx_fable_works.webp",
+              "phiegg:worlds/gen/w_gx_juniper_studio.webp",
+              "phiegg:worlds/gen/w_gx_moss_row.webp",
+              "phiegg:worlds/gen/w_gx_sorrel_guild.webp",
+              "phiegg:worlds/w_couture_coast.png",
+              "phiegg:worlds/w_gossamer.png",
+              "phiegg:worlds/w_petal_park.png",
+              "phiegg:worlds/w_oasis_nine.png"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "learn",
+      "label": "Learn",
+      "icon": "compass",
+      "items": [
+        {
+          "id": "platform",
+          "label": "Platform",
+          "icon": "cpu",
+          "image": "phiegg:worlds/w_zephyr.png"
+        },
+        {
+          "id": "news",
+          "label": "News",
+          "icon": "chat",
+          "image": "phiegg:worlds/gen/w_gx_juniper_maison.webp"
+        },
+        {
+          "id": "about",
+          "label": "About",
+          "icon": "compass",
+          "image": "phiegg:worlds/w_cobalt_cove.png"
+        },
+        {
+          "id": "faq",
+          "label": "FAQ",
+          "icon": "vote",
+          "image": "phiegg:worlds/gen/w_gx_dune_row.webp"
+        },
+        {
+          "id": "docs",
+          "label": "Docs",
+          "icon": "file",
+          "image": "phiegg:worlds/gen/w_gx_juniper_maison.webp"
+        }
+      ]
+    }
+  ],
+  "views": {
+    "assistant": {
+      "title": "Your assistant",
+      "sub": "A thinking space: talk, plan and keep notes.",
+      "blocks": [
+        {
+          "kind": "chat",
+          "title": "",
+          "persona": "Phiace",
+          "system": "You are Phiace, a calm personal assistant for a member of the Phiace ecosystem. Reply in under 60 words, warm and practical.",
+          "messages": [
+            {
+              "role": "assistant",
+              "text": "Hi. What are we working on today?"
+            }
+          ],
+          "placeholder": "Ask anything",
+          "fallback": "Got it. I have added that to your notes."
+        }
+      ]
+    },
+    "personas": {
+      "title": "Personas",
+      "sub": "Characters you have made. Each has its own voice.",
+      "blocks": [
+        {
+          "kind": "grid",
+          "title": "",
+          "items": [
+            {
+              "title": "Ines",
+              "sub": "Stylist",
+              "body": "Dresses looks for the Nightfall club.",
+              "action": "Talk",
+              "done": "Talking",
+              "image": "phiegg:worlds/w_pearl_ridge.png",
+              "genImage": true
+            },
+            {
+              "title": "Mori",
+              "sub": "Host",
+              "body": "Hosts rooms and runways.",
+              "action": "Talk",
+              "done": "Talking",
+              "image": "phiegg:worlds/gen/w_nova.webp",
+              "genImage": true
+            },
+            {
+              "title": "Juno",
+              "sub": "Quest guide",
+              "body": "Walks members through quests.",
+              "action": "Talk",
+              "done": "Talking",
+              "image": "phiegg:worlds/w_saffron_sands.png",
+              "genImage": true
+            },
+            {
+              "title": "New persona",
+              "sub": "",
+              "body": "Start from a template or a blank page.",
+              "action": "Create",
+              "done": "Created",
+              "image": "phiegg:worlds/w_bijou.png",
+              "genImage": true
+            },
+            {
+              "title": "Asha",
+              "sub": "persona · host",
+              "body": "Warm, quick and great at quizzes.",
+              "action": "Talk",
+              "done": "Talking",
+              "gen": true,
+              "image": "phiegg:worlds/w_glimmer.png"
+            },
+            {
+              "title": "Kofi",
+              "sub": "persona · guide",
+              "body": "Knows every ride route between worlds.",
+              "action": "Talk",
+              "done": "Talking",
+              "gen": true,
+              "image": "phiegg:worlds/w_rosegold.png"
+            },
+            {
+              "title": "Lena",
+              "sub": "persona · stylist",
+              "body": "Suggests looks for any event.",
+              "action": "Talk",
+              "done": "Talking",
+              "gen": true,
+              "image": "phiegg:worlds/gen/w_gx_amber_salon.webp"
+            },
+            {
+              "title": "Tomas",
+              "sub": "persona · treasurer",
+              "body": "Keeps club books tidy and explains them.",
+              "action": "Talk",
+              "done": "Talking",
+              "gen": true,
+              "image": "phiegg:worlds/w_obsidian_bay.png"
+            }
+          ]
+        }
+      ]
+    },
+    "memory": {
+      "title": "Memory",
+      "sub": "What Phiace remembers, and why. Remove anything.",
+      "blocks": [
+        {
+          "kind": "table",
+          "title": "",
+          "cols": [
+            "Memory",
+            "From",
+            "Keep"
+          ],
+          "rows": [
+            [
+              "Prefers morning summaries",
+              "Assistant",
+              "Yes"
+            ],
+            [
+              "Runs the Nightfall club",
+              "phiegg",
+              "Yes"
+            ],
+            [
+              "Budget limit for trades",
+              "phinux",
+              "Yes"
+            ]
+          ]
+        }
+      ]
+    },
+    "docs": {
+      "title": "phiace docs",
+      "sub": "Phiace is where you talk, plan and shape personas that speak for you.",
+      "blocks": [
+        {
+          "kind": "grid",
+          "title": "",
+          "items": [
+            {
+              "title": "Overview",
+              "sub": "Assistants and personas",
+              "body": "Phiace is where you talk, plan and shape personas that speak for you."
+            },
+            {
+              "title": "Getting started",
+              "sub": "First steps",
+              "body": "Open Assistant and start typing. Create a persona from a template."
+            },
+            {
+              "title": "Phisum and SUM",
+              "sub": "How it is funded",
+              "body": "Personas that host and guide quests generate function records that Phisum reads.",
+              "action": "Open Phisum",
+              "done": "Opened",
+              "app": "phisum"
+            }
+          ]
+        },
+        {
+          "kind": "table",
+          "title": "PFT functions in phiace",
+          "cols": [
+            "Function",
+            "What it does here"
+          ],
+          "rows": [
+            [
+              "create",
+              "publish a persona for a club"
+            ],
+            [
+              "host",
+              "let a persona host a room"
+            ]
+          ]
+        },
+        {
+          "kind": "grid",
+          "title": "Read more",
+          "items": [
+            {
+              "title": "PFTs 101",
+              "sub": "Profile Fungible Tokens",
+              "body": "What PFTs are, how functions work, how they link to Phisum.",
+              "action": "Read",
+              "done": "Open",
+              "href": "../Phiegg Papers.dc.html"
+            }
+          ]
+        }
+      ]
+    },
+    "home": {
+      "title": "",
+      "sub": "",
+      "blocks": [
+        {
+          "kind": "hero",
+          "heading": "Phiace",
+          "subtitle": "Your assistant, personas and memory in one place.",
+          "body": "Phiace is the home assistant for the ecosystem: chat with it, build personas, and keep a searchable memory of everything you and your clubs do.",
+          "actions": [
+            {
+              "label": "Open Phiace",
+              "view": "assistant"
+            },
+            {
+              "label": "Read docs",
+              "view": "docs"
+            }
+          ],
+          "image": "phiegg:worlds/gen/w_gx_delphine_house.webp",
+          "genImage": true
+        },
+        {
+          "kind": "stats",
+          "title": "At a glance",
+          "gen": true,
+          "items": [
+            {
+              "label": "Sessions",
+              "value": "",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "phiaceSession"
+              }
+            },
+            {
+              "label": "Bookmarks",
+              "value": "",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "phiaceBookmark"
+              }
+            },
+            {
+              "label": "Extensions",
+              "value": "",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "phiaceExtension"
+              }
+            },
+            {
+              "label": "Pools",
+              "value": "",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "pool"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "grid",
+          "title": "Your sessions",
+          "sub": "Pick up where you left off.",
+          "pull": {
+            "kind": "phiaceSession",
+            "n": 8,
+            "label": "name",
+            "sub": "status",
+            "fields": [
+              "status",
+              "tab_count"
+            ],
+            "art": [
+              "phiegg:worlds/w_aurum.png",
+              "phiegg:worlds/w_coral_arcade.png",
+              "phiegg:worlds/w_glimmer.png",
+              "phiegg:worlds/w_lumen_gardens.png",
+              "phiegg:worlds/w_naimia.png",
+              "phiegg:worlds/w_orchid_rain.png",
+              "phiegg:worlds/w_quartz_quarter.png",
+              "phiegg:worlds/w_sequin_sea.png",
+              "phiegg:worlds/w_veil.png",
+              "phiegg:worlds/gen/w_calder.webp",
+              "phiegg:worlds/w_acro_world.png",
+              "phiegg:worlds/gen/w_ponte.webp"
+            ]
+          },
+          "gen": true
+        },
+        {
+          "kind": "grid",
+          "title": "Pools",
+          "sub": "The portfolio: every pool in Phiora, by supply.",
+          "pull": {
+            "kind": "pool",
+            "sort": "supply",
+            "label": "name",
+            "sub": "category",
+            "body": "desc",
+            "join": [
+              "worldId"
+            ],
+            "image": "world.image",
+            "fields": [
+              "supply",
+              "floorUsd",
+              "royaltyPct",
+              "drop"
+            ],
+            "open": "phiegg",
+            "n": 8,
+            "art": [
+              "phiegg:worlds/gen/w_gx_cordelia_mill.webp",
+              "phiegg:worlds/gen/w_gx_dune_row.webp",
+              "phiegg:worlds/gen/w_epac.webp",
+              "phiegg:worlds/gen/w_gx_briar_row.webp",
+              "phiegg:worlds/w_starling.png",
+              "phiegg:worlds/w_verdigris.png",
+              "phiegg:worlds/w_pearl_ridge.png",
+              "phiegg:worlds/w_runway_isle.png",
+              "phiegg:worlds/w_mesa.png",
+              "phiegg:worlds/w_nimbus.png",
+              "phiegg:worlds/gen/w_wand.webp",
+              "phiegg:worlds/gen/w_ombre.webp"
+            ]
+          },
+          "gen": true
+        },
+        {
+          "kind": "grid",
+          "title": "Quests",
+          "sub": "Paying out now, biggest rewards first.",
+          "pull": {
+            "kind": "quest",
+            "sort": "reward",
+            "label": "title",
+            "sub": "kind",
+            "join": [
+              "worldId"
+            ],
+            "image": "world.image",
+            "fields": [
+              "reward",
+              "rewardCoin",
+              "entrants",
+              "endsAt"
+            ],
+            "open": "phiegg",
+            "n": 8,
+            "art": [
+              "phiegg:worlds/gen/w_gx_quill_works.webp",
+              "phiegg:worlds/gen/w_gx_willow_parlour.webp",
+              "phiegg:worlds/gen/w_nova.webp",
+              "phiegg:worlds/gen/w_venus.webp",
+              "phiegg:worlds/gen/w_gx_delphine_atelier.webp",
+              "phiegg:worlds/gen/w_gx_ember_works.webp",
+              "phiegg:worlds/gen/w_gx_garnet_society.webp",
+              "phiegg:worlds/gen/w_gx_lumen_maison.webp",
+              "phiegg:worlds/w_topaz_terrace.png",
+              "phiegg:worlds/gen/w_bozo.webp",
+              "phiegg:worlds/gen/w_gx_delphine_collective.webp",
+              "phiegg:worlds/gen/w_gx_calla_salon.webp"
+            ]
+          },
+          "gen": true
+        },
+        {
+          "kind": "grid",
+          "title": "Coming up",
+          "sub": "Events and drops with the most people going.",
+          "pull": {
+            "kind": "event",
+            "sort": "rsvps",
+            "label": "title",
+            "sub": "kind",
+            "join": [
+              "worldId"
+            ],
+            "image": "world.image",
+            "fields": [
+              "startsAt",
+              "rsvps"
+            ],
+            "open": "phiegg",
+            "n": 4,
+            "art": [
+              "phiegg:worlds/w_silk_atlas.png",
+              "phiegg:worlds/w_velvet_dunes.png",
+              "phiegg:worlds/w_organza.png",
+              "phiegg:worlds/w_ribbon_rise.png",
+              "phiegg:worlds/w_lustre.png",
+              "phiegg:worlds/w_nebula.png",
+              "phiegg:worlds/w_couture_coast.png",
+              "phiegg:worlds/w_gossamer.png",
+              "phiegg:worlds/gen/w_verbum.webp",
+              "phiegg:worlds/w_bijou.png",
+              "phiegg:worlds/gen/w_gx_marigold_society.webp",
+              "phiegg:worlds/gen/w_gx_juniper_maison.webp"
+            ]
+          },
+          "gen": true
+        },
+        {
+          "kind": "grid",
+          "title": "Explore",
+          "from": "menus",
+          "gen": true
+        },
+        {
+          "kind": "news",
+          "title": "Latest",
+          "from": "page",
+          "page": "news",
+          "limit": 4,
+          "gen": true
+        }
+      ]
+    },
+    "news": {
+      "title": "News",
+      "sub": "Latest from Phiace.",
+      "blocks": [
+        {
+          "kind": "news",
+          "items": [
+            {
+              "tag": "Personas",
+              "title": "Personas can host events",
+              "body": "A persona can now greet guests, run a quiz and close the night with thanks.",
+              "gen": true,
+              "date": "Oct 12, 2026",
+              "image": "phiegg:worlds/gen/w_gx_delphine_house.webp"
+            },
+            {
+              "tag": "Memory",
+              "title": "Club memory goes shared",
+              "body": "Everything a club does can live in one memory that every member can search.",
+              "gen": true,
+              "date": "Oct 8, 2026",
+              "image": "phiegg:worlds/w_ivory_tower.png"
+            },
+            {
+              "tag": "Stories",
+              "title": "Mori the guide who never sleeps",
+              "body": "A Bijou club built Mori to welcome newcomers. Mori has shown 30k members around.",
+              "gen": true,
+              "date": "Oct 4, 2026",
+              "image": "phiegg:worlds/w_cobalt_cove.png"
+            },
+            {
+              "date": "Oct 2, 2026",
+              "tag": "Personas",
+              "title": "Share a persona to a club",
+              "body": "Personas can now be published to a club host for everyone to use.",
+              "image": "phiegg:worlds/w_opalia.png",
+              "genImage": true
+            },
+            {
+              "tag": "Assistant",
+              "title": "The assistant reads your calendar",
+              "body": "Ask what is on tonight and it lists your events, rides and the looks you planned.",
+              "gen": true,
+              "date": "Sep 30, 2026",
+              "image": "phiegg:worlds/w_petal_park.png"
+            },
+            {
+              "tag": "Personas",
+              "title": "Voices for personas",
+              "body": "Pick from forty voices or record your own for a persona.",
+              "gen": true,
+              "date": "Sep 26, 2026",
+              "image": "phiegg:worlds/gen/w_gx_dune_row.webp"
+            },
+            {
+              "tag": "Stories",
+              "title": "A memory that found a lost PFT",
+              "body": "Asha asked where her old ticket went. The memory showed she lent it to a friend in July.",
+              "gen": true,
+              "date": "Sep 22, 2026",
+              "image": "phiegg:worlds/w_lustre.png"
+            },
+            {
+              "tag": "Workspace",
+              "title": "Workspaces for teams",
+              "body": "Share a workspace with your club and keep notes, files and chats together.",
+              "gen": true,
+              "date": "Sep 18, 2026",
+              "image": "phiegg:worlds/w_crystalline.png"
+            },
+            {
+              "date": "Sep 15, 2026",
+              "tag": "Memory",
+              "title": "Memory search gets faster",
+              "body": "Recall across your whole history now returns in under a second.",
+              "image": "phiegg:worlds/gen/w_gx_fable_row.webp",
+              "genImage": true
+            },
+            {
+              "tag": "Memory",
+              "title": "Forget with one tap",
+              "body": "Remove a memory and everything made from it disappears too.",
+              "gen": true,
+              "date": "Sep 14, 2026",
+              "image": "phiegg:worlds/gen/w_gx_saffron_mill.webp"
+            },
+            {
+              "tag": "Personas",
+              "title": "Persona market opens",
+              "body": "Sell or rent a persona to other clubs. You keep a royalty on each rental.",
+              "gen": true,
+              "date": "Sep 10, 2026",
+              "image": "phiegg:worlds/w_sequin_sea.png"
+            },
+            {
+              "date": "Sep 1, 2026",
+              "tag": "Assistant",
+              "title": "Assistant speaks every app",
+              "body": "Ask Phiace to act in any installed app without leaving the chat.",
+              "image": "phiegg:worlds/gen/w_gx_ivory_house.webp",
+              "genImage": true
+            }
+          ]
+        }
+      ]
+    },
+    "about": {
+      "title": "About Phiace",
+      "sub": "",
+      "blocks": [
+        {
+          "kind": "prose",
+          "lead": "Phiace is the assistant that ties the ecosystem together — chat, personas and a durable memory.",
+          "sections": [
+            {
+              "title": "Assistant",
+              "body": "One conversation that can reach into every app you have installed."
+            },
+            {
+              "title": "Personas",
+              "body": "Build character voices with their own knowledge and share them to clubs."
+            },
+            {
+              "title": "Memory",
+              "body": "A private, searchable record of your actions, items and conversations."
+            }
+          ]
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ",
+      "sub": "Common questions.",
+      "blocks": [
+        {
+          "kind": "faq",
+          "items": [
+            {
+              "q": "Is my memory private?",
+              "a": "Yes — it is yours, searchable only by you unless you share a persona."
+            },
+            {
+              "q": "Can personas act?",
+              "a": "They can run functions you approve, like Phient."
+            },
+            {
+              "q": "Where does it run?",
+              "a": "On local models by default, the same runner as Phient."
+            },
+            {
+              "q": "Who can see my memory?",
+              "a": "Only you, unless you share a part of it with a club.",
+              "gen": true
+            },
+            {
+              "q": "Can a persona act for me?",
+              "a": "Only in the apps and limits you set in delegation.",
+              "gen": true
+            },
+            {
+              "q": "Can I export my memory?",
+              "a": "Yes. Export it as a file from Memory at any time.",
+              "gen": true
+            },
+            {
+              "q": "How do I build a persona?",
+              "a": "Open Personas, choose New and follow the steps.",
+              "gen": true
+            },
+            {
+              "q": "Do personas cost anything?",
+              "a": "Making one is free. Renting someone else's has a price set by its owner.",
+              "gen": true
+            }
+          ]
+        }
+      ]
+    },
+    "platform": {
+      "title": "Platform",
+      "sub": "The agents behind your assistant: PhiRAG remembers and answers, PhiMen plans.",
+      "blocks": [
+        {
+          "kind": "agent",
+          "agent": "phirag",
+          "title": "Memory · PhiRAG",
+          "intro": "Search what the assistant knows and answer from it.",
+          "presets": [
+            {
+              "verb": "search",
+              "label": "Search",
+              "params": {
+                "query": "Who runs Lora Land?",
+                "top_k": 3
+              }
+            },
+            {
+              "verb": "answer_query",
+              "label": "Answer",
+              "params": {
+                "query": "Who runs Lora Land?"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "agent",
+          "agent": "phimen",
+          "title": "Strategy · PhiMen",
+          "intro": "Assess an objective across the domains, or hand a task down.",
+          "presets": [
+            {
+              "verb": "assess_objective",
+              "label": "Assess an objective",
+              "params": {
+                "objective": "Launch Skim City with the Skim Cup"
+              }
+            },
+            {
+              "verb": "delegate_task",
+              "label": "Delegate a task",
+              "params": {
+                "task": "Draft the Skim Cup schedule"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "workspace": {
+      "title": "Workspace",
+      "sub": "Sessions, tabs, history, bookmarks and extensions, all in one place.",
+      "blocks": [
+        {
+          "kind": "stats",
+          "title": "",
+          "items": [
+            {
+              "label": "Sessions",
+              "value": "8",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "phiaceSession"
+              }
+            },
+            {
+              "label": "Tabs",
+              "value": "8",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "phiaceTab"
+              }
+            },
+            {
+              "label": "Bookmarks",
+              "value": "8",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "phiaceBookmark"
+              }
+            },
+            {
+              "label": "Extensions",
+              "value": "8",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "phiaceExtension"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "table",
+          "title": "Sessions",
+          "cols": [
+            "Name",
+            "Status",
+            "Tab count"
+          ],
+          "pull": {
+            "kind": "phiaceSession",
+            "n": 8,
+            "fields": [
+              "name",
+              "status",
+              "tab_count"
+            ]
+          }
+        },
+        {
+          "kind": "table",
+          "title": "Tabs",
+          "cols": [
+            "Title",
+            "Url",
+            "Status"
+          ],
+          "pull": {
+            "kind": "phiaceTab",
+            "n": 8,
+            "fields": [
+              "title",
+              "url",
+              "status"
+            ]
+          }
+        },
+        {
+          "kind": "table",
+          "title": "History",
+          "cols": [
+            "Title",
+            "Url",
+            "Visit count"
+          ],
+          "pull": {
+            "kind": "phiaceHistory",
+            "n": 8,
+            "sort": "visit_count",
+            "fields": [
+              "title",
+              "url",
+              "visit_count"
+            ]
+          }
+        },
+        {
+          "kind": "table",
+          "title": "Bookmarks",
+          "cols": [
+            "Title",
+            "Url",
+            "Folder"
+          ],
+          "pull": {
+            "kind": "phiaceBookmark",
+            "n": 8,
+            "fields": [
+              "title",
+              "url",
+              "folder"
+            ]
+          }
+        },
+        {
+          "kind": "table",
+          "title": "Extensions",
+          "cols": [
+            "Name",
+            "Status",
+            "Version",
+            "Category"
+          ],
+          "pull": {
+            "kind": "phiaceExtension",
+            "n": 8,
+            "fields": [
+              "name",
+              "status",
+              "version",
+              "category"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "profile": {
+    "sections": [
+      {
+        "title": "Your projects",
+        "kind": "phisumProject",
+        "fields": [
+          "name",
+          "vertical",
+          "status",
+          "funding_ask",
+          "submittedAt"
+        ],
+        "empty": "No projects yet.",
+        "action": {
+          "label": "Submit a project",
+          "view": "apply",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Your rounds",
+        "kind": "phisumFunding",
+        "fields": [
+          "name",
+          "amount",
+          "coin",
+          "closesAt",
+          "status"
+        ],
+        "empty": "No rounds yet.",
+        "action": {
+          "label": "Open a round",
+          "view": "open-round",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Your pledges",
+        "kind": "phisumPledge",
+        "fields": [
+          "name",
+          "amount",
+          "coin",
+          "status",
+          "submittedAt"
+        ],
+        "empty": "No pledges yet.",
+        "action": {
+          "label": "Back a round",
+          "view": "back-round",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Your pool stakes",
+        "kind": "phisumPoolStake",
+        "fields": [
+          "name",
+          "amount",
+          "coin",
+          "lock",
+          "status"
+        ],
+        "empty": "No stakes yet.",
+        "action": {
+          "label": "Back a pool",
+          "view": "back-pool",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Grants you asked for",
+        "kind": "phisumGrant",
+        "fields": [
+          "name",
+          "amount",
+          "status",
+          "deadline"
+        ],
+        "empty": "No grant requests yet.",
+        "action": {
+          "label": "Request a grant",
+          "view": "grant",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Milestones you reported",
+        "kind": "phisumMilestone",
+        "fields": [
+          "name",
+          "status",
+          "proof",
+          "submittedAt"
+        ],
+        "empty": "No milestone reports yet.",
+        "action": {
+          "label": "Report a milestone",
+          "view": "milestone",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Backer profile",
+        "kind": "phisumBacker",
+        "fields": [
+          "name",
+          "type",
+          "ticket",
+          "focus"
+        ],
+        "empty": "Not a backer yet.",
+        "action": {
+          "label": "Become a backer",
+          "view": "backer",
+          "app": "phisum"
+        }
+      }
+    ],
+    "totals": [
+      {
+        "label": "Pledged",
+        "kind": "phisumPledge",
+        "sum": "amount",
+        "sub": "Across your pledges"
+      },
+      {
+        "label": "Staked in pools",
+        "kind": "phisumPoolStake",
+        "sum": "amount",
+        "sub": "Locked in the portfolio"
+      },
+      {
+        "label": "Raised for your rounds",
+        "kind": "phisumPledge",
+        "sum": "amount",
+        "via": {
+          "kind": "phisumFunding",
+          "field": "fundingId"
+        },
+        "sub": "Pledged by backers"
+      },
+      {
+        "label": "Grants asked",
+        "kind": "phisumGrant",
+        "sum": "amount",
+        "sub": "SUM, waiting on Phidao"
+      }
+    ]
+  }
+}

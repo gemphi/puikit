@@ -1,0 +1,26 @@
+.row { display: flex; gap: 0.5rem; align-items: flex-end; max-width: 100%; animation: puiBubbleIn 0.28s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.me { flex-direction: row-reverse; margin-left: auto; }
+.col { display: flex; flex-direction: column; gap: 0.2rem; max-width: min(34rem, 82%); min-width: 0; }
+.me .col { align-items: flex-end; }
+.avatar { flex-shrink: 0; }
+.bubble {
+  padding: 0.6rem 0.85rem;
+  border-radius: var(--phi-radius-2xl);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  font-size: var(--phi-font-size-sm, 0.875rem);
+}
+.them .bubble {
+  background: var(--phi-bubble-them, var(--phi-color-background-secondary));
+  color: var(--phi-color-text-primary);
+  border-bottom-left-radius: 0.35rem;
+  box-shadow: inset 0 0 0 1px var(--phi-color-border-subtle, transparent);
+}
+.me .bubble {
+  background: var(--phi-bubble-me, var(--phi-color-primary));
+  color: var(--phi-color-text-inverse, #fff);
+  border-bottom-right-radius: 0.35rem;
+}
+.name, .time { padding-inline: 0.4rem; }
+@keyframes puiBubbleIn { from { opacity: 0; transform: translateY(6px) scale(0.98); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .row { animation: none; } }

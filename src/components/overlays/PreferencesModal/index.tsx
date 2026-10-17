@@ -14,11 +14,10 @@ import type { Theme, ThemeStyle } from '../../../providers/types';
  * squares every corner in the system; `1.6` rounds them uniformly.
  */
 export const RADIUS_STEPS = [
-  { label: 'Square', value: 0 },
-  { label: 'Subtle', value: 0.5 },
-  { label: 'Default', value: 1 },
-  { label: 'Soft', value: 1.3 },
-  { label: 'Round', value: 1.6 },
+  { label: 'Small', value: 0.5 },
+  { label: 'Medium', value: 1 },
+  { label: 'Large', value: 1.75 },
+  { label: 'Pill (egg)', value: 3 },
 ] as const;
 
 /**

@@ -1,0 +1,235 @@
+// DepthMedia — three nested layers (parent → framed image → round photo) with pointer parallax.
+// Everything reads puijs tokens; the frame takes the card gradient when the app chooses one.
+.depth {
+  --pui-depth-x: 0;
+  --pui-depth-y: 0;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--phi-radius-xl);
+  background: var(--phi-color-background-secondary, var(--phi-color-background));
+  background-image: var(--phi-gradient-media, none);
+  color: var(--phi-color-text-primary);
+  transform-style: preserve-3d;
+  transition: transform var(--phi-duration-slow, 0.5s) var(--phi-ease, ease-out), box-shadow var(--phi-duration-slow, 0.5s) var(--phi-ease, ease-out);
+  min-height: 8rem;
+}
+.click { cursor: pointer; }
+.click:focus-visible { outline: 2px solid var(--phi-color-primary); outline-offset: 2px; }
+
+.clip { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; display: grid; place-items: center; }
+.img { width: 100%; height: 100%; display: block; user-select: none; }
+
+.back {
+  position: absolute;
+  inset: -4%;
+  transform: translate3d(calc(var(--pui-depth-x) * -6px), calc(var(--pui-depth-y) * -6px), 0);
+  transition: transform var(--phi-duration, 0.3s) var(--phi-ease, ease-out);
+  .clip { border-radius: 0; }
+}
+
+// Perspective floor: a receding grid in the primary colour across the lower half.
+.grid::after {
+  content: '';
+  position: absolute;
+  left: -50%; right: -50%; bottom: -10%; height: 60%;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--phi-color-primary) 34%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--phi-color-primary) 34%, transparent) 1px, transparent 1px);
+  background-size: 2.25rem 2.25rem;
+  transform: perspective(14rem) rotateX(62deg);
+  transform-origin: bottom;
+  mask-image: linear-gradient(to top, #000 10%, transparent 90%);
+  pointer-events: none;
+}
+
+/* The framed look and its cascade share one geometry. */
+.mid, .midGhost {
+  position: absolute;
+  right: 7%;
+  top: 50%;
+  height: calc(var(--pui-depth-mid) * 100%);
+  aspect-ratio: 3 / 4;
+  max-width: 58%;
+  border-radius: var(--phi-radius-lg, 12px);
+}
+.mid {
+  z-index: 1;
+  background: color-mix(in srgb, var(--phi-color-background-card, #fff) 72%, transparent);
+  background-image: var(--phi-gradient-child, none);
+  border: 1px solid color-mix(in srgb, var(--phi-color-text-primary) 12%, transparent);
+  box-shadow: 0 1.25rem 2.5rem -1rem rgba(0, 0, 0, 0.45), 0 0.25rem 0.75rem rgba(0, 0, 0, 0.12);
+  transform: translate3d(calc(var(--pui-depth-x) * 10px), calc(-50% + var(--pui-depth-y) * 10px), 0) rotate(2.5deg);
+  transition: transform var(--phi-duration, 0.3s) var(--phi-ease, ease-out);
+}
+
+/* Cascade of the slanted card: the same look repeated behind it, each copy smaller, darker and turned a little
+   further, fanned from the bottom edge — a hand of cards. It opens wider on hover and follows the pointer. */
+.midGhost {
+  z-index: 1;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--phi-color-background-card, #fff) 64%, transparent);
+  background-image: var(--phi-gradient-child, none);
+  border: 1px solid color-mix(in srgb, var(--phi-color-text-primary) 14%, transparent);
+  box-shadow: 0 0.9rem 1.6rem -0.9rem rgba(0, 0, 0, 0.5);
+  transform-origin: 50% 100%;
+  transform:
+    translate3d(calc(var(--pui-depth-x) * (10px - var(--pui-mid-k) * 3px) - var(--pui-mid-k) * 6%), calc(-50% + var(--pui-depth-y) * 8px - var(--pui-mid-k) * 1.5%), 0)
+    rotate(calc(2.5deg - var(--pui-mid-k) * 5deg))
+    scale(calc(1 - var(--pui-mid-k) * 0.055));
+  filter: brightness(calc(1 - var(--pui-mid-k) * 0.1)) saturate(calc(1 - var(--pui-mid-k) * 0.1));
+  transition: transform var(--phi-duration-slow, 0.5s) var(--phi-ease, ease-out), filter var(--phi-duration, 0.3s) var(--phi-ease, ease-out);
+  pointer-events: none;
+  .clip { opacity: 0.85; }
+}
+.depth:hover .midGhost {
+  transform:
+    translate3d(calc(var(--pui-depth-x) * (12px - var(--pui-mid-k) * 2px) - var(--pui-mid-k) * 9%), calc(-50% + var(--pui-depth-y) * 8px - var(--pui-mid-k) * 2.5%), 0)
+    rotate(calc(2.5deg - var(--pui-mid-k) * 8deg))
+    scale(calc(1 - var(--pui-mid-k) * 0.05));
+}
+
+.front {
+  position: absolute;
+  z-index: 2;
+  width: calc(var(--pui-depth-front) * 100%);
+  aspect-ratio: 1;
+  // top-left corner of the mid layer — clear of the caption (bottom-left) and the frame edge (right)
+  left: -20%;
+  top: -8%;
+  border-radius: 50%;
+  padding: 3px;
+  background: var(--phi-color-background);
+  background-image: var(--phi-gradient-grandchild, none);
+  /* the photo is a deck too: two smaller circles stacked behind it */
+  box-shadow: 0 -0.45rem 0 -0.2rem color-mix(in srgb, var(--phi-color-primary) 34%, var(--phi-color-background-card, #fff)),
+    0 -0.85rem 0 -0.42rem color-mix(in srgb, var(--phi-color-accent-2, var(--phi-color-success)) 28%, var(--phi-color-background-card, #fff)),
+    0 0.75rem 1.5rem -0.5rem rgba(0, 0, 0, 0.5);
+  transform: translate3d(calc(var(--pui-depth-x) * 8px), calc(var(--pui-depth-y) * 8px), 0) rotate(-2.5deg);
+  transition: transform var(--phi-duration, 0.3s) var(--phi-ease, ease-out);
+  .clip { inset: 3px; border-radius: 50%; }
+  // Avatars and glyphs fill the disc.
+  .clip > * { width: 100% !important; height: 100% !important; font-size: 1.1em; }
+}
+
+/* Insets grow with the corner radius so chips and captions stay clear of a deeply rounded (pill / egg) corner. */
+.badges { position: absolute; z-index: 3; top: calc(0.6rem + var(--phi-radius-xl, 12px) * 0.3); left: calc(0.6rem + var(--phi-radius-xl, 12px) * 0.45); right: calc(0.6rem + var(--phi-radius-xl, 12px) * 0.45); display: flex; gap: 0.25rem; flex-wrap: wrap; }
+.caption {
+  position: absolute; z-index: 3; left: 0; right: 0; bottom: 0;
+  display: flex; align-items: flex-end; gap: 0.6rem;
+  padding: 4.5rem calc(0.75rem + var(--phi-radius-xl, 12px) * 0.4) calc(0.75rem + var(--phi-radius-xl, 12px) * 0.2);
+  /* The footer shade: strongest at the bottom edge, gone by the top of the caption. */
+  background: var(--pui-depth-scrim, linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.42) 38%, rgba(0, 0, 0, 0.12) 72%, transparent 100%));
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+  :global(*) { color: inherit; }
+}
+.captionText { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; flex: 0 1 62%; > * { max-width: 100%; }
+  /* Long titles stop at two lines and subtitles at one, so they never run into the badges above. */
+  > :first-child { display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  > :nth-child(2) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } }
+.footIcon { flex: none; width: clamp(2rem, 18%, 3.25rem); aspect-ratio: 1; filter: drop-shadow(0 0.25rem 0.5rem rgba(0, 0, 0, 0.35)); > * { width: 100% !important; height: 100% !important; } }
+
+// Tilt the whole frame toward the pointer.
+.tilt:hover { transform: perspective(60rem) rotateX(calc(var(--pui-depth-y) * -4deg)) rotateY(calc(var(--pui-depth-x) * 5deg)); }
+
+// Game feel: lift + glow edge + shine sweep + spinning ring on the photo.
+.game {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--phi-color-text-primary) 8%, transparent);
+  &::before {
+    content: ''; position: absolute; inset: 0; z-index: 4; pointer-events: none;
+    background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.28) 50%, transparent 65%);
+    transform: translateX(-120%);
+  }
+  &:hover {
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--phi-color-primary) 60%, transparent),
+      0 0 0 1px color-mix(in srgb, var(--phi-color-primary) 30%, transparent),
+      0 1.25rem 2.5rem -1rem color-mix(in srgb, var(--phi-color-primary) 55%, transparent);
+    &::before { transform: translateX(120%); transition: transform 0.9s ease; }
+    .front { background: conic-gradient(from var(--pui-depth-ring, 0deg), var(--phi-color-primary), var(--phi-color-success, #34c759), var(--phi-color-info, #5ac8fa), var(--phi-color-primary)); animation: puiDepthRing 2.4s linear infinite; }
+  }
+  &:active { transform: scale(0.985); }
+}
+@property --pui-depth-ring { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+@keyframes puiDepthRing { to { --pui-depth-ring: 360deg; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .depth, .back, .mid, .front { transition: none; }
+  .tilt:hover { transform: none; }
+  .back { transform: none; }
+  .mid { transform: translateY(-50%) rotate(2.5deg); }
+  .midGhost { transition: none; }
+  .front { transform: rotate(-2.5deg); }
+  .game::before, .game:hover .front { animation: none; transform: translateX(-120%); }
+}
+:global([data-ph-motion='reduced']) {
+  .depth, .back, .mid, .front { transition: none; }
+  .tilt:hover { transform: none; }
+  .game::before { display: none; }
+  .game:hover .front { animation: none; }
+}
+
+/* ── Deck: the card's own image repeated behind it, level by level ─────────────────────────────────────────
+   Level k is (1 − k·5.5 %) as wide, sits k steps higher and k shades darker, so only its top edge peeks out above
+   the level in front — a deck of cards from one element. On hover the levels fan out in 3D with the pointer. */
+.deck {
+  --pui-deck-step: 0.6rem;
+  --pui-depth-x: 0;
+  --pui-depth-y: 0;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  padding-top: calc(var(--pui-deck) * var(--pui-deck-step));
+  perspective: 70rem;
+  > .depth { flex: 1 1 auto; z-index: 1; }
+}
+.ghost {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  top: calc(var(--pui-deck) * var(--pui-deck-step));
+  z-index: 0;
+  border-radius: var(--phi-radius-xl);
+  overflow: hidden;
+  background: var(--phi-color-background-secondary);
+  border: 1px solid color-mix(in srgb, var(--phi-color-text-primary) 14%, transparent);
+  box-shadow: 0 -0.25rem 0.75rem -0.4rem rgba(0, 0, 0, 0.35);
+  transform-origin: 50% 0;
+  transform:
+    translate3d(calc(var(--pui-depth-x) * var(--pui-deck-k) * -3px), calc(var(--pui-deck-k) * var(--pui-deck-step) * -1), calc(var(--pui-deck-k) * -14px))
+    scale(calc(1 - var(--pui-deck-k) * 0.055));
+  filter: brightness(calc(1 - var(--pui-deck-k) * 0.13)) saturate(calc(1 - var(--pui-deck-k) * 0.08));
+  transition: transform var(--phi-duration-slow, 0.5s) var(--phi-ease, ease-out), filter var(--phi-duration-slow, 0.5s) var(--phi-ease, ease-out);
+  pointer-events: none;
+}
+.ghostBack { position: absolute; inset: 0; .clip { border-radius: 0; } }
+.deck:hover .ghost {
+  transform:
+    translate3d(calc(var(--pui-depth-x) * var(--pui-deck-k) * -6px), calc(var(--pui-deck-k) * var(--pui-deck-step) * -1.55), calc(var(--pui-deck-k) * -26px))
+    rotate(calc(var(--pui-deck-k) * var(--pui-depth-x) * -1.2deg))
+    scale(calc(1 - var(--pui-deck-k) * 0.05));
+}
+@media (prefers-reduced-motion: reduce) { .ghost { transition: none; } .deck:hover .ghost { transform: translateY(calc(var(--pui-deck-k) * var(--pui-deck-step) * -1)) scale(calc(1 - var(--pui-deck-k) * 0.055)); } }
+:global([data-ph-motion='reduced']) .ghost { transition: none; }
+
+/* Opposite cascade: the deck hangs below the card (feed posts and shots), so a parent that cascades up and a child
+   that cascades down read as one stepped 3D cut. */
+.deck[data-deck-dir='down'] {
+  padding-top: 0;
+  padding-bottom: calc(var(--pui-deck) * var(--pui-deck-step));
+  .ghost {
+    top: 0;
+    bottom: calc(var(--pui-deck) * var(--pui-deck-step));
+    transform-origin: 50% 100%;
+    box-shadow: 0 0.25rem 0.75rem -0.4rem rgba(0, 0, 0, 0.35);
+    transform:
+      translate3d(calc(var(--pui-depth-x) * var(--pui-deck-k) * -3px), calc(var(--pui-deck-k) * var(--pui-deck-step)), calc(var(--pui-deck-k) * -14px))
+      scale(calc(1 - var(--pui-deck-k) * 0.055));
+  }
+  &:hover .ghost {
+    transform:
+      translate3d(calc(var(--pui-depth-x) * var(--pui-deck-k) * -6px), calc(var(--pui-deck-k) * var(--pui-deck-step) * 1.55), calc(var(--pui-deck-k) * -26px))
+      rotate(calc(var(--pui-deck-k) * var(--pui-depth-x) * 1.2deg))
+      scale(calc(1 - var(--pui-deck-k) * 0.05));
+  }
+}

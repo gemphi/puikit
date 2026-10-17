@@ -8,6 +8,6 @@ import s from './code.module.scss';
  */
 export const Code: React.FC<{ children: string }> = ({ children }) => (
   <Box as="pre" className={s.code}>
-    <code>{children}</code>
+    <Box as="code">{children}</Box>
   </Box>
 );

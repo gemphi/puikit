@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tag, Text, Title } from '@pui/components';
+import { Box, Tag, Text, Title } from '@pui/components';
 import { Hero, Block, Glass, AutoGrid } from '../components/kit';
 import { EAEFramework } from '../components/diagrams';
 import s from '../styles/uaia.module.scss';
@@ -24,7 +24,7 @@ export const EvaluationsPage: React.FC = () => (
     <Hero
       pattern="evaluations"
       label="UAIA-EVAL Protocol v1"
-      title={<>We measure what matters, and we <span className={s.gradText}>publish how we measure it.</span></>}
+      title={<>We measure what matters, and we <Box as="span" className={s.gradText}>publish how we measure it.</Box></>}
     />
 
     <Block
@@ -48,14 +48,14 @@ export const EvaluationsPage: React.FC = () => (
     </Block>
 
     <Block label="Method" title="Rigor you can re-run." tight>
-      <div style={{ marginTop: 18, display: 'grid', gap: 12, maxWidth: 760 }}>
+      <Box style={{ marginTop: 18, display: 'grid', gap: 12, maxWidth: 760 }}>
         {METHOD.map((m, i) => (
           <Glass key={i}>
-            <span className={s.mono} style={{ color: 'var(--phi-color-primary)', marginRight: 12, fontSize: 12 }}>{String(i + 1).padStart(2, '0')}</span>
+            <Box as="span" className={s.mono} style={{ color: 'var(--phi-color-primary)', marginRight: 12, fontSize: 12 }}>{String(i + 1).padStart(2, '0')}</Box>
             {m}
           </Glass>
         ))}
-      </div>
+      </Box>
     </Block>
 
     <Block
@@ -69,7 +69,7 @@ export const EvaluationsPage: React.FC = () => (
       <Glass style={{ marginTop: 16 }}>
         <Text intent="secondary">
           Radar chart across the five tracks · tier badge · harness version tag · a{' '}
-          <span className={s.mono} style={{ color: 'var(--phi-color-primary)' }}>reproduce this result</span>{' '}
+          <Box as="span" className={s.mono} style={{ color: 'var(--phi-color-primary)' }}>reproduce this result</Box>{' '}
           link to the methodology. Shipping with the public Registry.
         </Text>
       </Glass>

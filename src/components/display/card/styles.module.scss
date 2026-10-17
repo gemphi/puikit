@@ -7,7 +7,7 @@
   border: var(--phi-elevation-border, 1px solid var(--phi-color-border));
   border-radius: var(--phi-radius-lg);
   overflow: hidden;
-  transition: box-shadow var(--phi-transition-fast), transform var(--phi-transition-fast);
+  transition: box-shadow var(--phi-transition-normal), transform var(--phi-transition-normal);
 }
 
 /* Every card carries the brand wash: colour at one edge, gone by the middle.
@@ -15,7 +15,20 @@
    than behind it, and it is layered over the card colour rather than replacing
    it. `data-gradient-direction="reverse"` puts the tint at the head instead. */
 .card {
-  background-image: var(--phi-gradient-card-wash, none);
+  /* The wash layers over the card gradient (when one is set) instead of replacing it. */
+  background-image: var(--phi-gradient-card-wash, none), var(--phi-gradient-card, none);
+}
+
+/* Depth: a card inside a card is the child level, one inside that the grandchild — each lit from the
+   opposite corner at about half the strength (see providers/palette.ts). Without a palette or gradient
+   level these fall back to the plain card values, so nothing changes. */
+.card .card {
+  background: var(--phi-gradient-card-child, var(--phi-gradient-card, var(--phi-color-background-card)));
+  background-image: var(--phi-gradient-card-wash, none), var(--phi-gradient-card-child, var(--phi-gradient-card, none));
+}
+.card .card .card {
+  background: var(--phi-gradient-card-grandchild, var(--phi-gradient-card, var(--phi-color-background-card)));
+  background-image: var(--phi-gradient-card-grandchild, var(--phi-gradient-card, none));
 }
 
 .card[data-gradient-direction='reverse'] {
@@ -70,7 +83,8 @@
 .flat {
   border: none;
   box-shadow: none;
-  border-radius: 0;
+  /* flat drops the border and shadow, never the theme radius */
+  border-radius: var(--phi-radius-lg);
 }
 
 .compact .body {
@@ -122,3 +136,64 @@
   height: 10rem;
   object-fit: cover;
 }
+/* Deck (Card depth={n}): real copies of the card's own surface (its gradient, wash and radius) stacked behind it,
+   each one level narrower and a step further out, so the cascade matches the image decks. They fan out on hover.
+   `deckDirection` sets the side they peek from: up (default), down, right, left, or both (up and down at once).
+   Each copy takes a little more of the card's tint (else the theme primary), so a tinted card's deck is its colour. */
+.deck {
+  --pui-card-step: 9px;
+  --pui-card-shrink: 9px;
+  --pui-deck-span: calc(var(--pui-card-deck) * var(--pui-card-step));
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding-top: var(--pui-deck-span);
+  /* the card sits on a solid ground so the copies behind it only show where they peek out */
+  /* the card keeps its own fade (head to nothing); the copies behind it are masked to the strip they peek from */
+  > .card { position: relative; z-index: 1; flex: 1 1 auto; height: auto; }
+  &[data-deck-direction='down'] { padding-top: 0; padding-bottom: var(--pui-deck-span); }
+  &[data-deck-direction='right'] { padding-top: 0; padding-right: var(--pui-deck-span); }
+  &[data-deck-direction='left'] { padding-top: 0; padding-left: var(--pui-deck-span); }
+  &[data-deck-direction='both'] { padding-bottom: var(--pui-deck-span); }
+}
+.ghost {
+  --gx: 0; --gy: -1; --fan: 1;
+  position: absolute;
+  z-index: 0;
+  top: var(--pui-deck-span);
+  bottom: 0;
+  left: calc(var(--pui-card-k) * var(--pui-card-shrink));
+  right: calc(var(--pui-card-k) * var(--pui-card-shrink));
+  border-radius: var(--phi-radius-lg);
+  border: var(--phi-elevation-border, 1px solid var(--phi-color-border));
+  /* a shade of the card's colour (else the theme primary), a touch deeper each level, fading to nothing */
+  --ghost-angle: 180deg;
+  background: linear-gradient(var(--ghost-angle), color-mix(in srgb, var(--pui-card-tint, var(--phi-color-primary)) calc(10% + var(--pui-card-k) * 6%), var(--phi-color-background-card)) 0%, transparent 100%);
+  border-color: color-mix(in srgb, var(--pui-card-tint, var(--phi-color-primary)) 18%, transparent);
+  -webkit-mask-image: linear-gradient(var(--ghost-angle), #000 0, #000 calc(var(--pui-deck-span) + 0.5rem), transparent calc(var(--pui-deck-span) * 2.5 + 1rem));
+  mask-image: linear-gradient(var(--ghost-angle), #000 0, #000 calc(var(--pui-deck-span) + 0.5rem), transparent calc(var(--pui-deck-span) * 2.5 + 1rem));
+  filter: brightness(calc(1 - var(--pui-card-k) * 0.05));
+  transform: translate(calc(var(--gx) * var(--pui-card-k) * var(--pui-card-step) * var(--fan)), calc(var(--gy) * var(--pui-card-k) * var(--pui-card-step) * var(--fan)));
+  transition: transform var(--phi-transition-slow), filter var(--phi-transition-normal);
+  pointer-events: none;
+}
+.deck:hover .ghost { --fan: 1.45; }
+.ghost[data-deck-side='down'] { --gy: 1; --ghost-angle: 0deg; top: 0; bottom: var(--pui-deck-span); }
+.ghost[data-deck-side='right'], .ghost[data-deck-side='left'] {
+  top: calc(var(--pui-card-k) * var(--pui-card-shrink)); bottom: calc(var(--pui-card-k) * var(--pui-card-shrink)); --gy: 0;
+}
+.ghost[data-deck-side='right'] { --gx: 1; --ghost-angle: 270deg; left: 0; right: var(--pui-deck-span); }
+.ghost[data-deck-side='left'] { --gx: -1; --ghost-angle: 90deg; left: var(--pui-deck-span); right: 0; }
+.deck[data-deck-direction='both'] .ghost { top: var(--pui-deck-span); bottom: var(--pui-deck-span); }
+/* Nested decks take their parent level's surface, like nested cards do. */
+
+
+/* Cards with onClick are controls. */
+.clickable { cursor: pointer; }
+.clickable:focus-visible { outline: 2px solid var(--phi-color-primary); outline-offset: 2px; }
+
+/* A card whose content is a card of its own (a tile) has no surface: no fill, no border, no shadow, no inset. */
+.card[data-surface='none'] { background: none !important; background-image: none !important; border-color: transparent !important; box-shadow: none !important; padding: 0 !important; }
+.card[data-surface='none'] > :global(*) { padding-left: 0; padding-right: 0; }

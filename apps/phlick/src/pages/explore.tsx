@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Stack, Title, Text } from '@pui/components';
+import { Box, Container, Stack, Text, Title } from '@pui/components';
 import { PostList, useSocialConfig } from '@pui/social';
 import { useAsync } from '@pui/shop';
 import { getSectionPosts } from '../lib/services';
@@ -35,10 +35,10 @@ export const ExplorePage: React.FC = () => {
   const look = presentationOf(topic ?? 'explore');
 
   return (
-    <div className={s.feedStage}>
+    <Box className={s.feedStage}>
       <TopicTabs topic={topic} onTopic={setTopic} />
 
-      <div className={s.explorePad}>
+      <Box className={s.explorePad}>
         <Container size="xl">
           <Stack direction="column" gap={4}>
             <Stack direction="column" gap={1}>
@@ -54,7 +54,7 @@ export const ExplorePage: React.FC = () => {
             />
           </Stack>
         </Container>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };

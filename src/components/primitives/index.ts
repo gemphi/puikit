@@ -6,3 +6,4 @@ export * from './Title';
 export * from './Text';
 export * from './Span';
 export * from './Divider';
+export * from './Pressable';

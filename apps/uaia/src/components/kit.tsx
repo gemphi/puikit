@@ -1,9 +1,10 @@
+import { Box } from '@pui/components';
 import React from 'react';
 import s from '../styles/uaia.module.scss';
 
 /** Uppercase instrumentation label with the leading tick line. */
 export const Micro: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <span className={s.micro}>{children}</span>
+  <Box as="span" className={s.micro}>{children}</Box>
 );
 
 /* ------------------------------------------------------------------- */
@@ -156,20 +157,20 @@ export const Hero: React.FC<{
   pattern?: keyof typeof HERO_PATTERNS;
   children?: React.ReactNode;
 }> = ({ label, title, sub, pattern, children }) => (
-  <header className={s.hero}>
+  <Box as="header" className={s.hero}>
     {pattern && HERO_PATTERNS[pattern] ? (
       <HeroPattern id={`hp-${pattern}`} spec={HERO_PATTERNS[pattern]} />
     ) : (
-      <div className={s.heroGrid} aria-hidden />
+      <Box className={s.heroGrid} aria-hidden />
     )}
     <Starfield />
-    <div className={s.heroInner}>
+    <Box className={s.heroInner}>
       <Micro>{label}</Micro>
-      <h1 className={s.heroTitle}>{title}</h1>
-      {sub && <p className={s.heroSub}>{sub}</p>}
+      <Box as="h1" className={s.heroTitle}>{title}</Box>
+      {sub && <Box as="p" className={s.heroSub}>{sub}</Box>}
       {children}
-    </div>
-  </header>
+    </Box>
+  </Box>
 );
 
 /** Consistent content section: optional micro label + title + intro. */
@@ -180,12 +181,12 @@ export const Block: React.FC<{
   tight?: boolean;
   children?: React.ReactNode;
 }> = ({ label, title, intro, tight, children }) => (
-  <section className={`${s.section} ${tight ? s.sectionTight : ''}`}>
+  <Box as="section" className={`${s.section} ${tight ? s.sectionTight : ''}`}>
     {label && <Micro>{label}</Micro>}
-    {title && <h2 className={s.sectionTitle}>{title}</h2>}
-    {intro && <p className={s.sectionIntro}>{intro}</p>}
+    {title && <Box as="h2" className={s.sectionTitle}>{title}</Box>}
+    {intro && <Box as="p" className={s.sectionIntro}>{intro}</Box>}
     {children}
-  </section>
+  </Box>
 );
 
 /**
@@ -211,9 +212,9 @@ export const Glass: React.FC<{
     .filter(Boolean)
     .join(' ');
   return (
-    <div className={cls} style={style}>
+    <Box className={cls} style={style}>
       {children}
-    </div>
+    </Box>
   );
 };
 
@@ -229,7 +230,7 @@ export const Note: React.FC<{
 }> = ({ title, tone = 'cyan', style, children }) => (
   <Glass tone={tone} style={{ marginTop: 16, ...style }}>
     {title && (
-      <div
+      <Box
         className={s.mono}
         style={{
           color: tone === 'violet' ? '#818cf8' : 'var(--phi-color-primary)',
@@ -240,9 +241,9 @@ export const Note: React.FC<{
         }}
       >
         {title}
-      </div>
+      </Box>
     )}
-    <div style={{ lineHeight: 1.7 }}>{children}</div>
+    <Box style={{ lineHeight: 1.7 }}>{children}</Box>
   </Glass>
 );
 
@@ -257,11 +258,11 @@ export const AutoGrid: React.FC<{ min?: number; style?: React.CSSProperties; chi
 }) => {
   const two = React.Children.count(children) === 2;
   return (
-    <div
+    <Box
       className={two ? s.altGrid : undefined}
       style={{ display: 'grid', gridTemplateColumns: `repeat(auto-fit, minmax(${min}px, 1fr))`, gap: 16, ...style }}
     >
       {children}
-    </div>
+    </Box>
   );
 };

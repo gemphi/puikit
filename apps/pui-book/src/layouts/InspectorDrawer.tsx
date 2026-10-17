@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Drawer, FormGroup, Select, Switch, Stack, Title, Text, Tag, usePuiTheme } from '@pui/components';
+import { Box, Drawer, FormGroup, Select, Stack, Switch, Tag, Text, Title, usePuiTheme } from '@pui/components';
 
 interface InspectorDrawerProps {
   isOpen: boolean;
@@ -13,29 +13,25 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({ isOpen, onClos
 
   return (
     <Drawer isOpen={isOpen} onClose={onClose} title="PUI Global Inspector" position="right">
-      <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-        <div>
+      <Box style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <Box>
           <Title level={5}>Live Design System Controls</Title>
           <Text size="sm" intent="secondary">
             Mutates root CSS custom properties in real-time.
           </Text>
-        </div>
+        </Box>
 
         <FormGroup label="Active Brand Palette">
-          <Select value={brandId} onChange={(e) => setBrandId(e.target.value)}>
-            {brands.map((b) => (
-              <option key={b.id} value={b.id}>{b.name}</option>
-            ))}
-          </Select>
+          <Select value={brandId} onChange={(e) => setBrandId(e.target.value)} options={brands.map((b) => ({ value: b.id, label: b.name }))} />
         </FormGroup>
 
         <FormGroup label="Surface Style Mode">
-          <Select value={themeStyle} onChange={(e) => setThemeStyle(e.target.value as any)}>
-            <option value="flat">Flat (Default)</option>
-            <option value="elevated">Elevated Shadows</option>
-            <option value="glass">Glassmorphism</option>
-            <option value="gradient">Subtle Gradient</option>
-          </Select>
+          <Select value={themeStyle} onChange={(e) => setThemeStyle(e.target.value as any)} options={[
+            { value: 'flat', label: 'Flat (Default)' },
+            { value: 'elevated', label: 'Elevated Shadows' },
+            { value: 'glass', label: 'Glassmorphism' },
+            { value: 'gradient', label: 'Subtle Gradient' },
+          ]} />
         </FormGroup>
 
         <FormGroup label="Dark Mode Theme">
@@ -50,7 +46,7 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({ isOpen, onClos
           <Tag intent="primary">puijs.com</Tag>
           <Tag intent="success">Decoupled Architecture</Tag>
         </Stack>
-      </div>
+      </Box>
     </Drawer>
   );
 };

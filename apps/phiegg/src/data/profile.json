@@ -1,0 +1,18 @@
+{
+  "userId": "u_ines",
+  "tabs": [
+    "Shots",
+    "Reels",
+    "Looks",
+    "Clubs"
+  ],
+  "shotIds": [
+    "s1",
+    "s5",
+    "s4",
+    "s2",
+    "s3",
+    "s6"
+  ],
+  "pinnedLook": "Look 07, Nacre coat"
+}

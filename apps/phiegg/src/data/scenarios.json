@@ -1,0 +1,113 @@
+{
+  "voices": ["Warm", "Bold", "Playful", "Luxe", "Mysterious"],
+  "audiences": ["Club members", "Collectors", "Newcomers", "VIPs", "Fans of the show"],
+  "scenarios": [
+    {
+      "id": "runway", "title": "Runway night",
+      "summary": "Host a walk in your world: guests come through the gate, your agent greets them and sells the looks they see.",
+      "steps": [
+        { "id": "host", "type": "host", "label": "Your host", "hint": "The host the night runs through" },
+        { "id": "gate", "type": "egg", "kind": "gate", "label": "Gate pass", "hint": "What guests pay at the door, in EGG" },
+        { "id": "look", "type": "pft", "label": "Hero look", "hint": "The PFT walked last" },
+        { "id": "agent", "type": "agent", "label": "Customer agent", "hint": "Greets and sells at the door" }
+      ],
+      "greeting": {
+        "Warm": "Welcome in, {name}. {host} saved you a seat; the {look} walks last tonight.",
+        "Bold": "{name}, you made it. Front row at {host}. Watch for the {look}.",
+        "Playful": "Psst, {name}: the {look} is the surprise. Gate is {gate}, the fun is free.",
+        "Luxe": "Good evening, {name}. Your place at {host} is ready; the {look} is yours to try.",
+        "Mysterious": "{name}. The lights drop at nine. Ask for the {look}."
+      },
+      "model": { "visitors": 400, "gateConversion": 0.6, "lookConversion": 0.02 }
+    },
+    {
+      "id": "popup", "title": "Pop-up shop",
+      "summary": "Build on a plot of land, stock a look in the window, and let a SUM machine compound the takings.",
+      "steps": [
+        { "id": "land", "type": "egg", "kind": "land", "label": "Land", "hint": "Where the shop stands" },
+        { "id": "look", "type": "pft", "label": "Window look", "hint": "The look in the window" },
+        { "id": "sum", "type": "sum", "label": "SUM machine", "hint": "Compounds what the shop takes" },
+        { "id": "agent", "type": "agent", "label": "Shop agent", "hint": "Greets at the counter" }
+      ],
+      "greeting": {
+        "Warm": "Hello {name}, welcome to the shop. The {look} in the window is one of three.",
+        "Bold": "{name}! The {look} is in. Try it before it is gone.",
+        "Playful": "Come in, {name}, we only bite on Fridays. The {look} is calling.",
+        "Luxe": "{name}, a private fitting is ready. Shall we start with the {look}?",
+        "Mysterious": "The {look} is behind the curtain, {name}."
+      },
+      "model": { "visitors": 220, "gateConversion": 0, "lookConversion": 0.05 }
+    },
+    {
+      "id": "watch", "title": "Watch party",
+      "summary": "Screen a title you are cast in; the looks worn on screen are for sale as it plays.",
+      "steps": [
+        { "id": "title", "type": "title", "label": "Title", "hint": "What you screen" },
+        { "id": "gate", "type": "egg", "kind": "gate", "label": "Gate pass", "hint": "Seats for the screening" },
+        { "id": "look", "type": "pft", "label": "Look on screen", "hint": "Shopped at the cliffhanger" },
+        { "id": "agent", "type": "agent", "label": "Host agent", "hint": "Runs the room" }
+      ],
+      "greeting": {
+        "Warm": "Grab a seat, {name}. {title} starts in five; the {look} shows up in the second act.",
+        "Bold": "{name}, it is {title} night. Do not blink when the {look} walks in.",
+        "Playful": "Popcorn, {name}? {title} is on, and yes, you can buy the {look} mid-scene.",
+        "Luxe": "{name}, your screening of {title} is ready. The {look} is available on request.",
+        "Mysterious": "{title}. Lights out. Watch the {look}, {name}."
+      },
+      "model": { "visitors": 600, "gateConversion": 0.4, "lookConversion": 0.015 }
+    },
+    {
+      "id": "resale", "title": "Resale loop",
+      "summary": "Swap PFTs up the ladder; the pool pays the differences and a SUM compounds them until your withdraw limit.",
+      "steps": [
+        { "id": "look", "type": "pft", "label": "Look you give", "hint": "What you swap away" },
+        { "id": "sum", "type": "sum", "label": "SUM machine", "hint": "Compounds the differences" },
+        { "id": "agent", "type": "agent", "label": "Broker agent", "hint": "Finds the next swap" }
+      ],
+      "greeting": {
+        "Warm": "Hi {name}, I found three swaps for your {look}.",
+        "Bold": "{name}, your {look} is worth more today. Swap now?",
+        "Playful": "{name}, your {look} wants an upgrade.",
+        "Luxe": "{name}, a collector asked about your {look}.",
+        "Mysterious": "Someone wants your {look}, {name}. Shall we?"
+      },
+      "model": { "visitors": 40, "gateConversion": 0, "lookConversion": 0.3 }
+    },
+    {
+      "id": "fanclub", "title": "Fan club",
+      "summary": "Sell earnings shares in your host to fans, greet each new holder and send them a welcome look.",
+      "steps": [
+        { "id": "host", "type": "host", "label": "Your host", "hint": "Whose earnings fans share" },
+        { "id": "share", "type": "egg", "kind": "earnings", "label": "Earnings share", "hint": "0.5% of the host each" },
+        { "id": "look", "type": "pft", "label": "Welcome look", "hint": "Sent to every new holder" },
+        { "id": "agent", "type": "agent", "label": "Fan agent", "hint": "Greets new holders" }
+      ],
+      "greeting": {
+        "Warm": "Welcome to the club, {name}. Your share of {host} starts today, and the {look} is on its way.",
+        "Bold": "{name}, you own a piece of {host} now. Act like it.",
+        "Playful": "Ding! {name} joined {host}. The {look} is your welcome gift.",
+        "Luxe": "{name}, thank you for joining {host}. The {look} has been reserved for you.",
+        "Mysterious": "{name}. You are one of us now. Look for the {look}."
+      },
+      "model": { "visitors": 120, "gateConversion": 0.25, "lookConversion": 0.1 }
+    },
+    {
+      "id": "profile", "title": "Profile drop",
+      "summary": "Put your profile PFT to work: fans follow it into a host, through a gate.",
+      "steps": [
+        { "id": "pfp", "type": "profile", "label": "Profile PFT", "hint": "The portrait you hold" },
+        { "id": "host", "type": "host", "label": "Host", "hint": "Where it shows up" },
+        { "id": "gate", "type": "egg", "kind": "gate", "label": "Gate pass", "hint": "Entry for followers" },
+        { "id": "agent", "type": "agent", "label": "Greeter", "hint": "Says hello as you" }
+      ],
+      "greeting": {
+        "Warm": "Hi {name}, it is me, {pfp}. Come say hello at {host}.",
+        "Bold": "{pfp} is live at {host}. {name}, get in.",
+        "Playful": "{name}! {pfp} here. The gate at {host} is open.",
+        "Luxe": "{name}, {pfp} invites you to {host} this evening.",
+        "Mysterious": "{pfp} is waiting at {host}, {name}."
+      },
+      "model": { "visitors": 300, "gateConversion": 0.5, "lookConversion": 0 }
+    }
+  ]
+}

@@ -1,0 +1,313 @@
+{
+ "app": "phiret",
+ "nav": [
+  {
+   "id": "home",
+   "label": "Home",
+   "icon": "home"
+  },
+  {
+   "id": "land",
+   "label": "Land",
+   "icon": "map"
+  },
+  {
+   "id": "hearings",
+   "label": "Hearings",
+   "icon": "vote"
+  },
+  {
+   "id": "parcels",
+   "label": "Parcels",
+   "icon": "map"
+  },
+  {
+   "id": "news",
+   "label": "News",
+   "icon": "chat"
+  },
+  {
+   "id": "about",
+   "label": "About",
+   "icon": "compass"
+  },
+  {
+   "id": "faq",
+   "label": "FAQ",
+   "icon": "vote"
+  },
+  {
+   "id": "docs",
+   "label": "Docs",
+   "icon": "layers"
+  }
+ ],
+ "views": {
+  "land": {
+   "title": "Land registry",
+   "sub": "Plots, zoning and owners across Phiace worlds.",
+   "blocks": [
+    {
+     "kind": "table",
+     "title": "",
+     "cols": [
+      "Plot",
+      "World",
+      "Zoning",
+      "Owner"
+     ],
+     "rows": [
+      [
+       "LAND-7",
+       "Nightfall",
+       "Retail",
+       "Nightfall club"
+      ],
+      [
+       "LAND-12",
+       "Nightfall",
+       "Venue",
+       "Open"
+      ],
+      [
+       "LAND-31",
+       "Runway hall",
+       "Stage",
+       "Council"
+      ]
+     ]
+    }
+   ]
+  },
+  "hearings": {
+   "title": "Hearings",
+   "sub": "Disputes before the council.",
+   "blocks": [
+    {
+     "kind": "grid",
+     "title": "",
+     "items": [
+      {
+       "title": "LAND-12 zoning",
+       "sub": "Open",
+       "body": "Rezone from venue to retail.",
+       "action": "Attend",
+       "done": "Attending"
+      },
+      {
+       "title": "Boundary: LAND-7",
+       "sub": "Ruled",
+       "body": "Boundary moved 2 m east.",
+       "action": "Read",
+       "done": "Read"
+      }
+     ]
+    }
+   ]
+  },
+  "docs": {
+   "title": "phiret docs",
+   "sub": "Phiret registers land, zoning and titles across virtual spaces.",
+   "blocks": [
+    {
+     "kind": "grid",
+     "title": "",
+     "items": [
+      {
+       "title": "Overview",
+       "sub": "Real estate council",
+       "body": "Phiret registers land, zoning and titles across virtual spaces."
+      },
+      {
+       "title": "Getting started",
+       "sub": "First steps",
+       "body": "Open Land, find a plot, apply for a permit."
+      },
+      {
+       "title": "Phisum and SUM",
+       "sub": "How it is funded",
+       "body": "Phisum cohorts building cities get land through Phiret; permits are PFT functions.",
+       "action": "Open Phisum",
+       "done": "Opened",
+       "app": "phisum"
+      }
+     ]
+    },
+    {
+     "kind": "table",
+     "title": "PFT functions in phiret",
+     "cols": [
+      "Function",
+      "What it does here"
+     ],
+     "rows": [
+      [
+       "permit",
+       "building rights on registered land"
+      ]
+     ]
+    },
+    {
+     "kind": "grid",
+     "title": "Read more",
+     "items": [
+      {
+       "title": "PFTs 101",
+       "sub": "Profile Fungible Tokens",
+       "body": "What PFTs are, how functions work, how they link to Phisum.",
+       "action": "Read",
+       "done": "Open",
+       "href": "../Phiegg Papers.dc.html"
+      }
+     ]
+    }
+   ]
+  },
+  "home": {
+   "title": "",
+   "sub": "",
+   "blocks": [
+    {
+     "kind": "hero",
+     "heading": "Phiret",
+     "subtitle": "Land, hearings and the public record.",
+     "body": "Phiret is the civic layer: claim and trade land in the worlds, follow hearings, and read the public record of decisions.",
+     "actions": [
+      {
+       "label": "Open Phiret",
+       "view": "land"
+      },
+      {
+       "label": "Read docs",
+       "view": "docs"
+      }
+     ]
+    }
+   ]
+  },
+  "news": {
+   "title": "News",
+   "sub": "Latest from Phiret.",
+   "blocks": [
+    {
+     "kind": "news",
+     "items": [
+      {
+       "date": "Oct 1, 2026",
+       "tag": "Land",
+       "title": "Mesa district opens",
+       "body": "New parcels in the Mesa world are open for claim."
+      },
+      {
+       "date": "Sep 17, 2026",
+       "tag": "Hearings",
+       "title": "Zoning hearing scheduled",
+       "body": "A hearing on venue density opens for comment next week."
+      },
+      {
+       "date": "Sep 2, 2026",
+       "tag": "Record",
+       "title": "Decisions are public",
+       "body": "Every hearing outcome is now in the searchable record."
+      }
+     ]
+    }
+   ]
+  },
+  "about": {
+   "title": "About Phiret",
+   "sub": "",
+   "blocks": [
+    {
+     "kind": "prose",
+     "lead": "Phiret governs the shared ground the worlds are built on.",
+     "sections": [
+      {
+       "title": "Land",
+       "body": "Claim, hold and trade parcels across the worlds, with ownership in the database."
+      },
+      {
+       "title": "Hearings",
+       "body": "Public hearings on zoning and policy, open for comment."
+      },
+      {
+       "title": "The record",
+       "body": "Every decision is written to a searchable public record."
+      }
+     ]
+    }
+   ]
+  },
+  "faq": {
+   "title": "FAQ",
+   "sub": "Common questions.",
+   "blocks": [
+    {
+     "kind": "faq",
+     "items": [
+      {
+       "q": "How do I claim land?",
+       "a": "From the Land page, where open parcels are listed by world."
+      },
+      {
+       "q": "Who runs hearings?",
+       "a": "Members, with outcomes ratified through Phidao."
+      },
+      {
+       "q": "Is the record public?",
+       "a": "Yes, and searchable by anyone."
+      }
+     ]
+    }
+   ]
+  },
+  "parcels": {
+   "title": "Parcels",
+   "sub": "Open land across the worlds.",
+   "blocks": [
+    {
+     "kind": "table",
+     "title": "",
+     "cols": [
+      "Parcel",
+      "World",
+      "Status",
+      "Floor"
+     ],
+     "rows": [
+      [
+       "Mesa 12",
+       "Mesa",
+       "Open",
+       "0.4 ETH"
+      ],
+      [
+       "Mesa 13",
+       "Mesa",
+       "Open",
+       "0.4 ETH"
+      ],
+      [
+       "Nightfall 03",
+       "Nightfall",
+       "Held",
+       "1.2 ETH"
+      ],
+      [
+       "Commons 21",
+       "Lynx Commons",
+       "Open",
+       "0.6 ETH"
+      ],
+      [
+       "Harbor 07",
+       "Harbor",
+       "In hearing",
+       "—"
+      ]
+     ]
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,285 @@
+{
+ "app": "phinux",
+ "nav": [
+  {
+   "id": "home",
+   "label": "Home",
+   "icon": "home"
+  },
+  {
+   "id": "markets",
+   "label": "Markets",
+   "icon": "chart"
+  },
+  {
+   "id": "orders",
+   "label": "Orders",
+   "icon": "vote"
+  },
+  {
+   "id": "strategies",
+   "label": "Strategies",
+   "icon": "terminal"
+  },
+  {
+   "id": "news",
+   "label": "News",
+   "icon": "chat"
+  },
+  {
+   "id": "about",
+   "label": "About",
+   "icon": "compass"
+  },
+  {
+   "id": "faq",
+   "label": "FAQ",
+   "icon": "vote"
+  },
+  {
+   "id": "docs",
+   "label": "Docs",
+   "icon": "layers"
+  }
+ ],
+ "views": {
+  "markets": {
+   "title": "Markets",
+   "sub": "Open order books for the Phiace economy.",
+   "blocks": [
+    {
+     "kind": "table",
+     "title": "",
+     "cols": [
+      "Pair",
+      "Last",
+      "24h"
+     ],
+     "rows": [
+      [
+       "PHIPUT / ETH",
+       "0.00042",
+       "+2.1%"
+      ],
+      [
+       "NIGHTFALL / PHIPUT",
+       "118.0",
+       "−0.8%"
+      ],
+      [
+       "LAND-7 / PHIPUT",
+       "2,400",
+       "+0.3%"
+      ]
+     ]
+    }
+   ]
+  },
+  "orders": {
+   "title": "Orders",
+   "sub": "",
+   "blocks": [
+    {
+     "kind": "table",
+     "title": "",
+     "cols": [
+      "Side",
+      "Pair",
+      "Amount",
+      "Status"
+     ],
+     "rows": [
+      [
+       "Buy",
+       "PHIPUT / ETH",
+       "5,000",
+       "Open"
+      ],
+      [
+       "Sell",
+       "NIGHTFALL / PHIPUT",
+       "2",
+       "Filled"
+      ]
+     ]
+    }
+   ]
+  },
+  "strategies": {
+   "title": "Strategies",
+   "sub": "Written in pscript, run on paper first.",
+   "blocks": [
+    {
+     "kind": "terminal",
+     "title": "",
+     "lines": [],
+     "commands": {
+      "phinux run strategy.ps --paper": [
+       "paper trading · PHIPUT/ETH",
+       "filled 2 of 5 orders"
+      ],
+      "phinux book phiput": [
+       "bid 0.00041 · ask 0.00043"
+      ]
+     }
+    }
+   ]
+  },
+  "docs": {
+   "title": "phinux docs",
+   "sub": "Phinux runs open order books for Phiput, SUM and club pairs.",
+   "blocks": [
+    {
+     "kind": "grid",
+     "title": "",
+     "items": [
+      {
+       "title": "Overview",
+       "sub": "Open trading system",
+       "body": "Phinux runs open order books for Phiput, SUM and club pairs."
+      },
+      {
+       "title": "Getting started",
+       "sub": "First steps",
+       "body": "phinux book phiput, then paper-trade a strategy."
+      },
+      {
+       "title": "Phisum and SUM",
+       "sub": "How it is funded",
+       "body": "SUM and Phiput trade here. Phisum settles cohort rewards through Phinux.",
+       "action": "Open Phisum",
+       "done": "Opened",
+       "app": "phisum"
+      }
+     ]
+    },
+    {
+     "kind": "table",
+     "title": "PFT functions in phinux",
+     "cols": [
+      "Function",
+      "What it does here"
+     ],
+     "rows": [
+      [
+       "fund",
+       "route rewards into Phipad applications"
+      ]
+     ]
+    },
+    {
+     "kind": "grid",
+     "title": "Read more",
+     "items": [
+      {
+       "title": "PFTs 101",
+       "sub": "Profile Fungible Tokens",
+       "body": "What PFTs are, how functions work, how they link to Phisum.",
+       "action": "Read",
+       "done": "Open",
+       "href": "../Phiegg Papers.dc.html"
+      }
+     ]
+    }
+   ]
+  },
+  "home": {
+   "title": "",
+   "sub": "",
+   "blocks": [
+    {
+     "kind": "hero",
+     "heading": "Phinux",
+     "subtitle": "Trade and automate within your limits.",
+     "body": "Phinux is the markets app: watch token markets, place orders, and run strategies that stay inside limits you set.",
+     "actions": [
+      {
+       "label": "Open Phinux",
+       "view": "markets"
+      },
+      {
+       "label": "Read docs",
+       "view": "docs"
+      }
+     ]
+    }
+   ]
+  },
+  "news": {
+   "title": "News",
+   "sub": "Latest from Phinux.",
+   "blocks": [
+    {
+     "kind": "news",
+     "items": [
+      {
+       "date": "Oct 3, 2026",
+       "tag": "Markets",
+       "title": "$SUM pairs added",
+       "body": "Trade $SUM against $EGG, USDC and ETH with live depth."
+      },
+      {
+       "date": "Sep 21, 2026",
+       "tag": "Strategies",
+       "title": "Rebalance within limits",
+       "body": "Set bounds and let a strategy keep your wallet balanced."
+      },
+      {
+       "date": "Sep 5, 2026",
+       "tag": "Release",
+       "title": "CLI trading",
+       "body": "Every order and strategy is scriptable from the terminal."
+      }
+     ]
+    }
+   ]
+  },
+  "about": {
+   "title": "About Phinux",
+   "sub": "",
+   "blocks": [
+    {
+     "kind": "prose",
+     "lead": "Phinux is where the ecosystem's tokens trade, by hand or by strategy.",
+     "sections": [
+      {
+       "title": "Markets",
+       "body": "Live prices and depth for $EGG, $SUM, ETH and USDC pairs."
+      },
+      {
+       "title": "Orders",
+       "body": "Place, track and cancel orders; everything settles to your wallet."
+      },
+      {
+       "title": "Strategies",
+       "body": "Automate within limits you set — nothing trades outside your bounds."
+      }
+     ]
+    }
+   ]
+  },
+  "faq": {
+   "title": "FAQ",
+   "sub": "Common questions.",
+   "blocks": [
+    {
+     "kind": "faq",
+     "items": [
+      {
+       "q": "Can strategies exceed my limits?",
+       "a": "No — bounds you set are enforced before any order is placed."
+      },
+      {
+       "q": "What settles where?",
+       "a": "Fills settle to your Phiace wallet."
+      },
+      {
+       "q": "Is there a CLI?",
+       "a": "Yes, orders and strategies are fully scriptable."
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

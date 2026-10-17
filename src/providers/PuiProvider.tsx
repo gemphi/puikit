@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { Theme, ThemeStyle, ThemePreferences, PuiContextValue } from './types';
 import { BRAND_THEMES } from './themes';
 import {
@@ -10,6 +10,7 @@ import {
   resolveBrandId,
 } from './archetypes';
 import { deriveGradientTreatment } from './gradient';
+import { PALETTES, PALETTE_TOKEN_NAMES, brandGradientTokens, derivePaletteTokens, paletteOf, type GradientLevel, type SeedPalette } from './palette';
 import {
   PREF_KEYS,
   DEFAULT_USER_ID,
@@ -22,6 +23,8 @@ import { IServiceContainer } from '../services/types';
 
 export * from './types';
 export * from './themes';
+export * from './palette';
+import { radiusPresetOf } from './palette';
 
 const PuiContext = createContext<PuiContextValue>({
   theme: 'system',
@@ -52,6 +55,13 @@ const PuiContext = createContext<PuiContextValue>({
   brands: BRAND_THEMES,
   archetypes: SITE_ARCHETYPES,
   isDark: false,
+  paletteId: '',
+  setPaletteId: () => {},
+  gradientLevel: '',
+  setGradientLevel: () => {},
+  palettes: PALETTES,
+  paletteOverride: null,
+  setPaletteOverride: () => {},
 });
 
 export const usePuiTheme = () => useContext(PuiContext);
@@ -72,10 +82,20 @@ const writeRootPreferences = (
   archetypeId: string,
   borderRadius: number,
   density: number,
+  paletteId: string | SeedPalette = '',
+  gradientLevel: GradientLevel | '' = '',
+  darkOverride?: boolean,
 ) => {
   if (typeof document === 'undefined') return;
   const root = document.documentElement;
-  const isDark = getIsDark(theme);
+  const isDark = darkOverride ?? getIsDark(theme);
+  // Clear whatever the palette system wrote last time before the brand writes its own values.
+  if (root.hasAttribute('data-palette') || root.hasAttribute('data-gradient-level')) {
+    for (const name of PALETTE_TOKEN_NAMES) root.style.removeProperty(name);
+    root.style.removeProperty('--phi-gradient-control-text');
+    root.removeAttribute('data-palette');
+    root.removeAttribute('data-gradient-level');
+  }
   root.classList.toggle('dark', isDark);
   root.setAttribute('data-theme', isDark ? 'dark' : 'light');
   root.setAttribute('data-theme-style', style);
@@ -84,6 +104,8 @@ const writeRootPreferences = (
   // Radius/density scales are applied as unitless numbers so the SCSS token
   // definitions can multiply their base values via calc() (Part B).
   root.style.setProperty('--phi-radius-scale', String(borderRadius));
+  // Named preset (small · medium · large · pill) so styles can switch shape, not just size — pill makes controls round.
+  root.setAttribute('data-radius', radiusPresetOf(borderRadius));
   root.style.setProperty('--phi-space-scale', String(density));
 
   const brand = BRAND_THEMES.find((b) => b.id === brandId) || BRAND_THEMES[0];
@@ -152,6 +174,20 @@ const writeRootPreferences = (
     root.style.removeProperty('--phi-gradient-card-wash');
     root.style.removeProperty('--phi-gradient-card-wash-reverse');
   }
+
+  // The full gradient system: a seeded palette (surfaces, text, accents and every gradient level), or the
+  // gradient levels alone from the brand. Applied last so it wins over the brand and the theme style; an app
+  // opts in with defaultPalette / defaultGradientLevel or the setters, and nothing is written otherwise.
+  const palette = typeof paletteId === 'string' ? paletteOf(paletteId) : paletteId;
+  const level: GradientLevel | '' = gradientLevel || (palette ? 'soft' : '');
+  const tokens = palette
+    ? derivePaletteTokens(palette, isDark, level || 'soft')
+    : level ? brandGradientTokens((isDark && colors.primaryDark) || colors.primary, colors.info, isDark, level) : null;
+  if (tokens) {
+    for (const [name, value] of Object.entries(tokens)) root.style.setProperty(name, value);
+    if (palette) root.setAttribute('data-palette', palette.id);
+    root.setAttribute('data-gradient-level', level);
+  }
 };
 
 export interface PuiProviderProps {
@@ -165,6 +201,10 @@ export interface PuiProviderProps {
   /** The initial user identity. Defaults to `'guest'`. */
   defaultUserId?: string;
   container?: IServiceContainer;
+  /** Seeded palette id (see PALETTES); '' = none, the brand colours stand. */
+  defaultPalette?: string;
+  /** Gradient level for every surface: flat · soft · vivid · aurora; '' = off (theme style decides). */
+  defaultGradientLevel?: GradientLevel | '';
 }
 
 export const PuiProvider: React.FC<PuiProviderProps> = ({
@@ -177,6 +217,8 @@ export const PuiProvider: React.FC<PuiProviderProps> = ({
   defaultDensity = 1,
   defaultUserId = DEFAULT_USER_ID,
   container,
+  defaultPalette = '',
+  defaultGradientLevel = '',
 }) => {
   // The active user identity. Preferences are namespaced per user, so the
   // initial load and every persist is scoped to this id (defaults to 'guest').
@@ -189,6 +231,8 @@ export const PuiProvider: React.FC<PuiProviderProps> = ({
   const [archetypeId, setArchetypeIdState] = useState<string>(() => loadUserPreference<string>(PREF_KEYS.archetypeId, defaultUserId, defaultArchetype));
   const [borderRadius, setBorderRadiusState] = useState<number>(() => loadUserNumberPreference(PREF_KEYS.borderRadius, defaultUserId, defaultBorderRadius));
   const [density, setDensityState] = useState<number>(() => loadUserNumberPreference(PREF_KEYS.density, defaultUserId, defaultDensity));
+  const [paletteId, setPaletteIdState] = useState<string>(() => loadUserPreference<string>(PREF_KEYS.palette, defaultUserId, defaultPalette));
+  const [gradientLevel, setGradientLevelState] = useState<GradientLevel | ''>(() => loadUserPreference<GradientLevel | ''>(PREF_KEYS.gradientLevel, defaultUserId, defaultGradientLevel));
 
   // Brand tracking: a brand is "explicit" when the app supplied a default brand
   // or a persisted brand exists. Otherwise the active archetype's default brand
@@ -224,9 +268,13 @@ export const PuiProvider: React.FC<PuiProviderProps> = ({
     return () => media.removeEventListener('change', onChange);
   }, []);
 
+  // A transient palette (the page wears what it shows); never persisted, cleared with null.
+  const [paletteOverride, setOverride] = useState<{ palette: SeedPalette; level?: GradientLevel } | null>(null);
+  const setPaletteOverride = useCallback((palette: SeedPalette | null, level?: GradientLevel) => setOverride(palette ? { palette, level } : null), []);
+
   useEffect(() => {
-    writeRootPreferences(theme, brandId, themeStyle, activeArchetype.id, borderRadius, density);
-  }, [theme, brandId, themeStyle, activeArchetype.id, borderRadius, density, systemDark]);
+    writeRootPreferences(theme, brandId, themeStyle, activeArchetype.id, borderRadius, density, paletteOverride?.palette ?? paletteId, (paletteOverride && paletteOverride.level) || gradientLevel, isDark);
+  }, [theme, brandId, themeStyle, activeArchetype.id, borderRadius, density, systemDark, paletteId, gradientLevel, paletteOverride]);
 
   // Every setter persists per-user so switching identity swaps the entire
   // persisted preference set (guest and named users each keep their own).
@@ -236,6 +284,8 @@ export const PuiProvider: React.FC<PuiProviderProps> = ({
   const setArchetypeId = (a: string) => { setArchetypeIdState(a); persistUserPreference(PREF_KEYS.archetypeId, userId, a); };
   const setBorderRadius = (n: number) => { setBorderRadiusState(n); persistUserPreference(PREF_KEYS.borderRadius, userId, String(n)); };
   const setDensity = (n: number) => { setDensityState(n); persistUserPreference(PREF_KEYS.density, userId, String(n)); };
+  const setPaletteId = (id: string) => { setPaletteIdState(id); persistUserPreference(PREF_KEYS.palette, userId, id); };
+  const setGradientLevel = (l: GradientLevel | '') => { setGradientLevelState(l); persistUserPreference(PREF_KEYS.gradientLevel, userId, l); };
 
   /**
    * Switch the active user identity. When the id changes, we reload every
@@ -250,6 +300,8 @@ export const PuiProvider: React.FC<PuiProviderProps> = ({
     setArchetypeIdState(loadUserPreference<string>(PREF_KEYS.archetypeId, id, defaultArchetype));
     setBorderRadiusState(loadUserNumberPreference(PREF_KEYS.borderRadius, id, defaultBorderRadius));
     setDensityState(loadUserNumberPreference(PREF_KEYS.density, id, defaultDensity));
+    setPaletteIdState(loadUserPreference<string>(PREF_KEYS.palette, id, defaultPalette));
+    setGradientLevelState(loadUserPreference<GradientLevel | ''>(PREF_KEYS.gradientLevel, id, defaultGradientLevel));
     const persistedBrand = loadUserPreference<string>(PREF_KEYS.brandId, id, '');
     setExplicitBrandIdState(persistedBrand ? persistedBrand : (defaultBrand ?? null));
   };
@@ -291,6 +343,13 @@ export const PuiProvider: React.FC<PuiProviderProps> = ({
         brands: BRAND_THEMES,
         archetypes: SITE_ARCHETYPES,
         isDark,
+        paletteId,
+        setPaletteId,
+        gradientLevel,
+        setGradientLevel,
+        palettes: PALETTES,
+        paletteOverride: paletteOverride?.palette ?? null,
+        setPaletteOverride,
       }}
     >
       <ServiceProvider container={container}>{children}</ServiceProvider>

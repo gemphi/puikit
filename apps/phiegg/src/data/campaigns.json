@@ -1,0 +1,1349 @@
+{
+  "note": "Original ad copy for fictional brands; in-house assessment.",
+  "campaigns": [
+    {
+      "id": "cmp_c_opal",
+      "clubId": "c_opal",
+      "category": "underwear",
+      "line": "Second-Skin",
+      "headline": "Second-Skin by Maison Opal",
+      "story": [
+        "The drop you have been waiting for is here.",
+        "Introducing Second-Skin, cut for every body.",
+        "Tested in three worlds and one very long runway.",
+        "10k on the waitlist before we said a word.",
+        "Save this for Friday."
+      ],
+      "hashtags": [
+        "#SecondSkin",
+        "#OPAL",
+        "#SS26",
+        "#PFT",
+        "#FitForEveryBody"
+      ]
+    },
+    {
+      "id": "cmp_c_swan",
+      "clubId": "c_swan",
+      "category": "lingerie",
+      "line": "Velvet Night",
+      "headline": "Velvet Night by Satin Swans",
+      "story": [
+        "Made to be seen. Or not. Your call.",
+        "Introducing Velvet Night, cut for every body.",
+        "Recycled satin, lined for comfort, made to layer.",
+        "Our most-saved look this season.",
+        "Try it on in AR, then decide."
+      ],
+      "hashtags": [
+        "#VelvetNight",
+        "#SWAN",
+        "#SS26",
+        "#PFT",
+        "#FitForEveryBody"
+      ]
+    },
+    {
+      "id": "cmp_c_velour",
+      "clubId": "c_velour",
+      "category": "lounge",
+      "line": "Cloud Knit",
+      "headline": "Cloud Knit by Velour Vixens",
+      "story": [
+        "Wear it under. Wear it out.",
+        "Meet Cloud Knit: the hoodie, the jogger.",
+        "Recycled satin, lined for comfort, made to layer.",
+        "Our most-saved look this season.",
+        "Hold a PFT, get early access."
+      ],
+      "hashtags": [
+        "#CloudKnit",
+        "#VLR",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_lynx",
+      "clubId": "c_lynx",
+      "category": "swim",
+      "line": "Pool Club",
+      "headline": "Pool Club by Lumen Lynx",
+      "story": [
+        "Made to be seen. Or not. Your call.",
+        "Pool Club lands Friday in Swan Lake Pavilion.",
+        "Hand-finished lace with a stretch you can live in.",
+        "“I bought it in every colour.”, a very honest member",
+        "Hold a PFT, get early access."
+      ],
+      "hashtags": [
+        "#PoolClub",
+        "#LYNX",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_cherub",
+      "clubId": "c_cherub",
+      "category": "couture",
+      "line": "Runway Capsule",
+      "headline": "Runway Capsule by Chrome Cherubs",
+      "story": [
+        "The drop you have been waiting for is here.",
+        "The Runway Capsule edit: the coat, the gown.",
+        "Hand-finished lace with a stretch you can live in.",
+        "Styled by Chatty Whims, approved by the front row.",
+        "Save this for Friday."
+      ],
+      "hashtags": [
+        "#RunwayCapsule",
+        "#CHRB",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_gazelle",
+      "clubId": "c_gazelle",
+      "category": "film",
+      "line": "Premiere Wardrobe",
+      "headline": "Premiere Wardrobe by Gilt Gazelles",
+      "story": [
+        "Wear it under. Wear it out.",
+        "Premiere Wardrobe lands Friday in Nebula.",
+        "Recycled satin, lined for comfort, made to layer.",
+        "4.9 stars from 2k fitting-room reviews.",
+        "Hold a PFT, get early access."
+      ],
+      "hashtags": [
+        "#PremiereWardrobe",
+        "#GILT",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_006",
+      "clubId": "c_006",
+      "category": "underwear",
+      "line": "Silk Base",
+      "headline": "Silk Base by Orchid Stags",
+      "story": [
+        "Three sizes sold out in an hour. We restocked.",
+        "Introducing Silk Base, cut for every body.",
+        "Twelve shades, sizes XS to 4X, fitted on real bodies.",
+        "Our most-saved look this season.",
+        "Try it on in AR, then decide."
+      ],
+      "hashtags": [
+        "#SilkBase",
+        "#ORST6",
+        "#SS26",
+        "#PFT",
+        "#FitForEveryBody"
+      ]
+    },
+    {
+      "id": "cmp_c_007",
+      "clubId": "c_007",
+      "category": "lingerie",
+      "line": "Midnight Lace",
+      "headline": "Midnight Lace by Sable Foxes",
+      "story": [
+        "The drop you have been waiting for is here.",
+        "The Midnight Lace edit: the balconette, the garter.",
+        "Hand-finished lace with a stretch you can live in.",
+        "Our most-saved look this season.",
+        "Tap to shop the look."
+      ],
+      "hashtags": [
+        "#MidnightLace",
+        "#SAFO7",
+        "#SS26",
+        "#PFT",
+        "#FitForEveryBody"
+      ]
+    },
+    {
+      "id": "cmp_c_008",
+      "clubId": "c_008",
+      "category": "lounge",
+      "line": "Sunday Set",
+      "headline": "Sunday Set by Quartz Moths",
+      "story": [
+        "Made to be seen. Or not. Your call.",
+        "Sunday Set lands Friday in Carousel.",
+        "Buttery microfibre, invisible edges, zero lines.",
+        "Our most-saved look this season.",
+        "Try it on in AR, then decide."
+      ],
+      "hashtags": [
+        "#SundaySet",
+        "#QUMO8",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_009",
+      "clubId": "c_009",
+      "category": "swim",
+      "line": "Sun Ritual",
+      "headline": "Sun Ritual by Lace Ravens",
+      "story": [
+        "POV: you finally found the one that fits.",
+        "Meet Sun Ritual: the one-piece, the triangle top, the high-leg.",
+        "Hand-finished lace with a stretch you can live in.",
+        "“I bought it in every colour.”, a very honest member",
+        "Tap to shop the look."
+      ],
+      "hashtags": [
+        "#SunRitual",
+        "#LARA9",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_010",
+      "clubId": "c_010",
+      "category": "couture",
+      "line": "Runway Capsule",
+      "headline": "Runway Capsule by Neon Muses",
+      "story": [
+        "The drop you have been waiting for is here.",
+        "Meet Runway Capsule: the coat, the gown.",
+        "Twelve shades, sizes XS to 4X, fitted on real bodies.",
+        "“I bought it in every colour.”, a very honest member",
+        "Save this for Friday."
+      ],
+      "hashtags": [
+        "#RunwayCapsule",
+        "#NEMU0",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_011",
+      "clubId": "c_011",
+      "category": "film",
+      "line": "Premiere Wardrobe",
+      "headline": "Premiere Wardrobe by Saffron Cranes",
+      "story": [
+        "The fit check that broke the feed.",
+        "The Premiere Wardrobe edit: the cape, the column dress.",
+        "Hand-finished lace with a stretch you can live in.",
+        "10k on the waitlist before we said a word.",
+        "Link in bio. Sizes going fast."
+      ],
+      "hashtags": [
+        "#PremiereWardrobe",
+        "#SACR1",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_012",
+      "clubId": "c_012",
+      "category": "underwear",
+      "line": "Everyday Sculpt",
+      "headline": "Everyday Sculpt by Cobalt Koi",
+      "story": [
+        "The fit check that broke the feed.",
+        "The Everyday Sculpt edit: the thong, the brief.",
+        "Twelve shades, sizes XS to 4X, fitted on real bodies.",
+        "4.9 stars from 2k fitting-room reviews.",
+        "Hold a PFT, get early access."
+      ],
+      "hashtags": [
+        "#EverydaySculpt",
+        "#COKO2",
+        "#SS26",
+        "#PFT",
+        "#FitForEveryBody"
+      ]
+    },
+    {
+      "id": "cmp_c_013",
+      "clubId": "c_013",
+      "category": "lingerie",
+      "line": "Bridal Edit",
+      "headline": "Bridal Edit by Rose Swans",
+      "story": [
+        "Made to be seen. Or not. Your call.",
+        "The Bridal Edit edit: the balconette, the garter.",
+        "Sculpts without squeezing. Moves when you move.",
+        "4.9 stars from 2k fitting-room reviews.",
+        "Try it on in AR, then decide."
+      ],
+      "hashtags": [
+        "#BridalEdit",
+        "#ROSW3",
+        "#SS26",
+        "#PFT",
+        "#FitForEveryBody"
+      ]
+    },
+    {
+      "id": "cmp_c_014",
+      "clubId": "c_014",
+      "category": "lounge",
+      "line": "Rest Mode",
+      "headline": "Rest Mode by Moon Doves",
+      "story": [
+        "Three sizes sold out in an hour. We restocked.",
+        "Introducing Rest Mode, cut for every body.",
+        "Twelve shades, sizes XS to 4X, fitted on real bodies.",
+        "10k on the waitlist before we said a word.",
+        "Save this for Friday."
+      ],
+      "hashtags": [
+        "#RestMode",
+        "#MODO4",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_015",
+      "clubId": "c_015",
+      "category": "swim",
+      "line": "Pool Club",
+      "headline": "Pool Club by Prism Owls",
+      "story": [
+        "Soft enough to forget. Good enough to show.",
+        "Introducing Pool Club, cut for every body.",
+        "Hand-finished lace with a stretch you can live in.",
+        "10k on the waitlist before we said a word.",
+        "Tap to shop the look."
+      ],
+      "hashtags": [
+        "#PoolClub",
+        "#PROW5",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_016",
+      "clubId": "c_016",
+      "category": "couture",
+      "line": "Runway Capsule",
+      "headline": "Runway Capsule by Satin Sirens",
+      "story": [
+        "The fit check that broke the feed.",
+        "Runway Capsule lands Friday in Sequin Sea.",
+        "Tested in three worlds and one very long runway.",
+        "4.9 stars from 2k fitting-room reviews.",
+        "Try it on in AR, then decide."
+      ],
+      "hashtags": [
+        "#RunwayCapsule",
+        "#SASI6",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_017",
+      "clubId": "c_017",
+      "category": "film",
+      "line": "Premiere Wardrobe",
+      "headline": "Premiere Wardrobe by Tulle Lynx",
+      "story": [
+        "Made to be seen. Or not. Your call.",
+        "Meet Premiere Wardrobe: the cape, the column dress, the tux.",
+        "Buttery microfibre, invisible edges, zero lines.",
+        "4.9 stars from 2k fitting-room reviews.",
+        "Link in bio. Sizes going fast."
+      ],
+      "hashtags": [
+        "#PremiereWardrobe",
+        "#TULY7",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_018",
+      "clubId": "c_018",
+      "category": "underwear",
+      "line": "Silk Base",
+      "headline": "Silk Base by Plume Hares",
+      "story": [
+        "Your new everyday, in every shade.",
+        "The Silk Base edit: the thong, the brief.",
+        "Buttery microfibre, invisible edges, zero lines.",
+        "“I bought it in every colour.”, a very honest member",
+        "Save this for Friday."
+      ],
+      "hashtags": [
+        "#SilkBase",
+        "#PLHA8",
+        "#SS26",
+        "#PFT",
+        "#FitForEveryBody"
+      ]
+    },
+    {
+      "id": "cmp_c_019",
+      "clubId": "c_019",
+      "category": "lingerie",
+      "line": "Satin Hour",
+      "headline": "Satin Hour by Ivory Peacocks",
+      "story": [
+        "POV: you finally found the one that fits.",
+        "Satin Hour lands Friday in Tulle Valley.",
+        "Hand-finished lace with a stretch you can live in.",
+        "4.9 stars from 2k fitting-room reviews.",
+        "Tap to shop the look."
+      ],
+      "hashtags": [
+        "#SatinHour",
+        "#IVPE9",
+        "#SS26",
+        "#PFT",
+        "#FitForEveryBody"
+      ]
+    },
+    {
+      "id": "cmp_c_020",
+      "clubId": "c_020",
+      "category": "lounge",
+      "line": "Off-Duty",
+      "headline": "Off-Duty by Silk Herons",
+      "story": [
+        "Wear it under. Wear it out.",
+        "The Off-Duty edit: the hoodie, the jogger.",
+        "Hand-finished lace with a stretch you can live in.",
+        "4.9 stars from 2k fitting-room reviews.",
+        "Try it on in AR, then decide."
+      ],
+      "hashtags": [
+        "#OffDuty",
+        "#SIHE0",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_021",
+      "clubId": "c_021",
+      "category": "swim",
+      "line": "Sun Ritual",
+      "headline": "Sun Ritual by Pearl Tigers",
+      "story": [
+        "The drop you have been waiting for is here.",
+        "Meet Sun Ritual: the one-piece, the triangle top.",
+        "Hand-finished lace with a stretch you can live in.",
+        "10k on the waitlist before we said a word.",
+        "Tap to shop the look."
+      ],
+      "hashtags": [
+        "#SunRitual",
+        "#PETI1",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_022",
+      "clubId": "c_022",
+      "category": "couture",
+      "line": "Gilded Edit",
+      "headline": "Gilded Edit by Velvet Stags",
+      "story": [
+        "The fit check that broke the feed.",
+        "Gilded Edit lands Friday in Gilded Grove.",
+        "Recycled satin, lined for comfort, made to layer.",
+        "4.9 stars from 2k fitting-room reviews.",
+        "Hold a PFT, get early access."
+      ],
+      "hashtags": [
+        "#GildedEdit",
+        "#VEST2",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_023",
+      "clubId": "c_023",
+      "category": "film",
+      "line": "On-Set Essentials",
+      "headline": "On-Set Essentials by Gilt Foxes",
+      "story": [
+        "Your new everyday, in every shade.",
+        "On-Set Essentials lands Friday in Prism Port.",
+        "Sculpts without squeezing. Moves when you move.",
+        "“I bought it in every colour.”, a very honest member",
+        "Save this for Friday."
+      ],
+      "hashtags": [
+        "#OnSetEssentials",
+        "#GIFO3",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_024",
+      "clubId": "c_024",
+      "category": "underwear",
+      "line": "Soft Lace",
+      "headline": "Soft Lace by Ember Moths",
+      "story": [
+        "POV: you finally found the one that fits.",
+        "Meet Soft Lace: the thong, the brief, the bralette.",
+        "Twelve shades, sizes XS to 4X, fitted on real bodies.",
+        "4.9 stars from 2k fitting-room reviews.",
+        "Try it on in AR, then decide."
+      ],
+      "hashtags": [
+        "#SoftLace",
+        "#EMMO4",
+        "#SS26",
+        "#PFT",
+        "#FitForEveryBody"
+      ]
+    },
+    {
+      "id": "cmp_c_025",
+      "clubId": "c_025",
+      "category": "lingerie",
+      "line": "Bridal Edit",
+      "headline": "Bridal Edit by Frost Ravens",
+      "story": [
+        "Made to be seen. Or not. Your call.",
+        "The Bridal Edit edit: the balconette, the garter.",
+        "Tested in three worlds and one very long runway.",
+        "Our most-saved look this season.",
+        "Tap to shop the look."
+      ],
+      "hashtags": [
+        "#BridalEdit",
+        "#FRRA5",
+        "#SS26",
+        "#PFT",
+        "#FitForEveryBody"
+      ]
+    },
+    {
+      "id": "cmp_c_026",
+      "clubId": "c_026",
+      "category": "lounge",
+      "line": "Off-Duty",
+      "headline": "Off-Duty by Orchid Muses",
+      "story": [
+        "Wear it under. Wear it out.",
+        "Off-Duty lands Friday in Ivory Tower.",
+        "Hand-finished lace with a stretch you can live in.",
+        "Styled by Gigi Veil, approved by the front row.",
+        "Try it on in AR, then decide."
+      ],
+      "hashtags": [
+        "#OffDuty",
+        "#ORMU6",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_027",
+      "clubId": "c_027",
+      "category": "swim",
+      "line": "Sun Ritual",
+      "headline": "Sun Ritual by Sable Cranes",
+      "story": [
+        "Your new everyday, in every shade.",
+        "Sun Ritual lands Friday in Orchid Rain.",
+        "Recycled satin, lined for comfort, made to layer.",
+        "Styled by Iris Stitch, approved by the front row.",
+        "Link in bio. Sizes going fast."
+      ],
+      "hashtags": [
+        "#SunRitual",
+        "#SACR7",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_028",
+      "clubId": "c_028",
+      "category": "couture",
+      "line": "Nacre Pool",
+      "headline": "Nacre Pool by Quartz Koi",
+      "story": [
+        "Wear it under. Wear it out.",
+        "Nacre Pool lands Friday in Solstice.",
+        "Twelve shades, sizes XS to 4X, fitted on real bodies.",
+        "Styled by Juliette Lace, approved by the front row.",
+        "Try it on in AR, then decide."
+      ],
+      "hashtags": [
+        "#NacreCollection",
+        "#QUKO8",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_029",
+      "clubId": "c_029",
+      "category": "film",
+      "line": "On-Set Essentials",
+      "headline": "On-Set Essentials by Lace Swans",
+      "story": [
+        "POV: you finally found the one that fits.",
+        "Meet On-Set Essentials: the cape, the column dress, the tux.",
+        "Tested in three worlds and one very long runway.",
+        "“I bought it in every colour.”, a very honest member",
+        "Tap to shop the look."
+      ],
+      "hashtags": [
+        "#OnSetEssentials",
+        "#LASW9",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_030",
+      "clubId": "c_030",
+      "category": "underwear",
+      "line": "Barely There",
+      "headline": "Barely There by Neon Doves",
+      "story": [
+        "Soft enough to forget. Good enough to show.",
+        "Barely There lands Friday in Starling.",
+        "Hand-finished lace with a stretch you can live in.",
+        "10k on the waitlist before we said a word.",
+        "Hold a PFT, get early access."
+      ],
+      "hashtags": [
+        "#BarelyThere",
+        "#NEDO0",
+        "#SS26",
+        "#PFT",
+        "#FitForEveryBody"
+      ]
+    },
+    {
+      "id": "cmp_c_031",
+      "clubId": "c_031",
+      "category": "lingerie",
+      "line": "Midnight Lace",
+      "headline": "Midnight Lace by Saffron Owls",
+      "story": [
+        "Wear it under. Wear it out.",
+        "Introducing Midnight Lace, cut for every body.",
+        "Sculpts without squeezing. Moves when you move.",
+        "“I bought it in every colour.”, a very honest member",
+        "Save this for Friday."
+      ],
+      "hashtags": [
+        "#MidnightLace",
+        "#SAOW1",
+        "#SS26",
+        "#PFT",
+        "#FitForEveryBody"
+      ]
+    },
+    {
+      "id": "cmp_c_032",
+      "clubId": "c_032",
+      "category": "lounge",
+      "line": "Off-Duty",
+      "headline": "Off-Duty by Cobalt Sirens",
+      "story": [
+        "The fit check that broke the feed.",
+        "Off-Duty lands Friday in Ember Coast.",
+        "Recycled satin, lined for comfort, made to layer.",
+        "Our most-saved look this season.",
+        "Try it on in AR, then decide."
+      ],
+      "hashtags": [
+        "#OffDuty",
+        "#COSI2",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_033",
+      "clubId": "c_033",
+      "category": "swim",
+      "line": "Pool Club",
+      "headline": "Pool Club by Rose Lynx",
+      "story": [
+        "Three sizes sold out in an hour. We restocked.",
+        "The Pool Club edit: the one-piece, the triangle top, the high-leg.",
+        "Sculpts without squeezing. Moves when you move.",
+        "“I bought it in every colour.”, a very honest member",
+        "Link in bio. Sizes going fast."
+      ],
+      "hashtags": [
+        "#PoolClub",
+        "#ROLY3",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_034",
+      "clubId": "c_034",
+      "category": "couture",
+      "line": "Gilded Edit",
+      "headline": "Gilded Edit by Moon Hares",
+      "story": [
+        "The drop you have been waiting for is here.",
+        "The Gilded Edit edit: the coat, the gown.",
+        "Recycled satin, lined for comfort, made to layer.",
+        "10k on the waitlist before we said a word.",
+        "Link in bio. Sizes going fast."
+      ],
+      "hashtags": [
+        "#GildedEdit",
+        "#MOHA4",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_035",
+      "clubId": "c_035",
+      "category": "film",
+      "line": "Premiere Wardrobe",
+      "headline": "Premiere Wardrobe by Prism Peacocks",
+      "story": [
+        "POV: you finally found the one that fits.",
+        "Premiere Wardrobe lands Friday in Plume.",
+        "Twelve shades, sizes XS to 4X, fitted on real bodies.",
+        "Styled by Rosa Silk, approved by the front row.",
+        "Save this for Friday."
+      ],
+      "hashtags": [
+        "#PremiereWardrobe",
+        "#PRPE5",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_036",
+      "clubId": "c_036",
+      "category": "underwear",
+      "line": "Soft Lace",
+      "headline": "Soft Lace by Satin Herons",
+      "story": [
+        "Soft enough to forget. Good enough to show.",
+        "Soft Lace lands Friday in Kaleido.",
+        "Sculpts without squeezing. Moves when you move.",
+        "4.9 stars from 2k fitting-room reviews.",
+        "Save this for Friday."
+      ],
+      "hashtags": [
+        "#SoftLace",
+        "#SAHE6",
+        "#SS26",
+        "#PFT",
+        "#FitForEveryBody"
+      ]
+    },
+    {
+      "id": "cmp_c_037",
+      "clubId": "c_037",
+      "category": "lingerie",
+      "line": "Midnight Lace",
+      "headline": "Midnight Lace by Tulle Tigers",
+      "story": [
+        "The fit check that broke the feed.",
+        "The Midnight Lace edit: the balconette, the garter.",
+        "Sculpts without squeezing. Moves when you move.",
+        "4.9 stars from 2k fitting-room reviews.",
+        "Link in bio. Sizes going fast."
+      ],
+      "hashtags": [
+        "#MidnightLace",
+        "#TUTI7",
+        "#SS26",
+        "#PFT",
+        "#FitForEveryBody"
+      ]
+    },
+    {
+      "id": "cmp_c_038",
+      "clubId": "c_038",
+      "category": "lounge",
+      "line": "Off-Duty",
+      "headline": "Off-Duty by Plume Stags",
+      "story": [
+        "Wear it under. Wear it out.",
+        "Introducing Off-Duty, cut for every body.",
+        "Twelve shades, sizes XS to 4X, fitted on real bodies.",
+        "4.9 stars from 2k fitting-room reviews.",
+        "Link in bio. Sizes going fast."
+      ],
+      "hashtags": [
+        "#OffDuty",
+        "#PLST8",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_039",
+      "clubId": "c_039",
+      "category": "swim",
+      "line": "Sun Ritual",
+      "headline": "Sun Ritual by Ivory Foxes",
+      "story": [
+        "Three sizes sold out in an hour. We restocked.",
+        "Sun Ritual lands Friday in Oasis Nine.",
+        "Hand-finished lace with a stretch you can live in.",
+        "Styled by Wren Muse, approved by the front row.",
+        "Link in bio. Sizes going fast."
+      ],
+      "hashtags": [
+        "#SunRitual",
+        "#IVFO9",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_040",
+      "clubId": "c_040",
+      "category": "couture",
+      "line": "Runway Capsule",
+      "headline": "Runway Capsule by Silk Moths",
+      "story": [
+        "The drop you have been waiting for is here.",
+        "Introducing Runway Capsule, cut for every body.",
+        "Sculpts without squeezing. Moves when you move.",
+        "10k on the waitlist before we said a word.",
+        "Link in bio. Sizes going fast."
+      ],
+      "hashtags": [
+        "#RunwayCapsule",
+        "#SIMO0",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_041",
+      "clubId": "c_041",
+      "category": "film",
+      "line": "On-Set Essentials",
+      "headline": "On-Set Essentials by Pearl Ravens",
+      "story": [
+        "POV: you finally found the one that fits.",
+        "On-Set Essentials lands Friday in Saffron Sands.",
+        "Recycled satin, lined for comfort, made to layer.",
+        "10k on the waitlist before we said a word.",
+        "Hold a PFT, get early access."
+      ],
+      "hashtags": [
+        "#OnSetEssentials",
+        "#PERA1",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_042",
+      "clubId": "c_042",
+      "category": "underwear",
+      "line": "Everyday Sculpt",
+      "headline": "Everyday Sculpt by Velvet Muses",
+      "story": [
+        "Your new everyday, in every shade.",
+        "Everyday Sculpt lands Friday in Indigo Drift.",
+        "Twelve shades, sizes XS to 4X, fitted on real bodies.",
+        "4.9 stars from 2k fitting-room reviews.",
+        "Try it on in AR, then decide."
+      ],
+      "hashtags": [
+        "#EverydaySculpt",
+        "#VEMU2",
+        "#SS26",
+        "#PFT",
+        "#FitForEveryBody"
+      ]
+    },
+    {
+      "id": "cmp_c_043",
+      "clubId": "c_043",
+      "category": "lingerie",
+      "line": "Satin Hour",
+      "headline": "Satin Hour by Gilt Cranes",
+      "story": [
+        "Wear it under. Wear it out.",
+        "Satin Hour lands Friday in Coral Arcade.",
+        "Hand-finished lace with a stretch you can live in.",
+        "4.9 stars from 2k fitting-room reviews.",
+        "Tap to shop the look."
+      ],
+      "hashtags": [
+        "#SatinHour",
+        "#GICR3",
+        "#SS26",
+        "#PFT",
+        "#FitForEveryBody"
+      ]
+    },
+    {
+      "id": "cmp_c_044",
+      "clubId": "c_044",
+      "category": "lounge",
+      "line": "Sunday Set",
+      "headline": "Sunday Set by Ember Koi",
+      "story": [
+        "Your new everyday, in every shade.",
+        "Introducing Sunday Set, cut for every body.",
+        "Sculpts without squeezing. Moves when you move.",
+        "10k on the waitlist before we said a word.",
+        "Save this for Friday."
+      ],
+      "hashtags": [
+        "#SundaySet",
+        "#EMKO4",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_045",
+      "clubId": "c_045",
+      "category": "swim",
+      "line": "Tide Line",
+      "headline": "Tide Line by Frost Swans",
+      "story": [
+        "Wear it under. Wear it out.",
+        "The Tide Line edit: the one-piece, the triangle top, the high-leg.",
+        "Sculpts without squeezing. Moves when you move.",
+        "4.9 stars from 2k fitting-room reviews.",
+        "Save this for Friday."
+      ],
+      "hashtags": [
+        "#TideLine",
+        "#FRSW5",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_046",
+      "clubId": "c_046",
+      "category": "couture",
+      "line": "Gilded Edit",
+      "headline": "Gilded Edit by Orchid Doves",
+      "story": [
+        "Three sizes sold out in an hour. We restocked.",
+        "Meet Gilded Edit: the coat, the gown, the corset.",
+        "Sculpts without squeezing. Moves when you move.",
+        "4.9 stars from 2k fitting-room reviews.",
+        "Try it on in AR, then decide."
+      ],
+      "hashtags": [
+        "#GildedEdit",
+        "#ORDO6",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_047",
+      "clubId": "c_047",
+      "category": "film",
+      "line": "Red Carpet Edit",
+      "headline": "Red Carpet Edit by Sable Owls",
+      "story": [
+        "Made to be seen. Or not. Your call.",
+        "Red Carpet Edit lands Friday in Loom.",
+        "Hand-finished lace with a stretch you can live in.",
+        "4.9 stars from 2k fitting-room reviews.",
+        "Hold a PFT, get early access."
+      ],
+      "hashtags": [
+        "#RedCarpetEdit",
+        "#SAOW7",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_048",
+      "clubId": "c_048",
+      "category": "underwear",
+      "line": "Second-Skin",
+      "headline": "Second-Skin by Quartz Sirens",
+      "story": [
+        "Three sizes sold out in an hour. We restocked.",
+        "Meet Second-Skin: the thong, the brief.",
+        "Recycled satin, lined for comfort, made to layer.",
+        "Styled by Juliette Lace, approved by the front row.",
+        "Hold a PFT, get early access."
+      ],
+      "hashtags": [
+        "#SecondSkin",
+        "#QUSI8",
+        "#SS26",
+        "#PFT",
+        "#FitForEveryBody"
+      ]
+    },
+    {
+      "id": "cmp_c_049",
+      "clubId": "c_049",
+      "category": "lingerie",
+      "line": "Velvet Night",
+      "headline": "Velvet Night by Lace Lynx",
+      "story": [
+        "Soft enough to forget. Good enough to show.",
+        "The Velvet Night edit: the balconette, the garter, the slip.",
+        "Buttery microfibre, invisible edges, zero lines.",
+        "“I bought it in every colour.”, a very honest member",
+        "Tap to shop the look."
+      ],
+      "hashtags": [
+        "#VelvetNight",
+        "#LALY9",
+        "#SS26",
+        "#PFT",
+        "#FitForEveryBody"
+      ]
+    },
+    {
+      "id": "cmp_c_050",
+      "clubId": "c_050",
+      "category": "lounge",
+      "line": "Cloud Knit",
+      "headline": "Cloud Knit by Neon Hares",
+      "story": [
+        "POV: you finally found the one that fits.",
+        "The Cloud Knit edit: the hoodie, the jogger.",
+        "Buttery microfibre, invisible edges, zero lines.",
+        "“I bought it in every colour.”, a very honest member",
+        "Hold a PFT, get early access."
+      ],
+      "hashtags": [
+        "#CloudKnit",
+        "#NEHA0",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_051",
+      "clubId": "c_051",
+      "category": "swim",
+      "line": "Pool Club",
+      "headline": "Pool Club by Saffron Peacocks",
+      "story": [
+        "Made to be seen. Or not. Your call.",
+        "Meet Pool Club: the one-piece, the triangle top, the high-leg.",
+        "Twelve shades, sizes XS to 4X, fitted on real bodies.",
+        "Our most-saved look this season.",
+        "Save this for Friday."
+      ],
+      "hashtags": [
+        "#PoolClub",
+        "#SAPE1",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_052",
+      "clubId": "c_052",
+      "category": "couture",
+      "line": "Gilded Edit",
+      "headline": "Gilded Edit by Cobalt Herons",
+      "story": [
+        "The fit check that broke the feed.",
+        "The Gilded Edit edit: the coat, the gown.",
+        "Buttery microfibre, invisible edges, zero lines.",
+        "Styled by Nova Gilt, approved by the front row.",
+        "Tap to shop the look."
+      ],
+      "hashtags": [
+        "#GildedEdit",
+        "#COHE2",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_053",
+      "clubId": "c_053",
+      "category": "film",
+      "line": "Red Carpet Edit",
+      "headline": "Red Carpet Edit by Rose Tigers",
+      "story": [
+        "Wear it under. Wear it out.",
+        "Introducing Red Carpet Edit, cut for every body.",
+        "Recycled satin, lined for comfort, made to layer.",
+        "4.9 stars from 2k fitting-room reviews.",
+        "Try it on in AR, then decide."
+      ],
+      "hashtags": [
+        "#RedCarpetEdit",
+        "#ROTI3",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_054",
+      "clubId": "c_054",
+      "category": "underwear",
+      "line": "Everyday Sculpt",
+      "headline": "Everyday Sculpt by Moon Stags",
+      "story": [
+        "The fit check that broke the feed.",
+        "Meet Everyday Sculpt: the thong, the brief.",
+        "Tested in three worlds and one very long runway.",
+        "Styled by Pia Hem, approved by the front row.",
+        "Link in bio. Sizes going fast."
+      ],
+      "hashtags": [
+        "#EverydaySculpt",
+        "#MOST4",
+        "#SS26",
+        "#PFT",
+        "#FitForEveryBody"
+      ]
+    },
+    {
+      "id": "cmp_c_055",
+      "clubId": "c_055",
+      "category": "lingerie",
+      "line": "Satin Hour",
+      "headline": "Satin Hour by Prism Foxes",
+      "story": [
+        "Three sizes sold out in an hour. We restocked.",
+        "The Satin Hour edit: the balconette, the garter, the slip.",
+        "Sculpts without squeezing. Moves when you move.",
+        "4.9 stars from 2k fitting-room reviews.",
+        "Save this for Friday."
+      ],
+      "hashtags": [
+        "#SatinHour",
+        "#PRFO5",
+        "#SS26",
+        "#PFT",
+        "#FitForEveryBody"
+      ]
+    },
+    {
+      "id": "cmp_c_056",
+      "clubId": "c_056",
+      "category": "lounge",
+      "line": "Off-Duty",
+      "headline": "Off-Duty by Satin Moths",
+      "story": [
+        "The fit check that broke the feed.",
+        "Meet Off-Duty: the hoodie, the jogger.",
+        "Tested in three worlds and one very long runway.",
+        "4.9 stars from 2k fitting-room reviews.",
+        "Hold a PFT, get early access."
+      ],
+      "hashtags": [
+        "#OffDuty",
+        "#SAMO6",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_057",
+      "clubId": "c_057",
+      "category": "swim",
+      "line": "Sun Ritual",
+      "headline": "Sun Ritual by Tulle Ravens",
+      "story": [
+        "Three sizes sold out in an hour. We restocked.",
+        "The Sun Ritual edit: the one-piece, the triangle top, the high-leg.",
+        "Buttery microfibre, invisible edges, zero lines.",
+        "Styled by Tessa Stitch, approved by the front row.",
+        "Link in bio. Sizes going fast."
+      ],
+      "hashtags": [
+        "#SunRitual",
+        "#TURA7",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_058",
+      "clubId": "c_058",
+      "category": "couture",
+      "line": "Gilded Edit",
+      "headline": "Gilded Edit by Plume Muses",
+      "story": [
+        "The fit check that broke the feed.",
+        "Meet Gilded Edit: the coat, the gown.",
+        "Recycled satin, lined for comfort, made to layer.",
+        "Styled by Violette Lace, approved by the front row.",
+        "Save this for Friday."
+      ],
+      "hashtags": [
+        "#GildedEdit",
+        "#PLMU8",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_059",
+      "clubId": "c_059",
+      "category": "film",
+      "line": "On-Set Essentials",
+      "headline": "On-Set Essentials by Ivory Cranes",
+      "story": [
+        "Three sizes sold out in an hour. We restocked.",
+        "On-Set Essentials lands Friday in Atelier Nine.",
+        "Hand-finished lace with a stretch you can live in.",
+        "10k on the waitlist before we said a word.",
+        "Save this for Friday."
+      ],
+      "hashtags": [
+        "#OnSetEssentials",
+        "#IVCR9",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_060",
+      "clubId": "c_060",
+      "category": "underwear",
+      "line": "Barely There",
+      "headline": "Barely There by Silk Koi",
+      "story": [
+        "Wear it under. Wear it out.",
+        "Meet Barely There: the thong, the brief, the bralette.",
+        "Sculpts without squeezing. Moves when you move.",
+        "Our most-saved look this season.",
+        "Save this for Friday."
+      ],
+      "hashtags": [
+        "#BarelyThere",
+        "#SIKO0",
+        "#SS26",
+        "#PFT",
+        "#FitForEveryBody"
+      ]
+    },
+    {
+      "id": "cmp_c_061",
+      "clubId": "c_061",
+      "category": "lingerie",
+      "line": "Satin Hour",
+      "headline": "Satin Hour by Pearl Swans",
+      "story": [
+        "Your new everyday, in every shade.",
+        "Introducing Satin Hour, cut for every body.",
+        "Twelve shades, sizes XS to 4X, fitted on real bodies.",
+        "4.9 stars from 2k fitting-room reviews.",
+        "Hold a PFT, get early access."
+      ],
+      "hashtags": [
+        "#SatinHour",
+        "#PESW1",
+        "#SS26",
+        "#PFT",
+        "#FitForEveryBody"
+      ]
+    },
+    {
+      "id": "cmp_c_062",
+      "clubId": "c_062",
+      "category": "lounge",
+      "line": "Cloud Knit",
+      "headline": "Cloud Knit by Velvet Doves",
+      "story": [
+        "POV: you finally found the one that fits.",
+        "Introducing Cloud Knit, cut for every body.",
+        "Twelve shades, sizes XS to 4X, fitted on real bodies.",
+        "4.9 stars from 2k fitting-room reviews.",
+        "Save this for Friday."
+      ],
+      "hashtags": [
+        "#CloudKnit",
+        "#VEDO2",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    },
+    {
+      "id": "cmp_c_063",
+      "clubId": "c_063",
+      "category": "swim",
+      "line": "Sun Ritual",
+      "headline": "Sun Ritual by Gilt Owls",
+      "story": [
+        "Made to be seen. Or not. Your call.",
+        "Meet Sun Ritual: the one-piece, the triangle top.",
+        "Recycled satin, lined for comfort, made to layer.",
+        "“I bought it in every colour.”, a very honest member",
+        "Try it on in AR, then decide."
+      ],
+      "hashtags": [
+        "#SunRitual",
+        "#GIOW3",
+        "#SS26",
+        "#PFT",
+        "#NewMedia"
+      ]
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Tag, Text, Title } from '@pui/components';
+import { Box, Button, Link, Tag, Text, Title } from '@pui/components';
 import { Hero, Block, Glass, AutoGrid } from '../components/kit';
 import { EMAILS } from '../lib/routes';
 import s from '../styles/uaia.module.scss';
@@ -18,7 +18,7 @@ export const LeadershipPage: React.FC = () => (
     <Hero
       pattern="leadership"
       label="Leadership & Council"
-      title={<>A founding council <span className={s.gradText}>assembled in the open.</span></>}
+      title={<>A founding council <Box as="span" className={s.gradText}>assembled in the open.</Box></>}
       sub="UAIA publishes its leadership the same way it publishes its certificates: only what is real, only when it is confirmed. One executive seat is filled today; the remaining founding seats are open and in appointment, each with a public mandate. Names appear here the day their holders accept, never before."
     />
 
@@ -48,7 +48,7 @@ export const LeadershipPage: React.FC = () => (
             <Title level={5}>{seat.t}</Title>
             <Text size="sm" intent="secondary" style={{ lineHeight: 1.65 }}>{seat.b}</Text>
             <Text size="sm" style={{ marginTop: 10 }}>
-              <a href={`mailto:${EMAILS.careers}`} style={{ color: 'var(--phi-color-primary)', textDecoration: 'none' }}>Nominate / apply →</a>
+              <Link href={`mailto:${EMAILS.careers}`} style={{ color: 'var(--phi-color-primary)', textDecoration: 'none' }}>Nominate / apply →</Link>
             </Text>
           </Glass>
         ))}

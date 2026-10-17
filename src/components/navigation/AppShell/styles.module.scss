@@ -1,0 +1,132 @@
+/* The one app shell: primary icon rail + secondary grouped panel + main + optional right. All theme-token driven,
+   so each app wears its own palette and only the menu data differs. */
+.root {
+  display: flex;
+  width: 100%;
+  /* An app shell owns the window: rail and panel run the full height, the content scrolls inside. */
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+  flex-direction: column;
+  background-color: var(--phi-color-background);
+}
+/* Header row: brand · where you are · the app's tools. */
+.head { display: flex; align-items: center; gap: var(--phi-space-3); flex: none; min-height: 3.5rem; padding: 0 var(--phi-space-4);
+  border-bottom: 1px solid var(--phi-color-border); background: var(--phi-gradient-navbar, var(--phi-color-background)); }
+.head .menuBtn { display: none; }
+.crumbs { min-width: 0; padding-left: var(--phi-space-4); }
+.body { display: flex; flex: 1 1 auto; min-height: 0; }
+
+.nav { display: flex; flex: none; min-height: 0; }
+
+/* Primary icon rail: the app's menu GROUPS, plus the apps switcher and foot. */
+.rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--phi-space-2);
+  flex: none;
+  inline-size: 3.75rem;
+  padding-block: var(--phi-space-3);
+  background: var(--phi-gradient-rail, var(--phi-color-background));
+  border-inline-end: 1px solid var(--phi-color-border);
+}
+.railGroup { width: 100%; }
+.railBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  border-radius: var(--phi-radius-md);
+  color: var(--phi-color-text-muted);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background var(--phi-transition-fast), color var(--phi-transition-fast), border-color var(--phi-transition-fast);
+}
+.railBtn { background-image: radial-gradient(circle at 50% 35%, color-mix(in srgb, var(--phi-color-primary) 9%, transparent) 0%, transparent 72%); background-repeat: no-repeat; border-radius: var(--phi-radius-lg); }
+.railBtn:hover { background-image: radial-gradient(circle at 50% 35%, color-mix(in srgb, var(--phi-color-primary) 18%, transparent) 0%, transparent 78%); color: var(--phi-color-primary); }
+/* Active: a shade of the theme colour fading out around the icon, as in Phiegg's rail. */
+.railOn, .railOn:hover {
+  background-image: radial-gradient(circle at 50% 35%, color-mix(in srgb, var(--phi-color-primary) 26%, transparent) 0%, color-mix(in srgb, var(--phi-color-primary) 8%, transparent) 60%, transparent 100%);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--phi-color-primary) 30%, transparent);
+  color: var(--phi-color-primary);
+}
+.railGlyph { font-weight: 700; font-size: var(--phi-font-size-sm); }
+
+/* Secondary panel: the active group's sub-nav, or the apps list. */
+.panel {
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  inline-size: 15rem;
+  min-height: 0;
+  background: var(--phi-gradient-sidebar, var(--phi-color-background-secondary));
+  border-inline-end: 1px solid var(--phi-color-border);
+}
+.brand { display: flex; align-items: center; gap: var(--phi-space-2); cursor: pointer; flex: none; }
+.brandGlyph {
+  display: inline-flex; align-items: center; justify-content: center;
+  inline-size: 2rem; block-size: 2rem; flex: none;
+  border-radius: var(--phi-radius-md);
+  background: color-mix(in srgb, var(--app-color, var(--phi-color-primary)) 16%, var(--phi-color-background-card));
+  border: 1px solid color-mix(in srgb, var(--app-color, var(--phi-color-primary)) 40%, transparent);
+}
+.brandName { margin: 0; line-height: 1.1; }
+
+.panelScroll { flex: 1 1 auto; min-height: 0; overflow: auto; padding: var(--phi-space-3); }
+.panelTitle { display: block; padding: var(--phi-space-2) var(--phi-space-3) var(--phi-space-1); text-transform: none; }
+.navRow { border-radius: var(--phi-radius-md); background-image: linear-gradient(90deg, color-mix(in srgb, var(--phi-color-primary) 6%, transparent) 0%, transparent 70%); background-repeat: no-repeat; }
+.navRow:hover { background-image: linear-gradient(90deg, color-mix(in srgb, var(--phi-color-primary) 14%, transparent) 0%, transparent 85%); }
+.navRow[aria-current='page'] { background-image: linear-gradient(90deg, color-mix(in srgb, var(--phi-color-primary) 22%, transparent) 0%, transparent 100%) !important; box-shadow: inset 3px 0 0 var(--phi-color-primary); color: var(--phi-color-primary); }
+/* The panel's list sits on a band: a light shade of the theme colour at the left, gone by the right (Phiegg's panel). */
+.panelGroup { padding: var(--phi-space-2); border-radius: var(--phi-radius-lg);
+  background-image: linear-gradient(90deg, color-mix(in srgb, var(--phi-color-primary) 12%, transparent) 0%, color-mix(in srgb, var(--phi-color-primary) 4%, transparent) 55%, transparent 100%); }
+/* An entry that pulls records: the fold toggle at the row's end, the pulled rows indented under it, sinking into the
+   panel (theme shade to nothing, never a second solid). */
+.navEntry { display: flex; flex-direction: column; }
+.foldBtn { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: var(--phi-radius-md); color: var(--phi-color-text-secondary); flex: none; }
+.foldBtn:hover { background: color-mix(in srgb, var(--phi-color-primary) 10%, transparent); }
+.pulls { margin: 2px 0 6px var(--phi-space-4); padding-left: var(--phi-space-2); border-left: 1px solid color-mix(in srgb, var(--phi-color-primary) 22%, transparent);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--phi-color-primary) 6%, transparent), transparent); border-radius: 0 var(--phi-radius-md) var(--phi-radius-md) 0; }
+.pullRow { border-radius: var(--phi-radius-sm); min-width: 0; }
+
+.panelFoot { border-top: 1px solid var(--phi-color-border); padding: var(--phi-space-2); }
+
+/* App switcher rows (secondary). */
+.appRow {
+  display: flex; align-items: center; gap: var(--phi-space-2);
+  padding: var(--phi-space-2) var(--phi-space-3);
+  border-radius: var(--phi-radius-md);
+  text-decoration: none;
+  color: var(--phi-color-text-primary);
+}
+.appRow:hover { background: var(--phi-color-background-card); }
+.appOn { background: color-mix(in srgb, var(--phi-color-primary) 10%, transparent); }
+.appGlyph {
+  display: inline-flex; align-items: center; justify-content: center;
+  inline-size: 2rem; block-size: 2rem; flex: none;
+  border-radius: var(--phi-radius-md);
+  background: color-mix(in srgb, var(--app-color, var(--phi-color-primary)) 16%, var(--phi-color-background-card));
+  border: 1px solid color-mix(in srgb, var(--app-color, var(--phi-color-primary)) 40%, transparent);
+  font-weight: 700; font-size: var(--phi-font-size-sm);
+}
+.appText { display: flex; flex-direction: column; min-width: 0; }
+
+/* Main. */
+.main { display: flex; flex-direction: column; flex: 1 1 auto; min-width: 0; min-height: 0;
+  /* the page gradient, painted once edge to edge (Phiegg's main) */
+  background: var(--phi-gradient-main, var(--phi-color-background)); }
+.inner { flex: 1 1 auto; min-height: 0; overflow: auto; padding: var(--phi-space-5) var(--phi-space-6); }
+
+.right { flex: none; min-height: 0; overflow: auto; border-inline-start: 1px solid var(--phi-color-border); }
+
+/* Phone: hide rail + panel, show a top bar with a menu button; the Drawer carries the whole menu. */
+@media (max-width: 900px) {
+  .nav { display: none; }
+  .head .menuBtn { display: inline-flex; }
+  .crumbs { display: none; }
+  .inner { padding: var(--phi-space-4); }
+  .right { display: none; }
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Title } from '@pui/components';
+import { Box, Text, Title } from '@pui/components';
 import { Hero, Block, Glass, AutoGrid } from '../components/kit';
 import s from '../styles/uaia.module.scss';
 
@@ -24,7 +24,7 @@ export const GovernancePage: React.FC = () => (
     <Hero
       pattern="governance"
       label="Governance & Charter"
-      title={<>Structured so that no one — <span className={s.gradText}>including us</span> — has to be trusted blindly.</>}
+      title={<>Structured so that no one — <Box as="span" className={s.gradText}>including us</Box> — has to be trusted blindly.</>}
     />
 
     <Block label="Structure" title="The three chambers.">
@@ -39,26 +39,26 @@ export const GovernancePage: React.FC = () => (
     </Block>
 
     <Block label="Charter" title="Key articles, summarized." tight>
-      <div style={{ marginTop: 18, display: 'grid', gap: 12 }}>
+      <Box style={{ marginTop: 18, display: 'grid', gap: 12 }}>
         {ARTICLES.map((x) => (
           <Glass key={x.a}>
-            <span className={s.mono} style={{ color: 'var(--phi-color-primary)', fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase' }}>{x.a}</span>
+            <Box as="span" className={s.mono} style={{ color: 'var(--phi-color-primary)', fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase' }}>{x.a}</Box>
             <Text style={{ marginTop: 6 }}>{x.b}</Text>
           </Glass>
         ))}
-      </div>
+      </Box>
     </Block>
 
     <Block label="Decision flow" title="From submission to standing oversight.">
       <Glass style={{ marginTop: 16 }}>
-        <ol style={{ margin: 0, paddingLeft: 20, display: 'grid', gap: 10 }}>
+        <Box as="ol" style={{ margin: 0, paddingLeft: 20, display: 'grid', gap: 10 }}>
           {FLOW.map((step, i) => (
-            <li key={step}>
-              <span className={s.mono} style={{ color: 'var(--phi-color-primary)', marginRight: 10, fontSize: 12 }}>{String(i + 1).padStart(2, '0')}</span>
+            <Box as="li" key={step}>
+              <Box as="span" className={s.mono} style={{ color: 'var(--phi-color-primary)', marginRight: 10, fontSize: 12 }}>{String(i + 1).padStart(2, '0')}</Box>
               {step}
-            </li>
+            </Box>
           ))}
-        </ol>
+        </Box>
       </Glass>
     </Block>
 

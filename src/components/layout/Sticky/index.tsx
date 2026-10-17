@@ -10,6 +10,8 @@ type StickyProps = {
   bottom?: ResponsiveValue<number>;
   offset?: number;
   zIndex?: number;
+  /** The card ground behind it and a little room above and below, so what scrolls under it is hidden (a composer). */
+  surface?: boolean;
   className?: string;
 };
 
@@ -19,6 +21,7 @@ export const Sticky = ({
   bottom,
   offset = 0,
   zIndex = 100,
+  surface = false,
   className = '',
 }: StickyProps) => {
   const style: React.CSSProperties = {
@@ -28,7 +31,7 @@ export const Sticky = ({
   };
 
   return (
-    <Box className={cn(styles.sticky, className)} style={style}>
+    <Box className={cn(styles.sticky, surface && styles.surface, className)} style={style}>
       {children}
     </Box>
   );

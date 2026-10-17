@@ -1,0 +1,1391 @@
+{
+  "app": "phihub",
+  "nav": [
+    {
+      "id": "home",
+      "label": "Home",
+      "icon": "home"
+    },
+    {
+      "id": "store",
+      "label": "Store",
+      "icon": "bag",
+      "items": [
+        {
+          "id": "catalog",
+          "label": "Catalog",
+          "icon": "grid",
+          "image": "phiegg:worlds/gen/w_gx_calla_works.webp",
+          "pull": {
+            "n": 5,
+            "kind": "phihubApp",
+            "label": "name",
+            "sub": "category",
+            "sort": "download",
+            "art": [
+              "phiegg:worlds/w_coral_arcade.png",
+              "phiegg:worlds/w_aurum.png",
+              "phiegg:worlds/gen/w_venus.webp",
+              "phiegg:worlds/gen/w_nova.webp",
+              "phiegg:worlds/w_orchid_rain.png",
+              "phiegg:worlds/w_naimia.png",
+              "phiegg:worlds/w_lumen_gardens.png",
+              "phiegg:worlds/w_glimmer.png",
+              "phiegg:worlds/gen/w_calder.webp",
+              "phiegg:worlds/w_veil.png",
+              "phiegg:worlds/gen/w_chatty.webp",
+              "phiegg:worlds/gen/w_gx_bramble_house.webp"
+            ]
+          }
+        },
+        {
+          "id": "discover",
+          "label": "Discover",
+          "icon": "compass",
+          "image": "phiegg:worlds/gen/w_gx_dune_mill.webp",
+          "pull": {
+            "n": 5,
+            "kind": "world",
+            "label": "name",
+            "sub": "kind",
+            "body": "description",
+            "image": "image",
+            "open": "phiegg",
+            "art": [
+              "phiegg:worlds/gen/w_gx_quill_guild.webp",
+              "phiegg:worlds/gen/w_gx_umber_maison.webp",
+              "phiegg:worlds/gen/w_gx_foxglove_mill.webp",
+              "phiegg:worlds/gen/w_gx_linden_maison.webp",
+              "phiegg:worlds/gen/w_gx_cordelia_mill.webp",
+              "phiegg:worlds/gen/w_gx_dune_row.webp",
+              "phiegg:worlds/gen/w_epac.webp",
+              "phiegg:worlds/gen/w_gx_briar_row.webp",
+              "phiegg:worlds/w_moonlace.png",
+              "phiegg:worlds/w_obsidian_bay.png",
+              "phiegg:worlds/gen/w_once.webp",
+              "phiegg:worlds/gen/w_halomodels.webp"
+            ]
+          }
+        },
+        {
+          "id": "apps",
+          "label": "Apps",
+          "icon": "box",
+          "image": "phiegg:worlds/gen/w_calder.webp",
+          "pull": {
+            "n": 5,
+            "kind": "phihubAgent",
+            "label": "name",
+            "sub": "category",
+            "art": [
+              "phiegg:worlds/gen/w_gx_ivory_house.webp",
+              "phiegg:worlds/gen/w_gx_fable_guild.webp",
+              "phiegg:worlds/gen/w_gx_rosewood_mill.webp",
+              "phiegg:worlds/gen/w_gx_lumen_works.webp",
+              "phiegg:worlds/gen/w_ohhc.webp",
+              "phiegg:worlds/gen/w_gx_wren_house.webp",
+              "phiegg:worlds/w_bijou.png",
+              "phiegg:worlds/gen/w_verbum.webp",
+              "phiegg:worlds/w_prism_port.png",
+              "phiegg:worlds/w_opalia.png",
+              "phiegg:worlds/w_opalia.png",
+              "phiegg:worlds/w_prism_port.png"
+            ]
+          }
+        },
+        {
+          "id": "repos",
+          "label": "Repositories",
+          "icon": "layers",
+          "image": "phiegg:worlds/w_veil.png",
+          "pull": {
+            "n": 5,
+            "kind": "phihubRepo",
+            "label": "name",
+            "sub": "language",
+            "sort": "star",
+            "art": [
+              "phiegg:worlds/w_aurum.png",
+              "phiegg:worlds/w_coral_arcade.png",
+              "phiegg:worlds/gen/w_nova.webp",
+              "phiegg:worlds/gen/w_venus.webp",
+              "phiegg:worlds/w_naimia.png",
+              "phiegg:worlds/w_orchid_rain.png",
+              "phiegg:worlds/w_glimmer.png",
+              "phiegg:worlds/w_lumen_gardens.png",
+              "phiegg:worlds/w_veil.png",
+              "phiegg:worlds/gen/w_calder.webp",
+              "phiegg:worlds/gen/w_gx_petal_works.webp",
+              "phiegg:worlds/gen/w_gx_kestrel_row.webp"
+            ]
+          }
+        },
+        {
+          "id": "installed",
+          "label": "Installed",
+          "icon": "check",
+          "image": "phiegg:worlds/gen/w_gx_ember_works.webp",
+          "pull": {
+            "n": 5,
+            "kind": "phihubSkill",
+            "label": "name",
+            "sub": "category",
+            "art": [
+              "phiegg:worlds/w_velvet_dunes.png",
+              "phiegg:worlds/w_silk_atlas.png",
+              "phiegg:worlds/gen/w_gx_bramble_house.webp",
+              "phiegg:worlds/gen/w_chatty.webp",
+              "phiegg:worlds/gen/w_gx_delphine_salon.webp",
+              "phiegg:worlds/gen/w_gx_calla_works.webp",
+              "phiegg:worlds/gen/w_gx_juniper_studio.webp",
+              "phiegg:worlds/gen/w_gx_fable_works.webp",
+              "phiegg:worlds/w_bijou.png",
+              "phiegg:worlds/gen/w_verbum.webp",
+              "phiegg:worlds/w_halo.png",
+              "phiegg:worlds/w_marquee.png"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "learn",
+      "label": "Learn",
+      "icon": "compass",
+      "items": [
+        {
+          "id": "platform",
+          "label": "Platform",
+          "icon": "cpu",
+          "image": "phiegg:worlds/gen/w_gx_kestrel_row.webp"
+        },
+        {
+          "id": "news",
+          "label": "News",
+          "icon": "chat",
+          "image": "phiegg:worlds/w_veil.png"
+        },
+        {
+          "id": "about",
+          "label": "About",
+          "icon": "compass",
+          "image": "phiegg:worlds/gen/w_gx_dune_mill.webp"
+        },
+        {
+          "id": "faq",
+          "label": "FAQ",
+          "icon": "vote",
+          "image": "phiegg:worlds/w_velvet_dunes.png"
+        },
+        {
+          "id": "docs",
+          "label": "Docs",
+          "icon": "file",
+          "image": "phiegg:worlds/gen/w_gx_calla_atelier.webp"
+        }
+      ]
+    }
+  ],
+  "views": {
+    "discover": {
+      "title": "Discover",
+      "sub": "Apps, models and templates from across Phiace.",
+      "blocks": [
+        {
+          "kind": "grid",
+          "title": "Featured apps",
+          "items": [
+            {
+              "title": "phient",
+              "sub": "Your digital human",
+              "body": "Hand your work to one agent across every app.",
+              "action": "Get",
+              "done": "Installed",
+              "app": "phient",
+              "image": "phiegg:worlds/w_orchid_rain.png",
+              "genImage": true
+            },
+            {
+              "title": "phiace",
+              "sub": "Assistants and personas",
+              "body": "Shape the voice that helps you.",
+              "action": "Get",
+              "done": "Installed",
+              "app": "phiace",
+              "image": "phiegg:worlds/gen/w_gx_delphine_salon.webp",
+              "genImage": true
+            },
+            {
+              "title": "phiber",
+              "sub": "4D spatial platform",
+              "body": "Build the worlds your club lives in.",
+              "action": "Get",
+              "done": "Installed",
+              "app": "phiber",
+              "image": "phiegg:worlds/w_petal_park.png",
+              "genImage": true
+            },
+            {
+              "title": "Hall builder",
+              "sub": "phihub · app",
+              "body": "Lay out a club hall with drag and drop rooms.",
+              "action": "Get",
+              "done": "Installed",
+              "gen": true,
+              "image": "phiegg:worlds/gen/w_gx_juniper_studio.webp"
+            },
+            {
+              "title": "Ride desk",
+              "sub": "phihub · app",
+              "body": "Sell and book rides between worlds.",
+              "action": "Get",
+              "done": "Installed",
+              "gen": true,
+              "image": "phiegg:worlds/w_zephyr.png"
+            },
+            {
+              "title": "Look locker",
+              "sub": "phihub · app",
+              "body": "Keep and swap your looks across worlds.",
+              "action": "Get",
+              "done": "Installed",
+              "gen": true,
+              "image": "phiegg:worlds/w_pearl_ridge.png"
+            },
+            {
+              "title": "Treasury view",
+              "sub": "phihub · app",
+              "body": "See every inflow and payout of your club.",
+              "action": "Get",
+              "done": "Installed",
+              "gen": true,
+              "image": "phiegg:worlds/w_sequin_sea.png"
+            },
+            {
+              "title": "Quiz night",
+              "sub": "phihub · app",
+              "body": "Live quizzes for club events.",
+              "action": "Get",
+              "done": "Installed",
+              "gen": true,
+              "image": "phiegg:worlds/w_zephyr.png"
+            }
+          ]
+        },
+        {
+          "kind": "grid",
+          "title": "Templates",
+          "items": [
+            {
+              "title": "Club starter",
+              "sub": "phiegg template",
+              "body": "A club with a host, a world and a first drop.",
+              "action": "Use",
+              "done": "Added",
+              "image": "phiegg:worlds/gen/w_gx_quill_works.webp",
+              "genImage": true
+            },
+            {
+              "title": "Quest pack",
+              "sub": "phiegg template",
+              "body": "Five quests wired to PFT rewards.",
+              "action": "Use",
+              "done": "Added",
+              "image": "phiegg:worlds/gen/w_gx_calla_atelier.webp",
+              "genImage": true
+            },
+            {
+              "title": "Persona kit",
+              "sub": "phiace template",
+              "body": "A stylist persona ready to fine-tune.",
+              "action": "Use",
+              "done": "Added",
+              "image": "phiegg:worlds/gen/w_skim.webp",
+              "genImage": true
+            },
+            {
+              "title": "Event wall",
+              "sub": "phihub · app",
+              "body": "A wall of every event your clubs host.",
+              "action": "Use",
+              "done": "Added",
+              "gen": true,
+              "image": "phiegg:worlds/gen/w_gx_fable_row.webp"
+            }
+          ]
+        }
+      ]
+    },
+    "apps": {
+      "title": "All apps",
+      "sub": "Every app in the Phiace family.",
+      "blocks": [
+        {
+          "kind": "grid",
+          "title": "",
+          "items": [
+            {
+              "title": "phiegg",
+              "sub": "",
+              "body": "",
+              "action": "Get",
+              "done": "Installed",
+              "app": "phiegg",
+              "image": "phiegg:worlds/w_neon_atelier.png",
+              "genImage": true
+            },
+            {
+              "title": "phipad",
+              "sub": "",
+              "body": "",
+              "action": "Get",
+              "done": "Installed",
+              "app": "phipad",
+              "image": "phiegg:worlds/gen/w_gx_foxglove_mill.webp",
+              "genImage": true
+            },
+            {
+              "title": "phient",
+              "sub": "",
+              "body": "",
+              "action": "Get",
+              "done": "Installed",
+              "app": "phient",
+              "image": "phiegg:worlds/w_naimia.png",
+              "genImage": true
+            },
+            {
+              "title": "phiace",
+              "sub": "",
+              "body": "",
+              "action": "Get",
+              "done": "Installed",
+              "app": "phiace",
+              "image": "phiegg:worlds/gen/w_gx_cordelia_mill.webp",
+              "genImage": true
+            },
+            {
+              "title": "phiora",
+              "sub": "",
+              "body": "",
+              "action": "Get",
+              "done": "Installed",
+              "app": "phiora",
+              "image": "phiegg:worlds/w_acro_world.png",
+              "genImage": true
+            },
+            {
+              "title": "phiano",
+              "sub": "",
+              "body": "",
+              "action": "Get",
+              "done": "Installed",
+              "app": "phiano",
+              "image": "phiegg:worlds/w_lumen_gardens.png",
+              "genImage": true
+            },
+            {
+              "title": "phinet",
+              "sub": "",
+              "body": "",
+              "action": "Get",
+              "done": "Installed",
+              "app": "phinet",
+              "image": "phiegg:worlds/gen/w_gx_quill_works.webp",
+              "genImage": true
+            },
+            {
+              "title": "phiber",
+              "sub": "",
+              "body": "",
+              "action": "Get",
+              "done": "Installed",
+              "app": "phiber",
+              "image": "phiegg:worlds/gen/w_ombre.webp",
+              "genImage": true
+            },
+            {
+              "title": "phinux",
+              "sub": "",
+              "body": "",
+              "action": "Get",
+              "done": "Installed",
+              "app": "phinux",
+              "image": "phiegg:worlds/gen/w_halomodels.webp",
+              "genImage": true
+            },
+            {
+              "title": "phiput",
+              "sub": "",
+              "body": "",
+              "action": "Get",
+              "done": "Installed",
+              "app": "phiput",
+              "image": "phiegg:worlds/gen/w_gx_quill_guild.webp",
+              "genImage": true
+            },
+            {
+              "title": "phiret",
+              "sub": "",
+              "body": "",
+              "action": "Get",
+              "done": "Installed",
+              "app": "phiret",
+              "image": "phiegg:worlds/w_loom.png",
+              "genImage": true
+            },
+            {
+              "title": "phidao",
+              "sub": "",
+              "body": "",
+              "action": "Get",
+              "done": "Installed",
+              "app": "phidao",
+              "image": "phiegg:worlds/w_chiffon_heights.png",
+              "genImage": true
+            }
+          ]
+        }
+      ]
+    },
+    "repos": {
+      "title": "Repositories",
+      "sub": "Source for the crates and apps.",
+      "blocks": [
+        {
+          "kind": "table",
+          "title": "",
+          "cols": [
+            "Repository",
+            "About",
+            "Language"
+          ],
+          "rows": [
+            [
+              "phiace/phiber",
+              "4D spatial platform on BUIKit",
+              "Rust"
+            ],
+            [
+              "phiace/phiecs",
+              "Entity component system",
+              "Rust"
+            ],
+            [
+              "phiace/phiora",
+              "ECS database",
+              "Rust"
+            ],
+            [
+              "phiace/phinet",
+              "Training and fine-tuning",
+              "Rust"
+            ],
+            [
+              "phiace/phiui",
+              "UI kit",
+              "Rust"
+            ],
+            [
+              "phiace/pscript",
+              "Scripting language",
+              "pscript"
+            ],
+            [
+              "phiace/phiegg",
+              "Community platform",
+              "TypeScript"
+            ]
+          ]
+        }
+      ]
+    },
+    "installed": {
+      "title": "Installed",
+      "sub": "What is on this account.",
+      "blocks": [
+        {
+          "kind": "grid",
+          "title": "",
+          "items": [
+            {
+              "title": "phiegg",
+              "sub": "Installed",
+              "body": "",
+              "action": "Update",
+              "done": "Up to date",
+              "app": "phiegg",
+              "image": "phiegg:worlds/gen/w_gx_linden_row.webp",
+              "genImage": true
+            },
+            {
+              "title": "phipad",
+              "sub": "Installed",
+              "body": "",
+              "action": "Update",
+              "done": "Up to date",
+              "app": "phipad",
+              "image": "phiegg:worlds/gen/w_velvetlip.webp",
+              "genImage": true
+            }
+          ]
+        }
+      ]
+    },
+    "docs": {
+      "title": "phihub docs",
+      "sub": "Phihub lists every Phiace app, model, template and repository.",
+      "blocks": [
+        {
+          "kind": "grid",
+          "title": "",
+          "items": [
+            {
+              "title": "Overview",
+              "sub": "The app store and code home",
+              "body": "Phihub lists every Phiace app, model, template and repository."
+            },
+            {
+              "title": "Getting started",
+              "sub": "First steps",
+              "body": "Open Discover, pick an app, press Get. Publish from phinet or the CLI."
+            },
+            {
+              "title": "Phisum and SUM",
+              "sub": "How it is funded",
+              "body": "Apps built by Phisum cohorts are featured on Phihub. Installs and use feed the cohort record.",
+              "action": "Open Phisum",
+              "done": "Opened",
+              "app": "phisum"
+            }
+          ]
+        },
+        {
+          "kind": "table",
+          "title": "PFT functions in phihub",
+          "cols": [
+            "Function",
+            "What it does here"
+          ],
+          "rows": [
+            [
+              "create",
+              "publish templates and apps under a club"
+            ],
+            [
+              "access",
+              "install member-only apps"
+            ]
+          ]
+        },
+        {
+          "kind": "grid",
+          "title": "Read more",
+          "items": [
+            {
+              "title": "PFTs 101",
+              "sub": "Profile Fungible Tokens",
+              "body": "What PFTs are, how functions work, how they link to Phisum.",
+              "action": "Read",
+              "done": "Open",
+              "href": "../Phiegg Papers.dc.html"
+            }
+          ]
+        }
+      ]
+    },
+    "home": {
+      "title": "",
+      "sub": "",
+      "blocks": [
+        {
+          "kind": "hero",
+          "heading": "Phihub",
+          "subtitle": "The registry for every Phiace app and world.",
+          "body": "Discover apps, worlds and repositories, install them into your Phiace, and keep them up to date — one hub for the whole ecosystem.",
+          "actions": [
+            {
+              "label": "Open Phihub",
+              "view": "discover"
+            },
+            {
+              "label": "Read docs",
+              "view": "docs"
+            }
+          ],
+          "image": "phiegg:worlds/gen/w_gx_kestrel_row.webp",
+          "genImage": true
+        },
+        {
+          "kind": "stats",
+          "title": "At a glance",
+          "gen": true,
+          "items": [
+            {
+              "label": "Apps",
+              "value": "",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "phihubApp"
+              }
+            },
+            {
+              "label": "Worlds",
+              "value": "",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "world"
+              }
+            },
+            {
+              "label": "Agents",
+              "value": "",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "phihubAgent"
+              }
+            },
+            {
+              "label": "Pools",
+              "value": "",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "pool"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "grid",
+          "title": "Apps",
+          "sub": "Most installed first.",
+          "pull": {
+            "kind": "phihubApp",
+            "n": 8,
+            "label": "name",
+            "sub": "category",
+            "body": "desc",
+            "sort": "download",
+            "fields": [
+              "version",
+              "status",
+              "download",
+              "star"
+            ],
+            "art": [
+              "phiegg:worlds/w_coral_arcade.png",
+              "phiegg:worlds/w_aurum.png",
+              "phiegg:worlds/gen/w_venus.webp",
+              "phiegg:worlds/gen/w_nova.webp",
+              "phiegg:worlds/w_orchid_rain.png",
+              "phiegg:worlds/w_naimia.png",
+              "phiegg:worlds/w_lumen_gardens.png",
+              "phiegg:worlds/w_glimmer.png",
+              "phiegg:worlds/gen/w_calder.webp",
+              "phiegg:worlds/w_veil.png",
+              "phiegg:worlds/gen/w_chatty.webp",
+              "phiegg:worlds/gen/w_gx_bramble_house.webp"
+            ]
+          },
+          "gen": true
+        },
+        {
+          "kind": "grid",
+          "title": "Worlds to install",
+          "sub": "Every world in Phiora, ready for your Phiace.",
+          "pull": {
+            "kind": "world",
+            "label": "name",
+            "sub": "kind",
+            "body": "description",
+            "image": "image",
+            "open": "phiegg",
+            "n": 8,
+            "art": [
+              "phiegg:worlds/gen/w_gx_quill_guild.webp",
+              "phiegg:worlds/gen/w_gx_umber_maison.webp",
+              "phiegg:worlds/gen/w_gx_foxglove_mill.webp",
+              "phiegg:worlds/gen/w_gx_linden_maison.webp",
+              "phiegg:worlds/gen/w_gx_cordelia_mill.webp",
+              "phiegg:worlds/gen/w_gx_dune_row.webp",
+              "phiegg:worlds/gen/w_epac.webp",
+              "phiegg:worlds/gen/w_gx_briar_row.webp",
+              "phiegg:worlds/w_moonlace.png",
+              "phiegg:worlds/w_obsidian_bay.png",
+              "phiegg:worlds/gen/w_once.webp",
+              "phiegg:worlds/gen/w_halomodels.webp"
+            ]
+          },
+          "gen": true
+        },
+        {
+          "kind": "grid",
+          "title": "Pools",
+          "sub": "The portfolio: every pool in Phiora, by supply.",
+          "pull": {
+            "kind": "pool",
+            "sort": "supply",
+            "label": "name",
+            "sub": "category",
+            "body": "desc",
+            "join": [
+              "worldId"
+            ],
+            "image": "world.image",
+            "fields": [
+              "supply",
+              "floorUsd",
+              "royaltyPct",
+              "drop"
+            ],
+            "open": "phiegg",
+            "n": 8,
+            "art": [
+              "phiegg:worlds/w_ivory_tower.png",
+              "phiegg:worlds/w_midnight_mall.png",
+              "phiegg:worlds/w_cashmere_peaks.png",
+              "phiegg:worlds/w_ember_coast.png",
+              "phiegg:worlds/gen/w_ponte.webp",
+              "phiegg:worlds/w_acro_world.png",
+              "phiegg:worlds/gen/w_gx_thistle_salon.webp",
+              "phiegg:worlds/gen/w_loon.webp",
+              "phiegg:worlds/gen/w_gx_kestrel_row.webp",
+              "phiegg:worlds/gen/w_gx_petal_works.webp",
+              "phiegg:worlds/gen/w_gx_sorrel_guild.webp",
+              "phiegg:worlds/gen/w_gx_moss_row.webp"
+            ]
+          },
+          "gen": true
+        },
+        {
+          "kind": "grid",
+          "title": "Quests",
+          "sub": "Paying out now, biggest rewards first.",
+          "pull": {
+            "kind": "quest",
+            "sort": "reward",
+            "label": "title",
+            "sub": "kind",
+            "join": [
+              "worldId"
+            ],
+            "image": "world.image",
+            "fields": [
+              "reward",
+              "rewardCoin",
+              "entrants",
+              "endsAt"
+            ],
+            "open": "phiegg",
+            "n": 8,
+            "art": [
+              "phiegg:worlds/w_echo_bloom.png",
+              "phiegg:worlds/w_indigo_drift.png",
+              "phiegg:worlds/w_mesa.png",
+              "phiegg:worlds/w_nimbus.png",
+              "phiegg:worlds/gen/w_halomodels.webp",
+              "phiegg:worlds/gen/w_once.webp",
+              "phiegg:worlds/gen/w_wondrous.webp",
+              "phiegg:worlds/w_carousel.png",
+              "phiegg:worlds/gen/w_gx_fable_works.webp",
+              "phiegg:worlds/gen/w_gx_juniper_studio.webp",
+              "phiegg:worlds/w_kaleido.png",
+              "phiegg:worlds/w_gilded_grove.png"
+            ]
+          },
+          "gen": true
+        },
+        {
+          "kind": "grid",
+          "title": "Coming up",
+          "sub": "Events and drops with the most people going.",
+          "pull": {
+            "kind": "event",
+            "sort": "rsvps",
+            "label": "title",
+            "sub": "kind",
+            "join": [
+              "worldId"
+            ],
+            "image": "world.image",
+            "fields": [
+              "startsAt",
+              "rsvps"
+            ],
+            "open": "phiegg",
+            "n": 4,
+            "art": [
+              "phiegg:worlds/gen/w_ponte.webp",
+              "phiegg:worlds/w_acro_world.png",
+              "phiegg:worlds/gen/w_gx_thistle_salon.webp",
+              "phiegg:worlds/gen/w_loon.webp",
+              "phiegg:worlds/gen/w_gx_kestrel_row.webp",
+              "phiegg:worlds/gen/w_gx_petal_works.webp",
+              "phiegg:worlds/gen/w_gx_dune_mill.webp",
+              "phiegg:worlds/gen/w_gx_fennel_atelier.webp",
+              "phiegg:worlds/gen/w_gx_bramble_salon.webp",
+              "phiegg:worlds/gen/w_gx_cobalt_studio.webp",
+              "phiegg:worlds/gen/w_bozo.webp",
+              "phiegg:worlds/w_topaz_terrace.png"
+            ]
+          },
+          "gen": true
+        },
+        {
+          "kind": "grid",
+          "title": "Explore",
+          "from": "menus",
+          "gen": true
+        },
+        {
+          "kind": "news",
+          "title": "Latest",
+          "from": "page",
+          "page": "news",
+          "limit": 4,
+          "gen": true
+        }
+      ]
+    },
+    "news": {
+      "title": "News",
+      "sub": "Latest from Phihub.",
+      "blocks": [
+        {
+          "kind": "news",
+          "items": [
+            {
+              "tag": "Catalog",
+              "title": "Club starter kit hits 100k installs",
+              "body": "The kit sets up a club hall, a treasury and a quest board in under a minute.",
+              "gen": true,
+              "date": "Oct 12, 2026",
+              "image": "phiegg:worlds/gen/w_gx_marigold_society.webp"
+            },
+            {
+              "tag": "Worlds",
+              "title": "Cashmere Peaks is now installable",
+              "body": "The snow world ships with ski rides, a lodge venue and twelve looks to start.",
+              "gen": true,
+              "date": "Oct 8, 2026",
+              "image": "phiegg:worlds/w_lumen_gardens.png"
+            },
+            {
+              "tag": "Stories",
+              "title": "A repo that became a city",
+              "body": "Two builders shared a street layout repo. Forty clubs forked it and joined their streets into one district.",
+              "gen": true,
+              "date": "Oct 4, 2026",
+              "image": "phiegg:worlds/w_carousel.png"
+            },
+            {
+              "date": "Oct 1, 2026",
+              "tag": "Registry",
+              "title": "Phidata joins the hub",
+              "body": "The data browser is now installable from Phihub like any other app.",
+              "image": "phiegg:worlds/w_satin_reef.png",
+              "genImage": true
+            },
+            {
+              "tag": "Updates",
+              "title": "Updates without restarts",
+              "body": "Apps now update in the background and switch over the next time you open them.",
+              "gen": true,
+              "date": "Sep 30, 2026",
+              "image": "phiegg:worlds/gen/w_nova.webp"
+            },
+            {
+              "tag": "Catalog",
+              "title": "Ride packs arrive",
+              "body": "Book rides between worlds with a single install. Pricing comes from the ride owner.",
+              "gen": true,
+              "date": "Sep 26, 2026",
+              "image": "phiegg:worlds/w_ribbon_rise.png"
+            },
+            {
+              "tag": "Reviews",
+              "title": "Every app now has a trail",
+              "body": "See who published each version, what changed and who reviewed it.",
+              "gen": true,
+              "date": "Sep 22, 2026",
+              "image": "phiegg:worlds/w_sequin_sea.png"
+            },
+            {
+              "date": "Sep 18, 2026",
+              "tag": "Worlds",
+              "title": "Agentic worlds category opens",
+              "body": "Browse and install agent-populated worlds funded through Phipad.",
+              "image": "phiegg:worlds/gen/w_calder.webp",
+              "genImage": true
+            },
+            {
+              "tag": "Worlds",
+              "title": "Brocade gets a night market",
+              "body": "An update to Brocade adds a market that opens after dark with its own stalls.",
+              "gen": true,
+              "date": "Sep 18, 2026",
+              "image": "phiegg:worlds/gen/w_gx_fable_works.webp"
+            },
+            {
+              "tag": "Stories",
+              "title": "From hobby to top ten",
+              "body": "A quiz app made for one club now runs in 600 halls across Phiace.",
+              "gen": true,
+              "date": "Sep 14, 2026",
+              "image": "phiegg:worlds/w_nimbus.png"
+            },
+            {
+              "tag": "Repos",
+              "title": "Private repos for clubs",
+              "body": "Clubs can now keep repos for members only and publish them later.",
+              "gen": true,
+              "date": "Sep 10, 2026",
+              "image": "phiegg:worlds/gen/w_gx_linden_row.webp"
+            },
+            {
+              "date": "Sep 2, 2026",
+              "tag": "Release",
+              "title": "One-tap updates",
+              "body": "Installed apps now show an update badge and update in place.",
+              "image": "phiegg:worlds/gen/w_gx_fable_guild.webp",
+              "genImage": true
+            }
+          ]
+        }
+      ]
+    },
+    "about": {
+      "title": "About Phihub",
+      "sub": "",
+      "blocks": [
+        {
+          "kind": "prose",
+          "lead": "Phihub is the registry and installer for the Phiace ecosystem.",
+          "sections": [
+            {
+              "title": "Discover",
+              "body": "Browse apps, worlds and repositories by category, with install counts and dependencies shown up front."
+            },
+            {
+              "title": "Install & update",
+              "body": "Install into your Phiace with one tap; everything stays current from a single Installed view."
+            },
+            {
+              "title": "Open by default",
+              "body": "Every listing links to its repository and its Phiora data, so you can read before you install."
+            }
+          ]
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ",
+      "sub": "Common questions.",
+      "blocks": [
+        {
+          "kind": "faq",
+          "items": [
+            {
+              "q": "What can I install?",
+              "a": "Apps, worlds and repositories published to the Phiace registry."
+            },
+            {
+              "q": "Are listings open source?",
+              "a": "Each listing links its repo; most are open. Licences are shown on the listing."
+            },
+            {
+              "q": "How do updates work?",
+              "a": "Installed apps show an update badge and update in place from the Installed view."
+            },
+            {
+              "q": "Who reviews apps?",
+              "a": "A rotating panel of members and the Phihub team checks every new version.",
+              "gen": true
+            },
+            {
+              "q": "Can I publish my own app?",
+              "a": "Yes. Connect a repo, fill in the listing and submit it for review.",
+              "gen": true
+            },
+            {
+              "q": "Are installs free?",
+              "a": "Most are. Paid apps show the price in SUM before you install.",
+              "gen": true
+            },
+            {
+              "q": "Can I remove an app?",
+              "a": "Open Installed and choose Remove. Your data stays until you delete it.",
+              "gen": true
+            },
+            {
+              "q": "Do worlds work offline?",
+              "a": "Installed worlds load from your machine and sync when you are back online.",
+              "gen": true
+            }
+          ]
+        }
+      ]
+    },
+    "platform": {
+      "title": "Platform",
+      "sub": "PhiGit, the git engine on the Phient platform: refs, blobs, trees and commits behind every repository here.",
+      "blocks": [
+        {
+          "kind": "agent",
+          "agent": "phigit",
+          "intro": "Content-addressed objects, refs and commits. Store a blob, commit it, then read the log.",
+          "presets": [
+            {
+              "verb": "log",
+              "label": "Log",
+              "params": {
+                "ref": "refs/heads/main",
+                "max_count": 20
+              }
+            },
+            {
+              "verb": "list_refs",
+              "label": "Refs",
+              "params": {}
+            },
+            {
+              "verb": "store_blob",
+              "label": "Store a blob",
+              "params": {
+                "content": "hello phiace"
+              }
+            },
+            {
+              "verb": "commit",
+              "label": "Commit",
+              "params": {
+                "message": "Phihub: first commit",
+                "ref": "refs/heads/main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "catalog": {
+      "title": "Catalog",
+      "sub": "Agents, skills, pools and services you can add to your Phiace.",
+      "blocks": [
+        {
+          "kind": "stats",
+          "title": "",
+          "items": [
+            {
+              "label": "Agents",
+              "value": "8",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "phihubAgent"
+              }
+            },
+            {
+              "label": "Skills",
+              "value": "8",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "phihubSkill"
+              }
+            },
+            {
+              "label": "Pools",
+              "value": "8",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "phihubPool"
+              }
+            },
+            {
+              "label": "Services",
+              "value": "8",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "phihubService"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "grid",
+          "title": "Agents",
+          "pull": {
+            "kind": "phihubAgent",
+            "n": 8,
+            "label": "name",
+            "sub": "category",
+            "body": "desc",
+            "fields": [
+              "tier",
+              "status",
+              "task_count"
+            ],
+            "art": [
+              "phiegg:worlds/gen/w_gx_ivory_house.webp",
+              "phiegg:worlds/gen/w_gx_fable_guild.webp",
+              "phiegg:worlds/gen/w_gx_rosewood_mill.webp",
+              "phiegg:worlds/gen/w_gx_lumen_works.webp",
+              "phiegg:worlds/gen/w_ohhc.webp",
+              "phiegg:worlds/gen/w_gx_wren_house.webp",
+              "phiegg:worlds/w_bijou.png",
+              "phiegg:worlds/gen/w_verbum.webp",
+              "phiegg:worlds/w_prism_port.png",
+              "phiegg:worlds/w_opalia.png",
+              "phiegg:worlds/w_opalia.png",
+              "phiegg:worlds/w_prism_port.png"
+            ]
+          }
+        },
+        {
+          "kind": "table",
+          "title": "Skills",
+          "cols": [
+            "Skill",
+            "Category",
+            "Version",
+            "Installs",
+            "Stars"
+          ],
+          "pull": {
+            "kind": "phihubSkill",
+            "n": 8,
+            "sort": "install",
+            "fields": [
+              "name",
+              "category",
+              "version",
+              "install",
+              "star"
+            ]
+          }
+        },
+        {
+          "kind": "table",
+          "title": "Services",
+          "cols": [
+            "Service",
+            "Language",
+            "Port",
+            "Agents",
+            "Status"
+          ],
+          "pull": {
+            "kind": "phihubService",
+            "n": 8,
+            "fields": [
+              "label",
+              "language",
+              "port",
+              "agent_count",
+              "status"
+            ]
+          }
+        },
+        {
+          "kind": "grid",
+          "title": "Apps",
+          "pull": {
+            "kind": "phihubApp",
+            "n": 8,
+            "label": "name",
+            "sub": "category",
+            "body": "desc",
+            "sort": "download",
+            "fields": [
+              "version",
+              "status",
+              "download"
+            ],
+            "art": [
+              "phiegg:worlds/w_coral_arcade.png",
+              "phiegg:worlds/w_aurum.png",
+              "phiegg:worlds/gen/w_venus.webp",
+              "phiegg:worlds/gen/w_nova.webp",
+              "phiegg:worlds/w_orchid_rain.png",
+              "phiegg:worlds/w_naimia.png",
+              "phiegg:worlds/w_lumen_gardens.png",
+              "phiegg:worlds/w_glimmer.png",
+              "phiegg:worlds/gen/w_calder.webp",
+              "phiegg:worlds/w_veil.png",
+              "phiegg:worlds/gen/w_chatty.webp",
+              "phiegg:worlds/gen/w_gx_bramble_house.webp"
+            ]
+          }
+        },
+        {
+          "kind": "table",
+          "title": "Activity",
+          "cols": [
+            "Agent",
+            "Action",
+            "Status",
+            "When"
+          ],
+          "pull": {
+            "kind": "phihubActivity",
+            "n": 8,
+            "fields": [
+              "agent",
+              "action",
+              "status",
+              "time"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "profile": {
+    "sections": [
+      {
+        "title": "Your projects",
+        "kind": "phisumProject",
+        "fields": [
+          "name",
+          "vertical",
+          "status",
+          "funding_ask",
+          "submittedAt"
+        ],
+        "empty": "No projects yet.",
+        "action": {
+          "label": "Submit a project",
+          "view": "apply",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Your rounds",
+        "kind": "phisumFunding",
+        "fields": [
+          "name",
+          "amount",
+          "coin",
+          "closesAt",
+          "status"
+        ],
+        "empty": "No rounds yet.",
+        "action": {
+          "label": "Open a round",
+          "view": "open-round",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Your pledges",
+        "kind": "phisumPledge",
+        "fields": [
+          "name",
+          "amount",
+          "coin",
+          "status",
+          "submittedAt"
+        ],
+        "empty": "No pledges yet.",
+        "action": {
+          "label": "Back a round",
+          "view": "back-round",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Your pool stakes",
+        "kind": "phisumPoolStake",
+        "fields": [
+          "name",
+          "amount",
+          "coin",
+          "lock",
+          "status"
+        ],
+        "empty": "No stakes yet.",
+        "action": {
+          "label": "Back a pool",
+          "view": "back-pool",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Grants you asked for",
+        "kind": "phisumGrant",
+        "fields": [
+          "name",
+          "amount",
+          "status",
+          "deadline"
+        ],
+        "empty": "No grant requests yet.",
+        "action": {
+          "label": "Request a grant",
+          "view": "grant",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Milestones you reported",
+        "kind": "phisumMilestone",
+        "fields": [
+          "name",
+          "status",
+          "proof",
+          "submittedAt"
+        ],
+        "empty": "No milestone reports yet.",
+        "action": {
+          "label": "Report a milestone",
+          "view": "milestone",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Backer profile",
+        "kind": "phisumBacker",
+        "fields": [
+          "name",
+          "type",
+          "ticket",
+          "focus"
+        ],
+        "empty": "Not a backer yet.",
+        "action": {
+          "label": "Become a backer",
+          "view": "backer",
+          "app": "phisum"
+        }
+      }
+    ],
+    "totals": [
+      {
+        "label": "Pledged",
+        "kind": "phisumPledge",
+        "sum": "amount",
+        "sub": "Across your pledges"
+      },
+      {
+        "label": "Staked in pools",
+        "kind": "phisumPoolStake",
+        "sum": "amount",
+        "sub": "Locked in the portfolio"
+      },
+      {
+        "label": "Raised for your rounds",
+        "kind": "phisumPledge",
+        "sum": "amount",
+        "via": {
+          "kind": "phisumFunding",
+          "field": "fundingId"
+        },
+        "sub": "Pledged by backers"
+      },
+      {
+        "label": "Grants asked",
+        "kind": "phisumGrant",
+        "sum": "amount",
+        "sub": "SUM, waiting on Phidao"
+      }
+    ]
+  }
+}

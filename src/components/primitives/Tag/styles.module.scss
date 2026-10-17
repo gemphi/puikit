@@ -5,10 +5,11 @@
   font-family: var(--phi-font-family);
   font-weight: var(--phi-font-weight-medium);
   line-height: 1;
-  border-radius: var(--phi-radius-sm);
-  background-color: var(--phi-color-gray-100);
-  color: var(--phi-color-gray-700);
-  border: 1px solid var(--phi-color-gray-200);
+  border-radius: var(--phi-chip-radius, var(--phi-radius-sm));
+  /* Neutral tags are mixed from the text colour, so they read in light and dark and in every theme style. */
+  background-color: color-mix(in srgb, var(--phi-color-text-primary) 6%, transparent);
+  color: var(--phi-color-text-secondary);
+  border: 1px solid color-mix(in srgb, var(--phi-color-text-primary) 12%, transparent);
   white-space: nowrap;
   user-select: none;
   transition: all var(--phi-transition-fast);
@@ -75,6 +76,13 @@
     background-color: transparent;
     border-color: transparent;
   }
+
+  /* A minimal tag you can press is a control: it rests on the theme's control surface like every button. */
+  &.minimal.interactive {
+    background-color: var(--phi-control-bg, transparent);
+    background-image: var(--phi-gradient-control-soft, none);
+    &:hover { background-color: var(--phi-control-bg-hover, transparent); filter: none; }
+  }
 }
 
 .icon {
@@ -98,7 +106,7 @@
   cursor: pointer;
   color: inherit;
   opacity: 0.6;
-  border-radius: var(--phi-radius-sm);
+  border-radius: var(--phi-chip-radius, var(--phi-radius-sm));
 
   &:hover {
     opacity: 1;

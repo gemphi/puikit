@@ -7,7 +7,8 @@ import { Box } from '../Box';
 export type GridGap = 1 | 2 | 3 | 4 | 6 | 8;
 
 type GridProps = React.HTMLAttributes<HTMLDivElement> & {
-  columns?: ResponsiveValue<number>;
+  /** Column count, or a raw track list such as 'repeat(auto-fit, minmax(240px, 1fr))'. */
+  columns?: ResponsiveValue<number | string>;
   gap?: ResponsiveValue<GridGap>;
   className?: string;
   children?: React.ReactNode;
@@ -19,6 +20,9 @@ type GridProps = React.HTMLAttributes<HTMLDivElement> & {
 };
 
 const BREAKPOINTS: Breakpoint[] = ['xs', 'sm', 'md', 'lg', 'xl'];
+
+/** True inside a Grid, so a child `Col` spans grid tracks instead of sizing as a flex column. */
+export const GridContext = React.createContext(false);
 
 export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
   ({ columns, gap, className = '', style, children, xs, sm, md, lg, xl, ...props }, ref) => {
@@ -35,8 +39,9 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
     }
 
     const baseStyle: React.CSSProperties = {
-      ...responsiveCSSVars('grid-columns', columns, (value: number) => `repeat(${value}, minmax(0, 1fr))`),
+      ...responsiveCSSVars('grid-columns', columns, (value: number | string) => (typeof value === 'number' ? `repeat(${value}, minmax(0, 1fr))` : value)),
       ...responsiveCSSVars('grid-gap', resolvedGap, (value: GridGap) => `${value * 0.25}rem`),
+      ...(typeof columns === 'number' ? { '--pui-grid-cols': String(columns) } : null),
       ...style,
     };
 
@@ -47,7 +52,7 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
         style={baseStyle}
         {...props}
       >
-        {children}
+        <GridContext.Provider value={true}>{children}</GridContext.Provider>
       </Box>
     );
   }

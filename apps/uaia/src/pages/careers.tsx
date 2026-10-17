@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tag, Text, Title } from '@pui/components';
+import { Box, Link, Tag, Text, Title } from '@pui/components';
 import { Hero, Block, Glass, AutoGrid, Note } from '../components/kit';
 import { EMAILS } from '../lib/routes';
 import s from '../styles/uaia.module.scss';
@@ -28,7 +28,7 @@ export const CareersPage: React.FC = () => (
     <Hero
       pattern="careers"
       label="Careers & Open Seats"
-      title={<>Build the institution <span className={s.gradText}>the next decade needs.</span></>}
+      title={<>Build the institution <Box as="span" className={s.gradText}>the next decade needs.</Box></>}
       sub="The mission is the compensation's headline: your evaluations decide what intelligence reaches the world. Small teams, deep technical work, public output, zero product pressure."
     />
 
@@ -39,7 +39,7 @@ export const CareersPage: React.FC = () => (
             <Tag minimal round style={{ marginBottom: 8, alignSelf: 'flex-start', width: 'fit-content' }}>OPEN</Tag>
             <Title level={5}>{seat}</Title>
             <Text size="sm">
-              <a href={`mailto:${EMAILS.careers}`} style={{ color: 'var(--phi-color-primary)', textDecoration: 'none' }}>Nominate or apply →</a>
+              <Link href={`mailto:${EMAILS.careers}`} style={{ color: 'var(--phi-color-primary)', textDecoration: 'none' }}>Nominate or apply →</Link>
             </Text>
           </Glass>
         ))}
@@ -47,14 +47,14 @@ export const CareersPage: React.FC = () => (
     </Block>
 
     <Block label="Open roles" title="Initial openings." tight>
-      <div style={{ marginTop: 18, display: 'grid', gap: 10 }}>
+      <Box style={{ marginTop: 18, display: 'grid', gap: 10 }}>
         {ROLES.map((r, i) => (
           <Glass key={r}>
-            <span className={s.mono} style={{ color: 'var(--phi-color-primary)', marginRight: 12, fontSize: 12 }}>{`ROLE-${String(i + 1).padStart(2, '0')}`}</span>
+            <Box as="span" className={s.mono} style={{ color: 'var(--phi-color-primary)', marginRight: 12, fontSize: 12 }}>{`ROLE-${String(i + 1).padStart(2, '0')}`}</Box>
             {r}
           </Glass>
         ))}
-      </div>
+      </Box>
     </Block>
 
     <Block label="Fellowship" tight>

@@ -30,6 +30,10 @@ export type SelectProps = Omit<
   error?: boolean;
   placeholder?: string;
   className?: string;
+  /** Size of the field in its row (raw CSS: '280px', '100%'); `flex` is the flex shorthand ('1', 'none'). */
+  width?: string;
+  maxWidth?: string;
+  flex?: string;
 };
 
 /** `<option>` children flattened into the option list. */
@@ -74,6 +78,9 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
       className = '',
       disabled,
       id,
+      width,
+      maxWidth,
+      flex,
       ...props
     },
     ref
@@ -189,7 +196,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
     };
 
     return (
-      <Box ref={wrapperRef} className={cn(styles.wrapper, className)} data-filled={selected ? 'true' : undefined}>
+      <Box ref={wrapperRef} className={cn(styles.wrapper, className)} width={width} maxWidth={maxWidth} flex={flex} data-filled={selected ? 'true' : undefined}>
         <button
           ref={ref}
           type="button"

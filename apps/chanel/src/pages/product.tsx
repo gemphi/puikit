@@ -121,12 +121,8 @@ export const ProductPage: React.FC<{ id: string }> = ({ id }) => {
 
                 {sizes.length > 0 && (
                   <FormGroup label={t.product.size}>
-                    <Select value={size ?? ''} onChange={(e) => setSize(e.target.value || undefined)}>
-                      <option value="">{t.product.selectSize}</option>
-                      {sizes.map((sz) => (
-                        <option key={sz} value={sz}>{sz}</option>
-                      ))}
-                    </Select>
+                    <Select value={size ?? ''} onChange={(e) => setSize(e.target.value || undefined)}
+                      options={[{ value: '', label: t.product.selectSize }, ...sizes.map((sz) => ({ value: sz, label: sz }))]} />
                   </FormGroup>
                 )}
 

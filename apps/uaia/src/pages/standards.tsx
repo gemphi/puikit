@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tag, Text } from '@pui/components';
+import { Box, Tag, Text } from '@pui/components';
 import { Hero, Block, Glass, Note } from '../components/kit';
 import { EMAILS } from '../lib/routes';
 import s from '../styles/uaia.module.scss';
@@ -21,23 +21,23 @@ export const StandardsPage: React.FC = () => (
     <Hero
       pattern="standards"
       label="UAIA-STD Series"
-      title={<>Standards <span className={s.gradText}>you can diff.</span></>}
+      title={<>Standards <Box as="span" className={s.gradText}>you can diff.</Box></>}
       sub="Every UAIA standard is versioned, public, and published as both prose and machine-readable schema. Comment periods are open to anyone."
     />
 
     <Block label="Catalog" title="The UAIA-STD series.">
-      <div style={{ marginTop: 20, display: 'grid', gap: 12 }}>
+      <Box style={{ marginTop: 20, display: 'grid', gap: 12 }}>
         {CATALOG.map((std) => (
           <Glass key={std.id}>
-            <div style={{ display: 'flex', gap: 16, alignItems: 'baseline', flexWrap: 'wrap' }}>
-              <span className={s.mono} style={{ color: 'var(--phi-color-primary)', fontWeight: 700, minWidth: 84 }}>{std.id}</span>
-              <strong style={{ fontFamily: 'var(--uaia-font-display)' }}>{std.t}</strong>
+            <Box style={{ display: 'flex', gap: 16, alignItems: 'baseline', flexWrap: 'wrap' }}>
+              <Box as="span" className={s.mono} style={{ color: 'var(--phi-color-primary)', fontWeight: 700, minWidth: 84 }}>{std.id}</Box>
+              <Box as="strong" style={{ fontFamily: 'var(--uaia-font-display)' }}>{std.t}</Box>
               <Tag minimal round intent={std.v.includes('draft') ? 'warning' : 'success'}>{std.v}</Tag>
-            </div>
+            </Box>
             <Text size="sm" intent="secondary" style={{ marginTop: 8 }}>{std.b}</Text>
           </Glass>
         ))}
-      </div>
+      </Box>
     </Block>
 
     <Block

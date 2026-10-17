@@ -1,0 +1,348 @@
+{
+ "app": "phiber",
+ "nav": [
+  {
+   "id": "home",
+   "label": "Home",
+   "icon": "home"
+  },
+  {
+   "id": "scenes",
+   "label": "Scenes",
+   "icon": "cube"
+  },
+  {
+   "id": "workspaces",
+   "label": "Workspaces",
+   "icon": "layers"
+  },
+  {
+   "id": "gallery",
+   "label": "Gallery",
+   "icon": "grid"
+  },
+  {
+   "id": "news",
+   "label": "News",
+   "icon": "chat"
+  },
+  {
+   "id": "about",
+   "label": "About",
+   "icon": "compass"
+  },
+  {
+   "id": "faq",
+   "label": "FAQ",
+   "icon": "vote"
+  },
+  {
+   "id": "docs",
+   "label": "Docs",
+   "icon": "layers"
+  }
+ ],
+ "views": {
+  "scenes": {
+   "title": "Scenes",
+   "sub": "Space over time: every scene has a timeline.",
+   "blocks": [
+    {
+     "kind": "grid",
+     "title": "",
+     "items": [
+      {
+       "title": "Nightfall district",
+       "sub": "World · 4D",
+       "body": "Streets, crowd and weather over a day.",
+       "action": "Open",
+       "done": "Open"
+      },
+      {
+       "title": "Runway hall",
+       "sub": "Venue",
+       "body": "Seating, lights and a 12-minute show.",
+       "action": "Open",
+       "done": "Open"
+      },
+      {
+       "title": "New scene",
+       "sub": "",
+       "body": "Start from a template.",
+       "action": "Create",
+       "done": "Created"
+      }
+     ]
+    }
+   ]
+  },
+  "workspaces": {
+   "title": "Workspaces",
+   "sub": "",
+   "blocks": [
+    {
+     "kind": "grid",
+     "title": "",
+     "items": [
+      {
+       "title": "Layout",
+       "sub": "",
+       "body": "",
+       "action": "Open",
+       "done": "Open"
+      },
+      {
+       "title": "Modeling",
+       "sub": "",
+       "body": "",
+       "action": "Open",
+       "done": "Open"
+      },
+      {
+       "title": "Sculpting",
+       "sub": "",
+       "body": "",
+       "action": "Open",
+       "done": "Open"
+      },
+      {
+       "title": "Shading",
+       "sub": "",
+       "body": "",
+       "action": "Open",
+       "done": "Open"
+      },
+      {
+       "title": "Animation",
+       "sub": "",
+       "body": "",
+       "action": "Open",
+       "done": "Open"
+      },
+      {
+       "title": "Rendering",
+       "sub": "",
+       "body": "",
+       "action": "Open",
+       "done": "Open"
+      },
+      {
+       "title": "Geometry Nodes",
+       "sub": "",
+       "body": "",
+       "action": "Open",
+       "done": "Open"
+      },
+      {
+       "title": "Scripting",
+       "sub": "",
+       "body": "",
+       "action": "Open",
+       "done": "Open"
+      }
+     ]
+    }
+   ]
+  },
+  "docs": {
+   "title": "phiber docs",
+   "sub": "Phiber builds scenes that change over time: cities, venues, shows.",
+   "blocks": [
+    {
+     "kind": "grid",
+     "title": "",
+     "items": [
+      {
+       "title": "Overview",
+       "sub": "4D spatial platform",
+       "body": "Phiber builds scenes that change over time: cities, venues, shows."
+      },
+      {
+       "title": "Getting started",
+       "sub": "First steps",
+       "body": "Open Scenes, start from a template, publish to a Phiegg world."
+      },
+      {
+       "title": "Phisum and SUM",
+       "sub": "How it is funded",
+       "body": "Published scenes and their visits are function records Phisum uses to pick cities to back.",
+       "action": "Open Phisum",
+       "done": "Opened",
+       "app": "phisum"
+      }
+     ]
+    },
+    {
+     "kind": "table",
+     "title": "PFT functions in phiber",
+     "cols": [
+      "Function",
+      "What it does here"
+     ],
+     "rows": [
+      [
+       "create",
+       "publish scenes"
+      ],
+      [
+       "permit",
+       "build on Phiret land"
+      ],
+      [
+       "access",
+       "open member-only venues"
+      ]
+     ]
+    },
+    {
+     "kind": "grid",
+     "title": "Read more",
+     "items": [
+      {
+       "title": "PFTs 101",
+       "sub": "Profile Fungible Tokens",
+       "body": "What PFTs are, how functions work, how they link to Phisum.",
+       "action": "Read",
+       "done": "Open",
+       "href": "../Phiegg Papers.dc.html"
+      }
+     ]
+    }
+   ]
+  },
+  "home": {
+   "title": "",
+   "sub": "",
+   "blocks": [
+    {
+     "kind": "hero",
+     "heading": "Phiber",
+     "subtitle": "Build and run worlds for your clubs.",
+     "body": "Phiber is the world engine: compose scenes, share workspaces, and ship AR and virtual worlds that plug into Phiegg hosts.",
+     "actions": [
+      {
+       "label": "Open Phiber",
+       "view": "scenes"
+      },
+      {
+       "label": "Read docs",
+       "view": "docs"
+      }
+     ]
+    }
+   ]
+  },
+  "news": {
+   "title": "News",
+   "sub": "Latest from Phiber.",
+   "blocks": [
+    {
+     "kind": "news",
+     "items": [
+      {
+       "date": "Oct 2, 2026",
+       "tag": "Engine",
+       "title": "Agent citizens in scenes",
+       "body": "Drop autonomous agents into a scene and give them routines."
+      },
+      {
+       "date": "Sep 19, 2026",
+       "tag": "Workspaces",
+       "title": "Shared workspaces",
+       "body": "Build a world with your club in a shared, versioned workspace."
+      },
+      {
+       "date": "Sep 4, 2026",
+       "tag": "Release",
+       "title": "AR layers",
+       "body": "Publish wearable AR layers tied to verified ownership."
+      }
+     ]
+    }
+   ]
+  },
+  "about": {
+   "title": "About Phiber",
+   "sub": "",
+   "blocks": [
+    {
+     "kind": "prose",
+     "lead": "Phiber is the engine clubs use to build the worlds behind their hosts.",
+     "sections": [
+      {
+       "title": "Scenes",
+       "body": "Compose scenes from assets, logic and agents; preview in the browser."
+      },
+      {
+       "title": "Workspaces",
+       "body": "Shared, versioned workspaces so a whole club can build together."
+      },
+      {
+       "title": "Publish",
+       "body": "Ship AR and virtual worlds that open directly from a Phiegg host."
+      }
+     ]
+    }
+   ]
+  },
+  "faq": {
+   "title": "FAQ",
+   "sub": "Common questions.",
+   "blocks": [
+    {
+     "kind": "faq",
+     "items": [
+      {
+       "q": "What can I build?",
+       "a": "AR wearables, virtual cities and agentic worlds."
+      },
+      {
+       "q": "Does it need code?",
+       "a": "Scenes are visual; logic and agents can be scripted when you want."
+      },
+      {
+       "q": "How do worlds reach players?",
+       "a": "They open from a club's host on Phiegg."
+      }
+     ]
+    }
+   ]
+  },
+  "gallery": {
+   "title": "Gallery",
+   "sub": "Worlds built with Phiber.",
+   "blocks": [
+    {
+     "kind": "grid",
+     "title": "",
+     "items": [
+      {
+       "title": "Nightfall City",
+       "sub": "Virtual world",
+       "body": "A nocturnal district with runway venues and agent citizens.",
+       "meta": "c_nightfall"
+      },
+      {
+       "title": "Mesa AR",
+       "sub": "AR layer",
+       "body": "Street-level wearables tied to verified ownership.",
+       "meta": "t_ar"
+      },
+      {
+       "title": "Lynx Commons",
+       "sub": "Agentic world",
+       "body": "A town run by autonomous agent residents.",
+       "meta": "c_lynx"
+      },
+      {
+       "title": "Swan Gallery",
+       "sub": "PFP world",
+       "body": "A portrait hall of provable avatars.",
+       "meta": "c_swan"
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,51 @@
+// ItemCard: one row when wide, header + body rows when narrow. The card measures itself (container query). Tokens only.
+.card { min-width: 0; }
+.frame { container-type: inline-size; min-width: 0; }
+.item {
+  display: grid; min-width: 0;
+  column-gap: var(--phi-space-3, 0.75rem); row-gap: var(--phi-space-1, 0.25rem);
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: 'media head aside' 'media body actions';
+  align-items: center;
+}
+.aside { grid-area: aside; display: flex; gap: var(--phi-space-1, 0.25rem); align-items: center; justify-content: flex-end; text-align: end; }
+.media { grid-area: media; display: grid; place-items: center; align-self: start; }
+.head { grid-area: head; display: flex; flex-direction: column; gap: 0.125rem; min-width: 0; align-self: end; }
+.title { font-weight: var(--phi-font-weight-semibold, 600); line-height: 1.25; overflow-wrap: anywhere; }
+.meta { font-size: var(--phi-font-size-xs, 0.75rem); color: var(--phi-color-text-muted, currentColor); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.body { grid-area: body; min-width: 0; font-size: var(--phi-font-size-sm, 0.875rem); color: var(--phi-color-text-secondary, currentColor); align-self: start; overflow-wrap: anywhere; }
+.actions { grid-area: actions; display: flex; gap: var(--phi-space-1, 0.25rem); align-items: center; justify-content: flex-end; flex-wrap: wrap; }
+/* No body: the head centres beside the media. */
+.item:not(:has(.body)) { grid-template-areas: 'media head aside' 'media head actions'; }
+.item:not(:has(.body)) .head { align-self: center; }
+.item:not(:has(.media)) { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: 'head aside' 'body actions'; }
+
+/* Stacked: the header (media + title) is one row, the body and the actions each get the full width below. */
+@mixin stacked {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: 'media head aside' 'body body body' 'actions actions actions';
+  row-gap: var(--phi-space-2, 0.5rem);
+  .head { align-self: center; }
+  .actions { justify-content: flex-start; }
+  &:not(:has(.media)) { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: 'head aside' 'body body' 'actions actions'; }
+}
+@container (max-width: 16rem) { .stack-sm { @include stacked; } }
+@container (max-width: 22rem) { .stack-md { @include stacked; } }
+@container (max-width: 30rem) { .stack-lg { @include stacked; } }
+.stack-always { @include stacked; }
+/* Media sizes: a fixed column so the text column keeps its share. */
+.media-sm .media { width: 2rem; }
+.media-md .media { width: auto; }
+.media-lg .media { width: clamp(4.5rem, 30cqi, 7rem); }
+
+/* Vertical: a product card. Also what any card under 10rem becomes, so nothing is squeezed into a sliver. */
+@mixin vertical {
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: 'media media' 'head aside' 'body body' 'actions actions';
+  row-gap: var(--phi-space-2, 0.5rem);
+  .media { width: 100% !important; align-self: stretch; > * { width: 100%; } }
+  .head { align-self: start; }
+  .actions { justify-content: flex-start; }
+}
+.vertical { @include vertical; }
+@container (max-width: 10rem) { .item { @include vertical; } }

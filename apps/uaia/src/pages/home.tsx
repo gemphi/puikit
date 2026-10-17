@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Stack, Tag, Text, Title } from '@pui/components';
+import { Box, Button, Stack, Tag, Text, Title } from '@pui/components';
 import { ArrowRight, Scale, ShieldCheck, Radar } from 'lucide-react';
 import { Hero, Block, Glass, AutoGrid } from '../components/kit';
 import { useRouter } from '../router';
@@ -24,7 +24,7 @@ export const HomePage: React.FC = () => {
     <>
       <Hero
         label="Unified Artificial Intelligence Agency — Est. 2026"
-        title={<>Intelligence,<br /><span className={s.gradText}>admitted responsibly.</span></>}
+        title={<>Intelligence,<Box as="br" /><Box as="span" className={s.gradText}>admitted responsibly.</Box></>}
         sub="UAIA is the independent authority that evaluates, certifies and authorizes artificial intelligence models before they reach the market, and keeps watching after they do."
       >
         <Stack direction="row" gap={3} style={{ marginTop: 28, flexWrap: 'wrap' }}>
@@ -35,12 +35,12 @@ export const HomePage: React.FC = () => {
             Explore the Framework
           </Button>
         </Stack>
-        <div className={s.statusStrip}>
-          <span><span className={s.statusDot} />System: Operational</span>
-          <span>Models under review: 12</span>
-          <span>Standards published: 9</span>
-          <span>Declaration: 2026-09-11</span>
-        </div>
+        <Box className={s.statusStrip}>
+          <Box as="span"><Box as="span" className={s.statusDot} />System: Operational</Box>
+          <Box as="span">Models under review: 12</Box>
+          <Box as="span">Standards published: 9</Box>
+          <Box as="span">Declaration: 2026-09-11</Box>
+        </Box>
       </Hero>
 
       <Block label="Mandate" title="Three verbs. Nothing else.">
@@ -63,26 +63,26 @@ export const HomePage: React.FC = () => {
 
       <Block label="Model Registry" title="A public ledger of judged intelligence." tight>
         <Glass style={{ marginTop: 20, overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13.5 }}>
-            <thead>
-              <tr className={s.mono} style={{ textAlign: 'left', color: 'var(--phi-color-text-secondary)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
-                <th style={{ padding: '8px 12px' }}>Model ID</th><th style={{ padding: '8px 12px' }}>Developer</th>
-                <th style={{ padding: '8px 12px' }}>Risk tier</th><th style={{ padding: '8px 12px' }}>Status</th>
-                <th style={{ padding: '8px 12px' }}>Certificate</th>
-              </tr>
-            </thead>
-            <tbody>
+          <Box as="table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13.5 }}>
+            <Box as="thead">
+              <Box as="tr" className={s.mono} style={{ textAlign: 'left', color: 'var(--phi-color-text-secondary)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+                <Box as="th" style={{ padding: '8px 12px' }}>Model ID</Box><Box as="th" style={{ padding: '8px 12px' }}>Developer</Box>
+                <Box as="th" style={{ padding: '8px 12px' }}>Risk tier</Box><Box as="th" style={{ padding: '8px 12px' }}>Status</Box>
+                <Box as="th" style={{ padding: '8px 12px' }}>Certificate</Box>
+              </Box>
+            </Box>
+            <Box as="tbody">
               {REGISTRY_TEASER.map((r) => (
-                <tr key={r.id} style={{ borderTop: '1px solid var(--uaia-line)' }}>
-                  <td className={s.mono} style={{ padding: '10px 12px' }}>{r.id}</td>
-                  <td style={{ padding: '10px 12px' }}>{r.dev}</td>
-                  <td style={{ padding: '10px 12px' }}><Tag intent="primary" minimal round style={{ width: 'fit-content' }}>{r.tier}</Tag></td>
-                  <td style={{ padding: '10px 12px' }}>{r.status}</td>
-                  <td className={s.mono} style={{ padding: '10px 12px' }}>{r.cls}</td>
-                </tr>
+                <Box as="tr" key={r.id} style={{ borderTop: '1px solid var(--uaia-line)' }}>
+                  <Box as="td" className={s.mono} style={{ padding: '10px 12px' }}>{r.id}</Box>
+                  <Box as="td" style={{ padding: '10px 12px' }}>{r.dev}</Box>
+                  <Box as="td" style={{ padding: '10px 12px' }}><Tag intent="primary" minimal round style={{ width: 'fit-content' }}>{r.tier}</Tag></Box>
+                  <Box as="td" style={{ padding: '10px 12px' }}>{r.status}</Box>
+                  <Box as="td" className={s.mono} style={{ padding: '10px 12px' }}>{r.cls}</Box>
+                </Box>
               ))}
-            </tbody>
-          </table>
+            </Box>
+          </Box>
           <Stack direction="row" justify="between" align="center" style={{ marginTop: 14, flexWrap: 'wrap', gap: 10 }}>
             <Text size="sm" intent="secondary">Sample data — illustrative of the registry now being built.</Text>
             <Button variant="outline" className={s.btnGrad} size="sm" icon={<ArrowRight size={14} />} onClick={() => navigate(routes.certification())}>
@@ -94,10 +94,10 @@ export const HomePage: React.FC = () => {
 
       <Block label="Declaration">
         <Glass style={{ marginTop: 10 }}>
-          <blockquote style={{ margin: 0, fontFamily: 'var(--uaia-font-display)', fontSize: 'clamp(1.1rem, 2.2vw, 1.5rem)', lineHeight: 1.55 }}>
+          <Box as="blockquote" style={{ margin: 0, fontFamily: 'var(--uaia-font-display)', fontSize: 'clamp(1.1rem, 2.2vw, 1.5rem)', lineHeight: 1.55 }}>
             "On 11 September 2026, we declare the founding of the Unified Artificial Intelligence Agency —
             because the market for intelligence must be earned, not assumed."
-          </blockquote>
+          </Box>
           <Stack direction="row" justify="between" align="center" style={{ marginTop: 16, flexWrap: 'wrap', gap: 10 }}>
             <Text size="sm" intent="secondary" className={s.mono}>FOUNDING DECLARATION · §1</Text>
             <Button variant="primary" size="sm" onClick={() => navigate(routes.newsroom())}>Read the full Declaration</Button>

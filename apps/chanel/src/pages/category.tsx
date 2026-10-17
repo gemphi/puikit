@@ -66,11 +66,8 @@ export const CategoryPage: React.FC<{ slug: string }> = ({ slug }) => {
               aria-label={t.catalog.sortLabel}
               className={s.sortControl}
               onChange={(e) => shop.browse.setSort(e.target.value as typeof shop.browse.sort)}
-            >
-              {SORT_OPTIONS.map(([value, label]) => (
-                <option key={value} value={value}>{label}</option>
-              ))}
-            </Select>
+              options={SORT_OPTIONS.map(([value, label]) => ({ value, label }))}
+            />
           </Row>
 
           {shop.catalog.total === 0 && !shop.catalog.loading ? (

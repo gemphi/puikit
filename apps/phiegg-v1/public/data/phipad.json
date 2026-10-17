@@ -1,0 +1,3621 @@
+{
+ "hero": {
+  "title": "Phipad",
+  "subtitle": "The accelerator for clubs building worlds.",
+  "body": "Submit your club. Take the Phipad route when you need cash, mentors and a launch slot, or go straight to Phiegg. The platform is the same either way."
+ },
+ "routes": [
+  {
+   "id": "phipad",
+   "title": "Phipad route",
+   "body": "Apply, get reviewed, incubate with mentors and receive funding before launch.",
+   "points": [
+    "Cash from track pools",
+    "Mentors & review",
+    "Guaranteed launch slot"
+   ]
+  },
+  {
+   "id": "direct",
+   "title": "Direct to Phiegg",
+   "body": "Already funded? Verify your contract and open your host today.",
+   "points": [
+    "Verify contract",
+    "Open a host",
+    "List your world"
+   ]
+  }
+ ],
+ "tracks": [
+  {
+   "id": "t_ar",
+   "name": "AR",
+   "tone": "ink",
+   "pool": 1200000,
+   "currency": "USDC",
+   "body": "Wearables and street layers with verified ownership."
+  },
+  {
+   "id": "t_virtual",
+   "name": "Virtual worlds",
+   "tone": "accent",
+   "pool": 1500000,
+   "currency": "USDC",
+   "body": "Cities, districts and venues for your holders."
+  },
+  {
+   "id": "t_agentic",
+   "name": "Agentic worlds",
+   "tone": "sage",
+   "pool": 1000000,
+   "currency": "USDC",
+   "body": "Worlds populated by autonomous agent citizens."
+  },
+  {
+   "id": "t_pfp",
+   "name": "PFP & authenticity",
+   "tone": "neutral",
+   "pool": 500000,
+   "currency": "USDC",
+   "body": "Avatars with provable, portable ownership."
+  }
+ ],
+ "stages": [
+  {
+   "id": "applied",
+   "label": "Applied"
+  },
+  {
+   "id": "review",
+   "label": "In review"
+  },
+  {
+   "id": "incubating",
+   "label": "Incubating"
+  },
+  {
+   "id": "funded",
+   "label": "Funded"
+  },
+  {
+   "id": "launched",
+   "label": "Launched"
+  }
+ ],
+ "applications": [
+  {
+   "id": "a1",
+   "clubId": "c_cherub",
+   "trackId": "t_virtual",
+   "stage": "applied",
+   "ask": 150000,
+   "raised": 0,
+   "submittedAt": "2026-09-22",
+   "members": [
+    {
+     "userId": "u_noor",
+     "role": "Founder",
+     "puts": 3
+    },
+    {
+     "userId": "u_zara",
+     "role": "Designer",
+     "puts": 1
+    },
+    {
+     "userId": "u_006",
+     "role": "World builder",
+     "puts": 24
+    },
+    {
+     "userId": "u_009",
+     "role": "Community",
+     "puts": 31
+    },
+    {
+     "userId": "u_012",
+     "role": "Agent ops",
+     "puts": 26
+    },
+    {
+     "userId": "u_015",
+     "role": "Treasury",
+     "puts": 8
+    },
+    {
+     "userId": "u_018",
+     "role": "Founder",
+     "puts": 39
+    }
+   ],
+   "puts": {
+    "minted": 1881,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier",
+     "Fitting credits"
+    ]
+   }
+  },
+  {
+   "id": "a2",
+   "clubId": "c_gazelle",
+   "trackId": "t_ar",
+   "stage": "review",
+   "ask": 220000,
+   "raised": 0,
+   "submittedAt": "2026-09-10",
+   "members": [
+    {
+     "userId": "u_007",
+     "role": "Founder",
+     "puts": 9
+    },
+    {
+     "userId": "u_010",
+     "role": "Designer",
+     "puts": 7
+    },
+    {
+     "userId": "u_013",
+     "role": "World builder",
+     "puts": 21
+    },
+    {
+     "userId": "u_016",
+     "role": "Community",
+     "puts": 1
+    }
+   ],
+   "puts": {
+    "minted": 2721,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier"
+    ]
+   }
+  },
+  {
+   "id": "a3",
+   "clubId": "c_lynx",
+   "trackId": "t_agentic",
+   "stage": "incubating",
+   "ask": 400000,
+   "raised": 250000,
+   "submittedAt": "2026-07-02",
+   "mentorIds": [
+    "u_kai"
+   ],
+   "members": [
+    {
+     "userId": "u_014",
+     "role": "Founder",
+     "puts": 36
+    },
+    {
+     "userId": "u_017",
+     "role": "Designer",
+     "puts": 2
+    },
+    {
+     "userId": "u_020",
+     "role": "World builder",
+     "puts": 27
+    },
+    {
+     "userId": "u_023",
+     "role": "Community",
+     "puts": 9
+    }
+   ],
+   "puts": {
+    "minted": 7831,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable"
+    ]
+   }
+  },
+  {
+   "id": "a4",
+   "clubId": "c_swan",
+   "trackId": "t_pfp",
+   "stage": "launched",
+   "ask": 180000,
+   "raised": 180000,
+   "submittedAt": "2026-03-15",
+   "mentorIds": [
+    "u_ines"
+   ],
+   "members": [
+    {
+     "userId": "u_021",
+     "role": "Founder",
+     "puts": 37
+    },
+    {
+     "userId": "u_024",
+     "role": "Designer",
+     "puts": 22
+    },
+    {
+     "userId": "u_027",
+     "role": "World builder",
+     "puts": 34
+    },
+    {
+     "userId": "u_030",
+     "role": "Community",
+     "puts": 11
+    },
+    {
+     "userId": "u_033",
+     "role": "Agent ops",
+     "puts": 24
+    },
+    {
+     "userId": "u_036",
+     "role": "Treasury",
+     "puts": 40
+    },
+    {
+     "userId": "u_039",
+     "role": "Founder",
+     "puts": 18
+    }
+   ],
+   "puts": {
+    "minted": 7615,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier"
+    ]
+   }
+  },
+  {
+   "id": "a004",
+   "clubId": "c_cherub",
+   "trackId": "t_virtual",
+   "stage": "launched",
+   "ask": 179698,
+   "raised": 5731,
+   "submittedAt": "2026-09-10",
+   "members": [
+    {
+     "userId": "u_028",
+     "role": "Founder",
+     "puts": 2
+    },
+    {
+     "userId": "u_031",
+     "role": "Designer",
+     "puts": 2
+    },
+    {
+     "userId": "u_034",
+     "role": "World builder",
+     "puts": 38
+    },
+    {
+     "userId": "u_037",
+     "role": "Community",
+     "puts": 10
+    },
+    {
+     "userId": "u_040",
+     "role": "Agent ops",
+     "puts": 31
+    },
+    {
+     "userId": "u_043",
+     "role": "Treasury",
+     "puts": 5
+    },
+    {
+     "userId": "u_046",
+     "role": "Founder",
+     "puts": 1
+    },
+    {
+     "userId": "u_049",
+     "role": "Designer",
+     "puts": 7
+    }
+   ],
+   "puts": {
+    "minted": 6160,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier",
+     "Fitting credits"
+    ]
+   }
+  },
+  {
+   "id": "a005",
+   "clubId": "c_gazelle",
+   "trackId": "t_ar",
+   "stage": "applied",
+   "ask": 91846,
+   "raised": 75568,
+   "submittedAt": "2026-01-12",
+   "members": [
+    {
+     "userId": "u_035",
+     "role": "Founder",
+     "puts": 15
+    },
+    {
+     "userId": "u_038",
+     "role": "Designer",
+     "puts": 36
+    },
+    {
+     "userId": "u_041",
+     "role": "World builder",
+     "puts": 30
+    },
+    {
+     "userId": "u_044",
+     "role": "Community",
+     "puts": 11
+    },
+    {
+     "userId": "u_047",
+     "role": "Agent ops",
+     "puts": 33
+    },
+    {
+     "userId": "u_050",
+     "role": "Treasury",
+     "puts": 30
+    },
+    {
+     "userId": "u_053",
+     "role": "Founder",
+     "puts": 37
+    }
+   ],
+   "puts": {
+    "minted": 7661,
+    "utility": [
+     "Host access",
+     "Runway seat"
+    ]
+   }
+  },
+  {
+   "id": "a006",
+   "clubId": "c_006",
+   "trackId": "t_virtual",
+   "stage": "review",
+   "ask": 61917,
+   "raised": 93476,
+   "submittedAt": "2026-03-13",
+   "members": [
+    {
+     "userId": "u_042",
+     "role": "Founder",
+     "puts": 30
+    },
+    {
+     "userId": "u_045",
+     "role": "Designer",
+     "puts": 9
+    },
+    {
+     "userId": "u_048",
+     "role": "World builder",
+     "puts": 6
+    },
+    {
+     "userId": "u_051",
+     "role": "Community",
+     "puts": 24
+    },
+    {
+     "userId": "u_054",
+     "role": "Agent ops",
+     "puts": 22
+    },
+    {
+     "userId": "u_057",
+     "role": "Treasury",
+     "puts": 22
+    },
+    {
+     "userId": "u_060",
+     "role": "Founder",
+     "puts": 36
+    }
+   ],
+   "puts": {
+    "minted": 3721,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable"
+    ]
+   }
+  },
+  {
+   "id": "a007",
+   "clubId": "c_007",
+   "trackId": "t_ar",
+   "stage": "incubating",
+   "ask": 150402,
+   "raised": 249269,
+   "submittedAt": "2026-04-21",
+   "members": [
+    {
+     "userId": "u_049",
+     "role": "Founder",
+     "puts": 17
+    },
+    {
+     "userId": "u_052",
+     "role": "Designer",
+     "puts": 1
+    },
+    {
+     "userId": "u_055",
+     "role": "World builder",
+     "puts": 24
+    },
+    {
+     "userId": "u_058",
+     "role": "Community",
+     "puts": 33
+    }
+   ],
+   "puts": {
+    "minted": 7250,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier",
+     "Fitting credits"
+    ]
+   }
+  },
+  {
+   "id": "a008",
+   "clubId": "c_008",
+   "trackId": "t_agentic",
+   "stage": "funded",
+   "ask": 225205,
+   "raised": 54985,
+   "submittedAt": "2026-09-19",
+   "members": [
+    {
+     "userId": "u_056",
+     "role": "Founder",
+     "puts": 19
+    },
+    {
+     "userId": "u_059",
+     "role": "Designer",
+     "puts": 7
+    },
+    {
+     "userId": "u_062",
+     "role": "World builder",
+     "puts": 24
+    },
+    {
+     "userId": "u_065",
+     "role": "Community",
+     "puts": 5
+    }
+   ],
+   "puts": {
+    "minted": 506,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier",
+     "Fitting credits"
+    ]
+   }
+  },
+  {
+   "id": "a009",
+   "clubId": "c_009",
+   "trackId": "t_pfp",
+   "stage": "launched",
+   "ask": 272745,
+   "raised": 178217,
+   "submittedAt": "2026-05-20",
+   "members": [
+    {
+     "userId": "u_063",
+     "role": "Founder",
+     "puts": 38
+    },
+    {
+     "userId": "u_066",
+     "role": "Designer",
+     "puts": 7
+    },
+    {
+     "userId": "u_069",
+     "role": "World builder",
+     "puts": 12
+    },
+    {
+     "userId": "u_072",
+     "role": "Community",
+     "puts": 9
+    },
+    {
+     "userId": "u_075",
+     "role": "Agent ops",
+     "puts": 1
+    }
+   ],
+   "puts": {
+    "minted": 5430,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable"
+    ]
+   }
+  },
+  {
+   "id": "a010",
+   "clubId": "c_010",
+   "trackId": "t_agentic",
+   "stage": "applied",
+   "ask": 175737,
+   "raised": 275446,
+   "submittedAt": "2026-09-19",
+   "members": [
+    {
+     "userId": "u_070",
+     "role": "Founder",
+     "puts": 33
+    },
+    {
+     "userId": "u_073",
+     "role": "Designer",
+     "puts": 23
+    },
+    {
+     "userId": "u_076",
+     "role": "World builder",
+     "puts": 39
+    },
+    {
+     "userId": "u_079",
+     "role": "Community",
+     "puts": 5
+    },
+    {
+     "userId": "u_082",
+     "role": "Agent ops",
+     "puts": 20
+    },
+    {
+     "userId": "u_085",
+     "role": "Treasury",
+     "puts": 36
+    },
+    {
+     "userId": "u_088",
+     "role": "Founder",
+     "puts": 40
+    },
+    {
+     "userId": "u_091",
+     "role": "Designer",
+     "puts": 19
+    }
+   ],
+   "puts": {
+    "minted": 157,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier",
+     "Fitting credits"
+    ]
+   }
+  },
+  {
+   "id": "a011",
+   "clubId": "c_011",
+   "trackId": "t_agentic",
+   "stage": "review",
+   "ask": 157638,
+   "raised": 25375,
+   "submittedAt": "2026-09-24",
+   "members": [
+    {
+     "userId": "u_077",
+     "role": "Founder",
+     "puts": 31
+    },
+    {
+     "userId": "u_080",
+     "role": "Designer",
+     "puts": 6
+    },
+    {
+     "userId": "u_083",
+     "role": "World builder",
+     "puts": 10
+    },
+    {
+     "userId": "u_086",
+     "role": "Community",
+     "puts": 21
+    },
+    {
+     "userId": "u_089",
+     "role": "Agent ops",
+     "puts": 11
+    },
+    {
+     "userId": "u_092",
+     "role": "Treasury",
+     "puts": 36
+    },
+    {
+     "userId": "u_095",
+     "role": "Founder",
+     "puts": 29
+    },
+    {
+     "userId": "u_098",
+     "role": "Designer",
+     "puts": 26
+    }
+   ],
+   "puts": {
+    "minted": 1896,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier",
+     "Fitting credits"
+    ]
+   }
+  },
+  {
+   "id": "a012",
+   "clubId": "c_012",
+   "trackId": "t_pfp",
+   "stage": "incubating",
+   "ask": 293758,
+   "raised": 62264,
+   "submittedAt": "2026-06-26",
+   "members": [
+    {
+     "userId": "u_084",
+     "role": "Founder",
+     "puts": 30
+    },
+    {
+     "userId": "u_087",
+     "role": "Designer",
+     "puts": 5
+    },
+    {
+     "userId": "u_090",
+     "role": "World builder",
+     "puts": 31
+    },
+    {
+     "userId": "u_093",
+     "role": "Community",
+     "puts": 32
+    },
+    {
+     "userId": "u_096",
+     "role": "Agent ops",
+     "puts": 6
+    },
+    {
+     "userId": "u_099",
+     "role": "Treasury",
+     "puts": 16
+    },
+    {
+     "userId": "u_102",
+     "role": "Founder",
+     "puts": 32
+    }
+   ],
+   "puts": {
+    "minted": 2178,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier",
+     "Fitting credits"
+    ]
+   }
+  },
+  {
+   "id": "a013",
+   "clubId": "c_013",
+   "trackId": "t_agentic",
+   "stage": "funded",
+   "ask": 289034,
+   "raised": 109261,
+   "submittedAt": "2026-07-08",
+   "members": [
+    {
+     "userId": "u_091",
+     "role": "Founder",
+     "puts": 38
+    },
+    {
+     "userId": "u_094",
+     "role": "Designer",
+     "puts": 31
+    },
+    {
+     "userId": "u_097",
+     "role": "World builder",
+     "puts": 17
+    },
+    {
+     "userId": "u_100",
+     "role": "Community",
+     "puts": 22
+    }
+   ],
+   "puts": {
+    "minted": 2930,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier",
+     "Fitting credits"
+    ]
+   }
+  },
+  {
+   "id": "a014",
+   "clubId": "c_014",
+   "trackId": "t_virtual",
+   "stage": "launched",
+   "ask": 322479,
+   "raised": 11737,
+   "submittedAt": "2026-01-02",
+   "members": [
+    {
+     "userId": "u_098",
+     "role": "Founder",
+     "puts": 6
+    },
+    {
+     "userId": "u_101",
+     "role": "Designer",
+     "puts": 36
+    },
+    {
+     "userId": "u_104",
+     "role": "World builder",
+     "puts": 10
+    },
+    {
+     "userId": "u_107",
+     "role": "Community",
+     "puts": 20
+    },
+    {
+     "userId": "u_110",
+     "role": "Agent ops",
+     "puts": 1
+    },
+    {
+     "userId": "u_113",
+     "role": "Treasury",
+     "puts": 7
+    }
+   ],
+   "puts": {
+    "minted": 6626,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier"
+    ]
+   }
+  },
+  {
+   "id": "a015",
+   "clubId": "c_015",
+   "trackId": "t_virtual",
+   "stage": "applied",
+   "ask": 158290,
+   "raised": 70617,
+   "submittedAt": "2026-06-05",
+   "members": [
+    {
+     "userId": "u_105",
+     "role": "Founder",
+     "puts": 24
+    },
+    {
+     "userId": "u_108",
+     "role": "Designer",
+     "puts": 3
+    },
+    {
+     "userId": "u_111",
+     "role": "World builder",
+     "puts": 11
+    },
+    {
+     "userId": "u_114",
+     "role": "Community",
+     "puts": 8
+    },
+    {
+     "userId": "u_117",
+     "role": "Agent ops",
+     "puts": 34
+    },
+    {
+     "userId": "u_120",
+     "role": "Treasury",
+     "puts": 12
+    },
+    {
+     "userId": "u_123",
+     "role": "Founder",
+     "puts": 1
+    }
+   ],
+   "puts": {
+    "minted": 2719,
+    "utility": [
+     "Host access",
+     "Runway seat"
+    ]
+   }
+  },
+  {
+   "id": "a016",
+   "clubId": "c_016",
+   "trackId": "t_agentic",
+   "stage": "review",
+   "ask": 123628,
+   "raised": 75716,
+   "submittedAt": "2026-07-16",
+   "members": [
+    {
+     "userId": "u_112",
+     "role": "Founder",
+     "puts": 39
+    },
+    {
+     "userId": "u_115",
+     "role": "Designer",
+     "puts": 12
+    },
+    {
+     "userId": "u_118",
+     "role": "World builder",
+     "puts": 5
+    },
+    {
+     "userId": "u_121",
+     "role": "Community",
+     "puts": 7
+    },
+    {
+     "userId": "u_124",
+     "role": "Agent ops",
+     "puts": 5
+    },
+    {
+     "userId": "u_127",
+     "role": "Treasury",
+     "puts": 8
+    }
+   ],
+   "puts": {
+    "minted": 2508,
+    "utility": [
+     "Host access",
+     "Runway seat"
+    ]
+   }
+  },
+  {
+   "id": "a017",
+   "clubId": "c_017",
+   "trackId": "t_pfp",
+   "stage": "incubating",
+   "ask": 353060,
+   "raised": 39071,
+   "submittedAt": "2026-06-09",
+   "members": [
+    {
+     "userId": "u_119",
+     "role": "Founder",
+     "puts": 35
+    },
+    {
+     "userId": "u_122",
+     "role": "Designer",
+     "puts": 22
+    },
+    {
+     "userId": "u_125",
+     "role": "World builder",
+     "puts": 21
+    },
+    {
+     "userId": "u_noor",
+     "role": "Community",
+     "puts": 9
+    }
+   ],
+   "puts": {
+    "minted": 7497,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier"
+    ]
+   }
+  },
+  {
+   "id": "a018",
+   "clubId": "c_018",
+   "trackId": "t_virtual",
+   "stage": "funded",
+   "ask": 299674,
+   "raised": 228275,
+   "submittedAt": "2026-05-15",
+   "members": [
+    {
+     "userId": "u_126",
+     "role": "Founder",
+     "puts": 29
+    },
+    {
+     "userId": "u_ines",
+     "role": "Designer",
+     "puts": 34
+    },
+    {
+     "userId": "u_theo",
+     "role": "World builder",
+     "puts": 39
+    },
+    {
+     "userId": "u_007",
+     "role": "Community",
+     "puts": 10
+    },
+    {
+     "userId": "u_010",
+     "role": "Agent ops",
+     "puts": 26
+    },
+    {
+     "userId": "u_013",
+     "role": "Treasury",
+     "puts": 9
+    },
+    {
+     "userId": "u_016",
+     "role": "Founder",
+     "puts": 40
+    }
+   ],
+   "puts": {
+    "minted": 3746,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier",
+     "Fitting credits"
+    ]
+   }
+  },
+  {
+   "id": "a019",
+   "clubId": "c_019",
+   "trackId": "t_agentic",
+   "stage": "launched",
+   "ask": 112851,
+   "raised": 199809,
+   "submittedAt": "2026-09-18",
+   "members": [
+    {
+     "userId": "u_mina",
+     "role": "Founder",
+     "puts": 29
+    },
+    {
+     "userId": "u_008",
+     "role": "Designer",
+     "puts": 23
+    },
+    {
+     "userId": "u_011",
+     "role": "World builder",
+     "puts": 28
+    },
+    {
+     "userId": "u_014",
+     "role": "Community",
+     "puts": 31
+    },
+    {
+     "userId": "u_017",
+     "role": "Agent ops",
+     "puts": 19
+    }
+   ],
+   "puts": {
+    "minted": 4094,
+    "utility": [
+     "Host access",
+     "Runway seat"
+    ]
+   }
+  },
+  {
+   "id": "a020",
+   "clubId": "c_020",
+   "trackId": "t_virtual",
+   "stage": "applied",
+   "ask": 282716,
+   "raised": 132377,
+   "submittedAt": "2026-04-20",
+   "members": [
+    {
+     "userId": "u_012",
+     "role": "Founder",
+     "puts": 8
+    },
+    {
+     "userId": "u_015",
+     "role": "Designer",
+     "puts": 3
+    },
+    {
+     "userId": "u_018",
+     "role": "World builder",
+     "puts": 36
+    },
+    {
+     "userId": "u_021",
+     "role": "Community",
+     "puts": 6
+    }
+   ],
+   "puts": {
+    "minted": 870,
+    "utility": [
+     "Host access",
+     "Runway seat"
+    ]
+   }
+  },
+  {
+   "id": "a021",
+   "clubId": "c_021",
+   "trackId": "t_pfp",
+   "stage": "review",
+   "ask": 351243,
+   "raised": 260239,
+   "submittedAt": "2026-05-02",
+   "members": [
+    {
+     "userId": "u_019",
+     "role": "Founder",
+     "puts": 27
+    },
+    {
+     "userId": "u_022",
+     "role": "Designer",
+     "puts": 20
+    },
+    {
+     "userId": "u_025",
+     "role": "World builder",
+     "puts": 21
+    },
+    {
+     "userId": "u_028",
+     "role": "Community",
+     "puts": 6
+    },
+    {
+     "userId": "u_031",
+     "role": "Agent ops",
+     "puts": 8
+    },
+    {
+     "userId": "u_034",
+     "role": "Treasury",
+     "puts": 32
+    },
+    {
+     "userId": "u_037",
+     "role": "Founder",
+     "puts": 38
+    }
+   ],
+   "puts": {
+    "minted": 5321,
+    "utility": [
+     "Host access",
+     "Runway seat"
+    ]
+   }
+  },
+  {
+   "id": "a022",
+   "clubId": "c_022",
+   "trackId": "t_virtual",
+   "stage": "incubating",
+   "ask": 290037,
+   "raised": 206541,
+   "submittedAt": "2026-07-18",
+   "members": [
+    {
+     "userId": "u_026",
+     "role": "Founder",
+     "puts": 15
+    },
+    {
+     "userId": "u_029",
+     "role": "Designer",
+     "puts": 24
+    },
+    {
+     "userId": "u_032",
+     "role": "World builder",
+     "puts": 8
+    },
+    {
+     "userId": "u_035",
+     "role": "Community",
+     "puts": 29
+    },
+    {
+     "userId": "u_038",
+     "role": "Agent ops",
+     "puts": 38
+    },
+    {
+     "userId": "u_041",
+     "role": "Treasury",
+     "puts": 20
+    }
+   ],
+   "puts": {
+    "minted": 832,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable"
+    ]
+   }
+  },
+  {
+   "id": "a023",
+   "clubId": "c_023",
+   "trackId": "t_ar",
+   "stage": "funded",
+   "ask": 144778,
+   "raised": 16656,
+   "submittedAt": "2026-06-12",
+   "members": [
+    {
+     "userId": "u_033",
+     "role": "Founder",
+     "puts": 39
+    },
+    {
+     "userId": "u_036",
+     "role": "Designer",
+     "puts": 25
+    },
+    {
+     "userId": "u_039",
+     "role": "World builder",
+     "puts": 20
+    },
+    {
+     "userId": "u_042",
+     "role": "Community",
+     "puts": 29
+    },
+    {
+     "userId": "u_045",
+     "role": "Agent ops",
+     "puts": 32
+    },
+    {
+     "userId": "u_048",
+     "role": "Treasury",
+     "puts": 1
+    },
+    {
+     "userId": "u_051",
+     "role": "Founder",
+     "puts": 31
+    }
+   ],
+   "puts": {
+    "minted": 3287,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier",
+     "Fitting credits"
+    ]
+   }
+  },
+  {
+   "id": "a024",
+   "clubId": "c_024",
+   "trackId": "t_ar",
+   "stage": "launched",
+   "ask": 346330,
+   "raised": 191508,
+   "submittedAt": "2026-06-24",
+   "members": [
+    {
+     "userId": "u_040",
+     "role": "Founder",
+     "puts": 36
+    },
+    {
+     "userId": "u_043",
+     "role": "Designer",
+     "puts": 10
+    },
+    {
+     "userId": "u_046",
+     "role": "World builder",
+     "puts": 19
+    },
+    {
+     "userId": "u_049",
+     "role": "Community",
+     "puts": 26
+    },
+    {
+     "userId": "u_052",
+     "role": "Agent ops",
+     "puts": 32
+    },
+    {
+     "userId": "u_055",
+     "role": "Treasury",
+     "puts": 37
+    }
+   ],
+   "puts": {
+    "minted": 669,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier",
+     "Fitting credits"
+    ]
+   }
+  },
+  {
+   "id": "a025",
+   "clubId": "c_025",
+   "trackId": "t_virtual",
+   "stage": "applied",
+   "ask": 288520,
+   "raised": 120913,
+   "submittedAt": "2026-09-17",
+   "members": [
+    {
+     "userId": "u_047",
+     "role": "Founder",
+     "puts": 26
+    },
+    {
+     "userId": "u_050",
+     "role": "Designer",
+     "puts": 30
+    },
+    {
+     "userId": "u_053",
+     "role": "World builder",
+     "puts": 7
+    },
+    {
+     "userId": "u_056",
+     "role": "Community",
+     "puts": 29
+    },
+    {
+     "userId": "u_059",
+     "role": "Agent ops",
+     "puts": 1
+    }
+   ],
+   "puts": {
+    "minted": 6367,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier"
+    ]
+   }
+  },
+  {
+   "id": "a026",
+   "clubId": "c_026",
+   "trackId": "t_pfp",
+   "stage": "review",
+   "ask": 372582,
+   "raised": 16907,
+   "submittedAt": "2026-04-12",
+   "members": [
+    {
+     "userId": "u_054",
+     "role": "Founder",
+     "puts": 26
+    },
+    {
+     "userId": "u_057",
+     "role": "Designer",
+     "puts": 5
+    },
+    {
+     "userId": "u_060",
+     "role": "World builder",
+     "puts": 9
+    },
+    {
+     "userId": "u_063",
+     "role": "Community",
+     "puts": 5
+    }
+   ],
+   "puts": {
+    "minted": 2157,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier",
+     "Fitting credits"
+    ]
+   }
+  },
+  {
+   "id": "a027",
+   "clubId": "c_027",
+   "trackId": "t_virtual",
+   "stage": "incubating",
+   "ask": 318269,
+   "raised": 47083,
+   "submittedAt": "2026-09-01",
+   "members": [
+    {
+     "userId": "u_061",
+     "role": "Founder",
+     "puts": 25
+    },
+    {
+     "userId": "u_064",
+     "role": "Designer",
+     "puts": 30
+    },
+    {
+     "userId": "u_067",
+     "role": "World builder",
+     "puts": 27
+    },
+    {
+     "userId": "u_070",
+     "role": "Community",
+     "puts": 23
+    },
+    {
+     "userId": "u_073",
+     "role": "Agent ops",
+     "puts": 38
+    },
+    {
+     "userId": "u_076",
+     "role": "Treasury",
+     "puts": 22
+    },
+    {
+     "userId": "u_079",
+     "role": "Founder",
+     "puts": 23
+    }
+   ],
+   "puts": {
+    "minted": 7468,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier"
+    ]
+   }
+  },
+  {
+   "id": "a028",
+   "clubId": "c_028",
+   "trackId": "t_virtual",
+   "stage": "funded",
+   "ask": 141632,
+   "raised": 267923,
+   "submittedAt": "2026-07-17",
+   "members": [
+    {
+     "userId": "u_068",
+     "role": "Founder",
+     "puts": 8
+    },
+    {
+     "userId": "u_071",
+     "role": "Designer",
+     "puts": 26
+    },
+    {
+     "userId": "u_074",
+     "role": "World builder",
+     "puts": 11
+    },
+    {
+     "userId": "u_077",
+     "role": "Community",
+     "puts": 5
+    },
+    {
+     "userId": "u_080",
+     "role": "Agent ops",
+     "puts": 28
+    },
+    {
+     "userId": "u_083",
+     "role": "Treasury",
+     "puts": 33
+    },
+    {
+     "userId": "u_086",
+     "role": "Founder",
+     "puts": 5
+    },
+    {
+     "userId": "u_089",
+     "role": "Designer",
+     "puts": 13
+    }
+   ],
+   "puts": {
+    "minted": 530,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier"
+    ]
+   }
+  },
+  {
+   "id": "a029",
+   "clubId": "c_029",
+   "trackId": "t_agentic",
+   "stage": "launched",
+   "ask": 199459,
+   "raised": 158130,
+   "submittedAt": "2026-07-23",
+   "members": [
+    {
+     "userId": "u_075",
+     "role": "Founder",
+     "puts": 17
+    },
+    {
+     "userId": "u_078",
+     "role": "Designer",
+     "puts": 1
+    },
+    {
+     "userId": "u_081",
+     "role": "World builder",
+     "puts": 34
+    },
+    {
+     "userId": "u_084",
+     "role": "Community",
+     "puts": 13
+    },
+    {
+     "userId": "u_087",
+     "role": "Agent ops",
+     "puts": 31
+    },
+    {
+     "userId": "u_090",
+     "role": "Treasury",
+     "puts": 24
+    },
+    {
+     "userId": "u_093",
+     "role": "Founder",
+     "puts": 6
+    },
+    {
+     "userId": "u_096",
+     "role": "Designer",
+     "puts": 11
+    }
+   ],
+   "puts": {
+    "minted": 4601,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable"
+    ]
+   }
+  },
+  {
+   "id": "a030",
+   "clubId": "c_030",
+   "trackId": "t_virtual",
+   "stage": "applied",
+   "ask": 300394,
+   "raised": 151963,
+   "submittedAt": "2026-06-18",
+   "members": [
+    {
+     "userId": "u_082",
+     "role": "Founder",
+     "puts": 8
+    },
+    {
+     "userId": "u_085",
+     "role": "Designer",
+     "puts": 12
+    },
+    {
+     "userId": "u_088",
+     "role": "World builder",
+     "puts": 7
+    },
+    {
+     "userId": "u_091",
+     "role": "Community",
+     "puts": 35
+    },
+    {
+     "userId": "u_094",
+     "role": "Agent ops",
+     "puts": 18
+    },
+    {
+     "userId": "u_097",
+     "role": "Treasury",
+     "puts": 16
+    },
+    {
+     "userId": "u_100",
+     "role": "Founder",
+     "puts": 1
+    },
+    {
+     "userId": "u_103",
+     "role": "Designer",
+     "puts": 8
+    }
+   ],
+   "puts": {
+    "minted": 300,
+    "utility": [
+     "Host access",
+     "Runway seat"
+    ]
+   }
+  },
+  {
+   "id": "a031",
+   "clubId": "c_031",
+   "trackId": "t_pfp",
+   "stage": "review",
+   "ask": 282707,
+   "raised": 72572,
+   "submittedAt": "2026-02-21",
+   "members": [
+    {
+     "userId": "u_089",
+     "role": "Founder",
+     "puts": 21
+    },
+    {
+     "userId": "u_092",
+     "role": "Designer",
+     "puts": 15
+    },
+    {
+     "userId": "u_095",
+     "role": "World builder",
+     "puts": 9
+    },
+    {
+     "userId": "u_098",
+     "role": "Community",
+     "puts": 10
+    },
+    {
+     "userId": "u_101",
+     "role": "Agent ops",
+     "puts": 17
+    },
+    {
+     "userId": "u_104",
+     "role": "Treasury",
+     "puts": 12
+    },
+    {
+     "userId": "u_107",
+     "role": "Founder",
+     "puts": 26
+    },
+    {
+     "userId": "u_110",
+     "role": "Designer",
+     "puts": 25
+    }
+   ],
+   "puts": {
+    "minted": 5281,
+    "utility": [
+     "Host access",
+     "Runway seat"
+    ]
+   }
+  },
+  {
+   "id": "a032",
+   "clubId": "c_032",
+   "trackId": "t_pfp",
+   "stage": "incubating",
+   "ask": 58744,
+   "raised": 165325,
+   "submittedAt": "2026-08-21",
+   "members": [
+    {
+     "userId": "u_096",
+     "role": "Founder",
+     "puts": 29
+    },
+    {
+     "userId": "u_099",
+     "role": "Designer",
+     "puts": 4
+    },
+    {
+     "userId": "u_102",
+     "role": "World builder",
+     "puts": 3
+    },
+    {
+     "userId": "u_105",
+     "role": "Community",
+     "puts": 36
+    },
+    {
+     "userId": "u_108",
+     "role": "Agent ops",
+     "puts": 39
+    }
+   ],
+   "puts": {
+    "minted": 1250,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier"
+    ]
+   }
+  },
+  {
+   "id": "a033",
+   "clubId": "c_033",
+   "trackId": "t_virtual",
+   "stage": "funded",
+   "ask": 326037,
+   "raised": 231149,
+   "submittedAt": "2026-06-22",
+   "members": [
+    {
+     "userId": "u_103",
+     "role": "Founder",
+     "puts": 3
+    },
+    {
+     "userId": "u_106",
+     "role": "Designer",
+     "puts": 9
+    },
+    {
+     "userId": "u_109",
+     "role": "World builder",
+     "puts": 6
+    },
+    {
+     "userId": "u_112",
+     "role": "Community",
+     "puts": 8
+    }
+   ],
+   "puts": {
+    "minted": 1529,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable"
+    ]
+   }
+  },
+  {
+   "id": "a034",
+   "clubId": "c_034",
+   "trackId": "t_agentic",
+   "stage": "launched",
+   "ask": 345078,
+   "raised": 159859,
+   "submittedAt": "2026-04-04",
+   "members": [
+    {
+     "userId": "u_110",
+     "role": "Founder",
+     "puts": 39
+    },
+    {
+     "userId": "u_113",
+     "role": "Designer",
+     "puts": 40
+    },
+    {
+     "userId": "u_116",
+     "role": "World builder",
+     "puts": 30
+    },
+    {
+     "userId": "u_119",
+     "role": "Community",
+     "puts": 37
+    },
+    {
+     "userId": "u_122",
+     "role": "Agent ops",
+     "puts": 28
+    },
+    {
+     "userId": "u_125",
+     "role": "Treasury",
+     "puts": 2
+    },
+    {
+     "userId": "u_noor",
+     "role": "Founder",
+     "puts": 20
+    },
+    {
+     "userId": "u_zara",
+     "role": "Designer",
+     "puts": 33
+    }
+   ],
+   "puts": {
+    "minted": 1551,
+    "utility": [
+     "Host access",
+     "Runway seat"
+    ]
+   }
+  },
+  {
+   "id": "a035",
+   "clubId": "c_035",
+   "trackId": "t_virtual",
+   "stage": "applied",
+   "ask": 383770,
+   "raised": 63492,
+   "submittedAt": "2026-07-07",
+   "members": [
+    {
+     "userId": "u_117",
+     "role": "Founder",
+     "puts": 27
+    },
+    {
+     "userId": "u_120",
+     "role": "Designer",
+     "puts": 5
+    },
+    {
+     "userId": "u_123",
+     "role": "World builder",
+     "puts": 39
+    },
+    {
+     "userId": "u_126",
+     "role": "Community",
+     "puts": 35
+    },
+    {
+     "userId": "u_ines",
+     "role": "Agent ops",
+     "puts": 1
+    },
+    {
+     "userId": "u_theo",
+     "role": "Treasury",
+     "puts": 34
+    },
+    {
+     "userId": "u_007",
+     "role": "Founder",
+     "puts": 8
+    }
+   ],
+   "puts": {
+    "minted": 1364,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier",
+     "Fitting credits"
+    ]
+   }
+  },
+  {
+   "id": "a036",
+   "clubId": "c_036",
+   "trackId": "t_virtual",
+   "stage": "review",
+   "ask": 428532,
+   "raised": 9641,
+   "submittedAt": "2026-02-15",
+   "members": [
+    {
+     "userId": "u_124",
+     "role": "Founder",
+     "puts": 2
+    },
+    {
+     "userId": "u_127",
+     "role": "Designer",
+     "puts": 9
+    },
+    {
+     "userId": "u_kai",
+     "role": "World builder",
+     "puts": 37
+    },
+    {
+     "userId": "u_mina",
+     "role": "Community",
+     "puts": 1
+    }
+   ],
+   "puts": {
+    "minted": 4647,
+    "utility": [
+     "Host access",
+     "Runway seat"
+    ]
+   }
+  },
+  {
+   "id": "a037",
+   "clubId": "c_037",
+   "trackId": "t_agentic",
+   "stage": "incubating",
+   "ask": 362079,
+   "raised": 254786,
+   "submittedAt": "2026-04-22",
+   "members": [
+    {
+     "userId": "u_zara",
+     "role": "Founder",
+     "puts": 11
+    },
+    {
+     "userId": "u_006",
+     "role": "Designer",
+     "puts": 8
+    },
+    {
+     "userId": "u_009",
+     "role": "World builder",
+     "puts": 38
+    },
+    {
+     "userId": "u_012",
+     "role": "Community",
+     "puts": 29
+    },
+    {
+     "userId": "u_015",
+     "role": "Agent ops",
+     "puts": 18
+    },
+    {
+     "userId": "u_018",
+     "role": "Treasury",
+     "puts": 30
+    }
+   ],
+   "puts": {
+    "minted": 2454,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable"
+    ]
+   }
+  },
+  {
+   "id": "a038",
+   "clubId": "c_038",
+   "trackId": "t_virtual",
+   "stage": "funded",
+   "ask": 407870,
+   "raised": 177632,
+   "submittedAt": "2026-04-11",
+   "members": [
+    {
+     "userId": "u_010",
+     "role": "Founder",
+     "puts": 20
+    },
+    {
+     "userId": "u_013",
+     "role": "Designer",
+     "puts": 12
+    },
+    {
+     "userId": "u_016",
+     "role": "World builder",
+     "puts": 3
+    },
+    {
+     "userId": "u_019",
+     "role": "Community",
+     "puts": 27
+    },
+    {
+     "userId": "u_022",
+     "role": "Agent ops",
+     "puts": 29
+    }
+   ],
+   "puts": {
+    "minted": 3493,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable"
+    ]
+   }
+  },
+  {
+   "id": "a039",
+   "clubId": "c_039",
+   "trackId": "t_agentic",
+   "stage": "launched",
+   "ask": 241212,
+   "raised": 112438,
+   "submittedAt": "2026-02-26",
+   "members": [
+    {
+     "userId": "u_017",
+     "role": "Founder",
+     "puts": 34
+    },
+    {
+     "userId": "u_020",
+     "role": "Designer",
+     "puts": 28
+    },
+    {
+     "userId": "u_023",
+     "role": "World builder",
+     "puts": 26
+    },
+    {
+     "userId": "u_026",
+     "role": "Community",
+     "puts": 27
+    }
+   ],
+   "puts": {
+    "minted": 2875,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier",
+     "Fitting credits"
+    ]
+   }
+  },
+  {
+   "id": "a040",
+   "clubId": "c_040",
+   "trackId": "t_ar",
+   "stage": "applied",
+   "ask": 367043,
+   "raised": 82352,
+   "submittedAt": "2026-04-24",
+   "members": [
+    {
+     "userId": "u_024",
+     "role": "Founder",
+     "puts": 28
+    },
+    {
+     "userId": "u_027",
+     "role": "Designer",
+     "puts": 17
+    },
+    {
+     "userId": "u_030",
+     "role": "World builder",
+     "puts": 14
+    },
+    {
+     "userId": "u_033",
+     "role": "Community",
+     "puts": 5
+    },
+    {
+     "userId": "u_036",
+     "role": "Agent ops",
+     "puts": 18
+    }
+   ],
+   "puts": {
+    "minted": 111,
+    "utility": [
+     "Host access",
+     "Runway seat"
+    ]
+   }
+  },
+  {
+   "id": "a041",
+   "clubId": "c_041",
+   "trackId": "t_pfp",
+   "stage": "review",
+   "ask": 164377,
+   "raised": 232744,
+   "submittedAt": "2026-01-09",
+   "members": [
+    {
+     "userId": "u_031",
+     "role": "Founder",
+     "puts": 32
+    },
+    {
+     "userId": "u_034",
+     "role": "Designer",
+     "puts": 35
+    },
+    {
+     "userId": "u_037",
+     "role": "World builder",
+     "puts": 33
+    },
+    {
+     "userId": "u_040",
+     "role": "Community",
+     "puts": 4
+    },
+    {
+     "userId": "u_043",
+     "role": "Agent ops",
+     "puts": 1
+    },
+    {
+     "userId": "u_046",
+     "role": "Treasury",
+     "puts": 40
+    }
+   ],
+   "puts": {
+    "minted": 2660,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier",
+     "Fitting credits"
+    ]
+   }
+  },
+  {
+   "id": "a042",
+   "clubId": "c_042",
+   "trackId": "t_pfp",
+   "stage": "incubating",
+   "ask": 197410,
+   "raised": 264540,
+   "submittedAt": "2026-08-05",
+   "members": [
+    {
+     "userId": "u_038",
+     "role": "Founder",
+     "puts": 38
+    },
+    {
+     "userId": "u_041",
+     "role": "Designer",
+     "puts": 1
+    },
+    {
+     "userId": "u_044",
+     "role": "World builder",
+     "puts": 17
+    },
+    {
+     "userId": "u_047",
+     "role": "Community",
+     "puts": 13
+    },
+    {
+     "userId": "u_050",
+     "role": "Agent ops",
+     "puts": 27
+    }
+   ],
+   "puts": {
+    "minted": 4061,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier",
+     "Fitting credits"
+    ]
+   }
+  },
+  {
+   "id": "a043",
+   "clubId": "c_043",
+   "trackId": "t_virtual",
+   "stage": "funded",
+   "ask": 393304,
+   "raised": 267556,
+   "submittedAt": "2026-04-11",
+   "members": [
+    {
+     "userId": "u_045",
+     "role": "Founder",
+     "puts": 3
+    },
+    {
+     "userId": "u_048",
+     "role": "Designer",
+     "puts": 3
+    },
+    {
+     "userId": "u_051",
+     "role": "World builder",
+     "puts": 15
+    },
+    {
+     "userId": "u_054",
+     "role": "Community",
+     "puts": 21
+    },
+    {
+     "userId": "u_057",
+     "role": "Agent ops",
+     "puts": 11
+    }
+   ],
+   "puts": {
+    "minted": 2170,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable"
+    ]
+   }
+  },
+  {
+   "id": "a044",
+   "clubId": "c_044",
+   "trackId": "t_pfp",
+   "stage": "launched",
+   "ask": 86625,
+   "raised": 253828,
+   "submittedAt": "2026-07-02",
+   "members": [
+    {
+     "userId": "u_052",
+     "role": "Founder",
+     "puts": 17
+    },
+    {
+     "userId": "u_055",
+     "role": "Designer",
+     "puts": 30
+    },
+    {
+     "userId": "u_058",
+     "role": "World builder",
+     "puts": 17
+    },
+    {
+     "userId": "u_061",
+     "role": "Community",
+     "puts": 10
+    },
+    {
+     "userId": "u_064",
+     "role": "Agent ops",
+     "puts": 14
+    },
+    {
+     "userId": "u_067",
+     "role": "Treasury",
+     "puts": 8
+    },
+    {
+     "userId": "u_070",
+     "role": "Founder",
+     "puts": 5
+    },
+    {
+     "userId": "u_073",
+     "role": "Designer",
+     "puts": 20
+    }
+   ],
+   "puts": {
+    "minted": 5305,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier"
+    ]
+   }
+  },
+  {
+   "id": "a045",
+   "clubId": "c_045",
+   "trackId": "t_agentic",
+   "stage": "applied",
+   "ask": 330461,
+   "raised": 190949,
+   "submittedAt": "2026-03-07",
+   "members": [
+    {
+     "userId": "u_059",
+     "role": "Founder",
+     "puts": 10
+    },
+    {
+     "userId": "u_062",
+     "role": "Designer",
+     "puts": 33
+    },
+    {
+     "userId": "u_065",
+     "role": "World builder",
+     "puts": 6
+    },
+    {
+     "userId": "u_068",
+     "role": "Community",
+     "puts": 15
+    },
+    {
+     "userId": "u_071",
+     "role": "Agent ops",
+     "puts": 18
+    },
+    {
+     "userId": "u_074",
+     "role": "Treasury",
+     "puts": 18
+    },
+    {
+     "userId": "u_077",
+     "role": "Founder",
+     "puts": 16
+    }
+   ],
+   "puts": {
+    "minted": 6554,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier",
+     "Fitting credits"
+    ]
+   }
+  },
+  {
+   "id": "a046",
+   "clubId": "c_046",
+   "trackId": "t_virtual",
+   "stage": "review",
+   "ask": 74194,
+   "raised": 235399,
+   "submittedAt": "2026-04-13",
+   "members": [
+    {
+     "userId": "u_066",
+     "role": "Founder",
+     "puts": 15
+    },
+    {
+     "userId": "u_069",
+     "role": "Designer",
+     "puts": 7
+    },
+    {
+     "userId": "u_072",
+     "role": "World builder",
+     "puts": 40
+    },
+    {
+     "userId": "u_075",
+     "role": "Community",
+     "puts": 20
+    },
+    {
+     "userId": "u_078",
+     "role": "Agent ops",
+     "puts": 16
+    },
+    {
+     "userId": "u_081",
+     "role": "Treasury",
+     "puts": 15
+    },
+    {
+     "userId": "u_084",
+     "role": "Founder",
+     "puts": 25
+    },
+    {
+     "userId": "u_087",
+     "role": "Designer",
+     "puts": 4
+    }
+   ],
+   "puts": {
+    "minted": 2770,
+    "utility": [
+     "Host access",
+     "Runway seat"
+    ]
+   }
+  },
+  {
+   "id": "a047",
+   "clubId": "c_047",
+   "trackId": "t_agentic",
+   "stage": "incubating",
+   "ask": 207947,
+   "raised": 265884,
+   "submittedAt": "2026-05-19",
+   "members": [
+    {
+     "userId": "u_073",
+     "role": "Founder",
+     "puts": 15
+    },
+    {
+     "userId": "u_076",
+     "role": "Designer",
+     "puts": 21
+    },
+    {
+     "userId": "u_079",
+     "role": "World builder",
+     "puts": 23
+    },
+    {
+     "userId": "u_082",
+     "role": "Community",
+     "puts": 33
+    },
+    {
+     "userId": "u_085",
+     "role": "Agent ops",
+     "puts": 6
+    },
+    {
+     "userId": "u_088",
+     "role": "Treasury",
+     "puts": 7
+    },
+    {
+     "userId": "u_091",
+     "role": "Founder",
+     "puts": 5
+    }
+   ],
+   "puts": {
+    "minted": 3365,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier",
+     "Fitting credits"
+    ]
+   }
+  },
+  {
+   "id": "a048",
+   "clubId": "c_048",
+   "trackId": "t_pfp",
+   "stage": "funded",
+   "ask": 273696,
+   "raised": 216662,
+   "submittedAt": "2026-05-07",
+   "members": [
+    {
+     "userId": "u_080",
+     "role": "Founder",
+     "puts": 32
+    },
+    {
+     "userId": "u_083",
+     "role": "Designer",
+     "puts": 9
+    },
+    {
+     "userId": "u_086",
+     "role": "World builder",
+     "puts": 40
+    },
+    {
+     "userId": "u_089",
+     "role": "Community",
+     "puts": 26
+    },
+    {
+     "userId": "u_092",
+     "role": "Agent ops",
+     "puts": 19
+    },
+    {
+     "userId": "u_095",
+     "role": "Treasury",
+     "puts": 15
+    },
+    {
+     "userId": "u_098",
+     "role": "Founder",
+     "puts": 17
+    }
+   ],
+   "puts": {
+    "minted": 989,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable"
+    ]
+   }
+  },
+  {
+   "id": "a049",
+   "clubId": "c_049",
+   "trackId": "t_pfp",
+   "stage": "launched",
+   "ask": 243046,
+   "raised": 10882,
+   "submittedAt": "2026-06-05",
+   "members": [
+    {
+     "userId": "u_087",
+     "role": "Founder",
+     "puts": 24
+    },
+    {
+     "userId": "u_090",
+     "role": "Designer",
+     "puts": 6
+    },
+    {
+     "userId": "u_093",
+     "role": "World builder",
+     "puts": 16
+    },
+    {
+     "userId": "u_096",
+     "role": "Community",
+     "puts": 11
+    },
+    {
+     "userId": "u_099",
+     "role": "Agent ops",
+     "puts": 14
+    },
+    {
+     "userId": "u_102",
+     "role": "Treasury",
+     "puts": 16
+    }
+   ],
+   "puts": {
+    "minted": 4556,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable"
+    ]
+   }
+  },
+  {
+   "id": "a050",
+   "clubId": "c_050",
+   "trackId": "t_virtual",
+   "stage": "applied",
+   "ask": 161676,
+   "raised": 293913,
+   "submittedAt": "2026-05-10",
+   "members": [
+    {
+     "userId": "u_094",
+     "role": "Founder",
+     "puts": 38
+    },
+    {
+     "userId": "u_097",
+     "role": "Designer",
+     "puts": 21
+    },
+    {
+     "userId": "u_100",
+     "role": "World builder",
+     "puts": 24
+    },
+    {
+     "userId": "u_103",
+     "role": "Community",
+     "puts": 31
+    },
+    {
+     "userId": "u_106",
+     "role": "Agent ops",
+     "puts": 13
+    },
+    {
+     "userId": "u_109",
+     "role": "Treasury",
+     "puts": 24
+    },
+    {
+     "userId": "u_112",
+     "role": "Founder",
+     "puts": 20
+    },
+    {
+     "userId": "u_115",
+     "role": "Designer",
+     "puts": 5
+    }
+   ],
+   "puts": {
+    "minted": 3520,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier"
+    ]
+   }
+  },
+  {
+   "id": "a051",
+   "clubId": "c_051",
+   "trackId": "t_virtual",
+   "stage": "review",
+   "ask": 60450,
+   "raised": 66682,
+   "submittedAt": "2026-06-08",
+   "members": [
+    {
+     "userId": "u_101",
+     "role": "Founder",
+     "puts": 22
+    },
+    {
+     "userId": "u_104",
+     "role": "Designer",
+     "puts": 11
+    },
+    {
+     "userId": "u_107",
+     "role": "World builder",
+     "puts": 20
+    },
+    {
+     "userId": "u_110",
+     "role": "Community",
+     "puts": 12
+    },
+    {
+     "userId": "u_113",
+     "role": "Agent ops",
+     "puts": 6
+    }
+   ],
+   "puts": {
+    "minted": 7028,
+    "utility": [
+     "Host access",
+     "Runway seat"
+    ]
+   }
+  },
+  {
+   "id": "a052",
+   "clubId": "c_052",
+   "trackId": "t_virtual",
+   "stage": "incubating",
+   "ask": 133196,
+   "raised": 219003,
+   "submittedAt": "2026-01-17",
+   "members": [
+    {
+     "userId": "u_108",
+     "role": "Founder",
+     "puts": 39
+    },
+    {
+     "userId": "u_111",
+     "role": "Designer",
+     "puts": 18
+    },
+    {
+     "userId": "u_114",
+     "role": "World builder",
+     "puts": 40
+    },
+    {
+     "userId": "u_117",
+     "role": "Community",
+     "puts": 7
+    },
+    {
+     "userId": "u_120",
+     "role": "Agent ops",
+     "puts": 28
+    },
+    {
+     "userId": "u_123",
+     "role": "Treasury",
+     "puts": 32
+    }
+   ],
+   "puts": {
+    "minted": 6966,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable"
+    ]
+   }
+  },
+  {
+   "id": "a053",
+   "clubId": "c_053",
+   "trackId": "t_agentic",
+   "stage": "funded",
+   "ask": 381147,
+   "raised": 62914,
+   "submittedAt": "2026-07-03",
+   "members": [
+    {
+     "userId": "u_115",
+     "role": "Founder",
+     "puts": 22
+    },
+    {
+     "userId": "u_118",
+     "role": "Designer",
+     "puts": 24
+    },
+    {
+     "userId": "u_121",
+     "role": "World builder",
+     "puts": 8
+    },
+    {
+     "userId": "u_124",
+     "role": "Community",
+     "puts": 22
+    },
+    {
+     "userId": "u_127",
+     "role": "Agent ops",
+     "puts": 4
+    }
+   ],
+   "puts": {
+    "minted": 5157,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable"
+    ]
+   }
+  },
+  {
+   "id": "a054",
+   "clubId": "c_054",
+   "trackId": "t_virtual",
+   "stage": "launched",
+   "ask": 124056,
+   "raised": 66006,
+   "submittedAt": "2026-06-12",
+   "members": [
+    {
+     "userId": "u_122",
+     "role": "Founder",
+     "puts": 6
+    },
+    {
+     "userId": "u_125",
+     "role": "Designer",
+     "puts": 14
+    },
+    {
+     "userId": "u_noor",
+     "role": "World builder",
+     "puts": 10
+    },
+    {
+     "userId": "u_zara",
+     "role": "Community",
+     "puts": 5
+    }
+   ],
+   "puts": {
+    "minted": 7380,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier"
+    ]
+   }
+  },
+  {
+   "id": "a055",
+   "clubId": "c_055",
+   "trackId": "t_agentic",
+   "stage": "applied",
+   "ask": 177974,
+   "raised": 284763,
+   "submittedAt": "2026-08-24",
+   "members": [
+    {
+     "userId": "u_ines",
+     "role": "Founder",
+     "puts": 22
+    },
+    {
+     "userId": "u_theo",
+     "role": "Designer",
+     "puts": 1
+    },
+    {
+     "userId": "u_007",
+     "role": "World builder",
+     "puts": 7
+    },
+    {
+     "userId": "u_010",
+     "role": "Community",
+     "puts": 25
+    },
+    {
+     "userId": "u_013",
+     "role": "Agent ops",
+     "puts": 24
+    },
+    {
+     "userId": "u_016",
+     "role": "Treasury",
+     "puts": 2
+    },
+    {
+     "userId": "u_019",
+     "role": "Founder",
+     "puts": 22
+    },
+    {
+     "userId": "u_022",
+     "role": "Designer",
+     "puts": 33
+    }
+   ],
+   "puts": {
+    "minted": 458,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier"
+    ]
+   }
+  },
+  {
+   "id": "a056",
+   "clubId": "c_056",
+   "trackId": "t_ar",
+   "stage": "review",
+   "ask": 99691,
+   "raised": 197887,
+   "submittedAt": "2026-04-27",
+   "members": [
+    {
+     "userId": "u_008",
+     "role": "Founder",
+     "puts": 26
+    },
+    {
+     "userId": "u_011",
+     "role": "Designer",
+     "puts": 25
+    },
+    {
+     "userId": "u_014",
+     "role": "World builder",
+     "puts": 37
+    },
+    {
+     "userId": "u_017",
+     "role": "Community",
+     "puts": 8
+    }
+   ],
+   "puts": {
+    "minted": 4866,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier"
+    ]
+   }
+  },
+  {
+   "id": "a057",
+   "clubId": "c_057",
+   "trackId": "t_ar",
+   "stage": "incubating",
+   "ask": 97848,
+   "raised": 239637,
+   "submittedAt": "2026-07-22",
+   "members": [
+    {
+     "userId": "u_015",
+     "role": "Founder",
+     "puts": 6
+    },
+    {
+     "userId": "u_018",
+     "role": "Designer",
+     "puts": 28
+    },
+    {
+     "userId": "u_021",
+     "role": "World builder",
+     "puts": 34
+    },
+    {
+     "userId": "u_024",
+     "role": "Community",
+     "puts": 24
+    }
+   ],
+   "puts": {
+    "minted": 3914,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier",
+     "Fitting credits"
+    ]
+   }
+  },
+  {
+   "id": "a058",
+   "clubId": "c_058",
+   "trackId": "t_ar",
+   "stage": "funded",
+   "ask": 410716,
+   "raised": 233162,
+   "submittedAt": "2026-01-27",
+   "members": [
+    {
+     "userId": "u_022",
+     "role": "Founder",
+     "puts": 19
+    },
+    {
+     "userId": "u_025",
+     "role": "Designer",
+     "puts": 16
+    },
+    {
+     "userId": "u_028",
+     "role": "World builder",
+     "puts": 1
+    },
+    {
+     "userId": "u_031",
+     "role": "Community",
+     "puts": 40
+    },
+    {
+     "userId": "u_034",
+     "role": "Agent ops",
+     "puts": 2
+    },
+    {
+     "userId": "u_037",
+     "role": "Treasury",
+     "puts": 33
+    }
+   ],
+   "puts": {
+    "minted": 4277,
+    "utility": [
+     "Host access",
+     "Runway seat"
+    ]
+   }
+  },
+  {
+   "id": "a059",
+   "clubId": "c_059",
+   "trackId": "t_agentic",
+   "stage": "launched",
+   "ask": 150643,
+   "raised": 123832,
+   "submittedAt": "2026-04-04",
+   "members": [
+    {
+     "userId": "u_029",
+     "role": "Founder",
+     "puts": 20
+    },
+    {
+     "userId": "u_032",
+     "role": "Designer",
+     "puts": 6
+    },
+    {
+     "userId": "u_035",
+     "role": "World builder",
+     "puts": 26
+    },
+    {
+     "userId": "u_038",
+     "role": "Community",
+     "puts": 12
+    },
+    {
+     "userId": "u_041",
+     "role": "Agent ops",
+     "puts": 18
+    }
+   ],
+   "puts": {
+    "minted": 4032,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable"
+    ]
+   }
+  },
+  {
+   "id": "a060",
+   "clubId": "c_060",
+   "trackId": "t_agentic",
+   "stage": "applied",
+   "ask": 415157,
+   "raised": 12573,
+   "submittedAt": "2026-01-11",
+   "members": [
+    {
+     "userId": "u_036",
+     "role": "Founder",
+     "puts": 10
+    },
+    {
+     "userId": "u_039",
+     "role": "Designer",
+     "puts": 1
+    },
+    {
+     "userId": "u_042",
+     "role": "World builder",
+     "puts": 26
+    },
+    {
+     "userId": "u_045",
+     "role": "Community",
+     "puts": 10
+    },
+    {
+     "userId": "u_048",
+     "role": "Agent ops",
+     "puts": 32
+    },
+    {
+     "userId": "u_051",
+     "role": "Treasury",
+     "puts": 14
+    }
+   ],
+   "puts": {
+    "minted": 7414,
+    "utility": [
+     "Host access",
+     "Runway seat"
+    ]
+   }
+  },
+  {
+   "id": "a061",
+   "clubId": "c_061",
+   "trackId": "t_virtual",
+   "stage": "review",
+   "ask": 64754,
+   "raised": 89200,
+   "submittedAt": "2026-07-02",
+   "members": [
+    {
+     "userId": "u_043",
+     "role": "Founder",
+     "puts": 30
+    },
+    {
+     "userId": "u_046",
+     "role": "Designer",
+     "puts": 11
+    },
+    {
+     "userId": "u_049",
+     "role": "World builder",
+     "puts": 4
+    },
+    {
+     "userId": "u_052",
+     "role": "Community",
+     "puts": 3
+    }
+   ],
+   "puts": {
+    "minted": 6209,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable",
+     "Quest multiplier",
+     "Fitting credits"
+    ]
+   }
+  },
+  {
+   "id": "a062",
+   "clubId": "c_062",
+   "trackId": "t_ar",
+   "stage": "incubating",
+   "ask": 167335,
+   "raised": 165749,
+   "submittedAt": "2026-01-17",
+   "members": [
+    {
+     "userId": "u_050",
+     "role": "Founder",
+     "puts": 2
+    },
+    {
+     "userId": "u_053",
+     "role": "Designer",
+     "puts": 3
+    },
+    {
+     "userId": "u_056",
+     "role": "World builder",
+     "puts": 39
+    },
+    {
+     "userId": "u_059",
+     "role": "Community",
+     "puts": 20
+    },
+    {
+     "userId": "u_062",
+     "role": "Agent ops",
+     "puts": 32
+    }
+   ],
+   "puts": {
+    "minted": 2902,
+    "utility": [
+     "Host access",
+     "Runway seat",
+     "AR wearable"
+    ]
+   }
+  },
+  {
+   "id": "a063",
+   "clubId": "c_063",
+   "trackId": "t_pfp",
+   "stage": "funded",
+   "ask": 309319,
+   "raised": 9814,
+   "submittedAt": "2026-05-11",
+   "members": [
+    {
+     "userId": "u_057",
+     "role": "Founder",
+     "puts": 39
+    },
+    {
+     "userId": "u_060",
+     "role": "Designer",
+     "puts": 21
+    },
+    {
+     "userId": "u_063",
+     "role": "World builder",
+     "puts": 34
+    },
+    {
+     "userId": "u_066",
+     "role": "Community",
+     "puts": 7
+    },
+    {
+     "userId": "u_069",
+     "role": "Agent ops",
+     "puts": 38
+    },
+    {
+     "userId": "u_072",
+     "role": "Treasury",
+     "puts": 39
+    }
+   ],
+   "puts": {
+    "minted": 3172,
+    "utility": [
+     "Host access",
+     "Runway seat"
+    ]
+   }
+  }
+ ],
+ "process": [
+  {
+   "step": "Apply",
+   "detail": "Club, contract, track, ask, and the member roster."
+  },
+  {
+   "step": "Review",
+   "detail": "PFT utility audit + member verification."
+  },
+  {
+   "step": "Incubate",
+   "detail": "Mentors, quests and a league seed."
+  },
+  {
+   "step": "Fund",
+   "detail": "Track pool pays out against milestones."
+  },
+  {
+   "step": "Launch",
+   "detail": "Host opens, PFTs mint, the club enters the league."
+  }
+ ],
+ "fields": [
+  {
+   "id": "name",
+   "label": "Club name",
+   "group": "Club"
+  },
+  {
+   "id": "ticker",
+   "label": "Ticker",
+   "group": "Club"
+  },
+  {
+   "id": "track",
+   "label": "Track",
+   "group": "Club",
+   "locked": true
+  },
+  {
+   "id": "chain",
+   "label": "Chain",
+   "group": "Club"
+  },
+  {
+   "id": "contract",
+   "label": "Contract address",
+   "group": "Contract & mint"
+  },
+  {
+   "id": "supply",
+   "label": "Supply",
+   "group": "Contract & mint"
+  },
+  {
+   "id": "mint",
+   "label": "Mint price",
+   "group": "Contract & mint"
+  },
+  {
+   "id": "ask",
+   "label": "Ask (USDC)",
+   "group": "Funding"
+  },
+  {
+   "id": "raised",
+   "label": "Raised to date",
+   "group": "Funding",
+   "locked": true
+  },
+  {
+   "id": "treasury",
+   "label": "Treasury wallet",
+   "group": "Funding"
+  },
+  {
+   "id": "world",
+   "label": "World",
+   "group": "World"
+  },
+  {
+   "id": "host",
+   "label": "Host",
+   "group": "World"
+  },
+  {
+   "id": "launch",
+   "label": "Launch window",
+   "group": "World"
+  },
+  {
+   "id": "putsMinted",
+   "label": "PFTs minted",
+   "group": "PFTs · Profile Fungible Tokens"
+  },
+  {
+   "id": "putUtility",
+   "label": "PFT utility",
+   "group": "PFTs · Profile Fungible Tokens"
+  },
+  {
+   "id": "eggpaper",
+   "label": "EggPaper link",
+   "group": "Papers",
+   "locked": true
+  }
+ ],
+ "papers": [
+  {
+   "id": "eggpaper",
+   "slug": "eggpaper",
+   "title": "EggPaper",
+   "sub": "Whitepaper: the club, its world and how it hatches",
+   "file": "EggPaper-v1.pdf",
+   "required": true
+  },
+  {
+   "id": "puts",
+   "slug": "puts",
+   "title": "PFTs paper",
+   "sub": "Profile Fungible Tokens: what each token unlocks and who holds them",
+   "file": "PFTs-v1.pdf",
+   "required": true
+  },
+  {
+   "id": "deck",
+   "slug": "deck",
+   "title": "Pitch deck",
+   "sub": "Ten slides for the review panel",
+   "file": "Deck.pdf",
+   "required": false
+  },
+  {
+   "id": "roadmap",
+   "slug": "roadmap",
+   "title": "Roadmap",
+   "sub": "Milestones the track pool pays out against",
+   "file": "Roadmap.pdf",
+   "required": false
+  }
+ ],
+ "frameworks": [
+  {
+   "id": "founder",
+   "kicker": "For founders",
+   "title": "Envision. Create. Unleash.",
+   "steps": [
+    {
+     "word": "Envision",
+     "tone": "accent",
+     "body": "Picture the club before it exists: the world, the first look, the people who will wear it. Write it down as your EggPaper.",
+     "maps": [
+      "Apply",
+      "Review"
+     ]
+    },
+    {
+     "word": "Create",
+     "tone": "sage",
+     "body": "Build with mentors and a track pool behind you. Design the garments, the city and the PFT utility your members will earn.",
+     "maps": [
+      "Incubate",
+      "Fund"
+     ]
+    },
+    {
+     "word": "Unleash",
+     "tone": "ink",
+     "body": "Open the host, mint the PFTs and walk the first show. Your club enters the league the same day.",
+     "maps": [
+      "Launch"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "holder",
+   "kicker": "For members",
+   "title": "Dream. Design. Delight.",
+   "steps": [
+    {
+     "word": "Dream",
+     "tone": "neutral",
+     "body": "Every club starts with a world worth visiting. Members arrive for the dream and stay for the people in it.",
+     "maps": [
+      "Worlds",
+      "Shows"
+     ]
+    },
+    {
+     "word": "Design",
+     "tone": "accent",
+     "body": "Looks, garments and cities are designed with the members, not for them. Every create earns PFTs.",
+     "maps": [
+      "Creates",
+      "PFTs"
+     ]
+    },
+    {
+     "word": "Delight",
+     "tone": "sage",
+     "body": "Runways, quests and drops keep the world alive. Delight is what the league measures.",
+     "maps": [
+      "Quests",
+      "League"
+     ]
+    }
+   ]
+  }
+ ],
+ "library": [
+  {
+   "id": "lib_eggpaper",
+   "slug": "eggpaper",
+   "title": "The EggPaper",
+   "sub": "Phiegg’s whitepaper: how clubs hatch worlds, and why",
+   "tone": "accent",
+   "version": "v1.0 · Sep 2026",
+   "sections": [
+    {
+     "h": "Abstract",
+     "body": "Phiegg is a home for fashion clubs that build worlds. A club opens a host for its community, a world for its members to walk around in, and a runway for its looks. Phipad is the accelerator that funds the ones that need it."
+    },
+    {
+     "h": "Dream",
+     "body": "A club is a promise of a place. Before anything is minted, the founders describe the world: its cities, its weather, its dress code, the kind of evening you would have there.",
+     "list": [
+      "Worlds are virtual, AR or agentic",
+      "Every world has cities members can nest in",
+      "Agents live in worlds and host them when founders sleep"
+     ]
+    },
+    {
+     "h": "Design",
+     "body": "Members design alongside the club. Looks, garments and venues are created in the open and credited on the creator’s profile with Profile Fungible Tokens.",
+     "list": [
+      "Garments carry the club’s mark",
+      "Creates earn PFTs",
+      "PFT utility is written into the club’s EggPaper"
+     ]
+    },
+    {
+     "h": "Delight",
+     "body": "A world that nobody visits is a render. Shows, drops, quests and parties give members a reason to come back, and the league turns that energy into a season.",
+     "list": [
+      "Weekly runways per world",
+      "Sponsored quests with coin rewards",
+      "A 64-club league scored on engagement, sales, drops, utility, creates and quests"
+     ]
+    },
+    {
+     "h": "The economy",
+     "body": "Clubs have coins, members stake them in pools, quests pay them out. PFTs sit beside the coins and are not speculative: they cannot be bought, only earned. 100 trillion are set aside so every dream counts."
+    },
+    {
+     "h": "Phipad",
+     "body": "Four funding tracks share one review process. Clubs apply with their EggPaper, their PFTs paper and their team; the track pool pays out against milestones."
+    }
+   ]
+  },
+  {
+   "id": "lib_puts101",
+   "slug": "pfts-101",
+   "title": "PFTs 101",
+   "sub": "Profile Fungible Tokens in five minutes",
+   "tone": "sage",
+   "version": "v1.0 · Sep 2026",
+   "sections": [
+    {
+     "h": "Your utility. Your value.",
+     "body": "A Profile Fungible Token is a credential minted to your Phiegg profile. It says what you did for a club and unlocks what the club offers in return. It works for you."
+    },
+    {
+     "h": "Not speculation. Utility.",
+     "body": "PFTs are bought to be sold on. PFTs are earned to be used. Your club PFT stays in your wallet and can move; the PFTs you earn with it stay on your profile and keep working for you.",
+     "list": [
+      "PFT utility is exercised through your profile",
+      "Earned PFTs cannot be sold or transferred",
+      "They stack: more PFTs, more utility",
+      "Leave a club and its earned PFTs are burned"
+     ]
+    },
+    {
+     "h": "100T PFTs. Every dream counts.",
+     "body": "100 trillion PFTs are set aside for every club, creator and member who ever hatches on Phiegg. There is room for every dream, grand or small. All you need is the dream."
+    },
+    {
+     "h": "How you earn one",
+     "body": "",
+     "list": [
+      "Create a look, garment or venue for a club",
+      "Finish a quest or a drop",
+      "Host a nest, a show or a party",
+      "Join a founding team on Phipad"
+     ]
+    },
+    {
+     "h": "What it unlocks",
+     "body": "Each club writes its own utility. The common ones:",
+     "list": [
+      "Host access and member-only nests",
+      "A seat at the runway",
+      "AR wearables you can try on",
+      "Quest multipliers",
+      "Fitting credits with the club’s agents"
+     ]
+    },
+    {
+     "h": "Making value. Making sense.",
+     "body": "For clubs: design utility people use weekly, not once. Tie every PFT to a real action and publish the rules in your PFTs paper, so members know what they are earning and why."
+    },
+    {
+     "h": "Quick answers",
+     "body": "",
+     "list": [
+      "Do PFTs cost anything? No.",
+      "Can I lose them? Only by leaving the club.",
+      "Do agents earn PFTs? Agents can award them, not hold them.",
+      "Where do I see mine? Your profile, under Clubs."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lib_playbook",
+   "slug": "founders-playbook",
+   "title": "Founder’s playbook",
+   "sub": "Envision, create, unleash: the Phipad route step by step",
+   "tone": "ink",
+   "version": "v1.0 · Sep 2026",
+   "sections": [
+    {
+     "h": "Envision",
+     "body": "Write your EggPaper. Name the world, the first collection and the members you are building for. Pick a track and set an ask you can defend.",
+     "list": [
+      "EggPaper (required)",
+      "PFTs paper (required)",
+      "Team roster with roles"
+     ]
+    },
+    {
+     "h": "Create",
+     "body": "Incubation pairs you with mentors and a quest. Build the first city, the first garments and the PFT utility. Milestones unlock the pool.",
+     "list": [
+      "Pitch deck for the review panel",
+      "Roadmap with milestones",
+      "One live quest before launch"
+     ]
+    },
+    {
+     "h": "Unleash",
+     "body": "Open your host, mint PFTs to the team and walk the first show. The club is seeded into the league and the season starts.",
+     "list": [
+      "Host opens",
+      "PFTs mint",
+      "League seed assigned"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lib_tracks",
+   "slug": "track-guide",
+   "title": "Track guide",
+   "sub": "The four Phipad pools and what each one funds",
+   "tone": "neutral",
+   "version": "v1.0 · Sep 2026",
+   "sections": []
+  }
+ ],
+ "puts": {
+  "headline": "100T PFTs. Every dream counts.",
+  "body": "PFTs are not speculative collectibles. Nobody buys them to flip them. They are earned, they live on your profile, and they run functions for you: access, create, host, quest, vote and fund. Phisum reads what they do.",
+  "supply": "100,000,000,000,000"
+ }
+}

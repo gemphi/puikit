@@ -23,7 +23,7 @@ import { PreferencesModal } from '@pui/components';
  *
  * Composition rules honored here:
  * - Only `@pui/components` primitives + lucide-react are consumed; no raw
- *   `<div>` and no per-component `.module.scss`.
+ *   `<Box>` and no per-component `.module.scss`.
  * - The avatar circle is a `Box` styled with `--phi-*` custom properties so
  *   it inherits the active brand's palette instead of hardcoding colors.
  * - UserMenu owns both the popover state and the preferences modal state,

@@ -1,4 +1,4 @@
-import { Box } from '@pui/components';
+import { Stack, Title } from '@pui/components';
 import React from 'react';
 import type { Block as B } from '../data';
 import { Chat } from './Chat';
@@ -9,7 +9,8 @@ import { Swap } from './Swap';
 import { Stats } from './Stats';
 import { Figure } from './Figure';
 import { Hero, News, Prose, Faq } from './Content';
-import s from '../kit.module.scss';
+import { Agent } from './Agent';
+import { Form } from './Form';
 
 export type { GridItem };
 
@@ -18,7 +19,7 @@ export const Block: React.FC<{ b: B; onOpen: (it: GridItem) => void }> = ({ b, o
   const body =
     b.kind === 'chat' ? <Chat b={b} /> :
     b.kind === 'grid' ? <Grid b={b} onOpen={onOpen} /> :
-    b.kind === 'table' ? <Table b={b} /> :
+    b.kind === 'table' ? <Table b={b} onRoute={(hash) => onOpen({ title: '', route: hash })} /> :
     b.kind === 'terminal' ? <Terminal b={b} /> :
     b.kind === 'swap' ? <Swap b={b} /> :
     b.kind === 'stats' ? <Stats b={b} /> :
@@ -26,7 +27,9 @@ export const Block: React.FC<{ b: B; onOpen: (it: GridItem) => void }> = ({ b, o
     b.kind === 'hero' ? <Hero b={b} /> :
     b.kind === 'news' ? <News b={b} /> :
     b.kind === 'prose' ? <Prose b={b} /> :
-    b.kind === 'faq' ? <Faq b={b} /> : null;
+    b.kind === 'faq' ? <Faq b={b} /> :
+    b.kind === 'agent' ? <Agent b={b} /> :
+    b.kind === 'form' ? <Form b={b} /> : null;
   if (!body) return null;
-  return <Box as="section" className={s.block}>{b.title ? <Box as="h2" className={s.blockTitle}>{b.title}</Box> : null}{body}</Box>;
+  return <Stack as="section" direction="column" gap={3}>{b.title ? <Title level={2} size="lg">{b.title}</Title> : null}{body}</Stack>;
 };

@@ -1,0 +1,119 @@
+{
+  "nav": [
+    "Shots",
+    "Hosts",
+    "Clubs",
+    "Worlds",
+    "Phipad"
+  ],
+  "hero": {
+    "kicker": "The Phiace community platform",
+    "title": "Where virtual worlds get dressed.",
+    "body": "Phiegg is home for PFT clubs: hosts for your community, nests that grow into worlds and cities, and a feed of shots made for fashion.",
+    "primary": "Enter Phiegg",
+    "secondary": "Apply to Phipad"
+  },
+  "pillars": [
+    {
+      "id": "hosts",
+      "title": "Hosts",
+      "body": "Your server, token-gated by verified ownership. Roles come from what you hold."
+    },
+    {
+      "id": "nests",
+      "title": "Nests",
+      "body": "Click to nest: a channel, a quest, a world for your club, a city inside that world."
+    },
+    {
+      "id": "shots",
+      "title": "Shots",
+      "body": "A visual feed of looks and world captures, tagged to the pieces you own."
+    },
+    {
+      "id": "clubs",
+      "title": "Clubs",
+      "body": "Every pool gets a home: pieces, holders, worlds and its host in one place."
+    },
+    {
+      "id": "worlds",
+      "title": "Worlds",
+      "body": "Showcase virtual, AR and agentic worlds, and invite people in from any shot."
+    },
+    {
+      "id": "phipad",
+      "title": "Phipad",
+      "body": "The accelerator. Cash, mentors and a launch slot for clubs that need them."
+    }
+  ],
+  "compare": {
+    "columns": [
+      "Chat servers",
+      "Phiegg"
+    ],
+    "rows": [
+      {
+        "label": "Community space",
+        "a": "Server with text channels",
+        "b": "Host with nests that grow into worlds and cities"
+      },
+      {
+        "label": "Access",
+        "a": "Manual roles and bots",
+        "b": "Roles from verified on-chain ownership"
+      },
+      {
+        "label": "Social",
+        "a": "No feed",
+        "b": "Shots feed, moments and profiles"
+      },
+      {
+        "label": "Worlds",
+        "a": "Links out",
+        "b": "Worlds and cities live inside the host"
+      },
+      {
+        "label": "Funding",
+        "a": "None",
+        "b": "Phipad incubation and track pools"
+      },
+      {
+        "label": "Events",
+        "a": "Scheduled events",
+        "b": "Drops, runways and stages with RSVPs"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Hatch your club.",
+    "body": "Go direct or through Phipad. Same platform, same world.",
+    "primary": "Open a host",
+    "secondary": "Apply to Phipad"
+  },
+  "featured": {
+    "worldIds": [
+      "w_loraland",
+      "w_chatty",
+      "w_bozo",
+      "w_skim",
+      "w_loon",
+      "w_wand",
+      "w_once",
+      "w_wondrous",
+      "w_verbum"
+    ],
+    "seriesIds": [
+      "sr_loraland1",
+      "sr_chatty1",
+      "sr_bozo1",
+      "sr_skim1",
+      "sr_loon1",
+      "sr_wand1",
+      "sr_wand2",
+      "sr_once1",
+      "sr_calder3",
+      "sr_calder4",
+      "sr_naimroyal1",
+      "sr_naimroyal2"
+    ]
+  }
+}

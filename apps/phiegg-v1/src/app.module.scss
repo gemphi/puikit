@@ -1,0 +1,21 @@
+.moments { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 4px; }
+.moment { flex: none; display: flex; flex-direction: column; align-items: center; gap: 6px; width: 72px; font-size: 12px; color: var(--phi-color-text-secondary); }
+.ring { width: 64px; height: 64px; border-radius: 50%; padding: 3px; background: var(--phi-gradient-brand); display: grid; }
+.avatar { border-radius: 50%; display: grid; place-items: center; font-weight: 700; border: 3px solid var(--phi-color-background); }
+.media { border-radius: var(--phi-radius-md); display: grid; place-items: end start; padding: 16px; font-family: var(--phi-font-heading); font-size: 22px; line-height: 1.15; overflow: hidden; }
+.feed { display: flex; flex-direction: column; gap: 18px; max-width: 640px; }
+.who { display: flex; align-items: center; gap: 10px; }
+.mini { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; font-weight: 700; flex: none; }
+.chips { display: flex; gap: 8px; overflow-x: auto; }
+.clubTop { height: 96px; margin: -16px -16px 0; border-radius: var(--phi-radius-lg) var(--phi-radius-lg) 0 0; position: relative; }
+.badge { position: absolute; left: 16px; bottom: -22px; width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: var(--phi-color-background); box-shadow: var(--phi-shadow-1); font-weight: 700; }
+.clubBody { padding-top: 18px; display: flex; flex-direction: column; gap: 4px; }
+.look { aspect-ratio: 3 / 4; border-radius: var(--phi-radius-md); display: grid; place-items: center; overflow: hidden; }
+.lookImg { width: 100%; height: 100%; object-fit: contain; }
+.stage { display: flex; flex-direction: column; gap: 10px; min-width: 220px; flex: 1; }
+.lanes { display: flex; gap: 14px; overflow-x: auto; align-items: flex-start; }
+.hero { padding: clamp(20px, 4cqi, 40px); border-radius: var(--phi-radius-lg); background: var(--phi-gradient-sidebar); display: flex; flex-direction: column; gap: 10px; }
+.inbox { display: grid; grid-template-columns: minmax(240px, 320px) minmax(0, 1fr); gap: 16px; align-items: start; }
+.convs { display: flex; flex-direction: column; gap: 4px; max-height: 70vh; overflow-y: auto; }
+.dot { min-width: 22px; height: 22px; padding: 0 6px; border-radius: var(--phi-radius-full); background: var(--phi-color-primary); color: var(--phi-color-text-inverse); font-size: 12px; font-weight: 700; display: grid; place-items: center; }
+@container (max-width: 640px) { .inbox { grid-template-columns: 1fr; } .convs { max-height: 40vh; } }

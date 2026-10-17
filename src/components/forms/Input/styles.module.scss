@@ -11,7 +11,7 @@
   min-height: var(--phi-control-height-md);
   padding: 0 0.75rem;
   border: 1px solid var(--phi-color-border);
-  border-radius: var(--phi-radius-md);
+  border-radius: var(--phi-control-radius, var(--phi-radius-md));
   background-color: var(--phi-color-background);
   color: var(--phi-color-text-primary);
   font-family: var(--phi-font-family);
@@ -44,4 +44,16 @@
 .error:focus {
   border-color: var(--phi-color-error);
   box-shadow: 0 0 0 2px var(--phi-color-error-light);
+}
+
+.withTrailing {
+  padding-right: 4.25rem;
+}
+
+.trailing {
+  position: absolute;
+  right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  color: var(--phi-color-text-secondary);
 }

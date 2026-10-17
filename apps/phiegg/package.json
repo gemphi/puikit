@@ -1,24 +1,36 @@
 {
-  "name": "phiegg",
-  "version": "0.1.0",
+  "name": "@phiace/phiegg",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
+  "description": "Phiegg \u2014 virtual worlds run by clubs: feed, explore, worlds, shows, hosts and nests, agents, Phipad. @phiace/puijs (Organic) + phi-kit.",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "data:deepen": "node scripts/deepen-data.mjs",
+    "data:brands": "node scripts/brands.mjs && node scripts/hosts-casts.mjs",
+    "data:check": "node scripts/check-relations.mjs",
+    "data": "python3 scripts/looks-import.py && python3 scripts/recolour-renders.py && python3 scripts/item-colors.py && node scripts/brands.mjs && node scripts/deepen-data.mjs && node scripts/hosts-casts.mjs && node scripts/celebs.mjs && node scripts/productions.mjs && node scripts/items.mjs && node scripts/rides.mjs && node scripts/jewels.mjs && node scripts/style05.mjs && node scripts/pools.mjs && node scripts/assets.mjs && node scripts/threads.mjs && python3 scripts/world-images.py && node scripts/heavy-ids.mjs && node scripts/check-relations.mjs",
+    "data:portraits": "sh -c 'for k in 0 1 2 3 4 5 6 7 8 9 10 11; do python3 scripts/portraits.py $k; done; python3 scripts/portraits.py -1'",
+    "data:worlds": "node scripts/rides.mjs && node scripts/jewels.mjs && python3 scripts/world-images.py",
+    "data:renders": "python3 scripts/recolour-renders.py && python3 scripts/item-colors.py",
+    "data:looks": "python3 scripts/looks-import.py && python3 scripts/item-colors.py && node scripts/items.mjs && node scripts/style05.mjs",
+    "data:ids": "node scripts/heavy-ids.mjs"
   },
   "dependencies": {
-    "lucide-react": "^0.300.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "@phiace/puijs": "file:../..",
+    "lucide-react": "^1.24.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
   },
   "devDependencies": {
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "@vitejs/plugin-react": "^4.3.4",
-    "sass": "^1.83.0",
-    "typescript": "^5.7.2",
-    "vite": "^6.0.7"
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^5.0.0",
+    "sass": "^1.101.0",
+    "typescript": "^5",
+    "vite": "^6.0.0"
   }
 }

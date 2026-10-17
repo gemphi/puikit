@@ -1,0 +1,89 @@
+@use '@pui/tokens/tokens' as *;
+
+.agentCard {
+  background: var(--phi-color-background-card, #182026);
+  border: 1px solid var(--phi-color-border, #293742);
+  border-radius: var(--phi-radius-md);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all 0.15s ease;
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--phi-color-primary, #3b82f6);
+    transform: translateY(-1px);
+  }
+}
+
+.selectedCard {
+  border-color: var(--phi-color-primary, #3b82f6) !important;
+  background: rgba(59, 130, 246, 0.04) !important;
+  box-shadow: 0 0 0 1px var(--phi-color-primary, #3b82f6);
+}
+
+.headerTitle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.agentIcon {
+  color: var(--phi-color-primary, #3b82f6);
+}
+
+.agentName {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--phi-color-text-primary, #f8fafc);
+}
+
+.agentTag {
+  font-size: 11px;
+  color: var(--phi-color-text-muted, #64748b);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: var(--phi-radius-xs);
+}
+
+.description {
+  font-size: 12px;
+  color: var(--phi-color-text-secondary, #94a3b8);
+  line-height: 1.4;
+  margin: 0;
+  min-height: 34px;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  background: var(--phi-color-background-secondary, #202b33);
+  padding: 6px 10px;
+  border-radius: var(--phi-radius-sm);
+  border: 1px solid var(--phi-color-border, #293742);
+}
+
+.metricItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--phi-color-text-secondary, #94a3b8);
+  font-family: var(--phi-font-mono, monospace);
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 4px;
+  border-top: 1px solid var(--phi-color-border, #293742);
+}
+
+.uptime {
+  font-size: 11px;
+  color: var(--phi-color-text-muted, #64748b);
+  font-family: var(--phi-font-mono, monospace);
+}

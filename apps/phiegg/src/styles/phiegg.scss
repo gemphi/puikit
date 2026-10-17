@@ -1,0 +1,60 @@
+// Phiegg layer over puijs tokens: themed scrollbars + appearance hooks.
+// Radius: the appearance picker drives the puijs radius scale (--phi-radius-scale) for every component, see App.tsx.
+* { scrollbar-width: thin; scrollbar-color: color-mix(in srgb, var(--phi-color-text-primary) 28%, transparent) transparent; }
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--phi-color-text-primary) 24%, transparent); border-radius: var(--phi-radius-full); border: 3px solid transparent; background-clip: content-box; }
+*::-webkit-scrollbar-thumb:hover { background-color: color-mix(in srgb, var(--phi-color-primary) 60%, transparent); }
+[data-ph-motion='reduced'] * { transition: none !important; animation: none !important; }
+
+/* The scrolling content area paints the page gradient once, edge to edge; pages inside stay transparent
+   so there is no inner box edge where the main padding ends. */
+.ph-main { background: var(--phi-gradient-main, var(--phi-color-background)); background-attachment: local; }
+.ph-main > * { --phi-gradient-main: none; }
+
+/* The Appearance "gradient" (flat · soft · vivid · aurora) and the palette drive the puijs gradient system
+   (providers/palette.ts): every surface by depth, page, cards, cards in cards, media layers, drawers, dialogs,
+   chats, rail, panel. It writes on <html>, so portalled overlays share it. Nothing app-specific is needed here. */
+.ph-app { background-color: var(--phi-color-background); color: var(--phi-color-text-primary); }
+
+/* Appearance shades: −2…+2 darken / lighten the sidebar (rail + panel) and the content area; works in every theme. */
+.ph-app { --ph-sidebar-tint: transparent; --ph-content-tint: transparent; }
+.ph-app[data-ph-sidebar='-2'] { --ph-sidebar-tint: rgba(0, 0, 0, 0.14); }
+.ph-app[data-ph-sidebar='-1'] { --ph-sidebar-tint: rgba(0, 0, 0, 0.07); }
+.ph-app[data-ph-sidebar='1'] { --ph-sidebar-tint: rgba(255, 255, 255, 0.10); }
+.ph-app[data-ph-sidebar='2'] { --ph-sidebar-tint: rgba(255, 255, 255, 0.20); }
+.ph-app[data-ph-content='-2'] { --ph-content-tint: rgba(0, 0, 0, 0.12); }
+.ph-app[data-ph-content='-1'] { --ph-content-tint: rgba(0, 0, 0, 0.06); }
+.ph-app[data-ph-content='1'] { --ph-content-tint: rgba(255, 255, 255, 0.10); }
+.ph-app[data-ph-content='2'] { --ph-content-tint: rgba(255, 255, 255, 0.20); }
+.ph-main { background-image: linear-gradient(var(--ph-content-tint), var(--ph-content-tint)), var(--phi-gradient-main, none); }
+
+/* Surface opacity: cards let the page show through (Glass adds a frosted blur). */
+html:root[data-ph-opacity='90'] { --phi-surface-opacity: 90%; }
+html:root[data-ph-opacity='75'] { --phi-surface-opacity: 75%; }
+html:root[data-ph-opacity='60'] { --phi-surface-opacity: 60%; }
+html:root[data-ph-opacity='60'] .ph-main [class*='card'] { backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); }
+
+/* Content column: centred, roomy, never wider than a comfortable reading/scan width. */
+.ph-main { padding: 2rem 2.5rem; }
+.ph-main > * { max-width: 1160px; margin-inline: auto; }
+@media (max-width: 720px) { .ph-main { padding: 0.75rem; } }
+
+/* Chat bubbles follow the gradient choice: flat = solid tones, otherwise accent → accent 2 (me) and a tinted card (them). */
+:root:not([data-gradient-level='flat']) {
+  --phi-bubble-me: linear-gradient(135deg, var(--phi-color-primary), color-mix(in oklch, var(--phi-color-primary) 45%, var(--phi-color-accent-2, var(--phi-color-info))));
+  --phi-bubble-them: linear-gradient(135deg, color-mix(in oklch, var(--phi-color-primary) 10%, var(--phi-color-background-secondary)), var(--phi-color-background-secondary));
+}
+
+/* Game feel for the content column: cards lift and glow under the pointer. */
+.ph-main [class*='card']:not([class*='flat']) { transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s; }
+
+/* Smooth: every page fades and rises in on navigation; scrolling glides. Durations are theme motion tokens
+   (zero under reduced motion). */
+.ph-main { scroll-behavior: smooth; }
+.ph-main > * { animation: phPageIn var(--phi-duration-slow) var(--phi-ease) both; }
+@keyframes phPageIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* The wordmark: glyph SVGs in a row, top-aligned, never squeezed. */
+.ph-wordmark { display: inline-flex; align-items: flex-start; gap: 0.08em; line-height: 0; }
+.ph-wordmark > svg { flex: none; }

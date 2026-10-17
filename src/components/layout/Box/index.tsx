@@ -1,34 +1,13 @@
 import React from 'react';
 import { cn } from '../../../utils/cn';
-import { StyleProps, stylePropsToCSS } from '../../shared/styleProps';
+import { StyleProps, omitStyleProps, stylePropsToCSS } from '../../shared/styleProps';
 
 /**
  * The set of StyleProps keys. Box strips these from the rest props so they are
  * not forwarded to the underlying DOM element (they are consumed into `style`).
  * Kept in sync with the `StyleProps` interface in `../../shared/styleProps`.
  */
-const STYLE_PROP_KEYS: readonly (keyof StyleProps)[] = [
-  'background',
-  'padding',
-  'paddingTop',
-  'paddingBottom',
-  'paddingLeft',
-  'paddingRight',
-  'paddingX',
-  'paddingY',
-  'margin',
-  'marginTop',
-  'marginBottom',
-  'color',
-  'maxWidth',
-  'minWidth',
-  'minHeight',
-  'align',
-  'textDecoration',
-  'opacity',
-  'textTransform',
-  'letterSpacing',
-];
+// The StyleProps keys come from the shared helper (`STYLE_PROP_KEYS`), so Box and every component strip the same set.
 
 export type BoxOwnProps = {
   /**
@@ -77,10 +56,7 @@ export const Box = React.forwardRef<HTMLElement, BoxProps>(function Box(
   };
 
   // Strip StyleProps keys so they are not forwarded to the DOM element.
-  const domRest: Record<string, unknown> = { ...props };
-  for (const key of STYLE_PROP_KEYS) {
-    delete domRest[key as string];
-  }
+  const domRest = omitStyleProps(props);
 
   return (
     <Component ref={ref} className={cn(className)} style={computedStyle} {...domRest}>

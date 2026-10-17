@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tag, Text, Title } from '@pui/components';
+import { Box, Tag, Text, Title } from '@pui/components';
 import { Hero, Block, Glass, AutoGrid, Note } from '../components/kit';
 import { EMAILS } from '../lib/routes';
 import s from '../styles/uaia.module.scss';
@@ -16,7 +16,7 @@ export const PartnershipsPage: React.FC = () => (
     <Hero
       pattern="partnerships"
       label="Global Partnerships"
-      title={<>Safety that stops at a border <span className={s.gradText}>is not safety.</span></>}
+      title={<>Safety that stops at a border <Box as="span" className={s.gradText}>is not safety.</Box></>}
     />
 
     <Block
@@ -24,17 +24,17 @@ export const PartnershipsPage: React.FC = () => (
       title="A declared plan, tracked in the open."
       intro="UAIA's founding declaration commits the agency to seek formal engagement with the United Nations system. Stated plainly: this is a program we are pursuing, not a partnership already concluded, and this page will always say exactly which it is."
     >
-      <div style={{ marginTop: 20, display: 'grid', gap: 12 }}>
+      <Box style={{ marginTop: 20, display: 'grid', gap: 12 }}>
         {UN_GOALS.map((g) => (
           <Glass key={g.n}>
-            <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start', flexWrap: 'wrap' }}>
-              <span className={s.mono} style={{ color: 'var(--phi-color-primary)', fontWeight: 700 }}>{g.n}</span>
+            <Box style={{ display: 'flex', gap: 16, alignItems: 'flex-start', flexWrap: 'wrap' }}>
+              <Box as="span" className={s.mono} style={{ color: 'var(--phi-color-primary)', fontWeight: 700 }}>{g.n}</Box>
               <Text style={{ flex: 1, minWidth: 240 }}>{g.b}</Text>
               <Tag minimal round intent="primary">STATUS: {g.status}</Tag>
-            </div>
+            </Box>
           </Glass>
         ))}
-      </div>
+      </Box>
       <Text size="sm" intent="secondary" style={{ marginTop: 12 }}>
         Status ladder: INITIATED → IN DIALOGUE → AGREED. Every change is dated in the Newsroom.
       </Text>

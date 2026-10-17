@@ -60,12 +60,12 @@ body {
 
 ::-webkit-scrollbar-track {
   background: var(--phi-scrollbar-track);
-  border-radius: 5px;
+  border-radius: var(--phi-radius-sm);
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--phi-scrollbar-thumb);
-  border-radius: 5px;
+  border-radius: var(--phi-radius-sm);
   border: 2px solid var(--phi-scrollbar-track);
 }
 

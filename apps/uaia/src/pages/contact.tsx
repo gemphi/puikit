@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Input, Select, Text, Textarea, Title } from '@pui/components';
+import { Box, Button, Input, Link, Select, Text, Textarea, Title } from '@pui/components';
 import { Hero, Block, Glass, AutoGrid, Note } from '../components/kit';
 import { EMAILS } from '../lib/routes';
 import s from '../styles/uaia.module.scss';
@@ -31,7 +31,7 @@ export const ContactPage: React.FC = () => {
     <>
       <Hero
         label="Contact"
-        title={<>Every channel is answered. <span className={s.gradText}>Every answer is on the record.</span></>}
+        title={<>Every channel is answered. <Box as="span" className={s.gradText}>Every answer is on the record.</Box></>}
       />
 
       <Block label="Channels" title="Write to the right desk.">
@@ -39,7 +39,7 @@ export const ContactPage: React.FC = () => {
           {CHANNELS.map((c) => (
             <Glass tone="violet" key={c.e + c.t}>
               <Title level={6} style={{ marginBottom: 6 }}>{c.t}</Title>
-              <a className={s.mono} href={`mailto:${c.e}`} style={{ color: 'var(--phi-color-primary)', textDecoration: 'none', fontSize: 13 }}>{c.e}</a>
+              <Link className={s.mono} href={`mailto:${c.e}`} style={{ color: 'var(--phi-color-primary)', textDecoration: 'none', fontSize: 13 }}>{c.e}</Link>
             </Glass>
           ))}
         </AutoGrid>
@@ -47,23 +47,20 @@ export const ContactPage: React.FC = () => {
 
       <Block label="Inquiry" title="Or start here." tight>
         <Glass style={{ marginTop: 18, maxWidth: 720 }}>
-          <div style={{ display: 'grid', gap: 14 }}>
-            <Select value={channel} onChange={(e: { target: { value: string } }) => setChannel(e.target.value)}>
-              {CHANNELS.map((c) => (
-                <option key={c.e + c.t} value={c.e}>{c.t}</option>
-              ))}
-            </Select>
+          <Box style={{ display: 'grid', gap: 14 }}>
+            <Select value={channel} onChange={(e: { target: { value: string } }) => setChannel(e.target.value)}
+              options={CHANNELS.map((c) => ({ value: c.e, label: c.t }))} />
             <Input placeholder="Subject" value={subject} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSubject(e.target.value)} />
             <Textarea placeholder="Message" rows={6} value={body} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setBody(e.target.value)} />
-            <div>
+            <Box>
               <Button variant="primary" onClick={submit}>Send inquiry</Button>
-            </div>
+            </Box>
             {sent && (
               <Note tone="violet" title={`Reference ${sent}`}>
                 Your mail client has been opened with this reference attached. Quote it in any follow-up.
               </Note>
             )}
-          </div>
+          </Box>
         </Glass>
       </Block>
 

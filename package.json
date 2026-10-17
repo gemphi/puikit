@@ -143,6 +143,13 @@
     "test:coverage": "vitest run --coverage",
     "docs:generate": "node scripts/generate-docs.mjs",
     "verify:integrations": "node scripts/verify-integrations.mjs",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "check:apps": "node scripts/check-app-markup.mjs",
+    "dev:all": "node apps/dev-all.mjs",
+    "dev:all:offline": "node apps/dev-all.mjs --no-api",
+    "build:all": "node apps/build-all.mjs",
+    "serve:all": "node apps/build-all.mjs --serve",
+    "api": "npm --prefix apps/phiora-server start",
+    "data:phiegg": "npm --prefix apps/phiegg run data"
   }
 }

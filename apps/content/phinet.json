@@ -1,0 +1,189 @@
+{
+ "stats": [
+  {
+   "label": "Runs today",
+   "value": "9,412",
+   "sub": "Across the network"
+  },
+  {
+   "label": "Modules",
+   "value": "58",
+   "sub": "Composable operators"
+  },
+  {
+   "label": "Nodes",
+   "value": "1,206",
+   "sub": "Members sharing compute"
+  },
+  {
+   "label": "Median run",
+   "value": "42s",
+   "sub": "Small experiments"
+  }
+ ],
+ "news": [
+  [
+   "Runs",
+   "Phase runs now stream results",
+   "See each step of a run as it finishes instead of waiting for the end."
+  ],
+  [
+   "Modules",
+   "Phical joins the module set",
+   "Phical adds calendar operators, so runs can plan events across clubs."
+  ],
+  [
+   "Stories",
+   "A club that trained its own matchmaker",
+   "The Lantern Row club trained a module that pairs new members with hosts. Retention doubled."
+  ],
+  [
+   "Network",
+   "Members can share idle compute",
+   "Turn on sharing and earn SUM for every run your machine helps with."
+  ],
+  [
+   "CLI",
+   "phinet run gets a dry mode",
+   "Preview what a run will do and what it will cost before you start it."
+  ],
+  [
+   "Modules",
+   "Phiecs adds world physics",
+   "Simulate crowds and rides in a world before you build them."
+  ],
+  [
+   "Stories",
+   "Forecasting a sell out",
+   "A host used a ten minute run to predict ticket demand within three percent."
+  ],
+  [
+   "Runs",
+   "Runs can be scheduled",
+   "Set a run to repeat every day or every week and get the results in your inbox."
+  ],
+  [
+   "Network",
+   "New node regions",
+   "Nodes in four more regions cut wait times by a third."
+  ],
+  [
+   "CLI",
+   "Logs you can search",
+   "Every run log is now searchable by module, member and result."
+  ],
+  [
+   "Modules",
+   "Compose modules from the hub",
+   "Install a module from Phihub and use it in your next run."
+  ],
+  [
+   "Stories",
+   "Teaching the papers",
+   "A study group in Atelier Nine walks through one operator paper a week with live runs."
+  ]
+ ],
+ "faq": [
+  {
+   "q": "Do I need a big machine?",
+   "a": "No. Small runs work on a laptop and large ones use shared nodes."
+  },
+  {
+   "q": "What does a run cost?",
+   "a": "The CLI shows the estimate before you start. Most small runs cost under 1 SUM."
+  },
+  {
+   "q": "Can I keep my runs private?",
+   "a": "Yes. Private runs only use your own machine."
+  },
+  {
+   "q": "How do I share compute?",
+   "a": "Turn on sharing in Network. You can set hours and limits."
+  },
+  {
+   "q": "Can modules call each other?",
+   "a": "Yes. Composition is the point: chain modules in one run."
+  }
+ ],
+ "cards": [
+  {
+   "title": "phimatch",
+   "sub": "module · social",
+   "body": "Pairs members with hosts and clubs."
+  },
+  {
+   "title": "phicast",
+   "sub": "module · forecast",
+   "body": "Predicts demand for events and drops."
+  },
+  {
+   "title": "phiflow",
+   "sub": "module · crowd",
+   "body": "Simulates crowds through a venue."
+  },
+  {
+   "title": "phiprice",
+   "sub": "module · market",
+   "body": "Suggests floor prices for a pool."
+  }
+ ],
+ "pulls": {
+  "menu": {
+   "network": {
+    "kind": "phiNode",
+    "label": "name",
+    "sub": "status",
+    "sort": "cpu"
+   },
+   "runs": {
+    "kind": "phiLog",
+    "label": "message",
+    "sub": "level",
+    "sort": "timestamp"
+   },
+   "modules": {
+    "kind": "phiEndpoint",
+    "label": "path",
+    "sub": "method",
+    "sort": "latency"
+   }
+  },
+  "home": [
+   {
+    "title": "Nodes",
+    "sub": "The busiest nodes first.",
+    "pull": {
+     "kind": "phiNode",
+     "n": 8,
+     "label": "name",
+     "sub": "status",
+     "sort": "cpu",
+     "fields": [
+      "cpu",
+      "memory",
+      "uptime",
+      "status"
+     ]
+    }
+   }
+  ],
+  "counts": [
+   [
+    "Nodes",
+    "phiNode"
+   ],
+   [
+    "Endpoints",
+    "phiEndpoint"
+   ],
+   [
+    "Log lines",
+    "phiLog"
+   ],
+   [
+    "Pools",
+    "pool"
+   ]
+  ]
+ }
+}

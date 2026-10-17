@@ -1,16 +1,7 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import {
-  Sidebar,
-  SidebarBody,
-  SidebarNav,
-  MenuItem,
-  Stack,
-  Tag,
-  Text,
-  type SidebarNavGroup,
-} from '@pui/components';
+import { Box, MenuItem, Sidebar, SidebarBody, SidebarNav, Stack, Tag, Text, type SidebarNavGroup } from '@pui/components';
 import { BookOpen, Boxes, Database, FlaskConical, Layers } from 'lucide-react';
 import { DOCS_NAV_GROUPS, NavItem } from '../content/navigation';
 
@@ -33,7 +24,7 @@ const GROUP_ICONS: Record<string, typeof BookOpen> = {
  *
  * Every entry is a real `MenuItem` button, so the rail is keyboard-reachable
  * and announces its active item — the previous hand-rolled version used
- * clickable `<div>`s with an inline style bag, which neither focus nor a
+ * clickable `<Box>`s with an inline style bag, which neither focus nor a
  * screen reader could reach. Badges keep their `Tag`, threaded through the
  * `renderLink` seam so `SidebarNav` stays generic.
  */

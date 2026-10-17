@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Card, Table, Tag, Title, Text, Stack } from '@pui/components';
+import { Box, Card, Stack, Table, Tag, Text, Title } from '@pui/components';
 import { PageShell } from '../layouts/PageShell';
 import { CORE_TOKENS, ELEVATION_TOKENS } from '../content/tokens';
 
@@ -9,16 +9,16 @@ export const TokensPage: React.FC = () => {
   const headers = ['Token Name', 'CSS Custom Property', 'Default Value', 'Description'];
 
   const coreRows = CORE_TOKENS.map((t) => [
-    <strong>{t.name}</strong>,
-    <code>{t.variable}</code>,
-    <span style={{ fontFamily: 'monospace' }}>{t.value}</span>,
+    <Box as="strong">{t.name}</Box>,
+    <Box as="code">{t.variable}</Box>,
+    <Box as="span" style={{ fontFamily: 'monospace' }}>{t.value}</Box>,
     t.description,
   ]);
 
   const elevationRows = ELEVATION_TOKENS.map((t) => [
-    <strong>{t.name}</strong>,
-    <code>{t.variable}</code>,
-    <span style={{ fontFamily: 'monospace' }}>{t.value}</span>,
+    <Box as="strong">{t.name}</Box>,
+    <Box as="code">{t.variable}</Box>,
+    <Box as="span" style={{ fontFamily: 'monospace' }}>{t.value}</Box>,
     t.description,
   ]);
 

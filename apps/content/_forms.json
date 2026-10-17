@@ -1,0 +1,620 @@
+{
+ "groups": {
+  "make": {
+   "label": "Make",
+   "icon": "rocket"
+  },
+  "back": {
+   "label": "Back",
+   "icon": "coin"
+  }
+ },
+ "forms": {
+  "create-pool": {
+   "nav": "make",
+   "label": "Create a pool",
+   "icon": "cube",
+   "title": "Create a pool",
+   "sub": "Mint a collection of PFTs. It joins the portfolio and clubs can raise rounds on it.",
+   "form": {
+    "createKind": "pool",
+    "set": {
+     "drop": "allowlist"
+    },
+    "submitLabel": "Create pool",
+    "doneTitle": "Pool created",
+    "done": "Your pool is in the portfolio. Open a round on it to raise.",
+    "againLabel": "Create another pool",
+    "steps": [
+     {
+      "id": "c",
+      "label": "Collection",
+      "icon": "cube",
+      "lede": "What it is.",
+      "fields": [
+       {
+        "id": "name",
+        "label": "Pool name",
+        "control": "text",
+        "required": true,
+        "placeholder": "Night Ferry",
+        "full": true
+       },
+       {
+        "id": "category",
+        "label": "Category",
+        "control": "radio",
+        "options": [
+         "fashion",
+         "art",
+         "game",
+         "film",
+         "music"
+        ],
+        "required": true
+       },
+       {
+        "id": "chain",
+        "label": "Chain",
+        "control": "radio",
+        "options": [
+         "EGG",
+         "ETH"
+        ],
+        "required": true
+       },
+       {
+        "id": "desc",
+        "label": "Story",
+        "control": "textarea",
+        "placeholder": "Ten thousand lanterns, one per crossing."
+       }
+      ]
+     },
+     {
+      "id": "s",
+      "label": "Supply",
+      "icon": "coin",
+      "lede": "Mint and price.",
+      "fields": [
+       {
+        "id": "supply",
+        "label": "Supply of PFTs",
+        "control": "number",
+        "min": 1,
+        "required": true,
+        "placeholder": "10000"
+       },
+       {
+        "id": "floorUsd",
+        "label": "Floor (USD)",
+        "control": "number",
+        "min": 0,
+        "placeholder": "48"
+       },
+       {
+        "id": "royaltyPct",
+        "label": "Royalty %",
+        "control": "number",
+        "min": 0,
+        "placeholder": "5"
+       },
+       {
+        "id": "worldId",
+        "label": "Home world",
+        "control": "link",
+        "required": false,
+        "pull": {
+         "kind": "world",
+         "label": "name"
+        }
+       }
+      ]
+     },
+     {
+      "id": "review",
+      "label": "Review",
+      "icon": "check",
+      "title": "Review and submit",
+      "lede": "Check it once. You can change any step before you submit.",
+      "review": true
+     }
+    ]
+   }
+  },
+  "open-round": {
+   "nav": "make",
+   "label": "Open a round",
+   "icon": "chart",
+   "title": "Open a funding round",
+   "sub": "Raise for a pool. Backers place orders that settle through Phidao when the round closes.",
+   "form": {
+    "createKind": "round",
+    "set": {
+     "status": "active"
+    },
+    "submitLabel": "Open round",
+    "doneTitle": "Round open",
+    "done": "Your round is live on the Rounds page and on your profile, with what it has raised.",
+    "againLabel": "Open another round",
+    "steps": [
+     {
+      "id": "r",
+      "label": "Round",
+      "icon": "chart",
+      "lede": "Which pool raises and how.",
+      "fields": [
+       {
+        "id": "name",
+        "label": "Round name",
+        "control": "text",
+        "required": true,
+        "placeholder": "Night Ferry community round",
+        "full": true
+       },
+       {
+        "id": "poolId",
+        "label": "Pool",
+        "control": "link",
+        "required": true,
+        "pull": {
+         "kind": "pool",
+         "label": "name",
+         "sub": "category",
+         "sort": "supply"
+        }
+       },
+       {
+        "id": "roundType",
+        "label": "Type",
+        "control": "radio",
+        "options": [
+         "Community",
+         "Lead",
+         "Grant match"
+        ],
+        "required": true
+       }
+      ]
+     },
+     {
+      "id": "t",
+      "label": "Terms",
+      "icon": "coin",
+      "lede": "Target and window.",
+      "fields": [
+       {
+        "id": "target",
+        "label": "Target",
+        "control": "number",
+        "min": 1,
+        "required": true,
+        "placeholder": "1200000"
+       },
+       {
+        "id": "coin",
+        "label": "Coin",
+        "control": "radio",
+        "options": [
+         "EGG",
+         "SUM",
+         "USD"
+        ],
+        "required": true
+       },
+       {
+        "id": "minTicket",
+        "label": "Smallest pledge",
+        "control": "number",
+        "min": 1,
+        "placeholder": "10"
+       },
+       {
+        "id": "closesAt",
+        "label": "Closes on",
+        "control": "date",
+        "required": true
+       },
+       {
+        "id": "pitch",
+        "label": "What backers get",
+        "control": "textarea",
+        "placeholder": "Rewards, rights and how the money is used."
+       }
+      ]
+     },
+     {
+      "id": "review",
+      "label": "Review",
+      "icon": "check",
+      "title": "Review and submit",
+      "lede": "Check it once. You can change any step before you submit.",
+      "review": true
+     }
+    ]
+   }
+  },
+  "open-nest": {
+   "nav": "make",
+   "label": "Open a nest",
+   "icon": "grid",
+   "title": "Open a nest",
+   "sub": "A collection that breaks into clubs. Pools and clubs can belong to it.",
+   "form": {
+    "createKind": "nest",
+    "set": {
+     "kind": "collection"
+    },
+    "submitLabel": "Open nest",
+    "doneTitle": "Nest open",
+    "done": "Your nest is open. Add pools and clubs to it.",
+    "againLabel": "Open another nest",
+    "steps": [
+     {
+      "id": "n",
+      "label": "Nest",
+      "icon": "grid",
+      "lede": "Name the collection.",
+      "fields": [
+       {
+        "id": "name",
+        "label": "Nest name",
+        "control": "text",
+        "required": true,
+        "placeholder": "The Opal Family",
+        "full": true
+       },
+       {
+        "id": "topic",
+        "label": "Topic",
+        "control": "text",
+        "placeholder": "Couture houses cut from one mark."
+       },
+       {
+        "id": "parentId",
+        "label": "Parent nest",
+        "control": "link",
+        "required": false,
+        "pull": {
+         "kind": "nest",
+         "label": "name"
+        }
+       }
+      ]
+     },
+     {
+      "id": "review",
+      "label": "Review",
+      "icon": "check",
+      "title": "Review and submit",
+      "lede": "Check it once. You can change any step before you submit.",
+      "review": true
+     }
+    ]
+   }
+  },
+  "add-zone": {
+   "nav": "make",
+   "label": "Add a zone",
+   "icon": "map",
+   "title": "Add a zone",
+   "sub": "A district of a world. Areas sit inside it.",
+   "form": {
+    "createKind": "zone",
+    "submitLabel": "Add zone",
+    "doneTitle": "Zone added",
+    "done": "Your zone is on the world. Add areas inside it.",
+    "againLabel": "Add another zone",
+    "steps": [
+     {
+      "id": "z",
+      "label": "Zone",
+      "icon": "map",
+      "lede": "Where and what.",
+      "fields": [
+       {
+        "id": "name",
+        "label": "Zone name",
+        "control": "text",
+        "required": true,
+        "placeholder": "Marquee Row",
+        "full": true
+       },
+       {
+        "id": "worldId",
+        "label": "World",
+        "control": "link",
+        "required": true,
+        "pull": {
+         "kind": "world",
+         "label": "name"
+        }
+       },
+       {
+        "id": "kind",
+        "label": "Kind",
+        "control": "radio",
+        "options": [
+         "district",
+         "market",
+         "harbour",
+         "park",
+         "quarter"
+        ],
+        "required": true
+       },
+       {
+        "id": "desc",
+        "label": "About",
+        "control": "textarea",
+        "placeholder": "The runway strip, lit after dark."
+       }
+      ]
+     },
+     {
+      "id": "review",
+      "label": "Review",
+      "icon": "check",
+      "title": "Review and submit",
+      "lede": "Check it once. You can change any step before you submit.",
+      "review": true
+     }
+    ]
+   }
+  },
+  "add-area": {
+   "nav": "make",
+   "label": "Add an area",
+   "icon": "pin",
+   "title": "Add an area",
+   "sub": "A place inside a zone: a plaza, a hall, a stall.",
+   "form": {
+    "createKind": "area",
+    "submitLabel": "Add area",
+    "doneTitle": "Area added",
+    "done": "Your area is on the zone.",
+    "againLabel": "Add another area",
+    "steps": [
+     {
+      "id": "a",
+      "label": "Area",
+      "icon": "pin",
+      "lede": "Where and what.",
+      "fields": [
+       {
+        "id": "name",
+        "label": "Area name",
+        "control": "text",
+        "required": true,
+        "placeholder": "The Lantern Stall",
+        "full": true
+       },
+       {
+        "id": "zoneId",
+        "label": "Zone",
+        "control": "link",
+        "required": true,
+        "pull": {
+         "kind": "zone",
+         "label": "name"
+        }
+       },
+       {
+        "id": "worldId",
+        "label": "World",
+        "control": "link",
+        "required": false,
+        "pull": {
+         "kind": "world",
+         "label": "name"
+        }
+       },
+       {
+        "id": "kind",
+        "label": "Kind",
+        "control": "radio",
+        "options": [
+         "plaza",
+         "hall",
+         "stall",
+         "gallery",
+         "stage"
+        ],
+        "required": true
+       },
+       {
+        "id": "desc",
+        "label": "About",
+        "control": "textarea"
+       }
+      ]
+     },
+     {
+      "id": "review",
+      "label": "Review",
+      "icon": "check",
+      "title": "Review and submit",
+      "lede": "Check it once. You can change any step before you submit.",
+      "review": true
+     }
+    ]
+   }
+  },
+  "back-round": {
+   "nav": "back",
+   "label": "Back a round",
+   "icon": "coin",
+   "title": "Back a round",
+   "sub": "Place an order against a round that is raising. It settles from your wallet when the round closes.",
+   "form": {
+    "createKind": "order",
+    "set": {
+     "title": "Round backing",
+     "shipping": "none"
+    },
+    "nameFrom": "roundId",
+    "namePrefix": "Backing",
+    "submitLabel": "Place order",
+    "doneTitle": "Order placed",
+    "done": "Your order is recorded against the round and shows on your profile under Orders. It settles when the round closes.",
+    "againLabel": "Back another round",
+    "steps": [
+     {
+      "id": "r",
+      "label": "Round",
+      "icon": "chart",
+      "lede": "Pick a round that is open.",
+      "fields": [
+       {
+        "id": "roundId",
+        "label": "Round",
+        "control": "link",
+        "required": true,
+        "pull": {
+         "kind": "round",
+         "label": "name",
+         "sub": "roundType",
+         "sort": "target",
+         "where": {
+          "status": "active"
+         }
+        }
+       }
+      ]
+     },
+     {
+      "id": "a",
+      "label": "Amount",
+      "icon": "coin",
+      "lede": "How much.",
+      "fields": [
+       {
+        "id": "totalUsd",
+        "label": "Amount (USD)",
+        "control": "number",
+        "min": 1,
+        "required": true,
+        "placeholder": "250"
+       },
+       {
+        "id": "note",
+        "label": "Note to the team",
+        "control": "textarea",
+        "placeholder": "Why you back them."
+       },
+       {
+        "id": "terms",
+        "label": "Rules",
+        "control": "consent",
+        "required": true,
+        "placeholder": "I understand an order settles through Phidao when the round closes."
+       }
+      ]
+     },
+     {
+      "id": "review",
+      "label": "Review",
+      "icon": "check",
+      "title": "Review and submit",
+      "lede": "Check it once. You can change any step before you submit.",
+      "review": true
+     }
+    ]
+   }
+  },
+  "stake-pool": {
+   "nav": "back",
+   "label": "Stake a pool",
+   "icon": "layers",
+   "title": "Stake a pool",
+   "sub": "Put coins behind a pool from the portfolio. Stakers share its fees; the stake locks.",
+   "form": {
+    "createKind": "offer",
+    "set": {
+     "status": "staked"
+    },
+    "nameFrom": "poolId",
+    "namePrefix": "Stake",
+    "submitLabel": "Stake",
+    "doneTitle": "Staked",
+    "done": "Your stake is an offer on the pool and shows on your profile. It unlocks when the lock ends.",
+    "againLabel": "Stake another pool",
+    "steps": [
+     {
+      "id": "p",
+      "label": "Pool",
+      "icon": "layers",
+      "lede": "Pick a pool.",
+      "fields": [
+       {
+        "id": "poolId",
+        "label": "Pool",
+        "control": "link",
+        "required": true,
+        "pull": {
+         "kind": "pool",
+         "label": "name",
+         "sub": "category",
+         "sort": "supply"
+        }
+       }
+      ]
+     },
+     {
+      "id": "s",
+      "label": "Stake",
+      "icon": "coin",
+      "lede": "Amount and lock.",
+      "fields": [
+       {
+        "id": "amount",
+        "label": "Amount",
+        "control": "number",
+        "min": 1,
+        "required": true,
+        "placeholder": "500"
+       },
+       {
+        "id": "coin",
+        "label": "Coin",
+        "control": "radio",
+        "options": [
+         "EGG",
+         "SUM",
+         "USD"
+        ],
+        "required": true
+       },
+       {
+        "id": "lock",
+        "label": "Lock",
+        "control": "radio",
+        "options": [
+         "30 days",
+         "90 days",
+         "180 days"
+        ],
+        "required": true
+       },
+       {
+        "id": "terms",
+        "label": "Rules",
+        "control": "consent",
+        "required": true,
+        "placeholder": "I understand a stake is locked until the lock ends."
+       }
+      ]
+     },
+     {
+      "id": "review",
+      "label": "Review",
+      "icon": "check",
+      "title": "Review and submit",
+      "lede": "Check it once. You can change any step before you submit.",
+      "review": true
+     }
+    ]
+   }
+  }
+ }
+}

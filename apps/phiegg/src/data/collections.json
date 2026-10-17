@@ -1,0 +1,589 @@
+{
+ "about": "Collection nests: the families clubs break out of. Authored by scripts/collections.mjs from club name marks.",
+ "collections": [
+  {
+   "id": "n_col_maison",
+   "name": "Maison",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 2 clubs: Maison Opal, Maison Once",
+   "worldId": "w_opalia"
+  },
+  {
+   "id": "n_col_satin",
+   "name": "Satin",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 4 clubs: Satin Swans, Satin Sirens, Satin Herons, Satin Moths",
+   "worldId": "w_veil"
+  },
+  {
+   "id": "n_col_velour",
+   "name": "Velour",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Velour Vixens collection",
+   "worldId": "w_mesa"
+  },
+  {
+   "id": "n_col_lumen",
+   "name": "Lumen",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 3 clubs: Lumen Lynx, Lumen Maison, Lumen Works",
+   "worldId": "w_swanlake"
+  },
+  {
+   "id": "n_col_chrome",
+   "name": "Chrome",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Chrome Cherubs collection",
+   "worldId": "w_acro_world"
+  },
+  {
+   "id": "n_col_gilt",
+   "name": "Gilt",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 4 clubs: Gilt Gazelles, Gilt Foxes, Gilt Cranes, Gilt Owls",
+   "worldId": "w_nebula"
+  },
+  {
+   "id": "n_col_orchid",
+   "name": "Orchid",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 3 clubs: Orchid Stags, Orchid Muses, Orchid Doves",
+   "worldId": "w_naimia"
+  },
+  {
+   "id": "n_col_sable",
+   "name": "Sable",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 3 clubs: Sable Foxes, Sable Cranes, Sable Owls",
+   "worldId": "w_satin_reef"
+  },
+  {
+   "id": "n_col_quartz",
+   "name": "Quartz",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 3 clubs: Quartz Moths, Quartz Koi, Quartz Sirens",
+   "worldId": "w_carousel"
+  },
+  {
+   "id": "n_col_lace",
+   "name": "Lace",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 3 clubs: Lace Ravens, Lace Swans, Lace Lynx",
+   "worldId": "w_couture_coast"
+  },
+  {
+   "id": "n_col_neon",
+   "name": "Neon",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 3 clubs: Neon Muses, Neon Doves, Neon Hares",
+   "worldId": "w_velvet_dunes"
+  },
+  {
+   "id": "n_col_saffron",
+   "name": "Saffron",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 4 clubs: Saffron Cranes, Saffron Owls, Saffron Peacocks, Saffron Mill",
+   "worldId": "w_glasshouse"
+  },
+  {
+   "id": "n_col_cobalt",
+   "name": "Cobalt",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 4 clubs: Cobalt Koi, Cobalt Sirens, Cobalt Herons, Cobalt Studio",
+   "worldId": "w_silk_atlas"
+  },
+  {
+   "id": "n_col_rose",
+   "name": "Rose",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 3 clubs: Rose Swans, Rose Lynx, Rose Tigers",
+   "worldId": "w_pearl_ridge"
+  },
+  {
+   "id": "n_col_moon",
+   "name": "Moon",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 3 clubs: Moon Doves, Moon Hares, Moon Stags",
+   "worldId": "w_runway_isle"
+  },
+  {
+   "id": "n_col_prism",
+   "name": "Prism",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 3 clubs: Prism Owls, Prism Peacocks, Prism Foxes",
+   "worldId": "w_aurum"
+  },
+  {
+   "id": "n_col_tulle",
+   "name": "Tulle",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 3 clubs: Tulle Lynx, Tulle Tigers, Tulle Ravens",
+   "worldId": "w_chiffon_heights"
+  },
+  {
+   "id": "n_col_plume",
+   "name": "Plume",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 3 clubs: Plume Hares, Plume Stags, Plume Muses",
+   "worldId": "w_neon_atelier"
+  },
+  {
+   "id": "n_col_ivory",
+   "name": "Ivory",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 4 clubs: Ivory Peacocks, Ivory Foxes, Ivory Cranes, Ivory House",
+   "worldId": "w_tulle_valley"
+  },
+  {
+   "id": "n_col_silk",
+   "name": "Silk",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 3 clubs: Silk Herons, Silk Moths, Silk Koi",
+   "worldId": "w_obsidian_bay"
+  },
+  {
+   "id": "n_col_pearl",
+   "name": "Pearl",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 3 clubs: Pearl Tigers, Pearl Ravens, Pearl Swans",
+   "worldId": "w_cashmere_peaks"
+  },
+  {
+   "id": "n_col_velvet",
+   "name": "Velvet",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 4 clubs: Velvet Stags, Velvet Muses, Velvet Doves, Velvet Lip Co.",
+   "worldId": "w_gilded_grove"
+  },
+  {
+   "id": "n_col_ember",
+   "name": "Ember",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 3 clubs: Ember Moths, Ember Koi, Ember Works",
+   "worldId": "w_organza"
+  },
+  {
+   "id": "n_col_frost",
+   "name": "Frost",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 2 clubs: Frost Ravens, Frost Swans",
+   "worldId": "w_brocade"
+  },
+  {
+   "id": "n_col_ombre",
+   "name": "Ombre",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Ombre Javis collection",
+   "worldId": "w_ombre"
+  },
+  {
+   "id": "n_col_deer",
+   "name": "Deer",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Deer Park collection",
+   "worldId": "w_deer"
+  },
+  {
+   "id": "n_col_ponte",
+   "name": "Ponte",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Ponte Reye collection",
+   "worldId": "w_ponte"
+  },
+  {
+   "id": "n_col_onyx",
+   "name": "Onyx",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Onyx Hitch Hikers Club collection",
+   "worldId": "w_ohhc"
+  },
+  {
+   "id": "n_col_bold",
+   "name": "Bold",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Bold Pups collection",
+   "worldId": "w_bp"
+  },
+  {
+   "id": "n_col_epic",
+   "name": "Epic",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Epic Pods AC collection",
+   "worldId": "w_epac"
+  },
+  {
+   "id": "n_col_calder",
+   "name": "Calder",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Calder Brothers Pictures collection",
+   "worldId": "w_calder"
+  },
+  {
+   "id": "n_col_the",
+   "name": "The",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 2 clubs: The Venus Girls, The Royal House of Naim",
+   "worldId": "w_venus"
+  },
+  {
+   "id": "n_col_halo",
+   "name": "Halo",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Halo Models collection",
+   "worldId": "w_halomodels"
+  },
+  {
+   "id": "n_col_supernova",
+   "name": "Supernova",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Supernova Records collection",
+   "worldId": "w_nova"
+  },
+  {
+   "id": "n_col_wondrous",
+   "name": "Wondrous",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Wondrous Motor Couture collection",
+   "worldId": "w_wondrous"
+  },
+  {
+   "id": "n_col_skylane",
+   "name": "Skylane",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Skylane Social collection",
+   "worldId": "w_wondrous"
+  },
+  {
+   "id": "n_col_hover",
+   "name": "Hover",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Hover House collection",
+   "worldId": "w_wondrous"
+  },
+  {
+   "id": "n_col_verbum",
+   "name": "Verbum",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Verbum Atelier collection",
+   "worldId": "w_verbum"
+  },
+  {
+   "id": "n_col_inkwell",
+   "name": "Inkwell",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Inkwell Club collection",
+   "worldId": "w_verbum"
+  },
+  {
+   "id": "n_col_syntax",
+   "name": "Syntax",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Syntax Society collection",
+   "worldId": "w_verbum"
+  },
+  {
+   "id": "n_col_lora",
+   "name": "Lora",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Lora Land Society collection",
+   "worldId": "w_loraland"
+  },
+  {
+   "id": "n_col_chatterbox",
+   "name": "Chatterbox",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Chatterbox Atelier collection",
+   "worldId": "w_chatty"
+  },
+  {
+   "id": "n_col_bozo",
+   "name": "Bozo",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Bozo Brothers Circus Couture collection",
+   "worldId": "w_bozo"
+  },
+  {
+   "id": "n_col_skim",
+   "name": "Skim",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Skim City Board Club collection",
+   "worldId": "w_skim"
+  },
+  {
+   "id": "n_col_loon",
+   "name": "Loon",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Loon Lake Lodge collection",
+   "worldId": "w_loon"
+  },
+  {
+   "id": "n_col_wand",
+   "name": "Wand",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Wand & Wonder Atelier collection",
+   "worldId": "w_wand"
+  },
+  {
+   "id": "n_col_delphine",
+   "name": "Delphine",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 4 clubs: Delphine Atelier, Delphine Collective, Delphine Salon, Delphine House",
+   "worldId": "w_gx_delphine_atelier"
+  },
+  {
+   "id": "n_col_rosewood",
+   "name": "Rosewood",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Rosewood Mill collection",
+   "worldId": "w_gx_rosewood_mill"
+  },
+  {
+   "id": "n_col_marigold",
+   "name": "Marigold",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Marigold Society collection",
+   "worldId": "w_gx_marigold_society"
+  },
+  {
+   "id": "n_col_garnet",
+   "name": "Garnet",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 2 clubs: Garnet Society, Garnet Guild",
+   "worldId": "w_gx_garnet_society"
+  },
+  {
+   "id": "n_col_calla",
+   "name": "Calla",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 5 clubs: Calla Atelier, Calla Society, Calla Mill, Calla Works, Calla Salon",
+   "worldId": "w_gx_calla_atelier"
+  },
+  {
+   "id": "n_col_moss",
+   "name": "Moss",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Moss Row collection",
+   "worldId": "w_gx_moss_row"
+  },
+  {
+   "id": "n_col_fennel",
+   "name": "Fennel",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Fennel Atelier collection",
+   "worldId": "w_gx_fennel_atelier"
+  },
+  {
+   "id": "n_col_vesper",
+   "name": "Vesper",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Vesper Atelier collection",
+   "worldId": "w_gx_vesper_atelier"
+  },
+  {
+   "id": "n_col_juniper",
+   "name": "Juniper",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 2 clubs: Juniper Maison, Juniper Studio",
+   "worldId": "w_gx_juniper_maison"
+  },
+  {
+   "id": "n_col_dune",
+   "name": "Dune",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 3 clubs: Dune Salon, Dune Mill, Dune Row",
+   "worldId": "w_gx_dune_salon"
+  },
+  {
+   "id": "n_col_linden",
+   "name": "Linden",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 2 clubs: Linden Row, Linden Maison",
+   "worldId": "w_gx_linden_row"
+  },
+  {
+   "id": "n_col_briar",
+   "name": "Briar",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Briar Row collection",
+   "worldId": "w_gx_briar_row"
+  },
+  {
+   "id": "n_col_petal",
+   "name": "Petal",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Petal Works collection",
+   "worldId": "w_gx_petal_works"
+  },
+  {
+   "id": "n_col_bramble",
+   "name": "Bramble",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 2 clubs: Bramble Salon, Bramble House",
+   "worldId": "w_gx_bramble_salon"
+  },
+  {
+   "id": "n_col_umber",
+   "name": "Umber",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Umber Maison collection",
+   "worldId": "w_gx_umber_maison"
+  },
+  {
+   "id": "n_col_quill",
+   "name": "Quill",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 3 clubs: Quill Works, Quill House, Quill Guild",
+   "worldId": "w_gx_quill_works"
+  },
+  {
+   "id": "n_col_sorrel",
+   "name": "Sorrel",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Sorrel Guild collection",
+   "worldId": "w_gx_sorrel_guild"
+  },
+  {
+   "id": "n_col_fable",
+   "name": "Fable",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 3 clubs: Fable Works, Fable Row, Fable Guild",
+   "worldId": "w_gx_fable_works"
+  },
+  {
+   "id": "n_col_xanthe",
+   "name": "Xanthe",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Xanthe Mill collection",
+   "worldId": "w_gx_xanthe_mill"
+  },
+  {
+   "id": "n_col_thistle",
+   "name": "Thistle",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Thistle Salon collection",
+   "worldId": "w_gx_thistle_salon"
+  },
+  {
+   "id": "n_col_amber",
+   "name": "Amber",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 3 clubs: Amber Salon, Amber Parlour, Amber Atelier",
+   "worldId": "w_gx_amber_salon"
+  },
+  {
+   "id": "n_col_cordelia",
+   "name": "Cordelia",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "One mark, 2 clubs: Cordelia Row, Cordelia Mill",
+   "worldId": "w_gx_cordelia_row"
+  },
+  {
+   "id": "n_col_willow",
+   "name": "Willow",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Willow Parlour collection",
+   "worldId": "w_gx_willow_parlour"
+  },
+  {
+   "id": "n_col_wren",
+   "name": "Wren",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Wren House collection",
+   "worldId": "w_gx_wren_house"
+  },
+  {
+   "id": "n_col_azalea",
+   "name": "Azalea",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Azalea Row collection",
+   "worldId": "w_gx_azalea_row"
+  },
+  {
+   "id": "n_col_kestrel",
+   "name": "Kestrel",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Kestrel Row collection",
+   "worldId": "w_gx_kestrel_row"
+  },
+  {
+   "id": "n_col_foxglove",
+   "name": "Foxglove",
+   "kind": "collection",
+   "parentId": null,
+   "topic": "The Foxglove Mill collection",
+   "worldId": "w_gx_foxglove_mill"
+  }
+ ]
+}

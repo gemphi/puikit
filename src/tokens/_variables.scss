@@ -1,4 +1,13 @@
 :root {
+  /* Control surfaces — ghost / outline / icon buttons, tabs, segmented controls. Mixed from the theme's own primary
+     and surfaces, so every theme style, brand and palette restyles them; --phi-gradient-control-soft layers the
+     palette's gradient level over them (none when flat or when no gradient level is set). */
+  --phi-control-bg: color-mix(in srgb, var(--phi-color-primary) 7%, var(--phi-color-background-secondary, #f2f2f4));
+  --phi-control-bg-hover: color-mix(in srgb, var(--phi-color-primary) 14%, var(--phi-color-background-secondary, #f2f2f4));
+  --phi-control-bg-active: color-mix(in srgb, var(--phi-color-primary) 18%, var(--phi-color-background-card, #fff));
+  --phi-control-border: color-mix(in srgb, var(--phi-color-primary) 16%, var(--phi-color-border, #d8d8dc));
+  --phi-control-text: var(--phi-color-text-primary);
+
   /* Brand colors (Default: edX Paragon / Phixum Blue) */
   --phi-color-primary: #0284c7;
   --phi-color-primary-hover: #0369a1;
@@ -64,9 +73,9 @@
   --phi-gradient-brand: var(--phi-brand-gradient);
   --phi-gradient-main: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
   --phi-gradient-main-lr: linear-gradient(to right, #ffffff 0%, #f8fafc 100%);
-  --phi-gradient-card: linear-gradient(180deg, #ffffff 0%, #fafbff 100%);
+  --phi-gradient-card: linear-gradient(180deg, #ffffff 0%, transparent 100%);
   --phi-gradient-navbar: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-  --phi-gradient-sidebar: linear-gradient(to right, #f8fafc 0%, #ffffff 100%);
+  --phi-gradient-sidebar: linear-gradient(to right, #f8fafc 0%, transparent 100%);
   --phi-gradient-accent: linear-gradient(to right, #eff6ff 0%, #e0e7ff 100%);
   --phi-gradient-table-header: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 100%);
   --phi-glass-surface: rgba(255, 255, 255, 0.72);
@@ -133,6 +142,10 @@
   --phi-control-size-base: 18px;
   --phi-control-size: calc(var(--phi-control-size-base) * var(--phi-space-scale, 1));
   --phi-control-radius: calc(var(--phi-radius-md) * 1.4);
+  /* Menu items: a light shade of the theme colour at rest; on hover / active the colours merge and fade away. */
+  --phi-control-shade: color-mix(in srgb, var(--phi-color-primary) 9%, var(--phi-color-background-secondary, var(--phi-color-background)));
+  --phi-gradient-control-fade: linear-gradient(100deg, color-mix(in srgb, var(--phi-color-primary) 34%, transparent) 0%, color-mix(in srgb, var(--phi-color-accent-2, var(--phi-color-info, #5ac8fa)) 22%, transparent) 52%, transparent 100%);
+  --phi-gradient-control-fade-radial: radial-gradient(circle at 32% 28%, color-mix(in srgb, var(--phi-color-primary) 46%, transparent) 0%, color-mix(in srgb, var(--phi-color-accent-2, var(--phi-color-info, #5ac8fa)) 26%, transparent) 52%, transparent 82%);
   --phi-control-border-width: 1.5px;
   --phi-control-gap: var(--phi-space-2);
   --phi-control-row-padding: var(--phi-space-2);
@@ -144,13 +157,23 @@
   --phi-control-height-md: calc(var(--phi-control-height-md-base) * var(--phi-space-scale, 1));
   --phi-control-height-lg: calc(var(--phi-control-height-lg-base) * var(--phi-space-scale, 1));
 
-  --phi-transition-fast: 0.12s ease;
-  --phi-transition-normal: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --phi-transition-slow: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Motion — one easing family and one duration ladder for every component, so the whole UI moves the same
+     way. `--phi-motion-scale` (0 = reduced) multiplies every duration; the OS reduced-motion setting and
+     `[data-motion='reduced']` / `[data-ph-motion='reduced']` set it to 0. */
+  --phi-motion-scale: 1;
+  --phi-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --phi-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --phi-ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --phi-duration-fast: calc(180ms * var(--phi-motion-scale));
+  --phi-duration: calc(300ms * var(--phi-motion-scale));
+  --phi-duration-slow: calc(520ms * var(--phi-motion-scale));
+  --phi-transition-fast: var(--phi-duration-fast) var(--phi-ease);
+  --phi-transition-normal: var(--phi-duration) var(--phi-ease);
+  --phi-transition-slow: var(--phi-duration-slow) var(--phi-ease);
 
   /* Refined, Crisp Typography */
   --phi-font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
-  --phi-font-heading: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  --phi-font-heading: "Phiegg Square", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
   --phi-font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Consolas', monospace;
 
   --phi-font-size-xs: 0.75rem;
@@ -221,9 +244,9 @@
   --phi-gradient-brand: var(--phi-brand-gradient);
   --phi-gradient-main: linear-gradient(180deg, #0b0f19 0%, #0f172a 100%);
   --phi-gradient-main-lr: linear-gradient(to right, #0b0f19 0%, #0f172a 100%);
-  --phi-gradient-card: linear-gradient(180deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%);
+  --phi-gradient-card: linear-gradient(180deg, rgba(30, 41, 59, 0.6) 0%, transparent 100%);
   --phi-gradient-navbar: linear-gradient(180deg, rgba(11, 15, 25, 0.92) 0%, rgba(15, 23, 42, 0.88) 100%);
-  --phi-gradient-sidebar: linear-gradient(to right, rgba(11, 15, 25, 0.95) 0%, rgba(15, 23, 42, 0.9) 100%);
+  --phi-gradient-sidebar: linear-gradient(to right, rgba(11, 15, 25, 0.95) 0%, transparent 100%);
   --phi-gradient-accent: linear-gradient(to right, rgba(2, 132, 199, 0.15) 0%, rgba(56, 189, 248, 0.08) 100%);
   --phi-gradient-table-header: linear-gradient(180deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
   --phi-glass-surface: rgba(15, 23, 42, 0.62);
@@ -238,3 +261,15 @@
   --phi-color-border-subtle: rgba(255, 255, 255, 0.04);
   --phi-color-overlay: rgba(0, 0, 0, 0.6);
 }
+
+/* Reduced motion: every duration collapses to 0 (tokens multiply by --phi-motion-scale). */
+@media (prefers-reduced-motion: reduce) { :root { --phi-motion-scale: 0; } }
+[data-motion='reduced'], [data-ph-motion='reduced'] {
+  --phi-motion-scale: 0;
+  --phi-duration-fast: 0ms; --phi-duration: 0ms; --phi-duration-slow: 0ms;
+  --phi-transition-fast: 0ms linear; --phi-transition-normal: 0ms linear; --phi-transition-slow: 0ms linear;
+}
+
+/* Pill (egg) corners: controls — buttons, tabs, chips, inputs, menu items — go fully round; containers keep the
+   scaled radius, so cards read as soft eggs rather than circles. */
+[data-radius='pill'] { --phi-control-radius: var(--phi-radius-full); --phi-chip-radius: var(--phi-radius-full); }

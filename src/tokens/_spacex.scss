@@ -1,0 +1,140 @@
+/* SpaceX — mission-control theme style.
+   Black ground (white in light mode), monochrome type, hairline borders, square corners,
+   uppercase tracked headings and outlined controls. Brand-aware: tints follow --phi-color-primary.
+   Use: <PuiProvider defaultThemeStyle="spacex" defaultBrand="spacex">.
+   Fonts: load Barlow (DIN-like) in the app's index.html; D-DIN is used when installed. */
+:root[data-theme-style='spacex'] {
+  color-scheme: light;
+  --phi-color-gray-50: #fafafa; --phi-color-gray-100: #f2f2f2; --phi-color-gray-200: #e4e4e4; --phi-color-gray-300: #cfcfcf;
+  --phi-color-gray-400: #a7a9ac; --phi-color-gray-500: #85878a; --phi-color-gray-600: #5f6164; --phi-color-gray-700: #3c3d3f;
+  --phi-color-gray-800: #232324; --phi-color-gray-900: #111111; --phi-color-gray-950: #050505;
+  --phi-color-background: #ffffff;
+  --phi-color-background-secondary: #f2f2f2;
+  --phi-color-background-card: #ffffff;
+  --phi-color-text-primary: #000000;
+  --phi-color-text-secondary: #3c3d3f;
+  --phi-color-text-muted: #85878a;
+  --phi-color-text-inverse: #ffffff;
+  --phi-color-text-accent: #005288;
+  --phi-color-border: rgba(0, 0, 0, 0.16);
+  --phi-color-border-subtle: rgba(0, 0, 0, 0.08);
+  --phi-color-overlay: rgba(0, 0, 0, 0.6);
+  --phi-radius-xs-base: 0px; --phi-radius-sm-base: 0px; --phi-radius-md-base: 2px;
+  --phi-radius-lg-base: 2px; --phi-radius-xl-base: 4px; --phi-radius-2xl-base: 4px;
+  --phi-radius-xs: calc(var(--phi-radius-xs-base) * var(--phi-radius-scale, 1));
+  --phi-radius-sm: calc(var(--phi-radius-sm-base) * var(--phi-radius-scale, 1));
+  --phi-radius-md: calc(var(--phi-radius-md-base) * var(--phi-radius-scale, 1));
+  --phi-radius-lg: calc(var(--phi-radius-lg-base) * var(--phi-radius-scale, 1));
+  --phi-radius-xl: calc(var(--phi-radius-xl-base) * var(--phi-radius-scale, 1));
+  --phi-radius-2xl: calc(var(--phi-radius-2xl-base) * var(--phi-radius-scale, 1));
+  --phi-shadow-1: none;
+  --phi-shadow-2: 0 0 0 1px rgba(0, 0, 0, 0.08);
+  --phi-shadow-3: 0 16px 40px rgba(0, 0, 0, 0.14);
+  --phi-shadow-4: 0 28px 64px rgba(0, 0, 0, 0.2);
+  --phi-gradient-main: radial-gradient(120% 70% at 50% -10%, color-mix(in oklch, var(--phi-color-primary, #000) 6%, transparent) 0%, transparent 60%), linear-gradient(180deg, #ffffff 0%, #f6f6f6 100%);
+  --phi-gradient-main-lr: linear-gradient(to right, #ffffff 0%, #f6f6f6 100%);
+  --phi-gradient-card: linear-gradient(180deg, #ffffff 0%, transparent 100%);
+  --phi-gradient-navbar: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.88) 100%);
+  --phi-gradient-sidebar: linear-gradient(180deg, #f6f6f6 0%, transparent 100%);
+  --phi-gradient-rail: linear-gradient(180deg, #ececec 0%, transparent 100%);
+  --phi-gradient-accent: linear-gradient(to right, color-mix(in oklch, var(--phi-color-primary, #000) 10%, #ffffff) 0%, #ffffff 100%);
+  --phi-gradient-table-header: linear-gradient(180deg, #f2f2f2 0%, #ececec 100%);
+  --phi-glass-surface: rgba(255, 255, 255, 0.86);
+  --phi-glass-border: rgba(0, 0, 0, 0.12);
+  --phi-backdrop-blur: blur(12px);
+  --phi-font-family: "D-DIN", "Barlow", "DIN Next", "Arial Narrow", Arial, sans-serif;
+  --phi-font-heading: "Phiegg Square", "D-DIN", "Barlow", "DIN Next", "Arial Narrow", Arial, sans-serif;
+  --phi-font-size-base: 0.9375rem;
+  --phi-font-weight-semibold: 600;
+  --phi-font-weight-bold: 700;
+  --phi-control-height-md-base: 40px;
+  --phi-spacex-seam: rgba(0, 82, 136, 0.5);
+  --phi-spacex-rim: 0 0 0 1px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+:root[data-theme='dark'][data-theme-style='spacex'],
+:root.dark[data-theme-style='spacex'] {
+  color-scheme: dark;
+  /* Rocket interior: matte graphite panels, hairline seams catching light, an instrument-blue rim. */
+  --phi-color-background: #000000;
+  --phi-color-background-secondary: #0a0b0d;
+  --phi-color-background-card: #0c0d10;
+  --phi-color-text-primary: #f4f6f8;
+  --phi-color-text-secondary: #c2c6cc;
+  --phi-color-text-muted: #878b92;
+  --phi-color-text-inverse: #000000;
+  --phi-color-text-accent: #4ea3ff;
+  --phi-color-border: rgba(150, 170, 200, 0.22);
+  --phi-color-border-subtle: rgba(150, 170, 200, 0.10);
+  --phi-shadow-1: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --phi-shadow-2: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 0 0 1px rgba(150, 170, 200, 0.10);
+  --phi-shadow-3: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 18px 48px rgba(0, 0, 0, 0.72);
+  --phi-shadow-4: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 32px 80px rgba(0, 0, 0, 0.85), 0 0 48px rgba(30, 90, 160, 0.10);
+  /* The cabin: a cold blue dome up top, a warm instrument glow low-right, over a near-black floor. */
+  --phi-gradient-main:
+    radial-gradient(130% 80% at 50% -15%, rgba(78, 163, 255, 0.10) 0%, transparent 55%),
+    radial-gradient(70% 50% at 108% 110%, rgba(0, 82, 136, 0.22) 0%, transparent 70%),
+    radial-gradient(50% 40% at -8% 100%, rgba(120, 140, 170, 0.07) 0%, transparent 70%),
+    linear-gradient(180deg, #050608 0%, #020203 100%);
+  --phi-gradient-main-lr: linear-gradient(to right, #060708 0%, #020203 100%);
+  /* Brushed-panel card: a thin top highlight fading to graphite, like metal catching cabin light. */
+  --phi-gradient-card: linear-gradient(180deg, rgba(150, 170, 200, 0.08) 0%, rgba(14, 16, 20, 0.6) 14%, transparent 100%);
+  --phi-gradient-navbar: linear-gradient(180deg, rgba(6, 7, 9, 0.94) 0%, rgba(4, 5, 6, 0.86) 100%);
+  --phi-gradient-sidebar: linear-gradient(180deg, rgba(18, 22, 28, 0.55) 0%, transparent 100%);
+  --phi-gradient-rail: linear-gradient(180deg, rgba(10, 12, 16, 0.9) 0%, rgba(2, 3, 4, 0.9) 100%);
+  --phi-gradient-accent: linear-gradient(to right, rgba(78, 163, 255, 0.28) 0%, rgba(0, 82, 136, 0.30) 60%, transparent 100%);
+  --phi-gradient-table-header: linear-gradient(180deg, rgba(22, 26, 32, 0.9) 0%, rgba(10, 12, 15, 0.9) 100%);
+  --phi-glass-surface: rgba(6, 8, 11, 0.74);
+  --phi-glass-border: rgba(150, 170, 200, 0.16);
+  --phi-spacex-seam: rgba(78, 163, 255, 0.55);
+  --phi-spacex-rim: 0 0 0 1px rgba(150, 170, 200, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Mission-control voice: tracked uppercase headings, outlined square controls. */
+:root[data-theme-style='spacex'] :is(h1, h2, h3, h4) {
+  font-family: var(--phi-font-heading);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+:root[data-theme-style='spacex'] :is(button, .button, a.button) {
+  border-radius: var(--phi-radius-sm) !important;
+  letter-spacing: 0.06em;
+}
+:root[data-theme-style='spacex'] :focus-visible {
+  outline: 1px solid var(--phi-color-text-primary);
+  outline-offset: 2px;
+}
+:root[data-theme-style='spacex'] ::selection {
+  background: var(--phi-color-text-primary);
+  color: var(--phi-color-background);
+}
+
+/* Rocket-interior panels: every card/surface is a brushed instrument panel — hairline rim, a top light-catch,
+   and a thin blue seam along its leading edge, like a lit console bezel. Driven by tokens, so it follows the mode. */
+:root[data-theme-style='spacex'] :is(.pui-card, [class*='card'], .pui-surface, [class*='surface']) {
+  box-shadow: var(--phi-spacex-rim);
+}
+:root[data-theme-style='spacex'] .pui-drawer {
+  box-shadow: var(--phi-shadow-4);
+  border-top: 1px solid color-mix(in oklch, var(--phi-spacex-seam) 70%, transparent);
+}
+/* Section headings read like instrument labels: a short blue seam under the title. */
+:root[data-theme-style='spacex'] :is(h2, h3) {
+  position: relative;
+}
+:root[data-theme-style='spacex'] :is(h2, h3)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.3em;
+  width: 2.25em;
+  height: 2px;
+  background: linear-gradient(to right, var(--phi-spacex-seam), transparent);
+}
+/* Tables read like telemetry: tracked, upper small-caps column heads. */
+:root[data-theme-style='spacex'] thead th {
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-size: 0.78em;
+}

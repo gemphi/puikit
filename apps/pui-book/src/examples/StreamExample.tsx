@@ -48,12 +48,12 @@ export const StreamExample: React.FC = () => {
           style={{ borderRadius: 'var(--phi-radius-md)', fontFamily: 'var(--phi-font-mono)', fontSize: 'var(--phi-font-size-sm)', lineHeight: 1.6, border: '1px solid var(--phi-color-border)' }}
         >
           {tokens ? (
-            <span>
+            <Box as="span">
               {tokens}
-              {isStreaming && <span style={{ display: 'inline-block', width: 8, height: 16, background: '#38bdf8', marginLeft: 4, verticalAlign: 'middle', animation: 'pulse 1s infinite' }} />}
-            </span>
+              {isStreaming && <Box as="span" style={{ display: 'inline-block', width: 8, height: 16, background: '#38bdf8', marginLeft: 4, verticalAlign: 'middle', animation: 'pulse 1s infinite' }} />}
+            </Box>
           ) : (
-            <span style={{ color: '#475569' }}>Click "Start Token Stream" to observe live chunk emission...</span>
+            <Box as="span" style={{ color: '#475569' }}>Click "Start Token Stream" to observe live chunk emission...</Box>
           )}
         </Box>
       </Stack>

@@ -1,0 +1,13 @@
+// Global search + breadcrumbs. Tokens only.
+.wrap { position: relative; flex: 1 1 26rem; max-width: 28rem; min-width: 0; width: 100%; container-type: inline-size; }
+@container (max-width: 19rem) { .kbd { display: none; } }
+.drop { position: absolute; top: calc(100% + 0.5rem); right: 0; width: max(100%, min(29rem, 92vw)); max-height: min(70vh, 35rem); overflow: auto; z-index: 40;
+  background: var(--phi-color-background); border: 1px solid var(--phi-color-border); border-radius: var(--phi-radius-xl);
+  box-shadow: var(--phi-shadow-lg); padding: 0.625rem; display: flex; flex-direction: column; gap: 0.625rem; animation: phDrop 0.2s ease both; }
+.group { display: flex; flex-direction: column; gap: 0.125rem; }
+.on { background: color-mix(in srgb, var(--phi-color-primary) 14%, transparent); }
+.kbd { flex: none; padding: 0.125rem 0.5rem; border-radius: var(--phi-radius-full); border: 1px solid var(--phi-color-border); }
+.crumbs { display: flex; align-items: center; gap: 0.125rem; min-width: 0; overflow: hidden; }
+.crumb { padding: 0.375rem 0.625rem; font-size: 0.875rem; color: var(--phi-color-text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: none; }
+.last { color: var(--phi-color-text-primary); font-weight: 700; cursor: default; flex: 0 1 auto; }
+@keyframes phDrop { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }

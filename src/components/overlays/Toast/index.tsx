@@ -22,20 +22,23 @@ export type ToastVariant = (typeof TOAST_VARIANTS)[keyof typeof TOAST_VARIANTS];
 type ToastProps = {
   message: string;
   variant?: ToastVariant;
-  onClose: () => void;
+  /** Omit for a toast that goes by itself (no close button). */
+  onClose?: () => void;
+  /** Where it shows: the bottom right (default) or the bottom centre. */
+  placement?: 'end' | 'center';
   className?: string;
 };
 
-export const Toast = ({ message, variant = TOAST_VARIANTS.INFO, onClose, className = '' }: ToastProps) => {
+export const Toast = ({ message, variant = TOAST_VARIANTS.INFO, onClose, placement = 'end', className = '' }: ToastProps) => {
   // No DOM during server rendering: render nothing until mounted.
   const portalTarget = usePortalTarget();
   if (!portalTarget) return null;
 
   return createPortal(
-    <Stack direction="row" align="center" justify="between" className={cn(styles.toast, styles[variant], className)} role="status">
+    <Stack direction="row" align="center" justify="between" className={cn(styles.toast, styles[variant], placement === 'center' && styles.center, className)} role="status">
       <Text size="sm">{message}</Text>
-      <Button variant="icon" size="sm" onClick={onClose} aria-label="Close">
+      {onClose && <Button variant="icon" size="sm" onClick={onClose} aria-label="Close">
         <X size={14} />
-      </Button>
+      </Button>}
     </Stack>, portalTarget);
 };

@@ -1,0 +1,226 @@
+{
+ "stats": [
+  {
+   "label": "Apps listed",
+   "value": "312",
+   "sub": "Reviewed and signed"
+  },
+  {
+   "label": "Worlds",
+   "value": "148",
+   "sub": "Ready to install"
+  },
+  {
+   "label": "Installs",
+   "value": "2.4M",
+   "sub": "All time"
+  },
+  {
+   "label": "Updates this week",
+   "value": "86",
+   "sub": "Shipped to members"
+  }
+ ],
+ "news": [
+  [
+   "Catalog",
+   "Club starter kit hits 100k installs",
+   "The kit sets up a club hall, a treasury and a quest board in under a minute."
+  ],
+  [
+   "Worlds",
+   "Cashmere Peaks is now installable",
+   "The snow world ships with ski rides, a lodge venue and twelve looks to start."
+  ],
+  [
+   "Stories",
+   "A repo that became a city",
+   "Two builders shared a street layout repo. Forty clubs forked it and joined their streets into one district."
+  ],
+  [
+   "Updates",
+   "Updates without restarts",
+   "Apps now update in the background and switch over the next time you open them."
+  ],
+  [
+   "Catalog",
+   "Ride packs arrive",
+   "Book rides between worlds with a single install. Pricing comes from the ride owner."
+  ],
+  [
+   "Reviews",
+   "Every app now has a trail",
+   "See who published each version, what changed and who reviewed it."
+  ],
+  [
+   "Worlds",
+   "Brocade gets a night market",
+   "An update to Brocade adds a market that opens after dark with its own stalls."
+  ],
+  [
+   "Stories",
+   "From hobby to top ten",
+   "A quiz app made for one club now runs in 600 halls across Phiace."
+  ],
+  [
+   "Repos",
+   "Private repos for clubs",
+   "Clubs can now keep repos for members only and publish them later."
+  ],
+  [
+   "Catalog",
+   "Quest pack two is out",
+   "Thirty new quest templates, from scavenger hunts to style battles."
+  ],
+  [
+   "Updates",
+   "Rollback in one click",
+   "If an update breaks your hall, roll back to the last version from Installed."
+  ],
+  [
+   "Worlds",
+   "Aurum adds a harbour",
+   "Ferries now dock in Aurum, linking it to five other worlds."
+  ]
+ ],
+ "faq": [
+  {
+   "q": "Who reviews apps?",
+   "a": "A rotating panel of members and the Phihub team checks every new version."
+  },
+  {
+   "q": "Can I publish my own app?",
+   "a": "Yes. Connect a repo, fill in the listing and submit it for review."
+  },
+  {
+   "q": "Are installs free?",
+   "a": "Most are. Paid apps show the price in SUM before you install."
+  },
+  {
+   "q": "Can I remove an app?",
+   "a": "Open Installed and choose Remove. Your data stays until you delete it."
+  },
+  {
+   "q": "Do worlds work offline?",
+   "a": "Installed worlds load from your machine and sync when you are back online."
+  }
+ ],
+ "cards": [
+  {
+   "title": "Hall builder",
+   "sub": "phihub · app",
+   "body": "Lay out a club hall with drag and drop rooms."
+  },
+  {
+   "title": "Ride desk",
+   "sub": "phihub · app",
+   "body": "Sell and book rides between worlds."
+  },
+  {
+   "title": "Look locker",
+   "sub": "phihub · app",
+   "body": "Keep and swap your looks across worlds."
+  },
+  {
+   "title": "Treasury view",
+   "sub": "phihub · app",
+   "body": "See every inflow and payout of your club."
+  },
+  {
+   "title": "Quiz night",
+   "sub": "phihub · app",
+   "body": "Live quizzes for club events."
+  },
+  {
+   "title": "Event wall",
+   "sub": "phihub · app",
+   "body": "A wall of every event your clubs host."
+  }
+ ],
+ "pulls": {
+  "menu": {
+   "catalog": {
+    "kind": "phihubApp",
+    "label": "name",
+    "sub": "category",
+    "sort": "download"
+   },
+   "discover": {
+    "kind": "world",
+    "label": "name",
+    "sub": "kind",
+    "body": "description",
+    "image": "image",
+    "open": "phiegg",
+    "n": 5
+   },
+   "apps": {
+    "kind": "phihubAgent",
+    "label": "name",
+    "sub": "category"
+   },
+   "repos": {
+    "kind": "phihubRepo",
+    "label": "name",
+    "sub": "language",
+    "sort": "star"
+   },
+   "installed": {
+    "kind": "phihubSkill",
+    "label": "name",
+    "sub": "category"
+   }
+  },
+  "home": [
+   {
+    "title": "Apps",
+    "sub": "Most installed first.",
+    "pull": {
+     "kind": "phihubApp",
+     "n": 8,
+     "label": "name",
+     "sub": "category",
+     "body": "desc",
+     "sort": "download",
+     "fields": [
+      "version",
+      "status",
+      "download",
+      "star"
+     ]
+    }
+   },
+   {
+    "title": "Worlds to install",
+    "sub": "Every world in Phiora, ready for your Phiace.",
+    "pull": {
+     "kind": "world",
+     "label": "name",
+     "sub": "kind",
+     "body": "description",
+     "image": "image",
+     "open": "phiegg",
+     "n": 8
+    }
+   }
+  ],
+  "counts": [
+   [
+    "Apps",
+    "phihubApp"
+   ],
+   [
+    "Worlds",
+    "world"
+   ],
+   [
+    "Agents",
+    "phihubAgent"
+   ],
+   [
+    "Pools",
+    "pool"
+   ]
+  ]
+ }
+}

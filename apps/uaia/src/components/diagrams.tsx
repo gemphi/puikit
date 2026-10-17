@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Title } from '@pui/components';
+import { Box, Text, Title } from '@pui/components';
 import { Glass, AutoGrid } from './kit';
 import s from '../styles/uaia.module.scss';
 
@@ -171,18 +171,18 @@ export const EAEFramework: React.FC<{ compact?: boolean }> = ({ compact }) => (
     <Glass tone="violet" style={{ marginTop: 20 }}>
       <EAESpiral compact={compact} />
     </Glass>
-    <div style={{ marginTop: 16 }}>
+    <Box style={{ marginTop: 16 }}>
       <AutoGrid min={240}>
         {EAE_STEPS.map((st) => (
           <Glass key={st.n} tone={st.tone}>
-            <span className={s.mono} style={{ color: st.tone === 'cyan' ? '#22d3ee' : '#818cf8', fontSize: 12, letterSpacing: '0.2em' }}>
+            <Box as="span" className={s.mono} style={{ color: st.tone === 'cyan' ? '#22d3ee' : '#818cf8', fontSize: 12, letterSpacing: '0.2em' }}>
               {st.n}
-            </span>
+            </Box>
             <Title level={5} style={{ marginTop: 6 }}>{st.t}</Title>
             <Text size="sm" intent="secondary" style={{ lineHeight: 1.65 }}>{st.b}</Text>
           </Glass>
         ))}
       </AutoGrid>
-    </div>
+    </Box>
   </>
 );

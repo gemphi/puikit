@@ -33,7 +33,7 @@ import {
  * Generated documentation viewer.
  *
  * Composed exclusively from puijs primitives + lucide-react. There are no raw
- * `<div>` wrappers, no inline `<button>` styling, no ad-hoc CSS. The list is
+ * `<Box>` wrappers, no inline `<Box as="button">` styling, no ad-hoc CSS. The list is
  * filterable so 100+ components are actually navigable, and each entry is
  * rendered with a proper `Card` header/body composition so titles, badges,
  * and props sit on structured surfaces rather than plain text on a card face.

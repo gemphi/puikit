@@ -1,0 +1,263 @@
+{
+ "stats": [
+  {
+   "label": "Treasury",
+   "value": "412M SUM",
+   "sub": "Held for rewards"
+  },
+  {
+   "label": "Functions logged",
+   "value": "2.8M",
+   "sub": "Last 30 days"
+  },
+  {
+   "label": "Members paid",
+   "value": "18,240",
+   "sub": "September round"
+  },
+  {
+   "label": "Cohorts funded",
+   "value": "7",
+   "sub": "Since launch"
+  }
+ ],
+ "news": [
+  [
+   "Cohorts",
+   "Cohort 7 opens with twelve world builders",
+   "Twelve teams join the autumn speedrun, from a floating bazaar in Aria to a night ferry that links three club cities."
+  ],
+  [
+   "Rounds",
+   "Satin Swans close a 1.2M SUM community round",
+   "The club sold out its first round in four hours. Members voted to spend half on a new runway hall in Brocade."
+  ],
+  [
+   "Treasury",
+   "Reward weights move toward hosting",
+   "Hosting a meetup now earns more SUM than flipping a PFT, after a Phidao vote passed with 71 percent."
+  ],
+  [
+   "Demo day",
+   "Demo day returns to the Atelier Nine dome",
+   "Nine teams pitch live to members on November 14. Every member can back a team with as little as 10 SUM."
+  ],
+  [
+   "Registry",
+   "Forty new functions join the registry",
+   "Quest scoring, ride booking and look fitting are now logged functions with their own rewards."
+  ],
+  [
+   "Stories",
+   "How the Velvet Pack paid for its own city",
+   "A club of ninety members turned weekly runway nights into a treasury large enough to fund a district."
+  ],
+  [
+   "Rounds",
+   "Lantern Row raises for a market street",
+   "The market team wants stalls that change with the season. Their round closes on October 30."
+  ],
+  [
+   "Treasury",
+   "Quarterly report: inflows up 18 percent",
+   "Most new SUM came from ride fees and hosted events. Spending stayed inside the budget the DAO set."
+  ],
+  [
+   "Cohorts",
+   "Mentors announced for the speedrun",
+   "Builders from Phipad, Phiora and four founding clubs will hold weekly office hours."
+  ],
+  [
+   "Stories",
+   "A tailor in Cashmere Peaks earns her first 10k SUM",
+   "Fitting looks for other members is a logged function. Mira did 400 fittings in a month."
+  ],
+  [
+   "Registry",
+   "Schemas get versions",
+   "Every function now carries a version, so old logs keep paying out the way they did when you ran them."
+  ],
+  [
+   "Rounds",
+   "Chiffon Heights club applies for matching",
+   "The club asks the fund to match member pledges one to one up to 500k SUM."
+  ]
+ ],
+ "faq": [
+  {
+   "q": "Can I back a cohort team?",
+   "a": "Yes. Open the team on demo day and pledge any amount of SUM from your wallet."
+  },
+  {
+   "q": "When are rewards paid?",
+   "a": "At the start of each month, for every function logged in the month before."
+  },
+  {
+   "q": "Who reviews applications?",
+   "a": "The cohort team scores each project, then members vote on the shortlist."
+  },
+  {
+   "q": "Can a club apply?",
+   "a": "Clubs apply the same way as teams. The club treasury signs the application."
+  },
+  {
+   "q": "Is there a minimum pledge?",
+   "a": "Ten SUM. There is no maximum, but rounds close when the target is met."
+  }
+ ],
+ "cards": [
+  {
+   "title": "Floating bazaar",
+   "sub": "phiegg · market",
+   "body": "Stalls that drift over Aria and dock at club halls."
+  },
+  {
+   "title": "Night ferry",
+   "sub": "phiegg · ride",
+   "body": "A ferry route linking Brocade, Bijou and Aurum after dark."
+  },
+  {
+   "title": "Runway hall",
+   "sub": "phiegg · venue",
+   "body": "A members hall for weekly runway nights."
+  },
+  {
+   "title": "Look fitter",
+   "sub": "phiace · tool",
+   "body": "Fit a look to any portrait in seconds."
+  },
+  {
+   "title": "Quest board",
+   "sub": "phipad · tool",
+   "body": "Post quests, score entries, pay winners in SUM."
+  },
+  {
+   "title": "Season market",
+   "sub": "phiegg · city",
+   "body": "A market street that changes with the season."
+  }
+ ],
+ "pulls": {
+  "menu": {
+   "portfolio": {
+    "kind": "pool",
+    "label": "name",
+    "sub": "category",
+    "body": "desc",
+    "sort": "supply",
+    "join": [
+     "worldId"
+    ],
+    "image": "world.image",
+    "fields": [
+     "supply",
+     "floorUsd",
+     "royaltyPct",
+     "drop"
+    ],
+    "n": 5
+   },
+   "pools": {
+    "kind": "pool",
+    "label": "name",
+    "sub": "category",
+    "body": "desc",
+    "sort": "supply",
+    "join": [
+     "worldId"
+    ],
+    "image": "world.image",
+    "fields": [
+     "supply",
+     "floorUsd",
+     "royaltyPct",
+     "drop"
+    ],
+    "n": 5
+   },
+   "rounds": {
+    "kind": "round",
+    "label": "name",
+    "sub": "roundType",
+    "body": "pitch",
+    "sort": "target",
+    "join": [
+     "poolId"
+    ],
+    "fields": [
+     "target",
+     "coin",
+     "minTicket",
+     "closesAt",
+     "status"
+    ],
+    "n": 5
+   },
+   "nests": {
+    "kind": "nest",
+    "label": "name",
+    "sub": "kind",
+    "body": "topic",
+    "fields": [
+     "kind",
+     "topic"
+    ],
+    "n": 5
+   }
+  },
+  "home": [
+   {
+    "title": "Rounds raising",
+    "sub": "Open rounds, biggest target first. Back one from its card.",
+    "pull": {
+     "kind": "round",
+     "label": "name",
+     "sub": "roundType",
+     "body": "pitch",
+     "sort": "target",
+     "join": [
+      "poolId"
+     ],
+     "fields": [
+      "target",
+      "coin",
+      "minTicket",
+      "closesAt",
+      "status"
+     ],
+     "n": 8,
+     "act": {
+      "label": "Back this round",
+      "view": "back-round",
+      "param": "roundId"
+     }
+    }
+   }
+  ],
+  "counts": [
+   [
+    "Pools in the portfolio",
+    "pool"
+   ],
+   [
+    "Rounds",
+    "round"
+   ],
+   [
+    "Nests",
+    "nest"
+   ],
+   [
+    "Quests",
+    "quest"
+   ]
+  ],
+  "portfolio": true,
+  "forms": true,
+  "poolAct": {
+   "label": "Stake this pool",
+   "view": "stake-pool",
+   "param": "poolId"
+  }
+ }
+}

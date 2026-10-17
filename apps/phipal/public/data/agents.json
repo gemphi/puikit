@@ -1,0 +1,348 @@
+{
+  "agents": [
+    {
+      "name": "phipal",
+      "label": "Phipal",
+      "role": "The orchestrator",
+      "accent": "#7c5cff",
+      "muse": "Your personal agent on the Phiegg marketplace. Tell it a goal; it plays the economy for you.",
+      "strategy": "Treats every purchase, swap and stake as a move in a repeated game: it prices moves by expected value across worlds, never spends what a better move could use, and stops at your limits.",
+      "spawns": [
+        "phiegg",
+        "phipay",
+        "phisum",
+        "phione",
+        "phient",
+        "phiecs"
+      ],
+      "tasks": [
+        {
+          "id": "goal",
+          "title": "Understand the goal",
+          "body": "Turn a sentence like win the Calla drop under 2,000 USD into limits, deadlines and a target."
+        },
+        {
+          "id": "plan",
+          "title": "Pick the strategy",
+          "body": "Hold, bid, swap or stake. The plan is a tree of moves with fallbacks, not a single action."
+        },
+        {
+          "id": "spawn",
+          "title": "Spawn the agents",
+          "body": "One agent per front: phiegg hunts the records, phipay moves the money, phisum stakes, phione signs."
+        },
+        {
+          "id": "watch",
+          "title": "Watch and adapt",
+          "body": "Reads the change log and reprices the plan when the market moves."
+        },
+        {
+          "id": "settle",
+          "title": "Settle and report",
+          "body": "Closes positions, writes the order records, reports what each move earned."
+        }
+      ],
+      "api": [
+        {
+          "method": "POST",
+          "path": "/chat",
+          "what": "Talk to your agent",
+          "testBody": {
+            "app": "phipal",
+            "persona": "Phipal, the marketplace orchestrator",
+            "messages": [
+              {
+                "role": "user",
+                "text": "Plan a small bid"
+              }
+            ]
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/tree/change?n=20",
+          "what": "Watch the market move"
+        },
+        {
+          "method": "GET",
+          "path": "/me",
+          "what": "Who it acts for"
+        }
+      ]
+    },
+    {
+      "name": "phiegg",
+      "label": "Phiegg agent",
+      "role": "The marketplace",
+      "accent": "#c67139",
+      "muse": "Finds, bids and lists on the Phiegg marketplace: looks, pools, lots, drops.",
+      "strategy": "Scarcity play: bids where minted is close to edition and holders are climbing; lists where volume says the crowd arrived.",
+      "spawns": [],
+      "tasks": [
+        {
+          "id": "scout",
+          "title": "Scout the records",
+          "body": "Reads looks, pools and lots with their live prices and minted counts."
+        },
+        {
+          "id": "bid",
+          "title": "Bid and buy",
+          "body": "Places offers at or under the plan price; buys outright when the clock matters."
+        },
+        {
+          "id": "list",
+          "title": "List holdings",
+          "body": "Puts owned looks back on the market when the strategy says sell."
+        }
+      ],
+      "api": [
+        {
+          "method": "GET",
+          "path": "/tree?kind=look,pool,lot",
+          "what": "Scout the records"
+        },
+        {
+          "method": "GET",
+          "path": "/tree/item/look/<lookId>",
+          "what": "One record with its owner"
+        },
+        {
+          "method": "POST",
+          "path": "/shop/buy",
+          "what": "Buy at list price",
+          "skip": "moves money"
+        },
+        {
+          "method": "POST",
+          "path": "/shop/offer",
+          "what": "Place an offer",
+          "skip": "moves money"
+        }
+      ]
+    },
+    {
+      "name": "phipay",
+      "label": "Phipay",
+      "role": "Payments",
+      "accent": "#1f9d55",
+      "muse": "The PayPal of the ecosystem: holds the wallet, swaps coins, settles orders.",
+      "strategy": "Keeps the war chest in the coin the next move needs: swaps EGG, SUM and USD ahead of bids so fees never decide a game.",
+      "spawns": [],
+      "tasks": [
+        {
+          "id": "fund",
+          "title": "Fund the plan",
+          "body": "Moves the right amount into the right coin before the agents act."
+        },
+        {
+          "id": "swap",
+          "title": "Swap coins",
+          "body": "EGG, SUM, USD and ETH at the house rate with the house fee."
+        },
+        {
+          "id": "settle",
+          "title": "Settle orders",
+          "body": "Writes the order record with the delivery and shipping the checkout steps collected."
+        }
+      ],
+      "api": [
+        {
+          "method": "GET",
+          "path": "/me",
+          "what": "Wallet and history"
+        },
+        {
+          "method": "POST",
+          "path": "/wallet/swap",
+          "what": "Swap coins",
+          "testBody": {
+            "from": "egg",
+            "to": "usd",
+            "amt": 4
+          }
+        },
+        {
+          "method": "POST",
+          "path": "/wallet/spend",
+          "what": "Pay for a move",
+          "skip": "moves money"
+        },
+        {
+          "method": "POST",
+          "path": "/tree/item",
+          "what": "Write the order record",
+          "skip": "creates records"
+        }
+      ]
+    },
+    {
+      "name": "phisum",
+      "label": "Phisum agent",
+      "role": "Treasury and ventures",
+      "accent": "#5a7d4f",
+      "muse": "Stakes the treasury: pools, cohorts and the ventures the fund backs.",
+      "strategy": "Portfolio play: spreads stake across pools by yield and quest velocity, funds the teams whose worlds grow holders.",
+      "spawns": [],
+      "tasks": [
+        {
+          "id": "stake",
+          "title": "Stake pools",
+          "body": "Enters and leaves pools as APR and quest traffic move."
+        },
+        {
+          "id": "fund",
+          "title": "Fund ventures",
+          "body": "Reads the project and funding records and backs the round the strategy picks."
+        }
+      ],
+      "api": [
+        {
+          "method": "GET",
+          "path": "/tree?kind=phisumProject,phisumFunding",
+          "what": "The ventures and rounds"
+        },
+        {
+          "method": "GET",
+          "path": "/app/phisum",
+          "what": "The fund's own pages"
+        },
+        {
+          "method": "PUT",
+          "path": "/state/economy",
+          "what": "Positions and stakes",
+          "skip": "writes state"
+        }
+      ]
+    },
+    {
+      "name": "phione",
+      "label": "Phione agent",
+      "role": "Identity",
+      "accent": "#0071e3",
+      "muse": "Signs for you: sessions, delegation and consent for every agent Phipal spawns.",
+      "strategy": "Least privilege: each spawned agent gets the narrowest delegation that completes its task, and every signature lands in the audit log.",
+      "spawns": [],
+      "tasks": [
+        {
+          "id": "sign",
+          "title": "Hold the session",
+          "body": "Signs the moves the other agents make, as you."
+        },
+        {
+          "id": "delegate",
+          "title": "Delegate narrowly",
+          "body": "Scopes each agent to its task and revokes when it settles."
+        }
+      ],
+      "api": [
+        {
+          "method": "GET",
+          "path": "/me",
+          "what": "The signed-in identity"
+        },
+        {
+          "method": "GET",
+          "path": "/auth/demo-user",
+          "what": "The demo founders"
+        },
+        {
+          "method": "POST",
+          "path": "/auth/logout",
+          "what": "Revoke the session",
+          "skip": "ends the session"
+        }
+      ]
+    },
+    {
+      "name": "phient",
+      "label": "Phient",
+      "role": "The Ollama of Phinet",
+      "accent": "#444444",
+      "muse": "The local model runtime of the network: every agent's reasoning runs on Phient models pulled to Phinet nodes, nothing leaves the network.",
+      "strategy": "Pull once, run everywhere: models are pulled like images, pinned per node, and every agent call routes to the nearest warm model.",
+      "spawns": [],
+      "tasks": [
+        {
+          "id": "pull",
+          "title": "Pull models",
+          "body": "Fetches and pins a model on a Phinet node, like pulling an image."
+        },
+        {
+          "id": "serve",
+          "title": "Serve the agents",
+          "body": "Answers every /chat call in the ecosystem from the nearest node."
+        },
+        {
+          "id": "watch",
+          "title": "Health",
+          "body": "Reports which nodes are warm and what they serve."
+        }
+      ],
+      "api": [
+        {
+          "method": "POST",
+          "path": "/chat",
+          "what": "Run a model",
+          "testBody": {
+            "app": "phipal",
+            "persona": "Phient, the model runtime",
+            "messages": [
+              {
+                "role": "user",
+                "text": "Say ready"
+              }
+            ]
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/health",
+          "what": "Runtime health"
+        }
+      ]
+    },
+    {
+      "name": "phiecs",
+      "label": "Phiecs",
+      "role": "Robotics",
+      "accent": "#b3433b",
+      "muse": "The robotics platform: embodied agents that run on Phinet machines and think on Phient models.",
+      "strategy": "Same game, real floors: a Phiecs unit executes the plan in an atelier or a warehouse with the same strategy tree Phipal uses on the marketplace.",
+      "spawns": [],
+      "tasks": [
+        {
+          "id": "fleet",
+          "title": "Know the fleet",
+          "body": "Reads the Phinet nodes, endpoints and firewall before a unit moves."
+        },
+        {
+          "id": "act",
+          "title": "Run a task",
+          "body": "Executes a plan step on a machine and logs every action."
+        },
+        {
+          "id": "report",
+          "title": "Report",
+          "body": "Streams its log back so you can follow every step."
+        }
+      ],
+      "api": [
+        {
+          "method": "GET",
+          "path": "/tree?kind=phiNode,phiEndpoint",
+          "what": "The machines and their doors"
+        },
+        {
+          "method": "GET",
+          "path": "/tree/item/phiNode/<nodeId>",
+          "what": "One machine"
+        },
+        {
+          "method": "GET",
+          "path": "/tree?kind=phiLog",
+          "what": "What the units did"
+        }
+      ]
+    }
+  ]
+}

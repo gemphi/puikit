@@ -49,7 +49,7 @@ export const Modal: React.FC<ModalProps> = ({
   return createPortal(
     <Stack direction="row" align="center" justify="center" className={cn(styles.overlay, className)} role="dialog" aria-modal="true" style={{ position: 'fixed', inset: 0, zIndex: 1000, padding: '1rem' }}>
       <Stack className={styles.backdrop} onClick={onClose} aria-hidden="true" />
-      <Card hoverable={false} className={cn('pui-modal', styles.modal, styles[size])}>
+      <Card hoverable={false} tint="none" className={cn('pui-modal', styles.modal, styles[size])}>
         <CardHeader action={<Button variant="icon" size="sm" onClick={onClose} aria-label="Close"><X size={18} /></Button>}>
           {title && <Title variant="h3" className={styles.title}>{title}</Title>}
         </CardHeader>

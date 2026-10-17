@@ -1,0 +1,469 @@
+{
+ "app": "phiegg",
+ "nav": [
+  {
+   "id": "apps",
+   "icon": "GridCut",
+   "label": "Apps",
+   "addLabel": "Add apps",
+   "apps": [
+    "phiegg",
+    "phipad",
+    "phient",
+    "phiace",
+    "phihub",
+    "phiput"
+   ],
+   "slot": "top",
+   "role": "apps"
+  },
+  {
+   "id": "shop",
+   "icon": "ShopNest",
+   "label": "Shop",
+   "tab": "shop",
+   "slot": "top"
+  },
+  {
+   "id": "home",
+   "icon": "Home",
+   "label": "Home",
+   "slot": "top",
+   "title": "Home",
+   "items": [
+    {
+     "id": "top",
+     "label": "Top",
+     "position": "top",
+     "items": [
+      {
+       "id": "welcome",
+       "label": "Welcome",
+       "tab": "welcome",
+       "icon": "Sparkles"
+      },
+      {
+       "id": "explore",
+       "label": "Explore",
+       "tab": "explore",
+       "icon": "Compass"
+      },
+      {
+       "id": "search",
+       "label": "Search",
+       "tab": "search",
+       "icon": "Search"
+      },
+      {
+       "id": "recent",
+       "label": "Recent",
+       "tab": "recent",
+       "icon": "Clock"
+      }
+     ]
+    },
+    {
+     "id": "center",
+     "label": "Center",
+     "position": "center",
+     "items": [
+      {
+       "id": "feeds",
+       "label": "Feeds",
+       "tab": "feed",
+       "icon": "Camera",
+       "source": "feeds",
+       "params": {
+        "feedKind": "all"
+       }
+      },
+      {
+       "id": "reels",
+       "label": "Reels",
+       "tab": "feed",
+       "icon": "Film",
+       "source": "reels",
+       "params": {
+        "feedKind": "reels"
+       }
+      },
+      {
+       "id": "shows",
+       "label": "Shows",
+       "tab": "shows",
+       "icon": "Clapperboard",
+       "source": "shows"
+      },
+      {
+       "id": "channels",
+       "label": "Channels",
+       "tab": "channels",
+       "icon": "Hash",
+       "source": "nests"
+      },
+      {
+       "id": "worlds",
+       "label": "Worlds",
+       "tab": "worlds",
+       "icon": "Globe",
+       "source": "worlds"
+      },
+      {
+       "id": "create",
+       "label": "Create",
+       "tab": "create",
+       "icon": "Plus"
+      }
+     ]
+    },
+    {
+     "id": "bottom",
+     "label": "Bottom",
+     "position": "bottom",
+     "items": [
+      {
+       "id": "quests",
+       "label": "Quests",
+       "tab": "quests",
+       "icon": "Flag",
+       "source": "quests"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chat",
+   "icon": "MessageCircle",
+   "label": "Chat",
+   "slot": "top",
+   "title": "Chat",
+   "items": [
+    {
+     "id": "top",
+     "label": "Top",
+     "position": "top",
+     "items": [
+      {
+       "id": "recent-chats",
+       "label": "Recent chats",
+       "tab": "messages",
+       "icon": "MessageCircle",
+       "source": "recipients"
+      }
+     ]
+    },
+    {
+     "id": "center",
+     "label": "Center",
+     "position": "center",
+     "items": [
+      {
+       "id": "agents",
+       "label": "Agents",
+       "tab": "agents-hub",
+       "icon": "Sparkles",
+       "source": "agents"
+      }
+     ]
+    },
+    {
+     "id": "bottom",
+     "label": "Bottom",
+     "position": "bottom",
+     "items": [
+      {
+       "id": "voice-rooms",
+       "label": "Voice rooms",
+       "tab": "messages",
+       "icon": "Radio",
+       "source": "voice"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "host",
+   "icon": "Server",
+   "label": "Host",
+   "slot": "top",
+   "title": "Hosts",
+   "items": [
+    {
+     "id": "top",
+     "label": "Top",
+     "position": "top",
+     "items": [
+      {
+       "id": "your-hosts",
+       "label": "Your hosts",
+       "tab": "hosts",
+       "icon": "Server",
+       "source": "hosts"
+      }
+     ]
+    },
+    {
+     "id": "center",
+     "label": "Center",
+     "position": "center",
+     "items": [
+      {
+       "id": "nests",
+       "label": "Nests",
+       "tab": "nests",
+       "icon": "Hash",
+       "source": "nests"
+      }
+     ]
+    },
+    {
+     "id": "bottom",
+     "label": "Bottom",
+     "position": "bottom",
+     "items": [
+      {
+       "id": "open-a-host",
+       "label": "Open a host",
+       "tab": "phipad",
+       "icon": "Rocket"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "menu",
+   "icon": "LayoutGrid",
+   "label": "Menu",
+   "slot": "center",
+   "title": "Menu",
+   "items": [
+    {
+     "id": "top",
+     "label": "Top",
+     "position": "top",
+     "items": [
+      {
+       "id": "shots",
+       "label": "Shots",
+       "tab": "feed",
+       "icon": "Camera",
+       "params": {
+        "feedKind": "all"
+       }
+      },
+      {
+       "id": "shows",
+       "label": "Shows",
+       "tab": "shows",
+       "icon": "Clapperboard",
+       "source": "shows"
+      },
+      {
+       "id": "drops",
+       "label": "Drops",
+       "tab": "drops",
+       "icon": "Gift",
+       "source": "drops"
+      },
+      {
+       "id": "watch",
+       "label": "Watch",
+       "tab": "watch",
+       "icon": "Tv"
+      }
+     ]
+    },
+    {
+     "id": "center",
+     "label": "Center",
+     "position": "center",
+     "items": [
+      {
+       "id": "league-stats",
+       "label": "League · Stats",
+       "tab": "league",
+       "icon": "Flag"
+      },
+      {
+       "id": "coins",
+       "label": "Coins",
+       "tab": "coins",
+       "icon": "Coins",
+       "source": "coins"
+      },
+      {
+       "id": "pools",
+       "label": "Pools",
+       "tab": "pools",
+       "icon": "Droplets",
+       "source": "pools"
+      },
+      {
+       "id": "nests",
+       "label": "Nests",
+       "tab": "nests",
+       "icon": "Hash",
+       "source": "nests"
+      },
+      {
+       "id": "hosts",
+       "label": "Hosts",
+       "tab": "hosts",
+       "icon": "Server",
+       "source": "hosts"
+      },
+      {
+       "id": "rides",
+       "label": "Rides",
+       "tab": "rides",
+       "icon": "Rocket",
+       "source": "rides"
+      },
+      {
+       "id": "studio",
+       "label": "Studio",
+       "tab": "studio",
+       "icon": "Sparkles"
+      }
+     ]
+    },
+    {
+     "id": "bottom",
+     "label": "Bottom",
+     "position": "bottom",
+     "items": [
+      {
+       "id": "host-phipad",
+       "label": "Host → Phipad",
+       "tab": "phipad",
+       "icon": "Rocket"
+      },
+      {
+       "id": "play-sponsored-quests",
+       "label": "Play → Sponsored quests",
+       "tab": "play",
+       "icon": "Gamepad2",
+       "source": "sponsored"
+      },
+      {
+       "id": "join",
+       "label": "Join",
+       "tab": "join",
+       "icon": "UserPlus"
+      },
+      {
+       "id": "shop",
+       "label": "Shop",
+       "tab": "shop",
+       "icon": "ShopNest",
+       "inline": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "user",
+   "icon": "User",
+   "label": "You",
+   "slot": "bottom",
+   "title": "You",
+   "items": [
+    {
+     "id": "top",
+     "label": "Top",
+     "position": "top",
+     "items": [
+      {
+       "id": "profile",
+       "label": "Profile",
+       "tab": "profile",
+       "icon": "User",
+       "params": {
+        "profileId": "u_noor"
+       }
+      },
+      {
+       "id": "clubs",
+       "label": "Clubs",
+       "tab": "club",
+       "icon": "Gem"
+      }
+     ]
+    },
+    {
+     "id": "center",
+     "label": "Center",
+     "position": "center",
+     "items": [
+      {
+       "id": "appearance",
+       "label": "Appearance",
+       "tab": "appearance",
+       "icon": "Palette",
+       "panel": "appearance"
+      }
+     ]
+    },
+    {
+     "id": "bottom",
+     "label": "Bottom",
+     "position": "bottom",
+     "items": [
+      {
+       "id": "events-drops",
+       "label": "Events & drops",
+       "tab": "events",
+       "icon": "CalendarDays"
+      },
+      {
+       "id": "operations-cockpit",
+       "label": "Operations cockpit",
+       "tab": "agents",
+       "icon": "Bot"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tab-feed",
+   "label": "Shots",
+   "icon": "home",
+   "tab": "feed",
+   "slot": "mobile"
+  },
+  {
+   "id": "tab-explore",
+   "label": "Explore",
+   "icon": "compass",
+   "tab": "explore",
+   "slot": "mobile"
+  },
+  {
+   "id": "tab-hosts",
+   "label": "Hosts",
+   "icon": "server",
+   "tab": "hosts",
+   "slot": "mobile"
+  },
+  {
+   "id": "tab-agents",
+   "label": "Agents",
+   "icon": "sparkles",
+   "tab": "agents",
+   "slot": "mobile"
+  },
+  {
+   "id": "tab-profile",
+   "label": "Profile",
+   "icon": "user",
+   "tab": "profile",
+   "slot": "mobile"
+  }
+ ],
+ "views": {}
+}

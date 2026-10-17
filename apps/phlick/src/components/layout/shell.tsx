@@ -222,11 +222,11 @@ const RailContent: React.FC = () => {
 
 export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <SidebarProvider collapseBelow={1024}>
-    <div className={s.shell}>
+    <Box className={s.shell}>
       <Sidebar aria-label={t.brand.name}>
         <RailContent />
       </Sidebar>
-      <main className={s.stage} data-stage="true">{children}</main>
-    </div>
+      <Box as="main" className={s.stage} data-stage="true">{children}</Box>
+    </Box>
   </SidebarProvider>
 );

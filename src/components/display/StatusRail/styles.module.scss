@@ -1,0 +1,96 @@
+// StatusRail — stories / status slider. Every value is a theme token.
+.rail {
+  flex: none;
+  display: flex;
+  min-height: 9.4rem;
+  flex-wrap: nowrap;
+  gap: 0.6rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding: 0.35rem 0.15rem 0.6rem;
+  &::-webkit-scrollbar { display: none; }
+}
+
+.item {
+  position: relative;
+  isolation: isolate;
+  flex: none;
+  display: flex;
+  width: 5.6rem;
+  padding: 0.9rem 0 0;          /* room for the cascade above */
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  &:hover .capsule { transform: translateY(-2px); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--phi-color-primary) 34%, transparent), 0 0.6rem 1.2rem -0.7rem color-mix(in srgb, var(--phi-color-primary) 60%, transparent); }
+  &:hover .ghost { transform: translateY(calc(var(--pui-status-k) * -0.6rem)); }
+  &:active .capsule { transform: scale(0.96); }
+  &:focus-visible { outline: none; .capsule { outline: 2px solid var(--phi-color-primary); outline-offset: 2px; } }
+}
+/* The capsule: the theme's child gradient over a primary-tinted card — holds the thumbnail and the caption. */
+.capsule, .ghost {
+  border-radius: var(--phi-radius-xl);
+  background-color: color-mix(in srgb, var(--phi-color-primary) 8%, var(--phi-color-background-card, #fff));
+  background-image:
+    linear-gradient(to bottom, transparent 35%, color-mix(in srgb, var(--phi-color-primary) 16%, transparent) 100%),
+    var(--phi-gradient-child, none);
+}
+.capsule {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  min-width: 0;
+  padding: 0.55rem 0.4rem 0.6rem;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--phi-color-primary) 14%, transparent);
+  transition: transform var(--phi-duration-fast) var(--phi-ease-spring), box-shadow var(--phi-transition-normal);
+}
+/* Two copies above, each narrower, a step higher and a shade deeper — the same cascade as the card decks. */
+.ghost {
+  position: absolute;
+  z-index: 0;
+  top: 0.9rem; bottom: 0;
+  left: calc(var(--pui-status-k) * 0.35rem);
+  right: calc(var(--pui-status-k) * 0.35rem);
+  box-shadow: inset 0 0 0 100vmax color-mix(in srgb, var(--phi-color-primary) calc(var(--pui-status-k) * 7%), transparent), inset 0 0 0 1px color-mix(in srgb, var(--phi-color-primary) 18%, transparent);
+  filter: brightness(calc(1 - var(--pui-status-k) * 0.05));
+  transform: translateY(calc(var(--pui-status-k) * -0.42rem));
+  transition: transform var(--phi-transition-slow);
+  pointer-events: none;
+}
+
+.ring {
+  --pui-status-ring: 0deg;
+  display: grid;
+  place-items: center;
+  width: 3.6rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  padding: 3px;
+  background: conic-gradient(from var(--pui-status-ring), var(--phi-color-primary), var(--phi-color-accent-2, var(--phi-color-success)), var(--phi-color-accent-3, var(--phi-color-info)), var(--phi-color-primary));
+}
+.thumb {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--phi-color-background-card, #fff);
+  box-shadow: 0 0 0 2px var(--phi-color-background-card, #fff);
+  > * { width: 100% !important; height: 100% !important; }
+}
+.seen .ring { background: color-mix(in srgb, var(--phi-color-text-primary) 18%, transparent); }
+.live .ring { animation: puiStatusSpin calc(var(--phi-duration-slow) * 6) linear infinite; }
+@property --pui-status-ring { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+@keyframes puiStatusSpin { to { --pui-status-ring: 360deg; } }
+
+.label, .sub { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: center; }
+.label { font-size: var(--phi-font-size-xs); font-weight: var(--phi-font-weight-semibold, 600); }
+.sub { font-size: 0.68rem; color: var(--phi-color-text-secondary); }

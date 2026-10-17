@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Container, EmptyState, Stack } from '@pui/components';
+import { Box, Button, Container, EmptyState, Stack } from '@pui/components';
 import { PostList, useSocial } from '@pui/social';
 import { useSidebarContraction } from '@pui/components';
 import { usePostSlides } from '../lib/present';
@@ -42,7 +42,7 @@ export const FeedPage: React.FC<{ kind: 'for-you' | 'following'; lockedTopic?: s
 
   if (topic && !social.feed.loading && posts.length === 0) {
     return (
-      <div className={s.feedStage}>
+      <Box className={s.feedStage}>
         <TopicTabs topic={topic} onTopic={onTopic} />
         <Container>
           <EmptyState
@@ -51,7 +51,7 @@ export const FeedPage: React.FC<{ kind: 'for-you' | 'following'; lockedTopic?: s
             action={<Button variant="primary" onClick={() => onTopic(null)}>{t.feed.browseAll}</Button>}
           />
         </Container>
-      </div>
+      </Box>
     );
   }
 
@@ -70,11 +70,11 @@ export const FeedPage: React.FC<{ kind: 'for-you' | 'following'; lockedTopic?: s
   }
 
   return (
-    <div className={s.feedStage}>
+    <Box className={s.feedStage}>
       <TopicTabs topic={topic} onTopic={onTopic} />
 
-      <div className={s.feedRow}>
-        <div className={s.feedBody}>
+      <Box className={s.feedRow}>
+        <Box className={s.feedBody}>
           <PostList
             variant="immersive"
             posts={posts.map(toSlide)}
@@ -82,13 +82,13 @@ export const FeedPage: React.FC<{ kind: 'for-you' | 'following'; lockedTopic?: s
             pager={!commentsFor}
             labels={{ previous: t.feed.previous, next: t.feed.next }}
           />
-        </div>
+        </Box>
 
         {commentsFor && (() => {
           const open = social.feed.posts.find((x) => x.id === commentsFor);
           return open ? <PostComments post={open} dock="auto" onClose={() => setCommentsFor(null)} /> : null;
         })()}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };

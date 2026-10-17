@@ -1,3 +1,4 @@
+import { Box } from '@pui/components';
 import React from 'react';
 
 export type MarkVariant = 'line' | 'filled' | 'mono';
@@ -61,10 +62,10 @@ export const Logo: React.FC<{ size?: number; wordmark?: boolean; variant?: MarkV
   wordmark = true,
   variant = 'line',
 }) => (
-  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 12 }}>
+  <Box as="span" style={{ display: 'inline-flex', alignItems: 'center', gap: 12 }}>
     <Mark size={size} variant={variant} />
     {wordmark && (
-      <span
+      <Box as="span"
         style={{
           fontFamily: "'Space Grotesk', sans-serif",
           fontWeight: 700,
@@ -75,7 +76,7 @@ export const Logo: React.FC<{ size?: number; wordmark?: boolean; variant?: MarkV
         }}
       >
         UAIA
-      </span>
+      </Box>
     )}
-  </span>
+  </Box>
 );

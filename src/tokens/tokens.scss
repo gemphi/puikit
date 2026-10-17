@@ -1,5 +1,8 @@
+@use './fonts';
 @use './variables';
 @use './theme-styles';
+@use './organic';
+@use './spacex';
 
 /* Global Antialiasing & Reset */
 html, body {

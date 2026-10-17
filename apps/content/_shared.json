@@ -1,0 +1,284 @@
+{
+ "pool": {
+  "kind": "pool",
+  "sort": "supply",
+  "label": "name",
+  "sub": "category",
+  "body": "desc",
+  "join": [
+   "worldId"
+  ],
+  "image": "world.image",
+  "fields": [
+   "supply",
+   "floorUsd",
+   "royaltyPct",
+   "drop"
+  ],
+  "open": "phiegg"
+ },
+ "quest": {
+  "kind": "quest",
+  "sort": "reward",
+  "label": "title",
+  "sub": "kind",
+  "join": [
+   "worldId"
+  ],
+  "image": "world.image",
+  "fields": [
+   "reward",
+   "rewardCoin",
+   "entrants",
+   "endsAt"
+  ],
+  "open": "phiegg"
+ },
+ "event": {
+  "kind": "event",
+  "sort": "rsvps",
+  "label": "title",
+  "sub": "kind",
+  "join": [
+   "worldId"
+  ],
+  "image": "world.image",
+  "fields": [
+   "startsAt",
+   "rsvps"
+  ],
+  "open": "phiegg"
+ },
+ "club": {
+  "kind": "club",
+  "sort": "holders",
+  "label": "name",
+  "sub": "ticker",
+  "body": "description",
+  "fields": [
+   "supply",
+   "holders",
+   "floor",
+   "chain"
+  ],
+  "open": "phiegg"
+ },
+ "world": {
+  "kind": "world",
+  "label": "name",
+  "sub": "kind",
+  "body": "description",
+  "image": "image",
+  "open": "phiegg"
+ },
+ "home": [
+  {
+   "title": "Pools",
+   "sub": "The portfolio: every pool in Phiora, by supply.",
+   "pull": {
+    "kind": "pool",
+    "sort": "supply",
+    "label": "name",
+    "sub": "category",
+    "body": "desc",
+    "join": [
+     "worldId"
+    ],
+    "image": "world.image",
+    "fields": [
+     "supply",
+     "floorUsd",
+     "royaltyPct",
+     "drop"
+    ],
+    "open": "phiegg",
+    "n": 8
+   }
+  },
+  {
+   "title": "Quests",
+   "sub": "Paying out now, biggest rewards first.",
+   "pull": {
+    "kind": "quest",
+    "sort": "reward",
+    "label": "title",
+    "sub": "kind",
+    "join": [
+     "worldId"
+    ],
+    "image": "world.image",
+    "fields": [
+     "reward",
+     "rewardCoin",
+     "entrants",
+     "endsAt"
+    ],
+    "open": "phiegg",
+    "n": 8
+   }
+  },
+  {
+   "title": "Coming up",
+   "sub": "Events and drops with the most people going.",
+   "pull": {
+    "kind": "event",
+    "sort": "rsvps",
+    "label": "title",
+    "sub": "kind",
+    "join": [
+     "worldId"
+    ],
+    "image": "world.image",
+    "fields": [
+     "startsAt",
+     "rsvps"
+    ],
+    "open": "phiegg",
+    "n": 4
+   },
+   "kind": "grid"
+  }
+ ],
+ "profile": {
+  "sections": [
+   {
+    "title": "Your pools",
+    "kind": "pool",
+    "fields": [
+     "name",
+     "category",
+     "supply",
+     "floorUsd"
+    ],
+    "empty": "No pools yet.",
+    "action": {
+     "label": "Create a pool",
+     "view": "create-pool",
+     "app": "phisum"
+    }
+   },
+   {
+    "title": "Your rounds",
+    "kind": "round",
+    "fields": [
+     "name",
+     "target",
+     "coin",
+     "closesAt",
+     "status"
+    ],
+    "empty": "No rounds yet.",
+    "action": {
+     "label": "Open a round",
+     "view": "open-round",
+     "app": "phisum"
+    }
+   },
+   {
+    "title": "Your orders",
+    "kind": "order",
+    "fields": [
+     "name",
+     "totalUsd",
+     "at"
+    ],
+    "empty": "No orders yet.",
+    "action": {
+     "label": "Back a round",
+     "view": "back-round",
+     "app": "phisum"
+    }
+   },
+   {
+    "title": "Your stakes",
+    "kind": "offer",
+    "fields": [
+     "name",
+     "amount",
+     "coin",
+     "lock",
+     "status"
+    ],
+    "empty": "No stakes yet.",
+    "action": {
+     "label": "Stake a pool",
+     "view": "stake-pool",
+     "app": "phisum"
+    }
+   },
+   {
+    "title": "Your nests",
+    "kind": "nest",
+    "fields": [
+     "name",
+     "kind",
+     "topic"
+    ],
+    "empty": "No nests yet.",
+    "action": {
+     "label": "Open a nest",
+     "view": "open-nest",
+     "app": "phisum"
+    }
+   },
+   {
+    "title": "Your zones",
+    "kind": "zone",
+    "fields": [
+     "name",
+     "kind"
+    ],
+    "empty": "No zones yet.",
+    "action": {
+     "label": "Add a zone",
+     "view": "add-zone",
+     "app": "phisum"
+    }
+   },
+   {
+    "title": "Your areas",
+    "kind": "area",
+    "fields": [
+     "name",
+     "kind"
+    ],
+    "empty": "No areas yet.",
+    "action": {
+     "label": "Add an area",
+     "view": "add-area",
+     "app": "phisum"
+    }
+   }
+  ],
+  "totals": [
+   {
+    "label": "Backed",
+    "kind": "order",
+    "sum": "totalUsd",
+    "sub": "Your orders, USD"
+   },
+   {
+    "label": "Staked",
+    "kind": "offer",
+    "sum": "amount",
+    "sub": "Across your pools"
+   },
+   {
+    "label": "Raised for your rounds",
+    "kind": "order",
+    "sum": "totalUsd",
+    "via": {
+     "kind": "round",
+     "field": "roundId"
+    },
+    "sub": "Backed by others"
+   },
+   {
+    "label": "Round targets",
+    "kind": "round",
+    "sum": "target",
+    "sub": "USD you are raising"
+   }
+  ]
+ }
+}

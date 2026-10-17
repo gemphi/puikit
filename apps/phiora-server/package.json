@@ -1,0 +1,23 @@
+{
+  "name": "@phiace/phiora-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Phiora \u2014 the one API and database behind the Phiace apps: every record (md5 ids, slugs, a change log), app content, per-user state, accounts, a server-owned wallet, shop orders and persona chat. Postgres in production, SQLite or JSON files locally.",
+  "engines": {
+    "node": ">=20.11"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning src/server.mjs",
+    "dev": "node --disable-warning=ExperimentalWarning --watch src/server.mjs",
+    "seed": "node --disable-warning=ExperimentalWarning src/seed.mjs",
+    "test": "node --disable-warning=ExperimentalWarning --test \"test/**/*.test.mjs\"",
+    "extract:oldapps": "TS_PATH=../../node_modules/typescript node scripts/old-apps-extract.mjs ../../../old-apps-js \"../../Claude outputs/old-apps-bundle.json\"",
+    "feed:oldapps": "node scripts/old-apps-feed.mjs \"../../Claude outputs/old-apps-bundle.json\"",
+    "feed:muse": "node scripts/agents-muse.mjs",
+    "test:muse": "node scripts/muse-test.mjs"
+  },
+  "dependencies": {
+    "pg": "^8.13.0"
+  }
+}

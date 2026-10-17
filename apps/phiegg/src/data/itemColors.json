@@ -1,0 +1,2267 @@
+{
+ "items/gen/chocolate-tutu-04/3Q.webp": {
+  "hex": "#563622",
+  "palette": [
+   "#563622",
+   "#60402c",
+   "#4d2d19"
+  ],
+  "share": 0.33,
+  "light": 0.24
+ },
+ "items/gen/chocolate-tutu-04/BACK.webp": {
+  "hex": "#5b341b",
+  "palette": [
+   "#5b341b",
+   "#665345",
+   "#41220e"
+  ],
+  "share": 0.42,
+  "light": 0.23
+ },
+ "items/gen/chocolate-tutu-04/BOTTOM.webp": {
+  "hex": "#573824",
+  "palette": [
+   "#573824",
+   "#452c1c",
+   "#30251a"
+  ],
+  "share": 0.47,
+  "light": 0.24
+ },
+ "items/gen/chocolate-tutu-04/FRONT.webp": {
+  "hex": "#50311d",
+  "palette": [
+   "#50311d",
+   "#61402a",
+   "#795d4b"
+  ],
+  "share": 0.38,
+  "light": 0.21
+ },
+ "items/gen/chocolate-tutu-04/SIDE.webp": {
+  "hex": "#51321d",
+  "palette": [
+   "#51321d",
+   "#6c4c36",
+   "#7f6857"
+  ],
+  "share": 0.38,
+  "light": 0.22
+ },
+ "items/gen/chocolate-tutu-04/TOP.webp": {
+  "hex": "#51301b",
+  "palette": [
+   "#51301b",
+   "#5f3e29",
+   "#6b594c"
+  ],
+  "share": 0.49,
+  "light": 0.21
+ },
+ "items/gen/chocolate-tutu-07/3Q.webp": {
+  "hex": "#563622",
+  "palette": [
+   "#563622",
+   "#4d2f1c",
+   "#6c4831"
+  ],
+  "share": 0.48,
+  "light": 0.24
+ },
+ "items/gen/chocolate-tutu-07/BACK.webp": {
+  "hex": "#5d2b0c",
+  "palette": [
+   "#5d2b0c",
+   "#64554b",
+   "#46382f"
+  ],
+  "share": 0.49,
+  "light": 0.21
+ },
+ "items/gen/chocolate-tutu-07/BOTTOM.webp": {
+  "hex": "#4f311f",
+  "palette": [
+   "#4f311f",
+   "#64412a",
+   "#3c2416"
+  ],
+  "share": 0.42,
+  "light": 0.22
+ },
+ "items/gen/chocolate-tutu-07/FRONT.webp": {
+  "hex": "#5a3721",
+  "palette": [
+   "#5a3721",
+   "#7a533a",
+   "#2c1c11"
+  ],
+  "share": 0.59,
+  "light": 0.24
+ },
+ "items/gen/chocolate-tutu-07/SIDE.webp": {
+  "hex": "#593723",
+  "palette": [
+   "#593723",
+   "#734d36",
+   "#8a6a56"
+  ],
+  "share": 0.41,
+  "light": 0.24
+ },
+ "items/gen/chocolate-tutu-07/TOP.webp": {
+  "hex": "#5d3923",
+  "palette": [
+   "#5d3923",
+   "#3b2110",
+   "#6a5c53"
+  ],
+  "share": 0.79,
+  "light": 0.25
+ },
+ "items/gen/graphite-tutu-04/3Q.webp": {
+  "hex": "#445055",
+  "palette": [
+   "#445055",
+   "#414e51",
+   "#3d484b"
+  ],
+  "share": 0.46,
+  "light": 0.3
+ },
+ "items/gen/graphite-tutu-04/BACK.webp": {
+  "hex": "#1e2326",
+  "palette": [
+   "#1e2326",
+   "#3e4a4d",
+   "#2b3135"
+  ],
+  "share": 0.38,
+  "light": 0.13
+ },
+ "items/gen/graphite-tutu-04/BOTTOM.webp": {
+  "hex": "#252d30",
+  "palette": [
+   "#252d30",
+   "#1b2628",
+   "#313a3e"
+  ],
+  "share": 0.46,
+  "light": 0.17
+ },
+ "items/gen/graphite-tutu-04/FRONT.webp": {
+  "hex": "#404b4e",
+  "palette": [
+   "#404b4e",
+   "#2a3234",
+   "#526063"
+  ],
+  "share": 0.4,
+  "light": 0.28
+ },
+ "items/gen/graphite-tutu-04/SIDE.webp": {
+  "hex": "#505a60",
+  "palette": [
+   "#505a60",
+   "#354441",
+   "#232b2d"
+  ],
+  "share": 0.25,
+  "light": 0.35
+ },
+ "items/gen/graphite-tutu-04/TOP.webp": {
+  "hex": "#485459",
+  "palette": [
+   "#485459",
+   "#353f43",
+   "#424f52"
+  ],
+  "share": 0.3,
+  "light": 0.32
+ },
+ "items/gen/graphite-tutu-07/3Q.webp": {
+  "hex": "#514249",
+  "palette": [
+   "#514249",
+   "#4b3a41",
+   "#745d63"
+  ],
+  "share": 0.37,
+  "light": 0.29
+ },
+ "items/gen/graphite-tutu-07/BACK.webp": {
+  "hex": "#68555f",
+  "palette": [
+   "#68555f",
+   "#51424b",
+   "#44383c"
+  ],
+  "share": 0.38,
+  "light": 0.37
+ },
+ "items/gen/graphite-tutu-07/BOTTOM.webp": {
+  "hex": "#2a2225",
+  "palette": [
+   "#2a2225",
+   "#251c20",
+   "#3b3132"
+  ],
+  "share": 0.43,
+  "light": 0.15
+ },
+ "items/gen/graphite-tutu-07/FRONT.webp": {
+  "hex": "#56464d",
+  "palette": [
+   "#56464d",
+   "#55474f",
+   "#55454c"
+  ],
+  "share": 0.25,
+  "light": 0.31
+ },
+ "items/gen/graphite-tutu-07/SIDE.webp": {
+  "hex": "#7b6669",
+  "palette": [
+   "#7b6669",
+   "#5a494d",
+   "#372d32"
+  ],
+  "share": 0.38,
+  "light": 0.44
+ },
+ "items/gen/graphite-tutu-07/TOP.webp": {
+  "hex": "#c0b7a1",
+  "palette": [
+   "#c0b7a1",
+   "#968d7d",
+   "#272c2f"
+  ],
+  "share": 0.25,
+  "light": 0.69
+ },
+ "items/gen/ink-tutu-04/3Q.webp": {
+  "hex": "#1c2841",
+  "palette": [
+   "#1c2841",
+   "#26324c",
+   "#16203a"
+  ],
+  "share": 0.38,
+  "light": 0.18
+ },
+ "items/gen/ink-tutu-04/BACK.webp": {
+  "hex": "#13203f",
+  "palette": [
+   "#13203f",
+   "#363e4f",
+   "#1c2a4a"
+  ],
+  "share": 0.35,
+  "light": 0.16
+ },
+ "items/gen/ink-tutu-04/BOTTOM.webp": {
+  "hex": "#1f2b45",
+  "palette": [
+   "#1f2b45",
+   "#172238",
+   "#101d2c"
+  ],
+  "share": 0.41,
+  "light": 0.2
+ },
+ "items/gen/ink-tutu-04/FRONT.webp": {
+  "hex": "#18233c",
+  "palette": [
+   "#18233c",
+   "#222e49",
+   "#3b475d"
+  ],
+  "share": 0.39,
+  "light": 0.16
+ },
+ "items/gen/ink-tutu-04/SIDE.webp": {
+  "hex": "#17243e",
+  "palette": [
+   "#17243e",
+   "#293650",
+   "#404d63"
+  ],
+  "share": 0.34,
+  "light": 0.17
+ },
+ "items/gen/ink-tutu-04/TOP.webp": {
+  "hex": "#16223d",
+  "palette": [
+   "#16223d",
+   "#212e49",
+   "#3d4555"
+  ],
+  "share": 0.53,
+  "light": 0.16
+ },
+ "items/gen/ink-tutu-07/3Q.webp": {
+  "hex": "#1a243d",
+  "palette": [
+   "#1a243d",
+   "#212d49",
+   "#303b58"
+  ],
+  "share": 0.65,
+  "light": 0.17
+ },
+ "items/gen/ink-tutu-07/BACK.webp": {
+  "hex": "#383d4a",
+  "palette": [
+   "#383d4a",
+   "#13244f",
+   "#0a1b44"
+  ],
+  "share": 0.37,
+  "light": 0.25
+ },
+ "items/gen/ink-tutu-07/BOTTOM.webp": {
+  "hex": "#19243c",
+  "palette": [
+   "#19243c",
+   "#24304d",
+   "#131b2e"
+  ],
+  "share": 0.42,
+  "light": 0.17
+ },
+ "items/gen/ink-tutu-07/FRONT.webp": {
+  "hex": "#1a2440",
+  "palette": [
+   "#1a2440",
+   "#2d3b5c",
+   "#1f2a47"
+  ],
+  "share": 0.36,
+  "light": 0.18
+ },
+ "items/gen/ink-tutu-07/SIDE.webp": {
+  "hex": "#1c2742",
+  "palette": [
+   "#1c2742",
+   "#293452",
+   "#3c4564"
+  ],
+  "share": 0.39,
+  "light": 0.18
+ },
+ "items/gen/ink-tutu-07/TOP.webp": {
+  "hex": "#1a2642",
+  "palette": [
+   "#1a2642",
+   "#202d4b",
+   "#0f182f"
+  ],
+  "share": 0.5,
+  "light": 0.18
+ },
+ "items/gen/ivory-tutu-04/BOTTOM.webp": {
+  "hex": "#182928",
+  "palette": [
+   "#182928",
+   "#364643",
+   "#293735"
+  ],
+  "share": 0.41,
+  "light": 0.13
+ },
+ "items/gen/ivory-tutu-04/SIDE.webp": {
+  "hex": "#404f4a",
+  "palette": [
+   "#404f4a",
+   "#394540",
+   "#2f3d3c"
+  ],
+  "share": 0.3,
+  "light": 0.28
+ },
+ "items/gen/ivory-tutu-07/BACK.webp": {
+  "hex": "#4e4037",
+  "palette": [
+   "#4e4037",
+   "#72645a",
+   "#96887c"
+  ],
+  "share": 0.43,
+  "light": 0.26
+ },
+ "items/gen/ivory-tutu-07/BOTTOM.webp": {
+  "hex": "#897b73",
+  "palette": [
+   "#897b73",
+   "#7c6e67",
+   "#61544e"
+  ],
+  "share": 0.25,
+  "light": 0.49
+ },
+ "items/gen/ivory-tutu-07/TOP.webp": {
+  "hex": "#beb39f",
+  "palette": [
+   "#beb39f"
+  ],
+  "share": 1.0,
+  "light": 0.68
+ },
+ "items/gen/moss-tutu-04/3Q.webp": {
+  "hex": "#556534",
+  "palette": [
+   "#556534",
+   "#617240",
+   "#4b5a2b"
+  ],
+  "share": 0.32,
+  "light": 0.3
+ },
+ "items/gen/moss-tutu-04/BACK.webp": {
+  "hex": "#737d5c",
+  "palette": [
+   "#737d5c",
+   "#5d7035",
+   "#4c5f26"
+  ],
+  "share": 0.36,
+  "light": 0.43
+ },
+ "items/gen/moss-tutu-04/BOTTOM.webp": {
+  "hex": "#5a6b3b",
+  "palette": [
+   "#5a6b3b",
+   "#45542c",
+   "#233421"
+  ],
+  "share": 0.45,
+  "light": 0.33
+ },
+ "items/gen/moss-tutu-04/FRONT.webp": {
+  "hex": "#4f5f2e",
+  "palette": [
+   "#4f5f2e",
+   "#62733f",
+   "#809063"
+  ],
+  "share": 0.37,
+  "light": 0.28
+ },
+ "items/gen/moss-tutu-04/SIDE.webp": {
+  "hex": "#4b5c2c",
+  "palette": [
+   "#4b5c2c",
+   "#647644",
+   "#849566"
+  ],
+  "share": 0.3,
+  "light": 0.27
+ },
+ "items/gen/moss-tutu-04/TOP.webp": {
+  "hex": "#4d5e2b",
+  "palette": [
+   "#4d5e2b",
+   "#596b36",
+   "#677748"
+  ],
+  "share": 0.38,
+  "light": 0.27
+ },
+ "items/gen/moss-tutu-07/3Q.webp": {
+  "hex": "#526031",
+  "palette": [
+   "#526031",
+   "#60703d",
+   "#74854d"
+  ],
+  "share": 0.64,
+  "light": 0.28
+ },
+ "items/gen/moss-tutu-07/BACK.webp": {
+  "hex": "#5b7425",
+  "palette": [
+   "#5b7425",
+   "#798166",
+   "#646a53"
+  ],
+  "share": 0.45,
+  "light": 0.3
+ },
+ "items/gen/moss-tutu-07/BOTTOM.webp": {
+  "hex": "#4e5c2f",
+  "palette": [
+   "#4e5c2f",
+   "#61723d",
+   "#3c4524"
+  ],
+  "share": 0.39,
+  "light": 0.27
+ },
+ "items/gen/moss-tutu-07/FRONT.webp": {
+  "hex": "#586835",
+  "palette": [
+   "#586835",
+   "#819557",
+   "#718248"
+  ],
+  "share": 0.57,
+  "light": 0.31
+ },
+ "items/gen/moss-tutu-07/SIDE.webp": {
+  "hex": "#576635",
+  "palette": [
+   "#576635",
+   "#71804c",
+   "#8ea061"
+  ],
+  "share": 0.42,
+  "light": 0.3
+ },
+ "items/gen/moss-tutu-07/TOP.webp": {
+  "hex": "#596a34",
+  "palette": [
+   "#596a34",
+   "#687843",
+   "#414f23"
+  ],
+  "share": 0.59,
+  "light": 0.31
+ },
+ "items/gen/onyx-tutu-04/3Q.webp": {
+  "hex": "#25211e",
+  "palette": [
+   "#25211e",
+   "#272724",
+   "#241e1d"
+  ],
+  "share": 0.45,
+  "light": 0.13
+ },
+ "items/gen/onyx-tutu-04/BACK.webp": {
+  "hex": "#25211e",
+  "palette": [
+   "#25211e",
+   "#2a2723",
+   "#241f1c"
+  ],
+  "share": 0.47,
+  "light": 0.13
+ },
+ "items/gen/onyx-tutu-04/BOTTOM.webp": {
+  "hex": "#24211e",
+  "palette": [
+   "#24211e",
+   "#292522",
+   "#1e2626"
+  ],
+  "share": 0.36,
+  "light": 0.13
+ },
+ "items/gen/onyx-tutu-04/FRONT.webp": {
+  "hex": "#282421",
+  "palette": [
+   "#282421",
+   "#24211e",
+   "#241f1d"
+  ],
+  "share": 0.39,
+  "light": 0.14
+ },
+ "items/gen/onyx-tutu-04/SIDE.webp": {
+  "hex": "#252320",
+  "palette": [
+   "#252320",
+   "#2c2a26",
+   "#24201d"
+  ],
+  "share": 0.39,
+  "light": 0.14
+ },
+ "items/gen/onyx-tutu-04/TOP.webp": {
+  "hex": "#26221f",
+  "palette": [
+   "#26221f",
+   "#241f1d",
+   "#2b2a26"
+  ],
+  "share": 0.57,
+  "light": 0.14
+ },
+ "items/gen/onyx-tutu-07/3Q.webp": {
+  "hex": "#25201e",
+  "palette": [
+   "#25201e",
+   "#2a2522",
+   "#342c29"
+  ],
+  "share": 0.43,
+  "light": 0.13
+ },
+ "items/gen/onyx-tutu-07/BACK.webp": {
+  "hex": "#2b2522",
+  "palette": [
+   "#2b2522",
+   "#25211e",
+   "#3d322f"
+  ],
+  "share": 0.51,
+  "light": 0.15
+ },
+ "items/gen/onyx-tutu-07/BOTTOM.webp": {
+  "hex": "#292522",
+  "palette": [
+   "#292522",
+   "#26221f",
+   "#241e1d"
+  ],
+  "share": 0.49,
+  "light": 0.15
+ },
+ "items/gen/onyx-tutu-07/FRONT.webp": {
+  "hex": "#24201d",
+  "palette": [
+   "#24201d",
+   "#322c28",
+   "#292321"
+  ],
+  "share": 0.44,
+  "light": 0.13
+ },
+ "items/gen/onyx-tutu-07/SIDE.webp": {
+  "hex": "#2d2724",
+  "palette": [
+   "#2d2724",
+   "#25201e",
+   "#3c2f2d"
+  ],
+  "share": 0.39,
+  "light": 0.16
+ },
+ "items/gen/onyx-tutu-07/TOP.webp": {
+  "hex": "#26221f",
+  "palette": [
+   "#26221f",
+   "#2a2622",
+   "#241f1d"
+  ],
+  "share": 0.56,
+  "light": 0.14
+ },
+ "items/gen/pearl-tutu-04/BOTTOM.webp": {
+  "hex": "#2e3e3a",
+  "palette": [
+   "#2e3e3a",
+   "#1d2d2b",
+   "#42524e"
+  ],
+  "share": 0.34,
+  "light": 0.21
+ },
+ "items/gen/pearl-tutu-04/SIDE.webp": {
+  "hex": "#37443d",
+  "palette": [
+   "#37443d",
+   "#3f4e45",
+   "#2e3c35"
+  ],
+  "share": 0.4,
+  "light": 0.24
+ },
+ "items/gen/pearl-tutu-07/BACK.webp": {
+  "hex": "#998e7f",
+  "palette": [
+   "#998e7f",
+   "#e1c9bb",
+   "#4b3e32"
+  ],
+  "share": 0.41,
+  "light": 0.55
+ },
+ "items/gen/pearl-tutu-07/BOTTOM.webp": {
+  "hex": "#756c5f",
+  "palette": [
+   "#756c5f",
+   "#645950",
+   "#5d5249"
+  ],
+  "share": 0.25,
+  "light": 0.42
+ },
+ "items/gen/plum-tutu-04/3Q.webp": {
+  "hex": "#692559",
+  "palette": [
+   "#692559",
+   "#763266",
+   "#5e1c4e"
+  ],
+  "share": 0.33,
+  "light": 0.28
+ },
+ "items/gen/plum-tutu-04/BACK.webp": {
+  "hex": "#661553",
+  "palette": [
+   "#661553",
+   "#7e5973",
+   "#7c2768"
+  ],
+  "share": 0.36,
+  "light": 0.24
+ },
+ "items/gen/plum-tutu-04/BOTTOM.webp": {
+  "hex": "#6d2b5e",
+  "palette": [
+   "#6d2b5e",
+   "#541f49",
+   "#2b1b30"
+  ],
+  "share": 0.46,
+  "light": 0.3
+ },
+ "items/gen/plum-tutu-04/FRONT.webp": {
+  "hex": "#642054",
+  "palette": [
+   "#642054",
+   "#793268",
+   "#955a88"
+  ],
+  "share": 0.43,
+  "light": 0.26
+ },
+ "items/gen/plum-tutu-04/SIDE.webp": {
+  "hex": "#611e51",
+  "palette": [
+   "#611e51",
+   "#7e386f",
+   "#995c8c"
+  ],
+  "share": 0.36,
+  "light": 0.25
+ },
+ "items/gen/plum-tutu-04/TOP.webp": {
+  "hex": "#6c235b",
+  "palette": [
+   "#6c235b",
+   "#5e1a4e",
+   "#79386a"
+  ],
+  "share": 0.39,
+  "light": 0.28
+ },
+ "items/gen/plum-tutu-07/3Q.webp": {
+  "hex": "#6d285d",
+  "palette": [
+   "#6d285d",
+   "#5f2051",
+   "#8f437b"
+  ],
+  "share": 0.48,
+  "light": 0.29
+ },
+ "items/gen/plum-tutu-07/BACK.webp": {
+  "hex": "#780a5e",
+  "palette": [
+   "#780a5e",
+   "#83627a",
+   "#6c4f64"
+  ],
+  "share": 0.45,
+  "light": 0.25
+ },
+ "items/gen/plum-tutu-07/BOTTOM.webp": {
+  "hex": "#612252",
+  "palette": [
+   "#612252",
+   "#7a2e68",
+   "#491a3d"
+  ],
+  "share": 0.41,
+  "light": 0.26
+ },
+ "items/gen/plum-tutu-07/FRONT.webp": {
+  "hex": "#6c245b",
+  "palette": [
+   "#6c245b",
+   "#953d80",
+   "#34162d"
+  ],
+  "share": 0.58,
+  "light": 0.28
+ },
+ "items/gen/plum-tutu-07/SIDE.webp": {
+  "hex": "#692458",
+  "palette": [
+   "#692458",
+   "#853b71",
+   "#a4528e"
+  ],
+  "share": 0.4,
+  "light": 0.28
+ },
+ "items/gen/plum-tutu-07/TOP.webp": {
+  "hex": "#71265f",
+  "palette": [
+   "#71265f",
+   "#47113b",
+   "#83667a"
+  ],
+  "share": 0.8,
+  "light": 0.3
+ },
+ "items/gen/sage-tutu-04/3Q.webp": {
+  "hex": "#728357",
+  "palette": [
+   "#728357",
+   "#849568",
+   "#637349"
+  ],
+  "share": 0.33,
+  "light": 0.43
+ },
+ "items/gen/sage-tutu-04/BACK.webp": {
+  "hex": "#798c57",
+  "palette": [
+   "#798c57",
+   "#617343",
+   "#98a97b"
+  ],
+  "share": 0.44,
+  "light": 0.45
+ },
+ "items/gen/sage-tutu-04/BOTTOM.webp": {
+  "hex": "#78895d",
+  "palette": [
+   "#78895d",
+   "#6a7b53",
+   "#4b5d42"
+  ],
+  "share": 0.51,
+  "light": 0.45
+ },
+ "items/gen/sage-tutu-04/FRONT.webp": {
+  "hex": "#6a7b4f",
+  "palette": [
+   "#6a7b4f",
+   "#869768",
+   "#adbd94"
+  ],
+  "share": 0.39,
+  "light": 0.4
+ },
+ "items/gen/sage-tutu-04/SIDE.webp": {
+  "hex": "#a8bb8d",
+  "palette": [
+   "#a8bb8d",
+   "#778a5b",
+   "#5a6943"
+  ],
+  "share": 0.35,
+  "light": 0.64
+ },
+ "items/gen/sage-tutu-04/TOP.webp": {
+  "hex": "#6f8052",
+  "palette": [
+   "#6f8052",
+   "#829465",
+   "#5f6f45"
+  ],
+  "share": 0.4,
+  "light": 0.41
+ },
+ "items/gen/sage-tutu-07/3Q.webp": {
+  "hex": "#79895c",
+  "palette": [
+   "#79895c",
+   "#68774e",
+   "#a3b581"
+  ],
+  "share": 0.49,
+  "light": 0.45
+ },
+ "items/gen/sage-tutu-07/BACK.webp": {
+  "hex": "#768e4a",
+  "palette": [
+   "#768e4a",
+   "#8ba35f",
+   "#5a693d"
+  ],
+  "share": 0.38,
+  "light": 0.42
+ },
+ "items/gen/sage-tutu-07/BOTTOM.webp": {
+  "hex": "#758559",
+  "palette": [
+   "#758559",
+   "#829264",
+   "#6b7951"
+  ],
+  "share": 0.38,
+  "light": 0.44
+ },
+ "items/gen/sage-tutu-07/FRONT.webp": {
+  "hex": "#728255",
+  "palette": [
+   "#728255",
+   "#aabe85",
+   "#829262"
+  ],
+  "share": 0.38,
+  "light": 0.42
+ },
+ "items/gen/sage-tutu-07/SIDE.webp": {
+  "hex": "#7d8c5f",
+  "palette": [
+   "#7d8c5f",
+   "#abbc87",
+   "#272d1a"
+  ],
+  "share": 0.48,
+  "light": 0.46
+ },
+ "items/gen/sage-tutu-07/TOP.webp": {
+  "hex": "#788a5a",
+  "palette": [
+   "#788a5a",
+   "#899c69",
+   "#647349"
+  ],
+  "share": 0.52,
+  "light": 0.45
+ },
+ "items/gen/silver-tutu-04/BACK.webp": {
+  "hex": "#262f2b",
+  "palette": [
+   "#262f2b"
+  ],
+  "share": 1.0,
+  "light": 0.17
+ },
+ "items/gen/silver-tutu-04/BOTTOM.webp": {
+  "hex": "#223233",
+  "palette": [
+   "#223233",
+   "#344445",
+   "#142526"
+  ],
+  "share": 0.31,
+  "light": 0.17
+ },
+ "items/gen/silver-tutu-04/SIDE.webp": {
+  "hex": "#263332",
+  "palette": [
+   "#263332",
+   "#192725",
+   "#415152"
+  ],
+  "share": 0.47,
+  "light": 0.17
+ },
+ "items/gen/silver-tutu-07/BACK.webp": {
+  "hex": "#30282b",
+  "palette": [
+   "#30282b",
+   "#241b1d",
+   "#261d22"
+  ],
+  "share": 0.43,
+  "light": 0.17
+ },
+ "items/gen/silver-tutu-07/BOTTOM.webp": {
+  "hex": "#42373b",
+  "palette": [
+   "#42373b",
+   "#2c1d23"
+  ],
+  "share": 0.5,
+  "light": 0.24
+ },
+ "items/ls/sm/LS-LOOK-07-SUMMER-SHOW/OUTFIT-05-DRESS-3Q.webp": {
+  "hex": "#942a40",
+  "palette": [
+   "#942a40",
+   "#781f30",
+   "#7c484f"
+  ],
+  "share": 0.68,
+  "light": 0.37
+ },
+ "items/ls/sm/LS-LOOK-07-SUMMER-SHOW/OUTFIT-05-DRESS-BACK.webp": {
+  "hex": "#982631",
+  "palette": [
+   "#982631",
+   "#a79b85",
+   "#897c6d"
+  ],
+  "share": 0.44,
+  "light": 0.37
+ },
+ "items/ls/sm/LS-LOOK-07-SUMMER-SHOW/OUTFIT-05-DRESS-BOTTOM.webp": {
+  "hex": "#320c11",
+  "palette": [
+   "#320c11",
+   "#290509",
+   "#a69a88"
+  ],
+  "share": 0.49,
+  "light": 0.12
+ },
+ "items/ls/sm/LS-LOOK-07-SUMMER-SHOW/OUTFIT-05-DRESS-FRONT.webp": {
+  "hex": "#8f273d",
+  "palette": [
+   "#8f273d",
+   "#752231",
+   "#744b4f"
+  ],
+  "share": 0.72,
+  "light": 0.36
+ },
+ "items/ls/sm/LS-LOOK-07-SUMMER-SHOW/OUTFIT-05-DRESS-SIDE.webp": {
+  "hex": "#781e2f",
+  "palette": [
+   "#781e2f",
+   "#a6364c",
+   "#815b5f"
+  ],
+  "share": 0.62,
+  "light": 0.29
+ },
+ "items/ls/sm/LS-LOOK-07-SUMMER-SHOW/OUTFIT-05-DRESS-TOP.webp": {
+  "hex": "#c0b39e",
+  "palette": [
+   "#c0b39e",
+   "#a13648",
+   "#a38d7f"
+  ],
+  "share": 0.31,
+  "light": 0.69
+ },
+ "items/ls/sm/LS-LOOK-07-SUMMER-SHOW/OUTFIT-07-DRESS-3Q.webp": {
+  "hex": "#932941",
+  "palette": [
+   "#932941",
+   "#852237",
+   "#985b68"
+  ],
+  "share": 0.55,
+  "light": 0.37
+ },
+ "items/ls/sm/LS-LOOK-07-SUMMER-SHOW/OUTFIT-07-DRESS-BACK.webp": {
+  "hex": "#95252e",
+  "palette": [
+   "#95252e",
+   "#a69984",
+   "#731e26"
+  ],
+  "share": 0.44,
+  "light": 0.36
+ },
+ "items/ls/sm/LS-LOOK-07-SUMMER-SHOW/OUTFIT-07-DRESS-BOTTOM.webp": {
+  "hex": "#30060c",
+  "palette": [
+   "#30060c",
+   "#3b0e15",
+   "#a79b89"
+  ],
+  "share": 0.57,
+  "light": 0.11
+ },
+ "items/ls/sm/LS-LOOK-07-SUMMER-SHOW/OUTFIT-07-DRESS-FRONT.webp": {
+  "hex": "#8a243b",
+  "palette": [
+   "#8a243b",
+   "#942a41",
+   "#5f4647"
+  ],
+  "share": 0.56,
+  "light": 0.34
+ },
+ "items/ls/sm/LS-LOOK-07-SUMMER-SHOW/OUTFIT-07-DRESS-SIDE.webp": {
+  "hex": "#7b1f30",
+  "palette": [
+   "#7b1f30",
+   "#91273e",
+   "#82575b"
+  ],
+  "share": 0.55,
+  "light": 0.3
+ },
+ "items/ls/sm/LS-LOOK-07-SUMMER-SHOW/OUTFIT-07-DRESS-TOP.webp": {
+  "hex": "#992937",
+  "palette": [
+   "#992937",
+   "#bfb39d",
+   "#a18b7d"
+  ],
+  "share": 0.45,
+  "light": 0.38
+ },
+ "items/ls/sm/LS-LOOK-07-SUMMER-SHOW/OUTFIT-TUTU-DRESS-3Q.webp": {
+  "hex": "#8692a9",
+  "palette": [
+   "#8692a9",
+   "#929eb4",
+   "#9da9be"
+  ],
+  "share": 0.41,
+  "light": 0.59
+ },
+ "items/ls/sm/LS-LOOK-07-SUMMER-SHOW/OUTFIT-TUTU-DRESS-BACK.webp": {
+  "hex": "#a29681",
+  "palette": [
+   "#a29681",
+   "#908674",
+   "#b9ad96"
+  ],
+  "share": 0.48,
+  "light": 0.57
+ },
+ "items/ls/sm/LS-LOOK-07-SUMMER-SHOW/OUTFIT-TUTU-DRESS-BOTTOM.webp": {
+  "hex": "#c7bca5",
+  "palette": [
+   "#c7bca5",
+   "#b1a692",
+   "#9d937f"
+  ],
+  "share": 0.39,
+  "light": 0.71
+ },
+ "items/ls/sm/LS-LOOK-07-SUMMER-SHOW/OUTFIT-TUTU-DRESS-FRONT.webp": {
+  "hex": "#9ba5bb",
+  "palette": [
+   "#9ba5bb",
+   "#959db2",
+   "#8d97aa"
+  ],
+  "share": 0.38,
+  "light": 0.67
+ },
+ "items/ls/sm/LS-LOOK-07-SUMMER-SHOW/OUTFIT-TUTU-DRESS-SIDE.webp": {
+  "hex": "#7988a1",
+  "palette": [
+   "#7988a1",
+   "#8592a7",
+   "#a2aab4"
+  ],
+  "share": 0.36,
+  "light": 0.55
+ },
+ "items/ls/sm/LS-LOOK-07-SUMMER-SHOW/OUTFIT-TUTU-DRESS-TOP.webp": {
+  "hex": "#c3b7a1",
+  "palette": [
+   "#c3b7a1",
+   "#8d98ae",
+   "#b2a690"
+  ],
+  "share": 0.37,
+  "light": 0.7
+ },
+ "items/ls/sm/LS-OUTFIT-01-TUTU-DRESS/OUTFIT-01-TUTU-3Q.webp": {
+  "hex": "#7b3420",
+  "palette": [
+   "#7b3420",
+   "#5f1c0f",
+   "#8b523b"
+  ],
+  "share": 0.31,
+  "light": 0.3
+ },
+ "items/ls/sm/LS-OUTFIT-01-TUTU-DRESS/OUTFIT-01-TUTU-BACK.webp": {
+  "hex": "#86462b",
+  "palette": [
+   "#86462b",
+   "#622413",
+   "#8e7e6b"
+  ],
+  "share": 0.28,
+  "light": 0.35
+ },
+ "items/ls/sm/LS-OUTFIT-01-TUTU-DRESS/OUTFIT-01-TUTU-BOTTOM.webp": {
+  "hex": "#572214",
+  "palette": [
+   "#572214",
+   "#6a3220",
+   "#775e54"
+  ],
+  "share": 0.76,
+  "light": 0.21
+ },
+ "items/ls/sm/LS-OUTFIT-01-TUTU-DRESS/OUTFIT-01-TUTU-FRONT.webp": {
+  "hex": "#80321e",
+  "palette": [
+   "#80321e",
+   "#9f6449",
+   "#5f1f11"
+  ],
+  "share": 0.33,
+  "light": 0.31
+ },
+ "items/ls/sm/LS-OUTFIT-01-TUTU-DRESS/OUTFIT-01-TUTU-SIDE.webp": {
+  "hex": "#652a1a",
+  "palette": [
+   "#652a1a",
+   "#88442c",
+   "#4c170b"
+  ],
+  "share": 0.46,
+  "light": 0.25
+ },
+ "items/ls/sm/LS-OUTFIT-01-TUTU-DRESS/OUTFIT-01-TUTU-TOP.webp": {
+  "hex": "#8a341b",
+  "palette": [
+   "#8a341b",
+   "#a05839",
+   "#b18f73"
+  ],
+  "share": 0.35,
+  "light": 0.32
+ },
+ "items/ls/sm/LS-OUTFIT-02-TUTU-DRESS/OUTFIT-02-TUTU-3Q.webp": {
+  "hex": "#3a6d9e",
+  "palette": [
+   "#3a6d9e",
+   "#5584af",
+   "#79b2c5"
+  ],
+  "share": 0.38,
+  "light": 0.42
+ },
+ "items/ls/sm/LS-OUTFIT-02-TUTU-DRESS/OUTFIT-02-TUTU-BACK.webp": {
+  "hex": "#979e8d",
+  "palette": [
+   "#979e8d",
+   "#558094",
+   "#487066"
+  ],
+  "share": 0.35,
+  "light": 0.59
+ },
+ "items/ls/sm/LS-OUTFIT-02-TUTU-DRESS/OUTFIT-02-TUTU-BOTTOM.webp": {
+  "hex": "#1d4c5a",
+  "palette": [
+   "#1d4c5a",
+   "#173a46",
+   "#3c6874"
+  ],
+  "share": 0.53,
+  "light": 0.23
+ },
+ "items/ls/sm/LS-OUTFIT-02-TUTU-DRESS/OUTFIT-02-TUTU-FRONT.webp": {
+  "hex": "#44769c",
+  "palette": [
+   "#44769c",
+   "#5c87b4",
+   "#284b55"
+  ],
+  "share": 0.36,
+  "light": 0.44
+ },
+ "items/ls/sm/LS-OUTFIT-02-TUTU-DRESS/OUTFIT-02-TUTU-SIDE.webp": {
+  "hex": "#43699a",
+  "palette": [
+   "#43699a",
+   "#769aba",
+   "#637d9a"
+  ],
+  "share": 0.36,
+  "light": 0.43
+ },
+ "items/ls/sm/LS-OUTFIT-02-TUTU-DRESS/OUTFIT-02-TUTU-TOP.webp": {
+  "hex": "#5b84ad",
+  "palette": [
+   "#5b84ad",
+   "#426a8e",
+   "#c0b49e"
+  ],
+  "share": 0.58,
+  "light": 0.52
+ },
+ "items/ls/sm/LS-OUTFIT-03-TUTU-DRESS/OUTFIT-03-TUTU-3Q.webp": {
+  "hex": "#ac316e",
+  "palette": [
+   "#ac316e",
+   "#bd4385",
+   "#cd5a9c"
+  ],
+  "share": 0.58,
+  "light": 0.43
+ },
+ "items/ls/sm/LS-OUTFIT-03-TUTU-DRESS/OUTFIT-03-TUTU-BACK.webp": {
+  "hex": "#c03d68",
+  "palette": [
+   "#c03d68",
+   "#8f8070",
+   "#ac9c88"
+  ],
+  "share": 0.36,
+  "light": 0.5
+ },
+ "items/ls/sm/LS-OUTFIT-03-TUTU-DRESS/OUTFIT-03-TUTU-BOTTOM.webp": {
+  "hex": "#763753",
+  "palette": [
+   "#763753",
+   "#864d66",
+   "#5c253b"
+  ],
+  "share": 0.63,
+  "light": 0.34
+ },
+ "items/ls/sm/LS-OUTFIT-03-TUTU-DRESS/OUTFIT-03-TUTU-FRONT.webp": {
+  "hex": "#b83b7d",
+  "palette": [
+   "#b83b7d",
+   "#c55a92",
+   "#a9336d"
+  ],
+  "share": 0.4,
+  "light": 0.48
+ },
+ "items/ls/sm/LS-OUTFIT-03-TUTU-DRESS/OUTFIT-03-TUTU-SIDE.webp": {
+  "hex": "#b03e77",
+  "palette": [
+   "#b03e77",
+   "#bb6a8b",
+   "#76314d"
+  ],
+  "share": 0.38,
+  "light": 0.47
+ },
+ "items/ls/sm/LS-OUTFIT-03-TUTU-DRESS/OUTFIT-03-TUTU-TOP.webp": {
+  "hex": "#c3427f",
+  "palette": [
+   "#c3427f",
+   "#a72c5a",
+   "#bfb09c"
+  ],
+  "share": 0.54,
+  "light": 0.51
+ },
+ "items/ls/sm/LS-OUTFIT-04-TUTU-DRESS/OUTFIT-04-TUTU-3Q.webp": {
+  "hex": "#358588",
+  "palette": [
+   "#358588",
+   "#499d9f",
+   "#65b8b9"
+  ],
+  "share": 0.44,
+  "light": 0.37
+ },
+ "items/ls/sm/LS-OUTFIT-04-TUTU-DRESS/OUTFIT-04-TUTU-BACK.webp": {
+  "hex": "#448d80",
+  "palette": [
+   "#448d80",
+   "#9f9480",
+   "#295b55"
+  ],
+  "share": 0.45,
+  "light": 0.41
+ },
+ "items/ls/sm/LS-OUTFIT-04-TUTU-DRESS/OUTFIT-04-TUTU-BOTTOM.webp": {
+  "hex": "#0c2d2f",
+  "palette": [
+   "#0c2d2f",
+   "#082426",
+   "#324c4b"
+  ],
+  "share": 0.53,
+  "light": 0.12
+ },
+ "items/ls/sm/LS-OUTFIT-04-TUTU-DRESS/OUTFIT-04-TUTU-FRONT.webp": {
+  "hex": "#449799",
+  "palette": [
+   "#449799",
+   "#307a7d",
+   "#78c0b9"
+  ],
+  "share": 0.41,
+  "light": 0.43
+ },
+ "items/ls/sm/LS-OUTFIT-04-TUTU-DRESS/OUTFIT-04-TUTU-SIDE.webp": {
+  "hex": "#357d80",
+  "palette": [
+   "#357d80",
+   "#56a5a7",
+   "#84c9c1"
+  ],
+  "share": 0.35,
+  "light": 0.35
+ },
+ "items/ls/sm/LS-OUTFIT-04-TUTU-DRESS/OUTFIT-04-TUTU-TOP.webp": {
+  "hex": "#3f8b85",
+  "palette": [
+   "#3f8b85",
+   "#4fa09e",
+   "#6db9b6"
+  ],
+  "share": 0.38,
+  "light": 0.4
+ },
+ "items/ls/sm/LS-OUTFIT-05-TUTU-DRESS/OUTFIT-05-DRESS-3Q.webp": {
+  "hex": "#8d273c",
+  "palette": [
+   "#8d273c",
+   "#b2394b",
+   "#751f2f"
+  ],
+  "share": 0.6,
+  "light": 0.35
+ },
+ "items/ls/sm/LS-OUTFIT-05-TUTU-DRESS/OUTFIT-05-DRESS-BACK.webp": {
+  "hex": "#a12b37",
+  "palette": [
+   "#a12b37",
+   "#a59783",
+   "#837365"
+  ],
+  "share": 0.42,
+  "light": 0.4
+ },
+ "items/ls/sm/LS-OUTFIT-05-TUTU-DRESS/OUTFIT-05-DRESS-BOTTOM.webp": {
+  "hex": "#3b0911",
+  "palette": [
+   "#3b0911",
+   "#2f060c",
+   "#492126"
+  ],
+  "share": 0.58,
+  "light": 0.13
+ },
+ "items/ls/sm/LS-OUTFIT-05-TUTU-DRESS/OUTFIT-05-DRESS-FRONT.webp": {
+  "hex": "#8f283e",
+  "palette": [
+   "#8f283e",
+   "#b83f50",
+   "#461b20"
+  ],
+  "share": 0.57,
+  "light": 0.36
+ },
+ "items/ls/sm/LS-OUTFIT-05-TUTU-DRESS/OUTFIT-05-DRESS-SIDE.webp": {
+  "hex": "#902a3f",
+  "palette": [
+   "#902a3f",
+   "#c04758",
+   "#3e0f15"
+  ],
+  "share": 0.49,
+  "light": 0.36
+ },
+ "items/ls/sm/LS-OUTFIT-05-TUTU-DRESS/OUTFIT-05-DRESS-TOP.webp": {
+  "hex": "#982938",
+  "palette": [
+   "#982938",
+   "#a9394a",
+   "#b3a390"
+  ],
+  "share": 0.57,
+  "light": 0.38
+ },
+ "items/ls/sm/LS-OUTFIT-06-TUTU-DRESS/OUTFIT-06-TUTU-3Q.webp": {
+  "hex": "#a0916c",
+  "palette": [
+   "#a0916c",
+   "#8a7b57",
+   "#bdae8b"
+  ],
+  "share": 0.57,
+  "light": 0.53
+ },
+ "items/ls/sm/LS-OUTFIT-06-TUTU-DRESS/OUTFIT-06-TUTU-BACK.webp": {
+  "hex": "#a39479",
+  "palette": [
+   "#a39479",
+   "#9c8960",
+   "#bdae94"
+  ],
+  "share": 0.4,
+  "light": 0.56
+ },
+ "items/ls/sm/LS-OUTFIT-06-TUTU-DRESS/OUTFIT-06-TUTU-BOTTOM.webp": {
+  "hex": "#272014",
+  "palette": [
+   "#272014",
+   "#39352d",
+   "#b4a894"
+  ],
+  "share": 0.65,
+  "light": 0.12
+ },
+ "items/ls/sm/LS-OUTFIT-06-TUTU-DRESS/OUTFIT-06-TUTU-FRONT.webp": {
+  "hex": "#a59879",
+  "palette": [
+   "#a59879",
+   "#c9ba98",
+   "#8e7f5c"
+  ],
+  "share": 0.59,
+  "light": 0.56
+ },
+ "items/ls/sm/LS-OUTFIT-06-TUTU-DRESS/OUTFIT-06-TUTU-SIDE.webp": {
+  "hex": "#a49673",
+  "palette": [
+   "#a49673",
+   "#d2c3a3",
+   "#817350"
+  ],
+  "share": 0.61,
+  "light": 0.55
+ },
+ "items/ls/sm/LS-OUTFIT-06-TUTU-DRESS/OUTFIT-06-TUTU-TOP.webp": {
+  "hex": "#aa9c7c",
+  "palette": [
+   "#aa9c7c",
+   "#a3916a",
+   "#bfb193"
+  ],
+  "share": 0.36,
+  "light": 0.58
+ },
+ "items/ls/sm/LS-OUTFIT-07-TUTU-DRESS/OUTFIT-07-TUTU-3Q.webp": {
+  "hex": "#8f273c",
+  "palette": [
+   "#8f273c",
+   "#7d1e30",
+   "#bc414f"
+  ],
+  "share": 0.47,
+  "light": 0.36
+ },
+ "items/ls/sm/LS-OUTFIT-07-TUTU-DRESS/OUTFIT-07-TUTU-BACK.webp": {
+  "hex": "#9c8e7b",
+  "palette": [
+   "#9c8e7b",
+   "#86272e",
+   "#a8313e"
+  ],
+  "share": 0.43,
+  "light": 0.55
+ },
+ "items/ls/sm/LS-OUTFIT-07-TUTU-DRESS/OUTFIT-07-TUTU-BOTTOM.webp": {
+  "hex": "#3a0911",
+  "palette": [
+   "#3a0911",
+   "#2b050a",
+   "#492a2d"
+  ],
+  "share": 0.53,
+  "light": 0.13
+ },
+ "items/ls/sm/LS-OUTFIT-07-TUTU-DRESS/OUTFIT-07-TUTU-FRONT.webp": {
+  "hex": "#8c263b",
+  "palette": [
+   "#8c263b",
+   "#bf4858",
+   "#391216"
+  ],
+  "share": 0.55,
+  "light": 0.35
+ },
+ "items/ls/sm/LS-OUTFIT-07-TUTU-DRESS/OUTFIT-07-TUTU-SIDE.webp": {
+  "hex": "#852437",
+  "palette": [
+   "#852437",
+   "#b84154",
+   "#390a10"
+  ],
+  "share": 0.45,
+  "light": 0.33
+ },
+ "items/ls/sm/LS-OUTFIT-07-TUTU-DRESS/OUTFIT-07-TUTU-TOP.webp": {
+  "hex": "#982a3a",
+  "palette": [
+   "#982a3a",
+   "#5e111b",
+   "#bcaf99"
+  ],
+  "share": 0.75,
+  "light": 0.38
+ },
+ "items/ls/sm/LS-OUTFIT-08-TUTU-DRESS/OUTFIT-08-TUTU-3Q.webp": {
+  "hex": "#b23377",
+  "palette": [
+   "#b23377",
+   "#963162",
+   "#c04b8c"
+  ],
+  "share": 0.47,
+  "light": 0.45
+ },
+ "items/ls/sm/LS-OUTFIT-08-TUTU-DRESS/OUTFIT-08-TUTU-BACK.webp": {
+  "hex": "#b43062",
+  "palette": [
+   "#b43062",
+   "#928474",
+   "#ac9e8a"
+  ],
+  "share": 0.43,
+  "light": 0.45
+ },
+ "items/ls/sm/LS-OUTFIT-08-TUTU-DRESS/OUTFIT-08-TUTU-BOTTOM.webp": {
+  "hex": "#991a51",
+  "palette": [
+   "#991a51",
+   "#7d133d",
+   "#8a5867"
+  ],
+  "share": 0.45,
+  "light": 0.35
+ },
+ "items/ls/sm/LS-OUTFIT-08-TUTU-DRESS/OUTFIT-08-TUTU-FRONT.webp": {
+  "hex": "#af3675",
+  "palette": [
+   "#af3675",
+   "#a02d66",
+   "#c84b88"
+  ],
+  "share": 0.43,
+  "light": 0.45
+ },
+ "items/ls/sm/LS-OUTFIT-08-TUTU-DRESS/OUTFIT-08-TUTU-SIDE.webp": {
+  "hex": "#ca4590",
+  "palette": [
+   "#ca4590",
+   "#a73169",
+   "#865766"
+  ],
+  "share": 0.43,
+  "light": 0.53
+ },
+ "items/ls/sm/LS-OUTFIT-08-TUTU-DRESS/OUTFIT-08-TUTU-TOP.webp": {
+  "hex": "#bd3a85",
+  "palette": [
+   "#bd3a85",
+   "#ae2360",
+   "#beb19c"
+  ],
+  "share": 0.42,
+  "light": 0.48
+ },
+ "items/ls/sm/LS-OUTFIT-10-TUTU-DRESS/OUTFIT-05-TUTU-3Q.webp": {
+  "hex": "#c1a893",
+  "palette": [
+   "#c1a893",
+   "#af9988",
+   "#9e8272"
+  ],
+  "share": 0.34,
+  "light": 0.67
+ },
+ "items/ls/sm/LS-OUTFIT-10-TUTU-DRESS/OUTFIT-05-TUTU-BACK.webp": {
+  "hex": "#978a77",
+  "palette": [
+   "#978a77",
+   "#bea98d",
+   "#8b674b"
+  ],
+  "share": 0.3,
+  "light": 0.53
+ },
+ "items/ls/sm/LS-OUTFIT-10-TUTU-DRESS/OUTFIT-05-TUTU-BOTTOM.webp": {
+  "hex": "#584942",
+  "palette": [
+   "#584942",
+   "#786a5f",
+   "#beb39e"
+  ],
+  "share": 0.58,
+  "light": 0.3
+ },
+ "items/ls/sm/LS-OUTFIT-10-TUTU-DRESS/OUTFIT-05-TUTU-FRONT.webp": {
+  "hex": "#9f8878",
+  "palette": [
+   "#9f8878",
+   "#dbc6ac",
+   "#b79f8c"
+  ],
+  "share": 0.32,
+  "light": 0.55
+ },
+ "items/ls/sm/LS-OUTFIT-10-TUTU-DRESS/OUTFIT-05-TUTU-SIDE.webp": {
+  "hex": "#a7907c",
+  "palette": [
+   "#a7907c",
+   "#ceb69b",
+   "#574840"
+  ],
+  "share": 0.35,
+  "light": 0.57
+ },
+ "items/ls/sm/LS-OUTFIT-10-TUTU-DRESS/OUTFIT-05-TUTU-TOP.webp": {
+  "hex": "#ae9885",
+  "palette": [
+   "#ae9885",
+   "#c5b29d",
+   "#956a4a"
+  ],
+  "share": 0.3,
+  "light": 0.6
+ },
+ "items/ls/sm/LS-STYLE-05/LOOK-00-FRONT.webp": {
+  "hex": "#b27602",
+  "palette": [
+   "#b27602",
+   "#c68e03",
+   "#624c26"
+  ],
+  "share": 0.68,
+  "light": 0.35
+ },
+ "items/ls/sm/LS-STYLE-05/LOOK-01-FRONT.webp": {
+  "hex": "#b47902",
+  "palette": [
+   "#b47902",
+   "#ce9905",
+   "#604b26"
+  ],
+  "share": 0.72,
+  "light": 0.36
+ },
+ "items/ls/sm/LS-STYLE-05/LOOK-02-FRONT.webp": {
+  "hex": "#b37802",
+  "palette": [
+   "#b37802",
+   "#c89103",
+   "#634e28"
+  ],
+  "share": 0.72,
+  "light": 0.35
+ },
+ "items/ls/sm/LS-STYLE-05/LOOK-03-FRONT.webp": {
+  "hex": "#af7301",
+  "palette": [
+   "#af7301",
+   "#be8502",
+   "#5c4723"
+  ],
+  "share": 0.49,
+  "light": 0.35
+ },
+ "items/ls/sm/LS-STYLE-05/LOOK-04-FRONT.webp": {
+  "hex": "#b47902",
+  "palette": [
+   "#b47902",
+   "#c68e03",
+   "#614c28"
+  ],
+  "share": 0.67,
+  "light": 0.36
+ },
+ "items/ls/sm/LS-STYLE-05/LOOK-05-FRONT.webp": {
+  "hex": "#b57901",
+  "palette": [
+   "#b57901",
+   "#cc9503",
+   "#624c26"
+  ],
+  "share": 0.78,
+  "light": 0.36
+ },
+ "items/ls/sm/LS-STYLE-05/LOOK-06-FRONT.webp": {
+  "hex": "#b97e02",
+  "palette": [
+   "#b97e02",
+   "#9a6406",
+   "#5a482b"
+  ],
+  "share": 0.82,
+  "light": 0.37
+ },
+ "items/ls/sm/LS-STYLE-05/LOOK-07-FRONT.webp": {
+  "hex": "#bf8502",
+  "palette": [
+   "#bf8502",
+   "#ad7302",
+   "#5c4827"
+  ],
+  "share": 0.44,
+  "light": 0.38
+ },
+ "items/ls/sm/LS-STYLE-05/LOOK-08-FRONT.webp": {
+  "hex": "#b87f01",
+  "palette": [
+   "#b87f01",
+   "#975f03",
+   "#504028"
+  ],
+  "share": 0.81,
+  "light": 0.36
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-01-3Q-OPAQUE.webp": {
+  "hex": "#1c1c70",
+  "palette": [
+   "#1c1c70",
+   "#16165f",
+   "#131450"
+  ],
+  "share": 0.35,
+  "light": 0.27
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-01-3Q.webp": {
+  "hex": "#1e1e62",
+  "palette": [
+   "#1e1e62",
+   "#323260",
+   "#585877"
+  ],
+  "share": 0.67,
+  "light": 0.25
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-01-BACK-OPAQUE.webp": {
+  "hex": "#090868",
+  "palette": [
+   "#090868",
+   "#19164d",
+   "#9f9480"
+  ],
+  "share": 0.34,
+  "light": 0.22
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-01-BACK.webp": {
+  "hex": "#9d927e",
+  "palette": [
+   "#9d927e",
+   "#17145c",
+   "#312d5b"
+  ],
+  "share": 0.31,
+  "light": 0.55
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-01-BOTTOM-OPAQUE.webp": {
+  "hex": "#03033a",
+  "palette": [
+   "#03033a",
+   "#181580",
+   "#413d6f"
+  ],
+  "share": 0.69,
+  "light": 0.12
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-01-BOTTOM.webp": {
+  "hex": "#050541",
+  "palette": [
+   "#050541",
+   "#555177",
+   "#363552"
+  ],
+  "share": 0.57,
+  "light": 0.14
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-01-FRONT-OPAQUE.webp": {
+  "hex": "#0a0a7f",
+  "palette": [
+   "#0a0a7f",
+   "#191963",
+   "#0b0c52"
+  ],
+  "share": 0.46,
+  "light": 0.27
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-01-FRONT.webp": {
+  "hex": "#23235e",
+  "palette": [
+   "#23235e",
+   "#393872",
+   "#5d5c7a"
+  ],
+  "share": 0.44,
+  "light": 0.25
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-01-SIDE-OPAQUE.webp": {
+  "hex": "#0d0d58",
+  "palette": [
+   "#0d0d58",
+   "#0c0b87",
+   "#2b2982"
+  ],
+  "share": 0.42,
+  "light": 0.2
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-01-SIDE.webp": {
+  "hex": "#242361",
+  "palette": [
+   "#242361",
+   "#494771",
+   "#141284"
+  ],
+  "share": 0.39,
+  "light": 0.26
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-01-TOP-OPAQUE.webp": {
+  "hex": "#252268",
+  "palette": [
+   "#252268",
+   "#131184",
+   "#b5a994"
+  ],
+  "share": 0.56,
+  "light": 0.27
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-01-TOP.webp": {
+  "hex": "#211f6d",
+  "palette": [
+   "#211f6d",
+   "#565270",
+   "#beb29b"
+  ],
+  "share": 0.33,
+  "light": 0.27
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-02-3Q-OPAQUE.webp": {
+  "hex": "#5978b6",
+  "palette": [
+   "#5978b6",
+   "#4460a1",
+   "#334b8b"
+  ],
+  "share": 0.35,
+  "light": 0.53
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-02-3Q.webp": {
+  "hex": "#727c9c",
+  "palette": [
+   "#727c9c",
+   "#2f437d",
+   "#5e7bb6"
+  ],
+  "share": 0.32,
+  "light": 0.53
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-02-BACK-OPAQUE.webp": {
+  "hex": "#0a1333",
+  "palette": [
+   "#0a1333",
+   "#5d709e",
+   "#9f9581"
+  ],
+  "share": 0.34,
+  "light": 0.12
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-02-BACK.webp": {
+  "hex": "#151a30",
+  "palette": [
+   "#151a30",
+   "#9f9480",
+   "#656d89"
+  ],
+  "share": 0.38,
+  "light": 0.14
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-02-BOTTOM-OPAQUE.webp": {
+  "hex": "#181b27",
+  "palette": [
+   "#181b27",
+   "#b8ad99",
+   "#0f162f"
+  ],
+  "share": 0.41,
+  "light": 0.12
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-02-BOTTOM.webp": {
+  "hex": "#060d2b",
+  "palette": [
+   "#060d2b",
+   "#1f263f",
+   "#5e5a59"
+  ],
+  "share": 0.38,
+  "light": 0.1
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-02-FRONT-OPAQUE.webp": {
+  "hex": "#061035",
+  "palette": [
+   "#061035",
+   "#5873b1",
+   "#375090"
+  ],
+  "share": 0.42,
+  "light": 0.12
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-02-FRONT.webp": {
+  "hex": "#6879a4",
+  "palette": [
+   "#6879a4",
+   "#151b36",
+   "#35477c"
+  ],
+  "share": 0.31,
+  "light": 0.53
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-02-SIDE-OPAQUE.webp": {
+  "hex": "#081135",
+  "palette": [
+   "#081135",
+   "#506ca9",
+   "#819aca"
+  ],
+  "share": 0.45,
+  "light": 0.12
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-02-SIDE.webp": {
+  "hex": "#121936",
+  "palette": [
+   "#121936",
+   "#576a9b",
+   "#303651"
+  ],
+  "share": 0.39,
+  "light": 0.14
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-02-TOP-OPAQUE.webp": {
+  "hex": "#6f88ba",
+  "palette": [
+   "#6f88ba",
+   "#50689d",
+   "#b5a994"
+  ],
+  "share": 0.41,
+  "light": 0.58
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-02-TOP.webp": {
+  "hex": "#7989af",
+  "palette": [
+   "#7989af",
+   "#b6aa95",
+   "#5e6a90"
+  ],
+  "share": 0.43,
+  "light": 0.58
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-03-3Q-OPAQUE.webp": {
+  "hex": "#1f9a54",
+  "palette": [
+   "#1f9a54",
+   "#459664",
+   "#57a576"
+  ],
+  "share": 0.31,
+  "light": 0.36
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-03-3Q.webp": {
+  "hex": "#1e9c55",
+  "palette": [
+   "#1e9c55",
+   "#449061",
+   "#367e50"
+  ],
+  "share": 0.32,
+  "light": 0.36
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-03-BACK-OPAQUE.webp": {
+  "hex": "#144f21",
+  "palette": [
+   "#144f21",
+   "#9e947f",
+   "#308343"
+  ],
+  "share": 0.43,
+  "light": 0.19
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-03-BACK.webp": {
+  "hex": "#1c5526",
+  "palette": [
+   "#1c5526",
+   "#97947b",
+   "#368a49"
+  ],
+  "share": 0.4,
+  "light": 0.22
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-03-BOTTOM-OPAQUE.webp": {
+  "hex": "#0a2e15",
+  "palette": [
+   "#0a2e15",
+   "#06270f",
+   "#b8ad99"
+  ],
+  "share": 0.48,
+  "light": 0.11
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-03-BOTTOM.webp": {
+  "hex": "#0b3316",
+  "palette": [
+   "#0b3316",
+   "#2c3f2d",
+   "#606856"
+  ],
+  "share": 0.66,
+  "light": 0.12
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-03-FRONT-OPAQUE.webp": {
+  "hex": "#1d6838",
+  "palette": [
+   "#1d6838",
+   "#104f24",
+   "#319157"
+  ],
+  "share": 0.34,
+  "light": 0.26
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-03-FRONT.webp": {
+  "hex": "#1d582f",
+  "palette": [
+   "#1d582f",
+   "#3b774f",
+   "#249c57"
+  ],
+  "share": 0.48,
+  "light": 0.23
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-03-SIDE-OPAQUE.webp": {
+  "hex": "#1a5d31",
+  "palette": [
+   "#1a5d31",
+   "#0b3c19",
+   "#2e8951"
+  ],
+  "share": 0.34,
+  "light": 0.23
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-03-SIDE.webp": {
+  "hex": "#1b532c",
+  "palette": [
+   "#1b532c",
+   "#2c7343",
+   "#71a37e"
+  ],
+  "share": 0.46,
+  "light": 0.22
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-03-TOP-OPAQUE.webp": {
+  "hex": "#2f8f4c",
+  "palette": [
+   "#2f8f4c",
+   "#bfb39d",
+   "#5ba072"
+  ],
+  "share": 0.36,
+  "light": 0.37
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-03-TOP.webp": {
+  "hex": "#bfb39d",
+  "palette": [
+   "#bfb39d",
+   "#90977e",
+   "#33a562"
+  ],
+  "share": 0.37,
+  "light": 0.68
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-04-3Q-OPAQUE.webp": {
+  "hex": "#ae8749",
+  "palette": [
+   "#ae8749",
+   "#b69760",
+   "#c18805"
+  ],
+  "share": 0.31,
+  "light": 0.48
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-04-3Q.webp": {
+  "hex": "#a57b41",
+  "palette": [
+   "#a57b41",
+   "#9e8c73",
+   "#c08704"
+  ],
+  "share": 0.35,
+  "light": 0.45
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-04-BACK-OPAQUE.webp": {
+  "hex": "#c07f0f",
+  "palette": [
+   "#c07f0f",
+   "#9c5b08",
+   "#c4a363"
+  ],
+  "share": 0.32,
+  "light": 0.41
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-04-BACK.webp": {
+  "hex": "#ae6a0f",
+  "palette": [
+   "#ae6a0f",
+   "#a88757",
+   "#a89a81"
+  ],
+  "share": 0.45,
+  "light": 0.37
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-04-BOTTOM-OPAQUE.webp": {
+  "hex": "#4d1f06",
+  "palette": [
+   "#4d1f06",
+   "#8e4704",
+   "#8c7d6e"
+  ],
+  "share": 0.38,
+  "light": 0.16
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-04-BOTTOM.webp": {
+  "hex": "#964e08",
+  "palette": [
+   "#964e08",
+   "#7e6d5c",
+   "#5a3921"
+  ],
+  "share": 0.34,
+  "light": 0.31
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-04-FRONT-OPAQUE.webp": {
+  "hex": "#b79457",
+  "palette": [
+   "#b79457",
+   "#bc810a",
+   "#a05e04"
+  ],
+  "share": 0.37,
+  "light": 0.53
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-04-FRONT.webp": {
+  "hex": "#a67636",
+  "palette": [
+   "#a67636",
+   "#b07107",
+   "#a58f70"
+  ],
+  "share": 0.38,
+  "light": 0.43
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-04-SIDE-OPAQUE.webp": {
+  "hex": "#b47707",
+  "palette": [
+   "#b47707",
+   "#80430b",
+   "#a48756"
+  ],
+  "share": 0.35,
+  "light": 0.37
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-04-SIDE.webp": {
+  "hex": "#ac6e0d",
+  "palette": [
+   "#ac6e0d",
+   "#a28864",
+   "#916940"
+  ],
+  "share": 0.37,
+  "light": 0.36
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-04-TOP-OPAQUE.webp": {
+  "hex": "#c7ab70",
+  "palette": [
+   "#c7ab70",
+   "#ca9110",
+   "#ad9360"
+  ],
+  "share": 0.28,
+  "light": 0.61
+ },
+ "items/ls/sm/LS-STYLE-08-LOOK-04-TOP.webp": {
+  "hex": "#b5a17d",
+  "palette": [
+   "#b5a17d",
+   "#a58c62",
+   "#c38b11"
+  ],
+  "share": 0.41,
+  "light": 0.6
+ }
+}

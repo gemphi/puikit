@@ -1,7 +1,7 @@
 import type React from 'react';
 
 export type Theme = 'light' | 'dark' | 'system';
-export type ThemeStyle = 'apple' | 'flat' | 'gradient' | 'elevated' | 'glass';
+export type ThemeStyle = 'apple' | 'flat' | 'gradient' | 'elevated' | 'glass' | 'organic' | 'spacex';
 
 export interface BrandColors {
   primary: string;
@@ -171,4 +171,18 @@ export interface PuiContextValue {
   /** Available Site_Archetypes exposed through the provider. */
   archetypes: SiteArchetype[];
   isDark: boolean;
+  /** Active seeded palette id ('' = none). */
+  paletteId: string;
+  setPaletteId: (id: string) => void;
+  /** Gradient level for every surface ('' = off). */
+  gradientLevel: import('./palette').GradientLevel | '';
+  setGradientLevel: (level: import('./palette').GradientLevel | '') => void;
+  /** The seeded palettes (phiber v2 + Phiegg). */
+  palettes: import('./palette').SeedPalette[];
+  /**
+   * A palette that wins over the saved one until cleared (`null`): a page that wears the theme of what it
+   * shows (an item, a look). Never persisted. `level` sets the gradient level while it is on.
+   */
+  paletteOverride: import('./palette').SeedPalette | null;
+  setPaletteOverride: (palette: import('./palette').SeedPalette | null, level?: import('./palette').GradientLevel) => void;
 }

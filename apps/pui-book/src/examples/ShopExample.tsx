@@ -40,12 +40,13 @@ const Storefront: React.FC = () => {
           value={shop.browse.sort}
           aria-label="Sort"
           onChange={(e) => shop.browse.setSort(e.target.value as typeof shop.browse.sort)}
-        >
-          <option value="relevance">Featured</option>
-          <option value="price-asc">Price, low to high</option>
-          <option value="price-desc">Price, high to low</option>
-          <option value="rating">Best rated</option>
-        </Select>
+          options={[
+            { value: 'relevance', label: 'Featured' },
+            { value: 'price-asc', label: 'Price, low to high' },
+            { value: 'price-desc', label: 'Price, high to low' },
+            { value: 'rating', label: 'Best rated' },
+          ]}
+        />
 
         <Button variant="primary" icon={<ShoppingBag size={16} />} onClick={() => shop.cart.setOpen(true)}>
           Bag ({shop.cart.count}) — {shop.cart.formatted.total}

@@ -8,3 +8,5 @@ export * from './Pagination';
 export * from './ProgressSteps';
 export * from './Navbar';
 export * from './BrandSelector';
+export * from './ViewToolbar';
+export * from './AppShell';

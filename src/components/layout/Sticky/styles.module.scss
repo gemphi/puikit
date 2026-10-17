@@ -31,3 +31,5 @@
     bottom: var(--sticky-bottom-xl, var(--sticky-bottom-lg, var(--sticky-bottom-md, var(--sticky-bottom-sm, var(--sticky-bottom, auto)))));
   }
 }
+
+.surface { background: var(--phi-color-background-card); padding-block: 0.5rem; }

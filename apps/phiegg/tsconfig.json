@@ -2,7 +2,11 @@
   "compilerOptions": {
     "target": "ES2020",
     "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "module": "ESNext",
     "skipLibCheck": true,
     "moduleResolution": "bundler",
@@ -13,18 +17,20 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@pui": ["../../src"],
-      "@pui/*": ["../../src/*"],
-      "@pui/components": ["../../src/components"],
-      "@pui/shop": ["../../src/components/shop"],
-      "@pui/store": ["../../src/store"],
-      "@pui/services": ["../../src/services"],
-      "@pui/api": ["../../src/api"],
-      "@pui/hooks": ["../../src/hooks"],
-      "@pui/providers": ["../../src/providers"],
-      "puijs": ["../../src"],
-      "puijs/*": ["../../src/*"]
+      "@phi-kit/*": [
+        "../phi-kit/src/*"
+      ],
+      "@pui": [
+        "../../src"
+      ],
+      "@pui/*": [
+        "../../src/*"
+      ]
     }
   },
-  "include": ["src"]
+  "include": [
+    "src",
+    "../phi-kit/src"
+  ],
+  "exclude": ["../phi-kit/src/**/*.test.ts", "../phi-kit/src/**/*.test.tsx"]
 }

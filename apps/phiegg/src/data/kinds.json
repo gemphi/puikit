@@ -1,0 +1,1518 @@
+{
+  "person": {
+    "fields": [
+      {
+        "id": "name",
+        "label": "epName",
+        "control": "text",
+        "editable": true,
+        "step": 1
+      },
+      {
+        "id": "bio",
+        "label": "epBio",
+        "control": "textarea",
+        "editable": true,
+        "step": 2
+      },
+      {
+        "id": "tone",
+        "label": "epTone",
+        "control": "radio",
+        "options": [
+          "accent",
+          "sage",
+          "neutral",
+          "ink"
+        ],
+        "editable": true,
+        "step": 3
+      }
+    ],
+    "steps": [
+      "Identity",
+      "About",
+      "Style"
+    ],
+    "label": "Person"
+  },
+  "club": {
+    "fields": [
+      {
+        "id": "name",
+        "label": "ecName",
+        "control": "text",
+        "editable": true,
+        "table": true
+      },
+      {
+        "id": "tagline",
+        "label": "ecTagline",
+        "control": "text",
+        "editable": true
+      },
+      {
+        "id": "worldIds.0",
+        "label": "lsWorld",
+        "control": "select",
+        "facet": true,
+        "via": "world"
+      },
+      {
+        "id": "chain",
+        "label": "lsColChain",
+        "control": "radio",
+        "facet": true,
+        "table": true
+      },
+      {
+        "id": "status",
+        "label": "lsStatus",
+        "control": "radio",
+        "facet": true,
+        "via": "site:clubStatus"
+      },
+      {
+        "id": "holders",
+        "label": "lsColHolders",
+        "control": "number",
+        "format": "fmt",
+        "align": "right",
+        "table": true
+      }
+    ],
+    "sorts": [
+      {
+        "id": "holders",
+        "label": "lsSortFollowers",
+        "path": "holders",
+        "dir": "desc"
+      },
+      {
+        "id": "az",
+        "label": "lsSortAz",
+        "path": "name",
+        "dir": "az"
+      }
+    ],
+    "label": "Club"
+  },
+  "look": {
+    "fields": [
+      {
+        "id": "name",
+        "label": "lsColName",
+        "control": "text",
+        "table": true
+      },
+      {
+        "id": "poolId",
+        "label": "lsPool",
+        "control": "select",
+        "facet": true,
+        "via": "pool",
+        "table": true
+      },
+      {
+        "id": "rarity",
+        "label": "lsRarity",
+        "control": "radio",
+        "facet": true,
+        "table": true
+      },
+      {
+        "id": "colour",
+        "label": "lsColour",
+        "control": "select",
+        "facet": true
+      },
+      {
+        "id": "owned",
+        "label": "lsStatus",
+        "control": "radio",
+        "facet": true,
+        "via": "mineOwned"
+      },
+      {
+        "id": "usd",
+        "label": "lsColPrice",
+        "control": "number",
+        "format": "usd",
+        "align": "right",
+        "table": true
+      }
+    ],
+    "sorts": [
+      {
+        "id": "value",
+        "label": "lsSortPrice",
+        "path": "usd",
+        "dir": "desc"
+      },
+      {
+        "id": "cheap",
+        "label": "lsSortCheap",
+        "path": "usd",
+        "dir": "asc"
+      },
+      {
+        "id": "rare",
+        "label": "lsSortRare",
+        "path": "edition",
+        "dir": "asc"
+      },
+      {
+        "id": "move",
+        "label": "lsSortChange",
+        "path": "change7d",
+        "dir": "desc",
+        "abs": true
+      },
+      {
+        "id": "az",
+        "label": "lsSortAz",
+        "path": "name",
+        "dir": "az"
+      }
+    ],
+    "label": "Look"
+  },
+  "lot": {
+    "fields": [
+      {
+        "id": "title",
+        "label": "lsColName",
+        "control": "text",
+        "table": true
+      },
+      {
+        "id": "poolId",
+        "label": "lsPool",
+        "control": "select",
+        "facet": true,
+        "via": "pool"
+      },
+      {
+        "id": "kind",
+        "label": "lsColKind",
+        "control": "radio",
+        "facet": true,
+        "table": true
+      },
+      {
+        "id": "itemIds.length",
+        "label": "lsColItems",
+        "control": "number",
+        "align": "right",
+        "table": true
+      }
+    ]
+  },
+  "piece": {
+    "fields": [
+      {
+        "id": "tokenId",
+        "label": "lsColToken",
+        "control": "text",
+        "table": true
+      },
+      {
+        "id": "name",
+        "label": "lsColName",
+        "control": "text",
+        "table": true
+      },
+      {
+        "id": "trait",
+        "label": "lsTrait",
+        "control": "radio",
+        "facet": true,
+        "table": true
+      },
+      {
+        "id": "ownerId",
+        "label": "lsOwner",
+        "control": "radio",
+        "facet": true,
+        "via": "mine"
+      },
+      {
+        "id": "creatorId",
+        "label": "lsAuthor",
+        "control": "select",
+        "facet": true,
+        "via": "person"
+      }
+    ],
+    "sorts": [
+      {
+        "id": "token",
+        "label": "lsColToken",
+        "path": "tokenId",
+        "dir": "az",
+        "numeric": true
+      },
+      {
+        "id": "az",
+        "label": "lsSortAz",
+        "path": "name",
+        "dir": "az"
+      }
+    ]
+  },
+  "world": {
+    "fields": [
+      {
+        "id": "name",
+        "label": "seTitle",
+        "control": "text",
+        "table": true
+      },
+      {
+        "id": "kind",
+        "label": "seKind",
+        "control": "radio",
+        "facet": true,
+        "via": "site:worldKinds",
+        "table": true
+      },
+      {
+        "id": "clubId",
+        "label": "seClub",
+        "control": "select",
+        "facet": true,
+        "via": "club",
+        "table": true
+      },
+      {
+        "id": "cities",
+        "label": "wCities",
+        "control": "number",
+        "facet": true,
+        "via": "cities"
+      },
+      {
+        "id": "visitorsNow",
+        "label": "wVisitors",
+        "control": "number",
+        "format": "fmt",
+        "align": "right",
+        "table": true
+      },
+      {
+        "id": "cities.length",
+        "label": "wCities",
+        "control": "number",
+        "align": "right",
+        "table": true
+      }
+    ],
+    "sorts": [
+      {
+        "id": "visitors",
+        "label": "lsSortBusy",
+        "path": "visitorsNow",
+        "dir": "desc"
+      },
+      {
+        "id": "az",
+        "label": "lsSortAz",
+        "path": "name",
+        "dir": "az"
+      }
+    ],
+    "label": "World"
+  },
+  "post": {
+    "fields": [
+      {
+        "id": "slides.0.title",
+        "label": "lsColName",
+        "control": "text",
+        "table": true
+      },
+      {
+        "id": "authorId",
+        "label": "lsAuthor",
+        "control": "select",
+        "facet": true,
+        "via": "person",
+        "table": true
+      },
+      {
+        "id": "kind",
+        "label": "lsColKind",
+        "control": "radio",
+        "facet": true
+      },
+      {
+        "id": "worldId",
+        "label": "lsWorld",
+        "control": "select",
+        "facet": true,
+        "via": "world"
+      },
+      {
+        "id": "likes",
+        "label": "lsSortLikes",
+        "control": "number",
+        "format": "fmt",
+        "align": "right",
+        "table": true
+      },
+      {
+        "id": "createdAt",
+        "label": "lsColDate",
+        "control": "text",
+        "format": "date",
+        "table": true
+      }
+    ],
+    "sorts": [
+      {
+        "id": "new",
+        "label": "seSortYear",
+        "path": "createdAt",
+        "dir": "desc",
+        "az": false
+      },
+      {
+        "id": "likes",
+        "label": "lsSortLikes",
+        "path": "likes",
+        "dir": "desc"
+      }
+    ]
+  },
+  "place": {
+    "fields": [
+      {
+        "id": "name",
+        "label": "lsColName",
+        "control": "text",
+        "table": true
+      },
+      {
+        "id": "district.name",
+        "label": "lsDistrict",
+        "control": "select",
+        "facet": true,
+        "table": true
+      },
+      {
+        "id": "kind",
+        "label": "lsPlace",
+        "control": "radio",
+        "facet": true,
+        "table": true,
+        "via": "site:placeKinds"
+      },
+      {
+        "id": "clubId",
+        "label": "lsColClub",
+        "control": "select",
+        "facet": true,
+        "via": "club"
+      },
+      {
+        "id": "rating",
+        "label": "lsColRating",
+        "control": "number",
+        "align": "right",
+        "table": true
+      },
+      {
+        "id": "visitors",
+        "label": "lsColVisitors",
+        "control": "number",
+        "format": "fmt",
+        "align": "right",
+        "table": true
+      }
+    ],
+    "sorts": [
+      {
+        "id": "rated",
+        "label": "lsSortRated",
+        "path": "rating",
+        "dir": "desc"
+      },
+      {
+        "id": "busy",
+        "label": "lsSortBusy",
+        "path": "visitors",
+        "dir": "desc"
+      },
+      {
+        "id": "az",
+        "label": "lsSortAz",
+        "path": "name",
+        "dir": "az"
+      }
+    ]
+  },
+  "event": {
+    "fields": [
+      {
+        "id": "startsAt",
+        "label": "lsColDate",
+        "control": "text",
+        "format": "date",
+        "table": true
+      },
+      {
+        "id": "title",
+        "label": "lsColName",
+        "control": "text",
+        "table": true
+      },
+      {
+        "id": "kind",
+        "label": "lsColKind",
+        "control": "radio",
+        "via": "site:eventKinds",
+        "table": true
+      },
+      {
+        "id": "clubId",
+        "label": "lsColClub",
+        "control": "select",
+        "facet": true,
+        "via": "club"
+      },
+      {
+        "id": "worldId",
+        "label": "lsWorld",
+        "control": "select",
+        "facet": true,
+        "via": "world"
+      },
+      {
+        "id": "genre",
+        "label": "lsGenre",
+        "control": "radio",
+        "facet": true
+      },
+      {
+        "id": "month",
+        "path": "startsAt",
+        "label": "lsColDate",
+        "control": "select",
+        "facet": true,
+        "via": "month"
+      },
+      {
+        "id": "price",
+        "label": "lsColPrice",
+        "control": "number",
+        "align": "right",
+        "table": true
+      },
+      {
+        "id": "rsvps",
+        "label": "lsColRsvps",
+        "control": "number",
+        "format": "fmt",
+        "align": "right",
+        "table": true
+      }
+    ],
+    "sorts": [
+      {
+        "id": "soon",
+        "label": "lsSortSoon",
+        "path": "startsAt",
+        "dir": "az"
+      },
+      {
+        "id": "rsvps",
+        "label": "lsSortRsvps",
+        "path": "rsvps",
+        "dir": "desc"
+      },
+      {
+        "id": "price",
+        "label": "lsSortPrice",
+        "path": "price",
+        "dir": "desc"
+      },
+      {
+        "id": "az",
+        "label": "lsSortAz",
+        "path": "title",
+        "dir": "az"
+      }
+    ]
+  },
+  "show": {
+    "fields": [
+      {
+        "id": "title",
+        "label": "lsColName",
+        "control": "text",
+        "table": true
+      },
+      {
+        "id": "date",
+        "label": "lsColDate",
+        "control": "text",
+        "format": "date",
+        "table": true
+      },
+      {
+        "id": "hostAgentId",
+        "label": "lsHost",
+        "control": "select",
+        "facet": true,
+        "via": "person",
+        "table": true
+      },
+      {
+        "id": "clubId",
+        "label": "lsColClub",
+        "control": "select",
+        "facet": true,
+        "via": "club"
+      },
+      {
+        "id": "worldId",
+        "label": "lsWorld",
+        "control": "select",
+        "facet": true,
+        "via": "world"
+      },
+      {
+        "id": "venue",
+        "label": "lsVenue",
+        "control": "select",
+        "facet": true
+      },
+      {
+        "id": "looks.length",
+        "label": "lsColLooks",
+        "control": "number",
+        "format": "fmt",
+        "align": "right",
+        "table": true
+      },
+      {
+        "id": "poseIds.length",
+        "label": "lsColPoses",
+        "control": "number",
+        "align": "right",
+        "table": true
+      }
+    ],
+    "sorts": [
+      {
+        "id": "soon",
+        "label": "lsSortSoon",
+        "path": "date",
+        "dir": "az"
+      },
+      {
+        "id": "looks",
+        "label": "lsSortLooks",
+        "path": "looks.length",
+        "dir": "desc"
+      },
+      {
+        "id": "az",
+        "label": "lsSortAz",
+        "path": "title",
+        "dir": "az"
+      }
+    ]
+  },
+  "series": {
+    "fields": [
+      {
+        "id": "title",
+        "label": "seTitle",
+        "control": "text",
+        "table": true
+      },
+      {
+        "id": "genre",
+        "label": "seGenre",
+        "control": "radio",
+        "facet": true,
+        "table": true
+      },
+      {
+        "id": "era",
+        "label": "seEra",
+        "control": "radio",
+        "facet": true
+      },
+      {
+        "id": "studio",
+        "label": "seStudio",
+        "control": "select",
+        "facet": true
+      },
+      {
+        "id": "clubId",
+        "label": "seClub",
+        "control": "select",
+        "facet": true,
+        "via": "club"
+      },
+      {
+        "id": "year",
+        "label": "seSortYear",
+        "control": "number",
+        "align": "right",
+        "table": true
+      },
+      {
+        "id": "rating",
+        "label": "seSortRating",
+        "control": "number",
+        "align": "right",
+        "table": true
+      },
+      {
+        "id": "views",
+        "label": "seSortViews",
+        "control": "number",
+        "format": "fmt",
+        "align": "right",
+        "table": true
+      },
+      {
+        "id": "boxOfficeUsd",
+        "label": "seSortBox",
+        "control": "number",
+        "format": "dollars",
+        "align": "right",
+        "table": true
+      }
+    ],
+    "sorts": [
+      {
+        "id": "views",
+        "label": "seSortViews",
+        "path": "views",
+        "dir": "desc"
+      },
+      {
+        "id": "rating",
+        "label": "seSortRating",
+        "path": "rating",
+        "dir": "desc"
+      },
+      {
+        "id": "year",
+        "label": "seSortYear",
+        "path": "year",
+        "dir": "desc"
+      },
+      {
+        "id": "box",
+        "label": "seSortBox",
+        "path": "boxOfficeUsd",
+        "dir": "desc"
+      },
+      {
+        "id": "az",
+        "label": "lsSortAz",
+        "path": "title",
+        "dir": "az"
+      }
+    ]
+  },
+  "agent": {
+    "fields": [
+      {
+        "id": "name",
+        "label": "lsColName",
+        "control": "text",
+        "table": true
+      },
+      {
+        "id": "role",
+        "label": "lsRole",
+        "control": "select",
+        "facet": true,
+        "table": true
+      },
+      {
+        "id": "house",
+        "label": "lsHouse",
+        "control": "select",
+        "facet": true,
+        "table": true
+      },
+      {
+        "id": "status",
+        "label": "lsStatus",
+        "control": "radio",
+        "facet": true
+      },
+      {
+        "id": "followers",
+        "label": "lsColFollowers",
+        "control": "number",
+        "format": "fmt",
+        "align": "right",
+        "table": true
+      }
+    ],
+    "sorts": [
+      {
+        "id": "followers",
+        "label": "lsSortFollowers",
+        "path": "followers",
+        "dir": "desc"
+      },
+      {
+        "id": "az",
+        "label": "lsSortAz",
+        "path": "name",
+        "dir": "az"
+      }
+    ]
+  },
+  "order": {
+    "steps": [
+      "Delivery",
+      "Shipping"
+    ],
+    "fields": [
+      {
+        "id": "roundId",
+        "label": "Round",
+        "control": "link",
+        "editable": true,
+        "kind": "round",
+        "step": 1,
+        "group": "Order",
+        "facet": true
+      },
+      {
+        "id": "name",
+        "label": "coName",
+        "control": "text",
+        "editable": true,
+        "step": 1,
+        "table": true
+      },
+      {
+        "id": "address",
+        "label": "coAddress",
+        "control": "text",
+        "editable": true,
+        "step": 1
+      },
+      {
+        "id": "city",
+        "label": "coCity",
+        "control": "text",
+        "editable": true,
+        "step": 1
+      },
+      {
+        "id": "shipping",
+        "label": "coShipping",
+        "control": "radio",
+        "options": [
+          "standard",
+          "express",
+          "pickup"
+        ],
+        "editable": true,
+        "step": 2,
+        "facet": true
+      },
+      {
+        "id": "note",
+        "label": "coNote",
+        "control": "textarea",
+        "editable": true,
+        "step": 2
+      },
+      {
+        "id": "totalUsd",
+        "label": "lsColPrice",
+        "control": "number",
+        "format": "usd",
+        "align": "right",
+        "table": true
+      }
+    ],
+    "sorts": [
+      {
+        "id": "new",
+        "label": "seSortYear",
+        "path": "at",
+        "dir": "desc"
+      }
+    ],
+    "label": "Order"
+  },
+  "pool": {
+    "steps": [
+      "Collection",
+      "Supply",
+      "Links"
+    ],
+    "fields": [
+      {
+        "id": "name",
+        "label": "Name",
+        "control": "text",
+        "editable": true,
+        "step": 1,
+        "group": "Identity",
+        "table": true
+      },
+      {
+        "id": "category",
+        "label": "Category",
+        "control": "radio",
+        "options": [
+          "fashion",
+          "art",
+          "game",
+          "film",
+          "music"
+        ],
+        "editable": true,
+        "step": 1,
+        "group": "Identity",
+        "facet": true
+      },
+      {
+        "id": "chain",
+        "label": "Chain",
+        "control": "radio",
+        "options": [
+          "EGG",
+          "ETH"
+        ],
+        "editable": true,
+        "step": 1,
+        "group": "Identity",
+        "facet": true
+      },
+      {
+        "id": "desc",
+        "label": "Story",
+        "control": "textarea",
+        "editable": true,
+        "step": 1,
+        "group": "Story"
+      },
+      {
+        "id": "supply",
+        "label": "Supply of PFTs",
+        "control": "number",
+        "editable": true,
+        "step": 2,
+        "group": "Mint"
+      },
+      {
+        "id": "floorUsd",
+        "label": "Floor price USD",
+        "control": "number",
+        "editable": true,
+        "step": 2,
+        "group": "Mint"
+      },
+      {
+        "id": "royaltyPct",
+        "label": "Royalty percent",
+        "control": "number",
+        "editable": true,
+        "step": 2,
+        "group": "Mint"
+      },
+      {
+        "id": "drop",
+        "label": "Drop",
+        "control": "radio",
+        "options": [
+          "open",
+          "allowlist",
+          "auction"
+        ],
+        "editable": true,
+        "step": 2,
+        "group": "Drop"
+      },
+      {
+        "id": "worldId",
+        "label": "World",
+        "control": "link",
+        "kind": "world",
+        "editable": true,
+        "step": 3,
+        "group": "Belongs to"
+      },
+      {
+        "id": "clubIds",
+        "label": "Clubs",
+        "control": "links",
+        "kind": "club",
+        "editable": true,
+        "step": 3,
+        "group": "Belongs to"
+      },
+      {
+        "id": "hostIds",
+        "label": "Hosts",
+        "control": "links",
+        "kind": "host",
+        "editable": true,
+        "step": 3,
+        "group": "People and places"
+      },
+      {
+        "id": "cityIds",
+        "label": "Cities",
+        "control": "links",
+        "kind": "city",
+        "editable": true,
+        "step": 3,
+        "group": "People and places"
+      }
+    ],
+    "defaults": {
+      "kind": "drop",
+      "desc": "",
+      "lookIds": [],
+      "lotIds": [],
+      "coinIds": [],
+      "eggIds": [],
+      "sumIds": [],
+      "profileIds": [],
+      "teamIds": [],
+      "memberIds": [],
+      "worldIds": [],
+      "partyIds": [],
+      "colors": [],
+      "questId": "",
+      "clubIds": [],
+      "hostIds": [],
+      "cityIds": []
+    },
+    "derive": {
+      "clubId": "clubIds.0",
+      "worldIds": "worldId"
+    },
+    "label": "Pool",
+    "sections": [
+      {
+        "label": "Rounds",
+        "kind": "round",
+        "field": "poolId"
+      },
+      {
+        "label": "Offers",
+        "kind": "offer",
+        "field": "poolId"
+      },
+      {
+        "label": "Items",
+        "kind": "pft",
+        "field": "poolId"
+      }
+    ]
+  },
+  "pft": {
+    "steps": [
+      "Item",
+      "Edition"
+    ],
+    "fields": [
+      {
+        "id": "name",
+        "label": "Name",
+        "control": "text",
+        "editable": true,
+        "step": 1,
+        "group": "Item",
+        "table": true
+      },
+      {
+        "id": "rarity",
+        "label": "Rarity",
+        "control": "radio",
+        "options": [
+          "common",
+          "rare",
+          "epic",
+          "legendary"
+        ],
+        "editable": true,
+        "step": 1,
+        "group": "Item",
+        "facet": true,
+        "table": true
+      },
+      {
+        "id": "traits",
+        "label": "Traits",
+        "control": "textarea",
+        "editable": true,
+        "step": 1,
+        "group": "Traits"
+      },
+      {
+        "id": "edition",
+        "label": "Edition size",
+        "control": "number",
+        "editable": true,
+        "step": 2,
+        "group": "Mint",
+        "table": true
+      },
+      {
+        "id": "priceUsd",
+        "label": "Price USD",
+        "control": "number",
+        "editable": true,
+        "step": 2,
+        "group": "Mint",
+        "format": "usd",
+        "align": "right",
+        "table": true
+      },
+      {
+        "id": "poolId",
+        "label": "Pool",
+        "control": "link",
+        "kind": "pool",
+        "editable": true,
+        "step": 2,
+        "group": "Belongs to"
+      }
+    ],
+    "defaults": {
+      "traits": "",
+      "edition": 1
+    },
+    "label": "PFT",
+    "siblingsBy": "poolId",
+    "actions": [
+      {
+        "label": "Rent",
+        "create": "rental",
+        "link": "pftId"
+      }
+    ]
+  },
+  "rental": {
+    "label": "Rental",
+    "steps": [
+      "Rental",
+      "Terms"
+    ],
+    "fields": [
+      {
+        "id": "pftId",
+        "label": "Item",
+        "control": "link",
+        "kind": "pft",
+        "editable": true,
+        "step": 1,
+        "group": "What and who",
+        "table": true
+      },
+      {
+        "id": "renterId",
+        "label": "Renter",
+        "control": "link",
+        "kind": "person",
+        "editable": true,
+        "step": 1,
+        "group": "What and who",
+        "table": true
+      },
+      {
+        "id": "days",
+        "label": "Days",
+        "control": "number",
+        "editable": true,
+        "step": 2,
+        "group": "Terms",
+        "table": true,
+        "align": "right"
+      },
+      {
+        "id": "priceUsd",
+        "label": "Price per day USD",
+        "control": "number",
+        "editable": true,
+        "step": 2,
+        "group": "Terms",
+        "format": "usd",
+        "align": "right",
+        "table": true
+      },
+      {
+        "id": "status",
+        "label": "Status",
+        "control": "radio",
+        "options": [
+          "requested",
+          "active",
+          "returned"
+        ],
+        "editable": true,
+        "step": 2,
+        "group": "Terms",
+        "facet": true,
+        "table": true
+      },
+      {
+        "id": "note",
+        "label": "Note",
+        "control": "textarea",
+        "editable": true,
+        "step": 2,
+        "group": "Note"
+      }
+    ],
+    "defaults": {
+      "status": "requested",
+      "days": 1,
+      "note": ""
+    },
+    "title": "{renterId} · {days} days · {status}"
+  },
+  "city": {
+    "label": "City"
+  },
+  "host": {
+    "label": "Host"
+  },
+  "nest": {
+    "label": "Nest"
+  },
+  "quest": {
+    "label": "Quest"
+  },
+  "round": {
+    "label": "Round",
+    "siblingsBy": "poolId",
+    "title": "{name}",
+    "steps": [
+      "Round",
+      "Terms"
+    ],
+    "fields": [
+      {
+        "id": "name",
+        "label": "Round name",
+        "control": "text",
+        "editable": true,
+        "step": 1,
+        "group": "Round",
+        "table": true
+      },
+      {
+        "id": "poolId",
+        "label": "Pool",
+        "control": "link",
+        "editable": true,
+        "kind": "pool",
+        "step": 1,
+        "group": "Round",
+        "facet": true
+      },
+      {
+        "id": "roundType",
+        "label": "Type",
+        "control": "radio",
+        "editable": true,
+        "options": [
+          "Community",
+          "Lead",
+          "Grant match"
+        ],
+        "step": 1,
+        "group": "Round",
+        "facet": true
+      },
+      {
+        "id": "target",
+        "label": "Target",
+        "control": "number",
+        "editable": true,
+        "step": 2,
+        "group": "Terms",
+        "table": true,
+        "format": "usd"
+      },
+      {
+        "id": "coin",
+        "label": "Coin",
+        "control": "radio",
+        "editable": true,
+        "options": [
+          "EGG",
+          "SUM",
+          "USD"
+        ],
+        "step": 2,
+        "group": "Terms",
+        "facet": true
+      },
+      {
+        "id": "minTicket",
+        "label": "Smallest pledge",
+        "control": "number",
+        "editable": true,
+        "step": 2,
+        "group": "Terms"
+      },
+      {
+        "id": "closesAt",
+        "label": "Closes",
+        "control": "date",
+        "editable": true,
+        "step": 2,
+        "group": "Terms",
+        "table": true
+      },
+      {
+        "id": "status",
+        "label": "Status",
+        "control": "radio",
+        "editable": true,
+        "options": [
+          "active",
+          "closed"
+        ],
+        "step": 2,
+        "group": "Terms",
+        "facet": true,
+        "table": true
+      },
+      {
+        "id": "pitch",
+        "label": "What backers get",
+        "control": "textarea",
+        "editable": true,
+        "step": 2,
+        "group": "Terms"
+      }
+    ],
+    "actions": [
+      {
+        "label": "Back this round",
+        "create": "order",
+        "link": "roundId"
+      }
+    ],
+    "sections": [
+      {
+        "label": "Backers",
+        "kind": "order",
+        "field": "roundId"
+      }
+    ]
+  },
+  "zone": {
+    "label": "Zone",
+    "siblingsBy": "worldId",
+    "title": "{name}",
+    "steps": [
+      "Zone"
+    ],
+    "fields": [
+      {
+        "id": "name",
+        "label": "Zone name",
+        "control": "text",
+        "editable": true,
+        "step": 1,
+        "group": "Zone",
+        "table": true
+      },
+      {
+        "id": "worldId",
+        "label": "World",
+        "control": "link",
+        "editable": true,
+        "kind": "world",
+        "step": 1,
+        "group": "Zone",
+        "facet": true
+      },
+      {
+        "id": "kind",
+        "label": "Kind",
+        "control": "radio",
+        "editable": true,
+        "options": [
+          "district",
+          "market",
+          "harbour",
+          "park",
+          "quarter"
+        ],
+        "step": 1,
+        "group": "Zone",
+        "facet": true,
+        "table": true
+      },
+      {
+        "id": "desc",
+        "label": "About",
+        "control": "textarea",
+        "editable": true,
+        "step": 1,
+        "group": "Zone"
+      }
+    ],
+    "actions": [
+      {
+        "label": "Add an area",
+        "create": "area",
+        "link": "zoneId"
+      }
+    ]
+  },
+  "area": {
+    "label": "Area",
+    "siblingsBy": "zoneId",
+    "title": "{name}",
+    "steps": [
+      "Area"
+    ],
+    "fields": [
+      {
+        "id": "name",
+        "label": "Area name",
+        "control": "text",
+        "editable": true,
+        "step": 1,
+        "group": "Area",
+        "table": true
+      },
+      {
+        "id": "zoneId",
+        "label": "Zone",
+        "control": "link",
+        "editable": true,
+        "kind": "zone",
+        "step": 1,
+        "group": "Area",
+        "facet": true
+      },
+      {
+        "id": "worldId",
+        "label": "World",
+        "control": "link",
+        "editable": true,
+        "kind": "world",
+        "step": 1,
+        "group": "Area"
+      },
+      {
+        "id": "kind",
+        "label": "Kind",
+        "control": "radio",
+        "editable": true,
+        "options": [
+          "plaza",
+          "hall",
+          "stall",
+          "gallery",
+          "stage"
+        ],
+        "step": 1,
+        "group": "Area",
+        "facet": true,
+        "table": true
+      },
+      {
+        "id": "desc",
+        "label": "About",
+        "control": "textarea",
+        "editable": true,
+        "step": 1,
+        "group": "Area"
+      }
+    ]
+  },
+  "offer": {
+    "label": "Offer",
+    "siblingsBy": "poolId",
+    "title": "{name}",
+    "fields": [
+      {
+        "id": "name",
+        "label": "Offer",
+        "control": "text",
+        "editable": true,
+        "step": 1,
+        "group": "Offer",
+        "table": true
+      },
+      {
+        "id": "poolId",
+        "label": "Pool",
+        "control": "link",
+        "editable": true,
+        "kind": "pool",
+        "step": 1,
+        "group": "Offer",
+        "facet": true
+      },
+      {
+        "id": "amount",
+        "label": "Amount",
+        "control": "number",
+        "editable": true,
+        "step": 1,
+        "group": "Offer",
+        "table": true
+      },
+      {
+        "id": "coin",
+        "label": "Coin",
+        "control": "radio",
+        "editable": true,
+        "options": [
+          "EGG",
+          "SUM",
+          "USD"
+        ],
+        "step": 1,
+        "group": "Offer",
+        "facet": true,
+        "table": true
+      },
+      {
+        "id": "lock",
+        "label": "Lock",
+        "control": "radio",
+        "editable": true,
+        "options": [
+          "30 days",
+          "90 days",
+          "180 days"
+        ],
+        "step": 1,
+        "group": "Offer"
+      },
+      {
+        "id": "status",
+        "label": "Status",
+        "control": "radio",
+        "editable": true,
+        "options": [
+          "staked",
+          "unstaked"
+        ],
+        "step": 1,
+        "group": "Offer",
+        "facet": true
+      }
+    ]
+  }
+}

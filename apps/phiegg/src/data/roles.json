@@ -1,0 +1,1192 @@
+{
+  "categories": [
+    {
+      "id": "rc_screen",
+      "name": "Screen",
+      "genres": [
+        "drama",
+        "comedy",
+        "noir",
+        "sci-fi"
+      ]
+    },
+    {
+      "id": "rc_music",
+      "name": "Music",
+      "genres": [
+        "pop",
+        "house",
+        "jazz",
+        "afrobeats"
+      ]
+    },
+    {
+      "id": "rc_art",
+      "name": "Art",
+      "genres": [
+        "digital",
+        "street",
+        "abstract",
+        "portrait"
+      ]
+    },
+    {
+      "id": "rc_fashion",
+      "name": "Fashion",
+      "genres": [
+        "couture",
+        "streetwear",
+        "avant-garde",
+        "heritage"
+      ]
+    },
+    {
+      "id": "rc_business",
+      "name": "Business",
+      "genres": [
+        "luxury",
+        "tech",
+        "real estate",
+        "media"
+      ]
+    },
+    {
+      "id": "rc_sport",
+      "name": "Sport",
+      "genres": [
+        "football",
+        "racing",
+        "boxing",
+        "tennis"
+      ]
+    },
+    {
+      "id": "rc_games",
+      "name": "Games",
+      "genres": [
+        "strategy",
+        "arcade",
+        "rpg",
+        "battle"
+      ]
+    },
+    {
+      "id": "rc_media",
+      "name": "Media",
+      "genres": [
+        "news",
+        "talk",
+        "culture",
+        "tech"
+      ]
+    },
+    {
+      "id": "rc_literature",
+      "name": "Literature",
+      "genres": [
+        "fiction",
+        "poetry",
+        "myth",
+        "memoir"
+      ]
+    },
+    {
+      "id": "rc_performance",
+      "name": "Performance",
+      "genres": [
+        "dance",
+        "circus",
+        "stand-up",
+        "cabaret"
+      ]
+    },
+    {
+      "id": "rc_food",
+      "name": "Food",
+      "genres": [
+        "fine dining",
+        "street food",
+        "pastry",
+        "mixology"
+      ]
+    },
+    {
+      "id": "rc_architecture",
+      "name": "Architecture",
+      "genres": [
+        "modern",
+        "baroque",
+        "brutalist",
+        "organic"
+      ]
+    },
+    {
+      "id": "rc_science",
+      "name": "Science",
+      "genres": [
+        "physics",
+        "biotech",
+        "space",
+        "AI"
+      ]
+    },
+    {
+      "id": "rc_wellness",
+      "name": "Wellness",
+      "genres": [
+        "movement",
+        "mindfulness",
+        "nutrition",
+        "beauty"
+      ]
+    },
+    {
+      "id": "rc_civic",
+      "name": "Civic",
+      "genres": [
+        "governance",
+        "diplomacy",
+        "heritage",
+        "activism"
+      ]
+    },
+    {
+      "id": "rc_mystic",
+      "name": "Mystic",
+      "genres": [
+        "folklore",
+        "cosmic",
+        "gothic",
+        "fable"
+      ]
+    }
+  ],
+  "types": [
+    {
+      "id": "rt_actor",
+      "name": "Actor",
+      "categoryId": "rc_screen",
+      "genres": [
+        "drama",
+        "comedy",
+        "noir",
+        "sci-fi"
+      ],
+      "behaviours": [
+        "Takes a lead or supporting part",
+        "Rehearses scenes with co-stars",
+        "Improvises with the audience",
+        "Wears a look on camera"
+      ]
+    },
+    {
+      "id": "rt_director",
+      "name": "Director",
+      "categoryId": "rc_screen",
+      "genres": [
+        "drama",
+        "comedy",
+        "noir",
+        "sci-fi"
+      ],
+      "behaviours": [
+        "Blocks every scene",
+        "Casts hosts into roles",
+        "Calls cut and retakes",
+        "Cuts the trailer"
+      ]
+    },
+    {
+      "id": "rt_stunt_double",
+      "name": "Stunt double",
+      "categoryId": "rc_screen",
+      "genres": [
+        "drama",
+        "comedy",
+        "noir",
+        "sci-fi"
+      ],
+      "behaviours": [
+        "Performs the risky beats",
+        "Choreographs fights",
+        "Tests sets before a show"
+      ]
+    },
+    {
+      "id": "rt_voice_artist",
+      "name": "Voice artist",
+      "categoryId": "rc_screen",
+      "genres": [
+        "drama",
+        "comedy",
+        "noir",
+        "sci-fi"
+      ],
+      "behaviours": [
+        "Voices characters and agents",
+        "Narrates the trailer",
+        "Dubs scenes live"
+      ]
+    },
+    {
+      "id": "rt_musician",
+      "name": "Musician",
+      "categoryId": "rc_music",
+      "genres": [
+        "pop",
+        "house",
+        "jazz",
+        "afrobeats"
+      ],
+      "behaviours": [
+        "Plays live sets",
+        "Releases tracks to holders",
+        "Scores runway walks"
+      ]
+    },
+    {
+      "id": "rt_dj",
+      "name": "DJ",
+      "categoryId": "rc_music",
+      "genres": [
+        "pop",
+        "house",
+        "jazz",
+        "afrobeats"
+      ],
+      "behaviours": [
+        "Mixes the after-party",
+        "Takes requests in chat",
+        "Drops exclusive edits"
+      ]
+    },
+    {
+      "id": "rt_producer",
+      "name": "Producer",
+      "categoryId": "rc_music",
+      "genres": [
+        "pop",
+        "house",
+        "jazz",
+        "afrobeats"
+      ],
+      "behaviours": [
+        "Builds beats for shows",
+        "Collaborates on drops",
+        "Masters the soundtrack"
+      ]
+    },
+    {
+      "id": "rt_singer",
+      "name": "Singer",
+      "categoryId": "rc_music",
+      "genres": [
+        "pop",
+        "house",
+        "jazz",
+        "afrobeats"
+      ],
+      "behaviours": [
+        "Performs the opening number",
+        "Duets with agents",
+        "Hosts listening rooms"
+      ]
+    },
+    {
+      "id": "rt_painter",
+      "name": "Painter",
+      "categoryId": "rc_art",
+      "genres": [
+        "digital",
+        "street",
+        "abstract",
+        "portrait"
+      ],
+      "behaviours": [
+        "Paints live on stream",
+        "Mints canvases as pieces",
+        "Customises looks"
+      ]
+    },
+    {
+      "id": "rt_sculptor",
+      "name": "Sculptor",
+      "categoryId": "rc_art",
+      "genres": [
+        "digital",
+        "street",
+        "abstract",
+        "portrait"
+      ],
+      "behaviours": [
+        "Builds 3D props",
+        "Sculpts world landmarks",
+        "Prints limited figures"
+      ]
+    },
+    {
+      "id": "rt_photographer",
+      "name": "Photographer",
+      "categoryId": "rc_art",
+      "genres": [
+        "digital",
+        "street",
+        "abstract",
+        "portrait"
+      ],
+      "behaviours": [
+        "Shoots runway looks",
+        "Curates galleries",
+        "Retouches campaign shots"
+      ]
+    },
+    {
+      "id": "rt_illustrator",
+      "name": "Illustrator",
+      "categoryId": "rc_art",
+      "genres": [
+        "digital",
+        "street",
+        "abstract",
+        "portrait"
+      ],
+      "behaviours": [
+        "Draws character sheets",
+        "Designs club emblems",
+        "Sketches looks to order"
+      ]
+    },
+    {
+      "id": "rt_designer",
+      "name": "Designer",
+      "categoryId": "rc_fashion",
+      "genres": [
+        "couture",
+        "streetwear",
+        "avant-garde",
+        "heritage"
+      ],
+      "behaviours": [
+        "Designs pools",
+        "Fits looks on models",
+        "Opens the show"
+      ]
+    },
+    {
+      "id": "rt_stylist",
+      "name": "Stylist",
+      "categoryId": "rc_fashion",
+      "genres": [
+        "couture",
+        "streetwear",
+        "avant-garde",
+        "heritage"
+      ],
+      "behaviours": [
+        "Styles looks for hosts",
+        "Builds outfits from the store",
+        "Runs fitting rooms"
+      ]
+    },
+    {
+      "id": "rt_model",
+      "name": "Model",
+      "categoryId": "rc_fashion",
+      "genres": [
+        "couture",
+        "streetwear",
+        "avant-garde",
+        "heritage"
+      ],
+      "behaviours": [
+        "Walks the runway",
+        "Poses for campaigns",
+        "Wears looks in worlds"
+      ]
+    },
+    {
+      "id": "rt_tailor",
+      "name": "Tailor",
+      "categoryId": "rc_fashion",
+      "genres": [
+        "couture",
+        "streetwear",
+        "avant-garde",
+        "heritage"
+      ],
+      "behaviours": [
+        "Alters looks to fit",
+        "Hand-finishes pieces",
+        "Teaches pattern classes"
+      ]
+    },
+    {
+      "id": "rt_tycoon",
+      "name": "Tycoon",
+      "categoryId": "rc_business",
+      "genres": [
+        "luxury",
+        "tech",
+        "real estate",
+        "media"
+      ],
+      "behaviours": [
+        "Funds shows and worlds",
+        "Buys the floor",
+        "Sponsors quests"
+      ]
+    },
+    {
+      "id": "rt_investor",
+      "name": "Investor",
+      "categoryId": "rc_business",
+      "genres": [
+        "luxury",
+        "tech",
+        "real estate",
+        "media"
+      ],
+      "behaviours": [
+        "Backs Phipad clubs",
+        "Stakes in pools",
+        "Mentors founders"
+      ]
+    },
+    {
+      "id": "rt_founder",
+      "name": "Founder",
+      "categoryId": "rc_business",
+      "genres": [
+        "luxury",
+        "tech",
+        "real estate",
+        "media"
+      ],
+      "behaviours": [
+        "Launches a club",
+        "Hires hosts",
+        "Pitches on stage"
+      ]
+    },
+    {
+      "id": "rt_broker",
+      "name": "Broker",
+      "categoryId": "rc_business",
+      "genres": [
+        "luxury",
+        "tech",
+        "real estate",
+        "media"
+      ],
+      "behaviours": [
+        "Matches buyers and sellers",
+        "Makes offers on pieces",
+        "Runs auctions"
+      ]
+    },
+    {
+      "id": "rt_athlete",
+      "name": "Athlete",
+      "categoryId": "rc_sport",
+      "genres": [
+        "football",
+        "racing",
+        "boxing",
+        "tennis"
+      ],
+      "behaviours": [
+        "Competes in league rounds",
+        "Wears kit drops",
+        "Signs pieces for fans"
+      ]
+    },
+    {
+      "id": "rt_coach",
+      "name": "Coach",
+      "categoryId": "rc_sport",
+      "genres": [
+        "football",
+        "racing",
+        "boxing",
+        "tennis"
+      ],
+      "behaviours": [
+        "Trains club teams",
+        "Plans quest strategy",
+        "Reviews match tape"
+      ]
+    },
+    {
+      "id": "rt_referee",
+      "name": "Referee",
+      "categoryId": "rc_sport",
+      "genres": [
+        "football",
+        "racing",
+        "boxing",
+        "tennis"
+      ],
+      "behaviours": [
+        "Judges matches",
+        "Settles disputes",
+        "Calls the result"
+      ]
+    },
+    {
+      "id": "rt_scout",
+      "name": "Scout",
+      "categoryId": "rc_sport",
+      "genres": [
+        "football",
+        "racing",
+        "boxing",
+        "tennis"
+      ],
+      "behaviours": [
+        "Spots new talent",
+        "Reports on rivals",
+        "Recommends signings"
+      ]
+    },
+    {
+      "id": "rt_gamer",
+      "name": "Gamer",
+      "categoryId": "rc_games",
+      "genres": [
+        "strategy",
+        "arcade",
+        "rpg",
+        "battle"
+      ],
+      "behaviours": [
+        "Plays quests live",
+        "Sets leaderboard scores",
+        "Teams up in raids"
+      ]
+    },
+    {
+      "id": "rt_guild_leader",
+      "name": "Guild leader",
+      "categoryId": "rc_games",
+      "genres": [
+        "strategy",
+        "arcade",
+        "rpg",
+        "battle"
+      ],
+      "behaviours": [
+        "Organises raids",
+        "Splits rewards",
+        "Recruits members"
+      ]
+    },
+    {
+      "id": "rt_speedrunner",
+      "name": "Speedrunner",
+      "categoryId": "rc_games",
+      "genres": [
+        "strategy",
+        "arcade",
+        "rpg",
+        "battle"
+      ],
+      "behaviours": [
+        "Races quests for records",
+        "Finds shortcuts",
+        "Streams attempts"
+      ]
+    },
+    {
+      "id": "rt_streamer",
+      "name": "Streamer",
+      "categoryId": "rc_games",
+      "genres": [
+        "strategy",
+        "arcade",
+        "rpg",
+        "battle"
+      ],
+      "behaviours": [
+        "Streams worlds live",
+        "Reads chat on air",
+        "Hosts watch parties"
+      ]
+    },
+    {
+      "id": "rt_presenter",
+      "name": "Presenter",
+      "categoryId": "rc_media",
+      "genres": [
+        "news",
+        "talk",
+        "culture",
+        "tech"
+      ],
+      "behaviours": [
+        "Hosts shows on stage",
+        "Interviews guests",
+        "Reads the line-up"
+      ]
+    },
+    {
+      "id": "rt_journalist",
+      "name": "Journalist",
+      "categoryId": "rc_media",
+      "genres": [
+        "news",
+        "talk",
+        "culture",
+        "tech"
+      ],
+      "behaviours": [
+        "Reports on drops",
+        "Breaks club news",
+        "Fact-checks rumours"
+      ]
+    },
+    {
+      "id": "rt_podcaster",
+      "name": "Podcaster",
+      "categoryId": "rc_media",
+      "genres": [
+        "news",
+        "talk",
+        "culture",
+        "tech"
+      ],
+      "behaviours": [
+        "Records voice rooms",
+        "Invites guests",
+        "Publishes episodes"
+      ]
+    },
+    {
+      "id": "rt_critic",
+      "name": "Critic",
+      "categoryId": "rc_media",
+      "genres": [
+        "news",
+        "talk",
+        "culture",
+        "tech"
+      ],
+      "behaviours": [
+        "Reviews shows and looks",
+        "Rates series",
+        "Writes the season roundup"
+      ]
+    },
+    {
+      "id": "rt_author",
+      "name": "Author",
+      "categoryId": "rc_literature",
+      "genres": [
+        "fiction",
+        "poetry",
+        "myth",
+        "memoir"
+      ],
+      "behaviours": [
+        "Writes club lore",
+        "Publishes serials",
+        "Signs editions"
+      ]
+    },
+    {
+      "id": "rt_poet",
+      "name": "Poet",
+      "categoryId": "rc_literature",
+      "genres": [
+        "fiction",
+        "poetry",
+        "myth",
+        "memoir"
+      ],
+      "behaviours": [
+        "Performs readings",
+        "Writes runway verses",
+        "Hosts open mics"
+      ]
+    },
+    {
+      "id": "rt_editor",
+      "name": "Editor",
+      "categoryId": "rc_literature",
+      "genres": [
+        "fiction",
+        "poetry",
+        "myth",
+        "memoir"
+      ],
+      "behaviours": [
+        "Edits scripts",
+        "Curates anthologies",
+        "Polishes captions"
+      ]
+    },
+    {
+      "id": "rt_screenwriter",
+      "name": "Screenwriter",
+      "categoryId": "rc_literature",
+      "genres": [
+        "fiction",
+        "poetry",
+        "myth",
+        "memoir"
+      ],
+      "behaviours": [
+        "Writes episodes",
+        "Plots series arcs",
+        "Rewrites scenes on set"
+      ]
+    },
+    {
+      "id": "rt_dancer",
+      "name": "Dancer",
+      "categoryId": "rc_performance",
+      "genres": [
+        "dance",
+        "circus",
+        "stand-up",
+        "cabaret"
+      ],
+      "behaviours": [
+        "Dances the opening",
+        "Choreographs walks",
+        "Teaches routines"
+      ]
+    },
+    {
+      "id": "rt_comedian",
+      "name": "Comedian",
+      "categoryId": "rc_performance",
+      "genres": [
+        "dance",
+        "circus",
+        "stand-up",
+        "cabaret"
+      ],
+      "behaviours": [
+        "Warms up the crowd",
+        "Roasts the guests",
+        "Hosts the after-show"
+      ]
+    },
+    {
+      "id": "rt_magician",
+      "name": "Magician",
+      "categoryId": "rc_performance",
+      "genres": [
+        "dance",
+        "circus",
+        "stand-up",
+        "cabaret"
+      ],
+      "behaviours": [
+        "Performs illusions",
+        "Reveals drops",
+        "Hides quest clues"
+      ]
+    },
+    {
+      "id": "rt_acrobat",
+      "name": "Acrobat",
+      "categoryId": "rc_performance",
+      "genres": [
+        "dance",
+        "circus",
+        "stand-up",
+        "cabaret"
+      ],
+      "behaviours": [
+        "Performs aerial acts",
+        "Opens world festivals",
+        "Trains stunt teams"
+      ]
+    },
+    {
+      "id": "rt_chef",
+      "name": "Chef",
+      "categoryId": "rc_food",
+      "genres": [
+        "fine dining",
+        "street food",
+        "pastry",
+        "mixology"
+      ],
+      "behaviours": [
+        "Cooks the tasting menu",
+        "Hosts supper clubs",
+        "Names dishes after looks"
+      ]
+    },
+    {
+      "id": "rt_sommelier",
+      "name": "Sommelier",
+      "categoryId": "rc_food",
+      "genres": [
+        "fine dining",
+        "street food",
+        "pastry",
+        "mixology"
+      ],
+      "behaviours": [
+        "Pairs wines with shows",
+        "Leads tastings",
+        "Curates the cellar"
+      ]
+    },
+    {
+      "id": "rt_mixologist",
+      "name": "Mixologist",
+      "categoryId": "rc_food",
+      "genres": [
+        "fine dining",
+        "street food",
+        "pastry",
+        "mixology"
+      ],
+      "behaviours": [
+        "Mixes signature drinks",
+        "Runs the bar",
+        "Invents club cocktails"
+      ]
+    },
+    {
+      "id": "rt_baker",
+      "name": "Baker",
+      "categoryId": "rc_food",
+      "genres": [
+        "fine dining",
+        "street food",
+        "pastry",
+        "mixology"
+      ],
+      "behaviours": [
+        "Bakes for premieres",
+        "Runs pop-up stalls",
+        "Teaches masterclasses"
+      ]
+    },
+    {
+      "id": "rt_architect",
+      "name": "Architect",
+      "categoryId": "rc_architecture",
+      "genres": [
+        "modern",
+        "baroque",
+        "brutalist",
+        "organic"
+      ],
+      "behaviours": [
+        "Designs world districts",
+        "Builds venues",
+        "Plans city blocks"
+      ]
+    },
+    {
+      "id": "rt_interior_designer",
+      "name": "Interior designer",
+      "categoryId": "rc_architecture",
+      "genres": [
+        "modern",
+        "baroque",
+        "brutalist",
+        "organic"
+      ],
+      "behaviours": [
+        "Furnishes stores",
+        "Styles stages",
+        "Designs fitting rooms"
+      ]
+    },
+    {
+      "id": "rt_urbanist",
+      "name": "Urbanist",
+      "categoryId": "rc_architecture",
+      "genres": [
+        "modern",
+        "baroque",
+        "brutalist",
+        "organic"
+      ],
+      "behaviours": [
+        "Plans transit",
+        "Zones districts",
+        "Hosts town halls"
+      ]
+    },
+    {
+      "id": "rt_landscaper",
+      "name": "Landscaper",
+      "categoryId": "rc_architecture",
+      "genres": [
+        "modern",
+        "baroque",
+        "brutalist",
+        "organic"
+      ],
+      "behaviours": [
+        "Grows gardens",
+        "Shapes parks",
+        "Lights the boulevards"
+      ]
+    },
+    {
+      "id": "rt_inventor",
+      "name": "Inventor",
+      "categoryId": "rc_science",
+      "genres": [
+        "physics",
+        "biotech",
+        "space",
+        "AI"
+      ],
+      "behaviours": [
+        "Builds gadgets for quests",
+        "Patents ideas",
+        "Demos prototypes"
+      ]
+    },
+    {
+      "id": "rt_researcher",
+      "name": "Researcher",
+      "categoryId": "rc_science",
+      "genres": [
+        "physics",
+        "biotech",
+        "space",
+        "AI"
+      ],
+      "behaviours": [
+        "Runs experiments",
+        "Publishes findings",
+        "Answers questions live"
+      ]
+    },
+    {
+      "id": "rt_engineer",
+      "name": "Engineer",
+      "categoryId": "rc_science",
+      "genres": [
+        "physics",
+        "biotech",
+        "space",
+        "AI"
+      ],
+      "behaviours": [
+        "Builds world systems",
+        "Fixes breakdowns",
+        "Optimises shows"
+      ]
+    },
+    {
+      "id": "rt_astronomer",
+      "name": "Astronomer",
+      "categoryId": "rc_science",
+      "genres": [
+        "physics",
+        "biotech",
+        "space",
+        "AI"
+      ],
+      "behaviours": [
+        "Hosts star nights",
+        "Maps the skies",
+        "Names new worlds"
+      ]
+    },
+    {
+      "id": "rt_trainer",
+      "name": "Trainer",
+      "categoryId": "rc_wellness",
+      "genres": [
+        "movement",
+        "mindfulness",
+        "nutrition",
+        "beauty"
+      ],
+      "behaviours": [
+        "Runs workouts",
+        "Coaches athletes",
+        "Sets fitness quests"
+      ]
+    },
+    {
+      "id": "rt_yogi",
+      "name": "Yogi",
+      "categoryId": "rc_wellness",
+      "genres": [
+        "movement",
+        "mindfulness",
+        "nutrition",
+        "beauty"
+      ],
+      "behaviours": [
+        "Leads sessions",
+        "Hosts retreats",
+        "Guides breathing"
+      ]
+    },
+    {
+      "id": "rt_nutritionist",
+      "name": "Nutritionist",
+      "categoryId": "rc_wellness",
+      "genres": [
+        "movement",
+        "mindfulness",
+        "nutrition",
+        "beauty"
+      ],
+      "behaviours": [
+        "Plans menus",
+        "Advises athletes",
+        "Reviews dishes"
+      ]
+    },
+    {
+      "id": "rt_beauty_artist",
+      "name": "Beauty artist",
+      "categoryId": "rc_wellness",
+      "genres": [
+        "movement",
+        "mindfulness",
+        "nutrition",
+        "beauty"
+      ],
+      "behaviours": [
+        "Does runway make-up",
+        "Teaches looks",
+        "Launches palettes"
+      ]
+    },
+    {
+      "id": "rt_mayor",
+      "name": "Mayor",
+      "categoryId": "rc_civic",
+      "genres": [
+        "governance",
+        "diplomacy",
+        "heritage",
+        "activism"
+      ],
+      "behaviours": [
+        "Runs a city",
+        "Opens events",
+        "Votes on proposals"
+      ]
+    },
+    {
+      "id": "rt_diplomat",
+      "name": "Diplomat",
+      "categoryId": "rc_civic",
+      "genres": [
+        "governance",
+        "diplomacy",
+        "heritage",
+        "activism"
+      ],
+      "behaviours": [
+        "Brokers club alliances",
+        "Hosts summits",
+        "Settles disputes"
+      ]
+    },
+    {
+      "id": "rt_curator",
+      "name": "Curator",
+      "categoryId": "rc_civic",
+      "genres": [
+        "governance",
+        "diplomacy",
+        "heritage",
+        "activism"
+      ],
+      "behaviours": [
+        "Curates museum wings",
+        "Restores heritage pieces",
+        "Guides tours"
+      ]
+    },
+    {
+      "id": "rt_activist",
+      "name": "Activist",
+      "categoryId": "rc_civic",
+      "genres": [
+        "governance",
+        "diplomacy",
+        "heritage",
+        "activism"
+      ],
+      "behaviours": [
+        "Leads campaigns",
+        "Rallies members",
+        "Raises funds"
+      ]
+    },
+    {
+      "id": "rt_oracle",
+      "name": "Oracle",
+      "categoryId": "rc_mystic",
+      "genres": [
+        "folklore",
+        "cosmic",
+        "gothic",
+        "fable"
+      ],
+      "behaviours": [
+        "Reads fortunes",
+        "Predicts drops",
+        "Gives quest hints"
+      ]
+    },
+    {
+      "id": "rt_alchemist",
+      "name": "Alchemist",
+      "categoryId": "rc_mystic",
+      "genres": [
+        "folklore",
+        "cosmic",
+        "gothic",
+        "fable"
+      ],
+      "behaviours": [
+        "Brews potions",
+        "Transmutes pieces",
+        "Crafts rare items"
+      ]
+    },
+    {
+      "id": "rt_storyteller",
+      "name": "Storyteller",
+      "categoryId": "rc_mystic",
+      "genres": [
+        "folklore",
+        "cosmic",
+        "gothic",
+        "fable"
+      ],
+      "behaviours": [
+        "Tells legends",
+        "Narrates worlds",
+        "Hosts fireside chats"
+      ]
+    },
+    {
+      "id": "rt_bard",
+      "name": "Bard",
+      "categoryId": "rc_mystic",
+      "genres": [
+        "folklore",
+        "cosmic",
+        "gothic",
+        "fable"
+      ],
+      "behaviours": [
+        "Sings ballads",
+        "Chronicles battles",
+        "Entertains taverns"
+      ]
+    }
+  ]
+}

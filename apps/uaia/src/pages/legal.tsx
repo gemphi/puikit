@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Title } from '@pui/components';
+import { Box, Text, Title } from '@pui/components';
 import { Hero, Block, Glass, AutoGrid, Note } from '../components/kit';
 import s from '../styles/uaia.module.scss';
 
@@ -15,7 +15,7 @@ export const LegalPage: React.FC = () => (
     <Hero
       pattern="legal"
       label="Legal & Transparency"
-      title={<>An agency that inspects others <span className={s.gradText}>must be glass itself.</span></>}
+      title={<>An agency that inspects others <Box as="span" className={s.gradText}>must be glass itself.</Box></>}
     />
 
     <Block label="Transparency" title="Standing commitments.">
@@ -37,19 +37,19 @@ export const LegalPage: React.FC = () => (
     />
 
     <Block label="Terms of use" tight>
-      <div style={{ marginTop: 14, display: 'grid', gap: 12, maxWidth: 760 }}>
-        <Glass><Text><strong>Registry data.</strong> Open under CC-BY-4.0 with attribution &ldquo;UAIA Model Registry&rdquo;.</Text></Glass>
-        <Glass><Text><strong>Certification marks.</strong> Licensed, revocable, class always visible.</Text></Glass>
-        <Glass><Text><strong>Site content.</strong> May be quoted with link-back.</Text></Glass>
-      </div>
+      <Box style={{ marginTop: 14, display: 'grid', gap: 12, maxWidth: 760 }}>
+        <Glass><Text><Box as="strong">Registry data.</Box> Open under CC-BY-4.0 with attribution &ldquo;UAIA Model Registry&rdquo;.</Text></Glass>
+        <Glass><Text><Box as="strong">Certification marks.</Box> Licensed, revocable, class always visible.</Text></Glass>
+        <Glass><Text><Box as="strong">Site content.</Box> May be quoted with link-back.</Text></Glass>
+      </Box>
     </Block>
 
     <Block label="Privacy" tight>
-      <div style={{ marginTop: 14, display: 'grid', gap: 12, maxWidth: 760 }}>
+      <Box style={{ marginTop: 14, display: 'grid', gap: 12, maxWidth: 760 }}>
         <Glass><Text>Minimal collection: inquiry data is used solely to respond.</Text></Glass>
         <Glass><Text>No ad trackers; analytics self-hosted and aggregate.</Text></Glass>
         <Glass><Text>Incident-report identities protected; the whistleblower channel is sealed from all non-triage staff.</Text></Glass>
-      </div>
+      </Box>
     </Block>
 
     <Block label="Status of this site">

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Title } from '@pui/components';
+import { Box, Text, Title } from '@pui/components';
 import { Hero, Block, Glass, AutoGrid, Note } from '../components/kit';
 import s from '../styles/uaia.module.scss';
 
@@ -15,7 +15,7 @@ export const AboutPage: React.FC = () => (
     <Hero
       pattern="about"
       label="About the Agency"
-      title={<>One agency. One question: <span className={s.gradText}>is this model safe enough to ship?</span></>}
+      title={<>One agency. One question: <Box as="span" className={s.gradText}>is this model safe enough to ship?</Box></>}
     />
 
     <Block
@@ -24,8 +24,8 @@ export const AboutPage: React.FC = () => (
       intro="The Unified Artificial Intelligence Agency is an independent, non-governmental regulatory and standards body for artificial intelligence models. It was declared on 11 September 2026 to provide what no single company, government or academic group can: a unified, technically rigorous, publicly accountable gate between AI development and AI deployment."
     >
       <Text intent="secondary" style={{ maxWidth: 680, marginTop: 12, lineHeight: 1.7 }}>
-        UAIA does three things and only three things: it <strong>evaluates</strong> models, it{' '}
-        <strong>certifies</strong> the ones that pass, and it <strong>authorizes</strong> their presence
+        UAIA does three things and only three things: it <Box as="strong">evaluates</Box> models, it{' '}
+        <Box as="strong">certifies</Box> the ones that pass, and it <Box as="strong">authorizes</Box> their presence
         on the market under continuous monitoring.
       </Text>
     </Block>
@@ -47,25 +47,25 @@ export const AboutPage: React.FC = () => (
 
     <Block label="Facts">
       <Glass style={{ marginTop: 12 }}>
-        <div className={s.mono} style={{ display: 'grid', gap: 8, fontSize: 13 }}>
-          <span>DECLARED · 11 SEPTEMBER 2026</span>
-          <span>DOMAIN · UAIAGENCY.ORG</span>
-          <span>STRUCTURE · BOARD / TECHNICAL DIRECTORATE / PUBLIC ASSEMBLY</span>
-          <span>REACH · ENGAGEMENT SOUGHT WITH THE UN SYSTEM AND NATIONAL REGULATORS</span>
-          <span>CONTACT · INFO@UAIAGENCY.ORG / HELLO@UAIAGENCY.ORG</span>
-        </div>
+        <Box className={s.mono} style={{ display: 'grid', gap: 8, fontSize: 13 }}>
+          <Box as="span">DECLARED · 11 SEPTEMBER 2026</Box>
+          <Box as="span">DOMAIN · UAIAGENCY.ORG</Box>
+          <Box as="span">STRUCTURE · BOARD / TECHNICAL DIRECTORATE / PUBLIC ASSEMBLY</Box>
+          <Box as="span">REACH · ENGAGEMENT SOUGHT WITH THE UN SYSTEM AND NATIONAL REGULATORS</Box>
+          <Box as="span">CONTACT · INFO@UAIAGENCY.ORG / HELLO@UAIAGENCY.ORG</Box>
+        </Box>
       </Glass>
     </Block>
 
     <Block label="Trajectory" title="From declaration to recognition." tight>
-      <div style={{ marginTop: 20, display: 'grid', gap: 12 }}>
+      <Box style={{ marginTop: 20, display: 'grid', gap: 12 }}>
         {TIMELINE.map((t) => (
           <Glass key={t.when}>
-            <span className={s.mono} style={{ color: 'var(--phi-color-primary)', fontSize: 12, letterSpacing: '0.18em' }}>{t.when}</span>
+            <Box as="span" className={s.mono} style={{ color: 'var(--phi-color-primary)', fontSize: 12, letterSpacing: '0.18em' }}>{t.when}</Box>
             <Text style={{ marginTop: 6 }}>{t.what}</Text>
           </Glass>
         ))}
-      </div>
+      </Box>
       <Note tone="cyan" title="Founding phase" style={{ marginTop: 20 }}>
         UAIA is in its founding phase. This site never presents an aspiration as an accomplished fact; status boards say exactly where each program stands.
       </Note>

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Card, Table, Tag, Stack, Text, Title } from '@pui/components';
+import { Box, Card, Stack, Table, Tag, Text, Title } from '@pui/components';
 import { PageShell } from '../layouts/PageShell';
 import { COMPONENT_CATALOG } from '../content/components';
 import { ButtonExample, TreeExample, TableExample, CalloutExample, TagExample, FormExample, OverlayExample } from '../examples';
@@ -13,10 +13,10 @@ export const ComponentsPage: React.FC<{ category?: string }> = ({ category }) =>
 
   const headers = ['Component', 'Category', 'Description', 'Props Specification'];
   const rows = filtered.map((c) => [
-    <strong>{c.name}</strong>,
+    <Box as="strong">{c.name}</Box>,
     <Tag intent="primary" minimal size="sm">{c.category}</Tag>,
     c.description,
-    <code>{c.propsSummary}</code>,
+    <Box as="code">{c.propsSummary}</Box>,
   ]);
 
   return (

@@ -1,0 +1,250 @@
+{
+ "about": "Where each kind of record sits in the data files. Phiora loads them once into its database (npm run seed in apps/phiora-server); after that the database is the source. keepIds: the kind's ids are code-level names (metrics: sold, vol24h) and stay as they are.",
+ "sources": [
+  {
+   "kind": "person",
+   "file": "core",
+   "list": "users"
+  },
+  {
+   "kind": "person",
+   "file": "agents",
+   "list": "agents"
+  },
+  {
+   "kind": "club",
+   "file": "core",
+   "list": "clubs"
+  },
+  {
+   "kind": "world",
+   "file": "core",
+   "list": "worlds"
+  },
+  {
+   "kind": "city",
+   "file": "core",
+   "list": "worlds",
+   "each": "cities",
+   "parent": "worldId"
+  },
+  {
+   "kind": "host",
+   "file": "hosts",
+   "list": "hosts"
+  },
+  {
+   "kind": "nest",
+   "file": "hosts",
+   "list": "nests"
+  },
+  {
+   "kind": "show",
+   "file": "shows",
+   "list": "shows"
+  },
+  {
+   "kind": "pose",
+   "file": "shows",
+   "list": "poses"
+  },
+  {
+   "kind": "series",
+   "file": "series",
+   "list": "series"
+  },
+  {
+   "kind": "story",
+   "file": "stories",
+   "list": "stories"
+  },
+  {
+   "kind": "quest",
+   "file": "economy",
+   "list": "quests"
+  },
+  {
+   "kind": "coin",
+   "file": "economy",
+   "list": "coins"
+  },
+  {
+   "kind": "liquidity",
+   "file": "economy",
+   "list": "liquidity"
+  },
+  {
+   "kind": "event",
+   "file": "events",
+   "list": "events"
+  },
+  {
+   "kind": "store",
+   "file": "stores",
+   "list": "stores",
+   "omit": [
+    "looks",
+    "pools"
+   ]
+  },
+  {
+   "kind": "store",
+   "file": "ls",
+   "one": "store"
+  },
+  {
+   "kind": "look",
+   "file": "stores",
+   "list": "stores",
+   "each": "looks",
+   "parent": "storeId"
+  },
+  {
+   "kind": "look",
+   "file": "ls",
+   "list": "looks"
+  },
+  {
+   "kind": "pool",
+   "file": "stores",
+   "list": "stores",
+   "each": "pools",
+   "parent": "storeId"
+  },
+  {
+   "kind": "pool",
+   "file": "ls",
+   "list": "pools"
+  },
+  {
+   "kind": "pool",
+   "file": "pools",
+   "list": "pools"
+  },
+  {
+   "kind": "lot",
+   "file": "pools",
+   "list": "lots"
+  },
+  {
+   "kind": "poolQuest",
+   "file": "pools",
+   "list": "quests"
+  },
+  {
+   "kind": "metric",
+   "file": "pools",
+   "list": "metrics",
+   "keepIds": true
+  },
+  {
+   "kind": "piece",
+   "file": "club",
+   "list": "pieces"
+  },
+  {
+   "kind": "role",
+   "file": "roles",
+   "list": "types"
+  },
+  {
+   "kind": "roleCategory",
+   "file": "roles",
+   "list": "categories"
+  },
+  {
+   "kind": "egg",
+   "file": "assets",
+   "list": "eggs"
+  },
+  {
+   "kind": "sum",
+   "file": "assets",
+   "list": "sums"
+  },
+  {
+   "kind": "profilePft",
+   "file": "assets",
+   "list": "profiles"
+  },
+  {
+   "kind": "ride",
+   "file": "ride",
+   "list": "list"
+  },
+  {
+   "kind": "jewel",
+   "file": "jewel",
+   "list": "list"
+  },
+  {
+   "kind": "cast",
+   "file": "casts",
+   "list": "casts"
+  },
+  {
+   "kind": "sale",
+   "file": "sales",
+   "list": "sales"
+  },
+  {
+   "kind": "shot",
+   "file": "feed",
+   "list": "shots"
+  },
+  {
+   "kind": "post",
+   "file": "agents",
+   "list": "posts"
+  },
+  {
+   "kind": "room",
+   "file": "messages",
+   "list": "voiceRooms"
+  },
+  {
+   "kind": "conversation",
+   "file": "messages",
+   "list": "conversations"
+  },
+  {
+   "kind": "moment",
+   "file": "feed",
+   "list": "moments"
+  },
+  {
+   "kind": "track",
+   "file": "phipad",
+   "list": "tracks"
+  },
+  {
+   "kind": "application",
+   "file": "phipad",
+   "list": "applications"
+  },
+  {
+   "kind": "proposal",
+   "file": "dao",
+   "list": "proposals"
+  },
+  {
+   "kind": "delegate",
+   "file": "dao",
+   "list": "delegates"
+  },
+  {
+   "kind": "nest",
+   "file": "collections",
+   "list": "collections"
+  },
+  {
+   "kind": "kindSpec",
+   "file": "kinds",
+   "map": true,
+   "prefix": "phiegg.",
+   "set": {
+    "app": "phiegg"
+   }
+  }
+ ]
+}

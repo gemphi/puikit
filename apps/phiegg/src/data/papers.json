@@ -1,0 +1,725 @@
+{
+  "papers": [
+    {
+      "id": "eggpaper",
+      "title": "The EggPaper",
+      "sub": "Phiegg’s whitepaper: how clubs hatch worlds, and why",
+      "tone": "accent",
+      "sections": [
+        {
+          "h": "Abstract",
+          "body": "Phiegg is a home for fashion clubs that build worlds. A club opens a host for its community, a world for its members to walk around in, and a runway for its looks. Phipad is the accelerator that funds the clubs that need it."
+        },
+        {
+          "h": "Dream",
+          "body": "A club is a promise of a place. Before anything is minted, the founders describe the world: its cities, its weather, its dress code, the kind of evening you would have there.",
+          "list": [
+            "Worlds are virtual, AR or agentic",
+            "Every world has cities members can nest in",
+            "Agents live in worlds and host them when founders sleep"
+          ]
+        },
+        {
+          "h": "Design",
+          "body": "Members design alongside the club. Looks, garments and venues are created in the open and credited to the creator’s profile with Profile Fungible Tokens.",
+          "list": [
+            "Garments carry the club’s mark",
+            "Every create earns PFTs",
+            "PFT utility is written into the club’s EggPaper"
+          ]
+        },
+        {
+          "h": "Delight",
+          "body": "A world nobody visits is only a render. Shows, drops, quests and parties give members a reason to come back, and the league turns that energy into a season.",
+          "list": [
+            "Weekly runways in every world",
+            "Sponsored quests with coin rewards",
+            "A 64-club league scored on engagement, sales, drops, utility, creates and quests"
+          ]
+        },
+        {
+          "h": "The economy",
+          "body": "Clubs have coins, members stake them in pools and quests pay them out. PFTs sit beside the coins and are not speculative: they cannot be bought, only earned. 100 trillion are set aside so every dream counts."
+        },
+        {
+          "h": "Phipad",
+          "body": "Four funding tracks share one review process. Clubs apply with their EggPaper, their PFTs paper and their team; the track pool pays out against milestones."
+        }
+      ],
+      "n": "01",
+      "slug": "eggpaper",
+      "version": "v1.0 · Sep 2026",
+      "md": "docs/papers/01-eggpaper.md"
+    },
+    {
+      "id": "pfts-101",
+      "title": "PFTs 101",
+      "sub": "Utility PFTs, pools, swaps and EGG in five minutes",
+      "tone": "sage",
+      "sections": [
+        {
+          "h": "Utility, not speculation",
+          "body": "Phiegg is moving away from speculative NFTs. A Profile Fungible Token (PFT) is a utility token on your Phiace profile: it opens doors, carries a membership, buys a seat at a show or a ride at a party, and counts toward what your community decides next. Its value is what it lets you do."
+        },
+        {
+          "h": "Fungible means exchangeable",
+          "body": "Any PFT can be exchanged for any other. Hold a $2,000 handbag and want a $300 jeans skirt? Swap them. The pool you take the skirt from pays you the $1,700 difference, the market maker sponsors the deal."
+        },
+        {
+          "h": "Pools are the centre",
+          "body": "Every PFT lives in a pool: a store line, a club drop, a fashion show or a club of utility PFTs. The Onyx Hitch Hikers Club (OHHC), Bold Pups (BPUP) and Epic Pods AC (EPAC) are pools of 10,000 PFTs each. A pool quotes every unit, sponsors swaps out of it and keeps a reserve to pay the differences.",
+          "list": [
+            "Solo: one item, one unit",
+            "Pack: 4–7 items, each priced on its own, high to low; the pack costs the sum",
+            "Drop: up to 64 units sold as editions, 3,009 / 3,999 sold",
+            "Every world is a pool party, linked to its pool"
+          ]
+        },
+        {
+          "h": "Prices move",
+          "body": "A unit’s price is found, not fixed. Each lot has a shelf of 64 values; every 30 seconds the pricing function uses the unit’s index to pick one and glides to it. A pack or drop total is the sum of moving prices, so it is always transitory."
+        },
+        {
+          "h": "Barter until the limit",
+          "body": "Swaps settle the difference in USD. Differences paid to you count toward a withdraw limit over a rolling week. Barter freely until you reach it; after that, only fair swaps, close in value, or where you pay, go through until the week rolls.",
+          "list": [
+            "Give dearer, receive the difference from the pool",
+            "Give cheaper, pay the difference from your wallet",
+            "Within 5 % is an even swap: nothing moves",
+            "Withdraw limit: $2,500 a week"
+          ]
+        },
+        {
+          "h": "EGG funds the teams",
+          "body": "EGG is the main token. It distributes funds, and direction, to qualifying teams. Every pool runs an application of 8 steps and 16 questions; the club’s hosts join it as the team automatically, and its stats show how far it has come.",
+          "list": [
+            "Each stat is a quest: lift it and the pool pays out",
+            "Each pool quest holds its stats, its quests and the coins taking part",
+            "Qualifying teams receive EGG to build, host and grow"
+          ]
+        },
+        {
+          "h": "Everyone is welcome",
+          "body": "You are all welcome to apply. Bring a team, a world and a party, open a pool, and enjoy the fun with your community."
+        },
+        {
+          "h": "Quick answers",
+          "body": "",
+          "list": [
+            "Is a PFT an investment? No, it is a utility you use.",
+            "Is every PFT swappable? Yes, any PFT for any other.",
+            "Who pays the difference? The pool you take from.",
+            "Can I cash out? Up to the weekly withdraw limit.",
+            "How do teams get funded? Apply; qualifying teams receive EGG."
+          ]
+        }
+      ],
+      "n": "02",
+      "slug": "pfts-101",
+      "version": "v2.0 · Oct 2026",
+      "md": "docs/papers/02-pfts-101.md"
+    },
+    {
+      "id": "100t-puts",
+      "title": "100T PFTs",
+      "sub": "Every dream counts",
+      "tone": "accent",
+      "sections": [
+        {
+          "h": "The number",
+          "body": "100,000,000,000,000 Profile Fungible Tokens are set aside for every club, creator and member who ever hatches on Phiegg. The supply is large on purpose: nobody should have to compete for the right to be useful."
+        },
+        {
+          "h": "Why so many",
+          "body": "Scarcity is how speculative tokens hold their price. PFTs do not have a price. They have a purpose, and there is room for every purpose.",
+          "list": [
+            "No floor, no flipping",
+            "No early-bird advantage",
+            "Every create, quest and host counts the same on day 1,000 as on day one"
+          ]
+        },
+        {
+          "h": "How they are released",
+          "body": "Clubs mint PFTs to members when members do something real. The 100T pool only shrinks when work is done.",
+          "list": [
+            "Minted per action, never in bulk sales",
+            "Capped per club per season by the league",
+            "Burned when a member leaves a club"
+          ]
+        },
+        {
+          "h": "All you need is a grand dream",
+          "body": "A club starts with a founder who can describe a world worth visiting. The PFTs follow the dream, not the other way round."
+        }
+      ],
+      "n": "03",
+      "slug": "100t-pfts",
+      "version": "v1.0 · Sep 2026",
+      "md": "docs/papers/03-100t-pfts.md"
+    },
+    {
+      "id": "founders-playbook",
+      "title": "Founder’s Playbook",
+      "sub": "Envision, create, unleash: the Phipad route step by step",
+      "tone": "ink",
+      "sections": [
+        {
+          "h": "Envision",
+          "body": "Write your EggPaper. Name the world, the first pool and the members you are building for. Pick a track and set an ask you can defend.",
+          "list": [
+            "EggPaper (required)",
+            "PFTs paper (required)",
+            "Team roster with roles"
+          ]
+        },
+        {
+          "h": "Create",
+          "body": "Incubation pairs you with mentors and a quest. Build the first city, the first garments and the PFT utility. Milestones unlock the pool.",
+          "list": [
+            "Pitch deck for the review panel",
+            "Roadmap with milestones",
+            "One live quest before launch"
+          ]
+        },
+        {
+          "h": "Unleash",
+          "body": "Open your host, mint PFTs to the team and walk the first show. The club is seeded into the league and the season starts.",
+          "list": [
+            "Host opens",
+            "PFTs mint",
+            "League seed assigned"
+          ]
+        }
+      ],
+      "n": "04",
+      "slug": "founders-playbook",
+      "version": "v1.0 · Sep 2026",
+      "md": "docs/papers/04-founders-playbook.md"
+    },
+    {
+      "id": "dream-design-delight",
+      "title": "Dream, Design, Delight",
+      "sub": "What members can expect from every club on Phiegg",
+      "tone": "sage",
+      "sections": [
+        {
+          "h": "Dream",
+          "body": "Every club starts with a world worth visiting. You arrive for the dream and stay for the people in it."
+        },
+        {
+          "h": "Design",
+          "body": "Looks, garments and cities are designed with members, not for them. Your work is credited on your profile and every create earns PFTs."
+        },
+        {
+          "h": "Delight",
+          "body": "Runways, quests and drops keep the world alive. Delight is what the league measures, so clubs are rewarded for keeping you happy."
+        },
+        {
+          "h": "What you can ask of a club",
+          "body": "",
+          "list": [
+            "A published EggPaper and PFTs paper",
+            "Clear PFT utility you can use weekly",
+            "A host with moderators who answer",
+            "Consent before your image is used"
+          ]
+        }
+      ],
+      "n": "05",
+      "slug": "dream-design-delight",
+      "version": "v1.0 · Sep 2026",
+      "md": "docs/papers/05-dream-design-delight.md"
+    },
+    {
+      "id": "track-guide",
+      "title": "Track Guide",
+      "sub": "The four Phipad pools and what each one funds",
+      "tone": "neutral",
+      "sections": [
+        {
+          "h": "AR · $1.2M USDC",
+          "body": "Wearables and street layers with verified ownership."
+        },
+        {
+          "h": "Virtual worlds · $1.5M USDC",
+          "body": "Cities, districts and venues for holders."
+        },
+        {
+          "h": "Agentic worlds · $1.0M USDC",
+          "body": "Worlds populated by autonomous agent citizens."
+        },
+        {
+          "h": "PFP & authenticity · $500K USDC",
+          "body": "Avatars with provable, portable ownership."
+        },
+        {
+          "h": "How payouts work",
+          "body": "Every track pays out against the milestones in your roadmap, reviewed by the panel.",
+          "list": [
+            "EggPaper and PFTs paper required for every track",
+            "Up to three milestones per season",
+            "Unspent funds return to the pool"
+          ]
+        }
+      ],
+      "n": "06",
+      "slug": "track-guide",
+      "version": "v1.0 · Sep 2026",
+      "md": "docs/papers/06-track-guide.md"
+    },
+    {
+      "id": "application-guide",
+      "title": "Application Guide",
+      "sub": "The 16 fields of a Phipad application",
+      "tone": "accent",
+      "sections": [
+        {
+          "h": "Club",
+          "body": "",
+          "list": [
+            "01 Club name",
+            "02 Ticker (up to five letters)",
+            "03 Track",
+            "04 Chain"
+          ]
+        },
+        {
+          "h": "Contract & mint",
+          "body": "",
+          "list": [
+            "05 Contract address",
+            "06 Supply",
+            "07 Mint price"
+          ]
+        },
+        {
+          "h": "Funding",
+          "body": "",
+          "list": [
+            "08 Ask in USDC",
+            "09 Raised to date",
+            "10 Treasury wallet"
+          ]
+        },
+        {
+          "h": "World",
+          "body": "",
+          "list": [
+            "11 World",
+            "12 Host",
+            "13 Launch window"
+          ]
+        },
+        {
+          "h": "PFTs & papers",
+          "body": "",
+          "list": [
+            "14 PFTs minted",
+            "15 PFT utility",
+            "16 EggPaper link"
+          ]
+        },
+        {
+          "h": "Team",
+          "body": "List every member with a role. Founding members receive PFTs at launch; the roster is verified during review."
+        }
+      ],
+      "n": "07",
+      "slug": "application-guide",
+      "version": "v1.0 · Sep 2026",
+      "md": "docs/papers/07-application-guide.md"
+    },
+    {
+      "id": "eggpaper-template",
+      "title": "EggPaper Template",
+      "sub": "The outline every club EggPaper follows",
+      "tone": "neutral",
+      "sections": [
+        {
+          "h": "1. Abstract",
+          "body": "Three sentences: the club, the world, the first pool."
+        },
+        {
+          "h": "2. The world",
+          "body": "Where it is, what it feels like, which cities open first."
+        },
+        {
+          "h": "3. Profile Fungible Tokens",
+          "body": "How members earn PFTs and what they unlock. Link your PFTs paper."
+        },
+        {
+          "h": "4. Team",
+          "body": "Names, roles, and what each person has shipped before."
+        },
+        {
+          "h": "5. Funding & milestones",
+          "body": "Your ask, your track and up to three milestones."
+        },
+        {
+          "h": "6. Contract",
+          "body": "Chain, address, supply, mint price, treasury."
+        },
+        {
+          "h": "Publishing",
+          "body": "Your EggPaper is published at phiegg.app/eggpaper/your-ticker once submitted. Share it anywhere."
+        }
+      ],
+      "n": "08",
+      "slug": "eggpaper-template",
+      "version": "v1.0 · Sep 2026",
+      "md": "docs/papers/08-eggpaper-template.md"
+    },
+    {
+      "id": "puts-paper-template",
+      "title": "PFTs Paper Template",
+      "sub": "How to write the utility your members will earn",
+      "tone": "sage",
+      "sections": [
+        {
+          "h": "Utilities",
+          "body": "List each utility and the PFT threshold that unlocks it. Keep thresholds reachable within a season."
+        },
+        {
+          "h": "Earning",
+          "body": "Tie every PFT to an action: a create, a quest, a host, a show."
+        },
+        {
+          "h": "Distribution",
+          "body": "Show how many PFTs the founding team holds and how many are reserved for members."
+        },
+        {
+          "h": "Rules",
+          "body": "",
+          "list": [
+            "PFTs are non-transferable",
+            "Burned when a member leaves",
+            "League multipliers apply to new mints only"
+          ]
+        },
+        {
+          "h": "Checklist",
+          "body": "",
+          "list": [
+            "Would a member use this every week?",
+            "Is every PFT earned, not bought?",
+            "Can someone new reach the first utility in a month?"
+          ]
+        }
+      ],
+      "n": "09",
+      "slug": "pfts-paper-template",
+      "version": "v1.0 · Sep 2026",
+      "md": "docs/papers/09-pfts-paper-template.md"
+    },
+    {
+      "id": "hosts-nests",
+      "title": "Hosts & Nests",
+      "sub": "Where a club’s community lives",
+      "tone": "ink",
+      "sections": [
+        {
+          "h": "Hosts",
+          "body": "A host is a club’s home server. It is gated by holding, by PFTs or open to all."
+        },
+        {
+          "h": "Nests",
+          "body": "Anything inside a host is a nest: a channel, a world, a city, a quest, a voice room, a stage or a gallery. Nests can hold nests."
+        },
+        {
+          "h": "Roles",
+          "body": "",
+          "list": [
+            "Founder",
+            "Moderator",
+            "Creator",
+            "Member",
+            "Agent"
+          ]
+        },
+        {
+          "h": "Good hosts",
+          "body": "",
+          "list": [
+            "One welcome nest with the club’s EggPaper pinned",
+            "A nest per city in the world",
+            "Agents summoned only where they help"
+          ]
+        }
+      ],
+      "n": "10",
+      "slug": "hosts-nests",
+      "version": "v1.0 · Sep 2026",
+      "md": "docs/papers/10-hosts-nests.md"
+    },
+    {
+      "id": "worlds",
+      "title": "Worlds",
+      "sub": "Virtual, AR and agentic worlds on Phiegg",
+      "tone": "accent",
+      "sections": [
+        {
+          "h": "Virtual worlds",
+          "body": "Full 3D cities members visit as avatars. Best for runways, parties and galleries."
+        },
+        {
+          "h": "AR worlds",
+          "body": "Layers over real streets. Best for wearables and try-ons."
+        },
+        {
+          "h": "Agentic worlds",
+          "body": "Worlds with autonomous agent citizens who host, style and remember you."
+        },
+        {
+          "h": "Cities",
+          "body": "Every world has cities. Members nest a city in their host to meet there."
+        }
+      ],
+      "n": "11",
+      "slug": "worlds",
+      "version": "v1.0 · Sep 2026",
+      "md": "docs/papers/11-worlds.md"
+    },
+    {
+      "id": "agents-charter",
+      "title": "Agents Charter",
+      "sub": "What Phiegg’s AI agents do, and what they never do",
+      "tone": "neutral",
+      "sections": [
+        {
+          "h": "What agents do",
+          "body": "",
+          "list": [
+            "Style looks and suggest outfits",
+            "RSVP you to events you ask for",
+            "Host worlds and shows",
+            "Award PFTs on a club’s behalf"
+          ]
+        },
+        {
+          "h": "What agents never do",
+          "body": "",
+          "list": [
+            "Hold PFTs or coins",
+            "Pretend to be a person",
+            "Use your image without consent",
+            "Spend on your behalf without asking"
+          ]
+        },
+        {
+          "h": "Labels",
+          "body": "Every agent is labelled as an AI agent wherever it appears."
+        }
+      ],
+      "n": "12",
+      "slug": "agents-charter",
+      "version": "v1.0 · Sep 2026",
+      "md": "docs/papers/12-agents-charter.md"
+    },
+    {
+      "id": "league",
+      "title": "The League",
+      "sub": "How 64 clubs compete over a season",
+      "tone": "sage",
+      "sections": [
+        {
+          "h": "Format",
+          "body": "Round of 64 to the final. Each round is scored on one metric."
+        },
+        {
+          "h": "Metrics",
+          "body": "",
+          "list": [
+            "Engagement",
+            "Sales",
+            "Drops",
+            "Utility",
+            "Creates",
+            "Quests"
+          ]
+        },
+        {
+          "h": "Seeding",
+          "body": "Seeds come from the previous season; new clubs from Phipad enter as wildcards."
+        },
+        {
+          "h": "Why it matters",
+          "body": "The league rewards clubs that delight members, not clubs that pump prices."
+        }
+      ],
+      "n": "13",
+      "slug": "league",
+      "version": "v1.0 · Sep 2026",
+      "md": "docs/papers/13-league.md"
+    },
+    {
+      "id": "quests-coins",
+      "title": "Quests & Coins",
+      "sub": "The Phiegg economy in one page",
+      "tone": "accent",
+      "sections": [
+        {
+          "h": "Coins",
+          "body": "Each club can issue a coin. Coins are used for drops, pools and quest rewards."
+        },
+        {
+          "h": "Pools",
+          "body": "Members stake coins in pools that fund quests and events."
+        },
+        {
+          "h": "Quests",
+          "body": "Sponsored challenges inside worlds. Finish one to earn coins and PFTs."
+        },
+        {
+          "h": "Coins and PFTs",
+          "body": "Coins can be traded. PFTs cannot. Coins reward, PFTs remember."
+        }
+      ],
+      "n": "14",
+      "slug": "quests-coins",
+      "version": "v1.0 · Sep 2026",
+      "md": "docs/papers/14-quests-coins.md"
+    },
+    {
+      "id": "shows-runways",
+      "title": "Shows & Runways",
+      "sub": "How a season of shows is run",
+      "tone": "ink",
+      "sections": [
+        {
+          "h": "Seasons",
+          "body": "Every world hosts a runway per season with 32 to 64 looks."
+        },
+        {
+          "h": "Looks and poses",
+          "body": "Each look is walked in a pose from the shared pose library."
+        },
+        {
+          "h": "Comments",
+          "body": "Every look can be commented on; agents reply as the show’s host."
+        },
+        {
+          "h": "Credits",
+          "body": "Designers, stylists and models are credited and earn PFTs."
+        }
+      ],
+      "n": "15",
+      "slug": "shows-runways",
+      "version": "v1.0 · Sep 2026",
+      "md": "docs/papers/15-shows-runways.md"
+    },
+    {
+      "id": "trust-consent",
+      "title": "Trust & Consent",
+      "sub": "Verification, consent and safety on Phiegg",
+      "tone": "neutral",
+      "sections": [
+        {
+          "h": "Consent first",
+          "body": "No one’s likeness is used in a look, a show or a campaign without their consent on record."
+        },
+        {
+          "h": "Verification",
+          "body": "Founders, contracts and team members are verified during Phipad review."
+        },
+        {
+          "h": "Reporting",
+          "body": "Every post, comment and nest can be reported. Moderators respond within a day."
+        },
+        {
+          "h": "Your data",
+          "body": "You can export or delete your profile, including your PFT history."
+        }
+      ],
+      "n": "16",
+      "slug": "trust-consent",
+      "version": "v1.0 · Sep 2026",
+      "md": "docs/papers/16-trust-consent.md"
+    }
+  ],
+  "blog": [
+    {
+      "id": "b-100t",
+      "date": "2026-09-28",
+      "title": "100T PFTs. Every dream counts.",
+      "sub": "Why we set aside 100 trillion Profile Fungible Tokens",
+      "tone": "accent",
+      "paper": "100t-puts",
+      "sections": [
+        {
+          "h": "",
+          "body": "Today we are setting aside 100 trillion PFTs for every club, creator and member who will ever hatch on Phiegg."
+        },
+        {
+          "h": "PFTs work for you",
+          "body": "PFTs are not speculative collectibles. Nobody buys them to flip them. You earn them by creating, questing and hosting, and they unlock real things: host access, runway seats, AR wearables, fitting credits."
+        },
+        {
+          "h": "All you need is a grand dream",
+          "body": "Your utility. Your value. Making value, making sense. Read PFTs 101 and the 100T paper to see how it works."
+        }
+      ],
+      "md": "docs/blog/2026-09-28-100t.md"
+    },
+    {
+      "id": "b-phipad",
+      "date": "2026-09-26",
+      "title": "Phipad opens: envision, create, unleash",
+      "sub": "Four tracks, one review, $4.2M in pools",
+      "tone": "sage",
+      "paper": "founders-playbook",
+      "sections": [
+        {
+          "h": "",
+          "body": "Phipad is open for applications across four tracks: AR, virtual worlds, agentic worlds, and PFP & authenticity."
+        },
+        {
+          "h": "Three steps",
+          "body": "Envision your club in an EggPaper. Create it with mentors and a quest. Unleash it with a host, a PFT mint and a league seed."
+        },
+        {
+          "h": "Apply",
+          "body": "The application has 16 fields, a team roster and two required papers: the EggPaper and the PFTs paper."
+        }
+      ],
+      "md": "docs/blog/2026-09-26-phipad.md"
+    },
+    {
+      "id": "b-ddd",
+      "date": "2026-09-24",
+      "title": "Dream, design, delight",
+      "sub": "The promise every club makes to its members",
+      "tone": "neutral",
+      "paper": "dream-design-delight",
+      "sections": [
+        {
+          "h": "",
+          "body": "Every club on Phiegg makes the same three promises."
+        },
+        {
+          "h": "The promises",
+          "body": "Dream: a world worth visiting. Design: looks made with members, credited with PFTs. Delight: shows, quests and drops that keep the world alive."
+        }
+      ],
+      "md": "docs/blog/2026-09-24-ddd.md"
+    },
+    {
+      "id": "b-eggpaper",
+      "date": "2026-09-22",
+      "title": "Publishing the EggPaper",
+      "sub": "Our whitepaper, and a template for yours",
+      "tone": "ink",
+      "paper": "eggpaper",
+      "sections": [
+        {
+          "h": "",
+          "body": "We have published the EggPaper, Phiegg’s whitepaper, along with 15 companion papers."
+        },
+        {
+          "h": "For clubs",
+          "body": "Every club applying to Phipad writes its own EggPaper from the template. Once submitted it goes live at phiegg.app/eggpaper/your-ticker, ready to share."
+        }
+      ],
+      "md": "docs/blog/2026-09-22-eggpaper.md"
+    }
+  ]
+}

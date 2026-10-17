@@ -1,0 +1,192 @@
+{
+ "stats": [
+  {
+   "label": "Tasks done",
+   "value": "3.2M",
+   "sub": "For members"
+  },
+  {
+   "label": "Models",
+   "value": "24",
+   "sub": "Open and local"
+  },
+  {
+   "label": "Hours saved",
+   "value": "410k",
+   "sub": "Last 30 days"
+  },
+  {
+   "label": "Apps it works in",
+   "value": "14",
+   "sub": "Across Phiace"
+  }
+ ],
+ "news": [
+  [
+   "Models",
+   "Pull a model with one command",
+   "phient pull fetches a model, checks it and gets it ready to run on your machine."
+  ],
+  [
+   "Tasks",
+   "Phient reviews quests for hosts",
+   "Hosts hand over quest scoring. Phient reads each entry and drafts a score with notes."
+  ],
+  [
+   "Stories",
+   "An application written overnight",
+   "Ravi asked Phient to apply to Cohort 7. It filled every step and left him two questions."
+  ],
+  [
+   "Agent",
+   "Votes you can explain",
+   "When Phient votes for you, it writes down why, and you can change the vote before it closes."
+  ],
+  [
+   "Models",
+   "Phiano runs on phones",
+   "The small Phiano model now runs on most phones for quick tasks."
+  ],
+  [
+   "Tasks",
+   "Rebalance on a schedule",
+   "Set your wallet mix once and Phient keeps it there every week."
+  ],
+  [
+   "Stories",
+   "The host who took a holiday",
+   "While Noor was away, Phient ran her two weekly events, paid the DJs and posted the photos."
+  ],
+  [
+   "Terminal",
+   "Terminal gets history",
+   "Scroll back through every command and see what each one changed."
+  ],
+  [
+   "Agent",
+   "Ask before acting",
+   "Turn on ask mode and Phient checks with you before each step."
+  ],
+  [
+   "Models",
+   "Compare two models",
+   "Run the same task on two models side by side and keep the better answer."
+  ],
+  [
+   "Tasks",
+   "Drafts for every form",
+   "Any stepped form in Phiace can be drafted by Phient and handed to you to finish."
+  ],
+  [
+   "Stories",
+   "A treasurer who sleeps well",
+   "A club treasurer set Phient to flag spends over 1k SUM. It caught a typo worth 9k."
+  ]
+ ],
+ "faq": [
+  {
+   "q": "Does Phient need the internet?",
+   "a": "Local models run offline. Tasks that touch apps sync when you are online."
+  },
+  {
+   "q": "Can it sign for me?",
+   "a": "Only in the apps you delegate and only up to your limits."
+  },
+  {
+   "q": "Which model should I use?",
+   "a": "Start with Phiano for quick tasks and a larger model for long writing."
+  },
+  {
+   "q": "Can I see what it did?",
+   "a": "Every task has a log with each step and change."
+  },
+  {
+   "q": "Can I stop a task?",
+   "a": "Yes, from Tasks or by typing stop in the terminal."
+  }
+ ],
+ "cards": [
+  {
+   "title": "phiora-7b",
+   "sub": "model · general",
+   "body": "A balanced model for most tasks."
+  },
+  {
+   "title": "phiscore",
+   "sub": "model · review",
+   "body": "Tuned for scoring quests and entries."
+  },
+  {
+   "title": "phidraft",
+   "sub": "model · writing",
+   "body": "Long form drafts for applications."
+  },
+  {
+   "title": "phivote",
+   "sub": "model · governance",
+   "body": "Reads proposals and explains them."
+  }
+ ],
+ "pulls": {
+  "menu": {
+   "agent": {
+    "kind": "agentSpec",
+    "label": "label",
+    "sub": "role"
+   },
+   "tasks": {
+    "kind": "quest",
+    "sort": "reward",
+    "label": "title",
+    "sub": "kind",
+    "join": [
+     "worldId"
+    ],
+    "image": "world.image",
+    "fields": [
+     "reward",
+     "rewardCoin",
+     "entrants",
+     "endsAt"
+    ],
+    "open": "phiegg",
+    "n": 5
+   }
+  },
+  "home": [
+   {
+    "title": "Agents on duty",
+    "sub": "What Phient can run for you.",
+    "pull": {
+     "kind": "agentSpec",
+     "n": 8,
+     "label": "label",
+     "sub": "role",
+     "body": "muse",
+     "fields": [
+      "role",
+      "strategy"
+     ]
+    }
+   }
+  ],
+  "counts": [
+   [
+    "Agents",
+    "agentSpec"
+   ],
+   [
+    "Quests to review",
+    "quest"
+   ],
+   [
+    "Pools",
+    "pool"
+   ],
+   [
+    "Events",
+    "event"
+   ]
+  ]
+ }
+}

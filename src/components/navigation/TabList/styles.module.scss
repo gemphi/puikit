@@ -1,56 +1,102 @@
+// TabList — one row, never wrapping; scrolls sideways; the active indicator slides between tabs.
+// Every colour, radius and duration is a theme token.
 .tabList {
-  display: inline-flex;
+  flex-shrink: 0; /* a scrolling tab row never collapses inside a column (overflow sets min-height to 0) */
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 0.25rem;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding: 0.125rem;
+  isolation: isolate;
+  &::-webkit-scrollbar { display: none; }
+  /* Soft edge only on a side that has more tabs past it, so a scrolling row reads as "more this way". */
+  --pui-fade-l: 0rem;
+  --pui-fade-r: 0rem;
+  mask-image: linear-gradient(to right, transparent 0, #000 var(--pui-fade-l), #000 calc(100% - var(--pui-fade-r)), transparent 100%);
+  &[data-fade-start='true'] { --pui-fade-l: 1.5rem; }
+  &[data-fade-end='true'] { --pui-fade-r: 1.5rem; }
 }
 
 .tab {
   position: relative;
+  z-index: 1;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
   padding: 0.5rem 1rem;
   border: none;
   border-bottom: 2px solid transparent;
-  background: transparent;
+  background-color: var(--phi-control-bg, transparent);
+  background-image: var(--phi-gradient-control-soft, none);
+  border-radius: var(--phi-radius-md) var(--phi-radius-md) 0 0;
   color: var(--phi-color-text-secondary);
+  font: inherit;
   font-size: 0.875rem;
   font-weight: 500;
+  line-height: 1.2;
   cursor: pointer;
-  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
-  white-space: nowrap;
+  transition: color var(--phi-transition-normal), border-color var(--phi-transition-normal), background-color var(--phi-transition-normal),
+    transform var(--phi-duration-fast) var(--phi-ease-spring);
 
-  &:hover:not(:disabled) {
+  &:hover:not([aria-disabled='true']) {
     color: var(--phi-color-text-primary);
+    background-color: var(--phi-control-bg-hover, var(--phi-color-background-secondary));
   }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+  &:active:not([aria-disabled='true']) { transform: scale(0.96); }
+  &:focus-visible { outline: 2px solid var(--phi-color-primary); outline-offset: 1px; }
+  &[aria-disabled='true'] { opacity: 0.5; cursor: not-allowed; }
 }
+.icon { display: inline-flex; flex: none; }
+.count { font-size: 0.85em; opacity: 0.72; font-variant-numeric: tabular-nums; }
 
 .active {
   color: var(--phi-color-primary);
   border-bottom-color: var(--phi-color-primary);
+  background-color: var(--phi-control-bg-active, transparent);
 }
 
-.sm {
-  .tab {
-    padding: 0.375rem 0.75rem;
-    font-size: 0.8125rem;
-  }
-}
+.indicator { display: none; }
+
+.sm .tab { padding: 0.375rem 0.75rem; font-size: 0.8125rem; }
 
 .pills {
   .tab {
     border-bottom: none;
-    border-radius: var(--phi-radius-md);
-
-    &:hover:not(:disabled) {
-      background: var(--phi-color-background-secondary);
-    }
+    border-radius: var(--phi-control-radius, var(--phi-radius-md));
   }
-
+  /* The active pill is drawn once, behind the tabs, and slides from tab to tab. */
+  .indicator {
+    display: block;
+    position: absolute;
+    z-index: 0;
+    left: 0; top: 0;
+    width: var(--pui-tab-w, 0px);
+    height: var(--pui-tab-h, 0px);
+    transform: translate3d(var(--pui-tab-x, 0px), var(--pui-tab-y, 0px), 0);
+    border-radius: var(--phi-control-radius, var(--phi-radius-md));
+    background-color: var(--phi-color-primary);
+    background-image: var(--phi-gradient-control, none);
+    box-shadow: 0 0.35rem 0.9rem -0.35rem color-mix(in srgb, var(--phi-color-primary) 70%, transparent);
+    pointer-events: none;
+  }
+  &[data-ready='true'] .indicator {
+    transition: transform var(--phi-duration) var(--phi-ease), width var(--phi-duration) var(--phi-ease), height var(--phi-duration) var(--phi-ease);
+  }
   .active {
-    background: var(--phi-color-primary-light);
-    color: var(--phi-color-primary);
+    background-color: transparent;
+    background-image: none;
+    color: var(--phi-gradient-control-text, var(--phi-color-text-inverse, #fff));
   }
+  /* Before measuring (first paint, tests) the active tab paints its own pill. */
+  &:not([data-ready='true']) .active { background-color: var(--phi-color-primary); background-image: var(--phi-gradient-control, none); }
 }

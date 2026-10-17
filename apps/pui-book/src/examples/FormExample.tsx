@@ -14,11 +14,11 @@ export const FormExample: React.FC = () => {
       </FormGroup>
 
       <FormGroup label="Ontology Domain Schema">
-        <Select defaultValue="finance">
-          <option value="finance">FinanceTransaction (Axiom Topos)</option>
-          <option value="geo">GeoProperty (Geotemporal Series)</option>
-          <option value="media">MediaProperty (Multi-Modal Stream)</option>
-        </Select>
+        <Select defaultValue="finance" options={[
+          { value: 'finance', label: 'FinanceTransaction (Axiom Topos)' },
+          { value: 'geo', label: 'GeoProperty (Geotemporal Series)' },
+          { value: 'media', label: 'MediaProperty (Multi-Modal Stream)' },
+        ]} />
       </FormGroup>
 
       <FormGroup label="Kuramoto Real-Time Phase Coupling">

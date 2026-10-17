@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '../../../utils/cn';
-import { StyleProps, stylePropsToCSS } from '../../shared/styleProps';
+import { StyleProps, omitStyleProps, stylePropsToCSS } from '../../shared/styleProps';
 import styles from './styles.module.scss';
 
 export type SectionTag = 'header' | 'main' | 'footer' | 'section' | 'article' | 'nav' | 'aside' | 'div';
@@ -21,7 +21,7 @@ export const Section = ({
   const stylePropsCSS = stylePropsToCSS(props);
   const computedStyle = { ...stylePropsCSS, ...style };
 
-  const { background, padding, paddingTop, paddingBottom, paddingLeft, paddingRight, paddingX, paddingY, margin, marginTop, marginBottom, color, maxWidth, minWidth, minHeight, align, textDecoration, opacity, textTransform, letterSpacing, ...rest } = props;
+  const rest = omitStyleProps(props);
 
   return (
     <Tag className={cn(styles.section, className)} style={computedStyle} {...rest}>

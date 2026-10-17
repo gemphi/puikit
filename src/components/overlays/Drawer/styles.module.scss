@@ -23,15 +23,16 @@
   position: absolute;
   inset: 0;
   background-color: var(--phi-backdrop-color, rgba(0, 0, 0, 0.35));
-  animation: fadeIn var(--phi-animation-speed, 0.25s) ease-out forwards;
+  animation: fadeIn var(--phi-animation-speed, var(--phi-duration, 0.3s)) var(--phi-ease, ease-out) forwards;
 }
 
 .drawer {
   /* The drawer is a reading surface over arbitrary content — imagery, video —
      so its ground is opaque whatever the theme style. A glassy card wash here
      let the page bleed through the text. */
-  background-color: var(--phi-color-background-card);
-  background-image: none;
+  /* Opaque even when the theme's card colour is translucent (Apple, Glass): card tone over the page ground. */
+  background-color: var(--phi-color-background);
+  background-image: linear-gradient(var(--phi-color-background-card), var(--phi-color-background-card));
   position: absolute;
   top: 0;
   height: 100%;
@@ -46,14 +47,14 @@
   left: 0;
   border-right: var(--phi-elevation-border, 1px solid var(--phi-color-border));
   border-radius: 0 var(--phi-radius-lg) var(--phi-radius-lg) 0;
-  animation: slideLeft var(--phi-animation-speed, 0.35s) cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: slideLeft var(--phi-animation-speed, var(--phi-duration-slow, 0.45s)) var(--phi-ease, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
 }
 
 .right {
   right: 0;
   border-left: var(--phi-elevation-border, 1px solid var(--phi-color-border));
   border-radius: var(--phi-radius-lg) 0 0 var(--phi-radius-lg);
-  animation: slideRight var(--phi-animation-speed, 0.35s) cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: slideRight var(--phi-animation-speed, var(--phi-duration-slow, 0.45s)) var(--phi-ease, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
 }
 
 .sm {
@@ -79,6 +80,8 @@
 .body {
   overflow: auto;
   flex: 1;
+  /* Without this a flex child grows to its content and the drawer clips it instead of scrolling. */
+  min-height: 0;
 }
 
 .footer {
@@ -105,7 +108,8 @@
    tokens, no hardcoded second look. */
 .overlay .drawer {
   background-color: var(--phi-color-background);
-  background-image: var(--phi-gradient-rail-reverse, none);
+  /* An app's chosen gradient (--phi-gradient-drawer) wins over the theme's rail wash. */
+  background-image: var(--phi-gradient-drawer, var(--phi-gradient-rail-reverse, none));
   border: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
   /* Floating, apple-cornered, from the theme's own tokens. */
   border-radius: var(--phi-radius-xl, var(--phi-radius-lg, 16px));
@@ -115,9 +119,59 @@
 .overlay .drawer.right { right: var(--phi-layout-rail-margin, var(--phi-space-3, 12px)); }
 .overlay .drawer.left { left: var(--phi-layout-rail-margin, var(--phi-space-3, 12px)); }
 .overlay .drawer.left {
-  background-image: var(--phi-gradient-rail, none);
+  background-image: var(--phi-gradient-drawer, var(--phi-gradient-rail, none));
   border-inline-end: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
 }
 .overlay .drawer.right {
   border-inline-start: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
 }
+
+/* Expanded: the drawer grows to the window (minus the rail margin) — same side, same skin. */
+.overlay .drawer.expanded {
+  width: calc(100% - var(--phi-layout-rail-margin, var(--phi-space-3, 12px)) * 2);
+  max-width: none;
+  transition: width var(--phi-animation-speed, var(--phi-duration-slow, 0.5s)) var(--phi-ease, cubic-bezier(0.22, 1, 0.36, 1));
+}
+.drawer { transition: width var(--phi-animation-speed, var(--phi-duration-slow, 0.5s)) var(--phi-ease, cubic-bezier(0.22, 1, 0.36, 1)); }
+
+/* Bottom sheet */
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+.overlay .drawer.bottom {
+  top: auto; bottom: 0;
+  left: var(--phi-layout-rail-margin, var(--phi-space-3, 12px)); right: var(--phi-layout-rail-margin, var(--phi-space-3, 12px));
+  width: auto; max-width: none;
+  border-radius: var(--phi-radius-xl, 16px) var(--phi-radius-xl, 16px) 0 0;
+  animation: slideUp var(--phi-animation-speed, 0.38s) cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  transition: height var(--phi-animation-speed, var(--phi-duration-slow, 0.5s)) var(--phi-ease, cubic-bezier(0.22, 1, 0.36, 1));
+}
+.overlay .drawer.bottom.sm { height: 45vh; }
+.overlay .drawer.bottom.md { height: 64vh; }
+.overlay .drawer.bottom.lg { height: 82vh; }
+.overlay .drawer.bottom.xl { height: 92vh; }
+.overlay .drawer.bottom.expanded { height: calc(100% - var(--phi-layout-rail-margin, var(--phi-space-3, 12px))); width: auto; }
+.handle { position: absolute; top: 6px; left: 50%; width: 2.5rem; height: 4px; margin-left: -1.25rem; border-radius: var(--phi-radius-full); background: color-mix(in srgb, var(--phi-color-text-primary) 22%, transparent); }
+.bottom .body { padding: 0; display: flex; min-height: 0; }
+
+/* Docked sheet: part of the page, not over it. It sits in the page's flow, stuck to the foot of the scrolling main
+   area, so it is as wide as the content (never over a sidebar) and the page above scrolls clear of it. */
+.dock { position: sticky; bottom: 0; z-index: 20; margin-top: auto; flex: none; }
+.dock .drawer {
+  position: relative; top: auto; bottom: auto; width: 100%; max-width: none;
+  background-color: var(--phi-color-background);
+  background-image: var(--phi-gradient-drawer, var(--phi-gradient-rail-reverse, none));
+  border: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
+  border-bottom: 0;
+  border-radius: var(--phi-radius-xl, 16px) var(--phi-radius-xl, 16px) 0 0;
+  box-shadow: 0 -0.75rem 2rem color-mix(in srgb, var(--phi-color-text-primary) 12%, transparent);
+  animation: slideUp var(--phi-animation-speed, 0.38s) cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  transition: height var(--phi-animation-speed, var(--phi-duration-slow, 0.5s)) var(--phi-ease, cubic-bezier(0.22, 1, 0.36, 1));
+}
+.dock .drawer.bottom.sm { height: 45vh; }
+.dock .drawer.bottom.md { height: 64vh; }
+.dock .drawer.bottom.lg { height: 82vh; }
+.dock .drawer.bottom.xl { height: 92vh; }
+.dock .drawer.bottom.expanded { height: calc(100dvh - var(--phi-layout-header-height, 4.5rem)); }
+.dock .drawer.bottom.folded { height: auto; }
+.headerBar { flex-wrap: nowrap; min-width: 0; > :first-child { flex: 1; min-width: 0; } }
+.handleButton { border: 0; padding: 0; cursor: pointer; }
+.handleButton:hover { background: color-mix(in srgb, var(--phi-color-primary) 55%, transparent); }

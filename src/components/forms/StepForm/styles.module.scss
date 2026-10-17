@@ -1,0 +1,203 @@
+/* One full-screen stepped form. A header and foot span the width; the rail and fields share one grid row so their
+   tops line up. Every inset, gap, radius and surface is a theme token, so density/radius prefs and each app's palette
+   flow straight through. */
+.root {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "head" "body" "foot";
+  gap: var(--phi-space-4) var(--phi-space-5);
+  width: 100%;
+  min-width: 0;
+}
+.root.fill {
+  height: 100%;
+  min-height: 0;
+  /* Header and foot keep their size; the middle row takes the rest and the fields scroll inside it. */
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.withRail {
+  grid-template-columns: minmax(13rem, 18rem) minmax(0, 1fr);
+  grid-template-areas:
+    "head head"
+    "rail body"
+    "foot foot";
+}
+
+.header {
+  grid-area: head;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--phi-space-3);
+  padding-bottom: var(--phi-space-3);
+  border-bottom: 1px solid var(--phi-color-border);
+}
+.formTitle { margin: 0; }
+.counter { flex: none; }
+
+/* ---- Rail: a column of bordered step rows, the active one filled. ---- */
+.rail {
+  grid-area: rail;
+  min-width: 0;
+  border-radius: var(--phi-radius-lg);
+  border: 1px solid var(--phi-color-border);
+  background: var(--phi-gradient-sidebar, var(--phi-color-background-secondary));
+  padding: var(--phi-space-3);
+  align-self: start;
+}
+.root.fill .rail { position: sticky; top: 0; max-height: 100%; overflow: auto; }
+.railInner { min-width: 0; }
+
+.railRow {
+  display: flex;
+  align-items: center;
+  gap: var(--phi-space-3);
+  width: 100%;
+  text-align: start;
+  padding: var(--phi-space-2) var(--phi-space-3);
+  border-radius: var(--phi-radius-md);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--phi-color-text-muted);
+  cursor: pointer;
+  transition: background var(--phi-transition-fast), border-color var(--phi-transition-fast), color var(--phi-transition-fast);
+}
+.railRow:disabled { cursor: default; }
+.railRow:not(:disabled):hover {
+  background: var(--phi-color-background-card);
+  border-color: var(--phi-color-border);
+  color: var(--phi-color-text-secondary);
+}
+.railRow[data-state="active"] {
+  background: color-mix(in srgb, var(--phi-color-primary) 12%, var(--phi-color-background-card));
+  border-color: var(--phi-color-primary);
+  color: var(--phi-color-text-primary);
+}
+.railRow[data-state="complete"] { color: var(--phi-color-text-secondary); }
+
+.railMarker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  flex: none;
+  border-radius: var(--phi-radius-full);
+  border: 1px solid var(--phi-color-border);
+  background: var(--phi-color-background-card);
+  font-size: var(--phi-font-size-sm);
+  line-height: 1;
+}
+.railRow[data-state="active"] .railMarker {
+  border-color: var(--phi-color-primary);
+  color: var(--phi-color-primary);
+  background: var(--phi-color-background-card);
+}
+.railRow[data-state="complete"] .railMarker {
+  border-color: var(--phi-color-primary);
+  background: var(--phi-color-primary);
+  color: var(--phi-color-text-inverse);
+}
+.railText { display: flex; flex-direction: column; min-width: 0; gap: 1px; }
+.railLabel { font-weight: 600; }
+.railHint { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.railRow[data-state="active"] .railLabel { font-weight: 700; }
+
+.aside {
+  margin-top: var(--phi-space-2);
+  padding-top: var(--phi-space-3);
+  border-top: 1px solid var(--phi-color-border);
+}
+
+/* ---- Main ---- */
+.main { grid-area: body; display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+.scroll { min-height: 0; flex: 1 1 auto; }
+.root.fill .scroll { overflow: auto; }
+.panel { min-width: 0; }
+.stepHead { min-width: 0; }
+.stepTitle { margin: 0; }
+
+/* Fields laid across the width: two columns on a wide panel, one when narrow. */
+.fieldGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--phi-space-4);
+}
+
+/* Each field is a bordered sub-group. */
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--phi-space-2);
+  padding: var(--phi-space-4);
+  border-radius: var(--phi-radius-lg);
+  border: 1px solid var(--phi-color-border);
+  background: var(--phi-gradient-card, var(--phi-color-background-card));
+  min-width: 0;
+}
+.group.full { grid-column: 1 / -1; }
+.groupLabel { font-weight: 600; }
+.control > :global(*) { width: 100%; }
+.groupHint { margin-top: calc(-1 * var(--phi-space-1)); }
+
+/* A titled section: a bordered group that holds its own field grid. */
+.section {
+  border-radius: var(--phi-radius-xl);
+  border: 1px solid var(--phi-color-border);
+  background: linear-gradient(180deg, var(--phi-color-background-secondary) 0%, color-mix(in srgb, var(--phi-color-background-secondary) 50%, transparent) 55%, transparent 100%);
+  padding: var(--phi-space-4);
+}
+.sectionHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--phi-space-2);
+  margin-bottom: var(--phi-space-4);
+  padding-bottom: var(--phi-space-2);
+  border-bottom: 1px solid var(--phi-color-border);
+}
+.sectionTitle { margin: 0; }
+
+.review {
+  border-radius: var(--phi-radius-lg);
+  border: 1px solid var(--phi-color-border);
+  background: linear-gradient(180deg, var(--phi-color-background-secondary) 0%, color-mix(in srgb, var(--phi-color-background-secondary) 50%, transparent) 55%, transparent 100%);
+  padding: var(--phi-space-4);
+}
+
+/* ---- Foot: actions span the width, above a hairline. ---- */
+.foot {
+  grid-area: foot;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--phi-space-3);
+  padding-top: var(--phi-space-3);
+  border-top: 1px solid var(--phi-color-border);
+}
+.actionsLeft { min-width: 0; }
+
+/* Narrow: one column, rail becomes a scrolling strip of rows above the fields. */
+@media (max-width: 760px) {
+  .withRail {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "head" "rail" "body" "foot";
+  }
+  .root.fill.withRail { grid-template-rows: auto auto minmax(0, 1fr) auto; }
+  .root.fill .rail { position: static; max-height: none; overflow: visible; }
+  .railInner { flex-direction: row; overflow-x: auto; }
+  .railRow { flex: 0 0 auto; }
+  .railHint { display: none; }
+  .fieldGrid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* The same fold, by the form's own width (data-narrow from a ResizeObserver): its container is its media query. */
+.root[data-narrow].withRail { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "rail" "body" "foot"; }
+.root[data-narrow].fill.withRail { grid-template-rows: auto auto minmax(0, 1fr) auto; }
+.root[data-narrow].fill .rail { position: static; max-height: none; overflow: visible; }
+.root[data-narrow] .railInner { flex-direction: row; overflow-x: auto; }
+.root[data-narrow] .railRow { flex: 0 0 auto; }
+.root[data-narrow] .railHint { display: none; }
+.root[data-narrow] .fieldGrid { grid-template-columns: minmax(0, 1fr); }

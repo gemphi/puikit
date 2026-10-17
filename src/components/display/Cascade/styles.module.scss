@@ -1,0 +1,89 @@
+.cascade { position: relative; isolation: isolate; padding-top: calc(var(--pui-cascade) * var(--pui-cascade-step)); }
+.top { position: relative; z-index: 1; }
+.copy {
+  position: absolute; left: 0; right: 0; bottom: 0; top: calc(var(--pui-cascade) * var(--pui-cascade-step));
+  z-index: 0; pointer-events: none; overflow: hidden; border-radius: var(--phi-radius-lg, 12px);
+  transform-origin: 50% 0;
+  transform: translateY(calc(var(--pui-cascade-k) * var(--pui-cascade-step) * -1)) scale(calc(1 - var(--pui-cascade-k) * 0.06));
+  filter: brightness(calc(1 - var(--pui-cascade-k) * 0.12)) saturate(calc(1 - var(--pui-cascade-k) * 0.1));
+  box-shadow: 0 -1px 0 color-mix(in srgb, var(--phi-color-text-primary) 12%, transparent);
+  transition: transform var(--phi-transition-slow), filter var(--phi-transition-normal);
+}
+.cascade:hover .copy { transform: translateY(calc(var(--pui-cascade-k) * var(--pui-cascade-step) * -1.5)) scale(calc(1 - var(--pui-cascade-k) * 0.05)); }
+@media (prefers-reduced-motion: reduce) { .copy { transition: none; } }
+
+/* ── Pocket: an inset cascade at the bottom, inside the item ─────────────────────────────────────────────
+   Sheets stacked in front of the item's lower edge: the front sheet is widest and lowest, each level up is one step
+   taller-peeking, narrower and a shade darker — the same shrink as the stack above, mirrored — so the picture reads
+   as slipped inside the stack. The wrapper clips to the item's radius; sheets lift a little on hover. */
+.pocket {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  top: calc(var(--pui-cascade, 0) * var(--pui-cascade-step, 0.45rem));
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: var(--phi-radius-lg, 12px);
+}
+.sheet {
+  position: absolute;
+  bottom: 0;
+  left: calc((var(--pui-pocket-k) - 1) * 4.5%);
+  right: calc((var(--pui-pocket-k) - 1) * 4.5%);
+  height: calc(0.4rem + var(--pui-pocket-k) * var(--pui-cascade-step, 0.45rem));
+  z-index: calc(var(--pui-pocket) - var(--pui-pocket-k) + 1);
+  border-radius: var(--phi-radius-lg, 12px) var(--phi-radius-lg, 12px) 0 0;
+  background: color-mix(in srgb, var(--phi-color-background-card, #fff) 80%, transparent);
+  background-image: var(--phi-gradient-child, none);
+  border: 1px solid color-mix(in srgb, var(--phi-color-text-primary) 12%, transparent);
+  border-bottom: 0;
+  box-shadow: 0 -0.4rem 0.9rem -0.5rem rgba(0, 0, 0, 0.4);
+  filter: brightness(calc(1 - (var(--pui-pocket-k) - 1) * 0.07)) saturate(calc(1 - (var(--pui-pocket-k) - 1) * 0.06));
+  transition: transform var(--phi-transition-slow), filter var(--phi-transition-normal);
+}
+.cascade:hover .sheet { transform: translateY(calc((var(--pui-pocket-k) - 1) * -0.18rem)); }
+@media (prefers-reduced-motion: reduce) { .sheet { transition: none; } }
+
+/* The pocket mirrored at the top: sheets hang from the top edge, each level down one step smaller. */
+.capSheet {
+  position: absolute;
+  top: 0;
+  left: calc((var(--pui-pocket-k) - 1) * 4.5%);
+  right: calc((var(--pui-pocket-k) - 1) * 4.5%);
+  height: calc(0.4rem + var(--pui-pocket-k) * var(--pui-cascade-step, 0.45rem));
+  z-index: calc(var(--pui-cap) - var(--pui-pocket-k) + 1);
+  border-radius: 0 0 var(--phi-radius-lg, 12px) var(--phi-radius-lg, 12px);
+  background: color-mix(in srgb, var(--phi-color-background-card, #fff) 80%, transparent);
+  background-image: var(--phi-gradient-child, none);
+  border: 1px solid color-mix(in srgb, var(--phi-color-text-primary) 12%, transparent);
+  border-top: 0;
+  box-shadow: 0 0.4rem 0.9rem -0.5rem rgba(0, 0, 0, 0.4);
+  transition: transform var(--phi-transition-slow), filter var(--phi-transition-normal);
+}
+.cascade:hover .capSheet { transform: translateY(calc((var(--pui-pocket-k) - 1) * 0.18rem)); }
+@media (prefers-reduced-motion: reduce) { .capSheet { transition: none; } }
+
+/* With a tint, the stacks are quiet steps of the card's own colour over its own background: the sheet closest to
+   the centre carries the most colour, and each step outward fades toward transparent, so nothing contrasts — the
+   grids just show the 3D subtly. */
+.cascade[data-tinted] .copy {
+  background: color-mix(in srgb, var(--pui-cascade-tint) 30%, transparent);
+  background-image: none;
+  border-color: color-mix(in srgb, var(--pui-cascade-tint) 25%, transparent);
+}
+.cascade[data-tinted] .sheet {
+  background: color-mix(in srgb, var(--pui-cascade-tint) calc(8% + (var(--pui-pocket) - var(--pui-pocket-k)) * 8%), transparent);
+  background-image: none;
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--pui-cascade-tint) 28%, transparent);
+  box-shadow: none;
+  filter: none;
+}
+.cascade[data-tinted] .capSheet {
+  background: color-mix(in srgb, var(--pui-cascade-tint) calc(8% + (var(--pui-cap) - var(--pui-pocket-k)) * 8%), transparent);
+  background-image: none;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--pui-cascade-tint) 28%, transparent);
+  box-shadow: none;
+}
+

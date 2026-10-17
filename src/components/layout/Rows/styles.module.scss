@@ -1,0 +1,41 @@
+// Rows — only full rows: feature row, complete grid rows, then a slider for the leftovers. Tokens only.
+.rows {
+  --pui-rows-gap: var(--phi-space-3, 0.75rem);
+  --pui-rows-n: var(--pui-rows-cols);
+  display: flex;
+  flex-direction: column;
+  gap: var(--pui-rows-gap);
+  min-width: 0;
+  @media (max-width: 640px) { --pui-rows-n: var(--pui-rows-cols-sm); }
+}
+.cell { min-width: 0; min-height: 0; display: flex; flex-direction: column; > * { flex: 1 1 auto; } }
+.grid { display: grid; grid-template-columns: repeat(var(--pui-rows-n), minmax(0, 1fr)); gap: var(--pui-rows-gap); }
+.fixed .grid { grid-auto-rows: var(--pui-rows-h); }
+.fixed .slider > .cell { height: var(--pui-rows-h); }
+.feature { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: var(--pui-rows-gap); }
+.fixed .feature { height: calc(var(--pui-rows-h) * 2 + var(--pui-rows-gap)); }
+.stack { display: grid; grid-template-rows: 1fr 1fr; gap: var(--pui-rows-gap); min-height: 0; }
+.big { min-height: 0; }
+@media (max-width: 640px) { .feature { grid-template-columns: minmax(0, 1fr); } .fixed .feature { height: auto; } .fixed .big { height: calc(var(--pui-rows-h) * 1.4); } .fixed .stack { grid-template-rows: none; grid-template-columns: 1fr 1fr; height: var(--pui-rows-h); } }
+/* The same, by the grid's own width (a drawer, a side column): its container is its media query. */
+.rows[data-narrow] .feature { grid-template-columns: minmax(0, 1fr); }
+.rows[data-narrow].fixed .feature { height: auto; }
+.rows[data-narrow].fixed .big { height: calc(var(--pui-rows-h) * 1.4); }
+.rows[data-narrow].fixed .stack { grid-template-rows: none; grid-template-columns: 1fr 1fr; height: var(--pui-rows-h); }
+/* Leftovers: one sideways row at the same card width, never a half-empty grid row. */
+.slider {
+  display: flex;
+  gap: var(--pui-rows-gap);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding-top: 1.6rem;   /* room for decks above cards */
+  margin-top: -1.6rem;
+  &::-webkit-scrollbar { display: none; }
+  > .cell {
+    flex: 0 0 var(--pui-rows-item-w, calc((100% - var(--pui-rows-gap) * (var(--pui-rows-n) - 1)) / var(--pui-rows-n)));
+    scroll-snap-align: start;
+  }
+}

@@ -46,3 +46,8 @@
     gap: var(--stack-gap-xl, var(--stack-gap-lg, var(--stack-gap-md, var(--stack-gap-sm, var(--stack-gap, 0.5rem)))));
   }
 }
+
+/* A card in a column is as tall as its content: it never takes the column's height (height: 100% is for grid and row
+   cells) and never shrinks under its content (cards clip what overflows). */
+/* A drawer is a Card too, but it is sized by its overlay (fixed to the window), never by its content. */
+.stack[data-dir^='column'] > :global(.pui-card):not(:global(.pui-drawer)) { height: auto; flex-shrink: 0; }

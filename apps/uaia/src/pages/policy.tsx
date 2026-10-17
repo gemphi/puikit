@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tag, Text, Title } from '@pui/components';
+import { Box, Tag, Text, Title } from '@pui/components';
 import { Hero, Block, AutoGrid, Glass, Note } from '../components/kit';
 import { EMAILS } from '../lib/routes';
 import s from '../styles/uaia.module.scss';
@@ -20,7 +20,7 @@ export const PolicyPage: React.FC = () => (
     <Hero
       pattern="policy"
       label="Policy Topics"
-      title={<>The agenda the frontier era <span className={s.gradText}>demands.</span></>}
+      title={<>The agenda the frontier era <Box as="span" className={s.gradText}>demands.</Box></>}
       sub="These are the policy tracks UAIA works, the questions that the global AI-safety community, from frontier labs to philanthropies to international bodies, has pushed to the front of the agenda. On each, UAIA publishes its own position and the strongest opposing view."
     />
 

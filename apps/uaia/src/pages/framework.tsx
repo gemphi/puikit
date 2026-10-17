@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tag, Text, Title } from '@pui/components';
+import { Box, Tag, Text, Title } from '@pui/components';
 import { Hero, Block, Glass, AutoGrid, Note } from '../components/kit';
 import { EAESpiral } from '../components/diagrams';
 import { EMAILS } from '../lib/routes';
@@ -26,28 +26,28 @@ export const FrameworkPage: React.FC = () => (
     <Hero
       pattern="framework"
       label="Regulatory Framework"
-      title={<>The Model Market Authorization — <span className={s.gradText}>five gates from lab to market.</span></>}
+      title={<>The Model Market Authorization — <Box as="span" className={s.gradText}>five gates from lab to market.</Box></>}
       sub="The MMA is UAIA's core instrument: a staged pipeline every in-scope model passes before and during deployment. Proportionate: obligations scale with risk tier. Reproducible: every gate emits a machine-readable evidence bundle. Continuous: authorization is a state, not an event."
     />
 
     <Block label="Pipeline" title="The five gates.">
-      <div style={{ marginTop: 20, display: 'grid', gap: 12 }}>
+      <Box style={{ marginTop: 20, display: 'grid', gap: 12 }}>
         {GATES.map((g) => (
           <Glass key={g.n}>
-            <div style={{ display: 'flex', gap: 18, alignItems: 'flex-start' }}>
-              <span className={s.mono} style={{
+            <Box style={{ display: 'flex', gap: 18, alignItems: 'flex-start' }}>
+              <Box as="span" className={s.mono} style={{
                 display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                minWidth: 42, height: 42, borderRadius: 12, border: '1px solid var(--uaia-line)',
+                minWidth: 42, height: 42, borderRadius: 'var(--phi-radius-xl)', border: '1px solid var(--uaia-line)',
                 color: 'var(--phi-color-primary)', fontWeight: 700,
-              }}>{g.n}</span>
-              <div>
+              }}>{g.n}</Box>
+              <Box>
                 <Title level={5} className={s.mono} style={{ letterSpacing: '0.16em' }}>{g.t}</Title>
                 <Text size="sm" intent="secondary" style={{ lineHeight: 1.65 }}>{g.b}</Text>
-              </div>
-            </div>
+              </Box>
+            </Box>
           </Glass>
         ))}
-      </div>
+      </Box>
     </Block>
 
     <Block

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Stack, Title, Text, Divider, Callout } from '@pui/components';
+import { Box, Callout, Divider, Stack, Text, Title } from '@pui/components';
 import { PageShell } from '../layouts/PageShell';
 import { StoreExample } from '../examples/StoreExample';
 import { ServiceExample } from '../examples/ServiceExample';
@@ -15,32 +15,32 @@ export const DataEnginePage: React.FC = () => {
       description="Architectural foundation of PUI: Unidirectional reactive state, Dependency Injection service containers, SWR query caching, and real-time streaming."
     >
       <Stack direction="column" gap={4}>
-        <div>
+        <Box>
           <Title level={4}>1. Reactive Observable Micro-Store</Title>
           <Text variant="muted">
-            Ultra-fast state slices with fine-grained selector subscriptions via <code>useSyncExternalStore</code> and snapshot history.
+            Ultra-fast state slices with fine-grained selector subscriptions via <Box as="code">useSyncExternalStore</Box> and snapshot history.
           </Text>
-        </div>
+        </Box>
         <StoreExample />
 
         <Divider />
 
-        <div>
+        <Box>
           <Title level={4}>2. Dependency Injection Service Container</Title>
           <Text variant="muted">
             Inversion-of-Control service architecture with typed event bus and lifecycle management.
           </Text>
-        </div>
+        </Box>
         <ServiceExample />
 
         <Divider />
 
-        <div>
+        <Box>
           <Title level={4}>3. Real-Time Token & Telemetry Stream Engine</Title>
           <Text variant="muted">
             Live SSE and NDJSON chunk streaming for AI agent telemetry and real-time operations.
           </Text>
-        </div>
+        </Box>
         <StreamExample />
       </Stack>
     </PageShell>

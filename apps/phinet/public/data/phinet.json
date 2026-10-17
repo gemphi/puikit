@@ -1,0 +1,1124 @@
+{
+  "app": "phinet",
+  "nav": [
+    {
+      "id": "home",
+      "label": "Home",
+      "icon": "home"
+    },
+    {
+      "id": "train",
+      "label": "Train",
+      "icon": "chart",
+      "items": [
+        {
+          "id": "network",
+          "label": "Network",
+          "icon": "network",
+          "image": "phiegg:worlds/w_marquee.png",
+          "pull": {
+            "n": 5,
+            "kind": "phiNode",
+            "label": "name",
+            "sub": "status",
+            "sort": "cpu",
+            "art": [
+              "phiegg:worlds/w_runway_isle.png",
+              "phiegg:worlds/w_pearl_ridge.png",
+              "phiegg:worlds/w_verdigris.png",
+              "phiegg:worlds/w_starling.png",
+              "phiegg:worlds/gen/w_gx_briar_row.webp",
+              "phiegg:worlds/gen/w_epac.webp",
+              "phiegg:worlds/gen/w_gx_dune_row.webp",
+              "phiegg:worlds/gen/w_gx_cordelia_mill.webp",
+              "phiegg:worlds/gen/w_gx_linden_maison.webp",
+              "phiegg:worlds/gen/w_gx_foxglove_mill.webp",
+              "phiegg:worlds/w_moonlace.png",
+              "phiegg:worlds/w_obsidian_bay.png"
+            ]
+          }
+        },
+        {
+          "id": "runs",
+          "label": "Runs",
+          "icon": "chart",
+          "image": "phiegg:worlds/w_marquee.png",
+          "pull": {
+            "n": 5,
+            "kind": "phiLog",
+            "label": "message",
+            "sub": "level",
+            "sort": "timestamp",
+            "art": [
+              "phiegg:worlds/gen/w_gx_delphine_collective.webp",
+              "phiegg:worlds/gen/w_gx_calla_salon.webp",
+              "phiegg:worlds/gen/w_gx_amber_salon.webp",
+              "phiegg:worlds/gen/w_bp.webp",
+              "phiegg:worlds/w_tulle_valley.png",
+              "phiegg:worlds/w_satin_reef.png",
+              "phiegg:worlds/w_prism_port.png",
+              "phiegg:worlds/w_opalia.png",
+              "phiegg:worlds/w_bijou.png",
+              "phiegg:worlds/gen/w_verbum.webp",
+              "phiegg:worlds/gen/w_ombre.webp",
+              "phiegg:worlds/gen/w_wand.webp"
+            ]
+          }
+        },
+        {
+          "id": "modules",
+          "label": "Modules",
+          "icon": "box",
+          "image": "phiegg:worlds/w_rosegold.png",
+          "pull": {
+            "n": 5,
+            "kind": "phiEndpoint",
+            "label": "path",
+            "sub": "method",
+            "sort": "latency",
+            "art": [
+              "phiegg:worlds/gen/w_gx_dune_salon.webp",
+              "phiegg:worlds/gen/w_gx_garnet_guild.webp",
+              "phiegg:worlds/gen/w_gx_linden_row.webp",
+              "phiegg:worlds/gen/w_gx_quill_house.webp",
+              "phiegg:worlds/gen/w_gx_vesper_atelier.webp",
+              "phiegg:worlds/gen/w_naimia.webp",
+              "phiegg:worlds/gen/w_velvetlip.webp",
+              "phiegg:worlds/w_atelier_nine.png",
+              "phiegg:worlds/w_oasis_nine.png",
+              "phiegg:worlds/w_petal_park.png",
+              "phiegg:worlds/w_tulle_valley.png",
+              "phiegg:worlds/w_satin_reef.png"
+            ]
+          }
+        },
+        {
+          "id": "cli",
+          "label": "Terminal",
+          "icon": "terminal",
+          "image": "phiegg:worlds/gen/w_gx_calla_mill.webp"
+        }
+      ]
+    },
+    {
+      "id": "learn",
+      "label": "Learn",
+      "icon": "compass",
+      "items": [
+        {
+          "id": "platform",
+          "label": "Platform",
+          "icon": "cpu",
+          "image": "phiegg:worlds/w_pearl_ridge.png"
+        },
+        {
+          "id": "news",
+          "label": "News",
+          "icon": "chat",
+          "image": "phiegg:worlds/gen/w_gx_amber_parlour.webp"
+        },
+        {
+          "id": "about",
+          "label": "About",
+          "icon": "compass",
+          "image": "phiegg:worlds/gen/w_gx_saffron_mill.webp"
+        },
+        {
+          "id": "faq",
+          "label": "FAQ",
+          "icon": "vote",
+          "image": "phiegg:worlds/gen/w_deer.webp"
+        },
+        {
+          "id": "docs",
+          "label": "Docs",
+          "icon": "file",
+          "image": "phiegg:worlds/w_pearl_ridge.png"
+        }
+      ]
+    }
+  ],
+  "views": {
+    "runs": {
+      "title": "Training runs",
+      "sub": "Train and fine-tune Phiace models.",
+      "blocks": [
+        {
+          "kind": "stats",
+          "title": "",
+          "items": [
+            {
+              "label": "Running",
+              "value": "2",
+              "sub": ""
+            },
+            {
+              "label": "Queued",
+              "value": "3",
+              "sub": ""
+            },
+            {
+              "label": "Finished this week",
+              "value": "11",
+              "sub": ""
+            }
+          ]
+        },
+        {
+          "kind": "table",
+          "title": "Recent",
+          "cols": [
+            "Run",
+            "Model",
+            "Status"
+          ],
+          "rows": [
+            [
+              "tune-nightfall-07",
+              "phiano",
+              "Training"
+            ],
+            [
+              "persona-voice-03",
+              "phiano",
+              "Evaluating"
+            ],
+            [
+              "fields-12",
+              "phifno",
+              "Finished"
+            ]
+          ]
+        }
+      ]
+    },
+    "modules": {
+      "title": "Modules",
+      "sub": "",
+      "blocks": [
+        {
+          "kind": "grid",
+          "title": "",
+          "items": [
+            {
+              "title": "phical",
+              "sub": "Phase calculus",
+              "body": "Layers and operators.",
+              "action": "Docs",
+              "done": "Open",
+              "image": "phiegg:worlds/gen/w_gx_thistle_salon.webp",
+              "genImage": true
+            },
+            {
+              "title": "phiecs",
+              "sub": "ECS",
+              "body": "Data and training state.",
+              "action": "Docs",
+              "done": "Open",
+              "image": "phiegg:worlds/w_verdigris.png",
+              "genImage": true
+            },
+            {
+              "title": "phique",
+              "sub": "Queues",
+              "body": "Datasets and jobs.",
+              "action": "Docs",
+              "done": "Open",
+              "image": "phiegg:worlds/w_saffron_sands.png",
+              "genImage": true
+            },
+            {
+              "title": "phifno",
+              "sub": "Neural operators",
+              "body": "Fields and physics.",
+              "action": "Docs",
+              "done": "Open",
+              "image": "phiegg:worlds/w_carousel.png",
+              "genImage": true
+            },
+            {
+              "title": "phimatch",
+              "sub": "module · social",
+              "body": "Pairs members with hosts and clubs.",
+              "action": "Docs",
+              "done": "Open",
+              "gen": true,
+              "image": "phiegg:worlds/gen/w_gx_petal_works.webp"
+            },
+            {
+              "title": "phicast",
+              "sub": "module · forecast",
+              "body": "Predicts demand for events and drops.",
+              "action": "Docs",
+              "done": "Open",
+              "gen": true,
+              "image": "phiegg:worlds/gen/w_gx_marigold_society.webp"
+            },
+            {
+              "title": "phiflow",
+              "sub": "module · crowd",
+              "body": "Simulates crowds through a venue.",
+              "action": "Docs",
+              "done": "Open",
+              "gen": true,
+              "image": "phiegg:worlds/gen/w_gx_dune_salon.webp"
+            },
+            {
+              "title": "phiprice",
+              "sub": "module · market",
+              "body": "Suggests floor prices for a pool.",
+              "action": "Docs",
+              "done": "Open",
+              "gen": true,
+              "image": "phiegg:worlds/gen/w_gx_cobalt_studio.webp"
+            }
+          ]
+        }
+      ]
+    },
+    "cli": {
+      "title": "Terminal",
+      "sub": "",
+      "blocks": [
+        {
+          "kind": "terminal",
+          "title": "",
+          "lines": [],
+          "commands": {
+            "phinet train --model phiano --data looks/": [
+              "epoch 1/3 · loss 2.41",
+              "epoch 2/3 · loss 1.87",
+              "epoch 3/3 · loss 1.62 · saved"
+            ],
+            "phinet runs": [
+              "tune-nightfall-07   training",
+              "fields-12           finished"
+            ]
+          }
+        }
+      ]
+    },
+    "docs": {
+      "title": "phinet docs",
+      "sub": "Phinet trains and tunes Phiace models with phical, phiecs, phique and phifno.",
+      "blocks": [
+        {
+          "kind": "grid",
+          "title": "",
+          "items": [
+            {
+              "title": "Overview",
+              "sub": "Training and fine-tuning",
+              "body": "Phinet trains and tunes Phiace models with phical, phiecs, phique and phifno."
+            },
+            {
+              "title": "Getting started",
+              "sub": "First steps",
+              "body": "phinet train --model phiano --data looks/"
+            },
+            {
+              "title": "Phisum and SUM",
+              "sub": "How it is funded",
+              "body": "Cohort teams get Phinet compute from Phisum; runs are logged to the club.",
+              "action": "Open Phisum",
+              "done": "Opened",
+              "app": "phisum"
+            }
+          ]
+        },
+        {
+          "kind": "table",
+          "title": "PFT functions in phinet",
+          "cols": [
+            "Function",
+            "What it does here"
+          ],
+          "rows": [
+            [
+              "create",
+              "publish a tuned model under a club"
+            ]
+          ]
+        },
+        {
+          "kind": "grid",
+          "title": "Read more",
+          "items": [
+            {
+              "title": "PFTs 101",
+              "sub": "Profile Fungible Tokens",
+              "body": "What PFTs are, how functions work, how they link to Phisum.",
+              "action": "Read",
+              "done": "Open",
+              "href": "../Phiegg Papers.dc.html"
+            }
+          ]
+        }
+      ]
+    },
+    "home": {
+      "title": "",
+      "sub": "",
+      "blocks": [
+        {
+          "kind": "hero",
+          "heading": "Phinet",
+          "subtitle": "Phase operators as a runnable network.",
+          "body": "Phinet is the operator network from the papers — run experiments, compose modules and drive it from the command line.",
+          "actions": [
+            {
+              "label": "Open Phinet",
+              "view": "runs"
+            },
+            {
+              "label": "Read docs",
+              "view": "docs"
+            }
+          ],
+          "image": "phiegg:worlds/gen/w_gx_delphine_house.webp",
+          "genImage": true
+        },
+        {
+          "kind": "stats",
+          "title": "At a glance",
+          "gen": true,
+          "items": [
+            {
+              "label": "Nodes",
+              "value": "",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "phiNode"
+              }
+            },
+            {
+              "label": "Endpoints",
+              "value": "",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "phiEndpoint"
+              }
+            },
+            {
+              "label": "Log lines",
+              "value": "",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "phiLog"
+              }
+            },
+            {
+              "label": "Pools",
+              "value": "",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "pool"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "grid",
+          "title": "Nodes",
+          "sub": "The busiest nodes first.",
+          "pull": {
+            "kind": "phiNode",
+            "n": 8,
+            "label": "name",
+            "sub": "status",
+            "sort": "cpu",
+            "fields": [
+              "cpu",
+              "memory",
+              "uptime",
+              "status"
+            ],
+            "art": [
+              "phiegg:worlds/w_runway_isle.png",
+              "phiegg:worlds/w_pearl_ridge.png",
+              "phiegg:worlds/w_verdigris.png",
+              "phiegg:worlds/w_starling.png",
+              "phiegg:worlds/gen/w_gx_briar_row.webp",
+              "phiegg:worlds/gen/w_epac.webp",
+              "phiegg:worlds/gen/w_gx_dune_row.webp",
+              "phiegg:worlds/gen/w_gx_cordelia_mill.webp",
+              "phiegg:worlds/gen/w_gx_linden_maison.webp",
+              "phiegg:worlds/gen/w_gx_foxglove_mill.webp",
+              "phiegg:worlds/w_moonlace.png",
+              "phiegg:worlds/w_obsidian_bay.png"
+            ]
+          },
+          "gen": true
+        },
+        {
+          "kind": "grid",
+          "title": "Pools",
+          "sub": "The portfolio: every pool in Phiora, by supply.",
+          "pull": {
+            "kind": "pool",
+            "sort": "supply",
+            "label": "name",
+            "sub": "category",
+            "body": "desc",
+            "join": [
+              "worldId"
+            ],
+            "image": "world.image",
+            "fields": [
+              "supply",
+              "floorUsd",
+              "royaltyPct",
+              "drop"
+            ],
+            "open": "phiegg",
+            "n": 8,
+            "art": [
+              "phiegg:worlds/gen/w_gx_amber_parlour.webp",
+              "phiegg:worlds/gen/w_gx_calla_mill.webp",
+              "phiegg:worlds/w_topaz_terrace.png",
+              "phiegg:worlds/gen/w_bozo.webp",
+              "phiegg:worlds/gen/w_gx_garnet_society.webp",
+              "phiegg:worlds/gen/w_gx_lumen_maison.webp",
+              "phiegg:worlds/gen/w_gx_delphine_atelier.webp",
+              "phiegg:worlds/gen/w_gx_ember_works.webp",
+              "phiegg:worlds/w_gilded_grove.png",
+              "phiegg:worlds/w_kaleido.png",
+              "phiegg:worlds/gen/w_gx_delphine_collective.webp",
+              "phiegg:worlds/gen/w_gx_calla_salon.webp"
+            ]
+          },
+          "gen": true
+        },
+        {
+          "kind": "grid",
+          "title": "Quests",
+          "sub": "Paying out now, biggest rewards first.",
+          "pull": {
+            "kind": "quest",
+            "sort": "reward",
+            "label": "title",
+            "sub": "kind",
+            "join": [
+              "worldId"
+            ],
+            "image": "world.image",
+            "fields": [
+              "reward",
+              "rewardCoin",
+              "entrants",
+              "endsAt"
+            ],
+            "open": "phiegg",
+            "n": 8,
+            "art": [
+              "phiegg:worlds/w_cashmere_peaks.png",
+              "phiegg:worlds/w_ember_coast.png",
+              "phiegg:worlds/w_ivory_tower.png",
+              "phiegg:worlds/w_midnight_mall.png",
+              "phiegg:worlds/w_oasis_nine.png",
+              "phiegg:worlds/w_petal_park.png",
+              "phiegg:worlds/w_sable.png",
+              "phiegg:worlds/w_swanlake.png",
+              "phiegg:worlds/w_zephyr.png",
+              "phiegg:worlds/gen/w_gx_amber_atelier.webp",
+              "phiegg:worlds/gen/w_gx_calla_society.webp",
+              "phiegg:worlds/gen/w_gx_azalea_row.webp"
+            ]
+          },
+          "gen": true
+        },
+        {
+          "kind": "grid",
+          "title": "Coming up",
+          "sub": "Events and drops with the most people going.",
+          "pull": {
+            "kind": "event",
+            "sort": "rsvps",
+            "label": "title",
+            "sub": "kind",
+            "join": [
+              "worldId"
+            ],
+            "image": "world.image",
+            "fields": [
+              "startsAt",
+              "rsvps"
+            ],
+            "open": "phiegg",
+            "n": 4,
+            "art": [
+              "phiegg:worlds/gen/w_gx_wren_house.webp",
+              "phiegg:worlds/gen/w_ohhc.webp",
+              "phiegg:worlds/gen/w_gx_lumen_works.webp",
+              "phiegg:worlds/gen/w_gx_rosewood_mill.webp",
+              "phiegg:worlds/w_couture_coast.png",
+              "phiegg:worlds/w_gossamer.png",
+              "phiegg:worlds/gen/w_verbum.webp",
+              "phiegg:worlds/w_bijou.png",
+              "phiegg:worlds/w_organza.png",
+              "phiegg:worlds/w_ribbon_rise.png",
+              "phiegg:worlds/gen/w_venus.webp",
+              "phiegg:worlds/gen/w_nova.webp"
+            ]
+          },
+          "gen": true
+        },
+        {
+          "kind": "grid",
+          "title": "Explore",
+          "from": "menus",
+          "gen": true
+        },
+        {
+          "kind": "news",
+          "title": "Latest",
+          "from": "page",
+          "page": "news",
+          "limit": 4,
+          "gen": true
+        }
+      ]
+    },
+    "news": {
+      "title": "News",
+      "sub": "Latest from Phinet.",
+      "blocks": [
+        {
+          "kind": "news",
+          "items": [
+            {
+              "tag": "Runs",
+              "title": "Phase runs now stream results",
+              "body": "See each step of a run as it finishes instead of waiting for the end.",
+              "gen": true,
+              "date": "Oct 12, 2026",
+              "image": "phiegg:worlds/gen/w_gx_calla_mill.webp"
+            },
+            {
+              "tag": "Modules",
+              "title": "Phical joins the module set",
+              "body": "Phical adds calendar operators, so runs can plan events across clubs.",
+              "gen": true,
+              "date": "Oct 8, 2026",
+              "image": "phiegg:worlds/w_kaleido.png"
+            },
+            {
+              "tag": "Stories",
+              "title": "A club that trained its own matchmaker",
+              "body": "The Lantern Row club trained a module that pairs new members with hosts. Retention doubled.",
+              "gen": true,
+              "date": "Oct 4, 2026",
+              "image": "phiegg:worlds/gen/w_gx_moss_row.webp"
+            },
+            {
+              "date": "Oct 1, 2026",
+              "tag": "Runs",
+              "title": "Longer runs, live metrics",
+              "body": "Run dashboards now stream loss and throughput as they train.",
+              "image": "phiegg:worlds/gen/w_wondrous.webp",
+              "genImage": true
+            },
+            {
+              "tag": "Network",
+              "title": "Members can share idle compute",
+              "body": "Turn on sharing and earn SUM for every run your machine helps with.",
+              "gen": true,
+              "date": "Sep 30, 2026",
+              "image": "phiegg:worlds/gen/w_gx_fable_row.webp"
+            },
+            {
+              "tag": "CLI",
+              "title": "phinet run gets a dry mode",
+              "body": "Preview what a run will do and what it will cost before you start it.",
+              "gen": true,
+              "date": "Sep 26, 2026",
+              "image": "phiegg:worlds/w_prism_port.png"
+            },
+            {
+              "tag": "Modules",
+              "title": "Phiecs adds world physics",
+              "body": "Simulate crowds and rides in a world before you build them.",
+              "gen": true,
+              "date": "Sep 22, 2026",
+              "image": "phiegg:worlds/w_lumen_gardens.png"
+            },
+            {
+              "tag": "Stories",
+              "title": "Forecasting a sell out",
+              "body": "A host used a ten minute run to predict ticket demand within three percent.",
+              "gen": true,
+              "date": "Sep 18, 2026",
+              "image": "phiegg:worlds/gen/w_gx_calla_atelier.webp"
+            },
+            {
+              "date": "Sep 16, 2026",
+              "tag": "Modules",
+              "title": "Composable operators",
+              "body": "Snap operator modules together without editing the core.",
+              "image": "phiegg:worlds/gen/w_wondrous.webp",
+              "genImage": true
+            },
+            {
+              "tag": "Runs",
+              "title": "Runs can be scheduled",
+              "body": "Set a run to repeat every day or every week and get the results in your inbox.",
+              "gen": true,
+              "date": "Sep 14, 2026",
+              "image": "phiegg:worlds/gen/w_gx_amber_parlour.webp"
+            },
+            {
+              "tag": "Network",
+              "title": "New node regions",
+              "body": "Nodes in four more regions cut wait times by a third.",
+              "gen": true,
+              "date": "Sep 10, 2026",
+              "image": "phiegg:worlds/w_atelier_nine.png"
+            },
+            {
+              "date": "Sep 3, 2026",
+              "tag": "Paper",
+              "title": "Phase operators, v2",
+              "body": "The second paper adds the agentic operator set.",
+              "image": "phiegg:worlds/w_ivory_tower.png",
+              "genImage": true
+            }
+          ]
+        }
+      ]
+    },
+    "about": {
+      "title": "About Phinet",
+      "sub": "",
+      "blocks": [
+        {
+          "kind": "prose",
+          "lead": "Phinet turns the phase-operator research into something you can run and compose.",
+          "sections": [
+            {
+              "title": "Runs",
+              "body": "Launch, watch and compare runs with live metrics."
+            },
+            {
+              "title": "Modules",
+              "body": "Operators are modules you can compose into new networks."
+            },
+            {
+              "title": "CLI",
+              "body": "Everything the UI does is available from the command line."
+            }
+          ]
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ",
+      "sub": "Common questions.",
+      "blocks": [
+        {
+          "kind": "faq",
+          "items": [
+            {
+              "q": "What is a phase operator?",
+              "a": "The core unit of the architecture — see the papers linked in Docs."
+            },
+            {
+              "q": "Can I compose my own?",
+              "a": "Yes, from the Modules page or the CLI."
+            },
+            {
+              "q": "How does it relate to phiano?",
+              "a": "phiano is a model built on this network."
+            },
+            {
+              "q": "Do I need a big machine?",
+              "a": "No. Small runs work on a laptop and large ones use shared nodes.",
+              "gen": true
+            },
+            {
+              "q": "What does a run cost?",
+              "a": "The CLI shows the estimate before you start. Most small runs cost under 1 SUM.",
+              "gen": true
+            },
+            {
+              "q": "Can I keep my runs private?",
+              "a": "Yes. Private runs only use your own machine.",
+              "gen": true
+            },
+            {
+              "q": "How do I share compute?",
+              "a": "Turn on sharing in Network. You can set hours and limits.",
+              "gen": true
+            },
+            {
+              "q": "Can modules call each other?",
+              "a": "Yes. Composition is the point: chain modules in one run.",
+              "gen": true
+            }
+          ]
+        }
+      ]
+    },
+    "platform": {
+      "title": "Platform",
+      "sub": "PhiCal on the Phient platform: circuits, semantic queries and training runs.",
+      "blocks": [
+        {
+          "kind": "agent",
+          "agent": "phical",
+          "intro": "List and create circuits, query the semantic space, start a training run (an approval-gated morphism).",
+          "presets": [
+            {
+              "verb": "list_circuits",
+              "label": "Circuits",
+              "params": {}
+            },
+            {
+              "verb": "create_circuit",
+              "label": "New circuit",
+              "params": {
+                "name": "bell",
+                "num_qubits": 2
+              }
+            },
+            {
+              "verb": "query",
+              "label": "Query",
+              "params": {
+                "text": "flying cars over Wondrous",
+                "top_k": 3
+              }
+            },
+            {
+              "verb": "train_model",
+              "label": "Train",
+              "params": {
+                "model_name": "phinet_small",
+                "epochs": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "network": {
+      "title": "Network",
+      "sub": "Nodes, endpoints, certs, DNS, firewall and logs for the whole network.",
+      "blocks": [
+        {
+          "kind": "stats",
+          "title": "",
+          "items": [
+            {
+              "label": "Nodes",
+              "value": "64",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "phiNode"
+              }
+            },
+            {
+              "label": "Endpoints",
+              "value": "64",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "phiEndpoint"
+              }
+            },
+            {
+              "label": "Certs",
+              "value": "64",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "phiCert"
+              }
+            },
+            {
+              "label": "Log lines",
+              "value": "64",
+              "sub": "Live from Phiora",
+              "count": {
+                "kind": "phiLog"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "table",
+          "title": "Nodes",
+          "cols": [
+            "Name",
+            "Cpu",
+            "Memory",
+            "Status",
+            "Uptime"
+          ],
+          "pull": {
+            "kind": "phiNode",
+            "n": 10,
+            "sort": "cpu",
+            "fields": [
+              "name",
+              "cpu",
+              "memory",
+              "status",
+              "uptime"
+            ]
+          }
+        },
+        {
+          "kind": "table",
+          "title": "Endpoints",
+          "cols": [
+            "Path",
+            "Method",
+            "Status",
+            "Latency"
+          ],
+          "pull": {
+            "kind": "phiEndpoint",
+            "n": 10,
+            "sort": "latency",
+            "fields": [
+              "path",
+              "method",
+              "status",
+              "latency"
+            ]
+          }
+        },
+        {
+          "kind": "table",
+          "title": "Certs",
+          "cols": [
+            "Domain",
+            "Issuer",
+            "Status",
+            "Expires"
+          ],
+          "pull": {
+            "kind": "phiCert",
+            "n": 8,
+            "fields": [
+              "domain",
+              "issuer",
+              "status",
+              "expires"
+            ]
+          }
+        },
+        {
+          "kind": "table",
+          "title": "DNS",
+          "cols": [
+            "Record",
+            "Type",
+            "Value",
+            "Ttl"
+          ],
+          "pull": {
+            "kind": "phiDns",
+            "n": 8,
+            "fields": [
+              "record",
+              "type",
+              "value",
+              "ttl"
+            ]
+          }
+        },
+        {
+          "kind": "table",
+          "title": "Firewall",
+          "cols": [
+            "Rule",
+            "Action",
+            "Source",
+            "Hits"
+          ],
+          "pull": {
+            "kind": "phiFirewall",
+            "n": 8,
+            "sort": "hits",
+            "fields": [
+              "rule",
+              "action",
+              "source",
+              "hits"
+            ]
+          }
+        },
+        {
+          "kind": "table",
+          "title": "Logs",
+          "cols": [
+            "Timestamp",
+            "Level",
+            "Service",
+            "Message"
+          ],
+          "pull": {
+            "kind": "phiLog",
+            "n": 8,
+            "sort": "timestamp",
+            "fields": [
+              "timestamp",
+              "level",
+              "service",
+              "message"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "profile": {
+    "sections": [
+      {
+        "title": "Your projects",
+        "kind": "phisumProject",
+        "fields": [
+          "name",
+          "vertical",
+          "status",
+          "funding_ask",
+          "submittedAt"
+        ],
+        "empty": "No projects yet.",
+        "action": {
+          "label": "Submit a project",
+          "view": "apply",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Your rounds",
+        "kind": "phisumFunding",
+        "fields": [
+          "name",
+          "amount",
+          "coin",
+          "closesAt",
+          "status"
+        ],
+        "empty": "No rounds yet.",
+        "action": {
+          "label": "Open a round",
+          "view": "open-round",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Your pledges",
+        "kind": "phisumPledge",
+        "fields": [
+          "name",
+          "amount",
+          "coin",
+          "status",
+          "submittedAt"
+        ],
+        "empty": "No pledges yet.",
+        "action": {
+          "label": "Back a round",
+          "view": "back-round",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Your pool stakes",
+        "kind": "phisumPoolStake",
+        "fields": [
+          "name",
+          "amount",
+          "coin",
+          "lock",
+          "status"
+        ],
+        "empty": "No stakes yet.",
+        "action": {
+          "label": "Back a pool",
+          "view": "back-pool",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Grants you asked for",
+        "kind": "phisumGrant",
+        "fields": [
+          "name",
+          "amount",
+          "status",
+          "deadline"
+        ],
+        "empty": "No grant requests yet.",
+        "action": {
+          "label": "Request a grant",
+          "view": "grant",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Milestones you reported",
+        "kind": "phisumMilestone",
+        "fields": [
+          "name",
+          "status",
+          "proof",
+          "submittedAt"
+        ],
+        "empty": "No milestone reports yet.",
+        "action": {
+          "label": "Report a milestone",
+          "view": "milestone",
+          "app": "phisum"
+        }
+      },
+      {
+        "title": "Backer profile",
+        "kind": "phisumBacker",
+        "fields": [
+          "name",
+          "type",
+          "ticket",
+          "focus"
+        ],
+        "empty": "Not a backer yet.",
+        "action": {
+          "label": "Become a backer",
+          "view": "backer",
+          "app": "phisum"
+        }
+      }
+    ],
+    "totals": [
+      {
+        "label": "Pledged",
+        "kind": "phisumPledge",
+        "sum": "amount",
+        "sub": "Across your pledges"
+      },
+      {
+        "label": "Staked in pools",
+        "kind": "phisumPoolStake",
+        "sum": "amount",
+        "sub": "Locked in the portfolio"
+      },
+      {
+        "label": "Raised for your rounds",
+        "kind": "phisumPledge",
+        "sum": "amount",
+        "via": {
+          "kind": "phisumFunding",
+          "field": "fundingId"
+        },
+        "sub": "Pledged by backers"
+      },
+      {
+        "label": "Grants asked",
+        "kind": "phisumGrant",
+        "sum": "amount",
+        "sub": "SUM, waiting on Phidao"
+      }
+    ]
+  }
+}

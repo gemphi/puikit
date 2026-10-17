@@ -66,13 +66,13 @@ export const ServiceExample: React.FC = () => {
             <Terminal size={14} /> Service Event Stream ({events.length} received):
           </Box>
           {events.length === 0 ? (
-            <span style={{ color: '#64748b' }}>No events emitted yet. Click a button above.</span>
+            <Box as="span" style={{ color: '#64748b' }}>No events emitted yet. Click a button above.</Box>
           ) : (
             events.map((ev, i) => (
               <Box key={i} marginBottom={1}>
-                <span style={{ color: '#a855f7' }}>[{ev.timestamp.slice(11, 19)}]</span>{' '}
-                <span style={{ color: '#22c55e', fontWeight: 600 }}>{ev.event}</span>{' '}
-                <span style={{ color: '#94a3b8' }}>{JSON.stringify(ev.payload)}</span>
+                <Box as="span" style={{ color: '#a855f7' }}>[{ev.timestamp.slice(11, 19)}]</Box>{' '}
+                <Box as="span" style={{ color: '#22c55e', fontWeight: 600 }}>{ev.event}</Box>{' '}
+                <Box as="span" style={{ color: '#94a3b8' }}>{JSON.stringify(ev.payload)}</Box>
               </Box>
             ))
           )}

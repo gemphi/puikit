@@ -35,7 +35,9 @@
 }
 
 .solid {
-  background: var(--phi-color-background);
+  background-color: var(--phi-color-background);
+  /* Theme styles that define a navbar gradient (Organic, Apple, Gradient…) paint it here. */
+  background-image: var(--phi-gradient-navbar, none);
   box-shadow: var(--phi-shadow-sm);
 }
 

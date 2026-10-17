@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Title } from '@pui/components';
+import { Box, Text, Title } from '@pui/components';
 import { Hero, Block, Glass, AutoGrid } from '../components/kit';
 import s from '../styles/uaia.module.scss';
 
@@ -15,7 +15,7 @@ export const ResearchPage: React.FC = () => (
     <Hero
       pattern="research"
       label="Research & Publications"
-      title={<>Our evaluations are only as good <span className={s.gradText}>as our science.</span></>}
+      title={<>Our evaluations are only as good <Box as="span" className={s.gradText}>as our science.</Box></>}
     />
 
     <Block label="Tracks" title="Three publication tracks.">
@@ -36,15 +36,15 @@ export const ResearchPage: React.FC = () => (
     </Block>
 
     <Block label="Agenda" title="The research agenda." tight>
-      <div style={{ marginTop: 18, display: 'grid', gap: 12 }}>
+      <Box style={{ marginTop: 18, display: 'grid', gap: 12 }}>
         {AGENDA.map((a) => (
           <Glass key={a.n}>
-            <span className={s.mono} style={{ color: 'var(--phi-color-primary)', fontSize: 12, letterSpacing: '0.2em' }}>{a.n}</span>
+            <Box as="span" className={s.mono} style={{ color: 'var(--phi-color-primary)', fontSize: 12, letterSpacing: '0.2em' }}>{a.n}</Box>
             <Title level={5} style={{ marginTop: 6 }}>{a.t}</Title>
             <Text size="sm" intent="secondary" style={{ lineHeight: 1.65 }}>{a.b}</Text>
           </Glass>
         ))}
-      </div>
+      </Box>
     </Block>
 
     <Block

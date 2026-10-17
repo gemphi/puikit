@@ -1,23 +1,70 @@
+// Tables: no solid fills and no rules. Each row is a shade of the parent colour fading to nothing, and the rows run in
+// opposing directions (left to right, then right to left), so the edges between them read as borders on their own.
+// The header is the strongest shade; it is rounded at the top only, and the table is rounded at the bottom.
 .table {
+  --pui-table-radius: var(--phi-radius-lg, 12px);
+  --pui-table-shade: var(--pui-card-tint, var(--phi-color-primary));
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   font-size: var(--phi-font-size-sm);
   color: var(--phi-color-text-primary);
+  border: 0;
+  border-radius: var(--pui-table-radius);
+  overflow: hidden;
+  background: transparent;
 }
 
 .th,
 .td {
   padding: 0.75rem 1rem;
   text-align: left;
-  border-bottom: 1px solid var(--phi-color-border);
+  border: 0;
+  background: transparent;
 }
 
-.th {
-  font-weight: var(--phi-font-weight-semibold);
-  color: var(--phi-color-text-secondary);
-  background-color: var(--phi-color-background-secondary);
-}
+.th { font-weight: var(--phi-font-weight-semibold); color: var(--phi-color-text-secondary); }
 
-.tr:hover .td {
-  background-color: var(--phi-color-background-secondary);
+/* Rows: shade to nothing, alternating direction; the header row is the deepest shade. */
+.thead .tr { background: linear-gradient(90deg, color-mix(in srgb, var(--pui-table-shade) 16%, transparent) 0%, transparent 100%); }
+.tbody .tr { background: linear-gradient(270deg, color-mix(in srgb, var(--pui-table-shade) 7%, transparent) 0%, transparent 100%); }
+.tbody .tr:nth-child(even) { background: linear-gradient(90deg, color-mix(in srgb, var(--pui-table-shade) 7%, transparent) 0%, transparent 100%); }
+.tbody .tr:hover { background: linear-gradient(90deg, color-mix(in srgb, var(--pui-table-shade) 14%, transparent) 0%, transparent 85%); }
+.tbody .tr:nth-child(even):hover { background: linear-gradient(270deg, color-mix(in srgb, var(--pui-table-shade) 14%, transparent) 0%, transparent 85%); }
+
+/* Header: top corners round, bottom edge straight. Body: the last row closes the table with the bottom corners. */
+.thead .tr:first-child .th:first-child { border-top-left-radius: var(--pui-table-radius); }
+.thead .tr:first-child .th:last-child { border-top-right-radius: var(--pui-table-radius); }
+.tbody .tr:last-child .td:first-child { border-bottom-left-radius: var(--pui-table-radius); }
+.tbody .tr:last-child .td:last-child { border-bottom-right-radius: var(--pui-table-radius); }
+.intent-muted { color: var(--phi-color-text-muted); } .intent-secondary { color: var(--phi-color-text-secondary); } .intent-primary { color: var(--phi-color-primary); }
+.intent-success { color: var(--phi-color-success); } .intent-warning { color: var(--phi-color-warning); } .intent-danger { color: var(--phi-color-error); }
+.numeric { font-variant-numeric: tabular-nums; text-align: right; }
+
+
+/* Sticky modes (DataTable stickyHeader / stickyFirst / maxHeight): the wrapper scrolls and keeps the rounding, the
+   table stops clipping so cells can stick, and stuck cells carry the card ground so rows slide under them. */
+.scroller { overflow: auto; border-radius: var(--phi-radius-lg, 12px); max-width: 100%; overscroll-behavior: contain; }
+.sticky { overflow: visible; }
+.stickyHead .thead .th {
+  position: sticky; top: 0; z-index: 2;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--pui-table-shade) 16%, transparent) 0%, transparent 100%), var(--phi-color-background-card);
 }
+.stickyFirst .th:first-child, .stickyFirst .td:first-child {
+  position: sticky; left: 0; z-index: 1;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--pui-table-shade) 8%, transparent) 0%, transparent 100%), var(--phi-color-background-card);
+}
+.stickyHead.stickyFirst .thead .th:first-child { z-index: 3; }
+.more { display: flex; justify-content: center; padding-top: var(--phi-space-2); }
+
+/* Group header rows (DataTable groupBy): a shade of the parent fading to nothing, the label a quiet toggle. */
+.tbody .groupRow, .tbody .groupRow:nth-child(even), .tbody .groupRow:hover {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--pui-table-shade) 12%, transparent) 0%, transparent 70%);
+}
+.groupCell { padding-block: var(--phi-space-1); font-weight: var(--phi-font-weight-semibold); text-transform: capitalize; }
+.stickyFirst .groupCell { position: sticky; left: 0; }
+
+/* A shorthand row made a control (onRow): pointer, hover tint, focus ring — as every clickable surface in the house. */
+.clickable { cursor: pointer; transition: background var(--phi-transition-fast); }
+.clickable:hover { background: color-mix(in srgb, var(--phi-color-primary) 8%, transparent); }
+.clickable:focus-visible { outline: 2px solid var(--phi-color-primary); outline-offset: -2px; }

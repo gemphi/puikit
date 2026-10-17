@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@pui/components';
+import { Box, Button } from '@pui/components';
 import { Hero } from '../components/kit';
 import { useRouter } from '../router';
 import { routes } from '../lib/routes';
@@ -11,12 +11,12 @@ export const NotFoundPage: React.FC = () => {
     <Hero
       pattern="notfound"
       label="404 — Uncharted sector"
-      title={<>This route is <span className={s.gradText}>not in the registry.</span></>}
+      title={<>This route is <Box as="span" className={s.gradText}>not in the registry.</Box></>}
       sub="The page you asked for has not been authorized for this market. Return to base."
     >
-      <div style={{ marginTop: 24 }}>
+      <Box style={{ marginTop: 24 }}>
         <Button variant="primary" onClick={() => navigate(routes.home())}>Return home</Button>
-      </div>
+      </Box>
     </Hero>
   );
 };

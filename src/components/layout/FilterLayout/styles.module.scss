@@ -1,0 +1,15 @@
+.layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--phi-space-4, 1rem); align-items: start; }
+.open { grid-template-columns: minmax(0, 1fr) clamp(15rem, 22vw, 19rem); }
+.content { min-width: 0; }
+.aside {
+  position: sticky; top: 0.75rem; max-height: calc(100vh - 6rem); overflow: auto;
+  border-radius: var(--phi-radius-xl);
+  background-color: var(--phi-color-background-card);
+  background-image: linear-gradient(90deg, color-mix(in srgb, var(--phi-color-primary) 10%, transparent) 0%, transparent 70%), var(--phi-gradient-child, none);
+  box-shadow: inset 0 0 0 1px var(--phi-color-border-subtle, var(--phi-color-border));
+  animation: puiFilterIn var(--phi-duration, 0.3s) var(--phi-ease, ease-out);
+}
+.head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding: 0.6rem 0.6rem 0.4rem 0.9rem; }
+.body { padding: 0 0.9rem 0.9rem; }
+@keyframes puiFilterIn { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: none; } }
+@media (max-width: 760px) { .open { grid-template-columns: minmax(0, 1fr); } .aside { position: static; order: -1; max-height: none; } }

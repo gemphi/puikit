@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: 'jsdom',
-    include: ['src/**/*.test.{ts,tsx}'],
+    include: ['src/**/*.test.{ts,tsx}', 'apps/phi-kit/src/**/*.test.{ts,tsx}'],
     exclude: ['dist/**', 'node_modules/**'],
     setupFiles: ['src/test/setup.ts'],
     globals: true,

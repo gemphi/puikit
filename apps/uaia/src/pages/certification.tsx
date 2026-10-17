@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tag, Text, Title } from '@pui/components';
+import { Box, Tag, Text, Title } from '@pui/components';
 import { Hero, Block, Glass, AutoGrid, Note } from '../components/kit';
 import s from '../styles/uaia.module.scss';
 
@@ -22,7 +22,7 @@ export const CertificationPage: React.FC = () => (
     <Hero
       pattern="certification"
       label="Certification & The Model Registry"
-      title={<>A public ledger of every model we have judged — <span className={s.gradText}>and how.</span></>}
+      title={<>A public ledger of every model we have judged — <Box as="span" className={s.gradText}>and how.</Box></>}
     />
 
     <Block label="Classes" title="Four certificate classes.">
@@ -39,36 +39,36 @@ export const CertificationPage: React.FC = () => (
 
     <Block label="Registry" title="Open. Signed. Machine-readable." intro="Each entry carries: model ID, developer, version lineage, risk tier, certificate class and history, conditions, incident log, harness versions, and re-evaluation due date. Published as JSON with signed attestations under STD-500." tight>
       <Glass style={{ marginTop: 20, overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13.5 }}>
-          <thead>
-            <tr className={s.mono} style={{ textAlign: 'left', color: 'var(--phi-color-text-secondary)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
-              <th style={{ padding: '8px 12px' }}>Model ID</th><th style={{ padding: '8px 12px' }}>Developer</th>
-              <th style={{ padding: '8px 12px' }}>Tier</th><th style={{ padding: '8px 12px' }}>Class</th>
-              <th style={{ padding: '8px 12px' }}>Re-eval due</th>
-            </tr>
-          </thead>
-          <tbody>
+        <Box as="table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13.5 }}>
+          <Box as="thead">
+            <Box as="tr" className={s.mono} style={{ textAlign: 'left', color: 'var(--phi-color-text-secondary)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+              <Box as="th" style={{ padding: '8px 12px' }}>Model ID</Box><Box as="th" style={{ padding: '8px 12px' }}>Developer</Box>
+              <Box as="th" style={{ padding: '8px 12px' }}>Tier</Box><Box as="th" style={{ padding: '8px 12px' }}>Class</Box>
+              <Box as="th" style={{ padding: '8px 12px' }}>Re-eval due</Box>
+            </Box>
+          </Box>
+          <Box as="tbody">
             {SAMPLE.map((r) => (
-              <tr key={r.id} style={{ borderTop: '1px solid var(--uaia-line)' }}>
-                <td className={s.mono} style={{ padding: '10px 12px' }}>{r.id}</td>
-                <td style={{ padding: '10px 12px' }}>{r.dev}</td>
-                <td style={{ padding: '10px 12px' }}><Tag intent="primary" minimal round style={{ width: 'fit-content' }}>{r.tier}</Tag></td>
-                <td className={s.mono} style={{ padding: '10px 12px' }}>{r.cls}</td>
-                <td style={{ padding: '10px 12px' }}>{r.due}</td>
-              </tr>
+              <Box as="tr" key={r.id} style={{ borderTop: '1px solid var(--uaia-line)' }}>
+                <Box as="td" className={s.mono} style={{ padding: '10px 12px' }}>{r.id}</Box>
+                <Box as="td" style={{ padding: '10px 12px' }}>{r.dev}</Box>
+                <Box as="td" style={{ padding: '10px 12px' }}><Tag intent="primary" minimal round style={{ width: 'fit-content' }}>{r.tier}</Tag></Box>
+                <Box as="td" className={s.mono} style={{ padding: '10px 12px' }}>{r.cls}</Box>
+                <Box as="td" style={{ padding: '10px 12px' }}>{r.due}</Box>
+              </Box>
             ))}
-          </tbody>
-        </table>
+          </Box>
+        </Box>
         <Text size="sm" intent="secondary" style={{ marginTop: 12 }}>Sample data — illustrative of the registry now being built.</Text>
       </Glass>
     </Block>
 
     <Block label="Lifecycle" title="Certificates live, and can die." tight>
-      <div style={{ marginTop: 16, display: 'grid', gap: 12, maxWidth: 760 }}>
+      <Box style={{ marginTop: 16, display: 'grid', gap: 12, maxWidth: 760 }}>
         <Glass><Text>Certificates bind to a model version; a major version or measured capability jump voids inheritance and triggers re-evaluation.</Text></Glass>
         <Glass><Text>Any party may file an incident under STD-400; triage within 72 hours.</Text></Glass>
         <Glass><Text>Suspension is immediate on confirmed critical incident; revocation follows the Assembly-reviewed process. All actions are published within 24 hours.</Text></Glass>
-      </div>
+      </Box>
     </Block>
 
     <Block label="Marks">

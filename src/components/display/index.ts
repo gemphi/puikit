@@ -8,3 +8,10 @@ export * from './Tree';
 export * from './collection'; // Collection, CollectionLayout
 export * from './browser'; // FileBrowser, AssetBrowser
 export * from './carousel'; // Carousel, CarouselProps, CarouselLabels
+export * from './ChatBubble';
+export * from './RelationList';
+export * from './Cascade';
+export * from './StatusRail';
+export * from './CommentThread';
+export * from './ItemCard';
+export * from './Swatch';

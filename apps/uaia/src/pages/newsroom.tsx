@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tag, Text, Title } from '@pui/components';
+import { Box, Tag, Text, Title } from '@pui/components';
 import { Hero, Block, Glass, Note } from '../components/kit';
 import { EMAILS, FOUNDED } from '../lib/routes';
 import s from '../styles/uaia.module.scss';
@@ -32,32 +32,32 @@ export const NewsroomPage: React.FC = () => (
     <Hero
       pattern="newsroom"
       label="Newsroom & Official Statements"
-      title={<>Everything we declare, <span className={s.gradText}>in one place, permanently.</span></>}
+      title={<>Everything we declare, <Box as="span" className={s.gradText}>in one place, permanently.</Box></>}
     />
 
     <Block label="UAIA-DECL-001" title="The Founding Declaration.">
       <Glass style={{ marginTop: 18, padding: 'clamp(22px, 4vw, 40px)' }}>
         <Tag intent="primary" round style={{ marginBottom: 18, alignSelf: 'flex-start', width: 'fit-content' }}>{FOUNDED}</Tag>
         <Text style={{ lineHeight: 1.8, fontSize: '1.02rem', marginBottom: 18 }}>
-          <em>The founding office of the Unified Artificial Intelligence Agency,</em>
+          <Box as="em">The founding office of the Unified Artificial Intelligence Agency,</Box>
         </Text>
-        <div style={{ display: 'grid', gap: 14, marginBottom: 22 }}>
+        <Box style={{ display: 'grid', gap: 14, marginBottom: 22 }}>
           {PREAMBLE.map(([lead, body]) => (
             <Text key={lead} style={{ lineHeight: 1.8, fontSize: '1.02rem' }}>
-              <em style={{ color: 'var(--phi-color-primary)' }}>{lead}</em> {body}
+              <Box as="em" style={{ color: 'var(--phi-color-primary)' }}>{lead}</Box> {body}
             </Text>
           ))}
-        </div>
-        <div style={{ display: 'grid', gap: 16 }}>
+        </Box>
+        <Box style={{ display: 'grid', gap: 16 }}>
           {OPERATIVE.map(([num, body]) => (
-            <div key={num} style={{ display: 'flex', gap: 18 }}>
-              <span className={s.mono} style={{ color: 'var(--phi-color-primary)', fontWeight: 700, minWidth: 26 }}>{num}</span>
+            <Box key={num} style={{ display: 'flex', gap: 18 }}>
+              <Box as="span" className={s.mono} style={{ color: 'var(--phi-color-primary)', fontWeight: 700, minWidth: 26 }}>{num}</Box>
               <Text style={{ lineHeight: 1.8, fontSize: '1.02rem' }}>
-                <em>{body.split(' ')[0]}</em> {body.split(' ').slice(1).join(' ')}
+                <Box as="em">{body.split(' ')[0]}</Box> {body.split(' ').slice(1).join(' ')}
               </Text>
-            </div>
+            </Box>
           ))}
-        </div>
+        </Box>
         <Text size="sm" intent="secondary" style={{ marginTop: 24, lineHeight: 1.7 }}>
           Adopted at the founding of the Agency, this eleventh day of September, two thousand and twenty-six.
         </Text>
@@ -68,18 +68,18 @@ export const NewsroomPage: React.FC = () => (
     </Block>
 
     <Block label="Inaugural statements" title="S-001 through S-005." tight>
-      <div style={{ marginTop: 18, display: 'grid', gap: 12 }}>
+      <Box style={{ marginTop: 18, display: 'grid', gap: 12 }}>
         {STATEMENTS.map((st) => (
           <Glass key={st.id}>
-            <div style={{ display: 'flex', gap: 16, alignItems: 'baseline', flexWrap: 'wrap' }}>
-              <span className={s.mono} style={{ color: 'var(--phi-color-primary)', fontWeight: 700 }}>{st.id}</span>
-              <span className={s.mono} style={{ fontSize: 12, color: 'var(--phi-color-text-secondary)' }}>{st.date}</span>
+            <Box style={{ display: 'flex', gap: 16, alignItems: 'baseline', flexWrap: 'wrap' }}>
+              <Box as="span" className={s.mono} style={{ color: 'var(--phi-color-primary)', fontWeight: 700 }}>{st.id}</Box>
+              <Box as="span" className={s.mono} style={{ fontSize: 12, color: 'var(--phi-color-text-secondary)' }}>{st.date}</Box>
               <Title level={5} style={{ margin: 0 }}>{st.t}</Title>
-            </div>
+            </Box>
             <Text size="sm" intent="secondary" style={{ marginTop: 8 }}>{st.b}</Text>
           </Glass>
         ))}
-      </div>
+      </Box>
     </Block>
 
     <Block label="Press">

@@ -14,22 +14,32 @@
 .intent-success { color: var(--phi-color-success); }
 .intent-warning { color: var(--phi-color-warning); }
 .intent-danger { color: var(--phi-color-error); }
+/* inherit: the text takes the colour of what holds it (a nav item, an active tab) */
+.intent-inherit { color: inherit; }
 
 /* Typography Scale */
-.size-xs { font-size: 0.75rem !important; line-height: 1.4 !important; }
-.size-sm { font-size: 0.875rem !important; line-height: 1.45 !important; }
-.size-md { font-size: 0.95rem !important; line-height: 1.55 !important; }
-.size-lg { font-size: 1.05rem !important; line-height: 1.6 !important; }
-.size-xl { font-size: 1.25rem !important; line-height: 1.6 !important; }
-.size-2xl { font-size: 1.5rem !important; line-height: 1.4 !important; }
+.size-xs { font-size: 0.75rem !important; line-height: var(--pui-text-lh, 1.4) !important; }
+.size-sm { font-size: 0.875rem !important; line-height: var(--pui-text-lh, 1.45) !important; }
+.size-md { font-size: 0.95rem !important; line-height: var(--pui-text-lh, 1.55) !important; }
+.size-lg { font-size: 1.05rem !important; line-height: var(--pui-text-lh, 1.6) !important; }
+.size-xl { font-size: 1.25rem !important; line-height: var(--pui-text-lh, 1.6) !important; }
+.size-3xl { font-size: 1.875rem !important; line-height: var(--pui-text-lh, 1.2) !important; }
+.size-2xl { font-size: 1.5rem !important; line-height: var(--pui-text-lh, 1.4) !important; }
 
 /* Font Weights */
 .weight-normal { font-weight: 400 !important; }
 .weight-medium { font-weight: 500 !important; }
 .weight-semibold { font-weight: 600 !important; }
 .weight-bold { font-weight: 700 !important; }
+.weight-inherit { font-weight: inherit; }
 
 /* Text Alignment */
 .align-left { text-align: left !important; }
 .align-center { text-align: center !important; }
 .align-right { text-align: right !important; }
+.mono { font-family: var(--phi-font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); }
+
+.numeric { font-variant-numeric: tabular-nums; }
+.truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; min-width: 0; }
+
+.pre { white-space: pre-wrap; overflow-wrap: anywhere; }

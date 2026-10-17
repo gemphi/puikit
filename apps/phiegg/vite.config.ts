@@ -4,20 +4,21 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
+  base: process.env.PHI_BASE || '/',
   resolve: {
     alias: {
+      '@phi-kit': path.resolve(__dirname, '../phi-kit/src'),
       '@pui/components': path.resolve(__dirname, '../../src/components'),
-      '@pui/shop': path.resolve(__dirname, '../../src/components/shop'),
-      '@pui/store': path.resolve(__dirname, '../../src/store'),
-      '@pui/services': path.resolve(__dirname, '../../src/services'),
-      '@pui/api': path.resolve(__dirname, '../../src/api'),
-      '@pui/hooks': path.resolve(__dirname, '../../src/hooks'),
       '@pui/providers': path.resolve(__dirname, '../../src/providers'),
       '@pui/styles': path.resolve(__dirname, '../../src/styles'),
       '@pui/tokens': path.resolve(__dirname, '../../src/tokens'),
+      '@pui/hooks': path.resolve(__dirname, '../../src/hooks'),
+      '@pui/services': path.resolve(__dirname, '../../src/services'),
+      '@pui/store': path.resolve(__dirname, '../../src/store'),
+      '@pui/api': path.resolve(__dirname, '../../src/api'),
+      '@pui/types': path.resolve(__dirname, '../../src/types'),
       '@pui': path.resolve(__dirname, '../../src'),
-      'puijs': path.resolve(__dirname, '../../src'),
-      'next/link': path.resolve(__dirname, '../pui-book/src/mocks/Link.tsx'),
+      'next/link': path.resolve(__dirname, '../uaia/src/mocks/Link.tsx'),
       'react': path.resolve(__dirname, './node_modules/react'),
       'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
       'react/jsx-runtime': path.resolve(__dirname, './node_modules/react/jsx-runtime'),
@@ -25,18 +26,7 @@ export default defineConfig({
     },
     dedupe: ['react', 'react-dom', 'lucide-react'],
   },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        api: 'modern-compiler',
-      },
-    },
-  },
-  server: {
-    port: 3000,
-    host: '0.0.0.0',
-  },
-  build: {
-    outDir: 'dist',
-  },
+  css: { preprocessorOptions: { scss: { api: 'modern-compiler' } } },
+  server: { port: 3101 },
+  build: { outDir: 'dist' },
 });

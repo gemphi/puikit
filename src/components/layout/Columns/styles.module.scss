@@ -1,0 +1,17 @@
+.row { display: flex; align-items: stretch; width: 100%; height: 100%; min-height: 0; overflow-x: auto; }
+.strip { display: flex; flex-direction: column; gap: 0.25rem; padding: 0.5rem 0.25rem; border-right: 1px solid var(--phi-color-border-subtle, var(--phi-color-border)); background: var(--phi-color-background-secondary); }
+.col { display: flex; flex-direction: column; min-height: 0; flex: 0 1 auto; border-right: 1px solid var(--phi-color-border-subtle, var(--phi-color-border)); background-image: var(--phi-gradient-child, none); animation: puiColIn var(--phi-duration, 0.3s) var(--phi-ease, ease-out); transition: width var(--phi-transition-slow), flex-basis var(--phi-transition-slow), min-width var(--phi-transition-slow); }
+.col:last-child { border-right: 0; }
+.flex { flex: 1 1 0; min-width: 0; }
+.exp { flex: 1 1 auto; width: auto !important; }
+.head { display: flex; align-items: center; gap: 0.25rem; padding: 0.5rem 0.6rem; min-height: 2.75rem; border-bottom: 1px solid var(--phi-color-border-subtle, var(--phi-color-border)); }
+.title { flex: 1; min-width: 0; display: flex; align-items: center; gap: 0.5rem; overflow: hidden; }
+.body { flex: 1; min-height: 0; overflow: auto; padding: 0.75rem; }
+@keyframes puiColIn { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .col { animation: none; } }
+@media (max-width: 720px) {
+  .row { position: relative; }
+  /* Phones: one column at a time — the last open one. */
+  .col:not(:last-child) { display: none; }
+  .col { width: 100% !important; min-width: 0 !important; }
+}

@@ -13,9 +13,11 @@ export type TableProps = React.TableHTMLAttributes<HTMLTableElement> & {
    */
   headers?: React.ReactNode[];
   rows?: React.ReactNode[][];
+  /** Make each shorthand row a control: called with the row index on click or Enter. */
+  onRow?: (index: number) => void;
 };
 
-export const Table = ({ className = '', children, headers, rows, ...props }: TableProps) => {
+export const Table = ({ className = '', children, headers, rows, onRow, ...props }: TableProps) => {
   const shorthand = Boolean(headers || rows);
 
   return (
@@ -34,7 +36,7 @@ export const Table = ({ className = '', children, headers, rows, ...props }: Tab
           {rows && (
             <Tbody>
               {rows.map((row, r) => (
-                <Tr key={r}>
+                <Tr key={r} {...(onRow ? { onClick: () => onRow(r), role: 'button', tabIndex: 0, className: styles.clickable, onKeyDown: (e: React.KeyboardEvent) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onRow(r); } } } : {})}>
                   {row.map((cell, c) => (
                     <Td key={c}>{cell}</Td>
                   ))}
@@ -66,6 +68,7 @@ export const Th = ({ className = '', children, ...props }: React.ThHTMLAttribute
   <th className={cn(styles.th, className)} {...props}>{children}</th>
 );
 
-export const Td = ({ className = '', children, ...props }: React.TdHTMLAttributes<HTMLTableDataCellElement>) => (
-  <td className={cn(styles.td, className)} {...props}>{children}</td>
+/** A cell; `intent` colours its text (a gain, a loss), `numeric` sets tabular figures and aligns it right. */
+export const Td = ({ className = '', children, intent, numeric = false, ...props }: React.TdHTMLAttributes<HTMLTableDataCellElement> & { intent?: 'muted' | 'secondary' | 'primary' | 'success' | 'warning' | 'danger'; numeric?: boolean }) => (
+  <td className={cn(styles.td, intent && styles[`intent-${intent}`], numeric && styles.numeric, className)} {...props}>{children}</td>
 );

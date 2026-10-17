@@ -12,6 +12,8 @@ export const PREF_KEYS = {
   archetypeId: 'phi-archetype',
   borderRadius: 'phi-radius',
   density: 'phi-density',
+  palette: 'phi-palette',
+  gradientLevel: 'phi-gradient',
 } as const;
 
 /** The default user identity when none is supplied. */

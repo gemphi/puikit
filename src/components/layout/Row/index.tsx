@@ -3,6 +3,7 @@ import { cn } from '../../../utils/cn';
 import styles from './styles.module.scss';
 import { responsiveCSSVars, type Breakpoint, type ResponsiveValue } from '../../shared/responsive';
 import { Box } from '../Box';
+import { GridContext } from '../Grid';
 
 export type RowGap = 1 | 2 | 3 | 4 | 6 | 8;
 export type RowAlign = 'start' | 'center' | 'end' | 'stretch' | 'baseline';
@@ -80,7 +81,7 @@ export const Row = React.forwardRef<HTMLDivElement, RowProps>(
         } as React.CSSProperties}
         {...props}
       >
-        {children}
+        <GridContext.Provider value={false}>{children}</GridContext.Provider>
       </Box>
     );
   }

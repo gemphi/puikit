@@ -1,0 +1,54 @@
+/* Pick existing records to link: chips for the chosen, a search box, a scrolling list of candidates.
+   Surfaces, radius and spacing are theme tokens. */
+.root { min-width: 0; }
+
+.chips { min-width: 0; }
+.chip { display: inline-flex; align-items: center; gap: var(--phi-space-1); }
+/* Reset the native button look; the chip owns the surface. */
+.chipX, .row { appearance: none; font: inherit; margin: 0; }
+.chipX {
+  border: 0; padding: 0; background: transparent;
+  display: inline-flex; align-items: center; justify-content: center;
+  inline-size: 1rem; block-size: 1rem;
+  border-radius: var(--phi-radius-full);
+  color: inherit; cursor: pointer;
+}
+.chipX:hover { background: color-mix(in srgb, currentColor 18%, transparent); }
+
+.list {
+  display: flex; flex-direction: column; gap: 2px;
+  max-block-size: 13rem; overflow: auto;
+  border: 1px solid var(--phi-color-border);
+  border-radius: var(--phi-radius-md);
+  background: var(--phi-color-background-card);
+  padding: var(--phi-space-1);
+}
+.empty { padding: var(--phi-space-2) var(--phi-space-3); }
+
+.row {
+  background: transparent;
+  display: flex; align-items: center; gap: var(--phi-space-2);
+  width: 100%; text-align: start;
+  padding: var(--phi-space-1) var(--phi-space-2);
+  border-radius: var(--phi-radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  color: var(--phi-color-text-secondary);
+}
+.row:hover { background: var(--phi-color-background-secondary); }
+.row[data-disabled="true"] { opacity: 0.5; cursor: default; }
+.row.on {
+  background: color-mix(in srgb, var(--phi-color-primary) 10%, var(--phi-color-background-card));
+  border-color: var(--phi-color-primary);
+  color: var(--phi-color-text-primary);
+}
+.mark {
+  display: inline-flex; align-items: center; justify-content: center;
+  inline-size: 1.1rem; block-size: 1.1rem; flex: none;
+  border-radius: var(--phi-radius-full);
+  border: 1px solid var(--phi-color-border);
+  background: var(--phi-color-background-card);
+}
+.row.on .mark { border-color: var(--phi-color-primary); background: var(--phi-color-primary); color: var(--phi-color-text-inverse, #fff); }
+.rowText { display: flex; flex-direction: column; min-width: 0; }
+.rowLabel { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

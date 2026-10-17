@@ -106,3 +106,20 @@
   max-width: 100%;
   min-width: 0;
 }
+
+/* A Col directly inside a Grid spans grid tracks; flex sizing and the
+   proportional max-width only apply inside a Row. Spans keep their 12-column
+   meaning: span 3 in a 4-column grid is one track, span 8 in a 12-column grid
+   is eight. Rounded by the integer context, clamped to [1, columns]. */
+.col.inGrid {
+  flex: initial;
+  max-width: none;
+  width: auto;
+  min-width: 0;
+  --col-tracks: var(--col-span, 12);
+  grid-column: span clamp(1, calc(var(--col-tracks) * var(--pui-grid-cols, 12) / 12), var(--pui-grid-cols, 12));
+}
+@media (min-width: 576px) { .col.inGrid { --col-tracks: var(--col-span-sm, var(--col-span, 12)); } }
+@media (min-width: 768px) { .col.inGrid { --col-tracks: var(--col-span-md, var(--col-span-sm, var(--col-span, 12))); } }
+@media (min-width: 992px) { .col.inGrid { --col-tracks: var(--col-span-lg, var(--col-span-md, var(--col-span-sm, var(--col-span, 12)))); } }
+@media (min-width: 1200px) { .col.inGrid { --col-tracks: var(--col-span-xl, var(--col-span-lg, var(--col-span-md, var(--col-span-sm, var(--col-span, 12))))); } }

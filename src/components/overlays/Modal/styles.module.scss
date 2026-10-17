@@ -28,6 +28,12 @@
 
 .modal {
   width: 100%;
+  /* Card is height: 100% with a translucent wash; a dialog sizes to its content on an opaque surface (same as Drawer). */
+  height: auto;
+  /* Opaque even when the theme's card colour is translucent (Apple, Glass): card tone over the page ground. */
+  background-color: var(--phi-color-background);
+  background-image: var(--phi-gradient-drawer, none), linear-gradient(var(--phi-color-background-card), var(--phi-color-background-card));
+  position: relative;
   max-height: calc(100vh - 2rem);
   overflow: hidden;
   border-radius: var(--phi-radius-lg);

@@ -1,0 +1,172 @@
+{
+ "stats": [
+  {
+   "label": "Agents running",
+   "value": "64,210",
+   "sub": "Across all worlds"
+  },
+  {
+   "label": "Goals done",
+   "value": "1.1M",
+   "sub": "Since launch"
+  },
+  {
+   "label": "Moved for members",
+   "value": "38M SUM",
+   "sub": "Last 30 days"
+  },
+  {
+   "label": "Average reply",
+   "value": "1.4s",
+   "sub": "Model on device"
+  }
+ ],
+ "news": [
+  [
+   "Agents",
+   "Phipal now plans a whole weekend",
+   "Ask for a weekend in Bijou and it books the ride, holds a table and buys the entry PFT in one go."
+  ],
+  [
+   "Stories",
+   "An agent that saved a club treasury",
+   "When floor prices fell, Ines set her Phipal to stake idle SUM. The club ended the month ahead."
+  ],
+  [
+   "Muse",
+   "Muse learns your taste in looks",
+   "Muse now ranks new drops by the looks you wear most, not by what is trending."
+  ],
+  [
+   "Safety",
+   "Spending limits per goal",
+   "Every goal now carries a cap. Your agent stops and asks before it goes over."
+  ],
+  [
+   "Agents",
+   "Teams of agents share one plan",
+   "Scout, buyer and treasurer agents now write to one plan you can read and edit."
+  ],
+  [
+   "Stories",
+   "The ferry ticket nobody had to buy",
+   "Kofi asked for the cheapest way to Aurum. Phipal found a rental PFT that came with the ride."
+  ],
+  [
+   "Models",
+   "Smaller model, same answers",
+   "The on device model is now half the size and runs on most laptops without a fan."
+  ],
+  [
+   "Muse",
+   "Muse writes your club notes",
+   "After an event, Muse drafts the notes and tags the members who were there."
+  ],
+  [
+   "Safety",
+   "Sign as you, only where you say",
+   "Delegation now lists each app your agent may sign in, and you can revoke one at a time."
+  ],
+  [
+   "Agents",
+   "Bids that wait for the right price",
+   "Set a floor and a ceiling. The buyer agent watches the pool and bids only inside them."
+  ],
+  [
+   "Stories",
+   "A first sale while asleep",
+   "Lena listed three PFTs before bed. Her agent matched two offers by morning."
+  ],
+  [
+   "Talk",
+   "Voice talk arrives",
+   "Talk to Phipal out loud on desktop. Replies come back as text and voice."
+  ]
+ ],
+ "faq": [
+  {
+   "q": "Can my agent spend without asking?",
+   "a": "Only inside the cap you set for each goal."
+  },
+  {
+   "q": "Where does the model run?",
+   "a": "On your machine by default. You can switch to a hosted model in settings."
+  },
+  {
+   "q": "Can I stop a goal halfway?",
+   "a": "Yes. Every goal has a stop button and a log of what was done."
+  },
+  {
+   "q": "Does Phipal see my messages?",
+   "a": "Only the threads you share with it."
+  },
+  {
+   "q": "Can I run more than one agent?",
+   "a": "Yes. Each goal can spawn a small team, and you can see all of them in Agents."
+  }
+ ],
+ "cards": [],
+ "pulls": {
+  "menu": {
+   "agents": {
+    "kind": "agentSpec",
+    "label": "label",
+    "sub": "role"
+   },
+   "muse": {
+    "kind": "pool",
+    "sort": "supply",
+    "label": "name",
+    "sub": "category",
+    "body": "desc",
+    "join": [
+     "worldId"
+    ],
+    "image": "world.image",
+    "fields": [
+     "supply",
+     "floorUsd",
+     "royaltyPct",
+     "drop"
+    ],
+    "open": "phiegg",
+    "n": 5
+   }
+  },
+  "home": [
+   {
+    "title": "Agents",
+    "sub": "The team Phipal sends to work.",
+    "pull": {
+     "kind": "agentSpec",
+     "n": 8,
+     "label": "label",
+     "sub": "role",
+     "body": "muse",
+     "fields": [
+      "role",
+      "strategy"
+     ]
+    }
+   }
+  ],
+  "counts": [
+   [
+    "Agents",
+    "agentSpec"
+   ],
+   [
+    "Pools to play",
+    "pool"
+   ],
+   [
+    "Quests",
+    "quest"
+   ],
+   [
+    "Clubs",
+    "club"
+   ]
+  ]
+ }
+}

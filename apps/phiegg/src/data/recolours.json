@@ -1,0 +1,284 @@
+{
+ "looks": [
+  {
+   "id": "rc_plum_tutu_07",
+   "name": "Plum",
+   "hex": "#6e2a5e",
+   "base": "ls-tutu-07",
+   "views": {
+    "FRONT": "items/gen/plum-tutu-07/FRONT.webp",
+    "3Q": "items/gen/plum-tutu-07/3Q.webp",
+    "SIDE": "items/gen/plum-tutu-07/SIDE.webp",
+    "BACK": "items/gen/plum-tutu-07/BACK.webp",
+    "TOP": "items/gen/plum-tutu-07/TOP.webp",
+    "BOTTOM": "items/gen/plum-tutu-07/BOTTOM.webp"
+   }
+  },
+  {
+   "id": "rc_plum_tutu_04",
+   "name": "Plum",
+   "hex": "#6e2a5e",
+   "base": "ls-tutu-04",
+   "views": {
+    "FRONT": "items/gen/plum-tutu-04/FRONT.webp",
+    "3Q": "items/gen/plum-tutu-04/3Q.webp",
+    "SIDE": "items/gen/plum-tutu-04/SIDE.webp",
+    "BACK": "items/gen/plum-tutu-04/BACK.webp",
+    "TOP": "items/gen/plum-tutu-04/TOP.webp",
+    "BOTTOM": "items/gen/plum-tutu-04/BOTTOM.webp"
+   }
+  },
+  {
+   "id": "rc_sage_tutu_07",
+   "name": "Sage",
+   "hex": "#7a8a5e",
+   "base": "ls-tutu-07",
+   "views": {
+    "FRONT": "items/gen/sage-tutu-07/FRONT.webp",
+    "3Q": "items/gen/sage-tutu-07/3Q.webp",
+    "SIDE": "items/gen/sage-tutu-07/SIDE.webp",
+    "BACK": "items/gen/sage-tutu-07/BACK.webp",
+    "TOP": "items/gen/sage-tutu-07/TOP.webp",
+    "BOTTOM": "items/gen/sage-tutu-07/BOTTOM.webp"
+   }
+  },
+  {
+   "id": "rc_sage_tutu_04",
+   "name": "Sage",
+   "hex": "#7a8a5e",
+   "base": "ls-tutu-04",
+   "views": {
+    "FRONT": "items/gen/sage-tutu-04/FRONT.webp",
+    "3Q": "items/gen/sage-tutu-04/3Q.webp",
+    "SIDE": "items/gen/sage-tutu-04/SIDE.webp",
+    "BACK": "items/gen/sage-tutu-04/BACK.webp",
+    "TOP": "items/gen/sage-tutu-04/TOP.webp",
+    "BOTTOM": "items/gen/sage-tutu-04/BOTTOM.webp"
+   }
+  },
+  {
+   "id": "rc_ink_tutu_07",
+   "name": "Ink",
+   "hex": "#1f2a44",
+   "base": "ls-tutu-07",
+   "views": {
+    "FRONT": "items/gen/ink-tutu-07/FRONT.webp",
+    "3Q": "items/gen/ink-tutu-07/3Q.webp",
+    "SIDE": "items/gen/ink-tutu-07/SIDE.webp",
+    "BACK": "items/gen/ink-tutu-07/BACK.webp",
+    "TOP": "items/gen/ink-tutu-07/TOP.webp",
+    "BOTTOM": "items/gen/ink-tutu-07/BOTTOM.webp"
+   }
+  },
+  {
+   "id": "rc_ink_tutu_04",
+   "name": "Ink",
+   "hex": "#1f2a44",
+   "base": "ls-tutu-04",
+   "views": {
+    "FRONT": "items/gen/ink-tutu-04/FRONT.webp",
+    "3Q": "items/gen/ink-tutu-04/3Q.webp",
+    "SIDE": "items/gen/ink-tutu-04/SIDE.webp",
+    "BACK": "items/gen/ink-tutu-04/BACK.webp",
+    "TOP": "items/gen/ink-tutu-04/TOP.webp",
+    "BOTTOM": "items/gen/ink-tutu-04/BOTTOM.webp"
+   }
+  },
+  {
+   "id": "rc_moss_tutu_07",
+   "name": "Moss",
+   "hex": "#5b6b3a",
+   "base": "ls-tutu-07",
+   "views": {
+    "FRONT": "items/gen/moss-tutu-07/FRONT.webp",
+    "3Q": "items/gen/moss-tutu-07/3Q.webp",
+    "SIDE": "items/gen/moss-tutu-07/SIDE.webp",
+    "BACK": "items/gen/moss-tutu-07/BACK.webp",
+    "TOP": "items/gen/moss-tutu-07/TOP.webp",
+    "BOTTOM": "items/gen/moss-tutu-07/BOTTOM.webp"
+   }
+  },
+  {
+   "id": "rc_moss_tutu_04",
+   "name": "Moss",
+   "hex": "#5b6b3a",
+   "base": "ls-tutu-04",
+   "views": {
+    "FRONT": "items/gen/moss-tutu-04/FRONT.webp",
+    "3Q": "items/gen/moss-tutu-04/3Q.webp",
+    "SIDE": "items/gen/moss-tutu-04/SIDE.webp",
+    "BACK": "items/gen/moss-tutu-04/BACK.webp",
+    "TOP": "items/gen/moss-tutu-04/TOP.webp",
+    "BOTTOM": "items/gen/moss-tutu-04/BOTTOM.webp"
+   }
+  },
+  {
+   "id": "rc_pearl_tutu_07",
+   "name": "Pearl",
+   "hex": "#e6e0d4",
+   "base": "ls-tutu-07",
+   "views": {
+    "FRONT": "items/gen/pearl-tutu-07/FRONT.webp",
+    "3Q": "items/gen/pearl-tutu-07/3Q.webp",
+    "SIDE": "items/gen/pearl-tutu-07/SIDE.webp",
+    "BACK": "items/gen/pearl-tutu-07/BACK.webp",
+    "TOP": "items/gen/pearl-tutu-07/TOP.webp",
+    "BOTTOM": "items/gen/pearl-tutu-07/BOTTOM.webp"
+   }
+  },
+  {
+   "id": "rc_pearl_tutu_04",
+   "name": "Pearl",
+   "hex": "#e6e0d4",
+   "base": "ls-tutu-04",
+   "views": {
+    "FRONT": "items/gen/pearl-tutu-04/FRONT.webp",
+    "3Q": "items/gen/pearl-tutu-04/3Q.webp",
+    "SIDE": "items/gen/pearl-tutu-04/SIDE.webp",
+    "BACK": "items/gen/pearl-tutu-04/BACK.webp",
+    "TOP": "items/gen/pearl-tutu-04/TOP.webp",
+    "BOTTOM": "items/gen/pearl-tutu-04/BOTTOM.webp"
+   }
+  },
+  {
+   "id": "rc_silver_tutu_07",
+   "name": "Silver",
+   "hex": "#a8a9ad",
+   "base": "ls-tutu-07",
+   "views": {
+    "FRONT": "items/gen/silver-tutu-07/FRONT.webp",
+    "3Q": "items/gen/silver-tutu-07/3Q.webp",
+    "SIDE": "items/gen/silver-tutu-07/SIDE.webp",
+    "BACK": "items/gen/silver-tutu-07/BACK.webp",
+    "TOP": "items/gen/silver-tutu-07/TOP.webp",
+    "BOTTOM": "items/gen/silver-tutu-07/BOTTOM.webp"
+   }
+  },
+  {
+   "id": "rc_silver_tutu_04",
+   "name": "Silver",
+   "hex": "#a8a9ad",
+   "base": "ls-tutu-04",
+   "views": {
+    "FRONT": "items/gen/silver-tutu-04/FRONT.webp",
+    "3Q": "items/gen/silver-tutu-04/3Q.webp",
+    "SIDE": "items/gen/silver-tutu-04/SIDE.webp",
+    "BACK": "items/gen/silver-tutu-04/BACK.webp",
+    "TOP": "items/gen/silver-tutu-04/TOP.webp",
+    "BOTTOM": "items/gen/silver-tutu-04/BOTTOM.webp"
+   }
+  },
+  {
+   "id": "rc_graphite_tutu_07",
+   "name": "Graphite",
+   "hex": "#4a4a4f",
+   "base": "ls-tutu-07",
+   "views": {
+    "FRONT": "items/gen/graphite-tutu-07/FRONT.webp",
+    "3Q": "items/gen/graphite-tutu-07/3Q.webp",
+    "SIDE": "items/gen/graphite-tutu-07/SIDE.webp",
+    "BACK": "items/gen/graphite-tutu-07/BACK.webp",
+    "TOP": "items/gen/graphite-tutu-07/TOP.webp",
+    "BOTTOM": "items/gen/graphite-tutu-07/BOTTOM.webp"
+   }
+  },
+  {
+   "id": "rc_graphite_tutu_04",
+   "name": "Graphite",
+   "hex": "#4a4a4f",
+   "base": "ls-tutu-04",
+   "views": {
+    "FRONT": "items/gen/graphite-tutu-04/FRONT.webp",
+    "3Q": "items/gen/graphite-tutu-04/3Q.webp",
+    "SIDE": "items/gen/graphite-tutu-04/SIDE.webp",
+    "BACK": "items/gen/graphite-tutu-04/BACK.webp",
+    "TOP": "items/gen/graphite-tutu-04/TOP.webp",
+    "BOTTOM": "items/gen/graphite-tutu-04/BOTTOM.webp"
+   }
+  },
+  {
+   "id": "rc_chocolate_tutu_07",
+   "name": "Chocolate",
+   "hex": "#5a3a26",
+   "base": "ls-tutu-07",
+   "views": {
+    "FRONT": "items/gen/chocolate-tutu-07/FRONT.webp",
+    "3Q": "items/gen/chocolate-tutu-07/3Q.webp",
+    "SIDE": "items/gen/chocolate-tutu-07/SIDE.webp",
+    "BACK": "items/gen/chocolate-tutu-07/BACK.webp",
+    "TOP": "items/gen/chocolate-tutu-07/TOP.webp",
+    "BOTTOM": "items/gen/chocolate-tutu-07/BOTTOM.webp"
+   }
+  },
+  {
+   "id": "rc_chocolate_tutu_04",
+   "name": "Chocolate",
+   "hex": "#5a3a26",
+   "base": "ls-tutu-04",
+   "views": {
+    "FRONT": "items/gen/chocolate-tutu-04/FRONT.webp",
+    "3Q": "items/gen/chocolate-tutu-04/3Q.webp",
+    "SIDE": "items/gen/chocolate-tutu-04/SIDE.webp",
+    "BACK": "items/gen/chocolate-tutu-04/BACK.webp",
+    "TOP": "items/gen/chocolate-tutu-04/TOP.webp",
+    "BOTTOM": "items/gen/chocolate-tutu-04/BOTTOM.webp"
+   }
+  },
+  {
+   "id": "rc_ivory_tutu_07",
+   "name": "Ivory",
+   "hex": "#efe9df",
+   "base": "ls-tutu-07",
+   "views": {
+    "FRONT": "items/gen/ivory-tutu-07/FRONT.webp",
+    "3Q": "items/gen/ivory-tutu-07/3Q.webp",
+    "SIDE": "items/gen/ivory-tutu-07/SIDE.webp",
+    "BACK": "items/gen/ivory-tutu-07/BACK.webp",
+    "TOP": "items/gen/ivory-tutu-07/TOP.webp",
+    "BOTTOM": "items/gen/ivory-tutu-07/BOTTOM.webp"
+   }
+  },
+  {
+   "id": "rc_ivory_tutu_04",
+   "name": "Ivory",
+   "hex": "#efe9df",
+   "base": "ls-tutu-04",
+   "views": {
+    "FRONT": "items/gen/ivory-tutu-04/FRONT.webp",
+    "3Q": "items/gen/ivory-tutu-04/3Q.webp",
+    "SIDE": "items/gen/ivory-tutu-04/SIDE.webp",
+    "BACK": "items/gen/ivory-tutu-04/BACK.webp",
+    "TOP": "items/gen/ivory-tutu-04/TOP.webp",
+    "BOTTOM": "items/gen/ivory-tutu-04/BOTTOM.webp"
+   }
+  },
+  {
+   "id": "rc_onyx_tutu_07",
+   "name": "Onyx",
+   "hex": "#24211f",
+   "base": "ls-tutu-07",
+   "views": {
+    "FRONT": "items/gen/onyx-tutu-07/FRONT.webp",
+    "3Q": "items/gen/onyx-tutu-07/3Q.webp",
+    "SIDE": "items/gen/onyx-tutu-07/SIDE.webp",
+    "BACK": "items/gen/onyx-tutu-07/BACK.webp",
+    "TOP": "items/gen/onyx-tutu-07/TOP.webp",
+    "BOTTOM": "items/gen/onyx-tutu-07/BOTTOM.webp"
+   }
+  },
+  {
+   "id": "rc_onyx_tutu_04",
+   "name": "Onyx",
+   "hex": "#24211f",
+   "base": "ls-tutu-04",
+   "views": {
+    "FRONT": "items/gen/onyx-tutu-04/FRONT.webp",
+    "3Q": "items/gen/onyx-tutu-04/3Q.webp",
+    "SIDE": "items/gen/onyx-tutu-04/SIDE.webp",
+    "BACK": "items/gen/onyx-tutu-04/BACK.webp",
+    "TOP": "items/gen/onyx-tutu-04/TOP.webp",
+    "BOTTOM": "items/gen/onyx-tutu-04/BOTTOM.webp"
+   }
+  }
+ ]
+}

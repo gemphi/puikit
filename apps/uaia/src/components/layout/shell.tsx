@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from '@pui/components';
+import { Box, Button, Link } from '@pui/components';
 import { X } from 'lucide-react';
 import { Logo } from '../brand/logo';
 
@@ -67,8 +67,8 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
   const [open, setOpen] = useState(false);
   const go = (to: string) => { setOpen(false); navigate(to); };
   return (
-    <div className={s.page}>
-      <nav className={s.nav} aria-label="Primary">
+    <Box className={s.page}>
+      <Box as="nav" className={s.nav} aria-label="Primary">
         <a
           href={href(routes.home())}
           style={{ color: 'inherit', textDecoration: 'none', display: 'inline-flex' }}
@@ -85,7 +85,7 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
           onClick={() => setOpen(!open)}
           icon={open ? <X size={18} /> : <MenuGlyph />}
         />
-        <div className={`${s.navLinks} ${open ? s.navOpen : ''}`}>
+        <Box className={`${s.navLinks} ${open ? s.navOpen : ''}`}>
           {NAV.map((item) => (
             <a
               key={item.to}
@@ -100,35 +100,35 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
           <Button variant="primary" size="sm" onClick={() => go(routes.newsroom())}>
             Declaration
           </Button>
-        </div>
-      </nav>
+        </Box>
+      </Box>
 
-      <main>{children}</main>
+      <Box as="main">{children}</Box>
 
-      <footer className={s.footer}>
-        <div className={s.footerInner}>
+      <Box as="footer" className={s.footer}>
+        <Box className={s.footerInner}>
           <Logo size={34} variant="mono" />
-          <div className={s.footerCols}>
+          <Box className={s.footerCols}>
             {FOOTER_COLS.map((col) => (
-              <div key={col.head}>
-                <div className={s.footerHead}>{col.head}</div>
+              <Box key={col.head}>
+                <Box className={s.footerHead}>{col.head}</Box>
                 {col.links.map((l) => (
-                  <a key={l.to} className={s.footerLink} href={href(l.to)}>
+                  <Link variant="plain" key={l.to} className={s.footerLink} href={href(l.to)}>
                     {l.label}
-                  </a>
+                  </Link>
                 ))}
-              </div>
+              </Box>
             ))}
-          </div>
-          <div className={s.footerLine}>
-            <span>© 2026 Unified Artificial Intelligence Agency</span>
-            <span>uaiagency.org</span>
-            <a className={s.footerLink} style={{ display: 'inline', padding: 0 }} href={`mailto:${EMAILS.info}`}>{EMAILS.info}</a>
-            <a className={s.footerLink} style={{ display: 'inline', padding: 0 }} href={`mailto:${EMAILS.hello}`}>{EMAILS.hello}</a>
-            <span>Founded {FOUNDED}</span>
-          </div>
-        </div>
-      </footer>
-    </div>
+          </Box>
+          <Box className={s.footerLine}>
+            <Box as="span">© 2026 Unified Artificial Intelligence Agency</Box>
+            <Box as="span">uaiagency.org</Box>
+            <Link variant="plain" className={s.footerLink} style={{ display: 'inline', padding: 0 }} href={`mailto:${EMAILS.info}`}>{EMAILS.info}</Link>
+            <Link variant="plain" className={s.footerLink} style={{ display: 'inline', padding: 0 }} href={`mailto:${EMAILS.hello}`}>{EMAILS.hello}</Link>
+            <Box as="span">Founded {FOUNDED}</Box>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 };

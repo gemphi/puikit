@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Col, Container, EmptyState, Row } from '@pui/components';
+import { Box, Button, Col, Container, EmptyState, Row } from '@pui/components';
 import { PostStage, useSocialConfig } from '@pui/social';
 import { useSidebarContraction } from '@pui/components';
 import { useAsync } from '@pui/shop';
@@ -60,7 +60,7 @@ export const PostPage: React.FC<{ id: string }> = ({ id }) => {
       <Row gap={6} align="start" justify="center" wrap>
         <Col xs={12} md={commentsOpen ? 6 : 9} lg={commentsOpen ? 6 : 8} className={s.stickyCol}>
           {p && (
-            <div className={s.postStage}>
+            <Box className={s.postStage}>
               <PostStage
                 post={{ ...toSlide(p), onOpen: undefined }}
                 shape="square"
@@ -69,16 +69,16 @@ export const PostPage: React.FC<{ id: string }> = ({ id }) => {
                 onNext={next ? () => navigate(routes.post(next.id)) : undefined}
                 labels={{ close: t.post.close, previous: t.feed.previous, next: t.feed.next }}
               />
-            </div>
+            </Box>
           )}
         </Col>
 
         {commentsOpen && (
           <Col xs={12} md={6}>
             {p && (
-              <div className={s.postPanelBox}>
+              <Box className={s.postPanelBox}>
                 <PostComments post={p} intro onClose={() => setCommentsOpen(false)} />
-              </div>
+              </Box>
             )}
           </Col>
         )}

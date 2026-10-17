@@ -1,0 +1,188 @@
+{
+ "stats": [
+  {
+   "label": "Personas",
+   "value": "21,880",
+   "sub": "Made by members"
+  },
+  {
+   "label": "Memories kept",
+   "value": "9.6M",
+   "sub": "Searchable"
+  },
+  {
+   "label": "Chats today",
+   "value": "184k",
+   "sub": "Across worlds"
+  },
+  {
+   "label": "Clubs using it",
+   "value": "1,940",
+   "sub": "Shared memory"
+  }
+ ],
+ "news": [
+  [
+   "Personas",
+   "Personas can host events",
+   "A persona can now greet guests, run a quiz and close the night with thanks."
+  ],
+  [
+   "Memory",
+   "Club memory goes shared",
+   "Everything a club does can live in one memory that every member can search."
+  ],
+  [
+   "Stories",
+   "Mori the guide who never sleeps",
+   "A Bijou club built Mori to welcome newcomers. Mori has shown 30k members around."
+  ],
+  [
+   "Assistant",
+   "The assistant reads your calendar",
+   "Ask what is on tonight and it lists your events, rides and the looks you planned."
+  ],
+  [
+   "Personas",
+   "Voices for personas",
+   "Pick from forty voices or record your own for a persona."
+  ],
+  [
+   "Stories",
+   "A memory that found a lost PFT",
+   "Asha asked where her old ticket went. The memory showed she lent it to a friend in July."
+  ],
+  [
+   "Workspace",
+   "Workspaces for teams",
+   "Share a workspace with your club and keep notes, files and chats together."
+  ],
+  [
+   "Memory",
+   "Forget with one tap",
+   "Remove a memory and everything made from it disappears too."
+  ],
+  [
+   "Personas",
+   "Persona market opens",
+   "Sell or rent a persona to other clubs. You keep a royalty on each rental."
+  ],
+  [
+   "Assistant",
+   "Replies in your style",
+   "The assistant now drafts messages that read like you wrote them."
+  ],
+  [
+   "Stories",
+   "Ines runs a book club with a persona",
+   "The persona picks the next chapter and asks the questions. Ines just shows up."
+  ],
+  [
+   "Workspace",
+   "Pin anything",
+   "Pin a chat, a look or a record to the top of your workspace."
+  ]
+ ],
+ "faq": [
+  {
+   "q": "Who can see my memory?",
+   "a": "Only you, unless you share a part of it with a club."
+  },
+  {
+   "q": "Can a persona act for me?",
+   "a": "Only in the apps and limits you set in delegation."
+  },
+  {
+   "q": "Can I export my memory?",
+   "a": "Yes. Export it as a file from Memory at any time."
+  },
+  {
+   "q": "How do I build a persona?",
+   "a": "Open Personas, choose New and follow the steps."
+  },
+  {
+   "q": "Do personas cost anything?",
+   "a": "Making one is free. Renting someone else's has a price set by its owner."
+  }
+ ],
+ "cards": [
+  {
+   "title": "Asha",
+   "sub": "persona · host",
+   "body": "Warm, quick and great at quizzes."
+  },
+  {
+   "title": "Kofi",
+   "sub": "persona · guide",
+   "body": "Knows every ride route between worlds."
+  },
+  {
+   "title": "Lena",
+   "sub": "persona · stylist",
+   "body": "Suggests looks for any event."
+  },
+  {
+   "title": "Tomas",
+   "sub": "persona · treasurer",
+   "body": "Keeps club books tidy and explains them."
+  }
+ ],
+ "pulls": {
+  "menu": {
+   "workspace": {
+    "kind": "phiaceSession",
+    "label": "name",
+    "sub": "status"
+   },
+   "memory": {
+    "kind": "phiaceHistory",
+    "label": "title",
+    "sub": "url"
+   },
+   "assistant": {
+    "kind": "phiaceBookmark",
+    "label": "title",
+    "sub": "folder"
+   },
+   "personas": {
+    "kind": "agentSpec",
+    "label": "label",
+    "sub": "role"
+   }
+  },
+  "home": [
+   {
+    "title": "Your sessions",
+    "sub": "Pick up where you left off.",
+    "pull": {
+     "kind": "phiaceSession",
+     "n": 8,
+     "label": "name",
+     "sub": "status",
+     "fields": [
+      "status",
+      "tab_count"
+     ]
+    }
+   }
+  ],
+  "counts": [
+   [
+    "Sessions",
+    "phiaceSession"
+   ],
+   [
+    "Bookmarks",
+    "phiaceBookmark"
+   ],
+   [
+    "Extensions",
+    "phiaceExtension"
+   ],
+   [
+    "Pools",
+    "pool"
+   ]
+  ]
+ }
+}

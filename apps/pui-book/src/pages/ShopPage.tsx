@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Stack, Title, Text, Divider, Callout } from '@pui/components';
+import { Box, Callout, Divider, Stack, Text, Title } from '@pui/components';
 import { PageShell } from '../layouts/PageShell';
 import { ShopExample } from '../examples/ShopExample';
 import { ShoppingCart } from 'lucide-react';
@@ -17,12 +17,12 @@ export const ShopPage: React.FC = () => {
           Components are 100% decoupled from backend schemas. All state (cart, wishlist, catalog, currency) is orchestrated reactively through PUI micro-stores and services.
         </Callout>
 
-        <div>
+        <Box>
           <Title level={4}>Interactive Storefront & Cart Drawer</Title>
           <Text variant="muted">
             Add items, toggle wishlist, filter categories, and inspect live cart synchronization.
           </Text>
-        </div>
+        </Box>
 
         <ShopExample />
 

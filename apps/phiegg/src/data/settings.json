@@ -1,0 +1,113 @@
+{
+  "sections": [
+    {
+      "id": "account",
+      "label": "Account",
+      "items": [
+        {
+          "id": "handle",
+          "type": "text",
+          "label": "Handle",
+          "value": "noor.hale"
+        },
+        {
+          "id": "display",
+          "type": "text",
+          "label": "Display name",
+          "value": "Noor Hale"
+        }
+      ]
+    },
+    {
+      "id": "ownership",
+      "label": "Wallets & ownership",
+      "items": [
+        {
+          "id": "w1",
+          "type": "wallet",
+          "label": "Primary wallet",
+          "value": "0x7a3e…41c9",
+          "chain": "Ethereum",
+          "verified": true
+        },
+        {
+          "id": "w2",
+          "type": "wallet",
+          "label": "Base wallet",
+          "value": "0x11c0…be88",
+          "chain": "Base",
+          "verified": true
+        },
+        {
+          "id": "showHoldings",
+          "type": "toggle",
+          "label": "Show holdings on profile",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "privacy",
+      "label": "Privacy",
+      "items": [
+        {
+          "id": "dms",
+          "type": "choice",
+          "label": "Who can message you",
+          "value": "Club members",
+          "options": [
+            "Everyone",
+            "Club members",
+            "No one"
+          ]
+        },
+        {
+          "id": "presence",
+          "type": "toggle",
+          "label": "Show when I am inside a world",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "notifications",
+      "label": "Notifications",
+      "items": [
+        {
+          "id": "drops",
+          "type": "toggle",
+          "label": "Drops from my clubs",
+          "value": true
+        },
+        {
+          "id": "mentions",
+          "type": "toggle",
+          "label": "Mentions in nests",
+          "value": true
+        },
+        {
+          "id": "voice",
+          "type": "toggle",
+          "label": "Voice rooms going live",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "appearance",
+      "label": "Appearance",
+      "items": [
+        {
+          "id": "density",
+          "type": "choice",
+          "label": "Feed density",
+          "value": "Comfortable",
+          "options": [
+            "Comfortable",
+            "Compact"
+          ]
+        }
+      ]
+    }
+  ]
+}

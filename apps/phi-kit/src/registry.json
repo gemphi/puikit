@@ -1,0 +1,444 @@
+[
+ {
+  "key": "phiegg",
+  "name": "Phiegg",
+  "tagline": "Virtual worlds and PFTs",
+  "desc": "Virtual cities and worlds run by clubs. Every sale, quest and show earns $EGG, the general Phiegg token; $EGG and $SUM interchange in Phidao. Prices are in USD.",
+  "color": "#c67139",
+  "port": 3101,
+  "built": true,
+  "icon": [
+   {
+    "d": "M46.3 16.7 Q50 12 53.7 16.7 L79.8 50.5 C84.10 56.02 84.10 68.10 79.8 73.62 A34 24 0 0 1 50 86.06 A34 24 0 0 1 20.2 50.5 Z M79.8 50.5 A34 24 0 0 0 20.2 50.5",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 12
+   },
+   {
+    "d": "M35,56.06 C43,56.06 45,57.9 50,57.9 C55,57.9 57,56.06 65,56.06 A6,6 0 0 1 65,68.06 C57,68.06 55,66.22 50,66.22 C45,66.22 43,68.06 35,68.06 A6,6 0 0 1 35,56.06 Z",
+    "fill": "currentColor",
+    "stroke": "none",
+    "sw": 0
+   }
+  ]
+ },
+ {
+  "key": "phipad",
+  "name": "Phipad",
+  "tagline": "The accelerator for clubs building worlds",
+  "desc": "Phipad accelerates clubs building worlds: apply, incubate with mentors, get funded from track pools, and launch on Phiegg.",
+  "color": "#7a8a5e",
+  "port": 3102,
+  "built": true,
+  "icon": [
+   {
+    "d": "M50 14 C60 30 60 40 50 56 C40 40 40 30 50 14 Z",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 8
+   },
+   {
+    "d": "M34 50 L34 72 C34 80 41 86 50 86 C59 86 66 80 66 72 L66 50",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 8
+   },
+   {
+    "d": "M42 86 L42 94 M58 86 L58 94",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 8
+   }
+  ]
+ },
+ {
+  "key": "phient",
+  "name": "Phient",
+  "tagline": "Your digital human across Phiace",
+  "desc": "The whole ecosystem in one digital human that does your work on your behalf, running open-source models on your own machine.",
+  "color": "#643312",
+  "port": 3103,
+  "built": true,
+  "icon": [
+   {
+    "d": "M46.3 16.7 Q50 12 53.7 16.7 L79.8 50.5 C84.10 56.02 84.10 68.10 79.8 73.62 A34 24 0 0 1 50 86.06 A34 24 0 0 1 20.2 50.5 Z M79.8 50.5 A34 24 0 0 0 20.2 50.5",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 12
+   },
+   {
+    "d": "M50,48.4 A4.6,4.6 0 1 1 50,57.6 A4.6,4.6 0 1 1 50,48.4 Z",
+    "tf": "rotate(-30 50 62)",
+    "fill": "currentColor",
+    "stroke": "none",
+    "sw": 0
+   },
+   {
+    "d": "M40,73 Q50,58 60,73",
+    "tf": "rotate(-30 50 62)",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 6
+   }
+  ]
+ },
+ {
+  "key": "phihub",
+  "name": "Phihub",
+  "tagline": "The code home of Phiace",
+  "desc": "Every Phiace repo, package, paper and model in one place: the GitHub of the ecosystem.",
+  "color": "#3d472b",
+  "port": 3104,
+  "built": true,
+  "icon": [
+   {
+    "d": "M46.3 16.7 Q50 12 53.7 16.7 L79.8 50.5 C84.10 56.02 84.10 68.10 79.8 73.62 A34 24 0 0 1 50 86.06 A34 24 0 0 1 20.2 50.5 Z M79.8 50.5 A34 24 0 0 0 20.2 50.5",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 12
+   },
+   {
+    "d": "M38,67 L50,56 L62,67",
+    "tf": "rotate(-30 50 62)",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 3.6
+   },
+   {
+    "d": "M38,62.8 A4.2,4.2 0 1 1 38,71.2 A4.2,4.2 0 1 1 38,62.8 Z",
+    "tf": "rotate(-30 50 62)",
+    "fill": "currentColor",
+    "stroke": "none",
+    "sw": 0
+   },
+   {
+    "d": "M50,51.8 A4.2,4.2 0 1 1 50,60.2 A4.2,4.2 0 1 1 50,51.8 Z",
+    "tf": "rotate(-30 50 62)",
+    "fill": "currentColor",
+    "stroke": "none",
+    "sw": 0
+   },
+   {
+    "d": "M62,62.8 A4.2,4.2 0 1 1 62,71.2 A4.2,4.2 0 1 1 62,62.8 Z",
+    "tf": "rotate(-30 50 62)",
+    "fill": "currentColor",
+    "stroke": "none",
+    "sw": 0
+   }
+  ]
+ },
+ {
+  "key": "phiace",
+  "name": "Phiace",
+  "tagline": "Personal assistants and personas",
+  "desc": "Your personal assistant and the personas you create: voices, characters and helpers for every Phiace app.",
+  "color": "#2e2b25",
+  "port": 3105,
+  "built": true,
+  "icon": [
+   {
+    "d": "M46.3 16.7 Q50 12 53.7 16.7 L79.8 50.5 C84.10 56.02 84.10 68.10 79.8 73.62 A34 24 0 0 1 50 86.06 A34 24 0 0 1 20.2 50.5 Z",
+    "fill": "currentColor",
+    "stroke": "none",
+    "sw": 0
+   },
+   {
+    "d": "M35,56.06 C43,56.06 45,57.9 50,57.9 C55,57.9 57,56.06 65,56.06 A6,6 0 0 1 65,68.06 C57,68.06 55,66.22 50,66.22 C45,66.22 43,68.06 35,68.06 A6,6 0 0 1 35,56.06 Z",
+    "fill": "var(--color-bg)",
+    "stroke": "none",
+    "sw": 0
+   }
+  ]
+ },
+ {
+  "key": "phiora",
+  "name": "Phiora",
+  "tagline": "The first ECS database",
+  "desc": "A database built on entities, components and systems, so worlds, agents and assets query the way they run.",
+  "color": "#56633f",
+  "port": 3106,
+  "built": true,
+  "icon": [
+   {
+    "d": "M46.3 16.7 Q50 12 53.7 16.7 L79.8 50.5 C84.10 56.02 84.10 68.10 79.8 73.62 A34 24 0 0 1 50 86.06 A34 24 0 0 1 20.2 50.5 Z M79.8 50.5 A34 24 0 0 0 20.2 50.5",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 12
+   },
+   {
+    "d": "M40,51 H60 A2.6,2.6 0 0 1 60,56.2 H40 A2.6,2.6 0 0 1 40,51 Z",
+    "tf": "rotate(-30 50 62)",
+    "fill": "currentColor",
+    "stroke": "none",
+    "sw": 0
+   },
+   {
+    "d": "M40,59.4 H60 A2.6,2.6 0 0 1 60,64.6 H40 A2.6,2.6 0 0 1 40,59.4 Z",
+    "tf": "rotate(-30 50 62)",
+    "fill": "currentColor",
+    "stroke": "none",
+    "sw": 0
+   },
+   {
+    "d": "M40,67.8 H60 A2.6,2.6 0 0 1 60,73 H40 A2.6,2.6 0 0 1 40,67.8 Z",
+    "tf": "rotate(-30 50 62)",
+    "fill": "currentColor",
+    "stroke": "none",
+    "sw": 0
+   }
+  ]
+ },
+ {
+  "key": "phiano",
+  "name": "Phiano",
+  "tagline": "The phase large language model",
+  "desc": "A large language model built on phase: the model behind Phiace agents and personas.",
+  "color": "#8c491a",
+  "port": 3107,
+  "built": true,
+  "icon": [
+   {
+    "d": "M46.3 16.7 Q50 12 53.7 16.7 L79.8 50.5 C84.10 56.02 84.10 68.10 79.8 73.62 A34 24 0 0 1 50 86.06 A34 24 0 0 1 20.2 50.5 Z M79.8 50.5 A34 24 0 0 0 20.2 50.5",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 12
+   },
+   {
+    "d": "M34,62 C40,51 44,51 50,62 S60,73 66,62",
+    "tf": "rotate(-30 50 62)",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 5
+   }
+  ]
+ },
+ {
+  "key": "phinet",
+  "name": "Phinet",
+  "tagline": "Train and fine-tune",
+  "desc": "Training, fine-tuning and more for Phiace models, with Phical, Phiecs, Phique and Phifno inside.",
+  "color": "#272e1b",
+  "port": 3108,
+  "built": true,
+  "icon": [
+   {
+    "d": "M46.3 16.7 Q50 12 53.7 16.7 L79.8 50.5 C84.10 56.02 84.10 68.10 79.8 73.62 A34 24 0 0 1 50 86.06 A34 24 0 0 1 20.2 50.5 Z M79.8 50.5 A34 24 0 0 0 20.2 50.5",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 12
+   },
+   {
+    "d": "M38,55 L62,62 M38,69 L62,62",
+    "tf": "rotate(-30 50 62)",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 3.4
+   },
+   {
+    "d": "M38,51 A4,4 0 1 1 38,59 A4,4 0 1 1 38,51 Z",
+    "tf": "rotate(-30 50 62)",
+    "fill": "currentColor",
+    "stroke": "none",
+    "sw": 0
+   },
+   {
+    "d": "M38,65 A4,4 0 1 1 38,73 A4,4 0 1 1 38,65 Z",
+    "tf": "rotate(-30 50 62)",
+    "fill": "currentColor",
+    "stroke": "none",
+    "sw": 0
+   },
+   {
+    "d": "M62,57.4 A4.6,4.6 0 1 1 62,66.6 A4.6,4.6 0 1 1 62,57.4 Z",
+    "tf": "rotate(-30 50 62)",
+    "fill": "currentColor",
+    "stroke": "none",
+    "sw": 0
+   }
+  ]
+ },
+ {
+  "key": "phiber",
+  "name": "Phiber",
+  "tagline": "The 4D spatial platform",
+  "desc": "Model, simulate and render space over time: the spatial platform the Phiace worlds are built in.",
+  "color": "#b2622d",
+  "port": 3109,
+  "built": true,
+  "icon": [
+   {
+    "d": "M46.3 16.7 Q50 12 53.7 16.7 L79.8 50.5 C84.10 56.02 84.10 68.10 79.8 73.62 A34 24 0 0 1 50 86.06 A34 24 0 0 1 20.2 50.5 Z M79.8 50.5 A34 24 0 0 0 20.2 50.5",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 12
+   },
+   {
+    "d": "M50,49 L61,55.5 L61,68.5 L50,75 L39,68.5 L39,55.5 Z M39,55.5 L50,62 L61,55.5 M50,62 L50,75",
+    "tf": "rotate(-30 50 62)",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 3.8
+   }
+  ]
+ },
+ {
+  "key": "phinux",
+  "name": "Phinux",
+  "tagline": "Open-source trading",
+  "desc": "An open-source trading system for the Phiace economy: order books, strategies and settlement.",
+  "color": "#474238",
+  "port": 3110,
+  "built": true,
+  "icon": [
+   {
+    "d": "M46.3 16.7 Q50 12 53.7 16.7 L79.8 50.5 C84.10 56.02 84.10 68.10 79.8 73.62 A34 24 0 0 1 50 86.06 A34 24 0 0 1 20.2 50.5 Z M79.8 50.5 A34 24 0 0 0 20.2 50.5",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 12
+   },
+   {
+    "d": "M35,70 L45,61 L52,66 L64,53 M57,53 L64,53 L64,60",
+    "tf": "rotate(-30 50 62)",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 5
+   }
+  ]
+ },
+ {
+  "key": "phiret",
+  "name": "Phiret",
+  "tagline": "The real estate council",
+  "desc": "The council that governs virtual spaces: land, zoning and ownership across Phiace worlds.",
+  "color": "#7a8a5e",
+  "port": 3111,
+  "built": true,
+  "icon": [
+   {
+    "d": "M46.3 16.7 Q50 12 53.7 16.7 L79.8 50.5 C84.10 56.02 84.10 68.10 79.8 73.62 A34 24 0 0 1 50 86.06 A34 24 0 0 1 20.2 50.5 Z M79.8 50.5 A34 24 0 0 0 20.2 50.5",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 12
+   },
+   {
+    "d": "M46.3 16.7 Q50 12 53.7 16.7 L79.8 50.5 A34 24 0 0 0 20.2 50.5 Z",
+    "fill": "currentColor",
+    "stroke": "none",
+    "sw": 0
+   },
+   {
+    "d": "M45,75 V64 H55 V75",
+    "tf": "rotate(-30 50 62)",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 5
+   }
+  ]
+ },
+ {
+  "key": "phidao",
+  "name": "Phidao",
+  "tagline": "Govern the shared economy",
+  "desc": "The members' council for Phiace: proposals, treasury, token swap and delegates, weighted by Phiput holdings.",
+  "color": "#402310",
+  "port": 3112,
+  "built": true,
+  "icon": [
+   {
+    "d": "M46.3 16.7 Q50 12 53.7 16.7 L79.8 50.5 C84.10 56.02 84.10 68.10 79.8 73.62 A34 24 0 0 1 50 86.06 A34 24 0 0 1 20.2 50.5 Z M79.8 50.5 A34 24 0 0 0 20.2 50.5",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 12
+   },
+   {
+    "d": "M38,62 L47,71 L63,53",
+    "tf": "rotate(-30 50 62)",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 6.5
+   }
+  ]
+ },
+ {
+  "key": "phisum",
+  "name": "Phisum",
+  "tagline": "The fund and the $SUM token",
+  "desc": "Phisum is the main fund and its token, $SUM. It backs teams building Phiace cities, runs speedrun cohorts and holds the Phidao treasury. $SUM and $EGG interchange in Phidao.",
+  "color": "#728157",
+  "port": 3113,
+  "built": true,
+  "icon": [
+   {
+    "d": "M46.3 16.7 Q50 12 53.7 16.7 L79.8 50.5 C84.10 56.02 84.10 68.10 79.8 73.62 A34 24 0 0 1 50 86.06 A34 24 0 0 1 20.2 50.5 Z M79.8 50.5 A34 24 0 0 0 20.2 50.5",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 12
+   },
+   {
+    "d": "M58.5,51 H42 L51.5,62 L42,73 H58.5",
+    "tf": "rotate(-30 50 62)",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 5.5
+   }
+  ]
+ },
+ {
+  "key": "phione",
+  "name": "Phione",
+  "tagline": "Identity, agents and ontology",
+  "desc": "The console of the Phient platform: the core ontology (object, link and action types), the platform agents and their verbs, workforce and identity. Reads the Python Phient API (VITE_PHIADK_API).",
+  "color": "#0071e3",
+  "port": 3115,
+  "built": true,
+  "icon": [
+   {
+    "d": "M50 14 C70 14 84 28 84 48 C84 66 74 80 60 86",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 8
+   },
+   {
+    "d": "M50 30 C60 30 68 38 68 48 C68 62 62 74 52 82",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 8
+   },
+   {
+    "d": "M50 46 L50 86",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 8
+   },
+   {
+    "d": "M32 22 C22 30 16 40 16 52 C16 64 20 74 28 82",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 8
+   }
+  ]
+ },
+ {
+  "key": "phipal",
+  "name": "Phipal",
+  "tagline": "Your personal agent for world economies",
+  "desc": "Phipal is the agent you talk to on the Phiegg marketplace: it spawns a team (phiegg, phipay, phisum, phione) that plays the economy for your goals with game theory. Thinks on Phient, settles in $EGG, $SUM and USD.",
+  "color": "#7c5cff",
+  "port": 3116,
+  "built": true,
+  "icon": [
+   {
+    "d": "M50 18 A32 32 0 1 0 50 82 A32 32 0 1 0 50 18 Z",
+    "fill": "none",
+    "stroke": "currentColor",
+    "sw": 10
+   },
+   {
+    "d": "M50 38 A12 12 0 1 0 50 62 A12 12 0 1 0 50 38 Z M76 28 A7 7 0 1 0 76 42 A7 7 0 1 0 76 28 Z",
+    "fill": "currentColor",
+    "stroke": "none",
+    "sw": 0
+   }
+  ]
+ }
+]

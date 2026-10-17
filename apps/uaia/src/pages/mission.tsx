@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Title } from '@pui/components';
+import { Box, Text, Title } from '@pui/components';
 import { Hero, Block, Glass, AutoGrid } from '../components/kit';
 import s from '../styles/uaia.module.scss';
 
@@ -18,7 +18,7 @@ export const MissionPage: React.FC = () => (
     <Hero
       pattern="mission"
       label="Mission & Vision"
-      title={<>The market for intelligence <span className={s.gradText}>must be earned.</span></>}
+      title={<>The market for intelligence <Box as="span" className={s.gradText}>must be earned.</Box></>}
     />
 
     <Block label="Mission">
@@ -42,7 +42,7 @@ export const MissionPage: React.FC = () => (
       <AutoGrid min={280} style={{ marginTop: 22 }}>
         {PRINCIPLES.map((p) => (
           <Glass key={p.n}>
-            <span className={s.mono} style={{ color: 'var(--phi-color-primary)', fontSize: 12, letterSpacing: '0.2em' }}>{p.n}</span>
+            <Box as="span" className={s.mono} style={{ color: 'var(--phi-color-primary)', fontSize: 12, letterSpacing: '0.2em' }}>{p.n}</Box>
             <Title level={5} style={{ marginTop: 6 }}>{p.t}</Title>
             <Text size="sm" intent="secondary">{p.b}</Text>
           </Glass>
@@ -51,11 +51,11 @@ export const MissionPage: React.FC = () => (
     </Block>
 
     <Block label="Success" title="What success looks like." tight>
-      <div style={{ marginTop: 16, display: 'grid', gap: 12, maxWidth: 720 }}>
+      <Box style={{ marginTop: 16, display: 'grid', gap: 12, maxWidth: 720 }}>
         <Glass><Text>A public registry the world checks before it deploys.</Text></Glass>
         <Glass><Text>Incidents that fall year over year while certified deployments rise.</Text></Glass>
         <Glass><Text>A generation of models where safety work is a market advantage, not a tax.</Text></Glass>
-      </div>
+      </Box>
     </Block>
   </>
 );

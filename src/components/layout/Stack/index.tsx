@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '../../../utils/cn';
-import { StyleProps, stylePropsToCSS } from '../../shared/styleProps';
+import { StyleProps, omitStyleProps, stylePropsToCSS } from '../../shared/styleProps';
 import { responsiveCSSVars, type ResponsiveValue } from '../../shared/responsive';
 import { Box } from '../Box';
 import styles from './styles.module.scss';
@@ -8,7 +8,7 @@ import styles from './styles.module.scss';
 export type StackDirection = 'row' | 'column' | 'row-reverse' | 'column-reverse';
 export type StackAlign = 'start' | 'center' | 'end' | 'stretch' | 'baseline';
 export type StackJustify = 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
-export type StackGap = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 8;
+export type StackGap = 0 | 0.5 | 1 | 1.5 | 2 | 2.5 | 3 | 4 | 5 | 6 | 8;
 
 export type StackProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'align'> & {
   direction?: ResponsiveValue<StackDirection>;
@@ -16,7 +16,13 @@ export type StackProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'align'> & {
   align?: ResponsiveValue<StackAlign>;
   justify?: ResponsiveValue<StackJustify>;
   wrap?: ResponsiveValue<boolean>;
+  /** flex-grow of the stack itself inside a flex parent. */
+  grow?: number;
+  /** CSS overflow of the stack (e.g. 'auto' for a scrolling row). */
+  overflow?: React.CSSProperties['overflow'];
   ref?: React.Ref<HTMLDivElement>;
+  /** The element it renders (a form, a list, a section, a header); a div by default. */
+  as?: React.ElementType;
 } & Omit<StyleProps, 'align'>;
 
 const justifyMap: Record<StackJustify, string> = {
@@ -43,8 +49,11 @@ export const Stack = React.forwardRef<HTMLDivElement, StackProps>(({
   align = 'stretch',
   justify = 'start',
   wrap = false,
+  grow,
+  overflow,
   className = '',
   style,
+  as,
   ...props
 }, ref) => {
   const stylePropsCSS = stylePropsToCSS(props);
@@ -54,14 +63,16 @@ export const Stack = React.forwardRef<HTMLDivElement, StackProps>(({
     ...responsiveCSSVars('stack-justify', justify, (value: StackJustify) => justifyMap[value]),
     ...responsiveCSSVars('stack-wrap', wrap, (value) => (value ? 'wrap' : 'nowrap')),
     ...responsiveCSSVars('stack-gap', gap, (value) => `${value * 0.25}rem`),
+    ...(grow !== undefined ? { flexGrow: grow } : null),
+    ...(overflow !== undefined ? { overflow } : null),
     ...stylePropsCSS,
     ...style,
   };
 
-  const { background, padding, paddingTop, paddingBottom, paddingLeft, paddingRight, paddingX, paddingY, margin, marginTop, marginBottom, color, maxWidth, minWidth, minHeight, textDecoration, opacity, textTransform, letterSpacing, ...rest } = props;
+  const rest = omitStyleProps(props);
 
   return (
-    <Box ref={ref} className={cn(styles.stack, className)} style={computedStyle} {...rest}>
+    <Box ref={ref} as={as} className={cn(styles.stack, className)} style={computedStyle} data-dir={typeof direction === 'string' ? direction : undefined} {...rest}>
       {children}
     </Box>
   );

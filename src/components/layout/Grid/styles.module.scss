@@ -37,6 +37,7 @@
 @for $i from 1 through 12 {
   .grid-cols-#{$i} {
     grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
+    --pui-grid-cols: #{$i};
   }
 }
 
@@ -46,6 +47,7 @@
     @for $i from 1 through 12 {
       .grid-cols-#{$bp}-#{$i} {
         grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
+        --pui-grid-cols: #{$i};
       }
     }
   }
