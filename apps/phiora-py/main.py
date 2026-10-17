@@ -111,6 +111,13 @@ async def current(req: Request, resp: Response) -> dict:
                 req.state.sid = sid
                 return ensure_wallet(u)
     u = ensure_wallet({"id": "guest_" + secrets.token_hex(6), "guest": True, "name": "Guest"})
+    # Anonymous read: answer as an ephemeral guest WITHOUT minting a session or setting a cookie.
+    # An app boot fires many parallel GETs before any cookie exists; if each minted its own guest
+    # session + Set-Cookie, a late-arriving guest cookie would overwrite the one a sign-in just set.
+    # Sessions are only created on writes and on the /auth routes, where one request is in flight.
+    if req.method in ("GET", "HEAD") and not req.url.path.startswith("/auth"):
+        req.state.sid = None
+        return u
     save_user(u)
     sid = secrets.token_urlsafe(24)
     run("INSERT INTO sessions (sid, user_id, at, created, ua) VALUES (%s,%s,%s,%s,%s)",
@@ -213,16 +220,59 @@ def slugify(s: str) -> str:
     return re.sub(r"_+", "_", re.sub(r"[^a-z0-9]+", "_", s.lower())).strip("_")[:80]
 
 
+FEE = 0.003
+EARN_CAP_USD = 50000
+COIN_LABEL = {"usd": "USD", "egg": "$EGG", "sum": "$SUM", "eth": "ETH"}
+
+
+def _round8(v: float) -> float:
+    return round(v * 1e8) / 1e8
+
+
+def _log(u: dict, coin: str, amt: float, what: str) -> None:
+    u["history"] = ([{"t": int(time.time() * 1000), "coin": coin, "amt": _round8(amt), "what": str(what)[:120]}]
+                    + u["history"])[:200]
+
+
 def spend(u: dict, coin: str, amt: float, what: str) -> str | None:
-    """Move amt of coin out of the wallet; returns an error code or None."""
+    """Move amt of coin out of the wallet; returns an error code or None. Same maths as the Node ledger."""
     if coin not in COINS:
         return "bad_coin"
     if not (amt > 0):
         return "bad_amount"
     if amt > u["wallet"].get(coin, 0) + 1e-9:
         return "insufficient"
-    u["wallet"][coin] = round(u["wallet"][coin] - amt, 6)
-    u["history"] = ([{"t": int(time.time() * 1000), "coin": coin, "amt": -amt, "what": what[:120]}] + u["history"])[:200]
+    u["wallet"][coin] = _round8(u["wallet"][coin] - amt)
+    _log(u, coin, -amt, what)
+    return None
+
+
+def swap(u: dict, amt: float, frm: str, to: str) -> tuple[dict | None, str | None]:
+    if frm not in COINS or to not in COINS or frm == to:
+        return None, "bad_pair"
+    if not (amt > 0):
+        return None, "bad_amount"
+    if amt > u["wallet"].get(frm, 0) + 1e-9:
+        return None, "insufficient"
+    got = amt * COINS[frm] / COINS[to] * (1 - FEE)
+    u["wallet"][frm] = _round8(u["wallet"][frm] - amt)
+    u["wallet"][to] = _round8(u["wallet"].get(to, 0) + got)
+    _log(u, frm, -amt, "Swapped to " + COIN_LABEL[to])
+    _log(u, to, got, "Received from swap")
+    return {"got": _round8(got)}, None
+
+
+def earn(u: dict, coin: str, amt: float, what: str) -> str | None:
+    if coin not in COINS:
+        return "bad_coin"
+    if not (amt > 0):
+        return "bad_amount"
+    usd = amt * COINS[coin]
+    if u.get("earned", 0) + usd > EARN_CAP_USD:
+        return "earn_cap"
+    u["earned"] = u.get("earned", 0) + usd
+    u["wallet"][coin] = _round8(u["wallet"].get(coin, 0) + amt)
+    _log(u, coin, amt, what)
     return None
 
 
@@ -441,3 +491,227 @@ async def tree_delete(kind: str, rid: str, resp: Response, u: dict = Depends(cur
 @app.get("/tree/mine")
 async def tree_mine(req: Request, resp: Response, kinds: str = "", u: dict = Depends(current)) -> Any:
     return await mine(req, resp, kinds, u)
+
+
+# ---------- accounts: register / sign in / password — scrypt-compatible with the Node server ----------
+
+HANDLE_RE = re.compile(r"^[a-z0-9][a-z0-9._]{2,29}$")
+EMAIL_RE = re.compile(r"^[^\s@]{1,64}@[^\s@]{1,190}\.[^\s@]{2,24}$")
+_signin_fails: dict[str, list[float]] = {}
+
+
+def hash_password(password: str) -> str:
+    salt = secrets.token_bytes(16)
+    h = hashlib.scrypt(password.encode(), salt=salt, n=16384, r=8, p=1, dklen=64, maxmem=64 * 1024 * 1024)
+    import base64
+    return f"scrypt$16384${base64.b64encode(salt).decode()}${base64.b64encode(h).decode()}"
+
+
+def verify_password(password: str, stored: Any) -> bool:
+    if not isinstance(stored, str):
+        return False
+    parts = stored.split("$")
+    if len(parts) != 4 or parts[0] != "scrypt":
+        return False
+    import base64
+    try:
+        salt, want = base64.b64decode(parts[2]), base64.b64decode(parts[3])
+        got = hashlib.scrypt(str(password).encode(), salt=salt, n=int(parts[1]), r=8, p=1,
+                             dklen=len(want), maxmem=64 * 1024 * 1024)
+        return secrets.compare_digest(got, want)
+    except Exception:
+        return False
+
+
+def _seed_handles() -> set[str]:
+    return {p.get("handle") for p in items_of("person") if p.get("handle")}
+
+
+def _account_of(login: str) -> dict | None:
+    login = str(login or "").strip().lower()
+    r = q("SELECT user_id FROM handles WHERE handle=%s", (login,)) or q("SELECT user_id FROM emails WHERE email=%s", (login,))
+    return load_user(r[0]["user_id"]) if r else None
+
+
+def _throttled(key: str) -> bool:
+    now = time.time()
+    fails = [t for t in _signin_fails.get(key, []) if now - t < 300]
+    _signin_fails[key] = fails
+    return len(fails) >= 8
+
+
+@app.post("/auth/register")
+async def register(req: Request, resp: Response, u: dict = Depends(current)) -> Any:
+    if not u.get("guest"):
+        return fail(409, "signed_in", "Sign out first to create another account.")
+    body = await req.json()
+    handle = str(body.get("handle") or "").strip().lower()
+    name = str(body.get("name") or "").strip()
+    password = body.get("password")
+    email = str(body.get("email") or "").strip().lower() or None
+    if not HANDLE_RE.match(handle):
+        return fail(400, "bad_handle", "Handle: 3–30 characters, letters, numbers, dots or underscores.")
+    if not (1 <= len(name) <= 60):
+        return fail(400, "bad_name", "Name: 1–60 characters.")
+    if not isinstance(password, str) or not (8 <= len(password) <= 200):
+        return fail(400, "bad_password", "Password: at least 8 characters.")
+    if email and not EMAIL_RE.match(email):
+        return fail(400, "bad_email", "That email doesn't look right.")
+    if q("SELECT 1 FROM handles WHERE handle=%s", (handle,)) or handle in _seed_handles():
+        return fail(409, "handle_taken", "That handle is taken.")
+    if email and q("SELECT 1 FROM emails WHERE email=%s", (email,)):
+        return fail(409, "email_taken", "That email is already on an account.")
+    # Registering upgrades the current guest in place, so its wallet and saved state carry over.
+    u.pop("guest", None)
+    u.update({"handle": handle, "name": name, "passwordHash": hash_password(password),
+              "registeredAt": int(time.time() * 1000), "email": email, "emailVerified": False})
+    run("INSERT INTO handles (handle, user_id) VALUES (%s,%s) ON CONFLICT (handle) DO NOTHING", (handle, u["id"]))
+    if email:
+        run("INSERT INTO emails (email, user_id) VALUES (%s,%s) ON CONFLICT (email) DO NOTHING", (email, u["id"]))
+    save_user(u)
+    return me_of(u)  # email verification mail is still the Node server's job until the mailer is ported
+
+
+@app.post("/auth/signin")
+async def signin(req: Request, resp: Response, u: dict = Depends(current)) -> Any:
+    body = await req.json()
+    login = str(body.get("handle") or body.get("login") or "").strip().lower()
+    key = (req.client.host if req.client else "") + "|" + login
+    if _throttled(key):
+        return fail(429, "throttled", "Too many tries — wait a few minutes.")
+    acct = _account_of(login)
+    if not acct or not verify_password(body.get("password"), acct.get("passwordHash")):
+        _signin_fails.setdefault(key, []).append(time.time())
+        return fail(401, "bad_credentials", "Handle or password is wrong.")
+    _signin_fails.pop(key, None)
+    now = int(time.time() * 1000)
+    run("""INSERT INTO sessions (sid, user_id, at, created, ua) VALUES (%s,%s,%s,%s,'')
+           ON CONFLICT (sid) DO UPDATE SET user_id=EXCLUDED.user_id, at=EXCLUDED.at""",
+        (req.state.sid, acct["id"], now, now))
+    return me_of(ensure_wallet(acct))
+
+
+@app.post("/auth/password")
+async def change_password(req: Request, resp: Response, u: dict = Depends(current)) -> Any:
+    if u.get("guest"):
+        return fail(401, "sign_in", "Sign in first.")
+    body = await req.json()
+    if not verify_password(body.get("current"), u.get("passwordHash")):
+        return fail(401, "bad_credentials", "Current password is wrong.")
+    pw = body.get("password")
+    if not isinstance(pw, str) or not (8 <= len(pw) <= 200):
+        return fail(400, "bad_password", "Password: at least 8 characters.")
+    u["passwordHash"] = hash_password(pw)
+    save_user(u)
+    return me_of(u)
+
+
+@app.post("/auth/login")
+async def login_alias(req: Request, resp: Response, u: dict = Depends(current)) -> Any:
+    return await demo_login(req, resp, u)  # parity: /auth/login is the demo sign-in alias
+
+
+# ---------- user state docs + wallet ops + activity + chat ----------
+
+SERVER_DOCS = {"wallet", "history", "owned", "activity"}
+ACTIVITY_KINDS = {"view", "angle", "cart.add", "cart.remove", "offer", "offer.withdraw", "buy", "checkout", "swap",
+                  "lot.buy", "quest.join", "quest.leave", "coin.buy", "coin.sell", "stake", "unstake", "follow",
+                  "unfollow", "rsvp", "unrsvp", "like", "unlike", "save", "unsave", "share", "comment", "chat", "open"}
+NAME_RE = re.compile(r"^[\w.-]{1,64}$")
+
+
+def money(u: dict) -> dict:
+    return {"wallet": u.get("wallet"), "history": u.get("history"), "owned": u.get("owned")}
+
+
+@app.get("/state/{name}")
+async def state_get(name: str, req: Request, resp: Response, u: dict = Depends(current)) -> Any:
+    if not NAME_RE.match(name):
+        return fail(400, "bad_name", "Bad document name.")
+    v = u.get("docs", {}).get("activity") if name == "activity" else \
+        (money(u).get(name) if name in SERVER_DOCS else u.get("docs", {}).get(name))
+    return fail(404, "unset", "Not set.") if v is None else v
+
+
+@app.put("/state/{name}")
+async def state_put(name: str, req: Request, resp: Response, u: dict = Depends(current)) -> Any:
+    if not NAME_RE.match(name):
+        return fail(400, "bad_name", "Bad document name.")
+    if name in SERVER_DOCS:
+        return fail(403, "server_owned", name + " is written by the server — use /wallet or /shop.")
+    body = await req.json()
+    u.setdefault("docs", {})[name] = body
+    save_user(u)
+    return Response(status_code=204)
+
+
+@app.post("/wallet/{op}")
+async def wallet_op(op: str, req: Request, resp: Response, u: dict = Depends(current)) -> Any:
+    body = await req.json()
+    out: dict = {}
+    if op == "swap":
+        out2, err = swap(u, float(body.get("amt") or 0), str(body.get("from") or ""), str(body.get("to") or ""))
+        if err:
+            return fail(409, err, "Swap refused: " + err + ".")
+        out = out2 or {}
+    elif op == "spend":
+        err = spend(u, str(body.get("coin") or ""), float(body.get("amt") or 0), str(body.get("what") or "Spent"))
+        if err:
+            return fail(409, err, "Spend refused: " + err + ".")
+    elif op == "earn":
+        err = earn(u, str(body.get("coin") or ""), float(body.get("amt") or 0), str(body.get("what") or "Received"))
+        if err:
+            return fail(409, err, "Earn refused: " + err + ".")
+    else:
+        return fail(404, "not_found", "No wallet op " + op + ".")
+    save_user(u)
+    return {**out, **money(u)}
+
+
+@app.post("/activity")
+async def activity_add(req: Request, resp: Response, u: dict = Depends(current)) -> Any:
+    body = await req.json()
+    events = body.get("events") if isinstance(body.get("events"), list) else []
+    if not events or len(events) > 100:
+        return fail(400, "bad_events", "Send 1 to 100 events.")
+    now = int(time.time() * 1000)
+    clean = []
+    for e in events:
+        if not isinstance(e, dict) or e.get("kind") not in ACTIVITY_KINDS:
+            return fail(400, "bad_kind", "Unknown activity kind.")
+        if not ID_RE.match(str(e.get("ref") or "")):
+            return fail(400, "bad_ref", "Bad ref.")
+        at = e.get("at")
+        at = at if isinstance(at, (int, float)) and at <= now + 60000 and at > now - 86400000 else now
+        ev = {"id": e.get("id") if ID_RE.match(str(e.get("id") or "")) else "s" + secrets.token_hex(5),
+              "kind": e["kind"], "ref": e["ref"], "at": int(at)}
+        for k in ("refKind", "with"):
+            if ID_RE.match(str(e.get(k) or "")):
+                ev[k] = e[k]
+        if isinstance(e.get("usd"), (int, float)):
+            ev["usd"] = round(float(e["usd"]) * 100) / 100
+        if isinstance(e.get("note"), str) and e["note"]:
+            ev["note"] = e["note"][:120]
+        clean.append(ev)
+    doc = u.setdefault("docs", {}).setdefault("activity", {"events": []})
+    seen = {x.get("id") for x in doc["events"]}
+    fresh = sorted([x for x in clean if x["id"] not in seen], key=lambda x: -x["at"])
+    doc["events"] = (fresh + doc["events"])[:1000]
+    save_user(u)
+    return {"added": len(clean), "total": len(doc["events"])}
+
+
+@app.get("/activity")
+async def activity_list(req: Request, resp: Response, ref: str = "", u: dict = Depends(current)) -> Any:
+    events = u.get("docs", {}).get("activity", {}).get("events", [])
+    return {"events": [e for e in events if not ref or e.get("ref") == ref or e.get("with") == ref]}
+
+
+@app.post("/chat")
+async def chat(req: Request, resp: Response, u: dict = Depends(current)) -> Any:
+    body = await req.json()
+    msgs = body.get("messages") if isinstance(body.get("messages"), list) else []
+    last = str((msgs[-1] or {}).get("text") or (msgs[-1] or {}).get("content") or "") if msgs else ""
+    # Canned fallback, same voice as the Node model proxy; a live model lands with the full model port.
+    return {"text": f'Noted — "{last[:80]}". (Phiora has no model configured yet; set PHI_MODEL_URL or ANTHROPIC_API_KEY.)',
+            "offline": True}

@@ -1,0 +1,32 @@
+phiora-py: complete the data backend port — accounts, state, wallet, activity, chat
+
+The FastAPI Phiora now covers everything the apps call day to day, over the same
+Postgres tables and the same phi_sid cookie as the Node server:
+
+- Accounts: /auth/register (upgrades the guest in place, keeping wallet and docs),
+  /auth/signin, /auth/password, /auth/login (demo alias). Password hashes use the
+  exact Node scrypt format (scrypt$16384$salt$hash, r=8 p=1 dklen=64), verified
+  interoperable both ways. Sign-in throttled per ip+login.
+- /state/{doc}: GET for all docs (wallet/history/owned/activity are server-owned),
+  PUT for the client docs (follows, cart, profile, votes, rsvps…), 403 on server docs.
+- /wallet/{swap|spend|earn}: same coin rates, 0.3% swap fee, rounding and the
+  50k USD earn cap as Node; history capped at 200 entries.
+- /activity: batch POST with the full Node validation (kind set, ref ids, time
+  clamp, dedupe, 1000-event cap) and GET ?ref= filtering.
+- /chat: the scripted offline reply until a model is configured.
+
+Session fix: anonymous GETs are answered as an ephemeral guest without minting a
+session or setting a cookie. An app boot fires many parallel GETs before any cookie
+exists; previously each minted its own guest session and a late-arriving guest
+Set-Cookie could overwrite the cookie a sign-in had just set. Sessions are now only
+created on writes and on /auth routes.
+
+Verified end to end: phisum built and served one-origin with /api on phiora-py —
+demo sign-in sticks, backing a round moves the wallet (11950 → 11938 egg for a 12
+egg pledge), the round's raised/backers rise, and comments post and read back.
+
+Still on Node until ported: verification/reset email, /shop, chat model proxy,
+delegation, seeding (npm run seed stays the seeder).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TVVHXhkRY3LKpjzrweNshC
