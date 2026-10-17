@@ -1,17 +1,17 @@
 {
-  "name": "@phiace/puijs",
+  "name": "puikit",
   "version": "0.4.0",
   "type": "module",
   "description": "Industrial React component library and enterprise design system modeled after Palantir Blueprint",
   "author": "bdizha <bdizha@gmail.com>",
   "license": "MIT",
-  "homepage": "https://puijs.com",
+  "homepage": "https://puikit.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gemphi/puijs.git"
+    "url": "git+https://github.com/gemphi/puikit.git"
   },
   "bugs": {
-    "url": "https://github.com/gemphi/puijs/issues"
+    "url": "https://github.com/gemphi/puikit/issues"
   },
   "keywords": [
     "react",
@@ -20,7 +20,7 @@
     "blueprint",
     "foundry",
     "components",
-    "puijs",
+    "puikit",
     "enterprise-ui"
   ],
   "main": "./dist/index.js",

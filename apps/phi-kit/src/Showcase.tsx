@@ -30,7 +30,7 @@ const Shot: React.FC<{ src?: string; alt: string; tint?: string; label?: string 
  * The marketing welcome, Meta/Muse style: a full-width hero, then alternating feature rows — a framed screenshot on
  * one side, a headline and blurb on the other — and a closing call to action. One shared component; every app's
  * landing uses it and differs only by its data (its copy, its screenshots) and its theme, so each app reads as itself
- * while they all share the house look. Built only from puijs components — no bespoke layout.
+ * while they all share the house look. Built only from puikit components — no bespoke layout.
  */
 export const FeatureShowcase: React.FC<{
   eyebrow?: string;

@@ -24,7 +24,7 @@ export interface ProductCardProps {
 }
 
 /**
- * A product card composed exclusively from puijs primitives: the {@link Card}
+ * A product card composed exclusively from puikit primitives: the {@link Card}
  * family provides the surface, {@link Stack} the layout, {@link Price} the
  * price treatment and {@link Button} the actions. No per-component stylesheet,
  * no raw layout `<div>`, no inline style, and no hardcoded colors — icon color

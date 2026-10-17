@@ -9,7 +9,7 @@ import { PoolCard } from './Pools';
 import { Tile } from './Tile';
 
 /**
- * Every "see all" list opens the same puijs BrowseSheet. A source only says what its items are, how to read their
+ * Every "see all" list opens the same puikit BrowseSheet. A source only says what its items are, how to read their
  * relations into facets, how to draw one card and which agent to chat with, the sheet takes that data for its
  * areas (filters · grid · layout + chat) and nothing is hardcoded per list.
  */

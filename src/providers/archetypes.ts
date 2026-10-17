@@ -12,16 +12,16 @@ import type {
  * Archetype registry and pure resolution helpers.
  *
  * This module is kit-agnostic *logic* (a registry plus pure resolvers). The
- * layout/navigation references it points at are puijs compositions only,
+ * layout/navigation references it points at are puikit compositions only,
  * honoring the "One UI Kit Per App" rule: no other UI kit is imported and only
- * puijs primitives (`Page`, `Main`, `Stack`) compose the archetype views.
+ * puikit primitives (`Page`, `Main`, `Stack`) compose the archetype views.
  *
  * Each archetype names a structurally distinct layout + navigation composition
  * so that two archetypes applied to the same content produce different
  * structure, not merely a recolor (Requirement 5.4).
  */
 
-// --- puijs-native navigation compositions (kit-specific view) ---------------
+// --- puikit-native navigation compositions (kit-specific view) ---------------
 
 /** Portal-style top navigation bar composition. */
 const PortalNav: React.FC<ArchetypeNavProps> = ({ children, archetypeId }) =>
@@ -63,7 +63,7 @@ const ShopNav: React.FC<ArchetypeNavProps> = ({ children, archetypeId }) =>
     children
   );
 
-// --- puijs-native layout compositions (kit-specific view) -------------------
+// --- puikit-native layout compositions (kit-specific view) -------------------
 
 /** Portal layout: header + main content region. */
 const PortalLayout: React.FC<ArchetypeLayoutProps> = ({ children, archetypeId }) =>
@@ -137,7 +137,7 @@ const ShopLayout: React.FC<ArchetypeLayoutProps> = ({ children, archetypeId, sid
 
 /**
  * The available Site_Archetypes. Each entry supplies a unique id, a
- * human-readable name, a puijs layout + navigation composition, a default
+ * human-readable name, a puikit layout + navigation composition, a default
  * Brand_Theme id (must exist in BRAND_THEMES), and gradient defaults.
  */
 export const SITE_ARCHETYPES: SiteArchetype[] = [

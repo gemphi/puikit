@@ -13,7 +13,7 @@ export default function App() {
         <Stack direction="row" gap={3} align="center">
           <Box as="span" style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--phi-color-primary)' }}>Φ</Box>
           <Box as="span" style={{ fontWeight: 700, fontSize: '1.1rem' }}>Phient UI (PUI)</Box>
-          <Tag intent="primary" round>puijs.com</Tag>
+          <Tag intent="primary" round>puikit.com</Tag>
         </Stack>
         <Stack direction="row" gap={3} align="center">
           <Button variant="outline" size="sm" onClick={() => setTheme(isDark ? 'light' : 'dark')} icon={isDark ? <Sun size={14} /> : <Moon size={14} />}>

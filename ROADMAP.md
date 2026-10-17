@@ -18,7 +18,7 @@ graph LR
 ## 2. Milestone Breakdown
 
 ### Phase 1: Core Foundation & Rebranding (Completed)
-- [x] Establish the `@phiace/puijs` package and the `@pui/*` import namespaces
+- [x] Establish the `@puikit` package and the `@pui/*` import namespaces
 - [x] Purge domain shop/cart state from core library
 - [x] Implement Palantir Blueprint standard design tokens (`--phi-*`)
 - [x] Build `PuiProvider` with Foundry, Blueprint, Emerald, and Midnight presets

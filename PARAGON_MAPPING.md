@@ -1,18 +1,18 @@
-# PUIJS ⟷ edX Paragon Design System Mapping
+# puikit ⟷ edX Paragon Design System Mapping
 
-> _Comprehensive mapping between `@edx/paragon` (`REFS/@edx/paragon/src`) and `@phiace/puijs` enterprise design systems._
+> _Comprehensive mapping between `@edx/paragon` (`REFS/@edx/paragon/src`) and `@puikit` enterprise design systems._
 
 ---
 
 ## 1. Executive Summary & Design System Alignment
 
-`@phiace/puijs` unites **Palantir Blueprint** density and statecraft with **edX Paragon** enterprise design system ergonomics. This specification maps all 80+ Paragon primitives and patterns directly to `@phiace/puijs` components.
+`@puikit` unites **Palantir Blueprint** density and statecraft with **edX Paragon** enterprise design system ergonomics. This specification maps all 80+ Paragon primitives and patterns directly to `@puikit` components.
 
 ---
 
 ## 2. Component Taxonomy & Direct Parity Table
 
-| Category | edX Paragon (`@edx/paragon/src`) | PUIJS (`@phiace/puijs`) | Status | Parity & Capabilities |
+| Category | edX Paragon (`@edx/paragon/src`) | puikit (`@puikit`) | Status | Parity & Capabilities |
 |:---|:---|:---|:---|:---|
 | **Buttons & Triggers** | `Button`, `ButtonGroup`, `ButtonToolbar` | `Button`, `ButtonGroup` | ✅ Complete | Primary, secondary, outline, ghost, danger variants with loading states |
 | | `IconButton`, `IconButtonWithTooltip` | `IconButton`, `Button[variant="icon"]` | ✅ Complete | Compact icon triggers with automated tooltip integration |
@@ -62,7 +62,7 @@
 
 ## 3. Brand Theming & Token Architecture
 
-Paragon uses CSS Custom Properties with SCSS design token generators. In `@phiace/puijs`:
+Paragon uses CSS Custom Properties with SCSS design token generators. In `@puikit`:
 * **Design Tokens (`src/tokens/tokens.scss`)**: Maps `--phi-color-*`, `--phi-space-*`, and `--phi-radius-*` directly to semantic design tokens.
 * **Vertical Gradient Engine**: Built-in top-to-bottom gradients (`--gradient-bg`, `--gradient-header`, `--gradient-sidebar`, `--gradient-card`, `--gradient-dropdown`).
 * **Multi-Brand Switcher**: Instant switching between `phiano`, `foundry`, `blueprint`, `emerald`, `midnight`, and `amber`.

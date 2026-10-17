@@ -10,7 +10,7 @@
 2. **Zero Business Logic Coupling**: Strictly state-library agnostic (supports Zustand, Redux, Jotai, or plain React state). No e-shop domain carts or mock store services in the core library.
 3. **Multi-Brand Theming**: Built-in Foundry Blue, Blueprint Slate, Emerald, Midnight, and Amber palettes with instant light/dark mode and flat/elevated/glass surface modes.
 4. **Strict Token System**: Centralized design tokens in `src/tokens/tokens.scss` using `--phi-*` custom properties with zero runtime JavaScript overhead.
-5. **Standalone Applications (`apps/`)**: Replaces heavy third-party storybooks with lightweight, tailored Vite applications (`pui-book` for `puijs.com`, `demo-app`, `landing-app`).
+5. **Standalone Applications (`apps/`)**: Replaces heavy third-party storybooks with lightweight, tailored Vite applications (`pui-book` for `puikit.com`, `demo-app`, `landing-app`).
 
 ---
 
@@ -53,7 +53,7 @@ pui/
 │
 └── apps/                      # Standalone Vite Applications (All files <= 120 LOC)
     ├── README.md              # Application guide & port reference
-    ├── pui-book/              # Documentation & Live Workbench at puijs.com (Port 3001)
+    ├── pui-book/              # Documentation & Live Workbench at puikit.com (Port 3001)
     ├── demo-app/              # Enterprise Operations Showcase (Port 3002)
     └── landing-app/           # Design System Landing Page (Port 3003)
 ```

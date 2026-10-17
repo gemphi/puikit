@@ -23,7 +23,7 @@ import type { BrandTheme } from './types';
  * contract at two configured viewport widths (narrow vs wide) to satisfy the
  * "minimum of two viewport-width conditions" requirement (Req 4.3, 9.3).
  *
- * Kit-agnostic test logic: only puijs theming values are referenced and no
+ * Kit-agnostic test logic: only puikit theming values are referenced and no
  * other UI kit is imported ("One UI Kit Per App").
  */
 

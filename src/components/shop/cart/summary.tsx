@@ -41,7 +41,7 @@ export interface CartSummaryProps {
 }
 
 /**
- * An order/cart summary composed exclusively from puijs primitives
+ * An order/cart summary composed exclusively from puikit primitives
  * ({@link Card}, {@link Stack}, {@link Text}, {@link Price}, {@link Button}).
  * No per-component stylesheet, no raw layout `<div>`, no inline style, and no
  * hardcoded colors — discount/free emphasis flows through token-driven Text.

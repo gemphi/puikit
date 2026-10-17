@@ -1,7 +1,7 @@
 import type React from 'react';
 
 /**
- * Shared style props for puijs components.
+ * Shared style props for puikit components.
  *
  * These props allow consumers to control common visual properties
  * without using inline style={{}} attributes. Components merge them

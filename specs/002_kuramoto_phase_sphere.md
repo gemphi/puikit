@@ -12,7 +12,7 @@
 ## 2. Architectural Hierarchy Tree
 
 ```
-puijs::components::3d::KuramotoPhaseSphere
+puikit::components::3d::KuramotoPhaseSphere
 ├── 3D Unit Sphere Context (Three.js WebGL)
 │   ├── SphereGeometry (Radius: 1.0, Wireframe / Translucent Glass Shader)
 │   ├── Latitude & Longitude Coordinate Grid (Equator represents base phase ring)

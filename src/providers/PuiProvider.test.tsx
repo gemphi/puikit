@@ -22,7 +22,7 @@ import { setPrefersDark } from '../test/setup';
  * `localStorage`, `matchMedia`, and `setPrefersDark` shims from `setup.ts`
  * make preference persistence and system-mode resolution deterministic.
  *
- * Kit-agnostic test logic: only puijs theming values are referenced and no
+ * Kit-agnostic test logic: only puikit theming values are referenced and no
  * other UI kit is imported ("One UI Kit Per App").
  */
 
@@ -65,7 +65,7 @@ afterEach(() => {
 });
 
 describe('PuiProvider DOM application and isolation', () => {
-  // Feature: puijs-theming-and-test-platform, Property 5: Archetype application
+  // Feature: puikit-theming-and-test-platform, Property 5: Archetype application
   // and runtime switching (data-archetype reflects archetypeId; setArchetypeId
   // updates it)
   // Validates: Requirements 5.4, 6.1, 10.4
@@ -96,7 +96,7 @@ describe('PuiProvider DOM application and isolation', () => {
     );
   });
 
-  // Feature: puijs-theming-and-test-platform, Property 8: Cross-provider
+  // Feature: puikit-theming-and-test-platform, Property 8: Cross-provider
   // preference isolation
   // Validates: Requirements 7.2
   it('Property 8: independent providers retain and apply their own preferences', () => {
@@ -149,7 +149,7 @@ describe('PuiProvider DOM application and isolation', () => {
     );
   });
 
-  // Feature: puijs-theming-and-test-platform, Property 12: Preference change
+  // Feature: puikit-theming-and-test-platform, Property 12: Preference change
   // applies to the DOM (data-theme/data-theme-style/data-brand/
   // data-gradient-default reflect prefs)
   // Validates: Requirements 10.1, 11.1, 11.2, 11.3
@@ -206,7 +206,7 @@ describe('PuiProvider DOM application and isolation', () => {
     );
   });
 
-  // Feature: puijs-theming-and-test-platform, Property 15: System mode
+  // Feature: puikit-theming-and-test-platform, Property 15: System mode
   // resolution (theme='system' follows matchMedia prefers-color-scheme via
   // setPrefersDark)
   // Validates: Requirements 11.4

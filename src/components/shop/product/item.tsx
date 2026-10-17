@@ -74,7 +74,7 @@ export interface ProductItemProps {
 }
 
 /**
- * A single variant-driven product entry composed exclusively from puijs
+ * A single variant-driven product entry composed exclusively from puikit
  * primitives ({@link Card}, {@link Stack}, {@link Price}, {@link Button}).
  * The `variant` selects row/card/compact density and affordances purely via
  * the `data-variant` attribute + tokens — no per-component stylesheet, no raw

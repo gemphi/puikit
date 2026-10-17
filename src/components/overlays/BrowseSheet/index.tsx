@@ -42,7 +42,7 @@ const L: BrowseSheetLabels = { filters: 'Filters', layout: 'Layout', search: 'Se
 /**
  * BrowseSheet — a bottom sheet that only takes data for its areas: filters (left), the current grid (centre), layout
  * options and an aside such as a chat (right). Each column expands or closes like every other sheet; the grid is a
- * puijs Rows (full rows, leftovers in a slider; tile = one slider row). Nothing inside knows what the items are.
+ * puikit Rows (full rows, leftovers in a slider; tile = one slider row). Nothing inside knows what the items are.
  */
 export const BrowseSheet = ({ isOpen, onClose, title, count, facets = [], selected = {}, onSelect, search, onSearch, sorts, sort, onSort, layout, onLayout, aside, asideTitle, children, labels }: BrowseSheetProps) => {
   const l = { ...L, ...labels };

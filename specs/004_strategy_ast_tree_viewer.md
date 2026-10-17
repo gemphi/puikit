@@ -12,7 +12,7 @@
 ## 2. Architectural Hierarchy Tree
 
 ```
-puijs::components::dsl::StrategyAstViewer
+puikit::components::dsl::StrategyAstViewer
 ├── Hierarchical Tree Layout Engine (D3.js / SVG)
 │   ├── Node Coordinates: d3.tree() / d3.hierarchy()
 │   ├── Smooth Curved Link Generators: d3.linkHorizontal()

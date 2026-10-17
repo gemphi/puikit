@@ -67,7 +67,7 @@ const CommentsPanel: React.FC<{ kind: string; id: string; title: string; open: b
   );
 };
 
-/** A record of any kind as a card list, driven by the kind's spec and the API, built only from shared puijs
+/** A record of any kind as a card list, driven by the kind's spec and the API, built only from shared puikit
  *  components (ItemCard, DataTable, Rows, Panes) — surfaces, gradients and spacing are the framework's, nothing bespoke.
  *  Spec fields → a DataTable; money fields → their own Pricing pane on the right with the usual buy/offer/like/comment/
  *  share bar; reference props and referrers → panes that open their own sheet. Expanded, the panes move and resize.

@@ -13,7 +13,7 @@ interface AppHeaderProps {
 /**
  * The docs utility bar, built from `Navbar` so it inherits the sticky
  * behaviour, the surface treatment and the section grid that every other
- * puijs app gets — rather than a hand-positioned `<Box as="header">`. The preferences
+ * puikit app gets — rather than a hand-positioned `<Box as="header">`. The preferences
  * modal is opened from here, so theme, brand, radius and density can be
  * exercised against the documentation itself.
  */
@@ -33,7 +33,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ searchQuery, onSearchChang
               PUI Documentation
             </Text>
             <Tag intent="primary" minimal round>
-              puijs.com
+              puikit.com
             </Tag>
           </Stack>
         </NavbarSection>

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Phiora — The first ECS database. Built on @phiace/puijs (Organic) + phi-kit.",
+  "description": "Phiora — The first ECS database. Built on puikit (Organic) + phi-kit.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -11,7 +11,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@phiace/puijs": "file:../..",
+    "puikit": "file:../..",
     "lucide-react": "^1.24.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"

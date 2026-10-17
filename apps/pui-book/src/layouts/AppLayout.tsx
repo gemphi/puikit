@@ -16,7 +16,7 @@ interface AppLayoutProps {
 /**
  * Root layout for pui-book.
  *
- * The docs shell is the same `Page` composition every puijs app uses — header,
+ * The docs shell is the same `Page` composition every puikit app uses — header,
  * sidebar rail, main — so the library's own documentation is rendered by the
  * library's own layout primitive rather than by a hand-rolled flex box. There
  * is no inline style here: `Page` owns the structure and the tokens own the

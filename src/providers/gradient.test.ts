@@ -6,10 +6,10 @@
  * `gradient.unit.test.ts`; this suite adds the fast-check property suite that
  * exercises the whole (19 brand × 5 style × 2 mode) input space via the shared
  * arbitraries in `../test/arbitraries.ts`. Kit-agnostic logic only, per the
- * "One UI Kit Per App" steering rule — it references puijs theming values and
+ * "One UI Kit Per App" steering rule — it references puikit theming values and
  * imports no other UI kit.
  *
- * Feature: puijs-theming-and-test-platform
+ * Feature: puikit-theming-and-test-platform
  */
 import { describe, expect, it } from 'vitest';
 import fc from 'fast-check';
@@ -38,7 +38,7 @@ function hexToTriplet(hex: string): string {
 }
 
 describe('deriveGradientTreatment (property-based)', () => {
-  // Feature: puijs-theming-and-test-platform, Property 9: Ambient gradient
+  // Feature: puikit-theming-and-test-platform, Property 9: Ambient gradient
   // layer structure in gradient style (parent two radial tints, child one
   // quieter tint, both over the vertical surface gradient)
   // Validates: Requirements 8.1, 8.2
@@ -71,7 +71,7 @@ describe('deriveGradientTreatment (property-based)', () => {
     );
   });
 
-  // Feature: puijs-theming-and-test-platform, Property 10: Gradient color source
+  // Feature: puikit-theming-and-test-platform, Property 10: Gradient color source
   // follows mode (light uses gradient, dark uses gradientDark)
   // Validates: Requirements 8.4
   it('Property 10: color source follows mode — light uses brand.gradient, dark uses brand.gradientDark', () => {
@@ -106,7 +106,7 @@ describe('deriveGradientTreatment (property-based)', () => {
     );
   });
 
-  // Feature: puijs-theming-and-test-platform, Property 11: No gradient-by-default
+  // Feature: puikit-theming-and-test-platform, Property 11: No gradient-by-default
   // outside gradient style (returns null)
   // Validates: Requirements 8.3
   it('Property 11: returns null for every non-gradient style, in any mode', () => {

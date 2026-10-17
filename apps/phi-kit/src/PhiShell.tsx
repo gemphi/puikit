@@ -29,7 +29,7 @@ const toGroups = (nav: NavItem[]): AppShellGroup[] => nav.map((n) => ({
 }));
 
 /**
- * Every Phi app's shell is the puijs {@link AppShell}; this wrapper only feeds it the app's data — menu groups, the
+ * Every Phi app's shell is the puikit {@link AppShell}; this wrapper only feeds it the app's data — menu groups, the
  * app switcher, the built-in You/Settings, and the look switch. Nothing here is per-app logic.
  */
 export const PhiShell: React.FC<ShellProps> = ({ app, nav, view, onView, right, onRecord, account, children }) => {

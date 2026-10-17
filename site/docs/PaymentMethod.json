@@ -1,7 +1,7 @@
 {
   "name": "PaymentMethod",
   "source": "src/components/commerce/payment/method.tsx",
-  "description": "A payment method row composed exclusively from puijs primitives: the\nCard family provides the selectable surface, Stack the\nlayout, and Text the typography (icon color via token-driven\n`intent`). No per-component stylesheet, no raw layout `<div>`, no inline\nstyle, and no hardcoded colors.",
+  "description": "A payment method row composed exclusively from puikit primitives: the\nCard family provides the selectable surface, Stack the\nlayout, and Text the typography (icon color via token-driven\n`intent`). No per-component stylesheet, no raw layout `<div>`, no inline\nstyle, and no hardcoded colors.",
   "propsInterface": "PaymentMethodProps",
   "extendsBases": [],
   "props": [

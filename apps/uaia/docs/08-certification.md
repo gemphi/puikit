@@ -24,7 +24,7 @@ label: UAIA / REGISTRY
 Open, machine-readable (JSON + signed attestations). Each entry: model ID,
 developer, version lineage, risk tier, certificate class and history,
 conditions, incident log, harness versions, re-evaluation due date.
-Search + filter UI (puijs Table): by tier, class, developer, status.
+Search + filter UI (puikit Table): by tier, class, developer, status.
 
 # SECTION — LIFECYCLE RULES
 

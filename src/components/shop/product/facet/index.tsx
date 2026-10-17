@@ -51,7 +51,7 @@ export interface FacetFilterProps {
 }
 
 /**
- * A faceted filter group composed exclusively from puijs primitives: the
+ * A faceted filter group composed exclusively from puikit primitives: the
  * {@link Stack} layout hosts a {@link Text} title and one {@link Checkbox} per
  * option, with the option count rendered via a token-driven {@link Span}. No
  * per-component stylesheet, no raw layout `<div>`, no raw `<input>`, no inline

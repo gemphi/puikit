@@ -143,8 +143,8 @@ export const BRAND_MARKS: Record<string, BrandMarkDef> = {
       [CAL, CAL_TOP, 'M8.6 12.8h6.8v5H8.6z', 'M10.1 14.1h3.8v2.4h-3.8z', 'M11.3 15.1h1.4v.6h-1.4z'],
     ],
   },
-  puijs: {
-    name: 'puijs',
+  puikit: {
+    name: 'puikit',
     tagline: 'The design system every phi surface is built from.',
     hue: 230,
     variants: [

@@ -24,8 +24,8 @@ import { archetypeIdArb, variantArb } from '../../../test/arbitraries';
  * token- and data-attribute-driven only, so the root MUST NOT carry an inline
  * `style` attribute introduced by variant selection.
  *
- * One UI Kit Per App: this is kit-agnostic puijs test logic; it imports only
- * puijs sources and the shared arbitraries, never another UI kit.
+ * One UI Kit Per App: this is kit-agnostic puikit test logic; it imports only
+ * puikit sources and the shared arbitraries, never another UI kit.
  */
 
 const baseProps: SidebarBrandProps = {
@@ -49,7 +49,7 @@ const findToggle = (container: HTMLElement): HTMLElement =>
   within(container).getByRole('button', { name: /(Collapse|Expand) sidebar/ });
 
 describe('SidebarBrand property tests (8.4)', () => {
-  // Feature: puijs-theming-and-test-platform, Property 16: Sidebar collapse
+  // Feature: puikit-theming-and-test-platform, Property 16: Sidebar collapse
   // toggle reflects in data-collapsed (toggling the collapse control flips
   // data-collapsed true/false on the root).
   // Validates: Requirements 12.3, 12.4, 12.7
@@ -93,7 +93,7 @@ describe('SidebarBrand property tests (8.4)', () => {
     );
   });
 
-  // Feature: puijs-theming-and-test-platform, Property 17: Every archetype has a
+  // Feature: puikit-theming-and-test-platform, Property 17: Every archetype has a
   // corresponding Sidebar variant (for every registered archetypeId, SidebarBrand
   // renders with data-variant equal to that archetype and does not throw).
   // Validates: Requirements 5.1, 5.3, 12.1, 12.6
@@ -138,7 +138,7 @@ describe('SidebarBrand property tests (8.4)', () => {
     expect(DEFAULT_ARCHETYPE_ID).toBeTruthy();
   });
 
-  // Feature: puijs-theming-and-test-platform, Property 19: Variant-only
+  // Feature: puikit-theming-and-test-platform, Property 19: Variant-only
   // composition — no inline styles or ad-hoc wrappers (the SidebarBrand root has
   // no inline style attribute; appearance is via data attributes).
   // Validates: Requirements 12.6, 15.3

@@ -1,7 +1,7 @@
 {
   "name": "OrderCard",
   "source": "src/components/commerce/order/card.tsx",
-  "description": "An order card composed exclusively from puijs primitives: the Card\nfamily provides the surface/regions, Stack the layout, Text\nthe typography (status via token-driven `intent`), Price the money,\nand Button the action. No per-component stylesheet, no raw layout\n`<div>`, no inline style, and no hardcoded colors.",
+  "description": "An order card composed exclusively from puikit primitives: the Card\nfamily provides the surface/regions, Stack the layout, Text\nthe typography (status via token-driven `intent`), Price the money,\nand Button the action. No per-component stylesheet, no raw layout\n`<div>`, no inline style, and no hardcoded colors.",
   "propsInterface": "OrderCardProps",
   "extendsBases": [],
   "props": [

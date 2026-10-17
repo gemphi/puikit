@@ -7,7 +7,7 @@ export default defineConfig({
   base: process.env.PHI_BASE || '/',
   resolve: {
     alias: {
-      'puijs': path.resolve(__dirname, '../../src'),
+      'puikit': path.resolve(__dirname, '../../src'),
       '@pui/tokens': path.resolve(__dirname, '../../src/tokens'),
       '@pui/styles': path.resolve(__dirname, '../../src/styles'),
       '@pui/components': path.resolve(__dirname, '../../src'),

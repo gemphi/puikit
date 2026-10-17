@@ -28,7 +28,7 @@ const hill = (r: () => number, base: number, amp: number, n: number) => {
 
 /**
  * A seeded world backdrop in SVG: sky, texture, layered hills, pillars — and a sun cut like every profile circle in
- * puijs: an outer ring, one shade on the top semicircle, and the bottom semicircle cut in half into two shades.
+ * puikit: an outer ring, one shade on the top semicircle, and the bottom semicircle cut in half into two shades.
  * All colours are mixes of one base colour, so the scene follows the theme and palette.
  */
 export const WorldScene = ({ seed, color = 'var(--phi-color-primary)', night = false, pattern, className, title }: WorldSceneProps) => {

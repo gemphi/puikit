@@ -43,7 +43,7 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({ isOpen, onClos
         </FormGroup>
 
         <Stack direction="row" gap={2} wrap>
-          <Tag intent="primary">puijs.com</Tag>
+          <Tag intent="primary">puikit.com</Tag>
           <Tag intent="success">Decoupled Architecture</Tag>
         </Stack>
       </Box>

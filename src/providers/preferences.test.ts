@@ -9,9 +9,9 @@
  * across the four `PREF_KEYS` entries.
  *
  * This is shared, kit-agnostic test logic ("One UI Kit Per App"): it references
- * only puijs theming values and imports no other UI kit.
+ * only puikit theming values and imports no other UI kit.
  *
- * Feature: puijs-theming-and-test-platform
+ * Feature: puikit-theming-and-test-platform
  *   Property 13: Persistence round-trip — _Validates: Requirements 10.1, 10.2_
  *   Property 14: Default used when no persisted value exists — _Validates: Requirements 10.2_
  */
@@ -54,7 +54,7 @@ const prefValueArb = fc.oneof(
 );
 
 describe('preferences persistence (property-based)', () => {
-  // Feature: puijs-theming-and-test-platform, Property 13: Persistence round-trip
+  // Feature: puikit-theming-and-test-platform, Property 13: Persistence round-trip
   // (persistPreference then loadPreference returns the value)
   // Validates: Requirements 10.1, 10.2
   it('Property 13: persisting a value then loading the same key returns that value', () => {
@@ -70,7 +70,7 @@ describe('preferences persistence (property-based)', () => {
     );
   });
 
-  // Feature: puijs-theming-and-test-platform, Property 14: Default used when no
+  // Feature: puikit-theming-and-test-platform, Property 14: Default used when no
   // persisted value exists
   // Validates: Requirements 10.2
   it('Property 14: loading a key with no persisted value returns the provided default', () => {

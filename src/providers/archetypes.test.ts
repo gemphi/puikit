@@ -7,7 +7,7 @@
  * shared fast-check arbitraries in `../test/arbitraries.ts` and the real
  * `archetypes.ts` module. Each property runs a minimum of 100 iterations.
  *
- * Design reference: puijs-theming-and-test-platform — Correctness Properties
+ * Design reference: puikit-theming-and-test-platform — Correctness Properties
  * 4, 6, 7. This is kit-agnostic test logic; it imports no other UI kit
  * ("One UI Kit Per App").
  */
@@ -39,7 +39,7 @@ function archetypeById(id: string) {
 }
 
 describe('archetypes registry and resolution', () => {
-  // Feature: puijs-theming-and-test-platform, Property 4: Archetype registry is
+  // Feature: puikit-theming-and-test-platform, Property 4: Archetype registry is
   // well-formed — For all entries in the archetype registry, each SHALL have a
   // unique archetypeId, a defined layout composition, a defined navigation
   // composition, gradient defaults, and a defaultBrandId that refers to an
@@ -81,7 +81,7 @@ describe('archetypes registry and resolution', () => {
     );
   });
 
-  // Feature: puijs-theming-and-test-platform, Property 6: Brand precedence — For
+  // Feature: puikit-theming-and-test-platform, Property 6: Brand precedence — For
   // any archetype, when no explicit brandId is set the effective Brand_Theme
   // SHALL equal the archetype's defaultBrandId; and for any archetype paired
   // with any explicitly set valid brandId, the effective Brand_Theme SHALL
@@ -113,7 +113,7 @@ describe('archetypes registry and resolution', () => {
     );
   });
 
-  // Feature: puijs-theming-and-test-platform, Property 7: Unknown archetypeId
+  // Feature: puikit-theming-and-test-platform, Property 7: Unknown archetypeId
   // falls back to the default — For any string that is not a registered
   // archetypeId, resolveArchetype SHALL return the defined default
   // Site_Archetype.

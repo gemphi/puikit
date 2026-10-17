@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "Phiegg \u2014 virtual worlds run by clubs: feed, explore, worlds, shows, hosts and nests, agents, Phipad. @phiace/puijs (Organic) + phi-kit.",
+  "description": "Phiegg \u2014 virtual worlds run by clubs: feed, explore, worlds, shows, hosts and nests, agents, Phipad. puikit (Organic) + phi-kit.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -20,7 +20,7 @@
     "data:ids": "node scripts/heavy-ids.mjs"
   },
   "dependencies": {
-    "@phiace/puijs": "file:../..",
+    "puikit": "file:../..",
     "lucide-react": "^1.24.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"

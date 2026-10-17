@@ -57,10 +57,10 @@ export const App: React.FC = () => {
   const s = useStore(phieggStore); useIdentity(); const { mobile } = useViewport();
   // Mirror the appearance onto <html> so portalled overlays (drawers, chat, dialogs) share the same gradients and radius.
   const ap = s.appearance;
-  // The appearance gradient drives the puijs gradient system (providers/palette.ts) for every surface.
+  // The appearance gradient drives the puikit gradient system (providers/palette.ts) for every surface.
   const { gradientLevel, setGradientLevel, borderRadius, setBorderRadius } = usePuiTheme();
   useEffect(() => { if (gradientLevel !== ap.gradient) setGradientLevel(ap.gradient as GradientLevel); }, [ap.gradient]);
-  // The appearance radius drives the puijs radius scale, so every --phi-radius-* token (cards, decks, tabs, buttons) follows it.
+  // The appearance radius drives the puikit radius scale, so every --phi-radius-* token (cards, decks, tabs, buttons) follows it.
   useEffect(() => {
     const id = (RADIUS_ALIASES[ap.radius] ?? ap.radius) as RadiusPreset;
     if (id !== ap.radius && RADIUS_PRESETS[id]) { s.setAppearance('radius', id); return; } // older saved ids (sharp/soft/round)

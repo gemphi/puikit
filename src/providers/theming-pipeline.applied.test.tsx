@@ -30,7 +30,7 @@ import type { BrandTheme } from './types';
  * or the SCSS entrypoint drops the theme-style/gradient/padding rules), this
  * test fails.
  *
- * Kit-agnostic: only puijs theming values are referenced ("One UI Kit Per App").
+ * Kit-agnostic: only puikit theming values are referenced ("One UI Kit Per App").
  */
 
 const here = dirname(fileURLToPath(import.meta.url));

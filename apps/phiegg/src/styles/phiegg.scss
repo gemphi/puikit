@@ -1,5 +1,5 @@
-// Phiegg layer over puijs tokens: themed scrollbars + appearance hooks.
-// Radius: the appearance picker drives the puijs radius scale (--phi-radius-scale) for every component, see App.tsx.
+// Phiegg layer over puikit tokens: themed scrollbars + appearance hooks.
+// Radius: the appearance picker drives the puikit radius scale (--phi-radius-scale) for every component, see App.tsx.
 * { scrollbar-width: thin; scrollbar-color: color-mix(in srgb, var(--phi-color-text-primary) 28%, transparent) transparent; }
 *::-webkit-scrollbar { width: 10px; height: 10px; }
 *::-webkit-scrollbar-track { background: transparent; }
@@ -12,7 +12,7 @@
 .ph-main { background: var(--phi-gradient-main, var(--phi-color-background)); background-attachment: local; }
 .ph-main > * { --phi-gradient-main: none; }
 
-/* The Appearance "gradient" (flat · soft · vivid · aurora) and the palette drive the puijs gradient system
+/* The Appearance "gradient" (flat · soft · vivid · aurora) and the palette drive the puikit gradient system
    (providers/palette.ts): every surface by depth, page, cards, cards in cards, media layers, drawers, dialogs,
    chats, rail, panel. It writes on <html>, so portalled overlays share it. Nothing app-specific is needed here. */
 .ph-app { background-color: var(--phi-color-background); color: var(--phi-color-text-primary); }

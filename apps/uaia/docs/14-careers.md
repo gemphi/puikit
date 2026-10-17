@@ -27,7 +27,7 @@ Each card: mandate summary + `NOMINATE OR APPLY` → careers@uaiagency.org.
 - Red-Team Lead — Autonomy & Agentic Systems
 - Research Scientist — Capability Forecasting
 - Registry Platform Engineer (TypeScript/React — the registry runs on the
-  same puijs stack as this site)
+  same puikit stack as this site)
 - Standards Program Manager — STD-200/210
 - Policy Analyst — UN Engagement Program
 - Communications Lead — Newsroom & Transparency

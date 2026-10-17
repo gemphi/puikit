@@ -3,10 +3,10 @@ set -e
 cd ~/ssr
 rm -rf pui/src app/src book/src phlick/src work/pui/src work/app/src work/book/src work/phlick/src work/out
 mkdir -p pui app book phlick
-(cd pui && tar xzf /mnt/user-data/uploads/puijs/_stage/pui_src.tgz)
-(cd app && tar xzf /mnt/user-data/uploads/puijs/_stage/chanel_src.tgz)
-(cd book && tar xzf /mnt/user-data/uploads/puijs/_stage/book_src.tgz)
-(cd phlick && tar xzf /mnt/user-data/uploads/puijs/_stage/phlick_src.tgz)
+(cd pui && tar xzf /mnt/user-data/uploads/puikit/_stage/pui_src.tgz)
+(cd app && tar xzf /mnt/user-data/uploads/puikit/_stage/chanel_src.tgz)
+(cd book && tar xzf /mnt/user-data/uploads/puikit/_stage/book_src.tgz)
+(cd phlick && tar xzf /mnt/user-data/uploads/puikit/_stage/phlick_src.tgz)
 cp -r pui/src work/pui/src && cp -r app/src work/app/src && cp -r book/src work/book/src && cp -r phlick/src work/phlick/src
 find work/pui work/app work/book work/phlick -name "*.test.ts*" -delete
 find work/pui work/app work/book work/phlick -name "*.stories.tsx" -delete

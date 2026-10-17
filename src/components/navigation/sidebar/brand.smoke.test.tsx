@@ -19,7 +19,7 @@ import { DEFAULT_ARCHETYPE_ID } from '../../../providers/archetypes';
  * 3. Theme/gradient participation — rendering under a gradient `PuiProvider`
  *    does not throw and the sidebar carries `data-variant` (R12.6).
  * 4. One UI Kit Per App — a source-level smoke test asserting `brand.tsx`
- *    imports ONLY puijs (relative), `lucide-react`, and `react`, and imports NO
+ *    imports ONLY puikit (relative), `lucide-react`, and `react`, and imports NO
  *    other UI kit.
  */
 
@@ -178,16 +178,16 @@ describe('SidebarBrand One UI Kit Per App smoke (8.5)', () => {
     return specs;
   };
 
-  it('imports only puijs (relative), lucide-react, and react', () => {
+  it('imports only puikit (relative), lucide-react, and react', () => {
     const specs = importSpecifiers(brandSource);
     expect(specs.length).toBeGreaterThan(0);
 
     for (const spec of specs) {
-      const isRelativePuijs = spec.startsWith('.') || spec.startsWith('..');
+      const isRelativePuikit = spec.startsWith('.') || spec.startsWith('..');
       const isAllowedExternal = spec === 'react' || spec === 'lucide-react';
       expect(
-        isRelativePuijs || isAllowedExternal,
-        `Unexpected import "${spec}" in brand.tsx — only puijs (relative), react, and lucide-react are allowed`
+        isRelativePuikit || isAllowedExternal,
+        `Unexpected import "${spec}" in brand.tsx — only puikit (relative), react, and lucide-react are allowed`
       ).toBe(true);
     }
   });
@@ -223,13 +223,13 @@ describe('SidebarBrand One UI Kit Per App smoke (8.5)', () => {
     }
   });
 
-  it('does not import from a sibling @phiace UI package other than puijs', () => {
+  it('does not import from a sibling @phiace UI package other than puikit', () => {
     const specs = importSpecifiers(brandSource);
     for (const spec of specs) {
       // No bare @phiace/* imports — the component is self-contained via relatives.
       expect(
         spec.startsWith('@phiace/'),
-        `brand.tsx should not import "${spec}"; compose puijs via relative paths`
+        `brand.tsx should not import "${spec}"; compose puikit via relative paths`
       ).toBe(false);
     }
   });

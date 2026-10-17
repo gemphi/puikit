@@ -15,10 +15,10 @@
  * files by importing the family barrels directly and checking their named
  * exports.
  *
- * This is kit-agnostic test logic: it references only puijs component barrels
+ * This is kit-agnostic test logic: it references only puikit component barrels
  * and imports no other UI kit ("One UI Kit Per App").
  *
- * Design reference: puijs-theming-and-test-platform — Correctness Property 18.
+ * Design reference: puikit-theming-and-test-platform — Correctness Property 18.
  */
 import { describe, expect, it } from 'vitest';
 import fc from 'fast-check';
@@ -74,7 +74,7 @@ const stableExportNameArb: fc.Arbitrary<string> = fc.constantFrom(
 );
 
 describe('component barrel export stability + naming convention', () => {
-  // Feature: puijs-theming-and-test-platform, Property 18: Barrel export
+  // Feature: puikit-theming-and-test-platform, Property 18: Barrel export
   // stability — For any pre-restructure public named export, the symbol SHALL
   // remain present and defined when imported from the root component barrel,
   // so the restructure preserves the backward-compatible public surface.

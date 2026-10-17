@@ -394,7 +394,7 @@ label: UAIA / REGISTRY
 Open, machine-readable (JSON + signed attestations). Each entry: model ID,
 developer, version lineage, risk tier, certificate class and history,
 conditions, incident log, harness versions, re-evaluation due date.
-Search + filter UI (puijs Table): by tier, class, developer, status.
+Search + filter UI (puikit Table): by tier, class, developer, status.
 
 # SECTION — LIFECYCLE RULES
 
@@ -689,7 +689,7 @@ Each card: mandate summary + `NOMINATE OR APPLY` → careers@uaiagency.org.
 - Red-Team Lead — Autonomy & Agentic Systems
 - Research Scientist — Capability Forecasting
 - Registry Platform Engineer (TypeScript/React — the registry runs on the
-  same puijs stack as this site)
+  same puikit stack as this site)
 - Standards Program Manager — STD-200/210
 - Policy Analyst — UN Engagement Program
 - Communications Lead — Newsroom & Transparency

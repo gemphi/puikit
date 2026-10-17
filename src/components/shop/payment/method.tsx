@@ -22,7 +22,7 @@ export interface PaymentMethodProps {
 }
 
 /**
- * A payment method row composed exclusively from puijs primitives: the
+ * A payment method row composed exclusively from puikit primitives: the
  * {@link Card} family provides the selectable surface, {@link Stack} the
  * layout, and {@link Text} the typography (icon color via token-driven
  * `intent`). No per-component stylesheet, no raw layout `<div>`, no inline

@@ -4,7 +4,7 @@ import React, { createContext, useCallback, useContext, useEffect, useMemo, useS
  * A hash router in ~60 lines.
  *
  * The app deliberately takes no routing dependency: a design-system reference
- * app should demonstrate puijs, not react-router. Hash routing also means the
+ * app should demonstrate puikit, not react-router. Hash routing also means the
  * built app works from any static path with no server rewrite rules.
  */
 

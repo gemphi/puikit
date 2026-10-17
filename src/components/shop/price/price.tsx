@@ -24,7 +24,7 @@ export interface PriceProps {
 }
 
 /**
- * A price treatment composed exclusively from puijs primitives.
+ * A price treatment composed exclusively from puikit primitives.
  *
  * Formatting goes through `Intl.NumberFormat`, so `EUR` renders as `€9,700` in
  * `en-IE` and `9.700 €` in `de-DE` — a hardcoded symbol prefix cannot do that,

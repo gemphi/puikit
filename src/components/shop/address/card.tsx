@@ -27,7 +27,7 @@ export interface AddressCardProps {
 }
 
 /**
- * An address card composed exclusively from puijs primitives: the {@link Card}
+ * An address card composed exclusively from puikit primitives: the {@link Card}
  * family provides the selectable surface, {@link Stack} the layout,
  * {@link Text}/{@link Span} the typography (icon color via token-driven
  * `intent`), and {@link Button} the edit action. No per-component stylesheet,

@@ -25,8 +25,8 @@
       "@pui/api": ["../../src/api"],
       "@pui/hooks": ["../../src/hooks"],
       "@pui/providers": ["../../src/providers"],
-      "puijs": ["../../src"],
-      "puijs/*": ["../../src/*"]
+      "puikit": ["../../src"],
+      "puikit/*": ["../../src/*"]
     }
   },
   "include": ["src"]

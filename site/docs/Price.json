@@ -1,7 +1,7 @@
 {
   "name": "Price",
   "source": "src/components/commerce/price/price.tsx",
-  "description": "A price treatment composed exclusively from puijs primitives\n(Stack for layout, Text/Span for typography). No\nper-component stylesheet, no inline style, and no hardcoded colors —\nemphasis, muting and strikethrough are expressed through token-driven Text\nprops (`intent`, `weight`, `textDecoration`).",
+  "description": "A price treatment composed exclusively from puikit primitives\n(Stack for layout, Text/Span for typography). No\nper-component stylesheet, no inline style, and no hardcoded colors —\nemphasis, muting and strikethrough are expressed through token-driven Text\nprops (`intent`, `weight`, `textDecoration`).",
   "propsInterface": "PriceProps",
   "extendsBases": [],
   "props": [

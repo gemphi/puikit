@@ -7,7 +7,7 @@ import { StepForm, type StepFormStep } from './index';
 /**
  * The shared stepped form: one component for every form in the house (edit sheets, checkout, enrol). These check the
  * walk — the rail tracks the active step, Next/Back move it, completed steps carry the chosen value as a hint, and the
- * action fires only on the last step. Kit-agnostic: imports only puijs sources.
+ * action fires only on the last step. Kit-agnostic: imports only puikit sources.
  */
 const steps: StepFormStep[] = [
   { id: 'a', label: 'Account', hint: 'Noor Hale', content: <input aria-label="name" defaultValue="Noor" /> },

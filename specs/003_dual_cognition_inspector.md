@@ -12,7 +12,7 @@
 ## 2. Architectural Hierarchy Tree
 
 ```
-puijs::components::diagnostics::DualCognitionInspector
+puikit::components::diagnostics::DualCognitionInspector
 ├── Value-Centric Intuition Panel (Left View)
 │   ├── Continuous Implied Volatility Forecast Gauge
 │   ├── Greeks Sensitivity Sliders: Delta, Gamma, Vega, Theta

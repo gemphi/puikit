@@ -1,0 +1,84 @@
+# The whole Phiace platform on one host: Postgres, Phiora (the one API + database) and nginx serving every app
+# behind a single origin, /api proxied to Phiora (no CORS). Copy .env.example to .env and fill it in first.
+#   node build-all.mjs            # build the apps into dist-all/ (run on the host, needs node)
+#   docker compose up -d --build  # bring up db + phiora + web
+#   docker compose exec phiora npm run seed   # first start only — load the app data + kinds
+# Back up:  docker compose exec db pg_dump -U phi phiora > backup.sql
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: phi
+      POSTGRES_DB: phiora
+      POSTGRES_PASSWORD: ${PHI_PG_PASSWORD:?set PHI_PG_PASSWORD in .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U phi -d phiora"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  phiora:
+    build:
+      context: .
+      dockerfile: phiora-server/Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://phi:${PHI_PG_PASSWORD}@db:5432/phiora
+      PHI_ENV: production
+      # Security: demo sign-in OFF, secure cookies behind TLS, and the real origins the cookie is scoped to.
+      PHI_DEMO_LOGIN: "0"
+      PHI_SECURE_COOKIES: "1"
+      PHI_ORIGINS: ${PHI_ORIGINS:?set PHI_ORIGINS in .env}
+      PHI_PUBLIC_URL: ${PHI_PUBLIC_URL:-}
+      PHI_DELEGATION_SECRET: ${PHI_DELEGATION_SECRET:?set PHI_DELEGATION_SECRET in .env}
+      # Who may create which kinds. Editors (handles or ids) may create anything; everyone signed in may create
+      # the kinds in PHI_CREATE_KINDS (comment/order let people talk and back rounds; unset = all kinds open).
+      PHI_EDITORS: ${PHI_EDITORS:-}
+      PHI_CREATE_KINDS: ${PHI_CREATE_KINDS:-comment,order}
+      # Mail (account verification / password reset) via Resend.
+      RESEND_API_KEY: ${RESEND_API_KEY:-}
+      PHI_MAIL_FROM: ${PHI_MAIL_FROM:-}
+      # The chat model proxy (optional): provider/key/url for the apps' Talk/chat.
+      PHI_MODEL_PROVIDER: ${PHI_MODEL_PROVIDER:-}
+      PHI_MODEL: ${PHI_MODEL:-}
+      PHI_MODEL_KEY: ${PHI_MODEL_KEY:-}
+      PHI_MODEL_URL: ${PHI_MODEL_URL:-}
+    volumes:
+      - phioradata:/data
+    restart: unless-stopped
+
+  # The Python Phiora (FastAPI) — the /api/kind/{...} data backend, over the same database.
+  # nginx routes /api/ to this service when the apps are built with:  node build-all.mjs --backend python
+  phiora-py:
+    build:
+      context: ./phiora-py
+      dockerfile: Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://phi:${PHI_PG_PASSWORD}@db:5432/phiora
+      PHI_DEMO_LOGIN: "0"
+      PHI_SECURE_COOKIES: "1"
+      PHI_EDITORS: ${PHI_EDITORS:-}
+      PHI_CREATE_KINDS: ${PHI_CREATE_KINDS:-comment,order}
+    restart: unless-stopped
+
+  web:
+    image: nginx:alpine
+    depends_on: [phiora]
+    ports:
+      - "${PHI_PORT:-8080}:80"
+    volumes:
+      - ./dist-all:/usr/share/nginx/html:ro
+      - ./dist-all/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  phioradata:

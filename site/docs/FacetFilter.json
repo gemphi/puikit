@@ -1,7 +1,7 @@
 {
   "name": "FacetFilter",
   "source": "src/components/commerce/product/facet/index.tsx",
-  "description": "A faceted filter group composed exclusively from puijs primitives: the\nStack layout hosts a Text title and one Checkbox per\noption, with the option count rendered via a token-driven Span. No\nper-component stylesheet, no raw layout `<div>`, no raw `<input>`, no inline\nstyle, and no hardcoded colors.",
+  "description": "A faceted filter group composed exclusively from puikit primitives: the\nStack layout hosts a Text title and one Checkbox per\noption, with the option count rendered via a token-driven Span. No\nper-component stylesheet, no raw layout `<div>`, no raw `<input>`, no inline\nstyle, and no hardcoded colors.",
   "propsInterface": "FacetFilterProps",
   "extendsBases": [],
   "props": [

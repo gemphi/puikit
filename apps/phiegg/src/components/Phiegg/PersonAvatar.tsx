@@ -6,7 +6,7 @@ import { portrait } from '../../lib/portraits';
 
 const GLYPHS: Record<string, string> = { ...(site.glyphs as Record<string, string>), ...((site as unknown as { glyphPaths?: Record<string, string> }).glyphPaths ?? {}) };
 
-/** People and agents wear their beta portrait (lib/portraits); without one, the puijs default profile icon (agents carry their glyph). */
+/** People and agents wear their beta portrait (lib/portraits); without one, the puikit default profile icon (agents carry their glyph). */
 export const PersonAvatar: React.FC<{ id: string; size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' }> = ({ id, size = 'md' }) => {
   const p = person(id);
   const d = p.isAgent && p.glyph ? GLYPHS[p.glyph] : undefined;

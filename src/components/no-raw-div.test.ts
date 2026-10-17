@@ -11,17 +11,17 @@ import { Box } from './layout/Box';
 /**
  * Single-base-`<div>` enforcement (Requirement 16, Property 20).
  *
- * `src/components/layout/Box` is the ONLY component in puijs allowed to render a
+ * `src/components/layout/Box` is the ONLY component in puikit allowed to render a
  * raw DOM `<div>`. Every other component composes `Box` (or a primitive that
  * ultimately composes `Box`). This static-scan test reads every component
  * source file, strips comments and string/template literals so doc-comment
  * mentions of "`<div>`" do not count, and asserts that no file other than
  * `layout/Box` contains a raw `<div` JSX render.
  *
- * Kit-agnostic test logic: it scans puijs component sources only and imports no
+ * Kit-agnostic test logic: it scans puikit component sources only and imports no
  * other UI kit ("One UI Kit Per App").
  *
- * Feature: puijs-theming-and-test-platform
+ * Feature: puikit-theming-and-test-platform
  *   Property 20: Single-base-div — only Box renders a raw `<div>`; all other
  *   components compose it — _Validates: Requirements 16.1, 16.2, 16.4, 16.5_
  */

@@ -1,5 +1,5 @@
 // DepthMedia — three nested layers (parent → framed image → round photo) with pointer parallax.
-// Everything reads puijs tokens; the frame takes the card gradient when the app chooses one.
+// Everything reads puikit tokens; the frame takes the card gradient when the app chooses one.
 .depth {
   --pui-depth-x: 0;
   --pui-depth-y: 0;

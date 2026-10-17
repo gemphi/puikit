@@ -1,5 +1,5 @@
 /**
- * fast-check arbitraries (generators) for the puijs theming + test platform.
+ * fast-check arbitraries (generators) for the puikit theming + test platform.
  *
  * These generators constrain to the real input space of the theming system so
  * property tests exercise valid combinations across the 19 `BRAND_THEMES` ids,
@@ -12,9 +12,9 @@
  * Values are derived from the real modules (`themes.ts`, `archetypes.ts`,
  * `types.ts`) rather than re-declared, so a change to the registries flows into
  * the generators automatically. This is kit-agnostic test logic: it references
- * only puijs theming values and imports no other UI kit ("One UI Kit Per App").
+ * only puikit theming values and imports no other UI kit ("One UI Kit Per App").
  *
- * Design reference: puijs-theming-and-test-platform — Property-Based Testing
+ * Design reference: puikit-theming-and-test-platform — Property-Based Testing
  * Configuration (Generators).
  */
 import fc from 'fast-check';

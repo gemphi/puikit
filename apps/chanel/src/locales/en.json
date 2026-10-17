@@ -1,7 +1,7 @@
 {
   "brand": {
     "name": "CHANEL",
-    "disclaimer": "A reference storefront built with @phiace/puijs. Not affiliated with CHANEL."
+    "disclaimer": "A reference storefront built with @puikit. Not affiliated with CHANEL."
   },
   "nav": {
     "search": "Search the maison",
@@ -200,8 +200,8 @@
   },
   "about": {
     "title": "The Maison",
-    "lead": "This storefront is a reference application for the puijs design system.",
-    "body": "Every screen is composed from published puijs components. It exists to prove the system covers a complete commerce surface — catalog, product, bag, checkout and account — without a single bespoke primitive."
+    "lead": "This storefront is a reference application for the puikit design system.",
+    "body": "Every screen is composed from published puikit components. It exists to prove the system covers a complete commerce surface — catalog, product, bag, checkout and account — without a single bespoke primitive."
   },
   "notFound": {
     "title": "Page not found",

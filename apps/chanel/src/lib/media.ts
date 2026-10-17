@@ -8,7 +8,7 @@ import type { ShopProduct } from '@pui/types';
  * gets a stable SVG derived from its own id — quilted diamond field, the line's
  * initials, and the first colourway as an accent.
  *
- * Returns a plain URL string, so it drops into any puijs `image` prop.
+ * Returns a plain URL string, so it drops into any puikit `image` prop.
  */
 
 /** Relative luminance, to decide whether a colourway needs light or dark ink. */

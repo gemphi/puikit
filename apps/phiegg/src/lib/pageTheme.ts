@@ -1,5 +1,5 @@
 // A page that wears what it shows. Opening a PFT with a set theme (a designer's kinds and colours on a look, the
-// background and outfit of a profile PFT) swaps the whole app palette to it through puijs `setPaletteOverride`,
+// background and outfit of a profile PFT) swaps the whole app palette to it through puikit `setPaletteOverride`,
 // and closing it puts back whatever was under it: a sheet over a themed profile returns to the profile's theme,
 // and the last one closed returns to the user's own palette. Nothing is saved: the override never touches preferences.
 import { useEffect } from 'react';

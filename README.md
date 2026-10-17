@@ -1,8 +1,8 @@
-# `@phiace/puijs`
+# `@puikit`
 
 > _Enterprise React 19 Component Library & Data Engine modeled after **Palantir Blueprint** (`@blueprintjs/core`, `@blueprintjs/table`)._
 
-[![npm version](https://img.shields.io/badge/npm-%40phiace%2Fpuijs-red.svg)](https://www.npmjs.com/package/@phiace/puijs)
+[![npm version](https://img.shields.io/badge/npm-%40phiace%2Fpuikit-red.svg)](https://www.npmjs.com/package/@puikit)
 [![React](https://img.shields.io/badge/React-18%20%26%2019-blue.svg)](package.json)
 [![Architecture](https://img.shields.io/badge/Architecture-Palantir%20Blueprint-indigo.svg)](ARCHITECTURE.md)
 [![License](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
@@ -13,13 +13,13 @@
 
 ### Installation
 ```bash
-npm install @phiace/puijs react react-dom lucide-react
+npm install @puikit react react-dom lucide-react
 ```
 
 ### Import Styles & Wrap Root Provider
 ```tsx
-import '@phiace/puijs/styles';
-import { PuiProvider } from '@phiace/puijs';
+import '@puikit/styles';
+import { PuiProvider } from '@puikit';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -48,7 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 ### Pure UI & Shop
 ```tsx
-import { ProductCard, Price, useCart } from '@phiace/puijs';
+import { ProductCard, Price, useCart } from '@puikit';
 
 export const ProductListing = ({ product }: { product: any }) => {
   const cart = useCart();
@@ -66,7 +66,7 @@ export const ProductListing = ({ product }: { product: any }) => {
 
 ### Reactive Store & Time-Travel
 ```tsx
-import { createStore, useStore } from '@phiace/puijs';
+import { createStore, useStore } from '@puikit';
 
 const counterStore = createStore((set, get) => ({
   count: 0,
@@ -82,7 +82,7 @@ export const Counter = () => {
 ---
 
 ## 4. Documentation & Applications
-- **[`apps/pui-book`](apps/pui-book/)** (`puijs.com`): Interactive docs, live code playground, and component specs.
+- **[`apps/pui-book`](apps/pui-book/)** (`puikit.com`): Interactive docs, live code playground, and component specs.
 - **[`apps/demo-app`](apps/demo-app/)**: Enterprise operational cockpit with live ontology tables and telemetry.
 - **[`apps/landing-app`](apps/landing-app/)**: Design system feature tour and theme switcher.
 

@@ -1,0 +1,10 @@
+*
+!phiora-server/package.json
+!phiora-server/src/**
+!phiegg/src/data/ls.json
+!phiegg/src/data/stores.json
+!phiegg/src/data/core.json
+!*/public/data/*.json
+# the items manifest (tree.json) and every data file it names, plus Phiegg's menus (phiegg.json): production seeds
+# the one database from them when it is empty
+!phiegg/src/data/*.json

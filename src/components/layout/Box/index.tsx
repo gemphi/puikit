@@ -13,7 +13,7 @@ export type BoxOwnProps = {
   /**
    * Polymorphic element to render. Defaults to `'div'`.
    *
-   * `Box` is the SINGLE sanctioned place in puijs that names the raw `'div'`
+   * `Box` is the SINGLE sanctioned place in puikit that names the raw `'div'`
    * literal. All other components compose `Box` (or a primitive that composes
    * `Box`) instead of emitting their own raw `<div>` (Requirement 16.1, 16.2).
    */

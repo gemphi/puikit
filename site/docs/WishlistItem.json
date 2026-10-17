@@ -1,7 +1,7 @@
 {
   "name": "WishlistItem",
   "source": "src/components/commerce/wishlist/item.tsx",
-  "description": "A wishlist line item composed exclusively from puijs primitives\n(Card, Stack, Text, Price, Button).\nNo per-component stylesheet, no raw layout `<div>`, no inline style, and no\nhardcoded colors — the remove action's danger color flows through\ntoken-driven Text.",
+  "description": "A wishlist line item composed exclusively from puikit primitives\n(Card, Stack, Text, Price, Button).\nNo per-component stylesheet, no raw layout `<div>`, no inline style, and no\nhardcoded colors — the remove action's danger color flows through\ntoken-driven Text.",
   "propsInterface": "WishlistItemProps",
   "extendsBases": [],
   "props": [

@@ -18,7 +18,7 @@ export interface WishlistItemProps {
 }
 
 /**
- * A wishlist line item composed exclusively from puijs primitives
+ * A wishlist line item composed exclusively from puikit primitives
  * ({@link Card}, {@link Stack}, {@link Text}, {@link Price}, {@link Button}).
  * No per-component stylesheet, no raw layout `<div>`, no inline style, and no
  * hardcoded colors — the remove action's danger color flows through

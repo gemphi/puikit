@@ -103,7 +103,7 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar, sidebarOpen, sh
       </NavbarSection>
       </Navbar>
 
-      {/* Preferences belong to the shopper, guest included: puijs persists them
+      {/* Preferences belong to the shopper, guest included: puikit persists them
           under the `::guest` namespace until a sign-in swaps the whole set. */}
       <PreferencesModal isOpen={prefsOpen} onClose={() => setPrefsOpen(false)} />
     </>

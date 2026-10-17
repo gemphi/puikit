@@ -18,7 +18,7 @@ const badgesOf = (x: Show) => <><Tag round size="sm">{t('looksN', { n: x.looks.l
 const ShowSlider: React.FC<{ list: Show[] }> = ({ list }) => {
   const s = useStore(phieggStore); const { view } = useStore(phieggStore); const { mobile } = useViewport();
   const [i, setI] = useState(0); const cur = list[i] ?? list[0];
-  // The puijs stage: the show in the centre, its neighbours half its height either side and half tucked under it.
+  // The puikit stage: the show in the centre, its neighbours half its height either side and half tucked under it.
   return (
     <StageSlider aria-label={t('showsTitle', { season: D.shows.season })} index={i} onIndexChange={setI} sides={mobile ? 1 : Math.min(3, Math.max(1, view.cols))}
       stageWidth={mobile ? '78vw' : 'min(35rem, 60vw)'} prevLabel={t('slPrev')} nextLabel={t('slNext')} positionLabel={(k, n) => t('slPos', { i: k, n })}

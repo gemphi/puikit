@@ -50,7 +50,7 @@ export interface BrandTheme {
 
 /**
  * Props supplied to a Site_Archetype's layout composition. Kept intentionally
- * open (children plus an archetype id) so any puijs layout composition can be
+ * open (children plus an archetype id) so any puikit layout composition can be
  * referenced by an archetype without coupling to a specific layout shape.
  */
 export interface ArchetypeLayoutProps {
@@ -72,7 +72,7 @@ export interface ArchetypeLayoutProps {
 
 /**
  * Props supplied to a Site_Archetype's navigation composition. Kept
- * intentionally open so any puijs navigation composition can be referenced by
+ * intentionally open so any puikit navigation composition can be referenced by
  * an archetype.
  */
 export interface ArchetypeNavProps {
@@ -97,9 +97,9 @@ export interface SiteArchetype {
   id: string;
   /** Human-readable archetype name. */
   name: string;
-  /** puijs layout composition component reference (kit-specific view). */
+  /** puikit layout composition component reference (kit-specific view). */
   layout: React.ComponentType<ArchetypeLayoutProps>;
-  /** puijs navigation composition component reference (kit-specific view). */
+  /** puikit navigation composition component reference (kit-specific view). */
   navigation: React.ComponentType<ArchetypeNavProps>;
   /** Default Brand_Theme applied when the app has not overridden the brand. */
   defaultBrandId: string;

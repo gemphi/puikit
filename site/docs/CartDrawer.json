@@ -1,7 +1,7 @@
 {
   "name": "CartDrawer",
   "source": "src/components/commerce/cart/drawer.tsx",
-  "description": "A cart drawer composed exclusively from puijs primitives: the\nDrawer overlay hosts a Stack layout of CartItems and\na CartSummary, with Button/Text for the header and\nempty state. No per-component stylesheet, no raw layout `<div>`, no inline\nstyle, and no hardcoded colors.",
+  "description": "A cart drawer composed exclusively from puikit primitives: the\nDrawer overlay hosts a Stack layout of CartItems and\na CartSummary, with Button/Text for the header and\nempty state. No per-component stylesheet, no raw layout `<div>`, no inline\nstyle, and no hardcoded colors.",
   "propsInterface": "CartDrawerProps",
   "extendsBases": [],
   "props": [

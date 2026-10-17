@@ -10,7 +10,7 @@ export const HomePage: React.FC<{ onNavigate: (p: string) => void }> = ({ onNavi
     <PageShell
       title="Phient UI"
       description="Enterprise React design system engineered for dense interfaces, knowledge graphs, and AI agent swarms."
-      badge={<Tag intent="primary" round>puijs.com</Tag>}
+      badge={<Tag intent="primary" round>puikit.com</Tag>}
     >
       <Callout intent="primary" title="Zero Business Coupling Standard">
         PUI primitives contain zero business logic or domain shopping carts. Props flow down, callbacks flow up.

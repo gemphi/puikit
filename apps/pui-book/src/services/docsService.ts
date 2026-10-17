@@ -64,7 +64,7 @@ export interface DocsManifest {
 // The `@site-docs` alias (vite.config.ts / tsconfig paths) points at
 // `../../site/docs`. `import.meta.glob` requires a literal, relative pattern,
 // so we glob the directory relative to this file: services -> src -> pui-book
-// -> apps -> puijs, then into `site/docs`.
+// -> apps -> puikit, then into `site/docs`.
 
 const docEntryModules = import.meta.glob<ComponentDocEntry>(
   '../../../../site/docs/*.json',

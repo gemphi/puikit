@@ -40,7 +40,7 @@ const routeTable: Route[] = [
  *
  * `PuiProvider` runs the `shop` archetype, which supplies the structure and
  * defaults to the `chanel` brand. `ShopProvider` carries the single data seam:
- * swap `shopConfig.adapter` for a live client and nothing below here changes. The shopper starts as a guest — puijs's
+ * swap `shopConfig.adapter` for a live client and nothing below here changes. The shopper starts as a guest — puikit's
  * default identity — so preferences persist under `::guest` until they sign in,
  * at which point the whole preference set swaps.
  */

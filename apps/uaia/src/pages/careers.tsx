@@ -8,7 +8,7 @@ const ROLES = [
   'Evaluation Engineer — Harness Infrastructure (Directorate)',
   'Red-Team Lead — Autonomy & Agentic Systems',
   'Research Scientist — Capability Forecasting',
-  'Registry Platform Engineer — TypeScript/React (the registry runs on the same puijs stack as this site)',
+  'Registry Platform Engineer — TypeScript/React (the registry runs on the same puikit stack as this site)',
   'Standards Program Manager — STD-200/210',
   'Policy Analyst — UN Engagement Program',
   'Communications Lead — Newsroom & Transparency',

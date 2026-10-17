@@ -20,7 +20,7 @@ export interface CartItemProps {
 }
 
 /**
- * A cart line item composed exclusively from puijs primitives
+ * A cart line item composed exclusively from puikit primitives
  * ({@link Card}, {@link Stack}, {@link Text}, {@link Price}, {@link Button}).
  * No per-component stylesheet, no raw layout `<div>`, no inline style, and no
  * hardcoded colors — the quantity stepper and remove action are icon buttons.

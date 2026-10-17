@@ -3,7 +3,7 @@ import '@testing-library/jest-dom/vitest';
 import { afterEach, beforeEach } from 'vitest';
 
 /**
- * Shared test setup for the puijs Test_Platform (Requirements 1, 2, 3).
+ * Shared test setup for the puikit Test_Platform (Requirements 1, 2, 3).
  *
  * Registers `@testing-library/jest-dom` matchers (imported above) and shims the
  * browser `localStorage` and `matchMedia` APIs that jsdom does not implement

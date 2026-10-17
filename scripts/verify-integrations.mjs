@@ -1,7 +1,7 @@
 /**
  * Integration verification harness (Requirement 15).
  *
- * Builds/type-checks each Consuming_App against the *updated* puijs and reports a
+ * Builds/type-checks each Consuming_App against the *updated* puikit and reports a
  * per-app pass/fail summary. The run NEVER aborts when one app fails or is
  * missing: every configured app is attempted, its stdout/stderr and exit status
  * are captured, and a summary table is printed at the end.
@@ -25,10 +25,10 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// puijs package root (parent of scripts/).
-const PUIJS_ROOT = path.resolve(__dirname, '..');
+// puikit package root (parent of scripts/).
+const puikit_ROOT = path.resolve(__dirname, '..');
 // Workspace root that holds the sibling app directories.
-const WORKSPACE_ROOT = path.resolve(PUIJS_ROOT, '..');
+const WORKSPACE_ROOT = path.resolve(puikit_ROOT, '..');
 
 // -----------------------------------------------------------------------------
 // Declarative Consuming_App list. Edit here to add/remove apps.
@@ -212,8 +212,8 @@ function printSummary(results) {
 function main() {
   const apps = filterApps(CONSUMING_APPS, process.argv);
 
-  log('Verifying puijs integration against consuming apps…');
-  log(`  puijs root:     ${PUIJS_ROOT}`);
+  log('Verifying puikit integration against consuming apps…');
+  log(`  puikit root:     ${puikit_ROOT}`);
   log(`  workspace root: ${WORKSPACE_ROOT}`);
   log(`  apps in scope:  ${apps.map((a) => a.name).join(', ') || '(none)'}`);
 

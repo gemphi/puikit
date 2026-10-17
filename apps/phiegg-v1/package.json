@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Phiegg — the social home for fashion clubs: feed, explore, clubs, Phipad and the Laura's Spark shop. @phiace/puijs (Organic) + phi-kit.",
+  "description": "Phiegg — the social home for fashion clubs: feed, explore, clubs, Phipad and the Laura's Spark shop. puikit (Organic) + phi-kit.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -13,7 +13,7 @@
     "prebuild": "node cleanup-v1.mjs"
   },
   "dependencies": {
-    "@phiace/puijs": "file:../..",
+    "puikit": "file:../..",
     "lucide-react": "^1.24.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"

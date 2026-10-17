@@ -18,3 +18,5 @@ Thumbs.db
 *.swo
 REFS/
 Claude outputs/
+# mock Phiora dev state
+apps/phi-kit/dev/.mock-phiora-state.json

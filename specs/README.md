@@ -1,8 +1,8 @@
-# Puijs Cognitive Specifications: Chapter 14 3D Visualization & Diagnostic UI
+# Puikit Cognitive Specifications: Chapter 14 3D Visualization & Diagnostic UI
 
 ## 1. Executive Overview
 
-This directory contains the formal component specifications applying the principles from **Chapter 14 ("Conclusions") of François Chollet's *Deep Learning with Python* (2nd Edition)** to the Puijs industrial React design system and 3D cognitive visualization library:
+This directory contains the formal component specifications applying the principles from **Chapter 14 ("Conclusions") of François Chollet's *Deep Learning with Python* (2nd Edition)** to the Puikit industrial React design system and 3D cognitive visualization library:
 
 | Spec ID | Specification Document | Core Chapter 14 Mechanism | Target Components | Primary Visual Invariant |
 | :--- | :--- | :--- | :--- | :--- |
@@ -16,7 +16,7 @@ This directory contains the formal component specifications applying the princip
 ## 2. Global Cognitive UI Hierarchy
 
 ```
-Puijs Cognitive Component Ecosystem
+Puikit Cognitive Component Ecosystem
 ├── Layer 1: 3D Geometric Manifold Visualizers (SPEC-001)
 │   ├── Three.js WebGL Canvas Context & Shader Material Pipeline
 │   ├── Parametric Spline Mesh: (Strike, Expiry, ImpliedVol) ──► MeshGeometry
@@ -52,7 +52,7 @@ Puijs Cognitive Component Ecosystem
 flowchart TD
     A[Phixum / Phiano Real-Time SSE Stream: /events/stream] --> B[usePhixumState React Hook]
     
-    subgraph "Puijs Cognitive Visualizer Suite"
+    subgraph "Puikit Cognitive Visualizer Suite"
         B --> C[SPEC-001: VolSurfaceManifold3D Component]
         B --> D[SPEC-002: KuramotoPhaseSphere Component]
         B --> E[SPEC-003: DualCognitionInspector Component]

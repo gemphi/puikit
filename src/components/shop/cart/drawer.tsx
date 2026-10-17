@@ -32,7 +32,7 @@ export interface CartDrawerProps {
 }
 
 /**
- * A cart drawer composed exclusively from puijs primitives: the
+ * A cart drawer composed exclusively from puikit primitives: the
  * {@link Drawer} overlay hosts a {@link Stack} layout of {@link CartItem}s and
  * a {@link CartSummary}, with {@link Button}/{@link Text} for the header and
  * empty state. No per-component stylesheet, no raw layout `<div>`, no inline

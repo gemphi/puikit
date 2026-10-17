@@ -15,7 +15,7 @@ import type { ThemePreferences } from './types';
  * 4.3) with concrete, example-based assertions using React Testing Library.
  * A small `TestConsumer` component reads and exercises the context through the
  * public `usePuiTheme` hook, mirroring how a Consuming_App interacts with the
- * provider. Only puijs is used for view composition (One UI Kit Per App).
+ * provider. Only puikit is used for view composition (One UI Kit Per App).
  */
 
 /**

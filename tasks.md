@@ -6,7 +6,7 @@
 
 ## 1. Development Tasks
 
-### Running the Documentation & Workbench App (`pui-book` / `puijs.com`)
+### Running the Documentation & Workbench App (`pui-book` / `puikit.com`)
 ```bash
 cd apps/pui-book
 npm install

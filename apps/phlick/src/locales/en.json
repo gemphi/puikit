@@ -2,7 +2,7 @@
   "brand": {
     "name": "phlick",
     "tagline": "Short video, long evenings.",
-    "disclaimer": "A reference feed built with @phiace/puijs. Fictional creators, fictional videos."
+    "disclaimer": "A reference feed built with @phiace/puikit. Fictional creators, fictional videos."
   },
   "nav": {
     "forYou": "For You",

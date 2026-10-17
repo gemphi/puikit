@@ -1,7 +1,7 @@
 import { RADIUS_PRESETS, usePuiTheme, type GradientLevel, type RadiusPreset, type ThemeStyle } from '@pui/providers';
 
-/** A look = a puijs theme style + the brand that voices it. Apple is the default for every Phi app. */
-/** A look = a puijs theme style + the brand that voices it + the seeded palette that colours it ('none' = brand colours). */
+/** A look = a puikit theme style + the brand that voices it. Apple is the default for every Phi app. */
+/** A look = a puikit theme style + the brand that voices it + the seeded palette that colours it ('none' = brand colours). */
 /** Each look also carries its gradient level and corner preset; picking the look applies all of them, and the
  *  Gradients and Corners pickers then fine-tune on top. */
 export type Look = { id: string; label: string; style: ThemeStyle; brand: string; palette: string; gradient: GradientLevel; radius: RadiusPreset };

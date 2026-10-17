@@ -64,8 +64,8 @@ const accountInitial = (name: string): string =>
   name.trim().charAt(0).toUpperCase() || '?';
 
 /**
- * `SidebarBrand` — a puijs-native, Kiro-style collapsible AppShell sidebar
- * composed **exclusively** from existing puijs (puikit family) components
+ * `SidebarBrand` — a puikit-native, Kiro-style collapsible AppShell sidebar
+ * composed **exclusively** from existing puikit (puikit family) components
  * ({@link Sidebar}, {@link SidebarHeader}, {@link SidebarBody},
  * {@link SidebarFooter}, {@link Button}, {@link Text}, {@link MenuItem},
  * {@link Avatar}, plus the {@link Stack} layout primitive and {@link Icon}) and

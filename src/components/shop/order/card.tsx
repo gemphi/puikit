@@ -33,7 +33,7 @@ const STATUS_INTENT: Record<OrderStatus, 'success' | 'warning' | 'danger'> = {
 };
 
 /**
- * An order card composed exclusively from puijs primitives: the {@link Card}
+ * An order card composed exclusively from puikit primitives: the {@link Card}
  * family provides the surface/regions, {@link Stack} the layout, {@link Text}
  * the typography (status via token-driven `intent`), {@link Price} the money,
  * and {@link Button} the action. No per-component stylesheet, no raw layout

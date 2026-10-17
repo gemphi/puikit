@@ -1,0 +1,302 @@
+{
+ "app": "phiano",
+ "nav": [
+  {
+   "id": "home",
+   "label": "Home",
+   "icon": "home"
+  },
+  {
+   "id": "play",
+   "label": "Playground",
+   "icon": "chat"
+  },
+  {
+   "id": "versions",
+   "label": "Versions",
+   "icon": "layers"
+  },
+  {
+   "id": "api",
+   "label": "API",
+   "icon": "terminal"
+  },
+  {
+   "id": "news",
+   "label": "News",
+   "icon": "chat"
+  },
+  {
+   "id": "about",
+   "label": "About",
+   "icon": "compass"
+  },
+  {
+   "id": "faq",
+   "label": "FAQ",
+   "icon": "vote"
+  },
+  {
+   "id": "docs",
+   "label": "Docs",
+   "icon": "layers"
+  }
+ ],
+ "views": {
+  "play": {
+   "title": "Playground",
+   "sub": "Talk to the phase language model.",
+   "blocks": [
+    {
+     "kind": "chat",
+     "title": "",
+     "persona": "Phiano",
+     "system": "You are Phiano, a phase-based large language model in the Phiace ecosystem. Answer in under 60 words.",
+     "messages": [
+      {
+       "role": "assistant",
+       "text": "Phiano here. Ask me anything, or paste text to rewrite."
+      }
+     ],
+     "placeholder": "Prompt Phiano",
+     "fallback": "Here is a first pass. Tell me what to change."
+    }
+   ]
+  },
+  "versions": {
+   "title": "Versions",
+   "sub": "",
+   "blocks": [
+    {
+     "kind": "table",
+     "title": "",
+     "cols": [
+      "Version",
+      "Size",
+      "Notes"
+     ],
+     "rows": [
+      [
+       "phiano-base",
+       "4.1 GB",
+       "Default"
+      ],
+      [
+       "phiano-persona",
+       "4.3 GB",
+       "Tuned for voices"
+      ],
+      [
+       "phiano-nightfall",
+       "4.1 GB",
+       "Club adapter"
+      ]
+     ]
+    }
+   ]
+  },
+  "docs": {
+   "title": "phiano docs",
+   "sub": "Phiano is the default model behind Phient and Phiace personas.",
+   "blocks": [
+    {
+     "kind": "grid",
+     "title": "",
+     "items": [
+      {
+       "title": "Overview",
+       "sub": "The phase language model",
+       "body": "Phiano is the default model behind Phient and Phiace personas."
+      },
+      {
+       "title": "Getting started",
+       "sub": "First steps",
+       "body": "phient run phiano, or use the playground."
+      },
+      {
+       "title": "Phisum and SUM",
+       "sub": "How it is funded",
+       "body": "Phisum funds fine-tunes for cohort teams; adapters are published on Phihub.",
+       "action": "Open Phisum",
+       "done": "Opened",
+       "app": "phisum"
+      }
+     ]
+    },
+    {
+     "kind": "table",
+     "title": "PFT functions in phiano",
+     "cols": [
+      "Function",
+      "What it does here"
+     ],
+     "rows": [
+      [
+       "access",
+       "tuned club adapters for PFT holders"
+      ]
+     ]
+    },
+    {
+     "kind": "grid",
+     "title": "Read more",
+     "items": [
+      {
+       "title": "PFTs 101",
+       "sub": "Profile Fungible Tokens",
+       "body": "What PFTs are, how functions work, how they link to Phisum.",
+       "action": "Read",
+       "done": "Open",
+       "href": "../Phiegg Papers.dc.html"
+      }
+     ]
+    }
+   ]
+  },
+  "home": {
+   "title": "",
+   "sub": "",
+   "blocks": [
+    {
+     "kind": "hero",
+     "heading": "Phiano",
+     "subtitle": "The phase model that powers Phiace.",
+     "body": "Phiano is the open language model behind Phient and the personas. Play with it, pin a version, and read how the phase architecture works.",
+     "actions": [
+      {
+       "label": "Open Phiano",
+       "view": "play"
+      },
+      {
+       "label": "Read docs",
+       "view": "docs"
+      }
+     ]
+    }
+   ]
+  },
+  "news": {
+   "title": "News",
+   "sub": "Latest from Phiano.",
+   "blocks": [
+    {
+     "kind": "news",
+     "items": [
+      {
+       "date": "Oct 3, 2026",
+       "tag": "Model",
+       "title": "phiano 4.1 released",
+       "body": "Better tool use and longer context, still small enough to run locally."
+      },
+      {
+       "date": "Sep 12, 2026",
+       "tag": "Research",
+       "title": "Phase operators paper",
+       "body": "The architecture behind phiano, written up with phinet."
+      },
+      {
+       "date": "Aug 29, 2026",
+       "tag": "Model",
+       "title": "4.0 is the default",
+       "body": "phiano 4.0 becomes the default for Phient and personas."
+      }
+     ]
+    }
+   ]
+  },
+  "about": {
+   "title": "About Phiano",
+   "sub": "",
+   "blocks": [
+    {
+     "kind": "prose",
+     "lead": "Phiano is the open phase language model that runs the ecosystem's assistants.",
+     "sections": [
+      {
+       "title": "Open & local",
+       "body": "Pull it and run it on your own machine through Phient; no hosted calls required."
+      },
+      {
+       "title": "Versions",
+       "body": "Pin a version for reproducibility; every release is kept and listed."
+      },
+      {
+       "title": "The architecture",
+       "body": "A phase-operator network — see the Phinet papers for the details."
+      }
+     ]
+    }
+   ]
+  },
+  "faq": {
+   "title": "FAQ",
+   "sub": "Common questions.",
+   "blocks": [
+    {
+     "kind": "faq",
+     "items": [
+      {
+       "q": "Can I run it locally?",
+       "a": "Yes, through Phient: phient pull phiano."
+      },
+      {
+       "q": "Is it open?",
+       "a": "The weights and the papers are open."
+      },
+      {
+       "q": "What uses it?",
+       "a": "Phient, Phiace personas and any app that calls a local model."
+      }
+     ]
+    }
+   ]
+  },
+  "api": {
+   "title": "API",
+   "sub": "Call phiano from your own code.",
+   "blocks": [
+    {
+     "kind": "terminal",
+     "title": "",
+     "lines": [
+      "phiano 4.1 · serving on localhost:11535"
+     ],
+     "commands": {
+      "curl localhost:11535/generate": [
+       "{ \"text\": \"Describe Nightfall in one line.\" }",
+       "→ \"A club for people who dress for the dark.\""
+      ],
+      "phiano run phiano": [
+       ">>> loaded phiano 4.1. Type a message, /bye to exit."
+      ],
+      "phiano versions": [
+       "4.1   default   2 days ago",
+       "4.0             5 weeks ago"
+      ]
+     }
+    },
+    {
+     "kind": "grid",
+     "title": "Endpoints",
+     "items": [
+      {
+       "title": "/generate",
+       "sub": "POST",
+       "body": "Text in, text out. Streams tokens."
+      },
+      {
+       "title": "/embed",
+       "sub": "POST",
+       "body": "Vector embeddings for memory and search."
+      },
+      {
+       "title": "/tools",
+       "sub": "POST",
+       "body": "Tool-use loop for Phient-style agents."
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

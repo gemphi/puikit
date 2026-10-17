@@ -17,7 +17,7 @@ export default defineConfig({
       '@pui/tokens': path.resolve(__dirname, '../../src/tokens'),
       '@phi-kit': path.resolve(__dirname, '../phi-kit/src'),
       '@pui': path.resolve(__dirname, '../../src'),
-      'puijs': path.resolve(__dirname, '../../src'),
+      'puikit': path.resolve(__dirname, '../../src'),
       'next/link': path.resolve(__dirname, '../pui-book/src/mocks/Link.tsx'),
       'react': path.resolve(__dirname, './node_modules/react'),
       'react-dom': path.resolve(__dirname, './node_modules/react-dom'),

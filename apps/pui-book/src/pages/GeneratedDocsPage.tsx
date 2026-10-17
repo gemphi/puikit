@@ -32,7 +32,7 @@ import {
 /**
  * Generated documentation viewer.
  *
- * Composed exclusively from puijs primitives + lucide-react. There are no raw
+ * Composed exclusively from puikit primitives + lucide-react. There are no raw
  * `<Box>` wrappers, no inline `<Box as="button">` styling, no ad-hoc CSS. The list is
  * filterable so 100+ components are actually navigable, and each entry is
  * rendered with a proper `Card` header/body composition so titles, badges,

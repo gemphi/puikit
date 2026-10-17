@@ -12,7 +12,7 @@
 ## 2. Architectural Hierarchy Tree
 
 ```
-puijs::components::3d::VolSurfaceManifold3D
+puikit::components::3d::VolSurfaceManifold3D
 ├── Three.js WebGL Scene Architecture
 │   ├── PerspectiveCamera (FOV: 45°, Near: 0.1, Far: 1000)
 │   ├── OrbitControls (Constrained polar angles 15°–85° to prevent underside flipping)

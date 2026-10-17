@@ -1,7 +1,7 @@
 {
   "name": "CartSummary",
   "source": "src/components/commerce/cart/summary.tsx",
-  "description": "An order/cart summary composed exclusively from puijs primitives\n(Card, Stack, Text, Price, Button).\nNo per-component stylesheet, no raw layout `<div>`, no inline style, and no\nhardcoded colors — discount/free emphasis flows through token-driven Text.",
+  "description": "An order/cart summary composed exclusively from puikit primitives\n(Card, Stack, Text, Price, Button).\nNo per-component stylesheet, no raw layout `<div>`, no inline style, and no\nhardcoded colors — discount/free emphasis flows through token-driven Text.",
   "propsInterface": "CartSummaryProps",
   "extendsBases": [],
   "props": [

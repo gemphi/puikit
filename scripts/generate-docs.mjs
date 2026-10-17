@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 // @ts-check
 /**
- * generate-docs.mjs — PuiJS auto-generated component documentation.
+ * generate-docs.mjs — puikit auto-generated component documentation.
  *
- * Standalone Node ESM script (no external dependencies) that walks the puijs
+ * Standalone Node ESM script (no external dependencies) that walks the puikit
  * component sources under `src/components`, extracts documented interfaces and
  * descriptions from each exported component, cross-references any companion
  * `*.stories.tsx` file, and emits one documentation entry per exported
@@ -14,7 +14,7 @@
  *   - Requirement 13.2: produce an entry covering each exported component.
  *   - Requirement 13.3: report (and skip) components lacking documentation
  *     metadata WITHOUT aborting the run.
- *   - Requirement 13.4: use only PuiJS-internal / standard-library tooling; no
+ *   - Requirement 13.4: use only puikit-internal / standard-library tooling; no
  *     Storybook or external documentation framework is imported here.
  *
  * "One UI Kit Per App": this is kit-agnostic logic/tooling (a build script),
@@ -132,7 +132,7 @@ function extractInterfaceBody(source, interfaceName) {
 /**
  * Extract the `{ ... }` body from a `type <Name> = ...` alias — including
  * intersections like `type StackProps = Base & { own: X }` — plus any base
- * types the alias references. This covers puijs's dominant Props declaration
+ * types the alias references. This covers puikit's dominant Props declaration
  * pattern (e.g. `type StackProps = HTMLAttributes<...> & StyleProps & { ... }`),
  * which pure interface matching misses.
  *
@@ -355,7 +355,7 @@ function buildEntry(file, source, component, companion) {
   const description = precedingJsDoc(source, component.index);
   const propsName = `${component.name}Props`;
 
-  // Props declarations in puijs come in three shapes, in decreasing frequency:
+  // Props declarations in puikit come in three shapes, in decreasing frequency:
   //   1. `export interface FooProps { ... }` — direct interface (~10% of comps)
   //   2. `export type FooProps = Base & { ... }` — intersection alias (~60%)
   //   3. no explicit `Props` type — component uses inline props or HTMLAttrs
@@ -389,7 +389,7 @@ function buildEntry(file, source, component, companion) {
 }
 
 function main() {
-  console.log('[generate-docs] PuiJS documentation generation');
+  console.log('[generate-docs] puikit documentation generation');
   console.log(`[generate-docs] components: ${relative(PACKAGE_ROOT, COMPONENTS_ROOT)}`);
   console.log(`[generate-docs] output:     ${relative(PACKAGE_ROOT, DOCS_OUT)}`);
 
