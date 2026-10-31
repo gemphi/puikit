@@ -10,6 +10,8 @@ import { OrchestrationPage } from './pages/OrchestrationPage';
 import { GovernancePage } from './pages/GovernancePage';
 import { DocsPage } from './pages/DocsPage';
 import { IdentityPage } from './pages/IdentityPage';
+import { LogsPage } from './pages/LogsPage';
+import { SecurityPage } from './pages/SecurityPage';
 
 /** The menu, as data: groups on the rail, sub-navs in the panel — the same shell every Phi app wears. */
 const NAV = [
@@ -21,6 +23,10 @@ const NAV = [
     { id: 'ontology', label: 'Ontology', icon: 'db' },
     { id: 'streams', label: 'PhiBus streams', icon: 'network' },
     { id: 'spatial', label: 'Spatial & vectors', icon: 'map' },
+  ] },
+  { id: 'watch', label: 'Watch', icon: 'check', items: [
+    { id: 'logs', label: 'Logs · PhiLog', icon: 'file' },
+    { id: 'security', label: 'Security · PhiSec', icon: 'check' },
   ] },
   { id: 'operate', label: 'Operate', icon: 'grid', items: [
     { id: 'orchestration', label: 'Playbooks', icon: 'grid' },
@@ -41,6 +47,8 @@ export const App: React.FC = () => {
       case 'ontology': return <OntologyPage />;
       case 'streams': return <StreamsPage />;
       case 'spatial': return <SpatialPage />;
+      case 'logs': return <LogsPage />;
+      case 'security': return <SecurityPage />;
       case 'orchestration': return <OrchestrationPage />;
       case 'governance': return <GovernancePage />;
       case 'docs': return <DocsPage />;

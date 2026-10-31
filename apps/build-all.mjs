@@ -17,10 +17,10 @@ const DIST = join(here, 'dist-all');
 const buildable = registry
   .map((a) => a.key)
   .filter((k) => existsSync(join(here, k, 'package.json')) && existsSync(join(here, k, 'vite.config.ts')));
-// --backend python routes nginx /api/ to the FastAPI Phiora (phiora-py:4400); default is the Node one.
+// --backend python routes nginx /api/ to the phiadk container (Phiora FastAPI, :4400); default is the Node one.
 const backendIx = process.argv.indexOf('--backend');
 const backend = backendIx > -1 ? process.argv[backendIx + 1] : 'node';
-const apiUpstream = backend === 'python' ? 'http://phiora-py:4400/' : 'http://phiora:4300/';
+const apiUpstream = backend === 'python' ? 'http://phiadk:4400/' : 'http://phiora:4300/';
 const want = process.argv.slice(2).filter((a, i) => a !== '--backend' && (backendIx === -1 || i !== backendIx - 1));
 const keys = want.length ? buildable.filter((k) => want.includes(k)) : buildable;
 if (!keys.length) { console.error('Nothing to build. Known:', buildable.join(', ')); process.exit(1); }

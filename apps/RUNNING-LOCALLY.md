@@ -28,10 +28,16 @@ Ports (from `phi-kit/src/registry.json`):
 
 | app | url | | app | url |
 |---|---|---|---|---|
-| phiegg | http://localhost:3101 | | phiace | http://localhost:3105 |
-| phient | http://localhost:3103 | | phinet | http://localhost:3108 |
-| phihub | http://localhost:3104 | | phisum | http://localhost:3113 |
-| | | | phipal | http://localhost:3116 |
+| phiegg | http://localhost:3101 | | phisum | http://localhost:3113 |
+| phient | http://localhost:3103 | | phiapp | http://localhost:3114 |
+| phihub | http://localhost:3104 | | phione | http://localhost:3115 |
+| phiace | http://localhost:3105 | | phipal | http://localhost:3116 |
+| phinet | http://localhost:3108 | | | |
+
+**phione** (the platform console) also reads the PhiADK platform API when you run it:
+`uvicorn phiadk.phiapi.app:create_app --factory --port 8000` in the phiadk repo, then start
+phione with `VITE_PHIADK_API=http://localhost:8000` — without it, its platform pages (Agents,
+Logs · PhiLog, Security · PhiSec) show sample data and everything else still works.
 
 ---
 
@@ -51,6 +57,16 @@ Ports (from `phi-kit/src/registry.json`):
    Prefer not to set the variable every time? Create `apps/<key>/.env.local` with one line —
    `VITE_PHI_API=http://localhost:4300` — and just run `npm run dev`. (Leave `VITE_PHI_APPS_BASE`
    **unset** in dev so cross-app links resolve to `http://localhost:<port>/`.)
+
+---
+
+## Option C — on the Postgres Phiora (phiadk/phiora)
+
+```sh
+cd ../../phiadk/phiora && make up && make seed   # Postgres + API at http://localhost:8000/docs
+cd ../../puikit/apps && node dev-all.mjs --python
+```
+Reads come from Postgres. Sign-in, saving state, the wallet and the shop are not on this API yet, so everyone is a guest; use Option A to test those.
 
 ---
 
@@ -93,6 +109,10 @@ See **DEPLOY.md** for the full production path and the `.env` it needs.
   localStorage only.
 - **Port already in use** → stop whatever holds it, or run fewer apps (`node dev-all.mjs phiegg phisum`).
 - **Reset the local data** → stop Phiora, delete `apps/phiora-server/.data`, start again (it re-seeds).
+- **phione fails to start after pulling** → its lucide-react pin changed; run `cd apps/phione` and
+  `npm install` once (dev-all only auto-installs when node_modules is missing entirely).
+- **Rounds/zones/areas look empty on a fresh store** → those records are made through the API
+  (raising forms in phisum), not the bundled files, so a brand-new local store starts without them.
 - **Use Postgres instead of the file store** → start Phiora with `DATABASE_URL=postgres://…` (then
   `npm run seed` once).
 - **Node too old for sqlite** → either upgrade to Node ≥ 22.5, or run Phiora with `PHI_STORE=json`.

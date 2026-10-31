@@ -1,0 +1,544 @@
+/* The Phi type families, each in Light 300, Regular 400, SemiBold 600 and Bold 700, at normal
+   width and as "<Family> Condensed". Upper and lower case, 0-9 and . , - ! ? : '
+
+     Phi-Walt      round strokes, slanted tops
+     Phi-Hard      level boxes, cut corners
+     Phi-Soft      the same boxes, rounded
+     Phi-Pill      Phi-Soft in 3D colour (a colour font): pick a palette with
+                   font-palette: --phi-pill-<name>, one of Blue, Pink, Gold, Green, Purple, Silver, Ink
+     Phi-Sans      the boxes rounded into stadiums, strokes nearly even
+     Phi-Serif     sharp boxes, thin horizontals, bracketed serifs and beaks
+     Chatty Whims  Phi-Soft with beaks on the free bar ends
+     Lora's Spark  Phi-Soft written with a broad nib, each letter on its own
+
+   Unlike Phiegg Square these are not inlined: 64 faces come to ~464 KB, too much to put in
+   every app's CSS. The woff2 files sit in ./fonts/phi/ next to this file; Vite rebases these url()s
+   when an app pulls the tokens in through @pui/tokens, and scripts/copy-styles.mjs carries the files
+   into dist/ for the published package. Browsers only download the faces a page actually uses.
+
+   Built by the Phi Fonts kit (build_font.py); the OTFs, logos and the Lora's Spark icon ship with it. */
+
+@font-face {
+  font-family: "Phi-Walt";
+  src: url('./fonts/phi/Phi-Walt/PhiWalt-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Walt";
+  src: url('./fonts/phi/Phi-Walt/PhiWalt-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Walt";
+  src: url('./fonts/phi/Phi-Walt/PhiWalt-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Walt";
+  src: url('./fonts/phi/Phi-Walt/PhiWalt-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Walt Condensed";
+  src: url('./fonts/phi/Phi-Walt/PhiWaltCondensed-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Walt Condensed";
+  src: url('./fonts/phi/Phi-Walt/PhiWaltCondensed-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Walt Condensed";
+  src: url('./fonts/phi/Phi-Walt/PhiWaltCondensed-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Walt Condensed";
+  src: url('./fonts/phi/Phi-Walt/PhiWaltCondensed-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Hard";
+  src: url('./fonts/phi/Phi-Hard/PhiHard-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Hard";
+  src: url('./fonts/phi/Phi-Hard/PhiHard-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Hard";
+  src: url('./fonts/phi/Phi-Hard/PhiHard-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Hard";
+  src: url('./fonts/phi/Phi-Hard/PhiHard-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Hard Condensed";
+  src: url('./fonts/phi/Phi-Hard/PhiHardCondensed-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Hard Condensed";
+  src: url('./fonts/phi/Phi-Hard/PhiHardCondensed-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Hard Condensed";
+  src: url('./fonts/phi/Phi-Hard/PhiHardCondensed-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Hard Condensed";
+  src: url('./fonts/phi/Phi-Hard/PhiHardCondensed-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Soft";
+  src: url('./fonts/phi/Phi-Soft/PhiSoft-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Soft";
+  src: url('./fonts/phi/Phi-Soft/PhiSoft-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Soft";
+  src: url('./fonts/phi/Phi-Soft/PhiSoft-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Soft";
+  src: url('./fonts/phi/Phi-Soft/PhiSoft-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Soft Condensed";
+  src: url('./fonts/phi/Phi-Soft/PhiSoftCondensed-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Soft Condensed";
+  src: url('./fonts/phi/Phi-Soft/PhiSoftCondensed-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Soft Condensed";
+  src: url('./fonts/phi/Phi-Soft/PhiSoftCondensed-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Soft Condensed";
+  src: url('./fonts/phi/Phi-Soft/PhiSoftCondensed-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Pill";
+  src: url('./fonts/phi/Phi-Pill/PhiPill-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Pill";
+  src: url('./fonts/phi/Phi-Pill/PhiPill-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Pill";
+  src: url('./fonts/phi/Phi-Pill/PhiPill-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Pill";
+  src: url('./fonts/phi/Phi-Pill/PhiPill-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Pill Condensed";
+  src: url('./fonts/phi/Phi-Pill/PhiPillCondensed-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Pill Condensed";
+  src: url('./fonts/phi/Phi-Pill/PhiPillCondensed-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Pill Condensed";
+  src: url('./fonts/phi/Phi-Pill/PhiPillCondensed-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Pill Condensed";
+  src: url('./fonts/phi/Phi-Pill/PhiPillCondensed-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Sans";
+  src: url('./fonts/phi/Phi-Sans/PhiSans-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Sans";
+  src: url('./fonts/phi/Phi-Sans/PhiSans-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Sans";
+  src: url('./fonts/phi/Phi-Sans/PhiSans-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Sans";
+  src: url('./fonts/phi/Phi-Sans/PhiSans-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Sans Condensed";
+  src: url('./fonts/phi/Phi-Sans/PhiSansCondensed-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Sans Condensed";
+  src: url('./fonts/phi/Phi-Sans/PhiSansCondensed-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Sans Condensed";
+  src: url('./fonts/phi/Phi-Sans/PhiSansCondensed-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Sans Condensed";
+  src: url('./fonts/phi/Phi-Sans/PhiSansCondensed-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Serif";
+  src: url('./fonts/phi/Phi-Serif/PhiSerif-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Serif";
+  src: url('./fonts/phi/Phi-Serif/PhiSerif-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Serif";
+  src: url('./fonts/phi/Phi-Serif/PhiSerif-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Serif";
+  src: url('./fonts/phi/Phi-Serif/PhiSerif-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Serif Condensed";
+  src: url('./fonts/phi/Phi-Serif/PhiSerifCondensed-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Serif Condensed";
+  src: url('./fonts/phi/Phi-Serif/PhiSerifCondensed-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Serif Condensed";
+  src: url('./fonts/phi/Phi-Serif/PhiSerifCondensed-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Serif Condensed";
+  src: url('./fonts/phi/Phi-Serif/PhiSerifCondensed-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Chatty Whims";
+  src: url('./fonts/phi/Chatty-Whims/ChattyWhims-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Chatty Whims";
+  src: url('./fonts/phi/Chatty-Whims/ChattyWhims-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Chatty Whims";
+  src: url('./fonts/phi/Chatty-Whims/ChattyWhims-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Chatty Whims";
+  src: url('./fonts/phi/Chatty-Whims/ChattyWhims-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Chatty Whims Condensed";
+  src: url('./fonts/phi/Chatty-Whims/ChattyWhimsCondensed-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Chatty Whims Condensed";
+  src: url('./fonts/phi/Chatty-Whims/ChattyWhimsCondensed-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Chatty Whims Condensed";
+  src: url('./fonts/phi/Chatty-Whims/ChattyWhimsCondensed-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Chatty Whims Condensed";
+  src: url('./fonts/phi/Chatty-Whims/ChattyWhimsCondensed-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lora's Spark";
+  src: url('./fonts/phi/Loras-Spark/LorasSpark-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lora's Spark";
+  src: url('./fonts/phi/Loras-Spark/LorasSpark-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lora's Spark";
+  src: url('./fonts/phi/Loras-Spark/LorasSpark-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lora's Spark";
+  src: url('./fonts/phi/Loras-Spark/LorasSpark-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lora's Spark Condensed";
+  src: url('./fonts/phi/Loras-Spark/LorasSparkCondensed-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lora's Spark Condensed";
+  src: url('./fonts/phi/Loras-Spark/LorasSparkCondensed-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lora's Spark Condensed";
+  src: url('./fonts/phi/Loras-Spark/LorasSparkCondensed-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lora's Spark Condensed";
+  src: url('./fonts/phi/Loras-Spark/LorasSparkCondensed-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-palette-values --phi-pill-blue {
+  font-family: "Phi-Pill";
+  base-palette: 0;
+}
+@font-palette-values --phi-pill-pink {
+  font-family: "Phi-Pill";
+  base-palette: 1;
+}
+@font-palette-values --phi-pill-gold {
+  font-family: "Phi-Pill";
+  base-palette: 2;
+}
+@font-palette-values --phi-pill-green {
+  font-family: "Phi-Pill";
+  base-palette: 3;
+}
+@font-palette-values --phi-pill-purple {
+  font-family: "Phi-Pill";
+  base-palette: 4;
+}
+@font-palette-values --phi-pill-silver {
+  font-family: "Phi-Pill";
+  base-palette: 5;
+}
+@font-palette-values --phi-pill-ink {
+  font-family: "Phi-Pill";
+  base-palette: 6;
+}
+@font-palette-values --phi-pill-blue {
+  font-family: "Phi-Pill Condensed";
+  base-palette: 0;
+}
+@font-palette-values --phi-pill-pink {
+  font-family: "Phi-Pill Condensed";
+  base-palette: 1;
+}
+@font-palette-values --phi-pill-gold {
+  font-family: "Phi-Pill Condensed";
+  base-palette: 2;
+}
+@font-palette-values --phi-pill-green {
+  font-family: "Phi-Pill Condensed";
+  base-palette: 3;
+}
+@font-palette-values --phi-pill-purple {
+  font-family: "Phi-Pill Condensed";
+  base-palette: 4;
+}
+@font-palette-values --phi-pill-silver {
+  font-family: "Phi-Pill Condensed";
+  base-palette: 5;
+}
+@font-palette-values --phi-pill-ink {
+  font-family: "Phi-Pill Condensed";
+  base-palette: 6;
+}
+
+:root {
+  --phi-font-walt: "Phi-Walt", var(--phi-font-family);
+  --phi-font-hard: "Phi-Hard", var(--phi-font-family);
+  --phi-font-soft: "Phi-Soft", var(--phi-font-family);
+  --phi-font-pill: "Phi-Pill", var(--phi-font-family);
+  --phi-font-sans: "Phi-Sans", var(--phi-font-family);
+  --phi-font-serif: "Phi-Serif", var(--phi-font-family);
+  --phi-font-chatty: "Chatty Whims", var(--phi-font-family);
+  --phi-font-spark: "Lora's Spark", var(--phi-font-family);
+  --phi-font-walt-condensed: "Phi-Walt Condensed", var(--phi-font-family);
+  --phi-font-hard-condensed: "Phi-Hard Condensed", var(--phi-font-family);
+  --phi-font-soft-condensed: "Phi-Soft Condensed", var(--phi-font-family);
+  --phi-font-pill-condensed: "Phi-Pill Condensed", var(--phi-font-family);
+  --phi-font-sans-condensed: "Phi-Sans Condensed", var(--phi-font-family);
+  --phi-font-serif-condensed: "Phi-Serif Condensed", var(--phi-font-family);
+  --phi-font-chatty-condensed: "Chatty Whims Condensed", var(--phi-font-family);
+  --phi-font-spark-condensed: "Lora's Spark Condensed", var(--phi-font-family);
+}

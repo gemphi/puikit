@@ -1,2 +1,2 @@
 /// <reference types="vite/client" />
-/// <reference path="../../../src/scss.d.ts" />
+/// <reference path="../../phi-kit/src/scss.d.ts" />

@@ -1,0 +1,95 @@
+{
+  "app": "phiapp",
+  "nav": [
+    { "id": "home", "label": "Home", "icon": "home" },
+    { "id": "catalog", "label": "Catalog", "icon": "grid", "items": [
+      { "id": "apps", "label": "Apps", "icon": "grid" },
+      { "id": "pages", "label": "Pages", "icon": "file" },
+      { "id": "menus", "label": "Menus", "icon": "list" }
+    ] },
+    { "id": "platform", "label": "Platform", "icon": "db", "items": [
+      { "id": "kinds", "label": "Kinds", "icon": "db" },
+      { "id": "agents", "label": "Agents", "icon": "users" }
+    ] }
+  ],
+  "views": {
+    "home": {
+      "title": "",
+      "sub": "",
+      "blocks": [
+        {
+          "kind": "hero",
+          "heading": "Every app in the phi world",
+          "subtitle": "Apps are records like everything else",
+          "body": "Phiapp is the directory of the ecosystem: every app, the pages and menus it is made of, the kinds it speaks and the agents behind it on PhiADK. All of it read live from Phiora — edit a menu record and the app wears it on its next load.",
+          "actions": [
+            { "label": "Browse the apps", "view": "apps" },
+            { "label": "The kinds they speak", "view": "kinds", "variant": "ghost" }
+          ]
+        },
+        {
+          "kind": "stats",
+          "title": "At a glance",
+          "items": [
+            { "label": "Apps", "value": "7", "sub": "Composed from records" },
+            { "label": "Kinds", "value": "141", "sub": "One shared ontology" },
+            { "label": "Agents", "value": "15", "sub": "On the PhiADK platform" },
+            { "label": "One API", "value": "Phiora", "sub": "Every app reads /api" }
+          ]
+        },
+        {
+          "kind": "grid",
+          "title": "The apps",
+          "sub": "Each one the same shared shell — only its records differ.",
+          "pull": { "kind": "app", "label": "name", "sub": "key", "fields": ["key"], "n": 12 }
+        },
+        {
+          "kind": "grid",
+          "title": "The agents behind them",
+          "sub": "Every app has its agent on PhiADK; phient runs them.",
+          "pull": { "kind": "agentSpec", "label": "name", "sub": "role", "body": "desc", "n": 12 }
+        }
+      ]
+    },
+    "apps": {
+      "title": "Apps",
+      "sub": "Every app in the database — composed back from app, menu, page and block records.",
+      "blocks": [
+        { "kind": "grid", "pull": { "kind": "app", "label": "name", "sub": "key", "fields": ["key"], "n": 24 } }
+      ]
+    },
+    "pages": {
+      "title": "Pages",
+      "sub": "Every page of every app, as records. A page's blocks are records too.",
+      "blocks": [
+        { "kind": "grid", "pull": { "kind": "page", "label": "title", "sub": "key", "join": ["appId"], "fields": ["key", "sub"], "n": 48 } }
+      ]
+    },
+    "menus": {
+      "title": "Menus",
+      "sub": "The rails and sub-navs of every app. Edit one record, the app changes.",
+      "blocks": [
+        { "kind": "grid", "pull": { "kind": "menu", "label": "label", "sub": "key", "join": ["appId"], "fields": ["key", "order"], "n": 48 } }
+      ]
+    },
+    "kinds": {
+      "title": "Kinds",
+      "sub": "The shared ontology every app speaks: one items table, props on the record, relations as reference props.",
+      "blocks": [
+        { "kind": "grid", "pull": { "kind": "kindSpec", "label": "name", "sub": "title", "n": 60 } }
+      ]
+    },
+    "agents": {
+      "title": "Agents",
+      "sub": "The agents of the ecosystem on PhiADK — phient serves them, apps call them.",
+      "blocks": [
+        { "kind": "grid", "pull": { "kind": "agentSpec", "label": "name", "sub": "role", "body": "desc", "n": 24 } },
+        {
+          "kind": "prose",
+          "title": "How they run",
+          "body": "The platform is PhiADK; phient is its agent runtime — what ollama is to models, phient is to agents. phient lists them, serves them over one small API and runs their verbs; Phiora stays the one place data and money move."
+        }
+      ]
+    }
+  }
+}

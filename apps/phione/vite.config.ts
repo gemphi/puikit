@@ -4,6 +4,7 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
+  base: process.env.PHI_BASE || '/',
   resolve: {
     alias: {
       '@pui/components': path.resolve(__dirname, '../../src/components'),

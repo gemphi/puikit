@@ -1,15 +1,17 @@
 {
-  "name": "pui-demo-app",
+  "name": "@phiace/phiapp",
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "description": "Phisum \u2014 The fund and the $SUM token. Built on puikit (Organic) + phi-kit.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@pui/components": "file:../../pui",
+    "puikit": "file:../..",
     "lucide-react": "^1.24.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"

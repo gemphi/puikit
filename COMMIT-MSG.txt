@@ -1,32 +1,22 @@
-phiora-py: complete the data backend port — accounts, state, wallet, activity, chat
+phione watches the platform; phiapp joins the template; phient→phiadk refs
 
-The FastAPI Phiora now covers everything the apps call day to day, over the same
-Postgres tables and the same phi_sid cookie as the Node server:
+- phione, the platform console, gains the Watch group: Logs · PhiLog (the
+  telemetry tail and audit trail, live-polled, level filters and search) and
+  Security · PhiSec (vulnerability scans, token verification and policy
+  enforcement run as agent verbs) — both in the console's own page style,
+  sample data without VITE_PHIADK_API. Its lucide-react pin joins the repo's
+  ^1.x and vite.config gains the PHI_BASE one-origin base like every other app.
 
-- Accounts: /auth/register (upgrades the guest in place, keeping wallet and docs),
-  /auth/signin, /auth/password, /auth/login (demo alias). Password hashes use the
-  exact Node scrypt format (scrypt$16384$salt$hash, r=8 p=1 dklen=64), verified
-  interoperable both ways. Sign-in throttled per ip+login.
-- /state/{doc}: GET for all docs (wallet/history/owned/activity are server-owned),
-  PUT for the client docs (follows, cart, profile, votes, rsvps…), 403 on server docs.
-- /wallet/{swap|spend|earn}: same coin rates, 0.3% swap fee, rounding and the
-  50k USD earn cap as Node; history capped at 200 entries.
-- /activity: batch POST with the full Node validation (kind set, ref ids, time
-  clamp, dedupe, 1000-event cap) and GET ?ref= filtering.
-- /chat: the scripted offline reply until a model is configured.
+- phiapp is complete: the old inline-styled demo cockpit is replaced by the
+  standard data-driven app (one line: mountPhiApp('phiapp')) — the directory of
+  the ecosystem: every app, its pages and menus, the kinds they speak and the
+  agents behind them, pulled live from Phiora. Registered in the registry on
+  port 3114 with its own icon, wearing the shared welcome landing.
 
-Session fix: anonymous GETs are answered as an ephemeral guest without minting a
-session or setting a cookie. An app boot fires many parallel GETs before any cookie
-exists; previously each minted its own guest session and a late-arriving guest
-Set-Cookie could overwrite the cookie a sign-in had just set. Sessions are now only
-created on writes and on /auth routes.
-
-Verified end to end: phisum built and served one-origin with /api on phiora-py —
-demo sign-in sticks, backing a round moves the wallet (11950 → 11938 egg for a 12
-egg pledge), the round's raised/backers rise, and comments post and read back.
-
-Still on Node until ported: verification/reset email, /shop, chat model proxy,
-delegation, seeding (npm run seed stays the seeder).
+- The platform repo rename follows through here: compose's Python service is
+  `phiadk` (build context ../../phiadk/phiora), build-all routes /api at
+  http://phiadk:4400/, AZURE.md clones gemphi/phiadk, and the planned phient
+  container — the agent runtime, the ollama of phiadk — is sketched on :4500.
 
 Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01TVVHXhkRY3LKpjzrweNshC

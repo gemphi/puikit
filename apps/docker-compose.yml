@@ -52,11 +52,13 @@ services:
       - phioradata:/data
     restart: unless-stopped
 
-  # The Python Phiora (FastAPI) — the /api/kind/{...} data backend, over the same database.
-  # nginx routes /api/ to this service when the apps are built with:  node build-all.mjs --backend python
-  phiora-py:
+  # phiadk — the platform container (Python). Phiora, its FastAPI data engine, answers
+  # /api/kind/{...} over the same database. Layers of concern: puikit is UI only — the engine and
+  # the agents live in the phiadk repo, checked out beside this one (Workspace/gemphi/{puikit,phiadk}).
+  # nginx routes /api/ here when the apps are built with:  node build-all.mjs --backend python
+  phiadk:
     build:
-      context: ./phiora-py
+      context: ../../phiadk/phiora
       dockerfile: Dockerfile
     depends_on:
       db:
@@ -68,6 +70,15 @@ services:
       PHI_EDITORS: ${PHI_EDITORS:-}
       PHI_CREATE_KINDS: ${PHI_CREATE_KINDS:-comment,order}
     restart: unless-stopped
+
+  # Planned sibling containers, one concern each (uncomment as their services land):
+  # phient:   # the agent runtime — the ollama of phiadk: `phient serve` on :4500
+  #   build: { context: ../../phiadk }
+  #   command: ["phient", "serve", "--port", "4500"]
+  # phinet:   # models — serving/inference
+  #   build: { context: ../../phinet }
+  # phiace:   # 3D, simulation and spatial
+  #   build: { context: ../../phiace }
 
   web:
     image: nginx:alpine
