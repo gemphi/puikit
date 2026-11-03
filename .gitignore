@@ -26,3 +26,6 @@ media/
 
 .terraform/
 *.tfstate*
+
+# Club and look art (3.3 GB): kept on disk and in the media store, too large for git
+app/phiegg/art/
