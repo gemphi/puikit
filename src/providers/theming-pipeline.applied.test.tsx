@@ -20,7 +20,7 @@ import type { BrandTheme } from './types';
  * emitting the theme-style / gradient-by-default / spacing rules.
  *
  * Unlike a pure token/attribute contract test, this file mounts the provider
- * EXACTLY the way `apps/pui-book/src/main.tsx` does (`defaultTheme="system"`,
+ * EXACTLY the way `app/pui-book/src/main.tsx` does (`defaultTheme="system"`,
  * `defaultBrand="foundry"`, and — deliberately — no `defaultThemeStyle`, so it
  * defaults to `apple`) and asserts the APPLIED result on the real document
  * root. It also compiles the actual SCSS entrypoint the app imports and asserts
@@ -46,7 +46,7 @@ afterEach(() => {
   cleanup();
 });
 
-/** Mount the provider tree the same way `apps/pui-book/src/main.tsx` does. */
+/** Mount the provider tree the same way `app/pui-book/src/main.tsx` does. */
 function renderLikeMain() {
   return render(
     <PuiProvider defaultTheme="system" defaultBrand="foundry">

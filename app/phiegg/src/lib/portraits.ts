@@ -2,6 +2,7 @@
 // Every profile and host gets one, spread so no two share while there are enough (seeded, stable between visits).
 import portraitsJson from '../data/portraits.json';
 import { D } from './data';
+import { mediaUrl } from './media';
 import type { ID } from '../types/phiegg';
 
 type P = { id: string; n: number; sheet: number; index: number; bg: string; outfit: string };
@@ -15,7 +16,7 @@ const portraitOf = (id: ID): P | undefined => (P_.portraits.length ? dealt.get(i
 /** The portrait as an Avatar sprite (sheet, grid, cell) plus its background and outfit colours. */
 export function portrait(id: ID) {
   const p = portraitOf(id); if (!p) return undefined;
-  return { sprite: { src: import.meta.env.BASE_URL + 'portraits/' + P_.sheets[p.sheet], cols: P_.cols, index: p.index }, bg: p.bg, outfit: p.outfit, n: p.n, tokenId: p.id };
+  return { sprite: { src: mediaUrl('portraits/' + P_.sheets[p.sheet]), cols: P_.cols, index: p.index }, bg: p.bg, outfit: p.outfit, n: p.n, tokenId: p.id };
 }
 /** A portrait cell by sheet and index (profile PFT items carry both). */
-export const spriteOfCell = (sheet: number, index: number) => ({ src: import.meta.env.BASE_URL + 'portraits/' + P_.sheets[sheet], cols: P_.cols, index });
+export const spriteOfCell = (sheet: number, index: number) => ({ src: mediaUrl('portraits/' + P_.sheets[sheet]), cols: P_.cols, index });

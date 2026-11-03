@@ -1,5 +1,5 @@
 /**
- * Asset-backed imagery. The media pool lives in `apps/phlick/assets/<topic>/`
+ * Asset-backed imagery. The media pool lives in `app/phlick/assets/<topic>/`
  * — one folder per taxonomy slug — and is bundled by Vite, so it's offline,
  * deterministic and has no CDN. Each post draws its poster from its topic's
  * folder (seeded by id, so it never rots), each slide of a photo-mode deck

@@ -42,7 +42,7 @@ export const DocsArticle: React.FC<DocsArticleProps> = ({
       <Stack direction="column" gap={6}>
         {/* Breadcrumb / Category */}
         <Stack direction="row" align="center" gap={2} className={styles.breadcrumb}>
-          <Text as="span" size="xs" variant="primary" weight="bold" textTransform="uppercase" letterSpacing="0.05em">
+          <Text as="span" size="xs" variant="primary" weight="bold" letterSpacing="0.05em">
             {guide.category}
           </Text>
           {guide.badge && guide.badge !== guide.category && (
@@ -117,7 +117,7 @@ function RichMarkdownContent({ content }: { content: string }) {
                 <CardHeader className={styles.codeHeader}>
                   <Stack direction="row" align="center" gap={2}>
                     <Terminal size={13} />
-                    <Text as="span" size="xs" variant="secondary" textTransform="uppercase" letterSpacing="0.05em">
+                    <Text as="span" size="xs" variant="secondary" letterSpacing="0.05em">
                       {sec.lang || 'text'}
                     </Text>
                   </Stack>

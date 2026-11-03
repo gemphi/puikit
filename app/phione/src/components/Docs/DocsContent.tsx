@@ -31,7 +31,7 @@ export const DocsContent: React.FC<DocsContentProps> = ({ endpoint, activeLangua
               <Text size="sm" intent="primary" weight="medium" mono>Path: {endpoint.path}</Text>
             </CardBody>
           </Card>
-          <Title level={5} size="sm">SDK Code Snippet ({activeLanguage.toUpperCase()})</Title>
+          <Title level={5} size="sm">SDK Code Snippet ({activeLanguage.charAt(0).toUpperCase() + activeLanguage.slice(1)})</Title>
           <Callout intent="primary" icon={<Icon icon={Code} size="sm" />}>
             <Text size="sm" mono pre>
               {getCodeSnippet()}

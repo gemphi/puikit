@@ -1,7 +1,7 @@
 // Shared collection utilities: serial ids, deterministic item generators,
 // 24 card patterns (guilloché "money" engravings, fingerprints, palm lines)
 // and icon watermarks. Pure functions, no DOM. Mirrors are in
-// apps/phiegg-web/lib/collection.ts and puikit/apps/phiegg/src/lib/collection.ts.
+// app/phiegg-web/lib/collection.ts and puikit/app/phiegg/src/lib/collection.ts.
 
 /** "#OPAL-00001" style serial for item n of a collection. */
 export const serialId = (prefix: string, n: number, width = 5) => '#' + prefix.toUpperCase() + '-' + String(n).padStart(width, '0');

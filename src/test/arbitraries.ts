@@ -31,7 +31,7 @@ import type {
 /** The 19 registered Brand_Theme ids (e.g. 'phi', 'foundry', 'blueprint'). */
 export const BRAND_IDS: readonly string[] = BRAND_THEMES.map((b) => b.id);
 
-/** The 7 Theme_Style values applied via `data-theme-style`. */
+/** The 8 Theme_Style values applied via `data-theme-style`. */
 export const THEME_STYLES: readonly ThemeStyle[] = [
   'apple',
   'flat',
@@ -40,6 +40,7 @@ export const THEME_STYLES: readonly ThemeStyle[] = [
   'glass',
   'organic',
   'spacex',
+  'muse',
 ];
 
 /** The 3 Theme_Mode values applied via `data-theme` / `dark` class. */

@@ -1,10 +1,10 @@
 import { apiPost, hasApi, persisted } from './api';
 
-/** Wallet stand-in (USD, $EGG, $SUM, ETH). Mirrors the prototype's PhiCore; synced to Phiora via api.ts. */
+/** Wallet stand-in (USD, $EGG, $UM, ETH). Mirrors the prototype's PhiCore; synced to Phiora via api.ts. */
 export type Coin = 'usd' | 'egg' | 'sum' | 'eth';
 export type Wallet = Record<Coin, number>;
 export const USD: Record<Coin, number> = { usd: 1, egg: 0.25, sum: 6, eth: 3200 };
-export const LABEL: Record<Coin, string> = { usd: 'USD', egg: '$EGG', sum: '$SUM', eth: 'ETH' };
+export const LABEL: Record<Coin, string> = { usd: 'USD', egg: '$EGG', sum: '$UM', eth: 'ETH' };
 
 const START: Wallet = { usd: 2500, egg: 12000, sum: 140, eth: 0.42 };
 /** Balances. With VITE_PHI_API the server owns them: changes go through /wallet/*, the local copy is updated

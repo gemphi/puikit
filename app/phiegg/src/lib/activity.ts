@@ -12,7 +12,10 @@ export type ActivityKind =
 export type ActivityEvent = { id: string; kind: ActivityKind; ref: ID; refKind?: string; at: number; usd?: number; note?: string; with?: ID };
 
 const MAX = 1000;
-export const ACTIVITY = persisted<{ events: ActivityEvent[] }>('activity', { events: [] }, undefined, { serverOwned: true });
+type Log = { events: ActivityEvent[] };
+// The server may hold the log as the bare list of events.
+const readLog = (init: Log, server: Log): Log => (Array.isArray(server) ? { events: server as ActivityEvent[] } : { ...init, ...server });
+export const ACTIVITY = persisted<Log>('activity', { events: [] }, readLog, { serverOwned: true });
 export const useActivity = () => ACTIVITY.use();
 let seq = 0;
 export function record(kind: ActivityKind, ref: ID, extra: Omit<Partial<ActivityEvent>, 'id' | 'kind' | 'ref'> = {}) {

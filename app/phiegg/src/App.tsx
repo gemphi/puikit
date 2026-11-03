@@ -11,7 +11,7 @@ import { useViewport } from './lib/viewport';
 import { Overlays } from './components/Phiegg/Overlays';
 import {
   AgentsHubPage, ClubPage, CollectionPage, ListPage, CreatePage, EventsPage, ExplorePage, FeedPage, HostsPage, JoinPage,
-  MessagesPage, PhipadPage, ProfilePage, ShowPage, ShowsPage, WorldPage, WorldsPage, ShopPage, PoolPage, SeriesPage, LeaguePage, CityPage, SearchPage, RecentPage, StudioPage, RidesPage, WelcomePage,
+  MessagesPage, PhipadPage, ProfilePage, ShowPage, ShowsPage, WorldPage, WorldsPage, ShopPage, PoolPage, SeriesPage, LeaguePage, CityPage, SearchPage, RecentPage, StudioPage, RidesPage, WelcomePage, PostPage,
 } from './pages/phiegg';
 import { site } from './lib/data';
 import { useIdentity } from './lib/identity';
@@ -31,6 +31,7 @@ const page = (tab: string): React.ReactNode => {
     case 'studio': return <StudioPage />;
     case 'rides': return <RidesPage />;
     case 'welcome': return <WelcomePage />;
+    case 'post': return <PostPage />;
     case 'search': return <SearchPage />;
     case 'explore': return <ExplorePage />;
     case 'hosts': case 'nests': case 'channels': return <HostsPage />;

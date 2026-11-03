@@ -1,8 +1,8 @@
-// Server-owned wallet. Same coins, rates and fee as apps/phi-kit/src/wallet.ts so the client's
+// Server-owned wallet. Same coins, rates and fee as app/phi-kit/src/wallet.ts so the client's
 // optimistic update and the server's answer agree; the server's answer always wins.
 export const COINS = ['usd', 'egg', 'sum', 'eth'];
 export const USD = { usd: 1, egg: 0.25, sum: 6, eth: 3200 };
-export const LABEL = { usd: 'USD', egg: '$EGG', sum: '$SUM', eth: 'ETH' };
+export const LABEL = { usd: 'USD', egg: '$EGG', sum: '$UM', eth: 'ETH' };
 export const START = { usd: 2500, egg: 12000, sum: 140, eth: 0.42 };
 export const FEE = 0.003;
 const HISTORY_MAX = 200;

@@ -21,7 +21,7 @@ spatial). The legacy Node `phiora` container stays only until the Python port re
 ```sh
 git clone https://github.com/gemphi/puikit.git
 git clone https://github.com/gemphi/phiadk.git   # the platform (phiadk/phiora is the FastAPI Phiora) — needed for --backend python
-cd puikit/apps
+cd puikit/app
 cp .env.example .env   # fill: PHI_PG_PASSWORD, PHI_DELEGATION_SECRET (openssl rand -hex 32),
                        # PHI_ORIGINS=https://your.domain, PHI_PUBLIC_URL, PHI_EDITORS, mail keys
 node build-all.mjs                     # Node backend answers /api/   (today's default)

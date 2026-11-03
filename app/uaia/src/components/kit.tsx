@@ -236,7 +236,6 @@ export const Note: React.FC<{
           color: tone === 'violet' ? '#818cf8' : 'var(--phi-color-primary)',
           fontSize: 12,
           letterSpacing: '0.18em',
-          textTransform: 'uppercase',
           marginBottom: 10,
         }}
       >

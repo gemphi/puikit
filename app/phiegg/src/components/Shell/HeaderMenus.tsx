@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Avatar, Box, Button, Divider, Popover, Pressable, Stack, Tag, Text, TabList } from '@pui/components';
+import { Avatar, Box, Button, Divider, Drawer, Pressable, Stack, Tag, Text, TabList } from '@pui/components';
 import { usePuiTheme } from '@pui/providers';
 import { useStore } from '@pui/store';
-import { ChevronDown, ChevronUp, LogIn, LogOut, ShoppingBag, SlidersHorizontal, User, UserCog, Wallet as WalletIcon } from 'lucide-react';
+import { ChevronDown, ChevronUp, LogIn, LogOut, ShoppingBag, SlidersHorizontal, Type as TypeIcon, User, UserCog, Wallet as WalletIcon } from 'lucide-react';
 import { appUrl } from '@phi-kit/data';
 import { AccountDialog } from '@phi-kit/AccountDialog';
 import { accountsEnabled, signOut, useMe } from '@phi-kit/auth';
+import { FONTS, useFont } from '@phi-kit/fonts';
 import { LOOKS } from '@phi-kit/looks';
 import { usePhieggLook } from './Appearance';
 import { LABEL, USD, fmt, useWallet, type Coin } from '@phi-kit/wallet';
@@ -13,6 +14,7 @@ import { me, site, t, usd } from '../../lib/data';
 import { useCart } from '../../lib/cart';
 import { ONBOARDING, useOnboarding } from '../../lib/onboarding';
 import { phieggStore } from '../../state/phieggStore';
+import { Tile } from '../Phiegg/Tile';
 import styles from './Header.module.scss';
 
 const COINS: Coin[] = ['usd', 'egg', 'sum', 'eth'];
@@ -34,21 +36,19 @@ export const AccountMenu: React.FC = () => {
   const s = useStore(phieggStore); const my = me(); const server = useMe(); const ob = useOnboarding();
   const w = useWallet(); const cartN = useCart().cart.length; const [look, setLook] = usePhieggLook(); const { theme, setTheme } = usePuiTheme();
   const [open, setOpen] = useState(false); const [account, setAccount] = useState(false); const [coins, setCoins] = useState(false);
+  const [fonts, setFonts] = useState(false); const [font, setFont] = useFont();
   const signedIn = accountsEnabled ? !!server && !server.guest : ob.done;
   const total = COINS.reduce((a, c) => a + w[c] * USD[c], 0);
   const go = (f: () => void) => () => { setOpen(false); f(); };
   const out = () => { if (accountsEnabled) void signOut(); ONBOARDING.set({ done: false, provider: '', role: '' }); s.flash(t('siSignedOut')); };
   return (
     <>
-      <Popover isOpen={open} onOpenChange={setOpen} placement="bottom-end" contentClassName={styles.pop}
-        trigger={<Pressable rounded="full" className={styles.avatar} aria-label={t('hdAccount') + ' · ' + my.name} aria-expanded={open}>
-          <Avatar initials={my.initials} size="sm" />{cartN > 0 && <Text as="span" size="xs" weight="bold" color="text-inverse" className={styles.dot} aria-label={t('hdCartN', { n: cartN })}>{cartN}</Text>}
-        </Pressable>}>
-        <Stack direction="column" gap={2}>
-          <Stack direction="row" gap={2} align="center">
-            <Avatar initials={my.initials} size="md" />
-            <Stack direction="column" gap={0}><Text weight="bold">{my.name}</Text><Text size="xs" intent="muted">@{my.handle}</Text></Stack>
-          </Stack>
+      <Pressable rounded="full" className={styles.avatar} aria-label={t('hdAccount') + ' · ' + my.name} aria-expanded={open} onClick={() => setOpen(true)}>
+        <Avatar initials={my.initials} size="sm" />{cartN > 0 && <Text as="span" size="xs" weight="bold" color="text-inverse" className={styles.dot} aria-label={t('hdCartN', { n: cartN })}>{cartN}</Text>}
+      </Pressable>
+      <Drawer isOpen={open} onClose={() => setOpen(false)} position="right" size="md" title={t('hdAccount')}>
+        <Stack direction="column" gap={2} className={styles.drawerRows}>
+          <Tile animate tone={my.tone} ratio="16/9" grid deck={2} title={my.name} sub={'@' + my.handle} depth={{ clubId: my.clubIds[0], personId: my.id }} onClick={go(() => s.go('profile', { profileId: my.id }))} />
           {signedIn && ob.role && <Tag round minimal intent="primary">{t('siRole', { role: ob.role })}</Tag>}
           <Divider />
           <Item icon={WalletIcon} onClick={() => setCoins(!coins)} end={<Stack direction="row" gap={1} align="center"><Text size="sm" mono>{usd(w.usd)}</Text>{coins ? <ChevronUp size={14} /> : <ChevronDown size={14} />}</Stack>}>{t('hdWallet')}</Item>
@@ -67,6 +67,10 @@ export const AccountMenu: React.FC = () => {
             <Seg label={t('lookStyle')} opts={LOOKS.map((l) => ({ id: l.id, label: l.label }))} value={look.id} set={setLook} />
             <Seg label={t('mode')} opts={site.appearance.themes} value={theme} set={(v) => setTheme(v as typeof theme)} />
           </Stack>
+          <Item icon={TypeIcon} onClick={() => setFonts(!fonts)} end={<Stack direction="row" gap={1} align="center"><Text size="xs" intent="muted">{font.label}</Text>{fonts ? <ChevronUp size={14} /> : <ChevronDown size={14} />}</Stack>}>{t('hdFont')}</Item>
+          {fonts && <Stack direction="column" gap={0} className={styles.fonts}>
+            {FONTS.map((f) => <Pressable key={f.id} fill hover selected={f.id === font.id} pad="sm" onClick={() => setFont(f.id)} style={f.family ? { fontFamily: `"${f.family}"`, fontWeight: 300 } : undefined}>{f.label}</Pressable>)}
+          </Stack>}
           <Item icon={SlidersHorizontal} onClick={go(() => s.setRail('user'))}>{t('hdAppearance')}</Item>
           <Divider />
           <Item icon={User} onClick={go(() => s.go('profile', { profileId: my.id }))}>{t('hdProfile')}</Item>
@@ -74,7 +78,7 @@ export const AccountMenu: React.FC = () => {
           {signedIn ? <Item icon={LogOut} onClick={go(out)}>{t('hdSignOut')}</Item>
             : <Item icon={LogIn} onClick={go(s.openSignIn)}>{t('hdSignIn')}</Item>}
         </Stack>
-      </Popover>
+      </Drawer>
       {accountsEnabled && <AccountDialog isOpen={account} onClose={() => setAccount(false)} />}
     </>
   );

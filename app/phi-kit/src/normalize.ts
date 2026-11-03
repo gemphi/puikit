@@ -1,7 +1,7 @@
 /**
  * The id rules of Phiora's one database, for the client side: every record's id is md5 of `kind:originalId`
  * (`treeId`), every record has a `slug` (the full name with underscores), and every reference field follows.
- * Exactly what the server's seed does (apps/phiora-server/src/tree.mjs), so an app that normalizes its bundled
+ * Exactly what the server's seed does (app/phiora-server/src/tree.mjs), so an app that normalizes its bundled
  * data with these functions speaks the database's ids without fetching anything.
  */
 import { md5 } from './md5';

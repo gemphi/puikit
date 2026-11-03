@@ -40,7 +40,7 @@
   [
    "Network",
    "Members can share idle compute",
-   "Turn on sharing and earn SUM for every run your machine helps with."
+   "Turn on sharing and earn UM for every run your machine helps with."
   ],
   [
    "CLI",
@@ -90,7 +90,7 @@
   },
   {
    "q": "What does a run cost?",
-   "a": "The CLI shows the estimate before you start. Most small runs cost under 1 SUM."
+   "a": "The CLI shows the estimate before you start. Most small runs cost under 1 UM."
   },
   {
    "q": "Can I keep my runs private?",

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Box, Button, Drawer, Frame, Icon, Pressable, Stack, Text, Title } from '@pui/components';
-import { Menu as MenuIcon } from 'lucide-react';
+import { Menu as MenuIcon, Pin } from 'lucide-react';
 import { useStore } from '@pui/store';
 import {
   Bot, CalendarDays, Camera, ChevronDown, ChevronUp, Circle, Clapperboard, Clock, Film, Coins, Compass, Droplets, Flag, Gamepad2, Gem, Gift, Globe, Hash, Home, LayoutGrid, MessageCircle, Palette, Plus, Radio, Rocket, Search, Server, ShoppingBag, Sparkles, Tv, User, UserPlus,
@@ -22,6 +22,7 @@ import { EntityAvatar } from '../Phiegg/EntityAvatar';
 import { PersonAvatar } from '../Phiegg/PersonAvatar';
 import styles from './Rail.module.scss';
 
+const PANEL_CLOSED = 'phi-panel-closed';
 const MARKS: Record<string, LucideIcon> = { ShopNest: ShopNest as unknown as LucideIcon, GridCut: GridCut as unknown as LucideIcon };
 const icon = (n: string) => MARKS[n] ?? L[n] ?? Circle;
 /** Primary rail (home · chat · host / menu / you) + secondary panel: menu records of app phiegg (lib/menus.ts). */
@@ -79,10 +80,17 @@ export const SidebarNav: React.FC<{ activeTab: string; onSelectTab: (tab: string
   const secondary = MENUS.secondary;
   const railItem = railAll().find((r) => r.id === s.rail);
   const conf = secondary[s.rail] ?? (railItem?.role === 'apps' ? { title: railItem.label, sections: [] } : undefined);
-  const visible = !!conf && (!compact || shown);
+  // Wide screens: the panel stays closed across visits once the pin or the current icon closes it.
+  const [closed, setClosedState] = useState(() => { try { return window.localStorage.getItem(PANEL_CLOSED) === '1'; } catch { return false; } });
+  const setClosed = (v: boolean) => { setClosedState(v); try { window.localStorage.setItem(PANEL_CLOSED, v ? '1' : '0'); } catch { /* storage blocked: it still applies for this visit */ } };
+  const visible = !!conf && (inDrawer || (compact ? shown : !closed));
+  const closePanel = () => { if (compact) setShown(false); else setClosed(true); };
   const pickRail = (r: RailItem) => {
+    // The current icon closes its open panel, and stays on the page.
+    if (!inDrawer && r.id === s.rail && visible) { closePanel(); return; }
     if (r.tab) s.go(r.tab);
-    if (compact) setShown(r.id === s.rail ? !shown : !!(secondary[r.id] || r.role === 'apps'));
+    if (compact) setShown(!!(secondary[r.id] || r.role === 'apps'));
+    else setClosed(false);
     s.setRail(r.id);
   };
   // Opened from elsewhere (header Theme → Appearance): show the panel on compact screens too.
@@ -121,7 +129,10 @@ export const SidebarNav: React.FC<{ activeTab: string; onSelectTab: (tab: string
         <Box className={styles.group}>{MENUS.rail.bottom.map(railBtn)}</Box>
       </Box>
       {visible && conf && <Box as="aside" key={s.rail} className={[styles.panel, compact ? styles.float : ''].join(' ')}>
-        <Title level={5} size="sm">{conf.title}</Title>
+        <Stack direction="row" align="center" justify="between" gap={1}>
+          <Title level={5} size="sm">{conf.title}</Title>
+          {!inDrawer && <Button variant="ghost" size="sm" className={styles.toggle} title={t('hdCloseMenu')} aria-label={t('hdCloseMenu')} icon={<Icon icon={Pin} size="xs" />} onClick={closePanel} />}
+        </Stack>
         {railItem?.role === 'apps' && <Box flex="1 0 auto"><AppsPanel item={railItem} /></Box>}
         {conf.sections.map((sec) => <Box key={sec.position} className={[styles.section, styles.panelGroup].join(' ')} pushDown={sec.position === 'bottom'}>
           {/* An item marked `inline` in site.json sits on the same row as the one before it (Join · Shop). */}

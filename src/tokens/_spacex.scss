@@ -42,11 +42,11 @@
   --phi-glass-surface: rgba(255, 255, 255, 0.86);
   --phi-glass-border: rgba(0, 0, 0, 0.12);
   --phi-backdrop-blur: blur(12px);
-  --phi-font-family: "D-DIN", "Barlow", "DIN Next", "Arial Narrow", Arial, sans-serif;
-  --phi-font-heading: "Phiegg Square", "D-DIN", "Barlow", "DIN Next", "Arial Narrow", Arial, sans-serif;
+  --phi-font-family: "Phifing 4", "Phifing", "D-DIN", "Barlow", "DIN Next", "Arial Narrow", Arial, sans-serif;
+  --phi-font-heading: "Phifing 4", "Phifing", "D-DIN", "Barlow", "DIN Next", "Arial Narrow", Arial, sans-serif;
   --phi-font-size-base: 0.9375rem;
-  --phi-font-weight-semibold: 600;
-  --phi-font-weight-bold: 700;
+  --phi-font-weight-semibold: 300;
+  --phi-font-weight-bold: 400;
   --phi-control-height-md-base: 40px;
   --phi-spacex-seam: rgba(0, 82, 136, 0.5);
   --phi-spacex-rim: 0 0 0 1px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
@@ -93,13 +93,12 @@
 /* Mission-control voice: tracked uppercase headings, outlined square controls. */
 :root[data-theme-style='spacex'] :is(h1, h2, h3, h4) {
   font-family: var(--phi-font-heading);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-weight: var(--phi-font-weight-medium);
+  letter-spacing: 0;
 }
 :root[data-theme-style='spacex'] :is(button, .button, a.button) {
   border-radius: var(--phi-radius-sm) !important;
-  letter-spacing: 0.06em;
+  letter-spacing: 0;
 }
 :root[data-theme-style='spacex'] :focus-visible {
   outline: 1px solid var(--phi-color-text-primary);
@@ -134,7 +133,6 @@
 }
 /* Tables read like telemetry: tracked, upper small-caps column heads. */
 :root[data-theme-style='spacex'] thead th {
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
+  letter-spacing: 0;
   font-size: 0.78em;
 }

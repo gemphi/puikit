@@ -26,7 +26,7 @@ export const LeadershipPage: React.FC = () => (
       <Glass style={{ marginTop: 16, maxWidth: 720 }}>
         <Tag intent="primary" round style={{ marginBottom: 10, alignSelf: 'flex-start', width: 'fit-content' }}>FOUNDING</Tag>
         <Title level={3}>Batanayi Matuku</Title>
-        <Text className={s.mono} style={{ color: 'var(--phi-color-primary)', fontSize: 13, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+        <Text className={s.mono} style={{ color: 'var(--phi-color-primary)', fontSize: 13, letterSpacing: '0.14em', }}>
           Chief Technology Officer
         </Text>
         <Text intent="secondary" style={{ marginTop: 10, lineHeight: 1.7 }}>

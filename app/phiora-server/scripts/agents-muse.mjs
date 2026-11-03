@@ -1,5 +1,5 @@
 // The Phipal muse: feed every agent's full description (spec, tasks, api calls) into the one database as
-// kind `agentSpec`, from apps/phipal/public/data/agents.json. md5 ids, slugs, origin 'oldapps' rules apply.
+// kind `agentSpec`, from app/phipal/public/data/agents.json. md5 ids, slugs, origin 'oldapps' rules apply.
 // Direct SQL, no change-log rows, idempotent. Run: DATABASE_URL=postgres://... node scripts/agents-muse.mjs
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';

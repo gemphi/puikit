@@ -30,6 +30,6 @@
 @media (prefers-reduced-motion: reduce) { .replies { animation: none; } }
 
 // Thread actions are quiet text buttons in the theme colour, not filled controls.
-.actions .action { background: transparent; box-shadow: none; border-color: transparent; min-height: 0; padding: 0.15rem var(--phi-space-2, 0.5rem); font-size: var(--phi-font-size-xs, 0.75rem); font-weight: 600; color: var(--phi-color-primary); }
+.actions .action { background: transparent; box-shadow: none; border-color: transparent; min-height: 0; padding: 0.15rem var(--phi-space-2, 0.5rem); font-size: var(--phi-font-size-xs, 0.75rem); font-weight: var(--phi-font-weight-medium); color: var(--phi-color-primary); }
 .actions .action:hover { background: color-mix(in srgb, var(--phi-color-primary) 10%, transparent); }
 .scroll { overflow: auto; overscroll-behavior: contain; }

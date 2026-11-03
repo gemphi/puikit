@@ -195,10 +195,10 @@
   --phi-gradient-rail: linear-gradient(180deg, rgba(232, 232, 237, 0.92) 0%, transparent 100%);
   --phi-gradient-sidebar: linear-gradient(180deg, rgba(246, 246, 248, 0.92) 0%, transparent 100%);
   --phi-gradient-accent: linear-gradient(to right, color-mix(in oklch, var(--phi-color-primary, #0071e3) 12%, #ffffff) 0%, #ffffff 100%);
-  --phi-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", Arial, sans-serif;
-  --phi-font-heading: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", Arial, sans-serif;
-  --phi-font-weight-semibold: 600;
-  --phi-font-weight-bold: 600;
+  --phi-font-family: "Phifing 4", "Phifing", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --phi-font-heading: "Phifing 4", "Phifing", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --phi-font-weight-semibold: 300;
+  --phi-font-weight-bold: 400;
   --phi-control-height-md-base: 36px;
 }
 
@@ -218,7 +218,7 @@
 
 :root[data-theme-style='apple'] :is(h1, h2, h3, h4) {
   font-family: var(--phi-font-heading);
-  letter-spacing: -0.015em;
+  letter-spacing: 0;
 }
 :root[data-theme-style='apple'] :focus-visible {
   outline: 3px solid color-mix(in oklch, var(--phi-color-primary) 45%, transparent);
@@ -272,5 +272,5 @@
   --phi-glass-surface: rgba(22, 22, 24, 0.86);
 }
 
-:root[data-theme-style='apple'] :is(h1, h2) { font-weight: 600; letter-spacing: -0.022em; }
-:root[data-theme-style='apple'] :is(h3, h4) { font-weight: 600; letter-spacing: -0.012em; }
+:root[data-theme-style='apple'] :is(h1, h2) { font-weight: var(--phi-font-weight-medium); letter-spacing: 0; }
+:root[data-theme-style='apple'] :is(h3, h4) { font-weight: var(--phi-font-weight-medium); letter-spacing: 0; }

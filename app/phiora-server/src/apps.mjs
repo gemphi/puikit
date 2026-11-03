@@ -5,7 +5,7 @@
 //         its group, pageId to the page it opens
 //   page  { appId, key, title, sub, ... }                        one page of an app
 //   block { pageId, order, type, ...the block's props }          one section of a page (hero, grid, news, form …)
-// The app files (apps/<key>/public/data/<key>.json) only seed them. GET /app/<key> composes the same document back
+// The app files (app/<key>/public/data/<key>.json) only seed them. GET /app/<key> composes the same document back
 // from the records, so an edit to a menu label or a block's items (PATCH /tree/item/menu/<id>) shows in the app
 // on its next load; with no records for a key it falls back to the file.
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
@@ -15,8 +15,8 @@ import { slugify } from './tree.mjs';
 export const APP_KINDS = ['app', 'menu', 'page', 'block'];
 const cap = (k) => k.charAt(0).toUpperCase() + k.slice(1);
 
-/** The app documents in the apps folder: every apps/<key>/public/data/<key>.json with a nav and views, or, for an app
-    that bundles its menus (phiegg), apps/<key>/src/data/<key>.json. */
+/** The app documents in the apps folder: every app/<key>/public/data/<key>.json with a nav and views, or, for an app
+    that bundles its menus (phiegg), app/<key>/src/data/<key>.json. */
 export function appFiles(appsDir) {
   if (!appsDir || !existsSync(appsDir)) return [];
   const fileOf = (key) => [join(appsDir, key, 'public', 'data', key + '.json'), join(appsDir, key, 'src', 'data', key + '.json')].find((f) => existsSync(f));

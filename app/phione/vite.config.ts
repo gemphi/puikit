@@ -35,7 +35,7 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3115,
+    port: 3115, fs: { allow: ['../..'] },
     host: '0.0.0.0',
   },
   build: {

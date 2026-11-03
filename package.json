@@ -145,11 +145,11 @@
     "verify:integrations": "node scripts/verify-integrations.mjs",
     "prepublishOnly": "npm run build",
     "check:apps": "node scripts/check-app-markup.mjs",
-    "dev:all": "node apps/dev-all.mjs",
-    "dev:all:offline": "node apps/dev-all.mjs --no-api",
-    "build:all": "node apps/build-all.mjs",
-    "serve:all": "node apps/build-all.mjs --serve",
-    "api": "npm --prefix apps/phiora-server start",
-    "data:phiegg": "npm --prefix apps/phiegg run data"
+    "dev:all": "node app/dev-all.mjs",
+    "dev:all:offline": "node app/dev-all.mjs --no-api",
+    "build:all": "node app/build-all.mjs",
+    "serve:all": "node app/build-all.mjs --serve",
+    "api": "npm --prefix app/phiora-server start",
+    "data:phiegg": "npm --prefix app/phiegg run data"
   }
 }

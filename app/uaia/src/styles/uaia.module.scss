@@ -17,8 +17,7 @@
 }
 .navLinks { display: flex; align-items: center; gap: 2px; flex-wrap: wrap; }
 .navLink {
-  font-family: var(--uaia-font-micro); font-size: 12px; letter-spacing: 0.14em;
-  text-transform: uppercase; padding: 8px 10px; border-radius: var(--phi-radius-md);
+  font-family: var(--uaia-font-micro); font-size: 12px; letter-spacing: 0.14em; padding: 8px 10px; border-radius: var(--phi-radius-md);
   color: var(--phi-color-text-secondary); text-decoration: none; white-space: nowrap;
 }
 .navLink:hover { color: var(--phi-color-text-primary); background-image: linear-gradient(180deg, rgba(34, 211, 238, 0.09) 0%, rgba(34, 211, 238, 0) 50%); }
@@ -64,7 +63,7 @@
 .heroStars { position: absolute; inset: 0; pointer-events: none; }
 .heroInner { position: relative; max-width: 1080px; margin: 0 auto; animation: rise 0.7s ease both; }
 .heroTitle {
-  font-family: var(--uaia-font-display); font-weight: 700;
+  font-family: var(--uaia-font-display); font-weight: var(--phi-font-weight-medium);
   font-size: clamp(2.1rem, 5.4vw, 4.2rem); line-height: 1.06; margin: 18px 0 16px;
   letter-spacing: -0.02em;
 }
@@ -74,8 +73,8 @@
 /* ---------- micro label / status ---------- */
 .micro {
   display: inline-flex; align-items: center; gap: 10px;
-  font-family: var(--uaia-font-micro); font-size: 11px; font-weight: 600;
-  letter-spacing: 0.28em; text-transform: uppercase; color: var(--uaia-cyan);
+  font-family: var(--uaia-font-micro); font-size: 11px; font-weight: var(--phi-font-weight-medium);
+  letter-spacing: 0.28em; color: var(--uaia-cyan);
 }
 .micro::before { content: ''; width: 26px; height: 1px; background: var(--uaia-cyan); }
 .statusStrip {
@@ -83,15 +82,14 @@
   border: 1px solid var(--uaia-line); border-radius: var(--phi-radius-xl);
   background: color-mix(in srgb, var(--phi-color-background) 55%, transparent);
   backdrop-filter: blur(10px);
-  font-family: var(--uaia-font-micro); font-size: 11px; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--phi-color-text-secondary);
+  font-family: var(--uaia-font-micro); font-size: 11px; letter-spacing: 0.12em; color: var(--phi-color-text-secondary);
 }
 .statusDot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #34d399; margin-right: 8px; animation: blink 2.4s infinite; }
 
 /* ---------- content sections ---------- */
 .section { max-width: 1080px; margin: 0 auto; padding: clamp(40px, 6vw, 72px) clamp(16px, 5vw, 48px); }
 .sectionTight { padding-top: 0; }
-.sectionTitle { font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 700; margin: 10px 0 8px; }
+.sectionTitle { font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: var(--phi-font-weight-medium); margin: 10px 0 8px; }
 .sectionIntro { color: var(--phi-color-text-secondary); max-width: 680px; line-height: 1.7; }
 
 .mono { font-family: var(--uaia-font-micro); letter-spacing: 0.06em; }
@@ -101,13 +99,13 @@
 .footer { border-top: 1px solid var(--uaia-line); padding: 48px clamp(16px, 5vw, 48px) 40px; background: color-mix(in srgb, var(--phi-color-background) 86%, #000); }
 .footerInner { max-width: 1080px; margin: 0 auto; }
 .footerCols { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 28px; margin: 28px 0 36px; }
-.footerHead { font-family: var(--uaia-font-micro); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--phi-color-text-secondary); margin-bottom: 12px; }
+.footerHead { font-family: var(--uaia-font-micro); font-size: 11px; letter-spacing: 0.22em; color: var(--phi-color-text-secondary); margin-bottom: 12px; }
 .footerLink { display: block; padding: 4px 0; font-size: 13.5px; color: var(--phi-color-text-secondary); text-decoration: none; }
 .footerLink:hover { color: var(--uaia-cyan); }
-.footerLine { display: flex; flex-wrap: wrap; gap: 8px 22px; padding-top: 20px; border-top: 1px solid var(--uaia-line); font-family: var(--uaia-font-micro); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--phi-color-text-secondary); }
+.footerLine { display: flex; flex-wrap: wrap; gap: 8px 22px; padding-top: 20px; border-top: 1px solid var(--uaia-line); font-family: var(--uaia-font-micro); font-size: 11px; letter-spacing: 0.1em; color: var(--phi-color-text-secondary); }
 
 /* ---------- wordmark ---------- */
-.wordmark { font-family: var(--uaia-font-display); font-weight: 700; letter-spacing: 0.34em; font-size: 15px; }
+.wordmark { font-family: var(--uaia-font-display); font-weight: var(--phi-font-weight-medium); letter-spacing: 0.34em; font-size: 15px; }
 
 /* ---------- generic panels ---------- */
 .glass {

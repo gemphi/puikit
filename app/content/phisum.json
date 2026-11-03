@@ -2,7 +2,7 @@
  "stats": [
   {
    "label": "Treasury",
-   "value": "412M SUM",
+   "value": "412M UM",
    "sub": "Held for rewards"
   },
   {
@@ -29,18 +29,18 @@
   ],
   [
    "Rounds",
-   "Satin Swans close a 1.2M SUM community round",
+   "Satin Swans close a 1.2M UM community round",
    "The club sold out its first round in four hours. Members voted to spend half on a new runway hall in Brocade."
   ],
   [
    "Treasury",
    "Reward weights move toward hosting",
-   "Hosting a meetup now earns more SUM than flipping a PFT, after a Phidao vote passed with 71 percent."
+   "Hosting a meetup now earns more UM than flipping a PFT, after a Phidao vote passed with 71 percent."
   ],
   [
    "Demo day",
    "Demo day returns to the Atelier Nine dome",
-   "Nine teams pitch live to members on November 14. Every member can back a team with as little as 10 SUM."
+   "Nine teams pitch live to members on November 14. Every member can back a team with as little as 10 UM."
   ],
   [
    "Registry",
@@ -60,7 +60,7 @@
   [
    "Treasury",
    "Quarterly report: inflows up 18 percent",
-   "Most new SUM came from ride fees and hosted events. Spending stayed inside the budget the DAO set."
+   "Most new UM came from ride fees and hosted events. Spending stayed inside the budget the DAO set."
   ],
   [
    "Cohorts",
@@ -69,7 +69,7 @@
   ],
   [
    "Stories",
-   "A tailor in Cashmere Peaks earns her first 10k SUM",
+   "A tailor in Cashmere Peaks earns her first 10k UM",
    "Fitting looks for other members is a logged function. Mira did 400 fittings in a month."
   ],
   [
@@ -80,13 +80,13 @@
   [
    "Rounds",
    "Chiffon Heights club applies for matching",
-   "The club asks the fund to match member pledges one to one up to 500k SUM."
+   "The club asks the fund to match member pledges one to one up to 500k UM."
   ]
  ],
  "faq": [
   {
    "q": "Can I back a cohort team?",
-   "a": "Yes. Open the team on demo day and pledge any amount of SUM from your wallet."
+   "a": "Yes. Open the team on demo day and pledge any amount of UM from your wallet."
   },
   {
    "q": "When are rewards paid?",
@@ -102,7 +102,7 @@
   },
   {
    "q": "Is there a minimum pledge?",
-   "a": "Ten SUM. There is no maximum, but rounds close when the target is met."
+   "a": "Ten UM. There is no maximum, but rounds close when the target is met."
   }
  ],
  "cards": [
@@ -129,7 +129,7 @@
   {
    "title": "Quest board",
    "sub": "phipad · tool",
-   "body": "Post quests, score entries, pay winners in SUM."
+   "body": "Post quests, score entries, pay winners in UM."
   },
   {
    "title": "Season market",

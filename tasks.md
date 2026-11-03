@@ -8,21 +8,21 @@
 
 ### Running the Documentation & Workbench App (`pui-book` / `puikit.com`)
 ```bash
-cd apps/pui-book
+cd app/pui-book
 npm install
 npm run dev
 ```
 
 ### Running the Enterprise Operations Cockpit (`demo-app`)
 ```bash
-cd apps/demo-app
+cd app/demo-app
 npm install
 npm run dev
 ```
 
 ### Running the Landing Page (`landing-app`)
 ```bash
-cd apps/landing-app
+cd app/landing-app
 npm install
 npm run dev
 ```
@@ -33,7 +33,7 @@ npm run dev
 
 ### Run Component Tests
 ```bash
-cd apps/pui-book
+cd app/pui-book
 npm test
 ```
 

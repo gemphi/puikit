@@ -82,9 +82,9 @@ export const Counter = () => {
 ---
 
 ## 4. Documentation & Applications
-- **[`apps/pui-book`](apps/pui-book/)** (`puikit.com`): Interactive docs, live code playground, and component specs.
-- **[`apps/demo-app`](apps/demo-app/)**: Enterprise operational cockpit with live ontology tables and telemetry.
-- **[`apps/landing-app`](apps/landing-app/)**: Design system feature tour and theme switcher.
+- **[`app/pui-book`](app/pui-book/)** (`puikit.com`): Interactive docs, live code playground, and component specs.
+- **[`app/demo-app`](app/demo-app/)**: Enterprise operational cockpit with live ontology tables and telemetry.
+- **[`app/landing-app`](app/landing-app/)**: Design system feature tour and theme switcher.
 
 ---
 

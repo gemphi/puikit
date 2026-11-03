@@ -10,18 +10,19 @@ export const LOOKS: Look[] = [
   { id: 'spacex', label: 'SpaceX', style: 'spacex', brand: 'spacex', palette: 'none', gradient: 'soft', radius: 'small' },
   { id: 'apple', label: 'Apple', style: 'apple', brand: 'apple', palette: 'apple', gradient: 'soft', radius: 'medium' },
   { id: 'organic', label: 'Organic', style: 'organic', brand: 'phiegg', palette: 'opal', gradient: 'vivid', radius: 'pill' },
+  { id: 'muse', label: 'Muse', style: 'muse', brand: 'muse', palette: 'none', gradient: 'flat', radius: 'medium' },
 ];
 /** Gradient level every app starts on (Settings / Appearance change it). */
 export const DEFAULT_GRADIENT = 'soft' as const;
 export const DEFAULT_LOOK = LOOKS[0];
 
 /** Bumped when the default look changes: stored style/brand/mode choices from before are dropped once so the new default shows. */
-const LOOK_VERSION = '3';
+const LOOK_VERSION = '4';
 export function migrateLook(): void {
   try {
     const ls = window.localStorage;
     if (ls.getItem('phi-look-version') === LOOK_VERSION) return;
-    // Drop prior look AND mode choices so the new default (SpaceX, dark) shows once for everyone.
+    // Drop prior look AND mode choices so each app's default look shows once for everyone.
     for (let i = ls.length - 1; i >= 0; i--) { const k = ls.key(i); if (k && /^phi-(style|brand|palette|gradient|theme)(::|$)/.test(k)) ls.removeItem(k); }
     ls.setItem('phi-look-version', LOOK_VERSION);
   } catch { /* storage blocked: defaults apply anyway */ }

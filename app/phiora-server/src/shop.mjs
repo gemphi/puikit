@@ -1,5 +1,5 @@
 // Prices come from the app's own data files, never from the client:
-// Lora's Spark (ls.json) plus every club store (stores.json) in apps/phiegg/src/data.
+// Lora's Spark (ls.json) plus every club store (stores.json) in app/phiegg/src/data.
 import { readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { spend, LedgerError, ensureWallet, credit } from './ledger.mjs';

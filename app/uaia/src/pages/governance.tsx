@@ -42,7 +42,7 @@ export const GovernancePage: React.FC = () => (
       <Box style={{ marginTop: 18, display: 'grid', gap: 12 }}>
         {ARTICLES.map((x) => (
           <Glass key={x.a}>
-            <Box as="span" className={s.mono} style={{ color: 'var(--phi-color-primary)', fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase' }}>{x.a}</Box>
+            <Box as="span" className={s.mono} style={{ color: 'var(--phi-color-primary)', fontSize: 12, letterSpacing: '0.16em', }}>{x.a}</Box>
             <Text style={{ marginTop: 6 }}>{x.b}</Text>
           </Glass>
         ))}

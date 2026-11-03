@@ -31,7 +31,7 @@ const SKIP = new Set(['id', 'slug', 'srcId', 'name', 'title', 'label', 'desc', '
 const PHIEGG: Record<string, (id: string) => string> = { pool: (id) => 'pool/' + id, world: (id) => 'world/' + id, club: (id) => 'club/' + id, quest: () => 'quests', event: () => 'events', look: () => 'shop', host: () => 'hosts' };
 
 const cache = new Map<string, Promise<{ total: number; rows: Row[] } | null>>();
-const fetchRows = (p: Pull, n = p.n ?? 6) => {
+export const fetchRows = (p: Pull, n = p.n ?? 6) => {
   const q = new URLSearchParams({ kind: p.kind, n: String(n) });
   if (p.sort) q.set('sort', p.sort); if (p.dir) q.set('dir', p.dir);
   if (p.where) q.set('where', Object.entries(p.where).map(([k, v]) => k + ':' + v).join(','));

@@ -4,6 +4,7 @@ import { PuiProvider } from '@pui/providers';
 import { App } from './App';
 import { connectPhiadk } from './state/phiadk';
 import '@pui/tokens/tokens.scss';
+import '@pui/tokens/phi-fonts.css';
 import '@pui/styles/core.scss';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

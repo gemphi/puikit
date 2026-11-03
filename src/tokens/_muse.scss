@@ -1,0 +1,101 @@
+/* Muse - the calm, headset-clean theme style, after Meta's Muse and Worlds pages.
+   White ground and near-black ink, one clear blue, pill controls, deep 24px cards, soft grey panels and a lot of air.
+   Type is Phifing 4, half as much white again inside each letter: short and open, so every look sets it a size up (tokens.scss).
+   Use: <PuiProvider defaultThemeStyle="muse" defaultBrand="muse">. */
+:root[data-theme-style='muse'] {
+  color-scheme: light;
+  --phi-color-gray-50: #f7f9fa; --phi-color-gray-100: #f1f4f7; --phi-color-gray-200: #e4e8ec; --phi-color-gray-300: #cfd5da;
+  --phi-color-gray-400: #a5adb4; --phi-color-gray-500: #7d868e; --phi-color-gray-600: #5a636b; --phi-color-gray-700: #3d454c;
+  --phi-color-gray-800: #232a30; --phi-color-gray-900: #0a1317; --phi-color-gray-950: #05090b;
+  --phi-color-background: #ffffff;
+  --phi-color-background-secondary: #f1f4f7;
+  --phi-color-background-card: #ffffff;
+  --phi-color-text-primary: #0a1317;
+  --phi-color-text-secondary: #465056;
+  --phi-color-text-muted: #667079;
+  --phi-color-text-inverse: #ffffff;
+  --phi-color-text-accent: #0457cb;
+  --phi-color-border: rgba(10, 19, 23, 0.14);
+  --phi-color-border-subtle: rgba(10, 19, 23, 0.08);
+  --phi-color-overlay: rgba(10, 19, 23, 0.5);
+  --phi-radius-xs-base: 8px; --phi-radius-sm-base: 12px; --phi-radius-md-base: 16px;
+  --phi-radius-lg-base: 24px; --phi-radius-xl-base: 24px; --phi-radius-2xl-base: 32px;
+  --phi-radius-xs: calc(var(--phi-radius-xs-base) * var(--phi-radius-scale, 1));
+  --phi-radius-sm: calc(var(--phi-radius-sm-base) * var(--phi-radius-scale, 1));
+  --phi-radius-md: calc(var(--phi-radius-md-base) * var(--phi-radius-scale, 1));
+  --phi-radius-lg: calc(var(--phi-radius-lg-base) * var(--phi-radius-scale, 1));
+  --phi-radius-xl: calc(var(--phi-radius-xl-base) * var(--phi-radius-scale, 1));
+  --phi-radius-2xl: calc(var(--phi-radius-2xl-base) * var(--phi-radius-scale, 1));
+  --phi-shadow-1: none;
+  --phi-shadow-2: 0 1px 2px rgba(10, 19, 23, 0.06);
+  --phi-shadow-3: 0 12px 32px rgba(10, 19, 23, 0.1);
+  --phi-shadow-4: 0 24px 64px rgba(10, 19, 23, 0.16);
+  --phi-gradient-main: linear-gradient(180deg, #ffffff 0%, #ffffff 100%);
+  --phi-gradient-main-lr: linear-gradient(to right, #ffffff 0%, #ffffff 100%);
+  --phi-gradient-card: linear-gradient(180deg, #ffffff 0%, transparent 100%);
+  --phi-gradient-navbar: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.84) 100%);
+  --phi-gradient-sidebar: linear-gradient(180deg, #ffffff 0%, transparent 100%);
+  --phi-gradient-rail: linear-gradient(180deg, #ffffff 0%, transparent 100%);
+  --phi-gradient-accent: linear-gradient(to right, color-mix(in oklch, var(--phi-color-primary, #0457cb) 10%, #ffffff) 0%, #ffffff 100%);
+  --phi-gradient-table-header: linear-gradient(180deg, #f1f4f7 0%, #f1f4f7 100%);
+  --phi-glass-surface: rgba(255, 255, 255, 0.82);
+  --phi-glass-border: rgba(10, 19, 23, 0.08);
+  --phi-backdrop-blur: blur(20px);
+  --phi-font-family: "Phifing 4", "Phifing", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  --phi-font-heading: "Phifing 4", "Phifing", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  --phi-font-size-base: 1.0625rem;
+  --phi-font-weight-medium: 300;
+  --phi-font-weight-semibold: 300;
+  --phi-font-weight-bold: 400;
+  --phi-control-height-md-base: 44px;
+  /* Text and panels laid over a picture, the same in both modes. */
+  --phi-muse-on-media: #ffffff;
+  --phi-muse-glass: rgba(255, 255, 255, 0.16);
+  --phi-muse-glass-border: rgba(255, 255, 255, 0.42);
+  --phi-muse-scrim: rgba(5, 9, 11, 0.62);
+}
+
+:root[data-theme='dark'][data-theme-style='muse'],
+:root.dark[data-theme-style='muse'] {
+  color-scheme: dark;
+  /* Inside the headset: a deep blue-black with panels floating a little lighter. */
+  --phi-color-background: #0a1317;
+  --phi-color-background-secondary: #141d22;
+  --phi-color-background-card: #141d22;
+  --phi-color-text-primary: #f3f6f8;
+  --phi-color-text-secondary: #bcc5cb;
+  --phi-color-text-muted: #8f99a1;
+  --phi-color-text-inverse: #0a1317;
+  --phi-color-text-accent: #6aa8ff;
+  --phi-color-border: rgba(226, 236, 244, 0.18);
+  --phi-color-border-subtle: rgba(226, 236, 244, 0.09);
+  --phi-shadow-2: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --phi-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --phi-shadow-4: 0 24px 64px rgba(0, 0, 0, 0.62);
+  --phi-gradient-main: linear-gradient(180deg, #0a1317 0%, #0a1317 100%);
+  --phi-gradient-main-lr: linear-gradient(to right, #0a1317 0%, #0a1317 100%);
+  --phi-gradient-card: linear-gradient(180deg, #141d22 0%, transparent 100%);
+  --phi-gradient-navbar: linear-gradient(180deg, rgba(10, 19, 23, 0.92) 0%, rgba(10, 19, 23, 0.84) 100%);
+  --phi-gradient-sidebar: linear-gradient(180deg, #0a1317 0%, transparent 100%);
+  --phi-gradient-rail: linear-gradient(180deg, #0a1317 0%, transparent 100%);
+  --phi-gradient-accent: linear-gradient(to right, color-mix(in oklch, var(--phi-color-primary, #6aa8ff) 22%, #0a1317) 0%, #0a1317 100%);
+  --phi-gradient-table-header: linear-gradient(180deg, #141d22 0%, #141d22 100%);
+  --phi-glass-surface: rgba(16, 24, 29, 0.78);
+  --phi-glass-border: rgba(226, 236, 244, 0.12);
+}
+
+:root[data-theme-style='muse'] :is(h1, h2, h3, h4) {
+  font-family: var(--phi-font-heading);
+  font-weight: 300;
+  letter-spacing: 0;
+}
+:root[data-theme-style='muse'] :is(button:not(.pui-pressable), .button, a.button, [class*='button']) {
+  border-radius: 100px !important;
+}
+:root[data-theme-style='muse'] :focus-visible {
+  outline: 2px solid var(--phi-color-primary);
+  outline-offset: 2px;
+}
+:root[data-theme-style='muse'] ::selection {
+  background: color-mix(in oklch, var(--phi-color-primary) 24%, transparent);
+}

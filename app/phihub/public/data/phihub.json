@@ -7,6 +7,11 @@
       "icon": "home"
     },
     {
+      "id": "feed",
+      "label": "Feed",
+      "icon": "layers"
+    },
+    {
       "id": "store",
       "label": "Store",
       "icon": "bag",
@@ -551,7 +556,7 @@
               "body": "Open Discover, pick an app, press Get. Publish from phinet or the CLI."
             },
             {
-              "title": "Phisum and SUM",
+              "title": "Phisum and UM",
               "sub": "How it is funded",
               "body": "Apps built by Phisum cohorts are featured on Phihub. Installs and use feed the cohort record.",
               "action": "Open Phisum",
@@ -1009,7 +1014,7 @@
             },
             {
               "q": "Are installs free?",
-              "a": "Most are. Paid apps show the price in SUM before you install.",
+              "a": "Most are. Paid apps show the price in UM before you install.",
               "gen": true
             },
             {
@@ -1236,6 +1241,33 @@
           }
         }
       ]
+    },
+    "feed": {
+      "title": "Feed",
+      "sub": "What is shipping across Phiace.",
+      "blocks": [
+        {
+          "kind": "feed",
+          "columns": {
+            "xs": 2,
+            "sm": 3,
+            "md": 4
+          },
+          "pull": {
+            "kind": "shot",
+            "n": 12,
+            "sort": "likes",
+            "join": [
+              "clubId",
+              "worldId"
+            ]
+          },
+          "map": {
+            "author": "club.name",
+            "image": "world.image"
+          }
+        }
+      ]
     }
   },
   "profile": {
@@ -1384,7 +1416,7 @@
         "label": "Grants asked",
         "kind": "phisumGrant",
         "sum": "amount",
-        "sub": "SUM, waiting on Phidao"
+        "sub": "UM, waiting on Phidao"
       }
     ]
   }

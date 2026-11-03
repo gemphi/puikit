@@ -1,11 +1,11 @@
-# Phiegg (`apps/phiegg`, port 3101)
+# Phiegg (`app/phiegg`, port 3101)
 
 Virtual worlds run by clubs: feed, explore, worlds, SS26 shows, series & films (Watch), hosts and nests, agents, quests/coins/pools,
 the League (standings + knockout rounds), events, Phipad and Lora's Spark shop (look viewer, cart, offers, buy from the wallet).
-Built from the Phiegg prototype port (formerly the `phiegg-v2` draft). The previous social app is `apps/phiegg-v1`; both share the `owned` and `cartOffers` state documents.
+Built from the Phiegg prototype port (formerly the `phiegg-v2` draft). The previous social app is `app/phiegg-v1`; both share the `owned` and `cartOffers` state documents.
 
 ```bash
-cd apps/phiegg && npm install && npm run dev   # http://localhost:3101
+cd app/phiegg && npm install && npm run dev   # http://localhost:3101
 ```
 
 - Markup: puijs only (`Box`, `Stack`, `Grid`/`Col`, `Button`, `Input`, …). No raw `div`/`span`/`button` in the app.
@@ -16,7 +16,7 @@ cd apps/phiegg && npm install && npm run dev   # http://localhost:3101
 - State: `src/state/phieggStore.ts`. Likes/saves/follows/RSVPs and agent chats persist through `@phi-kit/api`
   (Phiora `/state/flags`, `/state/chats` when `VITE_PHI_API` is set, localStorage otherwise).
 - Agent chat: `POST {VITE_PHI_API}/chat` (Phiora model proxy); `src/lib/agent.ts` is the offline fallback.
-- Against the real API: `cd apps/phiora-server && npm start`, then run with `VITE_PHI_API=http://localhost:4300`. Purchases, offers and the wallet are then settled by the server.
+- Against the real API: `cd app/phiora-server && npm start`, then run with `VITE_PHI_API=http://localhost:4300`. Purchases, offers and the wallet are then settled by the server.
 - Bundle: `places.json` and `threads.json` load on demand (`src/lib/lazy.ts`: `usePlaces()`, `useThreads()`), and lucide icons are named imports
   (add new site.json icon names to the map in `components/Shell/Sidebar.tsx`).
 - Heavy data streams in after mount: `stores.json`, `shows.json` and `sales.json` are their own lazy chunks (`src/lib/heavy.ts loadHeavy()`),

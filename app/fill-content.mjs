@@ -1,7 +1,7 @@
 // Fill the data-driven apps' content from content/<key>.json banks: hero art, 12 dated news stories, 8 FAQs, fuller
 // grids with art on every card, and a home feed (at a glance, explore and latest, linked to the menus and news). Art is shared from phiegg's public
 // folder as "phiegg:worlds/..." refs, so nothing is copied. Idempotent: everything added carries gen:true and is
-// stripped and rebuilt on each run. Usage: cd puijs/apps && node fill-content.mjs [keys...]
+// stripped and rebuilt on each run. Usage: cd puikit/app && node fill-content.mjs [keys...]
 import fs from 'node:fs';
 import path from 'node:path';
 

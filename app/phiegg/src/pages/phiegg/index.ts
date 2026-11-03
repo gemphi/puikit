@@ -25,3 +25,4 @@ export * from './RecentPage';
 export { StudioPage } from './StudioPage';
 export { RidesPage } from './RidesPage';
 export { WelcomePage } from './WelcomePage';
+export { PostPage } from './PostPage';

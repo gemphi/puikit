@@ -23,12 +23,12 @@ graph LR
 - [x] Implement Palantir Blueprint standard design tokens (`--phi-*`)
 - [x] Build `PuiProvider` with Foundry, Blueprint, Emerald, and Midnight presets
 - [x] Create `Tree`, `Tag`, `Callout`, `NonIdealState`, `Switch`, `FormGroup`, `ProgressBar`
-- [x] Remove legacy `.storybook` in favor of `apps/docs-app`
+- [x] Remove legacy `.storybook` in favor of `app/docs-app`
 
-### Phase 2: Standalone Applications (`apps/`) (Completed)
-- [x] `apps/docs-app`: Interactive component playground, live props inspector, and code examples
-- [x] `apps/demo-app`: Enterprise operations showcase with live agent swarms, telemetry drawer, and ontology trees
-- [x] `apps/landing-app`: Design system landing showcase
+### Phase 2: Standalone Applications (`app/`) (Completed)
+- [x] `app/docs-app`: Interactive component playground, live props inspector, and code examples
+- [x] `app/demo-app`: Enterprise operations showcase with live agent swarms, telemetry drawer, and ontology trees
+- [x] `app/landing-app`: Design system landing showcase
 
 ### Phase 3: Advanced Data Structures & Virtualization (Upcoming)
 - [ ] `@pui/components-table`: Virtualized spreadsheet table supporting 100k+ rows with column pinning and sorting

@@ -311,7 +311,7 @@
               "body": "Open Assistant and start typing. Create a persona from a template."
             },
             {
-              "title": "Phisum and SUM",
+              "title": "Phisum and UM",
               "sub": "How it is funded",
               "body": "Personas that host and guide quests generate function records that Phisum reads.",
               "action": "Open Phisum",
@@ -1088,7 +1088,7 @@
         "label": "Grants asked",
         "kind": "phisumGrant",
         "sum": "amount",
-        "sub": "SUM, waiting on Phidao"
+        "sub": "UM, waiting on Phidao"
       }
     ]
   }

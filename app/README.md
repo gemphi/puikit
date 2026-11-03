@@ -1,6 +1,16 @@
-# Phient UI Applications (`apps/`)
+# Phient UI Applications (`app/`)
 
 Applications and workbenches for Phient UI (`@pui/components`), structured according to the Palantir Blueprint standard (`*-app` / workbench convention).
+
+---
+
+## One app, many configs
+
+`phi` is the one running app. Every config app is served by it at `/<key>/` (`http://localhost:3100/phiora/`), and the Apps switcher moves between them without changing server. An app is its config: `<key>/public/data/<key>.json`. Set `"config": true` on its entry in `phi-kit/src/registry.json` to run it there.
+
+A module has a singular name and lives once in `phi-kit/src/module`. An app turns one on by naming it in its config, e.g. `{ "kind": "feed", "pull": { "kind": "shot" } }`, and never keeps its own copy. Code that only one app needs still lands in core, or that app contributes it with `registerModule`.
+
+Apps with their own code (`phiegg`, `phione`, `phipad`, `phidao`) still run on their own ports until they move onto the host.
 
 ---
 
@@ -24,7 +34,7 @@ Applications and workbenches for Phient UI (`@pui/components`), structured accor
 | [`phinux`](./phinux) | `3110` | **Phinux**: Open-source trading. Organic theme, phi-kit shell. |
 | [`phiret`](./phiret) | `3111` | **Phiret**: The real estate council. Organic theme, phi-kit shell. |
 | [`phidao`](./phidao) | `3112` | **Phidao**: The members platform. Organic theme, phi-kit shell. |
-| [`phisum`](./phisum) | `3113` | **Phisum**: The fund and the $SUM token. Organic theme, phi-kit shell. |
+| [`phisum`](./phisum) | `3113` | **Phisum**: The fund and the $UM token. Organic theme, phi-kit shell. |
 | [`phione`](./phione) | `3115` | **Phione** (formerly the Phiegg cockpit): console of the Phient platform — core ontology, platform agents and their verbs, workforce, API docs. Reads the Python Phient API (`VITE_PHIADK_API`, gemphi/phient `phiadk.phiapi`, port 8000); sample data without it. |
 | [`phiora-server`](./phiora-server) | `4300` | **Phiora API**: app content, per-user state, server-owned wallet, shop orders priced from data, persona chat via a model. Zero dependencies — `npm start`. |
 | [`phi-kit`](./phi-kit) | — | **Shared Phiace shell** (rail, section menu, right-bar, content blocks, wallet). Imported via `@phi-kit`; not run on its own. |
@@ -37,7 +47,7 @@ Applications and workbenches for Phient UI (`@pui/components`), structured accor
 ### Everything at once
 
 ```bash
-cd apps
+cd app
 node dev-all.mjs              # Phiora API on :4300 + every built app in phi-kit/src/registry.json
 node dev-all.mjs --install    # npm install first where node_modules is missing
 node dev-all.mjs --phiadk     # + the Python Phient API on :8000 (gemphi/phient; pip install fastapi uvicorn pydantic)
@@ -51,7 +61,7 @@ From the repo root the same commands are npm scripts:
 ```bash
 npm run dev:all            # Phiora API on :4300 + every linked app (dev servers, hot reload)
 npm run dev:all:offline    # every app, no API (each keeps its data on the device)
-npm run build:all          # build every linked app (apps/build-all.mjs); add -- --install for missing node_modules
+npm run build:all          # build every linked app (app/build-all.mjs); add -- --install for missing node_modules
 npm run serve:all          # build, then serve every app on its port + Phiora (vite preview)
 npm run api                # the Phiora API alone (:4300)
 npm run data:phiegg        # rebuild the Phiegg data (worlds, rides, jewels, stories, renders, scenes)
@@ -80,7 +90,7 @@ npm run data:phiegg        # rebuild the Phiegg data (worlds, rides, jewels, sto
 
 ```bash
 # 1. Run the Component Documentation & Workbench (puikit.com)
-cd apps/pui-book
+cd app/pui-book
 npm install
 npm run dev
 
@@ -103,14 +113,14 @@ Every `phi*` app is a full 8-page app: **Home, News, About, FAQ** plus its domai
 Every `phi*` app is a thin Vite wrapper around `phi-kit` plus one data file:
 
 ```bash
-cd apps/phient && npm install && npm run dev   # http://localhost:3103
+cd app/phient && npm install && npm run dev   # http://localhost:3103
 ```
 
 - Theme: `themeStyle="organic"`, brand `phiegg` — see `src/tokens/_organic.scss`.
 - Content: `public/data/<key>.json` (nav + views + blocks). Point `VITE_PHI_API` at Phiora to serve it live.
 - Cross-app links: `VITE_PHI_APPS_BASE=https://phiace.com/` in production; localhost ports in dev.
-- `phiegg` is the worlds hub (Phipad is a section inside it); the earlier social app is `apps/phiegg-v1`.
-- Backend: `@phi-kit/api` is the Phiora client (`/apps/<key>`, `/state/<name>`, `/chat`). Without `VITE_PHI_API` everything falls back to localStorage. Run the real server with `cd apps/phiora-server && npm start` (port 4300) and start any app with `VITE_PHI_API=http://localhost:4300`. `apps/phi-kit/dev/mock-phiora.mjs` is the older throwaway mock.
+- `phiegg` is the worlds hub (Phipad is a section inside it); the earlier social app is `app/phiegg-v1`.
+- Backend: `@phi-kit/api` is the Phiora client (`/apps/<key>`, `/state/<name>`, `/chat`). Without `VITE_PHI_API` everything falls back to localStorage. Run the real server with `cd app/phiora-server && npm start` (port 4300) and start any app with `VITE_PHI_API=http://localhost:4300`. `app/phi-kit/dev/mock-phiora.mjs` is the older throwaway mock.
 
 ## Themes
 

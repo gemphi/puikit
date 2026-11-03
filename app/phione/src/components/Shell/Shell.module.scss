@@ -16,7 +16,7 @@
   align-items: center;
   gap: 8px;
   color: var(--phi-color-primary, #3b82f6);
-  font-weight: 700;
+  font-weight: var(--phi-font-weight-medium);
 }
 
 .brandTitle {
@@ -82,7 +82,7 @@
 .activeItem {
   background: var(--phi-control-active, rgba(59, 130, 246, 0.15)) !important;
   color: var(--phi-color-primary, #3b82f6) !important;
-  font-weight: 600;
+  font-weight: var(--phi-font-weight-medium);
 }
 
 .itemIcon {
@@ -95,7 +95,7 @@
 
 .badge {
   font-size: 10px;
-  font-weight: 600;
+  font-weight: var(--phi-font-weight-medium);
   padding: 2px 6px;
   border-radius: var(--phi-radius-lg);
   background: rgba(255, 255, 255, 0.1);

@@ -1,12 +1,12 @@
 // Apps compose puijs; they never render raw HTML elements (the single base element is puijs `Box`).
-// Scans apps/<app>/src/**/*.tsx for lowercase JSX tags and exits 1 on any hit. SVG drawing tags are allowed.
+// Scans app/<app>/src/**/*.tsx for lowercase JSX tags and exits 1 on any hit. SVG drawing tags are allowed.
 //
 //   node scripts/check-app-markup.mjs                 # every app under apps/
 //   node scripts/check-app-markup.mjs phiegg phi-kit  # just these
 import { readdirSync, readFileSync, statSync, existsSync } from 'node:fs';
 import { join, relative } from 'node:path';
 
-const root = join(import.meta.dirname, '..', 'apps');
+const root = join(import.meta.dirname, '..', 'app');
 const SVG = new Set(['svg', 'path', 'g', 'defs', 'mask', 'rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'linearGradient', 'radialGradient', 'stop', 'clipPath', 'use', 'symbol', 'title', 'text', 'tspan', 'pattern', 'filter', 'feGaussianBlur', 'feOffset', 'feBlend', 'foreignObject', 'marker']);
 // TypeScript type positions that look like tags (useState<string>, x as <typeof y>).
 const TS = new Set(['string', 'number', 'boolean', 'any', 'unknown', 'never', 'void', 'typeof', 'keyof', 'readonly', 'null', 'undefined', 'object']);

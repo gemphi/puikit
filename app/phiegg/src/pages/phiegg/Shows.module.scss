@@ -5,7 +5,7 @@
 .right { justify-self: start; &:hover { transform: translateX(4px); } }
 .stage { position: relative; box-shadow: var(--phi-shadow-lg); border-radius: calc(var(--phi-radius-xl) * 1.6); overflow: hidden;
   &:hover .arrow { opacity: 1; } }
-.pos { position: absolute; top: 1rem; right: 1rem; z-index: 2; padding: 0.25rem 0.75rem; border-radius: var(--phi-radius-full); background: color-mix(in srgb, var(--phi-color-gray-900) 55%, transparent); color: var(--phi-color-gray-50); font-size: 0.75rem; font-weight: 700; }
+.pos { position: absolute; top: 1rem; right: 1rem; z-index: 2; padding: 0.25rem 0.75rem; border-radius: var(--phi-radius-full); background: color-mix(in srgb, var(--phi-color-gray-900) 55%, transparent); color: var(--phi-color-gray-50); font-size: 0.75rem; font-weight: var(--phi-font-weight-medium); }
 .round { position: absolute; top: 50%; z-index: 2; display: grid; place-items: center; border: 0; border-radius: var(--phi-radius-full); cursor: pointer;
   background: color-mix(in srgb, var(--phi-color-background) 86%, transparent); color: var(--phi-color-text-primary); backdrop-filter: blur(8px); transition: opacity 0.2s, transform 0.2s;
   &:focus-visible { outline: 2px solid var(--phi-color-primary); outline-offset: 2px; opacity: 1; } }

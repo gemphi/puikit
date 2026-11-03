@@ -1,14 +1,21 @@
-@use './fonts';
 @use './phi-fonts';
 @use './variables';
 @use './theme-styles';
 @use './organic';
 @use './spacex';
+@use './muse';
+
+/* Phifing is short, so every look sets a size up to read at the same height. */
+html { font-size: 112.5%; }
+
+/* One weight in Phifing: Light on every letter, Regular only for real emphasis. Browsers would otherwise bold these. */
+h1, h2, h3, h4, h5, h6 { font-weight: var(--phi-font-weight-normal); }
+strong, b, th { font-weight: var(--phi-font-weight-bold); }
 
 /* Global Antialiasing & Reset */
 html, body {
   font-family: var(--phi-font-family);
-  font-weight: 400;
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -20,7 +27,7 @@ button,
 a.button,
 [class*="button"] {
   border-radius: var(--phi-radius-md) !important;
-  font-weight: 500 !important;
+  font-weight: var(--phi-font-weight-medium) !important;
   font-family: var(--phi-font-family);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   -webkit-font-smoothing: antialiased;

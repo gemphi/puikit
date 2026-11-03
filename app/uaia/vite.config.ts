@@ -27,6 +27,6 @@ export default defineConfig({
     dedupe: ['react', 'react-dom', 'lucide-react'],
   },
   css: { preprocessorOptions: { scss: { api: 'modern-compiler' } } },
-  server: { port: 3005 },
+  server: { port: 3005, fs: { allow: ['../..'] } },
   build: { outDir: 'dist' },
 });

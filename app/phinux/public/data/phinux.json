@@ -127,7 +127,7 @@
   },
   "docs": {
    "title": "phinux docs",
-   "sub": "Phinux runs open order books for Phiput, SUM and club pairs.",
+   "sub": "Phinux runs open order books for Phiput, UM and club pairs.",
    "blocks": [
     {
      "kind": "grid",
@@ -136,7 +136,7 @@
       {
        "title": "Overview",
        "sub": "Open trading system",
-       "body": "Phinux runs open order books for Phiput, SUM and club pairs."
+       "body": "Phinux runs open order books for Phiput, UM and club pairs."
       },
       {
        "title": "Getting started",
@@ -144,9 +144,9 @@
        "body": "phinux book phiput, then paper-trade a strategy."
       },
       {
-       "title": "Phisum and SUM",
+       "title": "Phisum and UM",
        "sub": "How it is funded",
-       "body": "SUM and Phiput trade here. Phisum settles cohort rewards through Phinux.",
+       "body": "UM and Phiput trade here. Phisum settles cohort rewards through Phinux.",
        "action": "Open Phisum",
        "done": "Opened",
        "app": "phisum"
@@ -215,8 +215,8 @@
       {
        "date": "Oct 3, 2026",
        "tag": "Markets",
-       "title": "$SUM pairs added",
-       "body": "Trade $SUM against $EGG, USDC and ETH with live depth."
+       "title": "$UM pairs added",
+       "body": "Trade $UM against $EGG, USDC and ETH with live depth."
       },
       {
        "date": "Sep 21, 2026",
@@ -244,7 +244,7 @@
      "sections": [
       {
        "title": "Markets",
-       "body": "Live prices and depth for $EGG, $SUM, ETH and USDC pairs."
+       "body": "Live prices and depth for $EGG, $UM, ETH and USDC pairs."
       },
       {
        "title": "Orders",

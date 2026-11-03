@@ -6,11 +6,11 @@ The Phient identity and ontology console (port 3115). It reads the Python Phient
 ```
 # in gemphi/phient
 PYTHONPATH=src python -m uvicorn phiadk.phiapi.app:create_app --factory --port 8000
-# in puijs/apps/phione
+# in puikit/app/phione
 VITE_PHIADK_API=http://localhost:8000 npm run dev
 ```
 
-`node apps/dev-all.mjs --phiadk` starts the Python API with the apps, and gives Phiora and Phient one shared
+`node app/dev-all.mjs --phiadk` starts the Python API with the apps, and gives Phiora and Phient one shared
 `PHI_DELEGATION_SECRET` (plus `PHIORA_URL`) for the run, so delegations are checked locally.
 
 Phione also reads Phiora (`VITE_PHI_API=http://localhost:4300`) for the signed-in account. Every Phient call carries

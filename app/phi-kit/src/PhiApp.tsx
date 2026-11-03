@@ -28,11 +28,13 @@ export const PhiApp: React.FC<{ appKey: string }> = ({ appKey }) => {
 
   // Every app opens on the same Welcome landing (built from its own data); it leads the rail.
   const WELCOME = { id: '_welcome', label: 'Welcome', icon: 'rocket', items: [{ id: '_welcome', label: 'Welcome', icon: 'rocket' }] };
-  const nav = data ? [WELCOME, ...data.nav] : [];
+  // An app whose first page says it all (`"start": "show"`) opens there and has no Welcome.
+  const start = data?.start ?? '_welcome';
+  const nav = data ? (data.start ? data.nav : [WELCOME, ...data.nav]) : [];
   const views = data?.views ?? {};
   // A record route (#/round/<id>): a second segment on a name that is not one of this app's pages.
   const record = route.seg1 && !views[route.seg0] ? { kind: route.seg0, id: route.seg1 } : null;
-  const tab = record ? (lastTab.current || '_welcome') : (route.seg0 || '_welcome');
+  const tab = record ? (lastTab.current || start) : (route.seg0 || start);
   if (!record) lastTab.current = tab;
   const cur = tab;
   const go = (x: string) => { const h = x.replace(/^#/, ''); window.location.hash = h.startsWith('/') ? h : '/' + h; setOpen(null); };
@@ -60,6 +62,9 @@ export const PhiApp: React.FC<{ appKey: string }> = ({ appKey }) => {
       {v.blocks.map((b, i) => <Block key={cur + i} b={b} onOpen={openItem} />)}
     </>
   );
+
+  // A page that is the whole app (`"bare": true`), a show or a lookbook: no rail and no bar, the page alone.
+  if (data?.bare) return <Box as="main" style={{ minHeight: '100vh', padding: 'clamp(1rem, 3vw, 2.5rem)' }}>{page}</Box>;
 
   return (
     <PhiShell app={app} nav={nav} view={cur} onView={go} onRecord={openItem} account={account} right={open ? <ItemPanel it={open} onClose={() => setOpen(null)} /> : null}>

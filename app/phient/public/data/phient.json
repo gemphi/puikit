@@ -321,9 +321,9 @@
               "body": "phient pull phiano, then phient serve. Sign in with your Phiace profile."
             },
             {
-              "title": "Phisum and SUM",
+              "title": "Phisum and UM",
               "sub": "How it is funded",
-              "body": "Every function Phient runs for you is logged to your profile and counts toward your Phisum and SUM rewards.",
+              "body": "Every function Phient runs for you is logged to your profile and counts toward your Phisum and UM rewards.",
               "action": "Open Phisum",
               "done": "Opened",
               "app": "phisum"
@@ -714,7 +714,7 @@
             },
             {
               "title": "Funded by Phisum",
-              "body": "Every function Phient runs is logged to your profile and counts toward your Phisum and $SUM rewards."
+              "body": "Every function Phient runs is logged to your profile and counts toward your Phisum and $UM rewards."
             }
           ]
         }
@@ -965,7 +965,7 @@
         "label": "Grants asked",
         "kind": "phisumGrant",
         "sum": "amount",
-        "sub": "SUM, waiting on Phidao"
+        "sub": "UM, waiting on Phidao"
       }
     ]
   }

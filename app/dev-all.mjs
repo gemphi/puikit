@@ -20,7 +20,10 @@ const PHI_API = python ? 'http://localhost:8000/api/v1' : 'http://localhost:4300
 
 const buildable = registry.filter((a) => existsSync(join(here, a.key, 'package.json')) && existsSync(join(here, a.key, 'vite.config.ts')));
 const want = process.argv.slice(2).filter((a) => a !== '--python');
-const apps = want.length ? buildable.filter((a) => want.includes(a.key)) : buildable;
+// Config apps all run inside the one host (app/phi, :3100); apps with their own code keep their own server.
+const chosen = want.length ? buildable.filter((a) => want.includes(a.key)) : buildable;
+const apps = chosen.filter((a) => !a.config);
+const hosted = chosen.some((a) => a.config);
 
 const children = [];
 const run = (name, cwd, args, env) => {
@@ -42,6 +45,7 @@ console.log('Starting ' + (python ? 'apps against ' + PHI_API + ': ' : 'Phiora o
 if (!python) run('phiora', join(here, 'phiora-server'), ['start'], { PHI_SEED: process.env.PHI_SEED ?? '' });
 // Give Phiora a moment to bind before the apps start calling it.
 setTimeout(() => {
+  if (hosted) run('phi', join(here, 'phi'), ['run', 'dev'], { VITE_PHI_API: PHI_API });
   for (const a of apps) run(a.key, join(here, a.key), ['run', 'dev'], { VITE_PHI_API: PHI_API });
   setTimeout(() => {
     console.log('\n— Open http://localhost:' + (apps.find((a) => a.key === 'phiegg')?.port ?? apps[0]?.port) + '/  (then use the app switcher to hop between apps)');

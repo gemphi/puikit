@@ -1,4 +1,4 @@
-# UAIA — apps/uaia
+# UAIA — app/uaia
 
 Website of the Unified Artificial Intelligence Agency (uaiagency.org),
 built on `@puikit` like phlick/chanel. 16 pages; content lives in

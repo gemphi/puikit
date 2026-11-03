@@ -15,5 +15,16 @@
 .avatar { position: relative; }
 .dot { position: absolute; top: -4px; right: -6px; min-width: 1.05rem; height: 1.05rem; padding: 0 0.25rem; border-radius: var(--phi-radius-full); background: var(--phi-color-primary); display: grid; place-items: center; }
 .coins { padding: 0.25rem 0.5rem 0.25rem 2.25rem; font-variant-numeric: tabular-nums; }
+.fonts { max-height: 15rem; overflow-y: auto; padding-left: 1.75rem; }
 .item > span:last-of-type { flex: 1; min-width: 0; }
 .coinLinks { display: flex; flex-direction: column; align-items: flex-start; }
+
+/* The account drawer's rows rise in one after another. */
+.drawerRows > * { animation: rowIn 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.drawerRows > :nth-child(2) { animation-delay: 0.05s; }
+.drawerRows > :nth-child(3) { animation-delay: 0.09s; }
+.drawerRows > :nth-child(4) { animation-delay: 0.13s; }
+.drawerRows > :nth-child(5) { animation-delay: 0.17s; }
+.drawerRows > :nth-child(n + 6) { animation-delay: 0.21s; }
+@keyframes rowIn { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .drawerRows > * { animation: none; } }

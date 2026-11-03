@@ -126,7 +126,7 @@
       "role": "Payments",
       "accent": "#1f9d55",
       "muse": "The PayPal of the ecosystem: holds the wallet, swaps coins, settles orders.",
-      "strategy": "Keeps the war chest in the coin the next move needs: swaps EGG, SUM and USD ahead of bids so fees never decide a game.",
+      "strategy": "Keeps the war chest in the coin the next move needs: swaps EGG, UM and USD ahead of bids so fees never decide a game.",
       "spawns": [],
       "tasks": [
         {
@@ -137,7 +137,7 @@
         {
           "id": "swap",
           "title": "Swap coins",
-          "body": "EGG, SUM, USD and ETH at the house rate with the house fee."
+          "body": "EGG, UM, USD and ETH at the house rate with the house fee."
         },
         {
           "id": "settle",

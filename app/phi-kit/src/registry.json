@@ -3,7 +3,7 @@
     "key": "phiegg",
     "name": "Phiegg",
     "tagline": "Virtual worlds and PFTs",
-    "desc": "Virtual cities and worlds run by clubs. Every sale, quest and show earns $EGG, the general Phiegg token; $EGG and $SUM interchange in Phidao. Prices are in USD.",
+    "desc": "Virtual cities and worlds run by clubs. Every sale, quest and show earns $EGG, the general Phiegg token; $EGG and $UM interchange in Phidao. Prices are in USD.",
     "color": "#c67139",
     "port": 3101,
     "built": true,
@@ -80,7 +80,8 @@
         "stroke": "currentColor",
         "sw": 6
       }
-    ]
+    ],
+    "config": true
   },
   {
     "key": "phihub",
@@ -125,7 +126,8 @@
         "stroke": "none",
         "sw": 0
       }
-    ]
+    ],
+    "config": true
   },
   {
     "key": "phiace",
@@ -148,7 +150,8 @@
         "stroke": "none",
         "sw": 0
       }
-    ]
+    ],
+    "config": true
   },
   {
     "key": "phiora",
@@ -186,7 +189,8 @@
         "stroke": "none",
         "sw": 0
       }
-    ]
+    ],
+    "config": true
   },
   {
     "key": "phiano",
@@ -210,7 +214,8 @@
         "stroke": "currentColor",
         "sw": 5
       }
-    ]
+    ],
+    "config": true
   },
   {
     "key": "phinet",
@@ -255,7 +260,8 @@
         "stroke": "none",
         "sw": 0
       }
-    ]
+    ],
+    "config": true
   },
   {
     "key": "phiber",
@@ -279,7 +285,8 @@
         "stroke": "currentColor",
         "sw": 3.8
       }
-    ]
+    ],
+    "config": true
   },
   {
     "key": "phinux",
@@ -303,7 +310,8 @@
         "stroke": "currentColor",
         "sw": 5
       }
-    ]
+    ],
+    "config": true
   },
   {
     "key": "phiret",
@@ -333,7 +341,8 @@
         "stroke": "currentColor",
         "sw": 5
       }
-    ]
+    ],
+    "config": true
   },
   {
     "key": "phidao",
@@ -362,8 +371,8 @@
   {
     "key": "phisum",
     "name": "Phisum",
-    "tagline": "The fund and the $SUM token",
-    "desc": "Phisum is the main fund and its token, $SUM. It backs teams building Phiace cities, runs speedrun cohorts and holds the Phidao treasury. $SUM and $EGG interchange in Phidao.",
+    "tagline": "The fund and the $UM token",
+    "desc": "Phisum is the main fund and its token, $UM. It backs teams building Phiace cities, runs speedrun cohorts and holds the Phidao treasury. $UM and $EGG interchange in Phidao.",
     "color": "#728157",
     "port": 3113,
     "built": true,
@@ -381,7 +390,8 @@
         "stroke": "currentColor",
         "sw": 5.5
       }
-    ]
+    ],
+    "config": true
   },
   {
     "key": "phione",
@@ -422,7 +432,7 @@
     "key": "phipal",
     "name": "Phipal",
     "tagline": "Your personal agent for world economies",
-    "desc": "Phipal is the agent you talk to on the Phiegg marketplace: it spawns a team (phiegg, phipay, phisum, phione) that plays the economy for your goals with game theory. Thinks on Phient, settles in $EGG, $SUM and USD.",
+    "desc": "Phipal is the agent you talk to on the Phiegg marketplace: it spawns a team (phiegg, phipay, phisum, phione) that plays the economy for your goals with game theory. Thinks on Phient, settles in $EGG, $UM and USD.",
     "color": "#7c5cff",
     "port": 3116,
     "built": true,
@@ -439,13 +449,14 @@
         "stroke": "none",
         "sw": 0
       }
-    ]
+    ],
+    "config": true
   },
   {
     "key": "phiapp",
     "name": "Phiapp",
     "tagline": "Every app in the phi world",
-    "desc": "The directory of the ecosystem: every app, its pages and menus, the kinds they speak and the agents behind them on PhiADK. Apps are records like everything else \u2014 Phiapp reads them live from Phiora.",
+    "desc": "The directory of the ecosystem: every app, its pages and menus, the kinds they speak and the agents behind them on PhiADK. Apps are records like everything else — Phiapp reads them live from Phiora.",
     "color": "#7d6cc4",
     "port": 3114,
     "built": true,
@@ -462,6 +473,27 @@
         "stroke": "currentColor",
         "sw": 6
       }
-    ]
+    ],
+    "config": true
+  },
+  {
+    "key": "spark",
+    "name": "Lora's Spark",
+    "tagline": "The show",
+    "desc": "Lora's Spark: the fashion show, look by look, with every piece and its colours.",
+    "color": "#cc831a",
+    "port": 3117,
+    "built": true,
+    "icon": [
+      {
+        "d": "M50 12 L56 44 L88 50 L56 56 L50 88 L44 56 L12 50 L44 44 Z",
+        "fill": "currentColor",
+        "stroke": "none",
+        "sw": 0
+      }
+    ],
+    "config": true,
+    "look": "muse",
+    "mode": "light"
   }
 ]

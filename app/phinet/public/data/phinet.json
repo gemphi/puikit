@@ -317,7 +317,7 @@
               "body": "phinet train --model phiano --data looks/"
             },
             {
-              "title": "Phisum and SUM",
+              "title": "Phisum and UM",
               "sub": "How it is funded",
               "body": "Cohort teams get Phinet compute from Phisum; runs are logged to the club.",
               "action": "Open Phisum",
@@ -621,7 +621,7 @@
             {
               "tag": "Network",
               "title": "Members can share idle compute",
-              "body": "Turn on sharing and earn SUM for every run your machine helps with.",
+              "body": "Turn on sharing and earn UM for every run your machine helps with.",
               "gen": true,
               "date": "Sep 30, 2026",
               "image": "phiegg:worlds/gen/w_gx_fable_row.webp"
@@ -736,7 +736,7 @@
             },
             {
               "q": "What does a run cost?",
-              "a": "The CLI shows the estimate before you start. Most small runs cost under 1 SUM.",
+              "a": "The CLI shows the estimate before you start. Most small runs cost under 1 UM.",
               "gen": true
             },
             {
@@ -1117,7 +1117,7 @@
         "label": "Grants asked",
         "kind": "phisumGrant",
         "sum": "amount",
-        "sub": "SUM, waiting on Phidao"
+        "sub": "UM, waiting on Phidao"
       }
     ]
   }

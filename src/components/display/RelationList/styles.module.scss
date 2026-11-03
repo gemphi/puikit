@@ -2,7 +2,7 @@
 .title { margin: 0; }
 .group { display: flex; flex-direction: column; gap: 0.45rem; min-width: 0; }
 .head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; }
-.rel { text-transform: uppercase; letter-spacing: 0.06em; }
+.rel { letter-spacing: 0.06em; }
 .items { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .item {
   display: inline-flex; align-items: center; gap: 0.5rem; min-width: 0; max-width: 100%;

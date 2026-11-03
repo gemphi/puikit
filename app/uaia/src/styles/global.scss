@@ -13,7 +13,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--phi-font-family);
   background: var(--phi-color-background, var(--uaia-ink));
 }
 

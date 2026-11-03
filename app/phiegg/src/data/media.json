@@ -1,0 +1,719 @@
+{
+ "worlds": {
+  "Opalia": {
+   "slug": "opalia",
+   "logo": "worlds/opalia/logo.svg",
+   "scene": "assets/scenes/w_opalia.png"
+  },
+  "Velour Veil": {
+   "slug": "velour-veil",
+   "logo": "worlds/velour-veil/logo.svg",
+   "scene": "assets/scenes/w_veil.png"
+  },
+  "Lumen Mesa": {
+   "slug": "lumen-mesa",
+   "logo": "worlds/lumen-mesa/logo.svg",
+   "scene": "assets/scenes/w_mesa.png"
+  },
+  "Swan Lake Pavilion": {
+   "slug": "swan-lake-pavilion",
+   "logo": "worlds/swan-lake-pavilion/logo.svg",
+   "scene": "assets/scenes/w_swanlake.png"
+  },
+  "Acro World": {
+   "slug": "acro-world",
+   "logo": "worlds/acro-world/logo.svg",
+   "scene": "assets/scenes/w_acro_world.png"
+  },
+  "Nebula": {
+   "slug": "nebula",
+   "logo": "worlds/nebula/logo.svg",
+   "scene": "assets/scenes/w_nebula.png"
+  },
+  "Naimia": {
+   "slug": "naimia",
+   "logo": "worlds/naimia/logo.svg",
+   "logoOriginal": "worlds/naimia/logo-original.webp",
+   "icon": "worlds/naimia/icon.webp",
+   "scene": "assets/scenes/gen/w_naimia.webp"
+  },
+  "Satin Reef": {
+   "slug": "satin-reef",
+   "logo": "worlds/satin-reef/logo.svg",
+   "scene": "assets/scenes/w_satin_reef.png"
+  },
+  "Carousel": {
+   "slug": "carousel",
+   "logo": "worlds/carousel/logo.svg",
+   "scene": "assets/scenes/w_carousel.png"
+  },
+  "Couture Coast": {
+   "slug": "couture-coast",
+   "logo": "worlds/couture-coast/logo.svg",
+   "scene": "assets/scenes/w_couture_coast.png"
+  },
+  "Velvet Dunes": {
+   "slug": "velvet-dunes",
+   "logo": "worlds/velvet-dunes/logo.svg",
+   "scene": "assets/scenes/w_velvet_dunes.png"
+  },
+  "Glasshouse": {
+   "slug": "glasshouse",
+   "logo": "worlds/glasshouse/logo.svg",
+   "scene": "assets/scenes/w_glasshouse.png"
+  },
+  "Silk Atlas": {
+   "slug": "silk-atlas",
+   "logo": "worlds/silk-atlas/logo.svg",
+   "scene": "assets/scenes/w_silk_atlas.png"
+  },
+  "Pearl Ridge": {
+   "slug": "pearl-ridge",
+   "logo": "worlds/pearl-ridge/logo.svg",
+   "scene": "assets/scenes/w_pearl_ridge.png"
+  },
+  "Runway Isle": {
+   "slug": "runway-isle",
+   "logo": "worlds/runway-isle/logo.svg",
+   "scene": "assets/scenes/w_runway_isle.png"
+  },
+  "Aurum": {
+   "slug": "aurum",
+   "logo": "worlds/aurum/logo.svg",
+   "scene": "assets/scenes/w_aurum.png"
+  },
+  "Sequin Sea": {
+   "slug": "sequin-sea",
+   "logo": "worlds/sequin-sea/logo.svg",
+   "scene": "assets/scenes/w_sequin_sea.png"
+  },
+  "Chiffon Heights": {
+   "slug": "chiffon-heights",
+   "logo": "worlds/chiffon-heights/logo.svg",
+   "scene": "assets/scenes/w_chiffon_heights.png"
+  },
+  "Neon Atelier": {
+   "slug": "neon-atelier",
+   "logo": "worlds/neon-atelier/logo.svg",
+   "scene": "assets/scenes/w_neon_atelier.png"
+  },
+  "Tulle Valley": {
+   "slug": "tulle-valley",
+   "logo": "worlds/tulle-valley/logo.svg",
+   "scene": "assets/scenes/w_tulle_valley.png"
+  },
+  "Obsidian Bay": {
+   "slug": "obsidian-bay",
+   "logo": "worlds/obsidian-bay/logo.svg",
+   "scene": "assets/scenes/w_obsidian_bay.png"
+  },
+  "Cashmere Peaks": {
+   "slug": "cashmere-peaks",
+   "logo": "worlds/cashmere-peaks/logo.svg",
+   "scene": "assets/scenes/w_cashmere_peaks.png"
+  },
+  "Gilded Grove": {
+   "slug": "gilded-grove",
+   "logo": "worlds/gilded-grove/logo.svg",
+   "scene": "assets/scenes/w_gilded_grove.png"
+  },
+  "Prism Port": {
+   "slug": "prism-port",
+   "logo": "worlds/prism-port/logo.svg",
+   "scene": "assets/scenes/w_prism_port.png"
+  },
+  "Organza": {
+   "slug": "organza",
+   "logo": "worlds/organza/logo.svg",
+   "scene": "assets/scenes/w_organza.png"
+  },
+  "Brocade": {
+   "slug": "brocade",
+   "logo": "worlds/brocade/logo.svg",
+   "scene": "assets/scenes/w_brocade.png"
+  },
+  "Ivory Tower": {
+   "slug": "ivory-tower",
+   "logo": "worlds/ivory-tower/logo.svg",
+   "scene": "assets/scenes/w_ivory_tower.png"
+  },
+  "Orchid Rain": {
+   "slug": "orchid-rain",
+   "logo": "worlds/orchid-rain/logo.svg",
+   "scene": "assets/scenes/w_orchid_rain.png"
+  },
+  "Solstice": {
+   "slug": "solstice",
+   "logo": "worlds/solstice/logo.svg",
+   "scene": "assets/scenes/w_solstice.png"
+  },
+  "Moonlace": {
+   "slug": "moonlace",
+   "logo": "worlds/moonlace/logo.svg",
+   "scene": "assets/scenes/w_moonlace.png"
+  },
+  "Starling": {
+   "slug": "starling",
+   "logo": "worlds/starling/logo.svg",
+   "scene": "assets/scenes/w_starling.png"
+  },
+  "Crystalline": {
+   "slug": "crystalline",
+   "logo": "worlds/crystalline/logo.svg",
+   "scene": "assets/scenes/w_crystalline.png"
+  },
+  "Ember Coast": {
+   "slug": "ember-coast",
+   "logo": "worlds/ember-coast/logo.svg",
+   "scene": "assets/scenes/w_ember_coast.png"
+  },
+  "Halo": {
+   "slug": "halo",
+   "logo": "worlds/halo/logo.svg",
+   "scene": "assets/scenes/w_halo.png"
+  },
+  "Mosaic": {
+   "slug": "mosaic",
+   "logo": "worlds/mosaic/logo.svg",
+   "scene": "assets/scenes/w_mosaic.png"
+  },
+  "Plume": {
+   "slug": "plume",
+   "logo": "worlds/plume/logo.svg",
+   "scene": "assets/scenes/w_plume.png"
+  },
+  "Kaleido": {
+   "slug": "kaleido",
+   "logo": "worlds/kaleido/logo.svg",
+   "scene": "assets/scenes/w_kaleido.png"
+  },
+  "Rosegold": {
+   "slug": "rosegold",
+   "logo": "worlds/rosegold/logo.svg",
+   "scene": "assets/scenes/w_rosegold.png"
+  },
+  "Verdigris": {
+   "slug": "verdigris",
+   "logo": "worlds/verdigris/logo.svg",
+   "scene": "assets/scenes/w_verdigris.png"
+  },
+  "Oasis Nine": {
+   "slug": "oasis-nine",
+   "logo": "worlds/oasis-nine/logo.svg",
+   "scene": "assets/scenes/w_oasis_nine.png"
+  },
+  "Echo Bloom": {
+   "slug": "echo-bloom",
+   "logo": "worlds/echo-bloom/logo.svg",
+   "scene": "assets/scenes/w_echo_bloom.png"
+  },
+  "Saffron Sands": {
+   "slug": "saffron-sands",
+   "logo": "worlds/saffron-sands/logo.svg",
+   "scene": "assets/scenes/w_saffron_sands.png"
+  },
+  "Indigo Drift": {
+   "slug": "indigo-drift",
+   "logo": "worlds/indigo-drift/logo.svg",
+   "scene": "assets/scenes/w_indigo_drift.png"
+  },
+  "Coral Arcade": {
+   "slug": "coral-arcade",
+   "logo": "worlds/coral-arcade/logo.svg",
+   "scene": "assets/scenes/w_coral_arcade.png"
+  },
+  "Midnight Mall": {
+   "slug": "midnight-mall",
+   "logo": "worlds/midnight-mall/logo.svg",
+   "scene": "assets/scenes/w_midnight_mall.png"
+  },
+  "Glimmer": {
+   "slug": "glimmer",
+   "logo": "worlds/glimmer/logo.svg",
+   "scene": "assets/scenes/w_glimmer.png"
+  },
+  "Marquee": {
+   "slug": "marquee",
+   "logo": "worlds/marquee/logo.svg",
+   "scene": "assets/scenes/w_marquee.png"
+  },
+  "Loom": {
+   "slug": "loom",
+   "logo": "worlds/loom/logo.svg",
+   "scene": "assets/scenes/w_loom.png"
+  },
+  "Cobalt Cove": {
+   "slug": "cobalt-cove",
+   "logo": "worlds/cobalt-cove/logo.svg",
+   "scene": "assets/scenes/w_cobalt_cove.png"
+  },
+  "Petal Park": {
+   "slug": "petal-park",
+   "logo": "worlds/petal-park/logo.svg",
+   "scene": "assets/scenes/w_petal_park.png"
+  },
+  "Aria": {
+   "slug": "aria",
+   "logo": "worlds/aria/logo.svg",
+   "scene": "assets/scenes/w_aria.png"
+  },
+  "Zephyr": {
+   "slug": "zephyr",
+   "logo": "worlds/zephyr/logo.svg",
+   "scene": "assets/scenes/w_zephyr.png"
+  },
+  "Topaz Terrace": {
+   "slug": "topaz-terrace",
+   "logo": "worlds/topaz-terrace/logo.svg",
+   "scene": "assets/scenes/w_topaz_terrace.png"
+  },
+  "Lustre": {
+   "slug": "lustre",
+   "logo": "worlds/lustre/logo.svg",
+   "scene": "assets/scenes/w_lustre.png"
+  },
+  "Nimbus": {
+   "slug": "nimbus",
+   "logo": "worlds/nimbus/logo.svg",
+   "scene": "assets/scenes/w_nimbus.png"
+  },
+  "Veranda": {
+   "slug": "veranda",
+   "logo": "worlds/veranda/logo.svg",
+   "scene": "assets/scenes/w_veranda.png"
+  },
+  "Gossamer": {
+   "slug": "gossamer",
+   "logo": "worlds/gossamer/logo.svg",
+   "scene": "assets/scenes/w_gossamer.png"
+  },
+  "Paisley": {
+   "slug": "paisley",
+   "logo": "worlds/paisley/logo.svg",
+   "scene": "assets/scenes/w_paisley.png"
+  },
+  "Bijou": {
+   "slug": "bijou",
+   "logo": "worlds/bijou/logo.svg",
+   "scene": "assets/scenes/w_bijou.png"
+  },
+  "Atelier Nine": {
+   "slug": "atelier-nine",
+   "logo": "worlds/atelier-nine/logo.svg",
+   "scene": "assets/scenes/w_atelier_nine.png"
+  },
+  "Ribbon Rise": {
+   "slug": "ribbon-rise",
+   "logo": "worlds/ribbon-rise/logo.svg",
+   "scene": "assets/scenes/w_ribbon_rise.png"
+  },
+  "Sable": {
+   "slug": "sable",
+   "logo": "worlds/sable/logo.svg",
+   "scene": "assets/scenes/w_sable.png"
+  },
+  "Quartz Quarter": {
+   "slug": "quartz-quarter",
+   "logo": "worlds/quartz-quarter/logo.svg",
+   "scene": "assets/scenes/w_quartz_quarter.png"
+  },
+  "Lumen Gardens": {
+   "slug": "lumen-gardens",
+   "logo": "worlds/lumen-gardens/logo.svg",
+   "scene": "assets/scenes/w_lumen_gardens.png"
+  },
+  "Salon Javis": {
+   "slug": "salon-javis",
+   "logo": "worlds/salon-javis/logo.svg",
+   "scene": "assets/scenes/gen/w_ombre.webp"
+  },
+  "Deer Park Estate": {
+   "slug": "deer-park-estate",
+   "logo": "worlds/deer-park-estate/logo.svg",
+   "scene": "assets/scenes/gen/w_deer.webp"
+  },
+  "Via Reye": {
+   "slug": "via-reye",
+   "logo": "worlds/via-reye/logo.svg",
+   "scene": "assets/scenes/gen/w_ponte.webp"
+  },
+  "Thumb Station Onyx": {
+   "slug": "thumb-station-onyx",
+   "logo": "worlds/thumb-station-onyx/logo.svg",
+   "scene": "assets/scenes/gen/w_ohhc.webp"
+  },
+  "Pup Orbit": {
+   "slug": "pup-orbit",
+   "logo": "worlds/pup-orbit/logo.svg",
+   "scene": "assets/scenes/gen/w_bp.webp"
+  },
+  "Pod Belt": {
+   "slug": "pod-belt",
+   "logo": "worlds/pod-belt/logo.svg",
+   "scene": "assets/scenes/gen/w_epac.webp"
+  },
+  "The Calder Lot": {
+   "slug": "the-calder-lot",
+   "logo": "worlds/the-calder-lot/logo.svg",
+   "scene": "assets/scenes/gen/w_calder.webp"
+  },
+  "Venus Hills": {
+   "slug": "venus-hills",
+   "logo": "worlds/venus-hills/logo.svg",
+   "scene": "assets/scenes/gen/w_venus.webp"
+  },
+  "Halo House": {
+   "slug": "halo-house",
+   "logo": "worlds/halo-house/logo.svg",
+   "scene": "assets/scenes/gen/w_halomodels.webp"
+  },
+  "Supernova Arena": {
+   "slug": "supernova-arena",
+   "logo": "worlds/supernova-arena/logo.svg",
+   "scene": "assets/scenes/gen/w_nova.webp"
+  },
+  "Shade Gardens": {
+   "slug": "shade-gardens",
+   "logo": "worlds/shade-gardens/logo.svg",
+   "scene": "assets/scenes/gen/w_velvetlip.webp"
+  },
+  "Wondrous": {
+   "slug": "wondrous",
+   "logo": "worlds/wondrous/logo.svg",
+   "scene": "assets/scenes/gen/w_wondrous.webp"
+  },
+  "Verbum": {
+   "slug": "verbum",
+   "logo": "worlds/verbum/logo.svg",
+   "scene": "assets/scenes/gen/w_verbum.webp"
+  },
+  "Lora Land": {
+   "slug": "lora-land",
+   "logo": "worlds/lora-land/logo.svg",
+   "icon": "worlds/lora-land/icon.webp",
+   "scene": "assets/scenes/gen/w_loraland.webp"
+  },
+  "Chatty Valley": {
+   "slug": "chatty-valley",
+   "logo": "worlds/chatty-valley/logo.svg",
+   "logoOriginal": "worlds/chatty-valley/logo-original.webp",
+   "hero": "worlds/chatty-valley/hero.webp",
+   "gallery": [
+    "worlds/chatty-valley/gallery/00.webp",
+    "worlds/chatty-valley/gallery/01.webp"
+   ],
+   "scene": "assets/scenes/gen/w_chatty.webp"
+  },
+  "Bozo City": {
+   "slug": "bozo-city",
+   "logo": "worlds/bozo-city/logo.svg",
+   "scene": "assets/scenes/gen/w_bozo.webp"
+  },
+  "Skim City": {
+   "slug": "skim-city",
+   "logo": "worlds/skim-city/logo.svg",
+   "logoOriginal": "worlds/skim-city/logo-original.webp",
+   "icon": "worlds/skim-city/icon.webp",
+   "hero": "worlds/skim-city/hero.webp",
+   "gallery": [
+    "worlds/skim-city/gallery/00.webp",
+    "worlds/skim-city/gallery/01.webp",
+    "worlds/skim-city/gallery/02.webp",
+    "worlds/skim-city/gallery/03.webp"
+   ],
+   "land": "land-type-10",
+   "scene": "assets/scenes/gen/w_skim.webp"
+  },
+  "Loon City": {
+   "slug": "loon-city",
+   "logo": "worlds/loon-city/logo.svg",
+   "scene": "assets/scenes/gen/w_loon.webp"
+  },
+  "Wand City": {
+   "slug": "wand-city",
+   "logo": "worlds/wand-city/logo.svg",
+   "scene": "assets/scenes/gen/w_wand.webp"
+  },
+  "Once City": {
+   "slug": "once-city",
+   "logo": "worlds/once-city/logo.svg",
+   "scene": "assets/scenes/gen/w_once.webp"
+  },
+  "Delphine Pier": {
+   "slug": "delphine-pier",
+   "logo": "worlds/delphine-pier/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_delphine_atelier.webp"
+  },
+  "Rosewood Quay": {
+   "slug": "rosewood-quay",
+   "logo": "worlds/rosewood-quay/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_rosewood_mill.webp"
+  },
+  "Marigold Promenade": {
+   "slug": "marigold-promenade",
+   "logo": "worlds/marigold-promenade/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_marigold_society.webp"
+  },
+  "Garnet Pier": {
+   "slug": "garnet-pier",
+   "logo": "worlds/garnet-pier/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_garnet_society.webp"
+  },
+  "Calla Galleria": {
+   "slug": "calla-galleria",
+   "logo": "worlds/calla-galleria/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_calla_salon.webp"
+  },
+  "Moss Lido": {
+   "slug": "moss-lido",
+   "logo": "worlds/moss-lido/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_moss_row.webp"
+  },
+  "Fennel Galleria": {
+   "slug": "fennel-galleria",
+   "logo": "worlds/fennel-galleria/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_fennel_atelier.webp"
+  },
+  "Vesper Promenade": {
+   "slug": "vesper-promenade",
+   "logo": "worlds/vesper-promenade/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_vesper_atelier.webp"
+  },
+  "Juniper Galleria": {
+   "slug": "juniper-galleria",
+   "logo": "worlds/juniper-galleria/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_juniper_maison.webp"
+  },
+  "Dune Quay": {
+   "slug": "dune-quay",
+   "logo": "worlds/dune-quay/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_dune_salon.webp"
+  },
+  "Linden Arcade": {
+   "slug": "linden-arcade",
+   "logo": "worlds/linden-arcade/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_linden_row.webp"
+  },
+  "Briar Terrace": {
+   "slug": "briar-terrace",
+   "logo": "worlds/briar-terrace/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_briar_row.webp"
+  },
+  "Linden Lido": {
+   "slug": "linden-lido",
+   "logo": "worlds/linden-lido/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_linden_maison.webp"
+  },
+  "Petal Courtyard": {
+   "slug": "petal-courtyard",
+   "logo": "worlds/petal-courtyard/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_petal_works.webp"
+  },
+  "Dune Promenade": {
+   "slug": "dune-promenade",
+   "logo": "worlds/dune-promenade/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_dune_mill.webp"
+  },
+  "Bramble Pier": {
+   "slug": "bramble-pier",
+   "logo": "worlds/bramble-pier/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_bramble_salon.webp"
+  },
+  "Umber Quay": {
+   "slug": "umber-quay",
+   "logo": "worlds/umber-quay/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_umber_maison.webp"
+  },
+  "Quill Conservatory": {
+   "slug": "quill-conservatory",
+   "logo": "worlds/quill-conservatory/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_quill_house.webp"
+  },
+  "Sorrel Pier": {
+   "slug": "sorrel-pier",
+   "logo": "worlds/sorrel-pier/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_sorrel_guild.webp"
+  },
+  "Delphine Arcade": {
+   "slug": "delphine-arcade",
+   "logo": "worlds/delphine-arcade/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_delphine_collective.webp"
+  },
+  "Fable Terrace": {
+   "slug": "fable-terrace",
+   "logo": "worlds/fable-terrace/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_fable_works.webp"
+  },
+  "Ember Conservatory": {
+   "slug": "ember-conservatory",
+   "logo": "worlds/ember-conservatory/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_ember_works.webp"
+  },
+  "Dune Terrace": {
+   "slug": "dune-terrace",
+   "logo": "worlds/dune-terrace/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_dune_row.webp"
+  },
+  "Bramble Gardens": {
+   "slug": "bramble-gardens",
+   "logo": "worlds/bramble-gardens/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_bramble_house.webp"
+  },
+  "Xanthe Courtyard": {
+   "slug": "xanthe-courtyard",
+   "logo": "worlds/xanthe-courtyard/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_xanthe_mill.webp"
+  },
+  "Thistle Terrace": {
+   "slug": "thistle-terrace",
+   "logo": "worlds/thistle-terrace/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_thistle_salon.webp"
+  },
+  "Calla Arcade": {
+   "slug": "calla-arcade",
+   "logo": "worlds/calla-arcade/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_calla_society.webp"
+  },
+  "Amber Courtyard": {
+   "slug": "amber-courtyard",
+   "logo": "worlds/amber-courtyard/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_amber_parlour.webp"
+  },
+  "Cobalt Terrace": {
+   "slug": "cobalt-terrace",
+   "logo": "worlds/cobalt-terrace/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_cobalt_studio.webp"
+  },
+  "Delphine Lido": {
+   "slug": "delphine-lido",
+   "logo": "worlds/delphine-lido/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_delphine_salon.webp"
+  },
+  "Cordelia Terrace": {
+   "slug": "cordelia-terrace",
+   "logo": "worlds/cordelia-terrace/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_cordelia_row.webp"
+  },
+  "Ivory Quay": {
+   "slug": "ivory-quay",
+   "logo": "worlds/ivory-quay/logo.svg",
+   "scene": "assets/scenes/w_naimia.png"
+  },
+  "Calla Lido": {
+   "slug": "calla-lido",
+   "logo": "worlds/calla-lido/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_calla_mill.webp"
+  },
+  "Willow Galleria": {
+   "slug": "willow-galleria",
+   "logo": "worlds/willow-galleria/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_willow_parlour.webp"
+  },
+  "Amber Promenade": {
+   "slug": "amber-promenade",
+   "logo": "worlds/amber-promenade/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_amber_atelier.webp"
+  },
+  "Delphine Galleria": {
+   "slug": "delphine-galleria",
+   "logo": "worlds/delphine-galleria/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_delphine_house.webp"
+  },
+  "Juniper Promenade": {
+   "slug": "juniper-promenade",
+   "logo": "worlds/juniper-promenade/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_juniper_studio.webp"
+  },
+  "Fable Promenade": {
+   "slug": "fable-promenade",
+   "logo": "worlds/fable-promenade/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_fable_row.webp"
+  },
+  "Saffron Terrace": {
+   "slug": "saffron-terrace",
+   "logo": "worlds/saffron-terrace/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_saffron_mill.webp"
+  },
+  "Lumen Galleria": {
+   "slug": "lumen-galleria",
+   "logo": "worlds/lumen-galleria/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_lumen_maison.webp"
+  },
+  "Fable Arcade": {
+   "slug": "fable-arcade",
+   "logo": "worlds/fable-arcade/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_fable_guild.webp"
+  },
+  "Wren Gardens": {
+   "slug": "wren-gardens",
+   "logo": "worlds/wren-gardens/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_wren_house.webp"
+  },
+  "Cordelia Pier": {
+   "slug": "cordelia-pier",
+   "logo": "worlds/cordelia-pier/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_cordelia_mill.webp"
+  },
+  "Garnet Terrace": {
+   "slug": "garnet-terrace",
+   "logo": "worlds/garnet-terrace/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_garnet_guild.webp"
+  },
+  "Azalea Galleria": {
+   "slug": "azalea-galleria",
+   "logo": "worlds/azalea-galleria/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_azalea_row.webp"
+  },
+  "Kestrel Conservatory": {
+   "slug": "kestrel-conservatory",
+   "logo": "worlds/kestrel-conservatory/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_kestrel_row.webp"
+  },
+  "Foxglove Quay": {
+   "slug": "foxglove-quay",
+   "logo": "worlds/foxglove-quay/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_foxglove_mill.webp"
+  },
+  "Calla Courtyard": {
+   "slug": "calla-courtyard",
+   "logo": "worlds/calla-courtyard/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_calla_works.webp"
+  },
+  "Lumen Quay": {
+   "slug": "lumen-quay",
+   "logo": "worlds/lumen-quay/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_lumen_works.webp"
+  },
+  "Quill Lido": {
+   "slug": "quill-lido",
+   "logo": "worlds/quill-lido/logo.svg",
+   "scene": "assets/scenes/gen/w_gx_quill_guild.webp"
+  }
+ },
+ "lands": {
+  "land-type-10": {
+   "name": "Crystal Caves",
+   "renders": [
+    "lands/land-type-10/land-type-10-render-beauty-2560-1440.webp",
+    "lands/land-type-10/land-type-10-render-front-2560-1440.webp",
+    "lands/land-type-10/land-type-10-render-side-2560-1440.webp",
+    "lands/land-type-10/land-type-10-render-top-2560-1440.webp"
+   ]
+  },
+  "land-type-13": {
+   "name": "Modern Cityscape",
+   "renders": [
+    "lands/land-type-13/land-type-13-render-beauty-2560-1440.webp",
+    "lands/land-type-13/land-type-13-render-front-2560-1440.webp",
+    "lands/land-type-13/land-type-13-render-side-2560-1440.webp",
+    "lands/land-type-13/land-type-13-render-top-2560-1440.webp"
+   ]
+  },
+  "land-type-15": {
+   "name": "Cyberpunk / Neon Alley",
+   "renders": [
+    "lands/land-type-15/land-type-15-render.webp"
+   ]
+  }
+ }
+}

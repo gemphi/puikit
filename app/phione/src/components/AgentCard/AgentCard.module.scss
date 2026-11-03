@@ -34,7 +34,7 @@
 }
 
 .agentName {
-  font-weight: 700;
+  font-weight: var(--phi-font-weight-medium);
   font-size: 14px;
   color: var(--phi-color-text-primary, #f8fafc);
 }

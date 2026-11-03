@@ -1,0 +1,94 @@
+{
+ "app": "spark",
+ "start": "show",
+ "bare": true,
+ "nav": [
+  {
+   "id": "show",
+   "label": "The show",
+   "icon": "sparkles"
+  }
+ ],
+ "views": {
+  "show": {
+   "title": "",
+   "blocks": [
+    {
+     "kind": "runway",
+     "wordmark": "Lora's Spark",
+     "wordmarkFont": "Lora's Spark",
+     "hero": "show/line.jpg",
+     "heroAlt": "Models walking the winding wooden runway through the city",
+     "sub": "Sixteen looks on a winding wooden runway, through a city of phantom gold, phantom red and piggy bank.",
+     "wide": [
+      "show/above.jpg"
+     ],
+     "looks": [
+      {
+       "id": "look-01",
+       "number": 1,
+       "title": "Slant-hem net dress in Phantom Black",
+       "color": {
+        "name": "Phantom Black",
+        "hex": "#1a1a1c"
+       },
+       "cut": "slant",
+       "about": "An open diamond net, the hem cut on a slant.",
+       "items": [
+        {
+         "name": "Slant-hem net dress",
+         "about": "Phantom Black"
+        },
+        {
+         "name": "Thigh-high boots",
+         "about": "Clear, with a Phantom Black cap toe"
+        },
+        {
+         "name": "Brim hat",
+         "about": "Clear brim, Phantom Black band"
+        }
+       ],
+       "views": [
+        {
+         "label": "Front",
+         "image": "show/look01-front.jpg"
+        }
+       ]
+      },
+      {
+       "id": "look-02",
+       "number": 2,
+       "title": "Ruffled dress in Phantom Black",
+       "color": {
+        "name": "Phantom Black",
+        "hex": "#1a1a1c"
+       },
+       "cut": "ruffle",
+       "about": "Soft gathered tiers falling into a rounded bubble hem.",
+       "items": [
+        {
+         "name": "Ruffled dress",
+         "about": "Phantom Black"
+        },
+        {
+         "name": "Thigh-high boots",
+         "about": "Clear, with a Phantom Black cap toe"
+        },
+        {
+         "name": "Brim hat",
+         "about": "Clear brim, Phantom Black band"
+        }
+       ],
+       "views": [
+        {
+         "label": "Front",
+         "image": "show/look02-front.jpg"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

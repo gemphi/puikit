@@ -1,23 +1,11 @@
-import { Box } from '@pui/components';
+import { Image } from '@pui/components';
 import React from 'react';
 import { site } from '../../lib/data';
-import WORDMARK from './wordmark.json';
+import { mediaUrl } from '../../lib/media';
 
 const M = site.brand;
-/** Wordmark: "phiegg" in the Phiegg font (Square, 1d); the last two g's are a 6 spun 180° and a 9 moved down. Sized by font-size (1em = cap height). */
-export const Wordmark: React.FC = () => {
-  const uid = React.useId().replace(/:/g, '');
-  return (
-    <Box as="span" role="img" aria-label={M.name.toLowerCase()} className="ph-wordmark">
-      {WORDMARK.map((g, i) => (
-        <svg key={i} viewBox={g.vb} width={g.w + 'em'} height={g.h + 'em'} overflow="visible" aria-hidden="true">
-          <defs><mask id={uid + i} maskUnits="userSpaceOnUse" x={-60} y={-60} width={400} height={600}><rect x={-60} y={-60} width={400} height={600} fill="white" />{g.cuts.map((d, k) => <path key={k} d={d} fill="black" />)}</mask></defs>
-          <g transform={g.tf}><g mask={'url(#' + uid + i + ')'}>{g.parts.map((p, k) => <path key={k} d={p.d} fill={p.fill} stroke={p.stroke} strokeWidth={p.sw} strokeLinecap="round" strokeLinejoin="round" />)}</g></g>
-        </svg>
-      ))}
-    </Box>
-  );
-};
+/** Wordmark: "phiegg" in soft 3D Phifing (scripts/media/build_media.py). Sized by font-size. */
+export const Wordmark: React.FC = () => <Image className="ph-wordmark" src={mediaUrl('logo/phiegg-3d.svg')} alt={M.name.toLowerCase()} fit="contain" style={{ height: '1.9em', width: 'auto', display: 'block' }} />;
 /** Phiegg mark: egg ∪ triangle, tilted, with a pill inside the oval: parallel to it, 1/3 of the inner height, 75% of the inner width; the oval's right end is softly flattened like a nail tip (site.brand.mark). */
 export const PhieggMark: React.FC<{ size?: string }> = ({ size = '1.5rem' }) => (
   <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth={11} strokeLinejoin="round" width={size} height={size}>

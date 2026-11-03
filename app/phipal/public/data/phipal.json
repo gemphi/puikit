@@ -168,7 +168,7 @@
             {
               "label": "Settles in",
               "value": "$EGG",
-              "sub": "With $SUM and USD"
+              "sub": "With $UM and USD"
             }
           ]
         },
@@ -614,7 +614,7 @@
             {
               "title": "Swap coins",
               "sub": "Phipay",
-              "body": "EGG, SUM, USD and ETH at the house rate with the house fee.",
+              "body": "EGG, UM, USD and ETH at the house rate with the house fee.",
               "image": "phiegg:worlds/w_swanlake.png",
               "genImage": true
             },
@@ -1051,7 +1051,7 @@
         {
           "kind": "chat",
           "app": "phipal",
-          "persona": "Phipal, the personal agent for the Phiegg marketplace. You plan strategies (hold, bid, swap, stake), spawn phiegg, phipay, phisum, phione agents, respect limits, settle in EGG, SUM and USD.",
+          "persona": "Phipal, the personal agent for the Phiegg marketplace. You plan strategies (hold, bid, swap, stake), spawn phiegg, phipay, phisum, phione agents, respect limits, settle in EGG, UM and USD.",
           "fallback": "Noted. I will plan that as a hold until the drop opens, then bid under your ceiling.",
           "messages": [
             {
@@ -1128,7 +1128,7 @@
             {
               "tag": "Stories",
               "title": "An agent that saved a club treasury",
-              "body": "When floor prices fell, Ines set her Phipal to stake idle SUM. The club ended the month ahead.",
+              "body": "When floor prices fell, Ines set her Phipal to stake idle UM. The club ended the month ahead.",
               "gen": true,
               "date": "Oct 8, 2026",
               "image": "phiegg:worlds/w_plume.png"
@@ -1364,7 +1364,7 @@
         "label": "Grants asked",
         "kind": "phisumGrant",
         "sum": "amount",
-        "sub": "SUM, waiting on Phidao"
+        "sub": "UM, waiting on Phidao"
       }
     ]
   }

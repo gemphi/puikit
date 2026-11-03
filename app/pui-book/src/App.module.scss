@@ -68,7 +68,7 @@
 
 .navLinkActive {
   background: var(--phi-brand-gradient);
-  color: #fff; font-weight: 600;
+  color: #fff; font-weight: var(--phi-font-weight-medium);
 }
 
 .navLinkLabelText { white-space: nowrap; text-align: left; }
@@ -87,7 +87,7 @@
 
 .userProfileContent {
   display: flex; align-items: center; gap: 0.5rem;
-  color: var(--phi-color-text-primary); font-size: 0.875rem; font-weight: 500;
+  color: var(--phi-color-text-primary); font-size: 0.875rem; font-weight: var(--phi-font-weight-medium);
 }
 
 .userNameText { white-space: nowrap; }

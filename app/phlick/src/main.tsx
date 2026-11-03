@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import '@pui/tokens/phi-fonts.css';
 import '@pui/styles/core.scss';
 
 import { App } from './App';

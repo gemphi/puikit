@@ -1,7 +1,7 @@
 // Stand-in for the Phiora API so the apps can run against VITE_PHI_API before the real server is up.
 // Implements the contract in ../src/api.ts. Zero dependencies.
 //
-//   node apps/phi-kit/dev/mock-phiora.mjs            # http://localhost:4300
+//   node app/phi-kit/dev/mock-phiora.mjs            # http://localhost:4300
 //   VITE_PHI_API=http://localhost:4300 npm run dev   # in any app folder (PowerShell: $env:VITE_PHI_API="http://localhost:4300"; npm run dev)
 //
 // Optional: PHI_MODEL_URL (OpenAI-compatible base, e.g. http://localhost:11434/v1), PHI_MODEL (default "llama3.1"),

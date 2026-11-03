@@ -40,7 +40,7 @@ export type GradientLevel = 'flat' | 'soft' | 'vivid' | 'aurora';
 export const GRADIENT_LEVELS: GradientLevel[] = ['flat', 'soft', 'vivid', 'aurora'];
 const STRENGTH: Record<GradientLevel, number> = { flat: 0, soft: 0.55, vivid: 1, aurora: 1.3 };
 
-/** phiber v2 theme/palette (11) + 5 Phiegg — same values as apps/phiegg/src/data/themes.json. */
+/** phiber v2 theme/palette (11) + 5 Phiegg — same values as app/phiegg/src/data/themes.json. */
 export const PALETTES: SeedPalette[] = [
   { id: 'sphere', name: 'Sphere', seed: '#3B4657', accent: [212, 58, 55], accent2: [142, 70, 45], source: 'phiber default' },
   { id: 'graphite', name: 'Graphite', seed: '#3D3D3D', accent: [28, 95, 54], accent2: [142, 70, 45], source: 'Blender grey + orange' },

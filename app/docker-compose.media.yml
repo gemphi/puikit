@@ -1,0 +1,17 @@
+# The media bucket on this machine: SeaweedFS speaks the S3 protocol, so the same keys and sync work on AWS later.
+#   docker compose -f docker-compose.media.yml up -d
+#   ../scripts/media/sync.sh local
+# Then run an app with VITE_PHI_MEDIA=http://localhost:8333/phi-media.
+# Local work only: no keys are set, so it is bound to this machine. AWS is deploy/aws/media.
+services:
+  s3:
+    image: chrislusf/seaweedfs:3.87
+    command: server -dir=/data -s3 -s3.port=8333 -volume.max=20 -master.volumeSizeLimitMB=1024
+    ports:
+      - "127.0.0.1:8333:8333"
+    volumes:
+      - mediadata:/data
+    restart: unless-stopped
+
+volumes:
+  mediadata:

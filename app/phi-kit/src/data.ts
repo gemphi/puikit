@@ -2,19 +2,26 @@ import registry from './registry.json';
 import { resolveLinks } from './links';
 
 export type IconPath = { d: string; tf?: string; fill: string; stroke: string; sw: number };
-export type AppMeta = { key: string; name: string; tagline: string; desc: string; color: string; port: number; built: boolean; icon: IconPath[] };
+export type AppMeta = { look?: string; mode?: 'light' | 'dark'; key: string; name: string; tagline: string; desc: string; color: string; port: number; built: boolean; config?: boolean; icon: IconPath[] };
 export type NavItem = { id: string; label: string; icon: string; items?: NavItem[]; image?: string; pull?: Record<string, unknown>; previews?: import('./blocks/Grid').GridItem[] };
 export type Block = { kind: string; title?: string; [k: string]: any };
 export type View = { title: string; sub?: string; blocks: Block[] };
-export type AppData = { app: string; nav: NavItem[]; views: Record<string, View>; profile?: import('./Profile').ProfileSpec };
+export type AppData = { app: string; start?: string; bare?: boolean; nav: NavItem[]; views: Record<string, View>; profile?: import('./Profile').ProfileSpec };
 
 export const APPS = registry as AppMeta[];
 export const appMeta = (key: string) => APPS.find((a) => a.key === key) as AppMeta;
+
+/** Under the one host (app/phi) every config app is the same running app at /<key>/. */
+export const HOSTED = import.meta.env.VITE_PHI_HOST === '1';
+export const currentAppKey = () => window.location.pathname.split('/')[1] ?? '';
+/** Where this app's own files are served from. */
+export const appBase = () => (HOSTED ? '/' + currentAppKey() + '/' : (import.meta.env.BASE_URL as string));
 
 /** Link to another app: VITE_PHI_APPS_BASE in prod (e.g. https://phiace.com/), localhost ports in dev. */
 export const appUrl = (key: string) => {
   const base = import.meta.env.VITE_PHI_APPS_BASE as string | undefined;
   const a = appMeta(key);
+  if (HOSTED && a?.config) return '/' + key + '/';
   return base ? base.replace(/\/?$/, '/') + key + '/' : 'http://localhost:' + (a ? a.port : 3101) + '/';
 };
 
@@ -26,17 +33,20 @@ export function assetUrl(ref?: string): string | undefined;
 export function assetUrl(ref?: string): string | undefined {
   if (!ref) return undefined;
   const m = ref.match(/^([a-z]+):(?!\/\/)(.+)$/);
+  if (m && HOSTED) return '/' + m[1] + '/' + m[2].replace(/^\//, '');
   if (m) return appUrl(m[1]) + m[2].replace(/^\//, '');
   if (/^(https?:)?\/\//.test(ref) || ref.startsWith('/')) return ref;
-  return import.meta.env.BASE_URL + ref;
+  return appBase() + ref;
 }
 
 /** An app's menus and pages: from Phiora (GET {VITE_PHI_API}/app/<key>, composed from its app, menu, page and block
  *  records) or, with no API, from public/data/<key>.json, the file that seeds them. Linked blocks resolve here. */
 export const loadApp = async (key: string): Promise<AppData> => {
   const api = import.meta.env.VITE_PHI_API as string | undefined;
-  const url = api ? api.replace(/\/$/, '') + '/app/' + key : import.meta.env.BASE_URL + 'data/' + key + '.json';
-  const r = await fetch(url);
+  const url = api ? api.replace(/\/$/, '') + '/app/' + key : appBase() + 'data/' + key + '.json';
+  let r = await fetch(url);
+  // An app the API has not been told about yet still has its own file.
+  if (!r.ok && api) r = await fetch(appBase() + 'data/' + key + '.json');
   if (!r.ok) throw new Error('Could not load ' + key + ' (' + r.status + ')');
   return resolveLinks(await r.json());
 };

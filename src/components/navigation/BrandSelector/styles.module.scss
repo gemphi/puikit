@@ -14,7 +14,7 @@
   border: 1px solid var(--phi-color-border, #e2e8f0);
   border-radius: var(--phi-radius-md, 8px);
   font-size: 13px;
-  font-weight: 500;
+  font-weight: var(--phi-font-weight-medium);
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   outline: none;
@@ -75,7 +75,7 @@
   &.active {
     background: var(--phi-color-primary-light, #eff6ff);
     color: var(--phi-color-primary, #3b82f6);
-    font-weight: 600;
+    font-weight: var(--phi-font-weight-medium);
   }
 }
 

@@ -89,6 +89,8 @@ export function persisted<T>(name: string, init: T, merge: (init: T, server: T) 
 function defaultMerge<T>(init: T, server: T): T {
   if (init && server && typeof init === 'object' && typeof server === 'object' && !Array.isArray(init) && !Array.isArray(server))
     return { ...(init as object), ...(server as object) } as T;
+  // An empty or unknown document can come back as a list: a value of the wrong shape never replaces the default.
+  if (init && typeof init === 'object' && !Array.isArray(init) && Array.isArray(server)) return init;
   return server ?? init;
 }
 

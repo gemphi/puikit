@@ -10,7 +10,7 @@ const doc = (d) => (typeof d === 'string' ? JSON.parse(d) : d);
 export function postgresStore(url) {
   let Pool;
   try { ({ Pool } = createRequire(import.meta.url)('pg')); }
-  catch { throw new Error('Postgres needs the pg package: npm install in apps/phiora-server.'); }
+  catch { throw new Error('Postgres needs the pg package: npm install in app/phiora-server.'); }
   const pool = new Pool({ connectionString: url, max: 10 });
   const q = (text, params = []) => pool.query(text, params);
   const one = async (text, params) => (await q(text, params)).rows[0];

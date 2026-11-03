@@ -1,5 +1,5 @@
-// Phiora — the API behind the Phiace apps (contract in apps/phi-kit/src/api.ts).
-// Zero dependencies: node:http + JSON files on disk. Start with `npm start` in apps/phiora-server.
+// Phiora — the API behind the Phiace apps (contract in app/phi-kit/src/api.ts).
+// Zero dependencies: node:http + JSON files on disk. Start with `npm start` in app/phiora-server.
 import { createServer } from 'node:http';
 import { readFileSync, existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
@@ -19,7 +19,7 @@ import { RecordError, createRecord, deleteRecord, readRecord, updateRecord } fro
 import { DelegationError, delegationSecret, signDelegation, verifyDelegation } from './delegation.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const APPS = resolve(here, '..', '..');                       // puijs/apps
+const APPS = resolve(here, '..', '..');                       // puikit/app
 const NAME = /^[\w.-]{1,64}$/;
 /** Documents only the server writes (clients read them; PUT is refused). */
 /** Plural spellings of earlier releases → the singular API. */

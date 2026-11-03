@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Phisum \u2014 The fund and the $SUM token. Built on puikit (Organic) + phi-kit.",
+  "description": "Phisum \u2014 The fund and the $UM token. Built on puikit (Organic) + phi-kit.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

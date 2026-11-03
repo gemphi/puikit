@@ -61,11 +61,11 @@
   --phi-gradient-table-header: linear-gradient(180deg, #eee7db 0%, #ebddc5 100%);
   --phi-glass-surface: color-mix(in srgb, #f9f4ed 80%, transparent);
   --phi-glass-border: color-mix(in srgb, #201e1d 10%, transparent);
-  --phi-font-family: "Figtree", system-ui, sans-serif;
-  --phi-font-heading: "Caprasimo", system-ui, sans-serif;
+  --phi-font-family: "Phifing 4", "Phifing", "Figtree", system-ui, sans-serif;
+  --phi-font-heading: "Phifing 4", "Phifing", "Caprasimo", system-ui, sans-serif;
   --phi-font-size-base: 0.9375rem;
-  --phi-font-weight-semibold: 600;
-  --phi-font-weight-bold: 700;
+  --phi-font-weight-semibold: 300;
+  --phi-font-weight-bold: 400;
   --phi-control-height-md-base: 44px;
 }
 
@@ -102,7 +102,7 @@
 }
 :root[data-theme-style='organic'] :is(h1, h2, h3, h4) {
   font-family: var(--phi-font-heading);
-  font-weight: 400;
+  font-weight: var(--phi-font-weight-medium);
   letter-spacing: 0;
 }
 :root[data-theme-style='organic'] :focus-visible {

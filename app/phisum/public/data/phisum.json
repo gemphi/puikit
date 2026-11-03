@@ -7,6 +7,11 @@
       "icon": "home"
     },
     {
+      "id": "feed",
+      "label": "Feed",
+      "icon": "layers"
+    },
+    {
       "id": "raise",
       "label": "Raise",
       "icon": "chart",
@@ -267,7 +272,7 @@
           "kind": "hero",
           "heading": "Phisum",
           "subtitle": "The treasury that rewards what you do.",
-          "body": "Phisum holds the PFT function registry and the $SUM treasury: every function you run is logged and rewarded. Fund cohorts and apply for support here.",
+          "body": "Phisum holds the PFT function registry and the $UM treasury: every function you run is logged and rewarded. Fund cohorts and apply for support here.",
           "actions": [
             {
               "label": "Open Phisum",
@@ -640,7 +645,7 @@
             },
             {
               "tag": "Rounds",
-              "title": "Satin Swans close a 1.2M SUM community round",
+              "title": "Satin Swans close a 1.2M UM community round",
               "body": "The club sold out its first round in four hours. Members voted to spend half on a new runway hall in Brocade.",
               "gen": true,
               "date": "Oct 8, 2026",
@@ -649,7 +654,7 @@
             {
               "tag": "Treasury",
               "title": "Reward weights move toward hosting",
-              "body": "Hosting a meetup now earns more SUM than flipping a PFT, after a Phidao vote passed with 71 percent.",
+              "body": "Hosting a meetup now earns more UM than flipping a PFT, after a Phidao vote passed with 71 percent.",
               "gen": true,
               "date": "Oct 4, 2026",
               "image": "phiegg:worlds/gen/w_gx_juniper_maison.webp"
@@ -658,14 +663,14 @@
               "date": "Oct 2, 2026",
               "tag": "Treasury",
               "title": "September rewards paid",
-              "body": "$SUM rewards for logged functions were distributed to 18,240 members.",
+              "body": "$UM rewards for logged functions were distributed to 18,240 members.",
               "image": "phiegg:worlds/gen/w_gx_amber_atelier.webp",
               "genImage": true
             },
             {
               "tag": "Demo day",
               "title": "Demo day returns to the Atelier Nine dome",
-              "body": "Nine teams pitch live to members on November 14. Every member can back a team with as little as 10 SUM.",
+              "body": "Nine teams pitch live to members on November 14. Every member can back a team with as little as 10 UM.",
               "gen": true,
               "date": "Sep 30, 2026",
               "image": "phiegg:worlds/gen/w_deer.webp"
@@ -690,7 +695,7 @@
               "date": "Sep 20, 2026",
               "tag": "Cohorts",
               "title": "Autumn cohort funded",
-              "body": "Nine clubs receive $SUM support alongside their Phipad funding.",
+              "body": "Nine clubs receive $UM support alongside their Phipad funding.",
               "image": "phiegg:worlds/w_bijou.png",
               "genImage": true
             },
@@ -705,7 +710,7 @@
             {
               "tag": "Treasury",
               "title": "Quarterly report: inflows up 18 percent",
-              "body": "Most new SUM came from ride fees and hosted events. Spending stayed inside the budget the DAO set.",
+              "body": "Most new UM came from ride fees and hosted events. Spending stayed inside the budget the DAO set.",
               "gen": true,
               "date": "Sep 14, 2026",
               "image": "phiegg:worlds/w_mesa.png"
@@ -736,7 +741,7 @@
       "blocks": [
         {
           "kind": "prose",
-          "lead": "Phisum is the mechanism behind the economy: the PFT function registry and the $SUM treasury.",
+          "lead": "Phisum is the mechanism behind the economy: the PFT function registry and the $UM treasury.",
           "sections": [
             {
               "title": "Functions",
@@ -744,7 +749,7 @@
             },
             {
               "title": "Rewards",
-              "body": "Running a function is logged to your profile and earns $SUM from the treasury."
+              "body": "Running a function is logged to your profile and earns $UM from the treasury."
             },
             {
               "title": "Cohorts",
@@ -762,7 +767,7 @@
           "kind": "faq",
           "items": [
             {
-              "q": "How do I earn $SUM?",
+              "q": "How do I earn $UM?",
               "a": "By running PFT functions; each is logged to your profile and rewarded."
             },
             {
@@ -775,7 +780,7 @@
             },
             {
               "q": "Can I back a cohort team?",
-              "a": "Yes. Open the team on demo day and pledge any amount of SUM from your wallet.",
+              "a": "Yes. Open the team on demo day and pledge any amount of UM from your wallet.",
               "gen": true
             },
             {
@@ -795,7 +800,7 @@
             },
             {
               "q": "Is there a minimum pledge?",
-              "a": "Ten SUM. There is no maximum, but rounds close when the target is met.",
+              "a": "Ten UM. There is no maximum, but rounds close when the target is met.",
               "gen": true
             }
           ]
@@ -804,7 +809,7 @@
     },
     "docs": {
       "title": "phisum docs",
-      "sub": "Phisum backs SUM and runs speedrun cohorts for virtual cities.",
+      "sub": "Phisum backs UM and runs speedrun cohorts for virtual cities.",
       "blocks": [
         {
           "kind": "grid",
@@ -813,7 +818,7 @@
             {
               "title": "Overview",
               "sub": "The main fund",
-              "body": "Phisum backs SUM and runs speedrun cohorts for virtual cities."
+              "body": "Phisum backs UM and runs speedrun cohorts for virtual cities."
             },
             {
               "title": "Getting started",
@@ -821,7 +826,7 @@
               "body": "Apply through Phipad. Cohorts are picked by PFT function activity."
             },
             {
-              "title": "Phisum and SUM",
+              "title": "Phisum and UM",
               "sub": "How it is funded",
               "body": "Phisum is the fund itself: it reads PFT function records across every app.",
               "action": "Open Phisum",
@@ -844,7 +849,7 @@
             ],
             [
               "every function",
-              "read to split SUM rewards"
+              "read to split UM rewards"
             ]
           ]
         },
@@ -1172,7 +1177,7 @@
                   "control": "radio",
                   "options": [
                     "EGG",
-                    "SUM",
+                    "UM",
                     "USD"
                   ],
                   "required": true
@@ -1560,7 +1565,7 @@
                   "control": "radio",
                   "options": [
                     "EGG",
-                    "SUM",
+                    "UM",
                     "USD"
                   ],
                   "required": true
@@ -1594,6 +1599,33 @@
               "review": true
             }
           ]
+        }
+      ]
+    },
+    "feed": {
+      "title": "Feed",
+      "sub": "What the clubs behind the pools are showing.",
+      "blocks": [
+        {
+          "kind": "feed",
+          "columns": {
+            "xs": 2,
+            "sm": 3,
+            "md": 4
+          },
+          "pull": {
+            "kind": "shot",
+            "n": 12,
+            "sort": "likes",
+            "join": [
+              "clubId",
+              "worldId"
+            ]
+          },
+          "map": {
+            "author": "club.name",
+            "image": "world.image"
+          }
         }
       ]
     }

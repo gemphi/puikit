@@ -2,7 +2,7 @@
 // Deterministic (seeded) and idempotent: generated records use ids starting with "g_", and a
 // second run adds nothing. Hand-written records are never changed.
 //
-//   node apps/phiegg/scripts/deepen-data.mjs
+//   node app/phiegg/scripts/deepen-data.mjs
 //
 // Writes (src/data): places.json (new: districts + places per city), stores.json (new: a store
 // per club), and extends club.json (pieces), hosts.json (nest messages), feed.json (moments,

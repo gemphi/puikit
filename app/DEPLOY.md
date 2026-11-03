@@ -5,7 +5,7 @@ database), and **nginx** serving every app with `/api` proxied to Phiora (no COR
 
 ## 1. Configure
 ```sh
-cd apps
+cd app
 cp .env.example .env
 # fill in PHI_PG_PASSWORD, PHI_DELEGATION_SECRET (openssl rand -hex 32), PHI_ORIGINS, PHI_PUBLIC_URL,
 # PHI_EDITORS, and (for email) RESEND_API_KEY / PHI_MAIL_FROM.

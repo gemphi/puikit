@@ -172,8 +172,8 @@
   --phi-transition-slow: var(--phi-duration-slow) var(--phi-ease);
 
   /* Refined, Crisp Typography */
-  --phi-font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
-  --phi-font-heading: "Phiegg Square", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  --phi-font-family: "Phifing 4", "Phifing", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  --phi-font-heading: "Phifing 4", "Phifing", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
   --phi-font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Consolas', monospace;
 
   --phi-font-size-xs: 0.75rem;
@@ -184,10 +184,10 @@
   --phi-font-size-2xl: 1.25rem;
   --phi-font-size-3xl: 1.5rem;
 
-  --phi-font-weight-normal: 400;
-  --phi-font-weight-medium: 500;
-  --phi-font-weight-semibold: 550;
-  --phi-font-weight-bold: 600;
+  --phi-font-weight-normal: 300;
+  --phi-font-weight-medium: 300;
+  --phi-font-weight-semibold: 300;
+  --phi-font-weight-bold: 400;
 
   /* Docusaurus Compatibility Invariants */
   --ifm-color-primary: var(--phi-color-primary);
@@ -200,8 +200,8 @@
   --ifm-font-family-base: var(--phi-font-family);
   --ifm-font-family-monospace: var(--phi-font-mono);
   --ifm-heading-font-family: var(--phi-font-heading);
-  --ifm-heading-font-weight: 550;
-  --ifm-font-weight-base: 400;
+  --ifm-heading-font-weight: var(--phi-font-weight-medium);
+  --ifm-font-weight-base: 300;
   --ifm-button-border-radius: var(--phi-radius-md);
   --ifm-card-border-radius: var(--phi-radius-xl);
   --ifm-line-height-base: 1.65;

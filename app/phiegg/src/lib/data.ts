@@ -13,6 +13,7 @@ import events from "../data/events.json";
 import profile from "../data/profile.json";
 import settings from "../data/settings.json";
 import landing from "../data/landing.json";
+import { mediaUrl } from "./media";
 import agents from "../data/agents.json";
 import siteJson from "../data/site.json";
 import economy from "../data/economy.json";
@@ -141,10 +142,10 @@ export const rideOf = (id?: ID | null): RideItem | undefined => (id ? RIDES.get(
 export const ridesOfWorld = (worldId: ID) => D.ride.list.filter((r) => r.worldId === worldId);
 export const ridesOfClub = (clubId: ID) => D.ride.list.filter((r) => r.clubId === clubId);
 /** The ride's cell on its sheet, for SpriteImage. */
-export const rideSprite = (r: RideItem) => ({ src: import.meta.env.BASE_URL + D.ride.sheets[r.sheet], cols: D.ride.cols, rows: D.ride.rows, index: r.index });
+export const rideSprite = (r: RideItem) => ({ src: mediaUrl(D.ride.sheets[r.sheet]), cols: D.ride.cols, rows: D.ride.rows, index: r.index });
 export const jewelOf = (id?: ID | null): JewelItem | undefined => (id ? JEWELS.get(id) : undefined);
 export const jewelsOfWorld = (worldId: ID) => D.jewel.list.filter((j) => j.worldId === worldId);
-export const jewelSprite = (j: JewelItem) => ({ src: import.meta.env.BASE_URL + D.jewel.sheet, cols: D.jewel.cols, rows: D.jewel.rows, index: j.index });
+export const jewelSprite = (j: JewelItem) => ({ src: mediaUrl(D.jewel.sheet), cols: D.jewel.cols, rows: D.jewel.rows, index: j.index });
 /** Labels for a ride's kind and use (site.json copy rdKind_* and rdMode_*). */
 export const rideKind = (k: string) => t(('rdKind_' + k) as 'rdKind_car');
 export const rideMode = (m: string) => t(('rdMode_' + m) as 'rdMode_sale');
@@ -193,13 +194,13 @@ export const ago = (iso: string, now = Date.now()) => {
 };
 
 /** Public path of a world's generated default image (assets/worlds → public/worlds). */
-export const worldImage = (w?: { image?: string }) => (w && w.image ? import.meta.env.BASE_URL + w.image.replace(/^assets\//, '') : undefined);
+export const worldImage = (w?: { image?: string }) => (w && w.image ? mediaUrl(w.image.replace(/^assets\//, '')) : undefined);
 export const garmentOf = (id?: string) => (site as unknown as { garments: { id: string; name: string; path: string }[] }).garments.find((g) => g.id === id);
 
 export const seriesOf = (id: ID) => D.series.series.find((x) => x.id === id);
 
 /** Public URL of a shop image (public/items/…). */
-export const itemImage = (p: string) => import.meta.env.BASE_URL + p;
+export const itemImage = (p: string) => mediaUrl(p);
 export const usd = (n: number) => '$' + Math.round(n).toLocaleString('en-US');
 
 // ── Places: world → city → district → place ──

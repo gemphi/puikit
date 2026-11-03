@@ -3,9 +3,9 @@
 You need **Node ≥ 22.5** (Phiora uses the built-in `node:sqlite` for a zero-setup local store) and the
 repo checked out. No Postgres and no Docker are required for local testing.
 
-Everything runs from the `apps/` folder:
+Everything runs from the `app/` folder:
 ```sh
-cd puikit/apps
+cd puikit/app
 ```
 
 ---
@@ -15,7 +15,7 @@ cd puikit/apps
 ```sh
 node dev-all.mjs
 ```
-This starts **Phiora** on `http://localhost:4300` (local sqlite store under `apps/phiora-server/.data`,
+This starts **Phiora** on `http://localhost:4300` (local sqlite store under `app/phiora-server/.data`,
 auto-seeded with the bundled data) and **every app's dev server** on its own port, each already pointed
 at Phiora (`VITE_PHI_API=http://localhost:4300`). The first run installs each app's dependencies, so it
 takes a minute; after that it's instant. **Ctrl+C stops everything.**
@@ -45,16 +45,16 @@ Logs · PhiLog, Security · PhiSec) show sample data and everything else still w
 
 1. **Phiora** (the API + database) — one terminal:
    ```sh
-   cd apps/phiora-server
+   cd app/phiora-server
    npm install
    npm start            # http://localhost:4300, sqlite store, auto-seeds
    ```
 2. **Each app** — one terminal each, pointed at Phiora. Vite already knows each app's port.
-   - macOS / Linux: `cd apps/phisum && npm install && VITE_PHI_API=http://localhost:4300 npm run dev`
-   - Windows **PowerShell**: `cd apps\phisum; npm install; $env:VITE_PHI_API="http://localhost:4300"; npm run dev`
-   - Windows **cmd**: `cd apps\phisum && npm install && set VITE_PHI_API=http://localhost:4300 && npm run dev`
+   - macOS / Linux: `cd app/phisum && npm install && VITE_PHI_API=http://localhost:4300 npm run dev`
+   - Windows **PowerShell**: `cd app\phisum; npm install; $env:VITE_PHI_API="http://localhost:4300"; npm run dev`
+   - Windows **cmd**: `cd app\phisum && npm install && set VITE_PHI_API=http://localhost:4300 && npm run dev`
 
-   Prefer not to set the variable every time? Create `apps/<key>/.env.local` with one line —
+   Prefer not to set the variable every time? Create `app/<key>/.env.local` with one line —
    `VITE_PHI_API=http://localhost:4300` — and just run `npm run dev`. (Leave `VITE_PHI_APPS_BASE`
    **unset** in dev so cross-app links resolve to `http://localhost:<port>/`.)
 
@@ -64,7 +64,7 @@ Logs · PhiLog, Security · PhiSec) show sample data and everything else still w
 
 ```sh
 cd ../../phiadk/phiora && make up && make seed   # Postgres + API at http://localhost:8000/docs
-cd ../../puikit/apps && node dev-all.mjs --python
+cd ../../puikit/app && node dev-all.mjs --python
 ```
 Reads come from Postgres. Sign-in, saving state, the wallet and the shop are not on this API yet, so everyone is a guest; use Option A to test those.
 
@@ -108,8 +108,8 @@ See **DEPLOY.md** for the full production path and the `.env` it needs.
   and the app was started with `VITE_PHI_API=http://localhost:4300`. Without it, apps run offline on
   localStorage only.
 - **Port already in use** → stop whatever holds it, or run fewer apps (`node dev-all.mjs phiegg phisum`).
-- **Reset the local data** → stop Phiora, delete `apps/phiora-server/.data`, start again (it re-seeds).
-- **phione fails to start after pulling** → its lucide-react pin changed; run `cd apps/phione` and
+- **Reset the local data** → stop Phiora, delete `app/phiora-server/.data`, start again (it re-seeds).
+- **phione fails to start after pulling** → its lucide-react pin changed; run `cd app/phione` and
   `npm install` once (dev-all only auto-installs when node_modules is missing entirely).
 - **Rounds/zones/areas look empty on a fresh store** → those records are made through the API
   (raising forms in phisum), not the bundled files, so a brand-new local store starts without them.

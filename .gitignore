@@ -19,4 +19,10 @@ Thumbs.db
 REFS/
 Claude outputs/
 # mock Phiora dev state
-apps/phi-kit/dev/.mock-phiora-state.json
+app/phi-kit/dev/.mock-phiora-state.json
+
+# The local media store: the bucket's contents, built by scripts/media/build_media.py
+media/
+
+.terraform/
+*.tfstate*

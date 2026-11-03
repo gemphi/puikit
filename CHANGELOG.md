@@ -4,6 +4,37 @@ All notable changes to `@puikit` are documented here.
 
 ## [Unreleased]
 
+### Added (round 50: the media store, collections, 3D logos)
+- One set of keys for all media, built locally by `scripts/media/build_media.py` into `media/phi-media/` and read through `mediaUrl` (`VITE_PHI_MEDIA`): worlds and their zones, lands, collections, feeds, posts, profiles and assets. `scripts/media/catalog.json` names the finished art, file by file; drafts and art with no known owner stay out.
+- `scripts/media/import_collections.py`: Bold Pups (6,902 tokens, 32,750 attributes) and Epic Pods (150, 900) from the old seed, BBPC from its asset sheet, Bold Ape Epic Club and HHOC from their zips, and the 16 official land types. Third-party NFT collections in the old seed are left out.
+- `scripts/media/drive-map.json` maps the finished sets on Google Drive (EPAC, Bold Pups by club, city logos, the 16 land types), and the importer reads them by file name from zips or folders, attributes included.
+- Worlds carry soft 3D logos in Phifing, generated as SVG in each world's colours; so does Phiegg's header mark.
+- DevOps: `app/docker-compose.media.yml` (a local S3 store), `scripts/media/sync.sh` (local or AWS), `deploy/aws/media` (private S3, CloudFront, versioning, lifecycle, CORS).
+- Barlow, the conventional text face, is self-hosted and in the font switch. Phifing now takes each letter's spacing from Barlow, weight for weight.
+
+### Removed
+- Phiegg Square, the display face with colliding letters, from every font stack (kept in `_temp/phiegg-square-font`).
+
+### Added (round 49: Phifing, the Muse look, the Phiegg welcome)
+- Phifing: Phi-Soft shorter for reading on the web, in Light, Regular, SemiBold and Bold (`scripts/phifing.py`, `--phi-font-fing`). Square inside the a in Light and Regular, centred bars in H and the other capitals with straight stems, shorter tails, thinner upright stems in Light and Regular, more space between letters, and a V in one piece.
+- Muse look: theme style and brand after Meta's Muse and Worlds pages (`_muse.scss`): white ground, one blue, pill controls, 24px cards, set in Phifing with rem at 112.5%. In the look switcher, light and dark. `mountWith` takes an app's own look and mode; `LOOK_VERSION` is bumped, so stored look choices reset once.
+- Phiegg opens on Muse in light mode, and its welcome page is rebuilt: a big scene, world portals, a tour of real product shots beside choices, rides, stories and the comparison.
+
+- Phifing 1 to 4: the same face wider, the white inside each letter and digit grown by an eighth, a quarter, three eighths and a half of itself, stems and heights unchanged.
+- Font switch in Phiegg's account menu: every Light family at normal width, Phifing's options and Phiber among them (`phi-kit/src/fonts.ts`), saved on the device and set on boot in every app.
+- Phiegg's side panel closes from a pin beside its title or by clicking the current rail icon; it stays closed across visits and any other icon reopens it.
+
+- Phifing 5: double the white. Every look in every app now reads in Phifing 4, half as much white again, Light throughout and Regular only for emphasis, with rem at 112.5%. The tall Phi-Soft and Phiber are off the default stacks; they stay in the font switch.
+- The welcome page has characters: renders in `public/welcome`, named in `landing.json` (`art`), around the hero and closing panels and in the world portals and stories; they drift, lean with the pointer, and sections rise in as they scroll into view. `CONTENT-SERVING.md` sets out how content gets served next.
+- A post click goes to the post's own page (`#/post/<id>`); comments open from there, or from a card, in a bottom sheet, and the look and author keep their sheets.
+- The profile button opens a drawer from the right, with your moving card at its head and its rows rising in turn.
+
+### Fixed
+- Clicks that record activity, and the Recent page, crashed when the server held the activity log as a bare list. `persisted` no longer lets a list replace an object default.
+
+### Changed
+- The token is `$UM`, not `$SUM`, in all app copy. Phisum's name, the `sum` coin key and Phiegg's SUM machines are unchanged.
+
 ### Added (round 48: the production stack)
 - `apps/docker-compose.yml`: Postgres, Phiora and nginx as one origin — the apps under `/<key>/`, `/api` proxied to Phiora (no CORS), demo sign-in off, every policy setting passed through the environment, data in volumes. `node build-all.mjs --dist` builds every app under its own base with `VITE_PHI_API=/api`, collects them into `dist-all/` and writes the `nginx.conf` compose serves. The Phiora image installs its one dependency (`pg`).
 - `PHI_EDITORS` takes handles as well as ids; `PHI_CREATE_KINDS`, when set, is the comma list of kinds anyone signed in may create — other kinds answer 403 `kind_closed` unless an editor asks. Tests 59 pass.

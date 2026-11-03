@@ -40,7 +40,7 @@ export const DocsPage: React.FC = () => {
                 variant={activeLanguage === lang ? 'primary' : 'ghost'}
                 onClick={() => setLanguage(lang)}
               >
-                {lang.toUpperCase()}
+                {lang.charAt(0).toUpperCase() + lang.slice(1)}
               </Button>
             ))}
           </Stack>

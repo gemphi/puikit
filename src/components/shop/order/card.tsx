@@ -53,7 +53,7 @@ export const OrderCard: React.FC<OrderCardProps> = ({
       <CardHeader
         action={
           <Text as="span" intent={STATUS_INTENT[status]} weight="semibold" data-status={status}>
-            {status.toUpperCase()}
+            {status.charAt(0).toUpperCase() + status.slice(1)}
           </Text>
         }
       >

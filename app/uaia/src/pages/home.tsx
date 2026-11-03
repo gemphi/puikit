@@ -65,7 +65,7 @@ export const HomePage: React.FC = () => {
         <Glass style={{ marginTop: 20, overflowX: 'auto' }}>
           <Box as="table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13.5 }}>
             <Box as="thead">
-              <Box as="tr" className={s.mono} style={{ textAlign: 'left', color: 'var(--phi-color-text-secondary)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+              <Box as="tr" className={s.mono} style={{ textAlign: 'left', color: 'var(--phi-color-text-secondary)', fontSize: 11, letterSpacing: '0.14em', }}>
                 <Box as="th" style={{ padding: '8px 12px' }}>Model ID</Box><Box as="th" style={{ padding: '8px 12px' }}>Developer</Box>
                 <Box as="th" style={{ padding: '8px 12px' }}>Risk tier</Box><Box as="th" style={{ padding: '8px 12px' }}>Status</Box>
                 <Box as="th" style={{ padding: '8px 12px' }}>Certificate</Box>

@@ -35,7 +35,7 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3001,
+    port: 3001, fs: { allow: ['../..'] },
   },
   build: {
     outDir: 'dist',

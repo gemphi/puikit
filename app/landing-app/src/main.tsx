@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { PuiProvider } from '@pui/components';
 import App from './App';
 import '@pui/tokens/tokens.scss';
+import '@pui/tokens/phi-fonts.css';
 import '@pui/styles/core.scss';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

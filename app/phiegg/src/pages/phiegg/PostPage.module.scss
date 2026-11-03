@@ -1,0 +1,15 @@
+/* A post's page: the shot gets the room, its actions sit calmly beside it. */
+.page { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(1.5rem, 3vw, 3rem); align-items: start; width: 100%; max-width: 76rem; margin-inline: auto; animation: rise 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.stage { display: flex; flex-direction: column; gap: 0.75rem; min-width: 0; }
+.side { position: sticky; top: 1rem; min-width: 0; }
+.more { grid-column: 1 / -1; min-width: 0; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 860px) {
+  .page { grid-template-columns: minmax(0, 1fr); }
+  .side { position: static; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page { animation: none; }
+}

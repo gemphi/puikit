@@ -1,6 +1,6 @@
 # Phiegg on puijs
 
-The Phiace community platform, added to the existing `apps/phiegg` cockpit.
+The Phiace community platform, added to the existing `app/phiegg` cockpit.
 The AIP cockpit pages are untouched and sit under **OPERATIONS** in the sidebar.
 
 ## What was added
@@ -31,7 +31,7 @@ src/components/Shell/Sidebar.tsx   PHIEGG group (from site.json nav) + OPERATION
 ## Run
 
 ```bash
-cd apps/phiegg
+cd app/phiegg
 npm install
 npm run dev   # http://localhost:3000
 ```

@@ -82,7 +82,7 @@ export const SwapPage: React.FC<{ db: DB }> = ({ db }) => {
   const sel = (v: Coin, set: (c: Coin) => void, label: string) => <Select size="sm" value={v} onChange={(e) => set(e.target.value as Coin)} aria-label={label} options={coins.map((c) => ({ value: c, label: LABEL[c] }))} />;
   return (
     <>
-      <Head title="Swap" sub={'$EGG and $SUM interchange here, priced from the token table. ' + (fee * 100).toFixed(1) + '% goes to the treasury.'} />
+      <Head title="Swap" sub={'$EGG and $UM interchange here, priced from the token table. ' + (fee * 100).toFixed(1) + '% goes to the treasury.'} />
       <Stack maxWidth="520px" direction="column" gap={2} surface="card">
         <Text size="xs" intent="muted" as="span">You pay · balance {fmt(from, w[from])} {LABEL[from]}</Text>
         <Stack direction="row" gap={2} wrap align="center"><Input inputMode="decimal" value={amt} onChange={(e) => setAmt(e.target.value)} aria-label="Amount" />{sel(from, setFrom, 'From')}</Stack>

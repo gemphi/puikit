@@ -1,0 +1,674 @@
+/* Every Phi type face. Phifing 4, Phi-Soft made short, is the face of every web app (scripts/phifing.py).
+   Variables are in _phi-fonts.scss. */
+@font-face {
+  font-family: "Phiber";
+  src: url('./fonts/phi/Phiber/Phiber-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phiber";
+  src: url('./fonts/phi/Phiber/Phiber-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phiber";
+  src: url('./fonts/phi/Phiber/Phiber-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phiber";
+  src: url('./fonts/phi/Phiber/Phiber-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Walt";
+  src: url('./fonts/phi/Phi-Walt/PhiWalt-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Walt";
+  src: url('./fonts/phi/Phi-Walt/PhiWalt-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Walt";
+  src: url('./fonts/phi/Phi-Walt/PhiWalt-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Walt";
+  src: url('./fonts/phi/Phi-Walt/PhiWalt-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Walt Condensed";
+  src: url('./fonts/phi/Phi-Walt/PhiWaltCondensed-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Walt Condensed";
+  src: url('./fonts/phi/Phi-Walt/PhiWaltCondensed-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Walt Condensed";
+  src: url('./fonts/phi/Phi-Walt/PhiWaltCondensed-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Walt Condensed";
+  src: url('./fonts/phi/Phi-Walt/PhiWaltCondensed-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Hard";
+  src: url('./fonts/phi/Phi-Hard/PhiHard-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Hard";
+  src: url('./fonts/phi/Phi-Hard/PhiHard-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Hard";
+  src: url('./fonts/phi/Phi-Hard/PhiHard-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Hard";
+  src: url('./fonts/phi/Phi-Hard/PhiHard-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Hard Condensed";
+  src: url('./fonts/phi/Phi-Hard/PhiHardCondensed-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Hard Condensed";
+  src: url('./fonts/phi/Phi-Hard/PhiHardCondensed-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Hard Condensed";
+  src: url('./fonts/phi/Phi-Hard/PhiHardCondensed-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Hard Condensed";
+  src: url('./fonts/phi/Phi-Hard/PhiHardCondensed-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Soft";
+  src: url('./fonts/phi/Phi-Soft/PhiSoft-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Soft";
+  src: url('./fonts/phi/Phi-Soft/PhiSoft-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Soft";
+  src: url('./fonts/phi/Phi-Soft/PhiSoft-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Soft";
+  src: url('./fonts/phi/Phi-Soft/PhiSoft-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing";
+  src: url('./fonts/phi/Phifing/Phifing-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing";
+  src: url('./fonts/phi/Phifing/Phifing-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing";
+  src: url('./fonts/phi/Phifing/Phifing-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing";
+  src: url('./fonts/phi/Phifing/Phifing-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing 1";
+  src: url('./fonts/phi/Phifing/Phifing1-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing 1";
+  src: url('./fonts/phi/Phifing/Phifing1-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing 1";
+  src: url('./fonts/phi/Phifing/Phifing1-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing 1";
+  src: url('./fonts/phi/Phifing/Phifing1-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing 2";
+  src: url('./fonts/phi/Phifing/Phifing2-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing 2";
+  src: url('./fonts/phi/Phifing/Phifing2-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing 2";
+  src: url('./fonts/phi/Phifing/Phifing2-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing 2";
+  src: url('./fonts/phi/Phifing/Phifing2-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing 3";
+  src: url('./fonts/phi/Phifing/Phifing3-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing 3";
+  src: url('./fonts/phi/Phifing/Phifing3-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing 3";
+  src: url('./fonts/phi/Phifing/Phifing3-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing 3";
+  src: url('./fonts/phi/Phifing/Phifing3-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing 4";
+  src: url('./fonts/phi/Phifing/Phifing4-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing 4";
+  src: url('./fonts/phi/Phifing/Phifing4-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing 4";
+  src: url('./fonts/phi/Phifing/Phifing4-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing 4";
+  src: url('./fonts/phi/Phifing/Phifing4-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing 5";
+  src: url('./fonts/phi/Phifing/Phifing5-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing 5";
+  src: url('./fonts/phi/Phifing/Phifing5-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing 5";
+  src: url('./fonts/phi/Phifing/Phifing5-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing 5";
+  src: url('./fonts/phi/Phifing/Phifing5-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url('./fonts/phi/Barlow/Barlow-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url('./fonts/phi/Barlow/Barlow-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url('./fonts/phi/Barlow/Barlow-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url('./fonts/phi/Barlow/Barlow-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Soft Condensed";
+  src: url('./fonts/phi/Phi-Soft/PhiSoftCondensed-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Soft Condensed";
+  src: url('./fonts/phi/Phi-Soft/PhiSoftCondensed-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Soft Condensed";
+  src: url('./fonts/phi/Phi-Soft/PhiSoftCondensed-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Soft Condensed";
+  src: url('./fonts/phi/Phi-Soft/PhiSoftCondensed-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Pill";
+  src: url('./fonts/phi/Phi-Pill/PhiPill-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Pill";
+  src: url('./fonts/phi/Phi-Pill/PhiPill-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Pill";
+  src: url('./fonts/phi/Phi-Pill/PhiPill-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Pill";
+  src: url('./fonts/phi/Phi-Pill/PhiPill-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Pill Condensed";
+  src: url('./fonts/phi/Phi-Pill/PhiPillCondensed-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Pill Condensed";
+  src: url('./fonts/phi/Phi-Pill/PhiPillCondensed-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Pill Condensed";
+  src: url('./fonts/phi/Phi-Pill/PhiPillCondensed-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Pill Condensed";
+  src: url('./fonts/phi/Phi-Pill/PhiPillCondensed-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Sans";
+  src: url('./fonts/phi/Phi-Sans/PhiSans-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Sans";
+  src: url('./fonts/phi/Phi-Sans/PhiSans-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Sans";
+  src: url('./fonts/phi/Phi-Sans/PhiSans-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Sans";
+  src: url('./fonts/phi/Phi-Sans/PhiSans-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Sans Condensed";
+  src: url('./fonts/phi/Phi-Sans/PhiSansCondensed-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Sans Condensed";
+  src: url('./fonts/phi/Phi-Sans/PhiSansCondensed-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Sans Condensed";
+  src: url('./fonts/phi/Phi-Sans/PhiSansCondensed-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Sans Condensed";
+  src: url('./fonts/phi/Phi-Sans/PhiSansCondensed-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Serif";
+  src: url('./fonts/phi/Phi-Serif/PhiSerif-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Serif";
+  src: url('./fonts/phi/Phi-Serif/PhiSerif-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Serif";
+  src: url('./fonts/phi/Phi-Serif/PhiSerif-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Serif";
+  src: url('./fonts/phi/Phi-Serif/PhiSerif-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Serif Condensed";
+  src: url('./fonts/phi/Phi-Serif/PhiSerifCondensed-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Serif Condensed";
+  src: url('./fonts/phi/Phi-Serif/PhiSerifCondensed-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Serif Condensed";
+  src: url('./fonts/phi/Phi-Serif/PhiSerifCondensed-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phi-Serif Condensed";
+  src: url('./fonts/phi/Phi-Serif/PhiSerifCondensed-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Chatty Whims";
+  src: url('./fonts/phi/Chatty-Whims/ChattyWhims-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Chatty Whims";
+  src: url('./fonts/phi/Chatty-Whims/ChattyWhims-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Chatty Whims";
+  src: url('./fonts/phi/Chatty-Whims/ChattyWhims-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Chatty Whims";
+  src: url('./fonts/phi/Chatty-Whims/ChattyWhims-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Chatty Whims Condensed";
+  src: url('./fonts/phi/Chatty-Whims/ChattyWhimsCondensed-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Chatty Whims Condensed";
+  src: url('./fonts/phi/Chatty-Whims/ChattyWhimsCondensed-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Chatty Whims Condensed";
+  src: url('./fonts/phi/Chatty-Whims/ChattyWhimsCondensed-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Chatty Whims Condensed";
+  src: url('./fonts/phi/Chatty-Whims/ChattyWhimsCondensed-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lora's Spark";
+  src: url('./fonts/phi/Loras-Spark/LorasSpark-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lora's Spark";
+  src: url('./fonts/phi/Loras-Spark/LorasSpark-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lora's Spark";
+  src: url('./fonts/phi/Loras-Spark/LorasSpark-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lora's Spark";
+  src: url('./fonts/phi/Loras-Spark/LorasSpark-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lora's Spark Condensed";
+  src: url('./fonts/phi/Loras-Spark/LorasSparkCondensed-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lora's Spark Condensed";
+  src: url('./fonts/phi/Loras-Spark/LorasSparkCondensed-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lora's Spark Condensed";
+  src: url('./fonts/phi/Loras-Spark/LorasSparkCondensed-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lora's Spark Condensed";
+  src: url('./fonts/phi/Loras-Spark/LorasSparkCondensed-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

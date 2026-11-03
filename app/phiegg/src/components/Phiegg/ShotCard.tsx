@@ -40,7 +40,7 @@ export const ShotCard: React.FC<{ post: Post }> = ({ post }) => {
       <Stack direction="row" gap={1} justify="between">
         <Stack direction="row" gap={1}>
           <Button variant="ghost" size="sm" icon={<Icon icon={Heart} size="sm" />} onClick={() => s.toggle('liked', post.id)} aria-label={t('likes', { n: '' })} />
-          <Button variant="ghost" size="sm" icon={<Icon icon={MessageCircle} size="sm" />} onClick={() => s.openPost(post.id)} aria-label={t('comments', { n: count })} />
+          <Button variant="ghost" size="sm" icon={<Icon icon={MessageCircle} size="sm" />} onClick={() => s.openComments(post.id)} aria-label={t('comments', { n: count })} />
           <Button variant="ghost" size="sm" icon={<Icon icon={Repeat} size="sm" />} onClick={() => s.flash(t('reshared'))} aria-label={t('reshared')} />
         </Stack>
         <Button variant="ghost" size="sm" icon={<Icon icon={Bookmark} size="sm" />} onClick={() => { s.toggle('saved', post.id); s.flash(t('saved')); }} aria-label={t('saved')} />

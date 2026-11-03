@@ -1,4 +1,4 @@
-// Identity delegation: the Phiora account (puikit apps/phiora-server) ↔ the PhiOne identity on the Phient platform.
+// Identity delegation: the Phiora account (puikit app/phiora-server) ↔ the PhiOne identity on the Phient platform.
 //   1. Phiora says who is signed in (GET /me, session cookie).
 //   2. Phiora issues a short-lived delegation for Phient (POST /auth/delegation → HS256 JWT).
 //   3. Phione sends it to Phient as Authorization: Bearer; GET /v2/identity/me checks it and looks the identity up.

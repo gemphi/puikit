@@ -12,9 +12,8 @@ import { RecordSheet } from './RecordSheet';
 import { PersonLine } from './PersonLine';
 import { PersonAvatar } from './PersonAvatar';
 import { EntityAvatar } from './EntityAvatar';
-import { Tile, tileColour } from './Tile';
+import { Tile } from './Tile';
 import { postTile } from './ShotCard';
-import { usePageTheme } from '../../lib/pageTheme';
 import { CommerceOverlays } from './Commerce';
 import { PoolOverlays } from './Pools';
 import { CollectionSheet } from './CollectionSheet';
@@ -54,38 +53,23 @@ const Story: React.FC = () => {
   );
 };
 
-const Shot: React.FC = () => {
-  const s = useStore(phieggStore); const o = s.overlay.kind === 'shot' ? s.overlay : null;
-  const post = o ? postById(o.postId) : undefined; const n = post?.slides.length ?? 1;
-  useEffect(() => { if (!o?.auto || n < 2) return; const id = setInterval(() => s.slide(1), site.autoplay.slideMs); return () => clearInterval(id); }, [o?.auto, o?.slide, n]);
+/** A post's comments: what a comment button opens, from the post's page or its card. */
+const Comments: React.FC = () => {
+  const s = useStore(phieggStore); const o = s.overlay.kind === 'comments' ? s.overlay : null;
+  const post = o ? postById(o.postId) : undefined;
   const thread = useThreadFor(o?.postId, D.shows.shows.find((x) => x.id === o?.postId)?.looks[o?.slide ?? 0]?.poseId);
-  // The opened post is the same theme as its card: the page wears the slide's render colour while it is open.
-  const pt = post ? postTile(post, o?.slide ?? 0) : undefined; const sl0 = post?.slides[o?.slide ?? 0] ?? post?.slides[0];
-  usePageTheme(pt && sl0 ? tileColour({ tone: sl0.tone, title: sl0.title, sub: sl0.caption, depth: pt.depth, color: pt.color }).hex : undefined, null, 'soft', 'post');
   if (!o || !post) return null;
-  const sl = post.slides[o.slide] ?? post.slides[0]; const p = person(post.authorId);
+  const p = person(post.authorId);
   type TC = { id: string; targetId?: string; parentId: string | null; authorId: string; text: string; at: string; likes: number };
-  const show = D.shows.shows.find((x) => x.id === post.id); const poseId = show?.looks[o.slide]?.poseId;
   const all: TC[] = [...post.comments.map((c) => ({ ...c, parentId: null })), ...((thread ?? []) as TC[]), ...(s.comments[post.id] ?? []).map((c) => ({ ...c, parentId: null }))];
   return (
-    <Modal isOpen onClose={s.close} size="xl" title={<PersonLine id={p.id} sub={post.caption} />}>
-      <Stack direction="row" gap={4} wrap align="start">
-        <Stack direction="column" gap={2} flex="1.4 1 20rem">
-          <Tile key={o.slide} animate {...postTile(post, o.slide)} ratio="4/5" big title={sl.title} sub={sl.caption} badges={<><Tag round size="sm">{t('slideOf', { i: o.slide + 1, n })}</Tag>{n > 1 && <Tag round size="sm" interactive onClick={() => s.setAuto(!o.auto)}>{o.auto ? t('autoplayOn') : t('autoplayOff')}</Tag>}</>} />
-          {n > 1 && <Stack direction="row" justify="center" gap={2}><Button variant="ghost" icon={<Icon icon={ChevronLeft} size="sm" />} onClick={() => s.slide(-1)} aria-label={t('prev')} />
-            <TabList size="sm" variant="pills" aria-label="Slides" activeId={String(o.slide)} onChange={(id) => s.slide(Number(id), true)} items={post.slides.map((_, i) => ({ id: String(i), label: String(i + 1) }))} />
-            <Button variant="ghost" icon={<Icon icon={ChevronRight} size="sm" />} onClick={() => s.slide(1)} aria-label={t('next')} /></Stack>}
-        </Stack>
-        <Stack direction="column" gap={3} flex="1 1 17.5rem" minWidth="0" paddingTop={5}>
-          <CommentThread aria-label={t('lsColComments')} maxDepth={6} depth={2} maxHeight="60vh" comments={all.map((c) => ({ id: c.id, parentId: c.parentId, author: <PersonLine id={c.authorId} size="sm" />, meta: c.at, text: c.text }))}
-            labels={{ reply: t('tcReply'), hide: t('tcHide'), show: (n) => t('tcShow', { n }) }} />
-          <Composer placeholder={p.isAgent ? t('commentAgentPh', { name: p.name }) : t('commentPh')} onSend={(v) => s.comment(post.id, v)} />
-          {post.authorId === D.core.currentUserId && D.feed.shots.some((x) => x.id === post.id) && (
-            <Stack direction="row" justify="end"><Button size="sm" variant="danger" onClick={() => s.removeShot(post.id)}>{t('shotRemove')}</Button></Stack>
-          )}
-        </Stack>
+    <Drawer isOpen onClose={s.close} position="bottom" size="lg" expandable expandLabel={t('expand')} collapseLabel={t('collapse')} title={t('comments', { n: all.length })}>
+      <Stack direction="column" gap={3}>
+        <CommentThread aria-label={t('lsColComments')} maxDepth={6} depth={2} comments={all.map((c) => ({ id: c.id, parentId: c.parentId, author: <PersonLine id={c.authorId} size="sm" />, meta: c.at, text: c.text }))}
+          labels={{ reply: t('tcReply'), hide: t('tcHide'), show: (n) => t('tcShow', { n }) }} />
+        <Composer placeholder={p.isAgent ? t('commentAgentPh', { name: p.name }) : t('commentPh')} onSend={(v) => s.comment(post.id, v)} />
       </Stack>
-    </Modal>
+    </Drawer>
   );
 };
 
@@ -187,6 +171,6 @@ const PersonDrawer: React.FC = () => {
 
 export const Overlays: React.FC = () => {
   const s = useStore(phieggStore);
-  return <>{s.overlay.kind === 'story' && <Story />}{s.overlay.kind === 'shot' && <Shot />}{s.overlay.kind === 'chat' && <ChatSheet />}{s.overlay.kind === 'nest' && <NestNew />}{s.overlay.kind === 'person' && <PersonDrawer />}{s.overlay.kind === 'editProfile' && <EditProfile />}{s.overlay.kind === 'create' && <CreateSheet />}{s.overlay.kind === 'record' && <RecordSheet />}{s.overlay.kind === 'editClub' && <EditClub />}<CommerceOverlays /><PoolOverlays />{s.overlay.kind === 'list' && <CollectionSheet list={s.overlay.list} />}
+  return <>{s.overlay.kind === 'story' && <Story />}{s.overlay.kind === 'comments' && <Comments />}{s.overlay.kind === 'chat' && <ChatSheet />}{s.overlay.kind === 'nest' && <NestNew />}{s.overlay.kind === 'person' && <PersonDrawer />}{s.overlay.kind === 'editProfile' && <EditProfile />}{s.overlay.kind === 'create' && <CreateSheet />}{s.overlay.kind === 'record' && <RecordSheet />}{s.overlay.kind === 'editClub' && <EditClub />}<CommerceOverlays /><PoolOverlays />{s.overlay.kind === 'list' && <CollectionSheet list={s.overlay.list} />}
     {s.toast && <Toast message={s.toast} placement="center" />}</>;
 };

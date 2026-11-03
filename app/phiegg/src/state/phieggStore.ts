@@ -10,7 +10,7 @@ import { record } from '../lib/activity';
 import { ONBOARDING } from '../lib/onboarding';
 /** Which page param a record id in the address fills: #/pool/<id>, #/club/<id>, #/world/<id>… One map for the
     address, agent hrefs and navigation, so every record has a link. */
-const ID_PARAM: Record<string, string> = { world: 'worldId', show: 'showId', club: 'clubId', city: 'cityId', shop: 'storeId', pool: 'poolId', profile: 'profileId', collection: 'nestId' };
+const ID_PARAM: Record<string, string> = { world: 'worldId', show: 'showId', club: 'clubId', city: 'cityId', shop: 'storeId', pool: 'poolId', profile: 'profileId', collection: 'nestId', post: 'postId' };
 const parseRoute = (hash: string): { tab: string; params: Record<string, string> } => {
   const [tab = '', id] = hash.replace(/^#\/?/, '').split('/');
   return { tab, params: id && ID_PARAM[tab] ? { [ID_PARAM[tab]]: decodeURIComponent(id) } : {} };
@@ -31,7 +31,8 @@ export type Frame = StoryFrame & { set: string; setK: number; i: number };
 export type Overlay =
   | { kind: 'none' }
   | { kind: 'story'; uid: ID; frames: Frame[]; idx: number; paused: boolean }
-  | { kind: 'shot'; postId: ID; slide: number; auto: boolean }
+  /** A post's comments, opened from the post's page or its card. */
+  | { kind: 'comments'; postId: ID; slide: number }
   /** The agent chat sheet: agents · chat · details. `detail` is the right column's back stack (last = shown). */
   | { kind: 'chat'; agentId: ID; detail: DetailRef[] }
   | { kind: 'nest'; hostId: ID; parentId: ID | null; nestKind: NestKind }
@@ -57,7 +58,7 @@ export type Overlay =
 export interface Appearance { radius: string; gradient: string; motion: string; sidebar: string; content: string; opacity: string }
 type Flags = Record<string, boolean>;
 export type FlagKey = 'liked' | 'saved' | 'follow' | 'rsvp';
-export interface Params { worldId?: ID; showId?: ID; clubId?: ID; profileId?: ID; cityId?: ID; storeId?: ID; poolId?: ID; nestId?: ID; feedKind?: string }
+export interface Params { worldId?: ID; showId?: ID; clubId?: ID; profileId?: ID; cityId?: ID; storeId?: ID; poolId?: ID; nestId?: ID; feedKind?: string; postId?: ID }
 
 export interface PhieggState extends Required<Params> {
   tab: string; liked: Flags; saved: Flags; follow: Flags; rsvp: Flags;
@@ -73,7 +74,8 @@ export interface PhieggState extends Required<Params> {
   openLook: (id: ID) => void; openAsset: (id: ID) => void; openSwap: (giveId: ID, getId?: ID) => void; openStat: (poolId: ID, metricId: string) => void; openList: (list: string) => void; openCart: () => void; openSeries: (id: ID) => void; openPlace: (id: ID) => void;
   hist: { tab: string; p: Params }[]; back: () => void;
   go: (tab: string, p?: Params) => void; toggle: (k: FlagKey, id: ID) => void; flash: (m: string) => void; close: () => void;
-  openPost: (id: ID) => void; slide: (d: number, abs?: boolean) => void; setAuto: (a: boolean) => void;
+  /** A post click goes to the post's page; what you do from there opens in sheets. */
+  openPost: (id: ID) => void; openComments: (id: ID, slide?: number) => void;
   openStory: (uid: ID, from?: number) => void; storyStep: (d: number) => void; pause: (p: boolean) => void;
   openChat: (id: ID, text?: string, details?: boolean) => void;
   /** Push a record onto the chat sheet's details column (opens the sheet if needed). */
@@ -99,7 +101,7 @@ const hrefToNav = (href: string): [string, Params] => {
 
 export const phieggStore = createStore<PhieggState>((set, get) => ({
   // The public home page is where a first visit lands; `#tab` in the address opens a page directly.
-  tab: startTab(), dataRev: 0, worldId: D.core.worlds[0].id, showId: D.shows.shows[0]?.id ?? '', clubId: D.club.clubId, profileId: D.profile.userId, cityId: D.core.worlds[0].cities[0].id, storeId: FLAGSHIP_ID, poolId: D.pools.pools[0].id, nestId: '', ...START.params,
+  tab: startTab(), dataRev: 0, worldId: D.core.worlds[0].id, showId: D.shows.shows[0]?.id ?? '', clubId: D.club.clubId, profileId: D.profile.userId, cityId: D.core.worlds[0].cities[0].id, storeId: FLAGSHIP_ID, poolId: D.pools.pools[0].id, nestId: '', postId: '', ...START.params,
   ...FLAGS.get(), nests: D.hosts.nests.slice(), nestMsgs: { ...D.hosts.messages }, comments: {}, chats: CHATS.get(),
   overlay: { kind: 'none' }, toast: null, rail: 'home', searchQ: '', feedKind: 'all',
   appearance: APPEARANCE.get(),
@@ -119,7 +121,7 @@ export const phieggStore = createStore<PhieggState>((set, get) => ({
   openRecord: (recordKind, id) => set({ overlay: { kind: 'record', recordKind, id } }),
   openEditClub: (id) => set({ overlay: { kind: 'editClub', id } }),
   removeShot: (id) => {
-    const done = () => { set({ overlay: { kind: 'none' }, dataRev: Date.now() }); get().flash(t('shotRemoved')); };
+    const done = () => { set({ overlay: { kind: 'none' }, dataRev: Date.now() }); if (get().tab === 'post') get().back(); get().flash(t('shotRemoved')); };
     if (!hasApi) { const i = D.feed.shots.findIndex((x) => x.id === id); if (i >= 0) D.feed.shots.splice(i, 1); done(); return; }
     void liveRemove('shot', id).then((r) => {
       if (r.ok) done();
@@ -145,17 +147,15 @@ export const phieggStore = createStore<PhieggState>((set, get) => ({
   openAsset: (id) => { record('view', id, { refKind: 'asset' }); set({ overlay: { kind: 'asset', id } }); },
   openPlace: (id) => set({ overlay: { kind: 'place', id } }),
   hist: [],
-  go: (tab, p = {}) => { const g = get(); const hist = [...g.hist, { tab: g.tab, p: { worldId: g.worldId, showId: g.showId, clubId: g.clubId, profileId: g.profileId, cityId: g.cityId, storeId: g.storeId, poolId: g.poolId, nestId: g.nestId, feedKind: g.feedKind } }].slice(-40);
+  go: (tab, p = {}) => { const g = get(); const hist = [...g.hist, { tab: g.tab, p: { worldId: g.worldId, showId: g.showId, clubId: g.clubId, profileId: g.profileId, cityId: g.cityId, storeId: g.storeId, poolId: g.poolId, nestId: g.nestId, feedKind: g.feedKind, postId: g.postId } }].slice(-40);
     set({ tab, ...p, hist, overlay: { kind: 'none' } } as Partial<PhieggState>); writeRoute(tab, get() as unknown as Record<string, unknown>); },
   back: () => { const hist = get().hist.slice(); const prev = hist.pop(); if (prev) { set({ tab: prev.tab, ...prev.p, hist, overlay: { kind: 'none' } } as Partial<PhieggState>); writeRoute(prev.tab, get() as unknown as Record<string, unknown>); } },
   toggle: (k, id) => { const on = !get()[k][id]; record((({ liked: ['like', 'unlike'], saved: ['save', 'unsave'], follow: ['follow', 'unfollow'], rsvp: ['rsvp', 'unrsvp'] } as const)[k])[on ? 0 : 1], id);
     set({ [k]: { ...get()[k], [id]: on } } as Partial<PhieggState>); },
   flash: (toast) => { set({ toast }); setTimeout(() => get().toast === toast && set({ toast: null }), site.autoplay.toastMs); },
   close: () => set({ overlay: { kind: 'none' } }),
-  openPost: (postId) => { record('open', postId, { refKind: 'post' }); set({ overlay: { kind: 'shot', postId, slide: 0, auto: true } }); },
-  slide: (d, abs = false) => { const o = get().overlay; if (o.kind !== 'shot') return;
-    const n = postById(o.postId)?.slides.length ?? 1; set({ overlay: { ...o, slide: abs ? d : (o.slide + d + n) % n } }); },
-  setAuto: (auto) => { const o = get().overlay; if (o.kind === 'shot') set({ overlay: { ...o, auto } }); },
+  openPost: (postId) => { record('open', postId, { refKind: 'post' }); get().go('post', { postId }); },
+  openComments: (postId, slide = 0) => set({ overlay: { kind: 'comments', postId, slide } }),
   openStory: (uid, from = 0) => {
     const pool = poolOf(uid);
     const frames = (pool ? poolStory(pool) : storySets(uid)).slice(from).flatMap((h, k) => h.frames.map((f, i) => ({ ...f, set: h.label, setK: k, i })));

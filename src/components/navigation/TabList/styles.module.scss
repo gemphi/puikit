@@ -42,7 +42,7 @@
   color: var(--phi-color-text-secondary);
   font: inherit;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: var(--phi-font-weight-medium);
   line-height: 1.2;
   cursor: pointer;
   transition: color var(--phi-transition-normal), border-color var(--phi-transition-normal), background-color var(--phi-transition-normal),

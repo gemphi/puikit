@@ -100,10 +100,10 @@
   color: var(--phi-color-text-inverse);
 }
 .railText { display: flex; flex-direction: column; min-width: 0; gap: 1px; }
-.railLabel { font-weight: 600; }
+.railLabel { font-weight: var(--phi-font-weight-medium); }
 .railHint { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-.railRow[data-state="active"] .railLabel { font-weight: 700; }
+.railRow[data-state="active"] .railLabel { font-weight: var(--phi-font-weight-medium); }
 
 .aside {
   margin-top: var(--phi-space-2);
@@ -138,7 +138,7 @@
   min-width: 0;
 }
 .group.full { grid-column: 1 / -1; }
-.groupLabel { font-weight: 600; }
+.groupLabel { font-weight: var(--phi-font-weight-medium); }
 .control > :global(*) { width: 100%; }
 .groupHint { margin-top: calc(-1 * var(--phi-space-1)); }
 

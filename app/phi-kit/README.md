@@ -1,6 +1,6 @@
 # phi-kit — shared shell for the Phiace apps
 
-Not published. Every `apps/phi*` app imports it through the `@phi-kit` alias.
+Not published. Every `app/phi*` app imports it through the `@phi-kit` alias.
 
 - **Theme:** `PuiProvider defaultThemeStyle="organic" defaultBrand="phiegg"` (tokens in `src/tokens/_organic.scss`).
 - **Shell (`PhiShell`):** rail (apps, You, Settings) → section menu (the app's `nav`, ending with You + Settings) → content → optional right-bar. Mobile: Menu button opens rail + menu as a drawer.
@@ -14,4 +14,4 @@ Not published. Every `apps/phi*` app imports it through the `@phi-kit` alias.
 - **Lists (`src/ListView.tsx`):** the view toolbar (tile, list, grid), Filter & sort as a drawer from the right (facets from the rows, search, sorts), cards or a sortable table, pages.
 - **Wallet:** `src/wallet.ts` is a localStorage stand-in for the ledger API (same `usd/egg/sum/eth` shape as the prototype).
 
-New app: copy any `apps/phi*` folder, change the key in `src/main.tsx`, `package.json` name, port, and its `public/data/<key>.json`; add it to `registry.json`.
+New app: copy any `app/phi*` folder, change the key in `src/main.tsx`, `package.json` name, port, and its `public/data/<key>.json`; add it to `registry.json`.

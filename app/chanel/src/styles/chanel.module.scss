@@ -19,7 +19,7 @@
 .wordmark {
   font-family: var(--chanel-serif);
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: var(--phi-font-weight-medium);
   letter-spacing: var(--chanel-track-wide);
   text-indent: var(--chanel-track-wide);
   line-height: 1;
@@ -37,7 +37,6 @@
 .display--md { font-size: clamp(1.5rem, 3vw, 2rem); }
 
 .label {
-  text-transform: uppercase;
   letter-spacing: var(--chanel-track-label);
   font-size: var(--phi-font-size-sm);
 }

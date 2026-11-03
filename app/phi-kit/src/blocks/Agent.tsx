@@ -71,7 +71,7 @@ export const Agent: React.FC<{ b: Block }> = ({ b }) => {
           <Tag intent={hasPhient ? (meta ? 'success' : 'warning') : undefined} minimal round size="sm">{hasPhient ? (meta ? 'On the Phient platform' : 'Connecting') : 'Platform off'}</Tag>
         </Stack>
         <Text size="sm" intent="secondary">{b.intro || meta?.description || 'An agent on the Phient platform.'}</Text>
-        {!hasPhient && <Text size="xs" intent="muted">Start the platform (gemphi/phient: uvicorn phiadk.phiapi.app:create_app --factory --port 8000) and set VITE_PHIADK_API, or run node apps/dev-all.mjs --phiadk.</Text>}
+        {!hasPhient && <Text size="xs" intent="muted">Start the platform (gemphi/phient: uvicorn phiadk.phiapi.app:create_app --factory --port 8000) and set VITE_PHIADK_API, or run node app/dev-all.mjs --phiadk.</Text>}
       </Stack>
 
       <Stack direction="column" gap={2} surface="card">

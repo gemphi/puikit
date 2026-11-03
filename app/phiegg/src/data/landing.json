@@ -89,6 +89,25 @@
     "primary": "Open a host",
     "secondary": "Apply to Phipad"
   },
+  "art": {
+    "heroBack": "welcome/stage.webp",
+    "heroCast": [
+      "welcome/city-float.webp",
+      "welcome/caves.webp"
+    ],
+    "closingCast": [
+      "welcome/caves.webp",
+      "welcome/city-float.webp"
+    ],
+    "worlds": {
+      "Chatty Valley": {
+        "image": "welcome/duo-beach.webp"
+      },
+      "Skim City": {
+        "image": "welcome/city-crew.webp"
+      }
+    }
+  },
   "featured": {
     "worldIds": [
       "w_loraland",
