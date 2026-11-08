@@ -17,6 +17,7 @@ export const FONTS: FontChoice[] = [
   { id: 'walt', label: 'Phi-Walt', family: 'Phi-Walt' },
   { id: 'hard', label: 'Phi-Hard', family: 'Phi-Hard' },
   { id: 'pill', label: 'Phi-Pill', family: 'Phi-Pill' },
+  { id: 'pill-open', label: 'Phi-Pill Open', family: 'Phi-Pill Open' },
   { id: 'sans', label: 'Phi-Sans', family: 'Phi-Sans' },
   { id: 'serif', label: 'Phi-Serif', family: 'Phi-Serif' },
   { id: 'chatty', label: 'Chatty Whims', family: 'Chatty Whims' },
@@ -26,8 +27,11 @@ export const FONTS: FontChoice[] = [
 const KEY = 'phi-font';
 const FALLBACK = '-apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif';
 
+/** What an app reads in until a person picks: the look's own face, unless the app names one at mount. */
+let fallbackId = 'theme';
+
 const read = (): string => {
-  try { return window.localStorage.getItem(KEY) ?? 'theme'; } catch { return 'theme'; }
+  try { return window.localStorage.getItem(KEY) ?? fallbackId; } catch { return fallbackId; }
 };
 
 /** Inline on the root, so it wins over any look; `theme` clears it and the look's own face returns. */
@@ -44,8 +48,11 @@ export function applyFont(id: string): void {
   root.setProperty('--phi-font-heading', stack);
 }
 
-/** Put the saved choice back on boot. */
-export const applySavedFont = (): void => applyFont(read());
+/** Put the saved choice back on boot; with nothing saved, the app's own default (`defaultId`), else the look's face. */
+export const applySavedFont = (defaultId?: string): void => {
+  fallbackId = FONTS.some((f) => f.id === defaultId) ? defaultId! : 'theme';
+  applyFont(read());
+};
 
 export function useFont(): [FontChoice, (id: string) => void] {
   const [id, setId] = useState(read);

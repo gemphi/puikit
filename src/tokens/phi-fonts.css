@@ -420,6 +420,16 @@
   font-style: normal;
   font-display: swap;
 }
+/* Phi-Pill Light with the space inside each letter 64 units wider, one colour, Light only: Phiegg's and Phiber's
+   face (phikit/crates/phiber/assets/phi-fonts/Phi-Pill-Open/pillopen.py). The one face answers every weight, so a
+   bold label is drawn in the real letters rather than smeared into a fake bold. */
+@font-face {
+  font-family: "Phi-Pill Open";
+  src: url('./fonts/phi/Phi-Pill-Open/PhiPillOpen-Light.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
 @font-face {
   font-family: "Phi-Pill Condensed";
   src: url('./fonts/phi/Phi-Pill/PhiPillCondensed-Light.woff2') format('woff2');

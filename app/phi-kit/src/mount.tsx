@@ -10,11 +10,12 @@ import { applySavedFont } from './fonts';
 import { DEFAULT_GRADIENT, DEFAULT_LOOK, LOOKS, migrateLook } from './looks';
 
 /** Boot a Phi app: the SpaceX look (rocket-interior style + brand), dark by default, unless the app names its own look
- *  and mode. Users switch look and mode in Settings / Appearance.
+ *  and mode, and the look's own face unless the app names a font (an id from fonts.ts). Users switch look and mode in
+ *  Settings / Appearance and the font in the header menu.
  *  AccountLinks finishes emailed account links (?phi_verify / ?phi_reset) in whichever app they land on. */
-export const mountWith = (node: React.ReactNode, lookId?: string, mode: 'light' | 'dark' = 'dark') => {
+export const mountWith = (node: React.ReactNode, lookId?: string, mode: 'light' | 'dark' = 'dark', fontId?: string) => {
   migrateLook();
-  applySavedFont();
+  applySavedFont(fontId);
   const look = LOOKS.find((l) => l.id === lookId);
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
