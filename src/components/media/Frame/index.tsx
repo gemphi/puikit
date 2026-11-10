@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '../../../utils/cn';
 import { Box } from '../../layout/Box';
+import { useFitRatio } from '../../layout/Fit';
 import styles from './styles.module.scss';
 
 export type FrameProps = Omit<React.HTMLAttributes<HTMLElement>, 'color'> & {
@@ -28,10 +29,14 @@ export type FrameProps = Omit<React.HTMLAttributes<HTMLElement>, 'color'> & {
  * A box of a fixed shape that centres what it holds (an image, a name) on a ground: a picture frame for media that are
  * not a full card. Images inside fill it and keep their proportions (`Image fit="contain"`).
  */
-export const Frame = ({ ratio = '3/4', rounded = 'lg', place = 'center', tint, tintStrength = 24, ink, width, flex, maxWidth, className, children, ...props }: FrameProps) => (
+export const Frame = ({ ratio: own = '3/4', rounded = 'lg', place = 'center', tint, tintStrength = 24, ink, width, flex, maxWidth, className, children, ...props }: FrameProps) => {
+  // Inside a Fit (an expanded picture) the frame takes the Fit's shape, so it fills the stage.
+  const ratio = useFitRatio() ?? own;
+  return (
   <Box className={cn('pui-frame', styles.frame, styles[`r-${rounded}`], place === 'end-start' && styles.endStart, maxWidth && styles.centered, className)}
     style={{ aspectRatio: ratio, width, flex, maxWidth, color: ink, ['--pui-frame-tint' as string]: tint, ['--pui-frame-strength' as string]: tint ? `${tintStrength}%` : undefined }}
     data-tint={tint ? '' : undefined} {...props}>
     {children}
   </Box>
-);
+  );
+};

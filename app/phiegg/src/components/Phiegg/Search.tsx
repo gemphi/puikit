@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Avatar, Box, Button, Icon, Input, Pressable, Stack, Text } from '@pui/components';
 import { useStore } from '@pui/store';
 import { ChevronLeft, ChevronRight, Search as SearchIcon } from 'lucide-react';
-import { D, cityOf, clubOf, clubsOfCollection, fmt, initials, person, postById, showOf, storeOf, t, worldOf, rideKind } from '../../lib/data';
+import { D, cityOf, clubOf, clubsOfCollection, fmt, initials, lookOf, lookStore, person, placeOf, postById, seriesOf, showOf, storeOf, t, worldOf, rideKind } from '../../lib/data';
 import type { SiteCopyKey } from '../../lib/data';
 import { phieggStore } from '../../state/phieggStore';
 import styles from './Search.module.scss';
@@ -86,6 +86,9 @@ export const Crumbs: React.FC<{ compact?: boolean }> = ({ compact }) => {
   else if (s.tab === 'shop') trail.push([t('pgShop'), null], [storeOf(s.storeId).name, null]);
   else if (s.tab === 'show') trail.push([t('pgShows'), () => s.go('shows')], [showOf(s.showId)?.title ?? '', null]);
   else if (s.tab === 'profile') trail.push([t('pgCreators'), () => s.go('explore')], [person(s.profileId).name, null]);
+  else if (s.tab === 'look') { const l = lookOf(s.lookId); const st = l && lookStore(l); trail.push([t('pgShop'), null], [st?.name ?? '', () => st && s.go('shop', { storeId: st.id })], [l?.name ?? '', null]); }
+  else if (s.tab === 'title') trail.push([t('pgShows'), () => s.go('series')], [seriesOf(s.titleId)?.title ?? '', null]);
+  else if (s.tab === 'place') trail.push([t('pgWorlds'), () => s.go('worlds')], [placeOf(s.placeId)?.place.name ?? '', null]);
   else if (s.tab === 'post') trail.push([t('pgFeedPosts'), () => s.go('feed', { feedKind: 'all' })], [postById(s.postId)?.slides[0]?.title ?? '', null]);
   else if (s.tab !== 'feed') trail.push([label[s.tab] ? t(label[s.tab]) : s.tab.charAt(0).toUpperCase() + s.tab.slice(1), null]);
   return (

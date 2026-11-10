@@ -26,8 +26,9 @@
   padding: 0.25rem 1rem 0;
   border: none;
   border-bottom: 2px solid transparent;
-  background-color: var(--phi-control-bg, transparent);
-  background-image: var(--phi-gradient-control-soft, none);
+  /* Glass (tokens/_glass.scss): from nothing to glass across at rest; the theme's colour under the pointer. */
+  background-color: transparent;
+  background-image: var(--phi-glass-to-across);
   border-radius: var(--phi-radius-md) var(--phi-radius-md) 0 0;
   color: var(--phi-color-text-secondary);
   font-size: var(--phi-font-size-sm);
@@ -39,7 +40,7 @@
 }
 
 .tab:hover {
-  background-color: var(--phi-control-bg-hover, var(--phi-color-background-secondary));
+  background-color: var(--phi-tint);
   color: var(--phi-color-text-primary);
 }
 

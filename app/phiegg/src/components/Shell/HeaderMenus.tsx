@@ -7,7 +7,6 @@ import { appUrl } from '@phi-kit/data';
 import { AccountDialog } from '@phi-kit/AccountDialog';
 import { accountsEnabled, signOut, useMe } from '@phi-kit/auth';
 import { FONTS, useFont } from '@phi-kit/fonts';
-import { LOOKS } from '@phi-kit/looks';
 import { usePhieggLook } from './Appearance';
 import { LABEL, USD, fmt, useWallet, type Coin } from '@phi-kit/wallet';
 import { me, site, t, usd } from '../../lib/data';
@@ -64,7 +63,7 @@ export const AccountMenu: React.FC = () => {
           <Divider />
           <Stack direction="column" gap={1}>
             <Text size="xs" intent="muted" weight="bold">{t('lookStyle')}</Text>
-            <Seg label={t('lookStyle')} opts={LOOKS.map((l) => ({ id: l.id, label: l.label }))} value={look.id} set={setLook} />
+            {site.appearance.looks.length > 1 && <Seg label={t('lookStyle')} opts={site.appearance.looks} value={look.id} set={setLook} />}
             <Seg label={t('mode')} opts={site.appearance.themes} value={theme} set={(v) => setTheme(v as typeof theme)} />
           </Stack>
           <Item icon={TypeIcon} onClick={() => setFonts(!fonts)} end={<Stack direction="row" gap={1} align="center"><Text size="xs" intent="muted">{font.label}</Text>{fonts ? <ChevronUp size={14} /> : <ChevronDown size={14} />}</Stack>}>{t('hdFont')}</Item>

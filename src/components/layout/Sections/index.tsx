@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { ArrowDown, ArrowUp, ChevronDown, ChevronUp, Maximize2, Minimize2, PanelBottomOpen, RotateCcw, X } from 'lucide-react';
 import { cn } from '../../../utils/cn';
 import { Box } from '../Box';
@@ -40,6 +40,10 @@ export type SectionsProps = {
   expandLabel?: string; collapseLabel?: string; foldLabel?: string; closeLabel?: string; upLabel?: string; downLabel?: string; resetLabel?: string;
 };
 
+/** True inside a section that is expanded: its content can take the whole stage (Fit) instead of its usual size. */
+const Expanded = createContext(false);
+export const useSectionExpanded = () => useContext(Expanded);
+
 type Saved = { order?: string[]; closed?: Record<string, boolean>; folded?: Record<string, boolean> };
 const load = (key?: string): Saved => { if (!key || typeof localStorage === 'undefined') return {}; try { return JSON.parse(localStorage.getItem('pui:sections:' + key) ?? '{}') as Saved; } catch { return {}; } };
 const save = (key: string | undefined, v: Saved) => { if (!key || typeof localStorage === 'undefined') return; try { localStorage.setItem('pui:sections:' + key, JSON.stringify(v)); } catch { /* storage off */ } };
@@ -71,7 +75,7 @@ export const Sections = ({ sections, className, reorderable = false, storageKey,
   const reset = () => { setOrder([]); setClosed({}); setFolded(Object.fromEntries(sections.filter((x) => x.defaultCollapsed).map((x) => [x.id, true]))); setExpanded(null); };
   const icon = size === 'lg' ? 17 : 15;
   return (
-    <Box className={cn(styles.stack, styles[variant], styles[size], className)} data-expanded={expanded ?? undefined}>
+    <Box className={cn('pui-sections', styles.stack, styles[variant], styles[size], className)} data-expanded={expanded ?? undefined}>
       {shown.map((x) => {
         const isExp = expanded === x.id; const isFold = !!folded[x.id] && !isExp; const at = open.indexOf(x);
         return (
@@ -100,7 +104,7 @@ export const Sections = ({ sections, className, reorderable = false, storageKey,
                 <Button variant="icon" size="sm" onClick={() => { if (isExp) setExpanded(null); setClosed({ ...closed, [x.id]: true }); }} aria-label={closeLabel}><X size={icon} /></Button>
               )}
             </Box>
-            {!isFold && <Box className={styles.body}>{x.content}</Box>}
+            {!isFold && <Box className={styles.body}><Expanded.Provider value={isExp}>{x.content}</Expanded.Provider></Box>}
           </Box>
         );
       })}

@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Box, Button, DataTable, Icon, Image, ItemCard, Pressable, Rows, SpriteImage, Stack, Tag, Text, Title, WorldScene } from '@pui/components';
+import { Box, Button, Card, DataTable, Icon, Image, ItemCard, Pressable, Rows, SpriteImage, Stack, Tag, Text, Title, WorldScene } from '@pui/components';
 import { Minus, Plus } from 'lucide-react';
 import { useStore } from '@pui/store';
 import { D, itemImage, rideSprite, seriesOf, t, worldImage, worldOf, rideKind } from '../../lib/data';
 import { worldLogo } from '../../lib/media';
 import { phieggStore } from '../../state/phieggStore';
+import { Backdrop } from '../../components/Shell/Backdrop';
 import type { RideKind } from '../../types/phiegg';
 import styles from './WelcomePage.module.scss';
 
@@ -18,8 +19,9 @@ const L = D.landing as unknown as {
 };
 const KINDS: RideKind[] = ['car', 'cab', 'van', 'jetski', 'saucer', 'fun'];
 
+/** A section of the welcome: a shared glass Card over the full-screen scene, its heading and its content inside. */
 const Section: React.FC<{ eyebrow?: string; title: string; sub?: string; action?: React.ReactNode; children: React.ReactNode }> = ({ eyebrow, title, sub, action, children }) => (
-  <Box as="section" data-reveal className={styles.section}>
+  <Box as="section" data-reveal><Card hoverable={false} padding="lg"><Box className={styles.section}>
     <Box className={styles.head}>
       <Box className={styles.headCopy}>
         {eyebrow ? <Text as="span" className={styles.eyebrow}>{eyebrow}</Text> : null}
@@ -29,7 +31,7 @@ const Section: React.FC<{ eyebrow?: string; title: string; sub?: string; action?
       {action}
     </Box>
     {children}
-  </Box>
+  </Box></Card></Box>
 );
 
 /** Characters that drift on their own and lean with the pointer, each at its own depth. */
@@ -78,8 +80,9 @@ export const WelcomePage: React.FC = () => {
 
   return (
     <Box ref={page} className={styles.page}>
-      <Box as="section" className={styles.hero} onPointerMove={lean}>
-        <Image className={styles.scene} src={itemImage(L.art.heroBack)} alt="" fit="cover" fill />
+      {/* The scene is the whole screen's backdrop, under the header and the sidebar; the hero's copy floats over it. */}
+      <Backdrop sharp><Image src={itemImage(L.art.heroBack)} alt="" fit="cover" fill /></Backdrop>
+      <Box as="section" className={[styles.hero, styles.open].join(' ')} onPointerMove={lean}>
         <Cast art={L.art.heroCast} />
         <Box className={styles.copy}>
           <Text as="span" className={styles.kicker}>{L.hero.kicker}</Text>
@@ -139,7 +142,7 @@ export const WelcomePage: React.FC = () => {
 
       <Section sub={t('wlStoriesHint')} title={t('wlStories')}>
         <Box className={styles.stories}>{stories.map((x) => (
-          <Pressable key={x.id} className={styles.story} onClick={() => s.openSeries(x.id)} aria-label={x.title}>
+          <Card key={x.id} flush className={styles.story} onClick={() => s.openSeries(x.id)} aria-label={x.title}>
             <Box className={styles.storyArt}><Image className={styles.scene} src={worldImage(worldOf(x.worldId)) ?? ''} alt="" fit="cover" fill loading="lazy" /></Box>
             <Stack direction="column" gap={1} className={styles.storyCopy}>
               <Text as="span" className={styles.storyTitle}>{x.title}</Text>
@@ -147,7 +150,7 @@ export const WelcomePage: React.FC = () => {
               <Text as="span" size="sm" intent="secondary">{x.synopsis}</Text>
               {x.after && <Box><Tag minimal round size="sm">{t('wsAfter', { work: x.after })}</Tag></Box>}
             </Stack>
-          </Pressable>))}</Box>
+          </Card>))}</Box>
       </Section>
 
       <Section title={t('wlCompare')}>

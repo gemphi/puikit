@@ -23,10 +23,11 @@ export const ViewGrid: React.FC<{ children: React.ReactNode; cols?: number; minI
   const { view } = useStore(phieggStore); const { mobile } = useViewport();
   // Tile is the slider: 1–3 large cards per view. Grid is full rows (two a row on phones). List is one a row.
   if (view.mode === 'tile') {
-    // Tile is the stage: one card in the centre, 1 to 3 a side (the toolbar numbers), each half the height of the one in
+    // Tile is the stage: one card in the centre and its neighbours, each half the height of the one in
     // front with half of it tucked under, arrows on the sides and the progress under it.
     const items = React.Children.toArray(children).map((c, i) => ({ id: String((c as React.ReactElement).key ?? i), node: c }));
-    return <StageSlider items={items} sides={mobile ? 1 : Math.min(3, Math.max(1, view.cols))} stageWidth={mobile ? '78vw' : 'min(30rem, 52vw)'} prevLabel={t('slPrev')} nextLabel={t('slNext')} positionLabel={(k, n) => t('slPos', { i: k, n })} />;
+    // How many show, how large the centre is and how the sides fill the row is the kit's (StageSlider), not the page's.
+    return <StageSlider items={items} prevLabel={t('slPrev')} nextLabel={t('slNext')} positionLabel={(k, n) => t('slPos', { i: k, n })} />;
   }
   const cols = view.mode === 'list' ? 1 : mobile ? Math.min(want, 2) : want;
   // Responsive: up to `cols` a row, but never narrower than minItemWidth (the grid measures its own width).

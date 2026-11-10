@@ -100,7 +100,7 @@ export const Drawer = ({
   if (!isOpen) return null;
 
   const sheet = (
-      <Card hoverable={false} tint="none" className={cn('pui-drawer', styles.drawer, styles[position], styles[size], isExpanded && styles.expanded, isFolded && styles.folded)} data-expanded={isExpanded || undefined} data-folded={isFolded || undefined}>
+      <Card hoverable={false} tint="none" className={cn('pui-drawer', styles.drawer, styles[position], styles[size], isExpanded && styles.expanded, isFolded && styles.folded)} data-position={position} data-expanded={isExpanded || undefined} data-folded={isFolded || undefined}>
         <CardHeader className={cn(header != null && styles.headerBar)} action={
           <Stack direction="row" gap={1} align="center">
             {docked && (

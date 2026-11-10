@@ -21,6 +21,14 @@ export const usePhieggLook = () => {
   return [look, set] as const;
 };
 
+/** Phiegg wears only the looks data/site.json lists (today the blue Muse look): a look saved from elsewhere, or from
+ *  before, is swapped for the first listed one when the app opens. */
+export const useListedLook = () => {
+  const [look, setLook] = usePhieggLook();
+  const listed = site.appearance.looks;
+  React.useEffect(() => { if (listed.length && !listed.some((l) => l.id === look.id)) setLook(listed[0].id); }, [look.id]); // eslint-disable-line react-hooks/exhaustive-deps
+};
+
 /** Theme (Apple · SpaceX · Organic), palette (16 seeded), mode, accent, radius, gradients, shades, opacity and motion, options from data/site.json appearance. */
 export const Appearance: React.FC = () => {
   const { theme, setTheme, brandId, setBrandId, setPaletteId, setGradientLevel } = usePuiTheme();
@@ -29,7 +37,7 @@ export const Appearance: React.FC = () => {
   const ap = site.appearance;
   return (
     <Stack direction="column" gap={3}>
-      <Row label={t('lookStyle')} opts={ap.looks} value={look.id} set={setLook} />
+      {ap.looks.length > 1 && <Row label={t('lookStyle')} opts={ap.looks} value={look.id} set={setLook} />}
       <Row label={t('mode')} opts={ap.themes} value={theme} set={(v) => setTheme(v as typeof theme)} />
       <Stack direction="column" gap={1}><Text size="xs" intent="muted" weight="bold">{t('palette')}</Text><PalettePicker noneLabel={t('paletteNone')} /></Stack>
       <Row label={t('accent')} opts={ap.brands} value={brandId} set={(v) => { setBrandId(v as typeof brandId); setPaletteId('none'); }} />

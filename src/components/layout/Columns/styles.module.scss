@@ -15,3 +15,10 @@
   .col:not(:last-child) { display: none; }
   .col { width: 100% !important; min-width: 0 !important; }
 }
+
+/* Glass (tokens/_glass.scss): the left column runs from nothing to glass across, the right one the opposite, and the
+   ones between from glass down to nothing, so a row of columns brightens towards its middle. */
+.col { background-image: var(--phi-glass-from-down); border-color: var(--phi-glass-rim-soft); }
+.col:first-child:not(:last-child), .strip + .col:not(:last-child) { background-image: var(--phi-glass-to-across); }
+.col:last-child:not(:first-child) { background-image: var(--phi-glass-from-across); }
+.strip { background: var(--phi-glass-to-across); }

@@ -15,6 +15,9 @@ $scrim: var(--phi-muse-scrim, rgba(0, 0, 0, 0.6));
   color: $on-media; background: var(--phi-color-gray-900);
 }
 .hero { min-height: clamp(30rem, 78vh, 52rem); padding: clamp(2rem, 6vw, 5rem) clamp(1.25rem, 5vw, 4rem); }
+/* The hero over the full-screen scene (Backdrop): no panel, no frame, just the copy and the cast, a screen tall. */
+.hero.open { background: transparent; border-radius: 0; overflow: visible; min-height: calc(100vh - 56px - 3rem); }
+.hero.open::after { content: none; }
 .closing { min-height: 24rem; padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.25rem, 5vw, 4rem); }
 .hero::after, .closing::after { content: ''; position: absolute; inset: 0; z-index: 0; background: radial-gradient(62% 58% at 50% 46%, $scrim 0%, transparent 100%), linear-gradient(180deg, rgba(5, 9, 11, 0.28) 0%, $scrim 100%); }
 .copy { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 1.25rem; max-width: 46rem; }
@@ -66,9 +69,9 @@ $scrim: var(--phi-muse-scrim, rgba(0, 0, 0, 0.6));
 
 /* Stories: a picture over its words. */
 .stories { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: 1rem; }
-.story.story { display: flex; flex-direction: column; overflow: hidden; width: 100%; padding: 0; border: 0; border-radius: var(--phi-radius-xl) !important; background: var(--phi-color-background-secondary); color: inherit; text-align: left; cursor: pointer; transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.45s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.story.story { display: flex; flex-direction: column; overflow: hidden; width: 100%; padding: 0; border-radius: var(--phi-radius-xl) !important; color: inherit; text-align: left; cursor: pointer; transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.45s cubic-bezier(0.2, 0.7, 0.2, 1); }
 .story.story:hover, .story.story:focus-visible { transform: translateY(-4px); box-shadow: var(--phi-shadow-3); }
-.storyArt { position: relative; overflow: hidden; aspect-ratio: 16 / 10; background: linear-gradient(160deg, color-mix(in srgb, var(--phi-color-primary) 22%, var(--phi-color-background-secondary)), var(--phi-color-background-secondary)); }
+.storyArt { position: relative; overflow: hidden; aspect-ratio: 16 / 10; background: var(--phi-glass-from-down); }
 .storyArt .scene { transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1); }
 .story:hover .storyArt .scene { transform: scale(1.05); }
 .storyCopy { padding: 1.25rem 1.5rem 1.5rem; }

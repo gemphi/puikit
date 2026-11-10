@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Columns, DataTable, Drawer, Input, ItemCard, SpriteImage, Stack, Swatch, Tag, Text, Title } from '@pui/components';
+import { Button, DataTable, Input, ItemCard, SpriteImage, Stack, Swatch, Tag, Text, Title } from '@pui/components';
+import { EntityPage } from './EntityPage';
 import { useStore } from '@pui/store';
 import { useWallet } from '@phi-kit/wallet';
 import { D, cityOf, jewelOf, jewelSprite, rideOf, ridePrice, rideSprite, clubOf, eggOf, eggUsd, fmt, hostOf, person, poolOf, profileItemOf, seriesOf, sumOf, t, usd, worldOf, rideKind, rideMode } from '../../lib/data';
@@ -19,7 +20,7 @@ const Facts: React.FC<{ rows: Row[] }> = ({ rows }) => <DataTable rows={rows} ge
 const egg = (n: number) => fmt(Math.round(n)) + ' EGG';
 
 /**
- * EGG items, SUM machines and profile PFTs open in the same bottom sheet as looks: what it is and its facts in the
+ * EGG items, SUM machines and profile PFTs open on the same kind of page as looks (#/asset/<id>): what it is and its facts in the
  * centre (buy with EGG, or deposit into a SUM), what it links to on the left (host, holder, pool, the productions
  * its host is cast in), and a chat with the club's agent on the right.
  */
@@ -110,13 +111,10 @@ export const AssetSheet: React.FC<{ id: string }> = ({ id }) => {
     </Stack>
   );
   return (
-    <Drawer isOpen onClose={s.close} position="bottom" size="lg" expandable expandLabel={t('expand')} collapseLabel={t('collapse')}
-      title={<Stack direction="row" gap={2} align="center"><Title level={4} size="md">{it.name}</Title><Text size="xs" intent="muted">{typeTag}{club ? ' · ' + club.name : ''}</Text></Stack>}>
-      <Columns expandLabel={t('expand')} collapseLabel={t('collapse')} columns={[
-        { id: 'linked', title: t('asLinked'), content: left, width: '19rem', closable: true, expandable: true },
-        { id: 'item', title: it.name, label: t('asDetails'), content: centre, minWidth: '20rem', expandable: true },
-        { id: 'chat', title: agent.name, label: t('chat'), content: <AgentChat agentId={agent.id} context={it.name} prompts={[e ? t('asAskHost') : m ? t('asAskSum') : c ? t('asAskRide') : j ? t('asAskJewel') : t('asAskPft')]} />, width: '21rem', closable: true, expandable: true },
-      ]} />
-    </Drawer>
+    <EntityPage stickLast picture={hero} title={it.name} sub={<>{typeTag}{club ? ' · ' + club.name : ''}</>} columns={[
+      { id: 'linked', title: t('asLinked'), content: left, width: '19rem' },
+      { id: 'item', title: it.name, label: t('asDetails'), content: centre, minWidth: '20rem' },
+      { id: 'chat', title: agent.name, label: t('chat'), content: <AgentChat agentId={agent.id} context={it.name} prompts={[e ? t('asAskHost') : m ? t('asAskSum') : c ? t('asAskRide') : j ? t('asAskJewel') : t('asAskPft')]} />, width: '21rem' },
+    ]} />
   );
 };

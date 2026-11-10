@@ -11,9 +11,7 @@ import { KindForm } from '../../lib/fields';
 import { phieggStore } from '../../state/phieggStore';
 import { usePlaces } from '../../lib/lazy';
 import { LookImage } from './LookImage';
-import { ItemSheet } from './ItemSheet';
-import { WatchSheet } from './WatchSheet';
-import { AssetSheet } from './AssetSheet';
+import { EntityPage } from './EntityPage';
 import { PersonLine } from './PersonLine';
 import { Tile } from './Tile';
 import type { ShopLook } from '../../types/phiegg';
@@ -56,30 +54,33 @@ const CartDrawer: React.FC = () => {
   );
 };
 
-/** A place inside a city district: what it is, who runs it, and where to go next. */
-const PlaceDrawer: React.FC<{ id: string }> = ({ id }) => {
+/** A place inside a city district, on its own page (#/place/<id>): what it is, who runs it, and where to go next. */
+export const PlacePage: React.FC<{ id: string }> = ({ id }) => {
   const s = useStore(phieggStore); usePlaces(); const hit = placeOf(id); if (!hit) return null;
   const { place: p, district, cityId } = hit; const where = cityOf(cityId); const club = clubOf(p.clubId); const store = club && storeOfClub(club.id);
-  const kind = (site as unknown as { placeKinds: Record<string, string> }).placeKinds[p.kind] ?? p.kind;
+  const kinds = (site as unknown as { placeKinds: Record<string, string> }).placeKinds; const kind = kinds[p.kind] ?? p.kind;
   const others = district.places.filter((x) => x.id !== p.id);
-  return (
-    <Drawer isOpen onClose={s.close} position="right" size="md" title={<Stack direction="column" gap={0}><Title level={4} size="md">{p.name}</Title><Text size="xs" intent="muted">{kind} · {district.name}{where ? ' · ' + where.city.name + ', ' + where.world.name : ''}</Text></Stack>}
-      footer={<Stack direction="row" gap={2} wrap>
+  const tile = (ratio: '16/9') => <Tile animate tone={p.tone} ratio={ratio} depth={{ clubId: p.clubId, worldId: where?.world.id }} title={p.name} sub={district.vibe} badges={<Tag round size="sm">{kind}</Tag>} />;
+  const about = (
+    <Stack direction="column" gap={3}>
+      {tile('16/9')}
+      <Text>{p.desc}</Text>
+      <Stack direction="row" gap={1} wrap><Tag minimal round size="sm">★ {p.rating}</Tag><Tag minimal round size="sm">{t('ctInside', { n: p.visitors })}</Tag><Tag minimal round size="sm">{p.hours}</Tag></Stack>
+      <Stack direction="row" gap={2} wrap>
         <Button variant="primary" onClick={() => s.flash(t('entering', { name: p.name }))}>{t('ctEnter')}</Button>
         {store && <Button variant="outline" onClick={() => s.go('shop', { storeId: store.id })}>{store.name}</Button>}
-        {club && <Button variant="ghost" onClick={() => s.go('club', { clubId: club.id })}>{club.name}</Button>}</Stack>}>
-      <Stack direction="column" gap={3}>
-        <Tile animate tone={p.tone} ratio="16/9" depth={{ clubId: p.clubId, worldId: where?.world.id }} title={p.name} sub={district.vibe} badges={<Tag round size="sm">{kind}</Tag>} />
-        <Text>{p.desc}</Text>
-        <Stack direction="row" gap={1} wrap><Tag minimal round size="sm">★ {p.rating}</Tag><Tag minimal round size="sm">{t('ctInside', { n: p.visitors })}</Tag><Tag minimal round size="sm">{p.hours}</Tag></Stack>
-        {others.length > 0 && <><Title level={5} size="sm">{t('ctAlsoIn', { name: district.name })}</Title>
-          <Stack direction="column" gap={1}>{others.map((o) => <Button key={o.id} size="sm" variant="ghost" align="start" onClick={() => s.openPlace(o.id)}>{o.name} · {(site as unknown as { placeKinds: Record<string, string> }).placeKinds[o.kind] ?? o.kind}</Button>)}</Stack></>}
-      </Stack>
-    </Drawer>
+        {club && <Button variant="ghost" onClick={() => s.go('club', { clubId: club.id })}>{club.name}</Button>}</Stack>
+    </Stack>);
+  const also = <Stack direction="column" gap={1}>{others.map((o) => <Button key={o.id} size="sm" variant="ghost" align="start" onClick={() => s.openPlace(o.id)}>{o.name} · {kinds[o.kind] ?? o.kind}</Button>)}</Stack>;
+  return (
+    <EntityPage picture={tile('16/9')} wear={club?.colors?.[0]} title={p.name} sub={<>{kind} · {district.name}{where ? ' · ' + where.city.name + ', ' + where.world.name : ''}</>} columns={[
+      { id: 'place', title: p.name, content: about, minWidth: '20rem' },
+      ...(others.length ? [{ id: 'also', title: t('ctAlsoIn', { name: district.name }), content: also, width: '19rem' }] : []),
+    ]} />
   );
 };
 
 export const CommerceOverlays: React.FC = () => {
   const o = useStore(phieggStore).overlay;
-  return o.kind === 'look' ? <ItemSheet id={o.id} /> : o.kind === 'cart' ? <CartDrawer /> : o.kind === 'series' ? <WatchSheet id={o.id} /> : o.kind === 'asset' ? <AssetSheet id={o.id} /> : o.kind === 'place' ? <PlaceDrawer id={o.id} /> : null;
+  return o.kind === 'cart' ? <CartDrawer /> : null;
 };
