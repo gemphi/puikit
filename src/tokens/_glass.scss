@@ -1,0 +1,45 @@
+/*
+ * Glass, the one surface every Phi app paints with.
+ *
+ * Glass is one opacity of light (--phi-glass-pct) laid two ways: glass-to, from nothing to glass, and glass-from, from
+ * glass to nothing, each across (left to right) or down (top to bottom). Components pick the way that fits where they
+ * sit, and a layer laid over another adds its light to the one beneath, so nesting brightens on its own:
+ *   card                      from down; a card in a card to down, the next from down again
+ *   drawer                    right from across, left to across, bottom from down
+ *   columns                   the left one to across, the right one from across, the middle from down
+ *   sections                  to down, children of the column they sit in
+ *   tabs, pills, text fields  to across
+ * Glass brings no colour of its own: the theme, or a picture under it, gives the colour. The theme answers the
+ * pointer: under it the same ways are laid again in the theme's colour (--phi-tint-*), or in a card's own colour.
+ * Light is the on-media white the looks define; the light mode lays more of it, since light on a pale page is faint.
+ */
+/* Declared on every themed element, so a dark section inside a light page derives its own glass. */
+:root, [data-theme] {
+  --phi-glass-light: var(--phi-muse-on-media, #fff);
+  --phi-glass-pct: 58%;
+  --phi-glass: color-mix(in srgb, var(--phi-glass-light) var(--phi-glass-pct), transparent);
+  --phi-glass-to-across: linear-gradient(90deg, transparent, var(--phi-glass));
+  --phi-glass-from-across: linear-gradient(90deg, var(--phi-glass), transparent);
+  --phi-glass-to-down: linear-gradient(180deg, transparent, var(--phi-glass));
+  --phi-glass-from-down: linear-gradient(180deg, var(--phi-glass), transparent);
+  /* A floating pane (a drawer, a menu, a bar) keeps the page's own colour under its glass, so text over it reads. */
+  --phi-glass-ground: color-mix(in srgb, var(--phi-color-background) 80%, transparent);
+  /* The rim: on a pale page white would vanish, so the light mode draws it in the theme's own border colour. */
+  --phi-glass-rim: var(--phi-color-border);
+  --phi-glass-rim-soft: color-mix(in srgb, var(--phi-color-border) 60%, transparent);
+  --phi-glass-blur: blur(22px) saturate(160%);
+  /* The theme's colour, laid the same ways, only under the pointer. */
+  --phi-tint-pct: 26%;
+  --phi-tint: color-mix(in srgb, var(--phi-color-primary) var(--phi-tint-pct), transparent);
+  --phi-tint-to-across: linear-gradient(90deg, transparent, var(--phi-tint));
+  --phi-tint-from-across: linear-gradient(90deg, var(--phi-tint), transparent);
+  --phi-tint-to-down: linear-gradient(180deg, transparent, var(--phi-tint));
+  --phi-tint-from-down: linear-gradient(180deg, var(--phi-tint), transparent);
+}
+
+[data-theme='dark'] {
+  --phi-glass-pct: 12%;
+  --phi-tint-pct: 34%;
+  --phi-glass-rim: color-mix(in srgb, var(--phi-glass-light) 16%, transparent);
+  --phi-glass-rim-soft: color-mix(in srgb, var(--phi-glass-light) 8%, transparent);
+}

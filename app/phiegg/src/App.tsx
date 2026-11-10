@@ -9,6 +9,13 @@ import { MobileTabs, SidebarNav } from './components/Shell/Sidebar';
 import { SignIn } from './components/Shell/SignIn';
 import { useViewport } from './lib/viewport';
 import { Overlays } from './components/Phiegg/Overlays';
+import { Stage } from './components/Shell/Backdrop';
+import { ItemSheet } from './components/Phiegg/ItemSheet';
+import { AssetSheet } from './components/Phiegg/AssetSheet';
+import { WatchSheet } from './components/Phiegg/WatchSheet';
+import { PlacePage } from './components/Phiegg/Commerce';
+import { stageStore } from './state/stageStore';
+import { useListedLook } from './components/Shell/Appearance';
 import {
   AgentsHubPage, ClubPage, CollectionPage, ListPage, CreatePage, EventsPage, ExplorePage, FeedPage, HostsPage, JoinPage,
   MessagesPage, PhipadPage, ProfilePage, ShowPage, ShowsPage, WorldPage, WorldsPage, ShopPage, PoolPage, SeriesPage, LeaguePage, CityPage, SearchPage, RecentPage, StudioPage, RidesPage, WelcomePage, PostPage,
@@ -18,8 +25,10 @@ import { useIdentity } from './lib/identity';
 
 const LISTS = Object.keys(site.lists);
 
-/** Every tab named in data/site.json (rail, secondary panels, agent hrefs) resolves to a page here. */
-const page = (tab: string): React.ReactNode => {
+type S = ReturnType<typeof phieggStore.getState>;
+/** Every tab named in data/site.json (rail, secondary panels, agent hrefs) resolves to a page here. A look, an asset,
+ *  a title and a place are entities, each on a page of its own. */
+const page = (tab: string, s: S): React.ReactNode => {
   if (tab === 'shop') return <ShopPage />;
   if (tab === 'pool') return <PoolPage />;
   if (tab === 'series' || tab === 'watch') return <SeriesPage />;
@@ -32,6 +41,10 @@ const page = (tab: string): React.ReactNode => {
     case 'rides': return <RidesPage />;
     case 'welcome': return <WelcomePage />;
     case 'post': return <PostPage />;
+    case 'look': return <ItemSheet id={s.lookId} />;
+    case 'asset': return <AssetSheet id={s.assetId} />;
+    case 'title': return <WatchSheet id={s.titleId} />;
+    case 'place': return <PlacePage id={s.placeId} />;
     case 'search': return <SearchPage />;
     case 'explore': return <ExplorePage />;
     case 'hosts': case 'nests': case 'channels': return <HostsPage />;
@@ -55,7 +68,7 @@ const page = (tab: string): React.ReactNode => {
 };
 
 export const App: React.FC = () => {
-  const s = useStore(phieggStore); useIdentity(); const { mobile } = useViewport();
+  const s = useStore(phieggStore); const stage = useStore(stageStore); useIdentity(); useListedLook(); const { mobile } = useViewport();
   // Mirror the appearance onto <html> so portalled overlays (drawers, chat, dialogs) share the same gradients and radius.
   const ap = s.appearance;
   // The appearance gradient drives the puikit gradient system (providers/palette.ts) for every surface.
@@ -74,12 +87,13 @@ export const App: React.FC = () => {
   return (
     <Stack direction="column" gap={0} data-ph-radius={s.appearance.radius} data-ph-gradient={s.appearance.gradient} data-ph-motion={s.appearance.motion}
       data-ph-sidebar={s.appearance.sidebar} data-ph-content={s.appearance.content} data-ph-opacity={s.appearance.opacity}
-      className="ph-app" width="100vw" height="100vh" overflow="hidden">
+      data-ph-side={stage.docked && !mobile ? 'docked' : 'rail'} className="ph-app" width="100vw" height="100vh" overflow="hidden">
+      <Stage />
       <Header activeTab={s.tab} onSelectTab={(tab) => s.go(tab)} />
-      <Stack direction="row" gap={0} flex="1" minHeight="0">
+      <Stack direction="row" gap={0} flex="1" minHeight="0" className="ph-body">
         {!mobile && <SidebarNav activeTab={s.tab} onSelectTab={(tab) => s.go(tab)} />}
-        <Box key={s.tab + s.worldId + s.showId + s.clubId + s.profileId + s.cityId + s.storeId + s.poolId} className="ph-main" flex="1" minWidth="0" scroll="y">
-          {page(s.tab)}
+        <Box key={[s.tab, s.worldId, s.showId, s.clubId, s.profileId, s.cityId, s.storeId, s.poolId, s.lookId, s.assetId, s.titleId, s.placeId].join('|')} className="ph-main" flex="1" minWidth="0" scroll="y">
+          {page(s.tab, s)}
         </Box>
       </Stack>
       {mobile && <MobileTabs />}

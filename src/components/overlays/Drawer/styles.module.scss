@@ -175,3 +175,15 @@
 .headerBar { flex-wrap: nowrap; min-width: 0; > :first-child { flex: 1; min-width: 0; } }
 .handleButton { border: 0; padding: 0; cursor: pointer; }
 .handleButton:hover { background: color-mix(in srgb, var(--phi-color-primary) 55%, transparent); }
+
+/* Glass (tokens/_glass.scss): a drawer keeps the page's colour under it and lays glass from the edge it opens from:
+   a right drawer from its left edge to nothing, a left one the opposite, a bottom sheet from its top down. */
+.overlay .drawer, .dock .drawer {
+  background-color: var(--phi-glass-ground);
+  background-image: var(--phi-glass-from-down);
+  border-color: var(--phi-glass-rim);
+  backdrop-filter: var(--phi-glass-blur);
+  -webkit-backdrop-filter: var(--phi-glass-blur);
+}
+.overlay .drawer.right { background-image: var(--phi-glass-from-across); }
+.overlay .drawer.left { background-image: var(--phi-glass-to-across); }

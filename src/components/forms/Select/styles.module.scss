@@ -23,7 +23,9 @@
   padding: 0 0.75rem;
   border: 1px solid var(--phi-color-border);
   border-radius: var(--phi-control-radius, var(--phi-radius-md));
-  background-color: var(--phi-color-background);
+  /* Glass (tokens/_glass.scss): a field runs from nothing to glass across. */
+  background-color: transparent;
+  background-image: var(--phi-glass-to-across);
   color: var(--phi-color-text-primary);
   font-family: var(--phi-font-family);
   font-size: var(--phi-font-size-base);
@@ -92,8 +94,10 @@
   list-style: none;
   border: 1px solid var(--phi-color-border);
   border-radius: var(--phi-radius-md);
-  background-color: var(--phi-color-background-card);
-  background-image: var(--phi-gradient-card-wash, none);
+  /* A menu floats over the page: the page's colour under glass from its top down. */
+  background-color: var(--phi-glass-ground);
+  background-image: var(--phi-glass-from-down);
+  backdrop-filter: var(--phi-glass-blur);
   box-shadow: var(--phi-shadow-md);
   animation: selectIn var(--phi-transition-fast) ease-out;
 }
@@ -143,3 +147,6 @@
   .listbox { animation: none; }
   .chevron { transition: none; }
 }
+
+/* Under the pointer the theme's colour comes up the same way as the glass (tokens/_glass.scss). */
+.trigger:hover:not(:disabled) { background-image: var(--phi-tint-to-across), var(--phi-glass-to-across); }

@@ -49,7 +49,7 @@ export const Columns = ({ columns, className, expandLabel = 'Expand', collapseLa
   const folded = live.filter((c) => closed[c.id] && !c.onClose);
   const shown = live.filter((c) => !closed[c.id] || c.onClose).filter((c) => !expanded || c.id === expanded || !live.some((x) => x.id === expanded));
   return (
-    <Box className={cn(styles.row, className)} data-expanded={expanded ?? undefined}>
+    <Box className={cn('pui-columns', styles.row, className)} data-expanded={expanded ?? undefined}>
       {folded.length > 0 && (
         <Box className={styles.strip} aria-label="Closed columns">
           {folded.map((c) => (

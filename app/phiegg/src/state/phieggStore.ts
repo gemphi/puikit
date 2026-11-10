@@ -10,7 +10,9 @@ import { record } from '../lib/activity';
 import { ONBOARDING } from '../lib/onboarding';
 /** Which page param a record id in the address fills: #/pool/<id>, #/club/<id>, #/world/<id>… One map for the
     address, agent hrefs and navigation, so every record has a link. */
-const ID_PARAM: Record<string, string> = { world: 'worldId', show: 'showId', club: 'clubId', city: 'cityId', shop: 'storeId', pool: 'poolId', profile: 'profileId', collection: 'nestId', post: 'postId' };
+const ID_PARAM: Record<string, string> = { world: 'worldId', show: 'showId', club: 'clubId', city: 'cityId', shop: 'storeId', pool: 'poolId', profile: 'profileId', collection: 'nestId', post: 'postId', look: 'lookId', asset: 'assetId', title: 'titleId', place: 'placeId' };
+/** Every page param a history step keeps. */
+const PARAM_KEYS = [...Object.values(ID_PARAM), 'feedKind'] as (keyof Params)[];
 const parseRoute = (hash: string): { tab: string; params: Record<string, string> } => {
   const [tab = '', id] = hash.replace(/^#\/?/, '').split('/');
   return { tab, params: id && ID_PARAM[tab] ? { [ID_PARAM[tab]]: decodeURIComponent(id) } : {} };
@@ -44,11 +46,7 @@ export type Overlay =
   | { kind: 'record'; recordKind: string; id: ID }
   | { kind: 'editClub'; id: ID }
   | { kind: 'signin' }
-  | { kind: 'look'; id: ID }
   | { kind: 'cart' }
-  | { kind: 'series'; id: ID }
-  | { kind: 'asset'; id: ID }
-  | { kind: 'place'; id: ID }
   /** Fungible swap: give an item you hold (`giveId`), pick what to take. */
   | { kind: 'swap'; giveId: ID; getId?: ID }
   /** A pool stat and the quest it links to. */
@@ -58,7 +56,7 @@ export type Overlay =
 export interface Appearance { radius: string; gradient: string; motion: string; sidebar: string; content: string; opacity: string }
 type Flags = Record<string, boolean>;
 export type FlagKey = 'liked' | 'saved' | 'follow' | 'rsvp';
-export interface Params { worldId?: ID; showId?: ID; clubId?: ID; profileId?: ID; cityId?: ID; storeId?: ID; poolId?: ID; nestId?: ID; feedKind?: string; postId?: ID }
+export interface Params { worldId?: ID; showId?: ID; clubId?: ID; profileId?: ID; cityId?: ID; storeId?: ID; poolId?: ID; nestId?: ID; feedKind?: string; postId?: ID; lookId?: ID; assetId?: ID; titleId?: ID; placeId?: ID }
 
 export interface PhieggState extends Required<Params> {
   tab: string; liked: Flags; saved: Flags; follow: Flags; rsvp: Flags;
@@ -101,7 +99,7 @@ const hrefToNav = (href: string): [string, Params] => {
 
 export const phieggStore = createStore<PhieggState>((set, get) => ({
   // The public home page is where a first visit lands; `#tab` in the address opens a page directly.
-  tab: startTab(), dataRev: 0, worldId: D.core.worlds[0].id, showId: D.shows.shows[0]?.id ?? '', clubId: D.club.clubId, profileId: D.profile.userId, cityId: D.core.worlds[0].cities[0].id, storeId: FLAGSHIP_ID, poolId: D.pools.pools[0].id, nestId: '', postId: '', ...START.params,
+  tab: startTab(), dataRev: 0, worldId: D.core.worlds[0].id, showId: D.shows.shows[0]?.id ?? '', clubId: D.club.clubId, profileId: D.profile.userId, cityId: D.core.worlds[0].cities[0].id, storeId: FLAGSHIP_ID, poolId: D.pools.pools[0].id, nestId: '', postId: '', lookId: '', assetId: '', titleId: '', placeId: '', ...START.params,
   ...FLAGS.get(), nests: D.hosts.nests.slice(), nestMsgs: { ...D.hosts.messages }, comments: {}, chats: CHATS.get(),
   overlay: { kind: 'none' }, toast: null, rail: 'home', searchQ: '', feedKind: 'all',
   appearance: APPEARANCE.get(),
@@ -110,7 +108,8 @@ export const phieggStore = createStore<PhieggState>((set, get) => ({
   setAppearance: (k, v) => set({ appearance: { ...get().appearance, [k]: v } }),
   // Agents open in the chat sheet with their details beside the chat; people open their profile drawer.
   openPerson: (id) => (agentOf(id) ? get().openChat(id, undefined, true) : set({ overlay: { kind: 'person', id } })),
-  openLook: (id) => { record('view', id, { refKind: 'look' }); set({ overlay: { kind: 'look', id } }); },
+  // A look, an asset, a title or a place is an entity: clicking one opens its page. Sheets are for what you do there.
+  openLook: (id) => { record('view', id, { refKind: 'look' }); get().go('look', { lookId: id }); },
   openSwap: (giveId, getId) => set({ overlay: { kind: 'swap', giveId, getId } }),
   openStat: (poolId, metricId) => set({ overlay: { kind: 'stat', poolId, metricId } }),
   openList: (list) => set({ overlay: { kind: 'list', list } }),
@@ -143,11 +142,11 @@ export const phieggStore = createStore<PhieggState>((set, get) => ({
       }); return; }
     const shot = { id: 's_' + Date.now(), ...fields } as unknown as Shot;
     D.feed.shots.unshift(shot); set({ dataRev: Date.now() }); get().flash(t('shared')); },
-  openSeries: (id) => set({ overlay: { kind: 'series', id } }),
-  openAsset: (id) => { record('view', id, { refKind: 'asset' }); set({ overlay: { kind: 'asset', id } }); },
-  openPlace: (id) => set({ overlay: { kind: 'place', id } }),
+  openSeries: (id) => get().go('title', { titleId: id }),
+  openAsset: (id) => { record('view', id, { refKind: 'asset' }); get().go('asset', { assetId: id }); },
+  openPlace: (id) => get().go('place', { placeId: id }),
   hist: [],
-  go: (tab, p = {}) => { const g = get(); const hist = [...g.hist, { tab: g.tab, p: { worldId: g.worldId, showId: g.showId, clubId: g.clubId, profileId: g.profileId, cityId: g.cityId, storeId: g.storeId, poolId: g.poolId, nestId: g.nestId, feedKind: g.feedKind, postId: g.postId } }].slice(-40);
+  go: (tab, p = {}) => { const g = get(); const hist = [...g.hist, { tab: g.tab, p: Object.fromEntries(PARAM_KEYS.map((k) => [k, g[k]])) as Params }].slice(-40);
     set({ tab, ...p, hist, overlay: { kind: 'none' } } as Partial<PhieggState>); writeRoute(tab, get() as unknown as Record<string, unknown>); },
   back: () => { const hist = get().hist.slice(); const prev = hist.pop(); if (prev) { set({ tab: prev.tab, ...prev.p, hist, overlay: { kind: 'none' } } as Partial<PhieggState>); writeRoute(prev.tab, get() as unknown as Record<string, unknown>); } },
   toggle: (k, id) => { const on = !get()[k][id]; record((({ liked: ['like', 'unlike'], saved: ['save', 'unsave'], follow: ['follow', 'unfollow'], rsvp: ['rsvp', 'unrsvp'] } as const)[k])[on ? 0 : 1], id);

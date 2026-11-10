@@ -58,3 +58,16 @@ html, body {
   scrollbar-width: thin;
   scrollbar-color: rgba(148, 163, 184, 0.25) transparent;
 }
+
+/* Labels sit on their icon's centre line, whatever the face. A label's box is trimmed to the capitals and the
+   baseline, so a row that centres its items centres the letters themselves rather than the font's ascent and
+   descent (which differ from face to face, and push some faces' letters up or down). Only boxes of text are trimmed:
+   a box holding an icon or a picture keeps its full height. Cards are left as they are. */
+:where(button, [role='button']:not(article), [role='tab'], [role='menuitem'], [role='option']) :where(span, div, p):not(:has(svg, img, canvas, video)) {
+  text-box: trim-both cap alphabetic;
+}
+/* A box that holds only an icon has no line of text, so it carries no line height: the icon is the box, and centring
+   the box centres the icon rather than an empty line the icon sits at the foot of. */
+:where(button, [role='button']:not(article), [role='tab'], [role='menuitem'], [role='option']) :where(span, div):has(> svg:only-child) {
+  line-height: 0;
+}

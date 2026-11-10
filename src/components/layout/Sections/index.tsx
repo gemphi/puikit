@@ -71,7 +71,7 @@ export const Sections = ({ sections, className, reorderable = false, storageKey,
   const reset = () => { setOrder([]); setClosed({}); setFolded(Object.fromEntries(sections.filter((x) => x.defaultCollapsed).map((x) => [x.id, true]))); setExpanded(null); };
   const icon = size === 'lg' ? 17 : 15;
   return (
-    <Box className={cn(styles.stack, styles[variant], styles[size], className)} data-expanded={expanded ?? undefined}>
+    <Box className={cn('pui-sections', styles.stack, styles[variant], styles[size], className)} data-expanded={expanded ?? undefined}>
       {shown.map((x) => {
         const isExp = expanded === x.id; const isFold = !!folded[x.id] && !isExp; const at = open.indexOf(x);
         return (
