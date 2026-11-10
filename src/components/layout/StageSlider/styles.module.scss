@@ -18,9 +18,10 @@
 .next { right: 0; }
 .foot { display: flex; align-items: center; gap: var(--phi-space-3, 0.75rem); width: min(100%, var(--pui-stage-w, 35rem)); margin: 0 auto; }
 .meter { flex: 1; min-width: 0; }
-// Fill: the slider measures its own width (a container); the centre is that width, less the arrows' room, over the
-// row's span, so the row reaches the arrows and the centre is as large as the row allows, never past --pui-stage-w.
-.fill { container-type: inline-size; --pui-stage-fit: min(var(--pui-stage-w), calc((100cqw - 2 * var(--pui-stage-pad, 3rem)) / var(--pui-stage-span, 1))); }
+// Fill: the slider is a container; the centre is the least of the row's share of its width (less the arrows' room,
+// over the row's span), the height its page shows (--pui-stage-hcap, measured) and any `stageWidth` the page set.
+.fill { container-type: inline-size;
+  --pui-stage-fit: min(var(--pui-stage-w, 100cqw), calc((100cqw - 2 * var(--pui-stage-pad, 3rem)) / var(--pui-stage-span, 1)), var(--pui-stage-hcap, 100cqw)); }
 .fill .slide { width: var(--pui-stage-fit); }
 .fill .foot { width: min(100%, var(--pui-stage-fit)); }
 @media (prefers-reduced-motion: reduce) { .slide { transition: none; } }

@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { Button, Page, Stack, StageSlider, Tag, Text, Title, TabList } from '@pui/components';
 import { useStore } from '@pui/store';
 import { Play } from 'lucide-react';
-import { useViewport } from '../../lib/viewport';
 import { phieggStore } from '../../state/phieggStore';
 import { facetsFor, sortsFor, tableFor } from '../../lib/fields';
 import { D, clubOf, fmt, person, showLead, t, worldOf } from '../../lib/data';
-import { ListView, useStageSides } from '../../components/Phiegg/Views';
+import { ListView } from '../../components/Phiegg/Views';
 import type { Show } from '../../types/phiegg';
 import { Tile } from '../../components/Phiegg/Tile';
 
@@ -16,13 +15,12 @@ const badgesOf = (x: Show) => <><Tag round size="sm">{t('looksN', { n: x.looks.l
 
 /** One show at a time: the stage slider, arrows on the sides, the watch button beside the progress. */
 const ShowSlider: React.FC<{ list: Show[] }> = ({ list }) => {
-  const s = useStore(phieggStore); const { mobile } = useViewport(); const sides = useStageSides();
+  const s = useStore(phieggStore);
   const [i, setI] = useState(0); const cur = list[i] ?? list[0];
-  // The puikit stage: the show in the centre as large as the row and the screen allow (a show tile is a little taller
-  // than wide), its neighbours either side, half tucked under it, growing to fill the rest of the width.
+  // The puikit stage: the show in the centre, its neighbours either side; their count and size are the kit's.
   return (
-    <StageSlider aria-label={t('showsTitle', { season: D.shows.season })} index={i} onIndexChange={setI} sides={sides} fill
-      stageWidth={mobile ? '78vw' : 'min(48rem, calc((100dvh - 7.5rem) / 1.05))'} prevLabel={t('slPrev')} nextLabel={t('slNext')} positionLabel={(k, n) => t('slPos', { i: k, n })}
+    <StageSlider aria-label={t('showsTitle', { season: D.shows.season })} index={i} onIndexChange={setI}
+      prevLabel={t('slPrev')} nextLabel={t('slNext')} positionLabel={(k, n) => t('slPos', { i: k, n })}
       footer={<Button variant="primary" size="sm" iconLeft={Play} onClick={() => s.go('show', { showId: cur.id })}>{t('watchShow')}</Button>}
       items={list.map((x) => ({ id: x.id, label: x.title, node: (
         <Tile animate big tone={x.tone} color={showLead(x).hex} ratio="1/1" depth={{ worldId: x.worldId, clubId: x.clubId, personId: x.hostAgentId, mid: showLead(x).mid }} title={x.title} sub={subOf(x)} badges={badgesOf(x)} onClick={() => s.go('show', { showId: x.id })} />) }))} />

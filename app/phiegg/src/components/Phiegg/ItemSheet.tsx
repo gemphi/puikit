@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card, CardBody, Image, Input, Rows, Stack, TabList, Tag, Text, Title } from '@pui/components';
+import { Button, Card, CardBody, Image, MediaStage, Input, Rows, Stack, TabList, Tag, Text, Title } from '@pui/components';
 import { useStore } from '@pui/store';
 import { useWallet } from '@phi-kit/wallet';
 import { D, itemImage, lookOf, lookStore, lotsOfPool, poolOf, t, usd } from '../../lib/data';
@@ -10,7 +10,7 @@ import { Connected } from './Connected';
 import { AgentChat } from './AgentChat';
 import { ItemActivity, ItemAppears, ItemPrice, ItemSpecs, ItemStatsTable } from './ItemFacts';
 import { record } from '../../lib/activity';
-import { LookImage, LookStage } from './LookImage';
+import { LookImage } from './LookImage';
 import { PageSections } from './PageSections';
 import { useThemeColours } from '../../lib/themes';
 import { usePageTheme } from '../../lib/pageTheme';
@@ -67,9 +67,9 @@ export const ItemSheet: React.FC<{ id: string }> = ({ id }) => {
   const centre = (
     <PageSections id="item" size="sm" sections={[
       { id: 'look', title: l.name, expandable: true, collapsible: true, content: (
-        <LookStage look={l} src={src}>
+        <MediaStage media={<LookImage look={l} src={src} />}>
           {Object.keys(views).length > 1 && <TabList size="sm" variant="pills" aria-label={t('isAngles')} activeId={angle} onChange={setAngle} items={Object.keys(views).map((k) => ({ id: k, label: D.ls.views.find((v) => v.id === k)?.label ?? k }))} />}
-        </LookStage>) },
+        </MediaStage>) },
       { id: 'buy', title: t('isBuy'), expandable: true, collapsible: true, closable: true, content: (
         <Stack direction="column" gap={2}>
           <Stack direction="row" gap={2} align="end" wrap><Title level={3} size="lg">{usd(l.usd)}</Title><Text size="sm" intent="muted" numeric>{t('plLive', { v: usd(live.total) })}</Text>

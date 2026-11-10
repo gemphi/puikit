@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { usePuiTheme } from '@pui/hooks';
 import { RADIUS_ALIASES, RADIUS_PRESETS, type GradientLevel, type RadiusPreset } from '@pui/providers';
-import { Box, Stack } from '@pui/components';
+import { Box, ShellProvider, Stack } from '@pui/components';
 import { useStore } from '@pui/store';
 import { phieggStore } from './state/phieggStore';
 import { Header } from './components/Shell/Header';
@@ -89,6 +89,8 @@ export const App: React.FC = () => {
       data-ph-sidebar={s.appearance.sidebar} data-ph-content={s.appearance.content} data-ph-opacity={s.appearance.opacity}
       data-ph-side={stage.docked && !mobile ? 'docked' : 'rail'} className="ph-app" width="100vw" height="100vh" overflow="hidden">
       <Stage />
+      {/* Phiegg's own shell tells the kit's components what the puikit AppShell would: whether the menu panel is open. */}
+      <ShellProvider navOpen={stage.docked && !mobile}>
       <Header activeTab={s.tab} onSelectTab={(tab) => s.go(tab)} />
       <Stack direction="row" gap={0} flex="1" minHeight="0" className="ph-body">
         {!mobile && <SidebarNav activeTab={s.tab} onSelectTab={(tab) => s.go(tab)} />}
@@ -99,6 +101,7 @@ export const App: React.FC = () => {
       {mobile && <MobileTabs />}
       <Overlays />
       <SignIn />
+      </ShellProvider>
     </Stack>
   );
 };

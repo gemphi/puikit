@@ -1,10 +1,12 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '../../../utils/cn';
 import { Box } from '../Box';
 import { Button } from '../../primitives/Button';
 import { Text } from '../../primitives/Text';
 import { ProgressBar } from '../../feedback/ProgressBar';
+import { useShell } from '../../navigation/AppShell/context';
+import { useStageFit } from './useStageFit';
 import styles from './styles.module.scss';
 
 export type StageSlide = { id: string; node: React.ReactNode; label?: string };
@@ -14,15 +16,17 @@ export type StageSliderProps = {
   index?: number;
   defaultIndex?: number;
   onIndexChange?: (index: number) => void;
-  /** Slides shown on each side of the centre (0–3). */
-  sides?: number;
+  /** Slides shown on each side of the centre (0–3). `auto` (the default): two, so five in view, while the shell's menu
+      panel is closed; one, so three, while it is open or the stage is phone-narrow. */
+  sides?: number | 'auto';
   /** Each side level is this fraction of the one before it (0.5: a side slide is half the centre's height). */
   sideScale?: number;
   /** How much of each side slide tucks under the one in front of it (0.5: half of it). */
   overlap?: number;
-  /** Width of the centre slide (any CSS length); with `fill`, the most it may take. */
+  /** Width of the centre slide (any CSS length); with `fill`, only the most it may take (no limit by default). */
   stageWidth?: string;
-  /** The centre takes the width the row leaves: the slider's width over the row's span, up to `stageWidth`. */
+  /** On by default: the centre is as large as the row and the page's visible height allow, and the sides grow into
+      whatever width is left, so the stage uses its whole space. Off: the centre is `stageWidth`. */
   fill?: boolean;
   /** Progress bar and position under the stage (default on). */
   progress?: boolean;
@@ -54,32 +58,26 @@ const growTo = (s: number, reach: number, overlap: number, room: number) => {
  * Arrows sit on the sides, the keyboard arrows step, a side slide steps when clicked, and a progress bar in the
  * theme's primary (one colour, track and meter) shows where you are. Tokens only.
  */
-export const StageSlider = ({ items, index, defaultIndex = 0, onIndexChange, sides = 1, sideScale = 0.5, overlap = 0.5, stageWidth = 'min(35rem, 64vw)', fill = false, progress = true, footer,
+export const StageSlider = ({ items, index, defaultIndex = 0, onIndexChange, sides = 'auto', sideScale = 0.5, overlap = 0.5, stageWidth, fill = true, progress = true, footer,
   prevLabel = 'Previous', nextLabel = 'Next', positionLabel = (i, n) => `${i} / ${n}`, className, ...rest }: StageSliderProps) => {
   const [own, setOwn] = useState(defaultIndex);
   const n = items.length; const at = wrap(index ?? own, Math.max(1, n));
   useEffect(() => { if (index === undefined && own >= n && n) setOwn(0); }, [n]);
-  // Fill: once the centre has its width (it may stop at `stageWidth`, the screen's height), the sides grow until the
-  // row reaches the arrows, so no width is left over.
-  const stage = useRef<HTMLElement>(null); const [room, setRoom] = useState(0);
-  useLayoutEffect(() => {
-    const el = stage.current; if (!fill || !el || typeof ResizeObserver === 'undefined') return;
-    const measure = () => { const c = el.querySelector<HTMLElement>('[data-offset="0"]'); const cs = getComputedStyle(el);
-      const free = el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight); setRoom(c && c.offsetWidth ? free / c.offsetWidth : 0); };
-    // The stage's width, and the screen's height (a `stageWidth` in dvh), both change the centre.
-    const ro = new ResizeObserver(measure); ro.observe(el); window.addEventListener('resize', measure); measure();
-    return () => { ro.disconnect(); window.removeEventListener('resize', measure); };
-  }, [fill, items.length > 0]);
+  // Fill: the stage measures its width, the height its page shows and the centre's own shape (useStageFit).
+  const { navOpen } = useShell(); const root = useRef<HTMLElement>(null); const stage = useRef<HTMLElement>(null);
+  const fit = useStageFit(fill, root, stage, at);
+  const narrow = fit.free > 0 && fit.free < 640;
   const go = (d: number) => { if (!n) return; const k = wrap(at + d, n); if (index === undefined) setOwn(k); onIndexChange?.(k); };
   if (!n) return null;
-  const reach = Math.max(0, Math.min(3, sides, Math.floor((n - 1) / 2) || (n > 1 ? 1 : 0)));
+  const want = sides === 'auto' ? (navOpen || narrow ? 1 : 2) : sides;
+  const reach = Math.max(0, Math.min(3, want, Math.floor((n - 1) / 2) || (n > 1 ? 1 : 0)));
   const base = rowOf(sideScale, reach, overlap);
-  const grown = fill && room ? growTo(sideScale, reach, overlap, room) : sideScale;
+  const grown = fill && fit.room && !narrow ? growTo(sideScale, reach, overlap, fit.room) : sideScale;
   const scale = (k: number) => Math.pow(grown, Math.abs(k)); const { off } = rowOf(grown, reach, overlap);
   const shown = Array.from({ length: reach * 2 + 1 }, (_, j) => j - reach).filter((d) => n > 1 || d === 0);
   const dup = n < reach * 2 + 1;
   return (
-    <Box className={cn(styles.root, fill && styles.fill, className)} style={{ '--pui-stage-w': stageWidth, '--pui-stage-span': String(base.span) } as React.CSSProperties} role="region" aria-roledescription="carousel" aria-label={rest['aria-label']}
+    <Box className={cn(styles.root, fill && styles.fill, className)} ref={root} style={{ '--pui-stage-w': stageWidth ?? (fill ? undefined : 'min(35rem, 64vw)'), '--pui-stage-span': String(narrow ? 1 : base.span), '--pui-stage-hcap': fit.cap ? `${Math.round(fit.cap)}px` : undefined } as React.CSSProperties} role="region" aria-roledescription="carousel" aria-label={rest['aria-label']}
       onKeyDown={(e: React.KeyboardEvent) => { if (e.key === 'ArrowLeft') go(-1); if (e.key === 'ArrowRight') go(1); }}>
       <Box ref={stage} className={styles.stage}>
         {shown.map((d) => {
