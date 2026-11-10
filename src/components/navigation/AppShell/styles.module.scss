@@ -8,14 +8,32 @@
   --pui-shell-pad: var(--phi-space-6, 1.5rem);
   display: flex; flex-direction: column; width: 100%;
   /* An app shell owns the window: the sidebar runs the full height, the content scrolls inside (one scroll bar). */
-  height: 100vh; height: 100dvh; min-height: 0; overflow: hidden;
-  background: var(--phi-gradient-main, var(--phi-color-background));
+  height: 100vh; height: 100dvh; min-height: 0; overflow: hidden; position: relative; isolation: isolate;
+  background: var(--phi-gradient-main, var(--phi-color-background)); color: var(--phi-color-text-primary);
+  --pui-shell-content: 72.5rem; --pui-shell-head: 3.5rem;
 }
+/* Thin scroll bars in the theme's ink, the pointer's colour under it. */
+.root, .root * { scrollbar-width: thin; scrollbar-color: color-mix(in srgb, var(--phi-color-text-primary) 28%, transparent) transparent; }
+.root *::-webkit-scrollbar { width: 10px; height: 10px; }
+.root *::-webkit-scrollbar-track { background: transparent; }
+.root *::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--phi-color-text-primary) 24%, transparent); border-radius: var(--phi-radius-full); border: 3px solid transparent; background-clip: content-box; }
+
+/* The stage under the whole shell: the page gradient, or the picture a page lays into it (Backdrop). */
+.stage { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; background: var(--phi-gradient-main, var(--phi-color-background)); }
+.backdrop { position: absolute; inset: 0; animation: puiStageIn var(--phi-duration-slow, 0.4s) var(--phi-ease, ease-out) both; }
+.picture { position: absolute; inset: 0; display: grid; place-items: center; }
+.picture > *, .picture img, .picture svg { width: 100% !important; height: 100% !important; max-width: none !important; object-fit: cover; }
+/* An entity page: its picture very large and very soft, only its colour left, the page colour over it so text reads. */
+.blurred .picture { inset: -12%; filter: blur(64px) saturate(1.5); transform: scale(1.2); }
+.blurred::after { content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--phi-color-background) 30%, transparent) 0%, color-mix(in srgb, var(--phi-color-background) 62%, transparent) 100%); }
+.sharp::after { content: ''; position: absolute; inset: 0; background: radial-gradient(62% 58% at 50% 40%, color-mix(in srgb, var(--phi-color-background) 50%, transparent) 0%, transparent 100%); }
+@keyframes puiStageIn { from { opacity: 0; } to { opacity: 1; } }
 .open { --pui-shell-side: calc(var(--pui-shell-rail) + var(--pui-shell-panel)); }
 .closed { --pui-shell-side: var(--pui-shell-rail); }
 
 /* Header: the brand cell over the sidebar, then a lane whose content lines up with the page's own edge. */
-.head { display: flex; align-items: center; flex: none; min-height: 3.5rem; }
+.head { display: flex; align-items: center; flex: none; min-height: var(--pui-shell-head); }
 .head .menuBtn { display: none; }
 .lane { flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: var(--phi-space-3); padding-inline: var(--pui-shell-pad); }
 .crumbs { min-width: 0; }
@@ -42,7 +60,7 @@
 /* The sidebar holder: rail and panel on one pane of glass, the one border in the shell. */
 .nav { display: flex; flex: none; min-height: 0; margin: 0 0 var(--pui-shell-gap) var(--pui-shell-gap);
   border: 1px solid var(--phi-glass-rim); border-radius: var(--phi-radius-xl); overflow: hidden;
-  background: var(--phi-glass-to-across); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur); }
+  background: linear-gradient(var(--pui-shell-nav-tint, transparent), var(--pui-shell-nav-tint, transparent)), var(--phi-glass-to-across); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur); }
 
 .rail { display: flex; flex-direction: column; align-items: center; gap: var(--phi-space-2); flex: none; inline-size: var(--pui-shell-rail); padding-block: var(--phi-space-3); }
 .railGroup { width: 100%; }
@@ -65,6 +83,11 @@
   background-image: var(--phi-glass-to-across); border: 1px solid var(--phi-glass-rim-soft); }
 .panelGroup:hover { background-image: var(--phi-tint-to-across), var(--phi-glass-to-across); }
 .groupHead { min-height: 2rem; }
+.panelScroll { display: flex; flex-direction: column; gap: var(--phi-space-2); }
+.panelEnd { margin-top: auto; }
+.entryPanel { padding: var(--phi-space-2) 0 var(--phi-space-2) 1.5rem; }
+.inlineRow { display: flex; gap: var(--phi-space-1); }
+.inlineRow > * { flex: 1 1 0; min-width: 0; }
 
 /* A row: the fold arrow (or its room) at the left, then the item; children flush under it, never indented. */
 .navEntry { display: flex; flex-direction: column; min-width: 0; }
@@ -89,16 +112,40 @@
 .appText { display: flex; flex-direction: column; min-width: 0; }
 
 /* Every shell icon carries its side, a faint copy just below and right, as the 3D face does. */
-.railBtn svg, .navRow svg, .appGlyph svg, .brandGlyph svg, .pin svg, .caret svg {
+.railBtn svg, .navRow svg, .tab svg, .appGlyph svg, .brandGlyph svg, .pin svg, .caret svg {
   filter: drop-shadow(0.06em 0.06em 0 color-mix(in srgb, currentColor 30%, transparent)); }
 
+/* An appearance setting may tint the sidebar and the content by setting --pui-shell-nav-tint and --pui-shell-main-tint
+   on anything around the shell. */
 /* Main: no ground of its own (the page gradient shows), the one scroll in the shell. */
-.main { display: flex; flex-direction: column; flex: 1 1 auto; min-width: 0; min-height: 0; }
-.inner { flex: 1 1 auto; min-height: 0; overflow: auto; padding: var(--phi-space-5) var(--pui-shell-pad); }
+.main { display: flex; flex-direction: column; flex: 1 1 auto; min-width: 0; min-height: 0; background-image: linear-gradient(var(--pui-shell-main-tint, transparent), var(--pui-shell-main-tint, transparent)); }
+/* One centred column, the only scroll in the shell (the gutter kept both sides, so it stays under the header lane);
+   each page fades and rises in as it arrives. A page's own inner scroll (a chat) draws no bar. */
+.inner { flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden; scroll-behavior: smooth; scrollbar-gutter: stable both-edges; padding: var(--phi-space-2) var(--pui-shell-pad) var(--phi-space-8); }
+.inner > * { max-width: var(--pui-shell-content); margin-inline: auto; animation: puiPageIn var(--phi-duration-slow, 0.4s) var(--phi-ease, ease-out) both; }
+.inner * { scrollbar-width: none; }
+.inner *::-webkit-scrollbar { display: none; }
+.inner :global(.pui-page-content) { height: auto; overflow: visible; }
+.inner :global(.pui-page) { min-height: 0; background: none; }
+@keyframes puiPageIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+/* Expanding takes the whole content area as one pane of glass with its own scroll (the header and sidebar stay);
+   the page holds still under it, and so does it under a drawer. */
+.inner:has(:global(.pui-sections[data-expanded]), :global(.pui-columns[data-expanded])) { overflow-y: hidden; }
+:global(body:has(.pui-drawer)) .inner { overflow-y: hidden; }
+.inner :has(:global(.pui-sections[data-expanded]), :global(.pui-columns[data-expanded])) { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; transform: none !important; filter: none !important; animation: none !important; }
+.inner :global(.pui-sections[data-expanded]), .inner :global(.pui-columns[data-expanded]) {
+  position: fixed; z-index: 20; top: var(--pui-shell-head); bottom: var(--pui-shell-gap); right: var(--pui-shell-gap); left: calc(var(--pui-shell-side) + 2px + var(--pui-shell-gap) * 2);
+  max-width: none; height: auto; overflow-y: auto; padding: var(--phi-space-4); border: 1px solid var(--phi-glass-rim); border-radius: var(--phi-radius-xl);
+  background-color: var(--phi-glass-ground); background-image: var(--phi-glass-from-down); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur); }
 
 /* The right aside: the opposite of the sidebar, glass at its left edge to nothing. */
 .right { flex: none; min-height: 0; overflow: auto; margin: 0 var(--pui-shell-gap) var(--pui-shell-gap) 0; border: 1px solid var(--phi-glass-rim); border-radius: var(--phi-radius-xl);
   background: var(--phi-glass-from-across); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur); }
+
+/* Phone tabs: the menu and the app's tabs in a glass bar at the foot (phones only). */
+.tabs { display: none; }
+.tab { flex: 1 1 0; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: var(--phi-space-1); border-radius: var(--phi-radius-md); color: var(--phi-color-text-secondary); cursor: pointer; }
+.tabOn { color: var(--phi-color-text-primary); background-image: var(--phi-glass-from-across), var(--phi-glass-from-across); }
 
 /* Phone: no sidebar; the header shows the menu button and the glyph, the drawer carries the whole menu. */
 @media (max-width: 900px) {
@@ -107,5 +154,9 @@
   .brandCell { width: auto; padding-left: var(--phi-space-1); }
   .brandClosed:hover .brand { opacity: 1; }
   .lane { padding-inline: var(--phi-space-4); }
-  .inner { padding: var(--phi-space-4); }
+  .inner { padding: var(--phi-space-3); }
+  .inner :global(.pui-sections[data-expanded]), .inner :global(.pui-columns[data-expanded]) { left: var(--pui-shell-gap); }
+  .withTabs .tabs { display: flex; flex: none; gap: var(--phi-space-1); margin: 0 var(--pui-shell-gap) var(--pui-shell-gap); padding: var(--phi-space-1);
+    border: 1px solid var(--phi-glass-rim); border-radius: var(--phi-radius-xl); background: var(--phi-glass-to-across); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur); }
+  .withTabs .brandCell { padding-left: var(--pui-shell-gap); }
 }

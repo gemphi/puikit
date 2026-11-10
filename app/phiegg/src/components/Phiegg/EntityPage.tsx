@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Stack, Text, Title } from '@pui/components';
-import { Backdrop } from '../Shell/Backdrop';
+import { Backdrop } from '@pui/components';
 import { usePageTheme } from '../../lib/pageTheme';
 import styles from './EntityPage.module.scss';
 

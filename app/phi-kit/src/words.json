@@ -1,0 +1,7 @@
+{
+  "landing": {
+    "enter": "Enter {app}",
+    "open": "Open {page}",
+    "close": "Make your move in {app}"
+  }
+}
