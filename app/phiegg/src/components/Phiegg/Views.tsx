@@ -4,6 +4,7 @@ import { useStore } from '@pui/store';
 import { garmentOf, t } from '../../lib/data';
 import { phieggStore } from '../../state/phieggStore';
 import { useViewport } from '../../lib/viewport';
+import { stageStore } from '../../state/stageStore';
 
 /** Club brand glyph drawn from data/site.json garments. */
 export const ClubIcon: React.FC<{ icon?: string; size?: string }> = ({ icon, size = '1.5rem' }) => {
@@ -18,15 +19,25 @@ export const ViewSwitch: React.FC<{ count: number; onFilters?: () => void; filte
   return <ViewToolbar mode={view.mode} onMode={(m) => setView({ ...view, mode: m })} perView={perView ? Math.min(3, Math.max(1, view.cols)) : undefined} onPerView={perView ? (n) => setView({ ...view, cols: n }) : undefined}
     count={`${count} items`} onFilters={onFilters} filtersOpen={filtersOpen} activeFilters={activeFilters} labels={{ tile: 'Tile', list: 'List', grid: 'Grid', filters: t('lsFilterSort') }} />;
 };
+/**
+ * Slides a side of every stage slider: two (five in view) while the sidebar is closed, one (three in view) while its
+ * panel is docked open or on a phone; the toolbar's per-view number can only lower it.
+ */
+export const useStageSides = () => {
+  const { view } = useStore(phieggStore); const { docked } = useStore(stageStore); const { mobile } = useViewport();
+  return Math.max(1, Math.min(mobile || docked ? 1 : 2, view.cols));
+};
 /** Grid wrapper that follows the chosen view: the stage slider (tile), full rows (grid) or one a row (list). */
 export const ViewGrid: React.FC<{ children: React.ReactNode; cols?: number; minItemWidth?: string }> = ({ children, cols: want = 4, minItemWidth = '15rem' }) => {
-  const { view } = useStore(phieggStore); const { mobile } = useViewport();
+  const { view } = useStore(phieggStore); const { mobile } = useViewport(); const sides = useStageSides();
   // Tile is the slider: 1–3 large cards per view. Grid is full rows (two a row on phones). List is one a row.
   if (view.mode === 'tile') {
-    // Tile is the stage: one card in the centre, 1 to 3 a side (the toolbar numbers), each half the height of the one in
+    // Tile is the stage: one card in the centre, 1 or 2 a side (useStageSides), each half the height of the one in
     // front with half of it tucked under, arrows on the sides and the progress under it.
     const items = React.Children.toArray(children).map((c, i) => ({ id: String((c as React.ReactElement).key ?? i), node: c }));
-    return <StageSlider items={items} sides={mobile ? 1 : Math.min(3, Math.max(1, view.cols))} stageWidth={mobile ? '78vw' : 'min(30rem, 52vw)'} prevLabel={t('slPrev')} nextLabel={t('slNext')} positionLabel={(k, n) => t('slPos', { i: k, n })} />;
+    // The centre as large as the row allows, as tall as the screen under the header and over the progress allows (a
+    // look card is about 1.55 times as tall as it is wide); the sides then grow to fill the rest of the width.
+    return <StageSlider items={items} sides={sides} fill stageWidth={mobile ? '78vw' : 'min(48rem, calc((100dvh - 6.75rem) / 1.55))'} prevLabel={t('slPrev')} nextLabel={t('slNext')} positionLabel={(k, n) => t('slPos', { i: k, n })} />;
   }
   const cols = view.mode === 'list' ? 1 : mobile ? Math.min(want, 2) : want;
   // Responsive: up to `cols` a row, but never narrower than minItemWidth (the grid measures its own width).
