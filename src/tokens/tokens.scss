@@ -57,11 +57,12 @@ a.button,
    the shell's sidebar and side panel, EntityLayout's columns, Sections, Accordion) is three layers of glass, one inside
    another, and no borders: the gaps between the layers are paddings on every side, in one proportion (the bottom the
    largest, the right half of it, the top and left half of the right, --phi-card-layer-*).
-   No card has a colour of its own: every layer is a shade of the look's one colour (its accent mixed into the page's
-   ground), so a page carries one hue and everything on it reads alike, smooth, like skin. Each layer is a gradient
-   running left to right from nothing into its shade, all the same way, seamless: the outer box the deepest shade (the
-   card's edge), the face lighter, the inner card nearly the page's ground.
-   1. The box.  2. The face, set in from the box.  3. The inner card, set in from the face, one step rounder-in.
+   No card has a colour of its own: every layer is a faint shade of the look's one colour (its accent just mixed into
+   the page's ground), fading from nothing at the left into its shade at the right, all the same way, so the page
+   stays predominantly its own colour and the card is one clean surface, not nested frames.
+   The three layers are flush at the top and left (one clean edge) and step in only at the bottom and right, by the
+   layer size then twice it, so the only depth is a thin soft edge at the bottom-right, never a cascade.
+   1. The box (the bottom-right edge).  2. The face, in from the bottom-right.  3. The inner card, in again.
    Content padding keeps the same proportion, larger (--phi-card-padding). */
 :root {
   --phi-card-layer-right: 10px;
@@ -75,16 +76,16 @@ a.button,
   --phi-card-pad-bottom: calc(var(--phi-card-pad-unit) * 2);
   --phi-card-padding: var(--phi-card-pad-top) var(--phi-card-pad-right) var(--phi-card-pad-bottom) var(--phi-card-pad-top);
   /* The page's shades: the look's one colour mixed into its ground, deepest (1) to lightest (3). */
-  --phi-shade-1: color-mix(in srgb, var(--phi-card-hue) 42%, var(--phi-card-ground));
-  --phi-shade-2: color-mix(in srgb, var(--phi-card-hue) 16%, var(--phi-card-ground));
-  --phi-shade-3: color-mix(in srgb, var(--phi-card-hue) 6%, var(--phi-card-ground));
+  --phi-shade-1: color-mix(in srgb, var(--phi-card-hue) 10%, var(--phi-card-ground));
+  --phi-shade-2: color-mix(in srgb, var(--phi-card-hue) 7%, var(--phi-card-ground));
+  --phi-shade-3: color-mix(in srgb, var(--phi-card-hue) 4%, var(--phi-card-ground));
 }
 :where(.pui-card, [data-surface='card'], .phi-layers) {
   position: relative;
   isolation: isolate;
   border: 0;
   border-radius: var(--phi-radius-shape);
-  background: linear-gradient(90deg, var(--phi-shade-2) 0%, var(--phi-shade-1) 100%);
+  background: linear-gradient(90deg, transparent 0%, var(--phi-shade-1) 100%);
   box-shadow: none;
 }
 :where(.pui-card, [data-surface='card'], .phi-layers)::before,
@@ -96,15 +97,15 @@ a.button,
 }
 /* The face. */
 :where(.pui-card, [data-surface='card'], .phi-layers)::before {
-  inset: var(--phi-card-layer-top) var(--phi-card-layer-right) var(--phi-card-layer-bottom) var(--phi-card-layer-top);
-  border-radius: max(calc(var(--phi-radius-shape) - var(--phi-card-layer-top)), 4px);
-  background: linear-gradient(90deg, var(--phi-shade-3) 0%, var(--phi-shade-2) 100%);
+  inset: 0 var(--phi-card-layer-right) var(--phi-card-layer-bottom) 0;
+  border-radius: var(--phi-radius-shape);
+  background: linear-gradient(90deg, transparent 0%, var(--phi-shade-2) 100%);
 }
 /* The inner card: the lightest. */
 :where(.pui-card, [data-surface='card'], .phi-layers)::after {
-  inset: calc(var(--phi-card-layer-top) * 2) calc(var(--phi-card-layer-right) * 2) calc(var(--phi-card-layer-bottom) * 2) calc(var(--phi-card-layer-top) * 2);
-  border-radius: max(calc(var(--phi-radius-shape) - var(--phi-card-inset)), 4px);
-  background: linear-gradient(90deg, var(--phi-card-ground) 0%, var(--phi-shade-3) 100%);
+  inset: 0 calc(var(--phi-card-layer-right) * 2) calc(var(--phi-card-layer-bottom) * 2) 0;
+  border-radius: var(--phi-radius-shape);
+  background: linear-gradient(90deg, transparent 0%, var(--phi-shade-3) 100%);
 }
 /* A container surface holds its content inside its face, so nothing inside (a button, a tab) runs past an edge;
    the container's own spacing then starts from the face. Cards pad themselves (--phi-card-padding). */
