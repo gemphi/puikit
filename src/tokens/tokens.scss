@@ -107,7 +107,11 @@ a.button,
   border-radius: max(calc(var(--phi-radius-shape) - var(--phi-card-inset)), 4px);
   background: linear-gradient(90deg, transparent 0%, color-mix(in srgb, var(--phi-card-colour) 8%, var(--phi-card-base)) 100%);
 }
+/* A container surface holds its content inside its face, so nothing inside (a button, a tab) runs past an edge;
+   the container's own spacing then starts from the face. Cards pad themselves (--phi-card-padding). */
+:where(.phi-layers) { padding: var(--phi-card-layer-top) var(--phi-card-layer-right) var(--phi-card-layer-bottom) var(--phi-card-layer-top); }
 /* A card on a card is one layer: the face only. */
 :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) { background: none; }
+:where(.phi-layers) :where(.phi-layers) { padding: 0; }
 :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers)::before { inset: 0; }
 :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers)::after { content: none; }

@@ -14,8 +14,9 @@
   user-select: none;
   transition: all var(--phi-transition-fast);
 
+  /* A round tag is shaped like a button (one control corner everywhere), not a pill. */
   &.round {
-    border-radius: var(--phi-radius-full);
+    border-radius: var(--phi-control-radius);
   }
 
   &.interactive {
