@@ -188,8 +188,12 @@ export function stylePropsToCSS(props: StyleProps): React.CSSProperties {
   if (props.lineHeight !== undefined) { css.lineHeight = props.lineHeight; (css as Record<string, unknown>)['--pui-text-lh'] = props.lineHeight; }
   if (props.surface) {
     const bg = { card: 'var(--phi-gradient-card)', panel: 'var(--phi-color-background-card)', sunken: 'var(--phi-color-background-secondary)', hero: 'var(--phi-gradient-sidebar)' }[props.surface];
-    css.background = css.background ?? bg; css.borderRadius = css.borderRadius ?? 'var(--phi-radius-lg)';
-    const pad = props.surface === 'hero' ? 'clamp(1.25rem, 4cqi, 2.75rem)' : '1rem';
+    // A card surface is three layers (tokens.scss): its colour goes on the face layer, the box itself is the dark edge.
+    if (props.surface === 'card') (css as Record<string, unknown>)['--card-face'] = css.background ?? bg;
+    else css.background = css.background ?? bg;
+    css.borderRadius = css.borderRadius ?? (props.surface === 'card' ? 'var(--phi-radius-shape)' : 'var(--phi-radius-lg)');
+    // A card's padding: bottom the largest, right half of it, top and left half of the right (tokens.scss).
+    const pad = props.surface === 'hero' ? 'clamp(1.25rem, 4cqi, 2.75rem)' : props.surface === 'card' ? 'var(--phi-card-padding)' : '1rem';
     if (props.padding === undefined && props.paddingX === undefined && props.paddingY === undefined && props.paddingTop === undefined && props.paddingBottom === undefined && props.paddingLeft === undefined && props.paddingRight === undefined) css.padding = pad;
   }
   if (props.rule) css[props.rule === 'top' ? 'borderTop' : 'borderBottom'] = '1px solid var(--phi-color-border-subtle, var(--phi-color-border))';

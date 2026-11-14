@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Button, Page, Stack, StageSlider, Tag, Text, Title, TabList } from '@pui/components';
 import { useStore } from '@pui/store';
 import { Play } from 'lucide-react';
-import { useViewport } from '../../lib/viewport';
 import { phieggStore } from '../../state/phieggStore';
 import { facetsFor, sortsFor, tableFor } from '../../lib/fields';
 import { D, clubOf, fmt, person, showLead, t, worldOf } from '../../lib/data';
@@ -16,12 +15,12 @@ const badgesOf = (x: Show) => <><Tag round size="sm">{t('looksN', { n: x.looks.l
 
 /** One show at a time: the stage slider, arrows on the sides, the watch button beside the progress. */
 const ShowSlider: React.FC<{ list: Show[] }> = ({ list }) => {
-  const s = useStore(phieggStore); const { view } = useStore(phieggStore); const { mobile } = useViewport();
+  const s = useStore(phieggStore);
   const [i, setI] = useState(0); const cur = list[i] ?? list[0];
-  // The puikit stage: the show in the centre, its neighbours half its height either side and half tucked under it.
+  // The puikit stage: the show in the centre, its neighbours either side; their count and size are the kit's.
   return (
-    <StageSlider aria-label={t('showsTitle', { season: D.shows.season })} index={i} onIndexChange={setI} sides={mobile ? 1 : Math.min(3, Math.max(1, view.cols))}
-      stageWidth={mobile ? '78vw' : 'min(35rem, 60vw)'} prevLabel={t('slPrev')} nextLabel={t('slNext')} positionLabel={(k, n) => t('slPos', { i: k, n })}
+    <StageSlider aria-label={t('showsTitle', { season: D.shows.season })} index={i} onIndexChange={setI}
+      prevLabel={t('slPrev')} nextLabel={t('slNext')} positionLabel={(k, n) => t('slPos', { i: k, n })}
       footer={<Button variant="primary" size="sm" iconLeft={Play} onClick={() => s.go('show', { showId: cur.id })}>{t('watchShow')}</Button>}
       items={list.map((x) => ({ id: x.id, label: x.title, node: (
         <Tile animate big tone={x.tone} color={showLead(x).hex} ratio="1/1" depth={{ worldId: x.worldId, clubId: x.clubId, personId: x.hostAgentId, mid: showLead(x).mid }} title={x.title} sub={subOf(x)} badges={badgesOf(x)} onClick={() => s.go('show', { showId: x.id })} />) }))} />

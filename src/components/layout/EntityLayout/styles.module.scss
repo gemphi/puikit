@@ -1,0 +1,33 @@
+// EntityLayout: a title over glass columns, the page an entity (an item, an asset, a person, a place) opens on.
+// Nothing here scrolls on its own; the content area is the one scroll. Tokens only.
+.page { display: flex; flex-direction: column; gap: var(--phi-gap); padding-bottom: 1rem; container-type: inline-size; }
+.head { min-width: 0; }
+.title.title { margin: 0; font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.1; }
+.sub.sub { padding-bottom: 0.3rem; }
+
+.grid { display: grid; grid-template-columns: var(--pui-entity-cols); gap: var(--phi-gap); align-items: start; }
+
+/* Each column is a surface (.phi-layers, tokens.scss), like every container. */
+.col { min-width: 0; display: flex; flex-direction: column; }
+.colHead { display: flex; align-items: center; gap: 0.5rem; min-height: 3rem; padding: 0.5rem 1rem; }
+.colBody { padding: 1rem; min-width: 0; }
+
+/* The chat stays in view beside the scrolling columns; its messages fit its height with no scroll bar of their own. */
+.stick { position: sticky; top: 0; height: calc(100vh - 56px - 2.5rem); }
+.stick .colBody { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+.stick .colBody > * { flex: 1 1 auto; min-height: 0; }
+.stick .colBody * { scrollbar-width: none; }
+.stick .colBody *::-webkit-scrollbar { display: none; }
+
+/* A desktop: the middle column is as wide as the screen is tall, less the header, title and its own head, so the
+   square picture in it fits the screen; the side columns share what is left. */
+@container (min-width: 1100px) {
+  .grid { --pui-entity-middle: minmax(20rem, calc(100vh - 14rem)); }
+}
+
+/* A narrow page (a small window, or a docked sidebar on a laptop): one column, the entity itself first. */
+@container (max-width: 760px) {
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .middle { order: -1; }
+  .stick { position: static; height: 32rem; }
+}

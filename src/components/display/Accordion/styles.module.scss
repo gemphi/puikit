@@ -1,17 +1,12 @@
+/* Each group is a surface (.phi-layers, tokens.scss), like every container, the one gap apart. */
 .accordion {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--phi-color-border);
-  border-radius: var(--phi-radius-md);
-  overflow: hidden;
+  gap: var(--phi-gap);
 }
 
 .item {
-  border-bottom: 1px solid var(--phi-color-border);
-}
-
-.item:last-child {
-  border-bottom: none;
+  overflow: hidden;
 }
 
 .header {

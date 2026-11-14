@@ -5,22 +5,6 @@
   --phi-color-background-card: rgba(255, 255, 255, 0.78);
   --phi-color-border: rgba(0, 0, 0, 0.08);
   --phi-color-border-subtle: rgba(0, 0, 0, 0.04);
-  /* Rebase radius tokens for the `apple` style. The `*-base` values are
-     restated here so the shared `--phi-radius-scale` still multiplies the
-     apple-specific defaults; the emitted `--phi-radius-*` tokens keep the
-     same names and remain scale-responsive. */
-  --phi-radius-xs-base: 6px;
-  --phi-radius-sm-base: 8px;
-  --phi-radius-md-base: 12px;
-  --phi-radius-lg-base: 16px;
-  --phi-radius-xl-base: 20px;
-  --phi-radius-2xl-base: 24px;
-  --phi-radius-xs: calc(var(--phi-radius-xs-base) * var(--phi-radius-scale, 1));
-  --phi-radius-sm: calc(var(--phi-radius-sm-base) * var(--phi-radius-scale, 1));
-  --phi-radius-md: calc(var(--phi-radius-md-base) * var(--phi-radius-scale, 1));
-  --phi-radius-lg: calc(var(--phi-radius-lg-base) * var(--phi-radius-scale, 1));
-  --phi-radius-xl: calc(var(--phi-radius-xl-base) * var(--phi-radius-scale, 1));
-  --phi-radius-2xl: calc(var(--phi-radius-2xl-base) * var(--phi-radius-scale, 1));
   --phi-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 8px rgba(0, 0, 0, 0.04);
   --phi-shadow-2: 0 4px 16px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
   --phi-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.10), 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -59,16 +43,6 @@
 }
 
 :root[data-theme-style='glass'] {
-  /* Rebase radius tokens for the `glass` style so the shared
-     `--phi-radius-scale` still applies. */
-  --phi-radius-md-base: 12px;
-  --phi-radius-lg-base: 18px;
-  --phi-radius-xl-base: 24px;
-  --phi-radius-2xl-base: 32px;
-  --phi-radius-md: calc(var(--phi-radius-md-base) * var(--phi-radius-scale, 1));
-  --phi-radius-lg: calc(var(--phi-radius-lg-base) * var(--phi-radius-scale, 1));
-  --phi-radius-xl: calc(var(--phi-radius-xl-base) * var(--phi-radius-scale, 1));
-  --phi-radius-2xl: calc(var(--phi-radius-2xl-base) * var(--phi-radius-scale, 1));
   --phi-gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.68) 0%, transparent 100%);
   --phi-glass-surface: rgba(255, 255, 255, 0.64);
   --phi-glass-border: rgba(255, 255, 255, 0.48);
@@ -89,14 +63,6 @@
 }
 
 :root[data-theme-style='gradient'] {
-  /* Rebase radius tokens for the `gradient` style so the shared
-     `--phi-radius-scale` still applies inside this style. */
-  --phi-radius-md-base: 10px;
-  --phi-radius-lg-base: 14px;
-  --phi-radius-xl-base: 18px;
-  --phi-radius-md: calc(var(--phi-radius-md-base) * var(--phi-radius-scale, 1));
-  --phi-radius-lg: calc(var(--phi-radius-lg-base) * var(--phi-radius-scale, 1));
-  --phi-radius-xl: calc(var(--phi-radius-xl-base) * var(--phi-radius-scale, 1));
   --phi-gradient-main: linear-gradient(180deg, #ffffff 0%, #f8fafc 48%, #eef2ff 100%);
   --phi-gradient-card: linear-gradient(180deg, #ffffff 0%, transparent 100%);
   --phi-gradient-navbar: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
@@ -198,7 +164,7 @@
   --phi-font-family: "Phifing 4", "Phifing", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", Arial, sans-serif;
   --phi-font-heading: "Phifing 4", "Phifing", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", Arial, sans-serif;
   --phi-font-weight-semibold: 300;
-  --phi-font-weight-bold: 400;
+  --phi-font-weight-bold: 600; /* Phifing Regular, paired by darkness (phi-fonts.css) */
   --phi-control-height-md-base: 36px;
 }
 

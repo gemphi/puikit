@@ -38,14 +38,6 @@
   --phi-color-border: color-mix(in srgb, #201e1d 16%, transparent);
   --phi-color-border-subtle: color-mix(in srgb, #201e1d 8%, transparent);
   --phi-color-overlay: color-mix(in srgb, #2e2b25 45%, transparent);
-  --phi-radius-xs-base: 6px; --phi-radius-sm-base: 8px; --phi-radius-md-base: 16px;
-  --phi-radius-lg-base: 28px; --phi-radius-xl-base: 28px; --phi-radius-2xl-base: 36px;
-  --phi-radius-xs: calc(var(--phi-radius-xs-base) * var(--phi-radius-scale, 1));
-  --phi-radius-sm: calc(var(--phi-radius-sm-base) * var(--phi-radius-scale, 1));
-  --phi-radius-md: calc(var(--phi-radius-md-base) * var(--phi-radius-scale, 1));
-  --phi-radius-lg: calc(var(--phi-radius-lg-base) * var(--phi-radius-scale, 1));
-  --phi-radius-xl: calc(var(--phi-radius-xl-base) * var(--phi-radius-scale, 1));
-  --phi-radius-2xl: calc(var(--phi-radius-2xl-base) * var(--phi-radius-scale, 1));
   --phi-shadow-1: 0 1px 2px color-mix(in srgb, #2e2b25 14%, transparent);
   --phi-shadow-2: 0 3px 10px color-mix(in srgb, #2e2b25 16%, transparent);
   --phi-shadow-3: 0 12px 32px color-mix(in srgb, #2e2b25 22%, transparent);
@@ -65,7 +57,7 @@
   --phi-font-heading: "Phifing 4", "Phifing", "Caprasimo", system-ui, sans-serif;
   --phi-font-size-base: 0.9375rem;
   --phi-font-weight-semibold: 300;
-  --phi-font-weight-bold: 400;
+  --phi-font-weight-bold: 600; /* Phifing Regular, paired by darkness (phi-fonts.css) */
   --phi-control-height-md-base: 44px;
 }
 
@@ -95,11 +87,6 @@
   --phi-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.55);
 }
 
-/* Pills: Organic's controls are fully round until a corner preset is picked — the radius picker always wins. */
-:root[data-theme-style='organic']:not([data-radius='small']):not([data-radius='medium']):not([data-radius='large']) {
-  --phi-control-radius: var(--phi-radius-full);
-  --phi-chip-radius: var(--phi-radius-full);
-}
 :root[data-theme-style='organic'] :is(h1, h2, h3, h4) {
   font-family: var(--phi-font-heading);
   font-weight: var(--phi-font-weight-medium);

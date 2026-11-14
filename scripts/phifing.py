@@ -1,71 +1,71 @@
 """Build Phifing, the shorter web face, from Phi-Soft, into src/tokens/fonts/phi/Phifing.
 
     pip install fonttools brotli
-    python scripts/phifing.py
+    python scripts/phifing.py [OUT]
 
-Every letter's height scales by one number, the one that makes Regular's a square inside.
-Light would then still be taller than wide inside, so its upright stems get thinner until the
-a is square; horizontal strokes and letter widths stay. Regular's stems lose a little too, with
-the a still square, and that room goes between the letters. Every weight gets a little more
-space between letters. In capitals with straight stems the
-middle bar moves whole to the centre, so the white above it equals the white below. The tails
-of g j p q y move up whole until the white under g's bowl is the a's square; only straight
-stems change length. Where Phi-Soft's V comes in two pieces it is rebuilt from its v.
+Phifing is Phi-Soft made short, and nothing in a letter is ever bent to get there. Every height scales by one
+number (130/152): an even scale, so every round stays smooth. Everything after that slides (scripts/slide.py): an
+outline is cut where it turns and each piece moves whole, so every stroke, round and fillet stays as Phi-Soft draws
+it, and only the straight runs at the cuts grow or shrink.
 
-Phifing 1 to 5 are the same face wider: the white inside each letter or digit grows by an
-eighth, a quarter, three eighths, a half and all of itself. Stems and heights stay.
+- No inside is pushed square: the white inside each letter keeps the width Phi-Soft gives it, and the stems
+  stay as thick as Phi-Soft's: nothing is thinned. (Narrowing the insides back to Phi-Soft's proportion after the
+  scale cannot be done by sliding: o, n, b and the rest have no straight run in their rounds to shorten.)
+- Phifing 1 to 5 are the same face wider, every letter and digit by the same amount: an eighth, a quarter, three
+  eighths, a half and all of the n's inside. A letter's insides share it (m grows no more than n); one with none
+  grows at its side or along its bars; one that can do neither (a V, a lone stem) keeps its shape and takes the
+  same amount as room beside it. So letters drawn alike stay alike, and the digits keep agreeing. A letter open at one side, as c, s or E, grows between its side
+  strokes; the floating bar of E and F keeps its gap from the back and grows with the arms. z and Z grow along
+  their bars, half the growth at an end, so the diagonal keeps its slant: z at its top bar's left end, Z at its
+  foot's right end. (Z has no top bar to the left of its diagonal, and Regular's z no straight foot to the right:
+  those ends would bend.) Any other letter that would part through a stem (T, 1, and l r in some weight)
+  is left as drawn in every weight. A space that is a V,
+  as in v V A K X Y k x, is left as Phi-Soft draws it: widened, its point would be drawn out flat.
+- The bars of the capitals stay where Phi-Soft draws them, high, with more white under them than over. Moving
+  one to the middle means cutting the strokes around it, and only H and F have nothing but straight stems there:
+  B E G R would have their soft inner corners cut and A and R their slanted strokes. So no bar moves, and E and F
+  stay alike.
+- Where Phi-Soft's capital V or M is broken and its small letter is whole (the Regular V, in two pieces), it is
+  rebuilt from its v or m as the other weights draw it: the small letter cut where its strokes stand upright, and
+  everything above lifted straight to cap height. Phi-Soft's SemiBold and Bold m and M are both drawn as a block
+  with bumps along its foot; with no whole m to make M from, they stay as Phi-Soft draws them until Phi-Soft's own
+  m is redrawn.
+- The tails of g j p q y stay as long as Phi-Soft's, squashed as the rest: g and y have no straight stretch under
+  the bowl to shorten, so none is shortened, and they all stay one length.
 
-Letter spacing comes from Barlow, a conventional text face: each letter keeps Phifing's shape and
-takes the space Barlow leaves either side of that same letter, weight for weight.
+Letter spacing comes from Barlow, a conventional text face: each letter keeps Phifing's shape and takes the space
+Barlow leaves either side of that same letter, weight for weight. A glyph a slide would cross over itself is left as
+the scale made it, and named.
 """
+import sys
 from collections import Counter
 from pathlib import Path
-from statistics import median
 
 from fontTools.pens.boundsPen import BoundsPen
-from fontTools.pens.recordingPen import DecomposingRecordingPen
 from fontTools.pens.t2CharStringPen import T2CharStringPen
 from fontTools.ttLib import TTFont
 
+from slide import STEP, columns, crossing, opened, polygons, runs, slid, stretch, tapered, widest
+
+NEARLY = 10  # an edge ten times longer across than up is nearly level: where a round may grow (slide.slid)
+
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT.parent / 'phikit/crates/phiber/assets/phi-fonts/Phi-Soft'
-OUT = ROOT / 'src/tokens/fonts/phi/Phifing'
+OUT = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'src/tokens/fonts/phi/Phifing'
 BARLOW = ROOT / 'src/tokens/fonts/phi/Barlow'
 WEIGHTS = ('Light', 'Regular', 'SemiBold', 'Bold')
-X_HEIGHT, CAP, DESCENT = 495, 635, 272  # Phi-Soft's
+X_HEIGHT, CAP = 495, 635  # Phi-Soft's
 SCALE = 130 / 152  # Regular's a is 130 wide and 152 tall inside
-BOTTOM = 208  # Regular's g: the a's inside, 130, plus the tail's own thickness
-RISE = DESCENT * SCALE - BOTTOM
-BARRED, TAILED = set('HABEFGR'), set('gjpqy')
-REACH = 25  # points this close together belong to one curve
-EASE = 12  # how far the sideways map blends across a stem's edge
-BLEND_LOSS = 1.13  # that blend takes a little off the gain, so the cut asks for this much more
-STEM_TRIM = {'Regular': 20}  # Regular reads lighter: stems 170 to 150, the a stays square
+BOTTOM = 208  # how far below the baseline the line keeps room for, under the squashed tails
 FAMILIES = {'Phifing': 0.0, 'Phifing 1': 0.125, 'Phifing 2': 0.25, 'Phifing 3': 0.375, 'Phifing 4': 0.5, 'Phifing 5': 1.0}  # share of the white added
 LETTER_SPACE = {'Light': 16, 'Regular': 24, 'SemiBold': 32, 'Bold': 32}  # added to every letter's width, split both sides
-
-
-def polygons(glyphs, name):
-    """A glyph as point lists, one per contour. Phi-Soft's outlines are all straight segments."""
-    pen = DecomposingRecordingPen(glyphs)
-    glyphs[name].draw(pen)
-    out = []
-    for op, args in pen.value:
-        match op:
-            case 'moveTo':
-                out.append([args[0]])
-            case 'lineTo':
-                out[-1].append(args[0])
-            case _:
-                pass
-    return [pts[:-1] if pts[0] == pts[-1] else pts for pts in out]
 
 
 def edges(shapes):
     return [line for pts in shapes for line in zip(pts, pts[1:] + pts[:1])]
 
 
-def runs(lines, axis, at):
+def cut(lines, axis, at):
     """The runs of ink a straight cut meets. axis 0 cuts along x = at and returns y runs."""
     other = 1 - axis
     hits = sorted(a[other] + (at - a[axis]) / (b[axis] - a[axis]) * (b[other] - a[other])
@@ -83,147 +83,148 @@ def hole_of(shapes):
     holes = [p for p in shapes if p is not main and area(p) * area(main) < 0]
     low = min(holes, key=lambda p: min(q[1] for q in p))
     xs, ys = [q[0] for q in low], [q[1] for q in low]
-    return round(max(xs) - min(xs)), round(max(ys) - min(ys))
+    return max(xs) - min(xs), max(ys) - min(ys)
 
 
-def stem_spans(shapes, stem):
-    """The x spans of a letter's thick upright strokes, found by cutting across it at many heights."""
-    lines = edges(shapes)
+def side_open(shapes, stem, grow, long):
+    """A letter with no space closed inside it, as c, s or E, opened between its side strokes: each outline
+    parts at its own middle, its left half staying and its right half moving out by what the white between the
+    side strokes grows. So the floating bar of E and F keeps its gap from the back and grows as much as the arms
+    do, staying as long beside them as Phi-Soft draws it. Too narrow a letter (i, l) is left as drawn; None where
+    an outline would cross."""
+    xs = [x for pts in shapes for x, _ in pts]
+    white = max(xs) - min(xs) - 2 * stem
+    if white < 40:
+        return shapes
+    # Where a letter parts, the parting line may cross only level strokes (the arms and bar of E, the top and foot
+    # of c), never run down an upright one: T, with its stem in the middle, would have the stem split and thickened.
+    standing = lambda contour, x: any(b - a > 2 * stem for a, b in runs([[(py, px) for px, py in c] for c in shapes], x))
+    out = []
+    for contour in shapes:
+        cx, cy = [x for x, _ in contour], [y for _, y in contour]
+        middle = (min(cx) + max(cx)) / 2
+        if standing(contour, middle):
+            return shapes
+        col = {k: [(middle - 0.5, middle + 0.5, 1)] for k in range(int(min(cy)) // STEP * STEP, int(max(cy)) + STEP, STEP)}
+        out.append(slid(contour, [col], [grow(white)], long, NEARLY))
+    return None if crossing(out) else out
+
+
+def held():
+    """The letters with no space inside that some weight cannot open at its side without parting a stem: they
+    stay as drawn in every weight, so a letter is alike in all four (l, r, z in Phi-Soft)."""
+    out = set()
+    for weight in WEIGHTS:
+        font = TTFont(SRC / f'PhiSoft-{weight}.otf')
+        glyphs, cmap = font.getGlyphSet(), font.getBestCmap()
+        squash = lambda name: [[(x, y * SCALE) for x, y in part] for part in polygons(glyphs, name)]
+        letter_h = squash(cmap[ord('H')])
+        stem_run = cut(edges(letter_h), 1, 150 * SCALE)[0]
+        stem = stem_run[1] - stem_run[0]
+        for code, name in cmap.items():
+            shapes = squash(name)
+            if chr(code).isalnum() and shapes and not columns(shapes) and side_open(shapes, stem, lambda white: 40.0, stem / 2) is shapes:
+                out.add(chr(code))
+    return out
+
+
+TALL = {'V': 'v', 'M': 'm'}  # capitals Phi-Soft draws as its small letter made tall
+# Letters that grow along their bars, not through a stem or a diagonal (bar_end): each end that slides, as the bar
+# it is on (top or foot) and its side (left or right).
+BARS = {'z': [('top', 'left')], 'Z': [('foot', 'right')], 'T': [('top', 'left'), ('top', 'right')], 'r': [('top', 'right')]}
+
+
+def bar_end(shapes, top, left, dx):
+    """One end of a level bar slid along itself: of the top bar or the foot, the left end or the right, cut off where
+    the bar runs straight and moved across by dx, so the bar grows and nothing else changes. None where no such cut
+    leaves the end joined to the rest by the bar's two level edges alone."""
     ys = [y for pts in shapes for _, y in pts]
-    low, high = min(ys), max(ys)
-    found = []
-    for i in range(1, 30):
-        for a, b in runs(lines, 1, low + (high - low) * i / 30):
-            if 0.75 * stem <= b - a <= 1.25 * stem:
-                found.append((a, b))
-    groups = []
-    for a, b in sorted(found):
-        match groups:
-            case [*_, last] if a < max(q for _, q in last):
-                last.append((a, b))
-            case _:
-                groups.append([(a, b)])
-    return [(median(p for p, _ in g), median(q for _, q in g)) for g in groups if len(g) >= 3]
+    edge = max(ys) if top else min(ys)
+    xs = [x for pts in shapes for x, y in pts if abs(y - edge) < 0.01]
+    if not xs:
+        return None
+    ends = sorted(xs) if left else sorted(xs, reverse=True)
+    inward = 1 if left else -1
+    # How thick the bar is: the run of ink straight down (or up) just in from the end that slides, clear of where a
+    # stem or a diagonal joins the bar further along.
+    down = runs([[(y, x) for x, y in pts] for pts in shapes], ends[0] + 8 * inward)
+    if not down:
+        return None
+    near = max(down, key=lambda run: run[1]) if top else min(down, key=lambda run: run[0])
+    thick = near[1] - near[0]
+    band = (edge - thick - 0.5, edge + 0.5) if top else (edge - 0.5, edge + thick + 0.5)
+    inside = lambda y: band[0] <= y <= band[1]
+    for step in range(1, 40):
+        cut = ends[0] + (step * thick / 4) * inward
+        moving = lambda x, y: inside(y) and (x < cut if left else x > cut)
+        joined, out = True, []
+        for pts in shapes:
+            n = len(pts)
+            for i in range(n):
+                a, b = pts[i], pts[(i + 1) % n]
+                if moving(*a) != moving(*b) and abs(a[1] - b[1]) > 0.01:
+                    joined = False
+            out.append([(x + dx, y) if moving(x, y) else (x, y) for x, y in pts])
+        if joined and any(moving(x, y) for pts in shapes for x, y in pts):
+            return None if crossing(out) else out
+    return None
 
 
-def thin_strokes(shapes, stem, cut):
-    """Each stem loses cut from both sides and the white between takes it, so the letter's
-    heights and bars stay and the sideways map has no corners."""
-    spans = stem_spans(shapes, stem)
-    if not spans:
-        return shapes
-    knots = [knot for a, b in spans for knot in ((a, cut), (b, -cut))]
-
-    def shift(x):
-        if x <= knots[0][0]:
-            return knots[0][1]
-        for (a, da), (b, db) in zip(knots, knots[1:]):
-            if x <= b:
-                return da + (db - da) * (x - a) / (b - a)
-        return knots[-1][1]
-
-    def eased(x):
-        return sum(shift(x + i) for i in range(-EASE, EASE + 1)) / (2 * EASE + 1)
-
-    return [[(x + eased(x), y) for x, y in pts] for pts in shapes]
+def bar_ends(shapes, grow, ends):
+    """A letter grown along its bars by `grow` in all, shared between the ends that slide, each outward."""
+    out = shapes
+    for bar, side in ends:
+        if out is not None:
+            out = bar_end(out, bar == 'top', side == 'left', (-grow if side == 'left' else grow) / len(ends))
+    return out
 
 
-def trim_stems(shapes, stem, trim):
-    """Each stem loses trim and the letter closes up behind it, so the white inside and the
-    side bearings stay. Returns the shapes and how much narrower the letter came out."""
-    spans = stem_spans(shapes, stem)
-    if not spans:
-        return shapes, 0.0
-
-    def shift(x):
-        total = 0.0
-        for a, b in spans:
-            total -= trim * min(max(x - a, 0.0) / (b - a), 1.0)
-        return total
-
-    def eased(x):
-        return sum(shift(x + i) for i in range(-EASE, EASE + 1)) / (2 * EASE + 1)
-
-    return [[(x + eased(x), y) for x, y in pts] for pts in shapes], trim * len(spans)
-
-
-def widen_white(shapes, stem, share):
-    """The white between a letter's stems grows by share of itself and the stems stay as drawn.
-    A letter without two stems takes it between its side strokes. Returns the shapes and the added width."""
-    spans = stem_spans(shapes, stem)
-    xs = [x for pts in shapes for x, _ in pts]
-    match spans:
-        case [_, _, *_]:
-            gaps = [(left[1], right[0]) for left, right in zip(spans, spans[1:])]
-        case _:
-            gaps = [(min(xs) + stem, max(xs) - stem)]
-    gaps = [(lo, hi) for lo, hi in gaps if hi - lo >= 40]
-    if not gaps:
-        return shapes, 0.0
-
-    def shift(x):
-        return sum(share * (hi - lo) * min(max(x - lo, 0.0) / (hi - lo), 1.0) for lo, hi in gaps)
-
-    def eased(x):
-        return sum(shift(x + i) for i in range(-EASE, EASE + 1)) / (2 * EASE + 1)
-
-    return [[(x + eased(x), y) for x, y in pts] for pts in shapes], sum(share * (hi - lo) for lo, hi in gaps)
+def bar_room():
+    """Which ends of each bar letter slide in every weight: an end whose bar has no straight underside in some weight
+    (the top-left of Phi-Soft's Z, where the round runs straight on into the diagonal) slides in none, so a letter is
+    alike in all four."""
+    room = {ch: list(ends) for ch, ends in BARS.items()}
+    for weight in WEIGHTS:
+        font = TTFont(SRC / f'PhiSoft-{weight}.otf')
+        glyphs, cmap = font.getGlyphSet(), font.getBestCmap()
+        for ch, ends in BARS.items():
+            shapes = [[(x, y * SCALE) for x, y in part] for part in polygons(glyphs, cmap[ord(ch)])]
+            for bar, side in ends:
+                if bar_end(shapes, bar == 'top', side == 'left', -40 if side == 'left' else 40) is None and (bar, side) in room[ch]:
+                    room[ch].remove((bar, side))
+    # A letter that grows from both ends of one bar (T) grows from both or not at all: from one, its bar would sit
+    # off the stem.
+    return {ch: ends if len(ends) == len(BARS[ch]) or len({bar for bar, _ in BARS[ch]}) > 1 or len(BARS[ch]) == 1 else []
+            for ch, ends in room.items()}
 
 
-def lift_tail(shapes):
-    """Everything below the long straight stretch under the baseline moves up as one piece."""
-    ys = sorted({0.0, *(y for pts in shapes for _, y in pts if y < 0)})
-    low, _ = max(zip(ys, ys[1:]), key=lambda pair: pair[1] - pair[0])
-    return [[(x, y + RISE if y <= low else y) for x, y in pts] for pts in shapes]
+def weight_of(col):
+    """How many spaces a column is at its widest: the two of a W where they meet count two."""
+    return max(sum(w for _, _, w in whites) for whites in col.values())
 
 
-def find_bar(shapes, bar):
-    """The middle bar, and the strokes above and below it, read from columns through the letter."""
+def broken(glyphs, cmap, capital):
+    """Whether Phi-Soft's capital is broken in this weight, where its small letter is whole: in two pieces (the
+    Regular V) or with its spaces filled in (the SemiBold and Bold M, a block with bumps along its foot)."""
+    big, small = polygons(glyphs, cmap[ord(capital)]), polygons(glyphs, cmap[ord(TALL[capital])])
+    return len(big) > len(small) or len(columns(big)) < len(columns(small))
+
+
+def tall(glyphs, cmap, capital):
+    """A capital from its whole small letter, as Phi-Soft's other weights draw it: the strokes of v and m stand
+    upright at the top, so it is cut across where they do and everything above goes straight up to cap height.
+    The highest such cut first."""
+    shapes = polygons(glyphs, cmap[ord(TALL[capital])])
     lines = edges(shapes)
-    xs = [x for pts in shapes for x, _ in pts]
-    x0, x1 = min(xs), max(xs)
-    high = max(y for pts in shapes for _, y in pts)
-    seen = Counter()
-    for i in range(1, 40):
-        cut = runs(lines, 0, x0 + (x1 - x0) * i / 40)
-        for k, (lo, hi) in enumerate(cut):
-            if 0.6 * bar <= hi - lo <= 1.5 * bar and lo > 100 and hi < 480:
-                floor = cut[k - 1][1] if k else 0.0
-                ceiling = cut[k + 1][0] if k + 1 < len(cut) else high
-                seen[(round(lo), round(hi), round(floor), round(ceiling))] += 1
-    return seen.most_common(1)[0][0] if seen else None
 
+    def upright(y):
+        crossed = [(a, b) for a, b in lines if min(a[1], b[1]) < y < max(a[1], b[1])]
+        return crossed and all(abs(b[0] - a[0]) < 0.01 for a, b in crossed)
 
-def center_bar(shapes, bar):
-    """The bar and the curves that join it move together; the straight stems take the change."""
-    found = find_bar(shapes, bar)
-    if not found:
-        return shapes
-    lo, hi, floor, ceiling = found
-    ys = sorted({y for pts in shapes for _, y in pts})
-    below = [y for y in ys if y < lo]
-    above = [y for y in ys if y > hi]
-    for y in reversed(below):
-        if lo - y > REACH:
-            break
-        lo = y
-    for y in above:
-        if y - hi > REACH:
-            break
-        hi = y
-    room_down = lo - max((y for y in below if y < lo), default=lo - 999) - REACH
-    room_up = min((y for y in above if y > hi), default=hi + 999) - hi - REACH
-    shift = (floor + ceiling) / 2 - (found[0] + found[1]) / 2
-    shift = max(-room_down, min(room_up, shift))
-    return [[(x, y + shift if lo <= y <= hi else y) for x, y in pts] for pts in shapes]
-
-
-def tall_v(glyphs):
-    """V from the whole v: its arms, above the long stretch in their upper half, go up to cap height."""
-    shapes = polygons(glyphs, 'v')
-    ys = sorted({y for pts in shapes for _, y in pts})
-    _, arm = max(zip(ys, ys[1:]), key=lambda pair: pair[1] - pair[0])
-    return [[(x, y + CAP - X_HEIGHT if y >= arm else y) for x, y in pts] for pts in shapes]
+    for y in range(int(X_HEIGHT * 0.9), int(X_HEIGHT * 0.3), -STEP):
+        if upright(y + 0.5) and (out := stretch(shapes, y + 0.5, CAP - X_HEIGHT, 'above')) is not None:
+            return out
+    return None
 
 
 def bearings_of(weight):
@@ -267,57 +268,78 @@ def build(weight, family, share):
     cmap = font.getBestCmap()
     chars = {name: chr(code) for code, name in cmap.items()}
 
-    stem_run = runs(edges(polygons(glyphs, 'H')), 1, 150)[0]
+    squash = lambda parts: [[(x, y * SCALE) for x, y in part] for part in parts]
+    letter_h = squash(polygons(glyphs, cmap[ord('H')]))
+    stem_run = cut(edges(letter_h), 1, 150 * SCALE)[0]
     stem = stem_run[1] - stem_run[0]
-    letter_e = polygons(glyphs, 'E')
-    xs = [x for pts in letter_e for x, _ in pts]
-    bar_run = runs(edges(letter_e), 0, max(xs) - (max(xs) - min(xs)) * 0.15)[0]
-    bar = (bar_run[1] - bar_run[0]) * SCALE
-    width, height = hole_of(polygons(glyphs, cmap[ord('a')]))
-    add = max(0.0, height * SCALE - width)
+    # One growth for every letter and digit of this face and weight: the face's share of the n's inside, at its
+    # usual width. Every glyph comes out exactly that much wider, whatever it is drawn like, so letters drawn alike
+    # stay alike (r beside n, y beside x) and the digits keep agreeing.
+    letter_n = squash(polygons(glyphs, cmap[ord('n')]))
+    growth = share * widest(columns(letter_n)[0])
 
     spacing = bearings_of(weight)
-    redrawn = {}
+    redrawn, kept = {}, Counter()
     for name in font.getGlyphOrder():
         advance, _ = metrics[name]
         original = strings[name]
         private = original.private
         parts = polygons(glyphs, name)
         ch = chars.get(name, '')
-        if ch == 'V' and len(parts) > 1:
-            parts = tall_v(glyphs)
-            advance = metrics[cmap[ord('v')]][0]
+        if ch in TALL and broken(glyphs, cmap, ch):
+            small = polygons(glyphs, cmap[ord(TALL[ch])])
+            rebuilt = tall(glyphs, cmap, ch)
+            match rebuilt:
+                case None:
+                    kept[f'{ch} from {TALL[ch]}'] += 1
+                case _:
+                    gain = max(x for p in rebuilt for x, _ in p) - max(x for p in small for x, _ in p)
+                    shift = min(x for p in small for x, _ in p) - min(x for p in rebuilt for x, _ in p)
+                    parts = [[(x + shift, y) for x, y in p] for p in rebuilt]
+                    advance = metrics[cmap[ord(TALL[ch])]][0] + round(gain + shift)
+                    kept[f'{ch} made from {TALL[ch]}'] += 1
         pen = T2CharStringPen(width=advance - private.nominalWidthX, glyphSet=glyphs)
         if not parts:
             redrawn[name] = pen.getCharString(private=private, globalSubrs=original.globalSubrs)
             continue
-        shapes = [[(x, y * SCALE) for x, y in part] for part in parts]
-        if add:
-            shapes = thin_strokes(shapes, stem, add / 2 * BLEND_LOSS)
-        narrower = 0.0
-        if weight in STEM_TRIM:
-            shapes, narrower = trim_stems(shapes, stem, STEM_TRIM[weight])
-        if share and ch.isalnum():
-            shapes, wider = widen_white(shapes, stem - add * BLEND_LOSS - STEM_TRIM.get(weight, 0), share)
-            advance += round(wider)
-        # What the stems gave up goes back between the letters, with a little more for reading.
+        shapes = squash(parts)
+        air = 0.0  # what the letter takes beside it, where its shape cannot take the growth
+        if ch.isalnum() and growth:
+            left_was = min(x for pts in shapes for x, _ in pts)
+            right_was = max(x for pts in shapes for x, _ in pts)
+            # Its insides share the growth (all but a V's); with none, it grows at its side or along its bars; a
+            # letter that can do neither keeps its shape and takes the growth as room beside it.
+            spaces = columns(shapes)
+            open_ = [col for col in spaces if not tapered(col, shapes)]
+            match (bool(spaces), bool(open_), ch in HELD, bool(ROOM.get(ch))):
+                case (True, True, _, _):
+                    found = opened(shapes, growth / sum(weight_of(col) for col in open_), stem / 2, open_, NEARLY)
+                case (False, _, _, True):
+                    found = bar_ends(shapes, growth, ROOM[ch])
+                case (False, _, False, _):
+                    found = side_open(shapes, stem, lambda white: growth, stem / 2)
+                case _:
+                    found = shapes
+            match found:
+                case None:
+                    kept[f'{ch} took the growth as room'] += 1
+                case _:
+                    shapes = found
+            grown = (max(x for pts in shapes for x, _ in pts) - min(x for pts in shapes for x, _ in pts)) - (right_was - left_was)
+            air = max(0.0, growth - grown)
+            advance += round(grown)
+        # A little more room between the letters, for reading.
         advance += LETTER_SPACE[weight]
-        side = (narrower + LETTER_SPACE[weight]) / 2
-        shapes = [[(x + side, y) for x, y in pts] for pts in shapes]
-        pen = T2CharStringPen(width=advance - private.nominalWidthX, glyphSet=glyphs)
-        match ch:
-            case c if c in TAILED:
-                shapes = lift_tail(shapes)
-            case c if c in BARRED:
-                shapes = center_bar(shapes, bar)
-            case _:
-                pass
+        shapes = [[(x + LETTER_SPACE[weight] / 2, y) for x, y in pts] for pts in shapes]
         if ch in spacing:
             xs = [x for pts in shapes for x, _ in pts]
-            left, right = spacing[ch]
+            left, right_side = spacing[ch]
             shapes = [[(x - min(xs) + left, y) for x, y in pts] for pts in shapes]
-            advance = round(left + max(xs) - min(xs) + right)
-            pen = T2CharStringPen(width=advance - private.nominalWidthX, glyphSet=glyphs)
+            advance = round(left + max(xs) - min(xs) + right_side)
+        # Room it could not grow into goes evenly either side of it.
+        advance += round(air)
+        shapes = [[(x + air / 2, y) for x, y in pts] for pts in shapes]
+        pen = T2CharStringPen(width=advance - private.nominalWidthX, glyphSet=glyphs)
         for pts in shapes:
             pen.moveTo(pts[0])
             for p in pts[1:]:
@@ -348,12 +370,15 @@ def build(weight, family, share):
 
     check = TTFont(OUT / f'{postscript}.woff2')
     gs, cm = check.getGlyphSet(), check.getBestCmap()
-    print(family, weight, 'a inside', hole_of(polygons(gs, cm[ord('a')])), 'V pieces', len(polygons(gs, cm[ord('V')])),
-          'H', round(max(y for pts in polygons(gs, cm[ord('H')]) for _, y in pts)),
-          'g', round(min(y for pts in polygons(gs, cm[ord('g')]) for _, y in pts)))
+    a = hole_of(polygons(gs, cm[ord('a')]))
+    print(family, weight, 'a inside', round(a[0]), 'x', round(a[1]), 'stem', round(stem),
+          'left as the scale made them:', dict(kept) or 'none')
 
 
 if __name__ == '__main__':
+    HELD, ROOM = held(), bar_room()
+    print('left as drawn in every weight, having no space inside and a stem where they would part:', ''.join(sorted(HELD)))
+    print('bar ends that slide, by letter:', {ch: sorted(ends) for ch, ends in ROOM.items()})
     for family, share in FAMILIES.items():
         for weight in WEIGHTS:
             build(weight, family, share)

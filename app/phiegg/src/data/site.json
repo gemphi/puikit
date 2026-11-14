@@ -2,7 +2,7 @@
  "brand": {
   "name": "phiegg",
   "tagline": "The Phiace community platform",
-  "mark": "M46.3 16.7 Q50 12 53.7 16.7 L79.8 50.5 C84.10 56.02 84.10 68.10 79.8 73.62 A34 24 0 0 1 50 86.06 A34 24 0 0 1 20.2 50.5 Z M79.8 50.5 A34 24 0 0 0 20.2 50.5",
+  "mark": "M42.2 22 Q50 11.9 57.8 22 L79.8 50.5 C84.10 56.02 84.10 68.10 79.8 73.62 A34 24 0 0 1 50 86.06 A34 24 0 0 1 20.2 50.5 Z M79.8 50.5 A34 24 0 0 0 20.2 50.5",
   "markRotate": 30,
   "sub": "phipad",
   "phipadPill": {
@@ -1208,22 +1208,22 @@
   "radii": [
    {
     "id": "small",
-    "label": "Small",
+    "label": "16px",
     "scale": 0.5
    },
    {
     "id": "medium",
-    "label": "Medium",
+    "label": "32px",
     "scale": 1
    },
    {
     "id": "large",
-    "label": "Large",
+    "label": "48px",
     "scale": 1.75
    },
    {
     "id": "pill",
-    "label": "Pill (egg)",
+    "label": "64px",
     "scale": 3
    }
   ],
@@ -1310,7 +1310,7 @@
    "sidebar": "0",
    "content": "0",
    "opacity": "100",
-   "look": "apple"
+   "look": "muse"
   },
   "modes": [
    {
@@ -1364,12 +1364,16 @@
   ],
   "looks": [
    {
-    "id": "apple",
-    "label": "Apple"
+    "id": "muse",
+    "label": "Muse"
    },
    {
     "id": "spacex",
     "label": "SpaceX"
+   },
+   {
+    "id": "apple",
+    "label": "Apple"
    },
    {
     "id": "organic",

@@ -4,7 +4,9 @@
   padding: 0.5rem 0.75rem;
   border: 1px solid var(--phi-color-border);
   border-radius: var(--phi-radius-md);
-  background-color: var(--phi-color-background);
+  /* Glass (tokens/_glass.scss): a field runs from nothing to glass across. */
+  background-color: transparent;
+  background-image: var(--phi-glass-to-across);
   color: var(--phi-color-text-primary);
   font-family: var(--phi-font-family);
   font-size: var(--phi-font-size-base);
@@ -21,3 +23,6 @@
 .error {
   border-color: var(--phi-color-error);
 }
+
+/* Under the pointer the theme's colour comes up the same way as the glass (tokens/_glass.scss). */
+.textarea:hover:not(:disabled) { background-image: var(--phi-tint-to-across), var(--phi-glass-to-across); }

@@ -132,7 +132,7 @@ export const NewsPage: React.FC<{ db: DB; onOpen: (o: Open) => void }> = ({ db, 
     <Head title="News" sub="Cohorts, tracks and launches." />
     <Box className={s.news}>{db.phipad.news.map((nw) => (
       <Pressable key={nw.id} fill divider paddingBottom={3} onClick={() => onOpen({ kind: 'news', id: nw.id })}><Stack direction="column" gap={2}>
-        <Stack direction="row" gap={2} wrap align="center"><Tag minimal round>{nw.tag}</Tag><Text as="span" size="xs" intent="muted">{nw.date}</Text></Stack>
+        <Stack direction="row" gap={2} wrap align="baseline"><Text as="span" size="xs" weight="medium">{nw.tag}</Text><Text as="span" size="xs" intent="muted">{nw.date}</Text></Stack>
         <Title level={3} size="md">{nw.title}</Title><Text size="sm" intent="secondary">{nw.body}</Text>
       </Stack></Pressable>))}</Box>
   </>
@@ -158,13 +158,13 @@ export const Faq: React.FC<{ db: DB }> = ({ db }) => (
 export const Panel: React.FC<{ db: DB; open: Open; onClose: () => void }> = ({ db, open, onClose }) => {
   if (open.kind === 'news') {
     const nw = db.phipad.news.find((x) => x.id === open.id)!;
-    return (<><Stack direction="row" justify="between" align="center" wrap><Tag minimal round>{nw.tag}</Tag><Button size="sm" variant="ghost" onClick={onClose}>Close</Button></Stack><Text as="span" size="xs" intent="muted">{nw.date}</Text><Title level={2} size="xl">{nw.title}</Title><Text size="sm" intent="secondary">{nw.body}</Text></>);
+    return (<><Stack direction="row" justify="between" align="center" wrap><Text as="span" size="xs" weight="medium">{nw.tag}</Text><Button size="sm" variant="ghost" onClick={onClose}>Close</Button></Stack><Text as="span" size="xs" intent="muted">{nw.date}</Text><Title level={2} size="xl">{nw.title}</Title><Text size="sm" intent="secondary">{nw.body}</Text></>);
   }
   const a = db.phipad.applications.find((x) => x.id === open.id)!; const c = byId(db.core.clubs, a.clubId); const t = byId(db.phipad.tracks, a.trackId);
   const pct = Math.min(100, Math.round((a.raised / a.ask) * 100)); const [bg, ink] = tone(c?.tone || 'neutral');
   return (
     <>
-      <Stack direction="row" justify="between" align="center" wrap><Tag minimal round>{byId(db.phipad.stages, a.stage)?.label}</Tag><Button size="sm" variant="ghost" onClick={onClose}>Close</Button></Stack>
+      <Stack direction="row" justify="between" align="center" wrap><Text as="span" size="xs" weight="medium">{byId(db.phipad.stages, a.stage)?.label}</Text><Button size="sm" variant="ghost" onClick={onClose}>Close</Button></Stack>
       <Frame ratio="4/1" rounded="md" place="end-start" tint={bg} tintStrength={100} ink={ink}><Title level={3} size="lg" color={ink}>{c?.name || a.clubId}</Title></Frame>
       <Title level={2} size="xl">{c?.name || a.clubId}</Title>
       {c ? <Text size="sm" intent="secondary">{c.tagline}</Text> : null}

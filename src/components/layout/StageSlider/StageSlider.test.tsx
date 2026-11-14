@@ -23,4 +23,10 @@ describe('StageSlider', () => {
     fireEvent.click(screen.getByLabelText('Previous'));
     expect(screen.getByText('5 of 5')).toBeTruthy();
   });
+  it('in fill mode gives the row its span, so the centre takes the width the row leaves', () => {
+    const { container } = render(<StageSlider items={items} sides={2} fill />);
+    const root = container.querySelector('[role=region]') as HTMLElement;
+    expect(container.querySelectorAll('[data-offset]').length).toBe(5);
+    expect(root.style.getPropertyValue('--pui-stage-span')).toBe('1.75');
+  });
 });

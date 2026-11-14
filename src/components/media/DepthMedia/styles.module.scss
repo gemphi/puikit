@@ -113,11 +113,11 @@
 }
 
 /* Insets grow with the corner radius so chips and captions stay clear of a deeply rounded (pill / egg) corner. */
-.badges { position: absolute; z-index: 3; top: calc(0.6rem + var(--phi-radius-xl, 12px) * 0.3); left: calc(0.6rem + var(--phi-radius-xl, 12px) * 0.45); right: calc(0.6rem + var(--phi-radius-xl, 12px) * 0.45); display: flex; gap: 0.25rem; flex-wrap: wrap; }
+.badges { position: absolute; z-index: 3; top: calc(0.6rem + var(--phi-radius-card, 12px) * 0.3); left: calc(0.6rem + var(--phi-radius-card, 12px) * 0.45); right: calc(0.6rem + var(--phi-radius-card, 12px) * 0.45); display: flex; gap: 0.25rem; flex-wrap: wrap; }
 .caption {
   position: absolute; z-index: 3; left: 0; right: 0; bottom: 0;
   display: flex; align-items: flex-end; gap: 0.6rem;
-  padding: 4.5rem calc(0.75rem + var(--phi-radius-xl, 12px) * 0.4) calc(0.75rem + var(--phi-radius-xl, 12px) * 0.2);
+  padding: 4.5rem calc(0.75rem + var(--phi-radius-card, 12px) * 0.4) calc(0.75rem + var(--phi-radius-card, 12px) * 0.2);
   /* The footer shade: strongest at the bottom edge, gone by the top of the caption. */
   background: var(--pui-depth-scrim, linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.42) 38%, rgba(0, 0, 0, 0.12) 72%, transparent 100%));
   color: #fff;

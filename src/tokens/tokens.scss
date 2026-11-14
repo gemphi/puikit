@@ -4,6 +4,7 @@
 @use './organic';
 @use './spacex';
 @use './muse';
+@use './glass';
 
 /* Phifing is short, so every look sets a size up to read at the same height. */
 html { font-size: 112.5%; }
@@ -51,3 +52,62 @@ a.button,
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(148, 163, 184, 0.45);
 }
+
+/* Cards are three layers of card, one inside another, and no borders: the gaps between the layers are paddings, on
+   every side, in the card's one proportion: the bottom the largest, the right half of it, the top and the left half
+   of the right (--phi-card-layer-*). Each layer is a gradient running left to right from nothing into a shade of
+   the card's own colour (its tint, else the look's), light throughout: the outer box the deepest of the three, each
+   layer inside it lighter, all the same way so they run into one another seamlessly.
+   1. The card's own box.
+   2. The face, set in from the box by one layer padding on each side.
+   3. The inner card, set in from the face by one layer padding again, one step rounder-in.
+   Content padding keeps the same proportion, larger (--phi-card-padding). This is the one surface: every container
+   wears it, so the sidebar, side panels, page columns, sections, accordion groups and cards agree and no container
+   brings a background colour of its own, only these shades. Worn by puikit's Card (.pui-card), a Box or Stack with
+   surface="card", and .phi-layers (the shell's sidebar and side panel, EntityLayout's columns, Sections, Accordion). A Card sets its face through --card-face and
+   --card-face-image (card styles). */
+:root {
+  --phi-card-layer-right: 10px;
+  --phi-card-layer-bottom: calc(var(--phi-card-layer-right) * 2);
+  --phi-card-layer-top: calc(var(--phi-card-layer-right) / 2);
+  --phi-card-base: color-mix(in srgb, var(--phi-color-background, #fff) 94%, transparent);
+  --phi-card-pad-unit: max(var(--phi-radius-shape), 1.5rem);
+  --phi-card-pad-top: calc(var(--phi-card-pad-unit) / 2);
+  --phi-card-pad-right: var(--phi-card-pad-unit);
+  --phi-card-pad-bottom: calc(var(--phi-card-pad-unit) * 2);
+  --phi-card-padding: var(--phi-card-pad-top) var(--phi-card-pad-right) var(--phi-card-pad-bottom) var(--phi-card-pad-top);
+}
+:where(.pui-card, [data-surface='card'], .phi-layers) {
+  --phi-card-colour: var(--pui-card-tint, var(--phi-color-text-accent));
+  position: relative;
+  isolation: isolate;
+  border: 0;
+  border-radius: var(--phi-radius-shape);
+  background: linear-gradient(90deg, transparent 0%, color-mix(in srgb, var(--phi-card-colour) 32%, var(--phi-card-base)) 100%), linear-gradient(var(--phi-card-base), var(--phi-card-base));
+  box-shadow: none;
+}
+:where(.pui-card, [data-surface='card'], .phi-layers)::before,
+:where(.pui-card, [data-surface='card'], .phi-layers)::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+}
+/* The face. */
+:where(.pui-card, [data-surface='card'], .phi-layers)::before {
+  inset: var(--phi-card-layer-top) var(--phi-card-layer-right) var(--phi-card-layer-bottom) var(--phi-card-layer-top);
+  border-radius: max(calc(var(--phi-radius-shape) - var(--phi-card-layer-top)), 4px);
+  background: var(--card-face, var(--phi-gradient-card, var(--phi-color-background-card)));
+  background-image: linear-gradient(90deg, transparent 0%, color-mix(in srgb, var(--phi-card-colour) 20%, transparent) 100%),
+    var(--card-face-image, var(--phi-gradient-card, none)), linear-gradient(var(--phi-card-base), var(--phi-card-base));
+}
+/* The inner card: the lightest. */
+:where(.pui-card, [data-surface='card'], .phi-layers)::after {
+  inset: calc(var(--phi-card-layer-top) * 2) calc(var(--phi-card-layer-right) * 2) calc(var(--phi-card-layer-bottom) * 2) calc(var(--phi-card-layer-top) * 2);
+  border-radius: max(calc(var(--phi-radius-shape) - var(--phi-card-inset)), 4px);
+  background: linear-gradient(90deg, transparent 0%, color-mix(in srgb, var(--phi-card-colour) 8%, var(--phi-card-base)) 100%);
+}
+/* A card on a card is one layer: the face only. */
+:where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) { background: none; }
+:where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers)::before { inset: 0; }
+:where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers)::after { content: none; }

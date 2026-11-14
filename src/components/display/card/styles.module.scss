@@ -1,11 +1,12 @@
 .card {
   display: flex;
   flex-direction: column;
+  /* Three layers of card (tokens.scss): its own box is the dark edge; the face and inner card are layers over it,
+     and every face rule below sets the face (--card-face, --card-face-image), not the box. No border. */
   /* Fills the cell it is given, so sibling cards in a row match. */
   height: 100%;
-  background: var(--phi-gradient-card, var(--phi-color-background-card));
-  border: var(--phi-elevation-border, 1px solid var(--phi-color-border));
-  border-radius: var(--phi-radius-lg);
+  --card-face: var(--phi-gradient-card, var(--phi-color-background-card));
+  border-radius: var(--phi-radius-shape);
   overflow: hidden;
   transition: box-shadow var(--phi-transition-normal), transform var(--phi-transition-normal);
 }
@@ -16,27 +17,27 @@
    it. `data-gradient-direction="reverse"` puts the tint at the head instead. */
 .card {
   /* The wash layers over the card gradient (when one is set) instead of replacing it. */
-  background-image: var(--phi-gradient-card-wash, none), var(--phi-gradient-card, none);
+  --card-face-image: var(--phi-gradient-card-wash, none), var(--phi-gradient-card, none);
 }
 
 /* Depth: a card inside a card is the child level, one inside that the grandchild — each lit from the
    opposite corner at about half the strength (see providers/palette.ts). Without a palette or gradient
    level these fall back to the plain card values, so nothing changes. */
 .card .card {
-  background: var(--phi-gradient-card-child, var(--phi-gradient-card, var(--phi-color-background-card)));
-  background-image: var(--phi-gradient-card-wash, none), var(--phi-gradient-card-child, var(--phi-gradient-card, none));
+  --card-face: var(--phi-gradient-card-child, var(--phi-gradient-card, var(--phi-color-background-card)));
+  --card-face-image: var(--phi-gradient-card-wash, none), var(--phi-gradient-card-child, var(--phi-gradient-card, none));
 }
 .card .card .card {
-  background: var(--phi-gradient-card-grandchild, var(--phi-gradient-card, var(--phi-color-background-card)));
-  background-image: var(--phi-gradient-card-grandchild, var(--phi-gradient-card, none));
+  --card-face: var(--phi-gradient-card-grandchild, var(--phi-gradient-card, var(--phi-color-background-card)));
+  --card-face-image: var(--phi-gradient-card-grandchild, var(--phi-gradient-card, none));
 }
 
 .card[data-gradient-direction='reverse'] {
-  background-image: var(--phi-gradient-card-wash-reverse, none);
+  --card-face-image: var(--phi-gradient-card-wash-reverse, none);
 }
 
 .card[data-gradient-direction='none'] {
-  background-image: none;
+  --card-face-image: none;
 }
 
 /**
@@ -49,7 +50,8 @@
  * `--phi-space-scale` (Density preference) via the token.
  */
 .padded {
-  padding: var(--card-padding, var(--phi-space-5, 24px));
+  /* Bottom the largest, right half of it, top and left half of the right (tokens.scss). */
+  padding: var(--phi-card-padding);
 }
 
 /* Inner padding follows the card's size, so a dense tile and a feature panel
@@ -67,8 +69,14 @@
 .paddingSm > .header, .paddingSm > .body, .paddingSm > .footer,
 .paddingMd > .header, .paddingMd > .body, .paddingMd > .footer,
 .paddingLg > .header, .paddingLg > .body, .paddingLg > .footer {
-  padding: var(--card-padding);
+  padding: var(--phi-card-pad-top) var(--phi-card-pad-right) var(--phi-card-pad-top) var(--phi-card-pad-top);
 }
+.paddingSm > :last-child, .paddingMd > :last-child, .paddingLg > :last-child { padding-block-end: var(--phi-card-pad-bottom); }
+
+/* A flat card is one layer: the face only. */
+.flat { background: none; }
+.flat::before { inset: 0; }
+.flat::after { content: none; }
 
 .hoverable:hover {
   box-shadow: var(--phi-shadow-md);
@@ -76,19 +84,19 @@
 }
 
 .selected {
-  border-color: var(--phi-color-primary);
   box-shadow: 0 0 0 2px var(--phi-color-primary-light);
 }
 
+.card .card { box-shadow: none; }
+
 .flat {
-  border: none;
   box-shadow: none;
-  /* flat drops the border and shadow, never the theme radius */
-  border-radius: var(--phi-radius-lg);
+  /* flat drops the edge and shadow, never the theme radius */
+  border-radius: var(--phi-radius-shape);
 }
 
 .compact .body {
-  padding: 0.75rem;
+  padding: var(--phi-card-padding);
 }
 
 .hero .image {
@@ -100,8 +108,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 1rem;
-  border-bottom: 1px solid var(--phi-color-border);
+  padding: var(--phi-card-pad-top) var(--phi-card-pad-right) var(--phi-card-pad-top) var(--phi-card-pad-top);
 }
 
 .headerContent {
@@ -120,15 +127,15 @@
 
 .body {
   flex: 1;
-  padding: 1rem;
+  padding: var(--phi-card-pad-top) var(--phi-card-pad-right) var(--phi-card-pad-top) var(--phi-card-pad-top);
 }
+.body:last-child { padding-bottom: var(--phi-card-pad-bottom); }
 
 .footer {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 1rem;
-  border-top: 1px solid var(--phi-color-border);
+  padding: var(--phi-card-padding);
 }
 
 .image {
@@ -166,7 +173,7 @@
   bottom: 0;
   left: calc(var(--pui-card-k) * var(--pui-card-shrink));
   right: calc(var(--pui-card-k) * var(--pui-card-shrink));
-  border-radius: var(--phi-radius-lg);
+  border-radius: var(--phi-radius-shape);
   border: var(--phi-elevation-border, 1px solid var(--phi-color-border));
   /* a shade of the card's colour (else the theme primary), a touch deeper each level, fading to nothing */
   --ghost-angle: 180deg;
@@ -195,5 +202,35 @@
 .clickable:focus-visible { outline: 2px solid var(--phi-color-primary); outline-offset: 2px; }
 
 /* A card whose content is a card of its own (a tile) has no surface: no fill, no border, no shadow, no inset. */
-.card[data-surface='none'] { background: none !important; background-image: none !important; border-color: transparent !important; box-shadow: none !important; padding: 0 !important; }
+.card[data-surface='none'] { background: none !important; box-shadow: none !important; padding: 0 !important; }
+.card[data-surface='none']::before, .card[data-surface='none']::after { content: none; }
 .card[data-surface='none'] > :global(*) { padding-left: 0; padding-right: 0; }
+
+/* Glass (tokens/_glass.scss): every card is light from its top fading to nothing, over a blur of what lies beneath; a
+   card in a card lays the opposite way, the next one the first way again. A card brings no colour of its own at rest,
+   not its tint and not the colour its content reports; under the pointer that colour (else the theme's) comes up the
+   same way. Its deck copies and its picture's frame follow: glass at rest, its colour under the pointer. */
+.card {
+  --card-face: transparent;
+  --card-face-image: var(--phi-glass-from-down);
+  backdrop-filter: var(--phi-glass-blur);
+  -webkit-backdrop-filter: var(--phi-glass-blur);
+}
+.card .card { --card-face-image: var(--phi-glass-to-down); backdrop-filter: none; -webkit-backdrop-filter: none; }
+.card .card .card { --card-face-image: var(--phi-glass-from-down); }
+.card[data-gradient-direction='reverse'] { --card-face-image: var(--phi-glass-to-down); }
+.card:hover {
+  --pui-card-own: color-mix(in srgb, var(--pui-card-tint, var(--phi-color-primary)) var(--phi-tint-pct), transparent);
+  --card-face-image: linear-gradient(180deg, var(--pui-card-own), transparent), var(--phi-glass-from-down);
+}
+.card .card:hover { --card-face-image: linear-gradient(180deg, var(--pui-card-own), transparent), var(--phi-glass-to-down); }
+.ghost {
+  background: linear-gradient(var(--ghost-angle), color-mix(in srgb, var(--phi-glass-light) calc(var(--phi-glass-pct) + var(--pui-card-k) * 4%), transparent) 0%, transparent 100%);
+  border-color: var(--phi-glass-rim-soft);
+}
+.deck:hover .ghost {
+  background: linear-gradient(var(--ghost-angle), color-mix(in srgb, var(--pui-card-tint, var(--phi-color-primary)) calc(var(--phi-tint-pct) + var(--pui-card-k) * 4%), transparent) 0%, transparent 100%);
+}
+.card:not(:hover) :global(.pui-frame)[data-tint] { background: var(--phi-glass-from-down); }
+.card:not(:hover) :global([data-cascade][data-tinted]) { --pui-cascade-tint: var(--phi-glass-light) !important; }
+.card[data-surface='none'] { backdrop-filter: none; -webkit-backdrop-filter: none; }

@@ -2,7 +2,8 @@ import React from 'react';
 import { Box, Button, Card, Frame, Image, Stack, Tag, Text, Title } from '@pui/components';
 import { assetUrl } from './data';
 
-/** One feature in a landing showcase: a big product screenshot (or, with none, a tinted poster) beside a headline,
+/** One feature in a landing showcase: a big product screenshot (or, with none, a plain poster in the app's tint; the
+ *  headline beside it already names it) beside a headline,
  *  blurb and (optional) call to action. */
 export type Feature = {
   eyebrow?: string;
@@ -14,14 +15,12 @@ export type Feature = {
   cta?: { label: string; onClick?: () => void; href?: string };
 };
 
-const Shot: React.FC<{ src?: string; alt: string; tint?: string; label?: string }> = ({ src, alt, tint, label }) => (
+const Shot: React.FC<{ src?: string; alt: string; tint?: string }> = ({ src, alt, tint }) => (
   <Card variant="flat" flush style={{ overflow: 'hidden' }}>
     <Frame ratio="16/10" rounded="lg">
       {src
         ? <Image src={assetUrl(src)} alt={alt} fit="cover" fill loading="lazy" />
-        : <Box style={{ position: 'absolute', inset: 0, background: tint ? `linear-gradient(135deg, ${tint} 0%, transparent 80%), var(--phi-color-background-secondary)` : 'var(--phi-color-background-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Text as="span" font="heading" size="2xl" intent="muted" align="center" style={{ padding: '1rem', opacity: 0.7 }}>{label ?? alt}</Text>
-          </Box>}
+        : <Box aria-hidden style={{ position: 'absolute', inset: 0, background: tint ? `linear-gradient(135deg, ${tint} 0%, transparent 80%), var(--phi-color-background-secondary)` : 'var(--phi-color-background-secondary)' }} />}
     </Frame>
   </Card>
 );
@@ -43,7 +42,7 @@ export const FeatureShowcase: React.FC<{
 }> = ({ eyebrow, title, lede, actions, hero, features, close }) => (
   <Stack direction="column" gap={8} align="center" width="100%">
     {/* Hero */}
-    <Box width="100%" maxWidth="68rem">
+    <Box width="100%">
       <Stack direction="column" gap={5} align="center" width="100%" paddingY={6}>
         <Stack direction="column" gap={3} align="center">
           {eyebrow ? <Tag round size="sm">{eyebrow}</Tag> : null}
@@ -59,7 +58,7 @@ export const FeatureShowcase: React.FC<{
     <Box width="100%" maxWidth="72rem">
       <Stack direction="column" gap={8} width="100%">
         {features.map((f, i) => {
-          const media = <Box flex="1.15" minWidth="20rem" width="100%"><Shot src={f.image} alt={f.title} tint={f.tint} label={f.title} /></Box>;
+          const media = <Box flex="1.15" minWidth="20rem" width="100%"><Shot src={f.image} alt={f.title} tint={f.tint} /></Box>;
           const copy = (
             <Stack direction="column" gap={3} flex="1" minWidth="17rem" paddingY={2}>
               {f.eyebrow ? <Box><Tag minimal round size="sm">{f.eyebrow}</Tag></Box> : null}

@@ -72,7 +72,7 @@ export const Stack = React.forwardRef<HTMLDivElement, StackProps>(({
   const rest = omitStyleProps(props);
 
   return (
-    <Box ref={ref} as={as} className={cn(styles.stack, className)} style={computedStyle} data-dir={typeof direction === 'string' ? direction : undefined} {...rest}>
+    <Box ref={ref} as={as} className={cn(styles.stack, className)} style={computedStyle} data-dir={typeof direction === 'string' ? direction : undefined} data-surface={props.surface} {...rest}>
       {children}
     </Box>
   );

@@ -18,14 +18,6 @@
   --phi-color-border: rgba(10, 19, 23, 0.14);
   --phi-color-border-subtle: rgba(10, 19, 23, 0.08);
   --phi-color-overlay: rgba(10, 19, 23, 0.5);
-  --phi-radius-xs-base: 8px; --phi-radius-sm-base: 12px; --phi-radius-md-base: 16px;
-  --phi-radius-lg-base: 24px; --phi-radius-xl-base: 24px; --phi-radius-2xl-base: 32px;
-  --phi-radius-xs: calc(var(--phi-radius-xs-base) * var(--phi-radius-scale, 1));
-  --phi-radius-sm: calc(var(--phi-radius-sm-base) * var(--phi-radius-scale, 1));
-  --phi-radius-md: calc(var(--phi-radius-md-base) * var(--phi-radius-scale, 1));
-  --phi-radius-lg: calc(var(--phi-radius-lg-base) * var(--phi-radius-scale, 1));
-  --phi-radius-xl: calc(var(--phi-radius-xl-base) * var(--phi-radius-scale, 1));
-  --phi-radius-2xl: calc(var(--phi-radius-2xl-base) * var(--phi-radius-scale, 1));
   --phi-shadow-1: none;
   --phi-shadow-2: 0 1px 2px rgba(10, 19, 23, 0.06);
   --phi-shadow-3: 0 12px 32px rgba(10, 19, 23, 0.1);
@@ -46,7 +38,7 @@
   --phi-font-size-base: 1.0625rem;
   --phi-font-weight-medium: 300;
   --phi-font-weight-semibold: 300;
-  --phi-font-weight-bold: 400;
+  --phi-font-weight-bold: 600; /* Phifing Regular, paired by darkness (phi-fonts.css) */
   --phi-control-height-md-base: 44px;
   /* Text and panels laid over a picture, the same in both modes. */
   --phi-muse-on-media: #ffffff;
@@ -88,9 +80,6 @@
   font-family: var(--phi-font-heading);
   font-weight: 300;
   letter-spacing: 0;
-}
-:root[data-theme-style='muse'] :is(button:not(.pui-pressable), .button, a.button, [class*='button']) {
-  border-radius: 100px !important;
 }
 :root[data-theme-style='muse'] :focus-visible {
   outline: 2px solid var(--phi-color-primary);

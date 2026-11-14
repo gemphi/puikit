@@ -17,12 +17,20 @@ export const currentAppKey = () => window.location.pathname.split('/')[1] ?? '';
 /** Where this app's own files are served from. */
 export const appBase = () => (HOSTED ? '/' + currentAppKey() + '/' : (import.meta.env.BASE_URL as string));
 
-/** Link to another app: VITE_PHI_APPS_BASE in prod (e.g. https://phiace.com/), localhost ports in dev. */
+/** In dev the one host (app/phi) serves every config app at /<key>/ (dev-all starts it on :3100). */
+const DEV_HOST = ((import.meta.env.VITE_PHI_HOST_URL as string | undefined) ?? 'http://localhost:3100').replace(/\/?$/, '/');
+
+/**
+ * Link to another app: VITE_PHI_APPS_BASE in prod (e.g. https://phiace.com/). In dev a config app lives in the host
+ * (/<key>/ from inside it, DEV_HOST/<key>/ from a standalone app), and an app with its own code on its own port.
+ */
 export const appUrl = (key: string) => {
   const base = import.meta.env.VITE_PHI_APPS_BASE as string | undefined;
   const a = appMeta(key);
   if (HOSTED && a?.config) return '/' + key + '/';
-  return base ? base.replace(/\/?$/, '/') + key + '/' : 'http://localhost:' + (a ? a.port : 3101) + '/';
+  if (base) return base.replace(/\/?$/, '/') + key + '/';
+  if (a?.config) return DEV_HOST + key + '/';
+  return 'http://localhost:' + (a ? a.port : 3101) + '/';
 };
 
 /** An image reference in app data: "phiegg:worlds/w_aria.png" is a file another app serves (the shared art lives in

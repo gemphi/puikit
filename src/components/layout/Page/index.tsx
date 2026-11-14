@@ -22,7 +22,7 @@ export const Page = ({ header, sidebar, footer, direction = 'row', gap = 2, main
   const { className: mainClassName, ...mainSectionProps } = mainProps ?? {};
 
   return (
-    <Stack direction={direction} gap={gap} className={cn(styles.page, className)} {...props}>
+    <Stack direction={direction} gap={gap} className={cn('pui-page', styles.page, className)} {...props}>
       {/* `Box`, not `Section`: Section sets `width: 100%`, which inside this flex
           row resolves against the whole page and pushes the content column
           off-screen. The rail must size to its own content. */}
@@ -30,7 +30,7 @@ export const Page = ({ header, sidebar, footer, direction = 'row', gap = 2, main
           `<aside>`, and two nested complementary landmarks confuse a screen
           reader about where the navigation actually is. */}
       {sidebar && <Box className={styles.sidebarWrapper}>{sidebar}</Box>}
-      <Stack direction="column" className={styles.contentWrapper}>
+      <Stack direction="column" className={cn('pui-page-content', styles.contentWrapper)}>
         {header && <Section as="header" className={styles.header}>{header}</Section>}
         <Section as="main" {...mainSectionProps} className={cn(styles.main, mainClassName)}>{children}</Section>
         {footer && <Section as="footer" className={styles.footer}>{footer}</Section>}

@@ -1,5 +1,8 @@
 /* Every Phi type face. Phifing 4, Phi-Soft made short, is the face of every web app (scripts/phifing.py).
-   Variables are in _phi-fonts.scss. */
+   Variables are in _phi-fonts.scss.
+   Phifing's weights answer to the numbers where their ink matches the system font's (paired by darkness,
+   2026-11-14): Phi-Soft's Light is as heavy as a system Regular, so Phifing Light answers to 300 and 400,
+   Regular to 600, SemiBold to 700 and Bold to 800 and 900. The other faces keep their own numbers. */
 @font-face {
   font-family: "Phiber";
   src: url('./fonts/phi/Phiber/Phiber-Light.woff2') format('woff2');
@@ -171,168 +174,168 @@
 @font-face {
   font-family: "Phifing";
   src: url('./fonts/phi/Phifing/Phifing-Light.woff2') format('woff2');
-  font-weight: 300;
+  font-weight: 300 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Phifing";
   src: url('./fonts/phi/Phifing/Phifing-Regular.woff2') format('woff2');
-  font-weight: 400;
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Phifing";
   src: url('./fonts/phi/Phifing/Phifing-SemiBold.woff2') format('woff2');
-  font-weight: 600;
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Phifing";
   src: url('./fonts/phi/Phifing/Phifing-Bold.woff2') format('woff2');
-  font-weight: 700;
+  font-weight: 800 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Phifing 1";
   src: url('./fonts/phi/Phifing/Phifing1-Light.woff2') format('woff2');
-  font-weight: 300;
+  font-weight: 300 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Phifing 1";
   src: url('./fonts/phi/Phifing/Phifing1-Regular.woff2') format('woff2');
-  font-weight: 400;
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Phifing 1";
   src: url('./fonts/phi/Phifing/Phifing1-SemiBold.woff2') format('woff2');
-  font-weight: 600;
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Phifing 1";
   src: url('./fonts/phi/Phifing/Phifing1-Bold.woff2') format('woff2');
-  font-weight: 700;
+  font-weight: 800 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Phifing 2";
   src: url('./fonts/phi/Phifing/Phifing2-Light.woff2') format('woff2');
-  font-weight: 300;
+  font-weight: 300 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Phifing 2";
   src: url('./fonts/phi/Phifing/Phifing2-Regular.woff2') format('woff2');
-  font-weight: 400;
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Phifing 2";
   src: url('./fonts/phi/Phifing/Phifing2-SemiBold.woff2') format('woff2');
-  font-weight: 600;
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Phifing 2";
   src: url('./fonts/phi/Phifing/Phifing2-Bold.woff2') format('woff2');
-  font-weight: 700;
+  font-weight: 800 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Phifing 3";
   src: url('./fonts/phi/Phifing/Phifing3-Light.woff2') format('woff2');
-  font-weight: 300;
+  font-weight: 300 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Phifing 3";
   src: url('./fonts/phi/Phifing/Phifing3-Regular.woff2') format('woff2');
-  font-weight: 400;
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Phifing 3";
   src: url('./fonts/phi/Phifing/Phifing3-SemiBold.woff2') format('woff2');
-  font-weight: 600;
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Phifing 3";
   src: url('./fonts/phi/Phifing/Phifing3-Bold.woff2') format('woff2');
-  font-weight: 700;
+  font-weight: 800 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Phifing 4";
   src: url('./fonts/phi/Phifing/Phifing4-Light.woff2') format('woff2');
-  font-weight: 300;
+  font-weight: 300 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Phifing 4";
   src: url('./fonts/phi/Phifing/Phifing4-Regular.woff2') format('woff2');
-  font-weight: 400;
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Phifing 4";
   src: url('./fonts/phi/Phifing/Phifing4-SemiBold.woff2') format('woff2');
-  font-weight: 600;
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Phifing 4";
   src: url('./fonts/phi/Phifing/Phifing4-Bold.woff2') format('woff2');
-  font-weight: 700;
+  font-weight: 800 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Phifing 5";
   src: url('./fonts/phi/Phifing/Phifing5-Light.woff2') format('woff2');
-  font-weight: 300;
+  font-weight: 300 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Phifing 5";
   src: url('./fonts/phi/Phifing/Phifing5-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Phifing 5";
-  src: url('./fonts/phi/Phifing/Phifing5-SemiBold.woff2') format('woff2');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Phifing 5";
-  src: url('./fonts/phi/Phifing/Phifing5-Bold.woff2') format('woff2');
+  src: url('./fonts/phi/Phifing/Phifing5-SemiBold.woff2') format('woff2');
   font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Phifing 5";
+  src: url('./fonts/phi/Phifing/Phifing5-Bold.woff2') format('woff2');
+  font-weight: 800 900;
   font-style: normal;
   font-display: swap;
 }

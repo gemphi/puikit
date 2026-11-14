@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Columns, Drawer, ItemCard, Rows, Select, Spinner, Stack, Tag, TabList, Text, Title } from '@pui/components';
+import { Button, ItemCard, Rows, Select, Spinner, Stack, Tag, TabList, Text, Title } from '@pui/components';
+import { EntityPage } from './EntityPage';
 import { useStore } from '@pui/store';
 import { D, agentOf, clubOf, hostOf, lookOf, person, poolOf, seriesOf, t, usd, worldOf } from '../../lib/data';
 import { useProduction } from '../../lib/productions';
@@ -13,7 +14,7 @@ import { Tile } from './Tile';
 import type { ProdRole } from '../../types/phiegg';
 
 /**
- * A title opened like a streaming page, in the bottom sheet: seasons and episodes on the left, the episode in the
+ * A title's page (#/title/<id>), laid out like a streaming page: seasons and episodes on the left, the episode in the
  * centre (synopsis, crew, guests, themes and the look to shop), the cast and their roles on the right (character, part,
  * arc, actionable behaviours, the host they play through, their wardrobe), and a chat with the club's agent.
  * The hierarchy runs to sales: title → season → episode → the look worn (a PFT in the club's pool).
@@ -96,15 +97,13 @@ export const WatchSheet: React.FC<{ id: string }> = ({ id }) => {
     </Stack>
   );
 
+  // The title's picture is the look its episode sells; the page takes that look's colour.
+  const picture = shopLook ? <LookImage look={shopLook} cascade={1} /> : undefined;
   return (
-    <Drawer isOpen onClose={s.close} position="bottom" size="lg" expandable expandLabel={t('expand')} collapseLabel={t('collapse')}
-      title={<Stack direction="row" gap={2} align="center"><Title level={4} size="md">{x.title}</Title><Text size="xs" intent="muted">{x.genre} · {x.era}{x.seasonCount && x.seasonCount > 1 ? ' · ' + x.seasonCount + ' seasons' : ''}</Text></Stack>}>
-      <Columns expandLabel={t('expand')} collapseLabel={t('collapse')} columns={[
-        { id: 'episodes', title: x.kind === 'series' ? t('wsSeasons') : x.kind === 'play' ? t('wsAct') : t('wsEpisode'), content: left, width: '22rem', closable: true, expandable: true },
-        { id: 'episode', title: e?.title ?? x.title, label: t('wsEpisode'), content: centre, minWidth: '20rem', expandable: true },
-        { id: 'cast', title: t('wsCast'), content: right, width: '24rem', closable: true, expandable: true },
-        { id: 'chat', title: agentOf(agent.id)?.name ?? agent.name, label: t('chat'), content: <AgentChat agentId={agent.id} context={x.title} prompts={[t('wsAskPlot'), t('wsAskLook'), t('wsAskRole')]} />, width: '20rem', closable: true, expandable: true },
-      ]} />
-    </Drawer>
+    <EntityPage picture={picture} wear={shopLook?.hex} title={x.title} sub={<>{x.genre} · {x.era}{x.seasonCount && x.seasonCount > 1 ? ' · ' + x.seasonCount + ' seasons' : ''}</>} columns={[
+      { id: 'episodes', title: x.kind === 'series' ? t('wsSeasons') : x.kind === 'play' ? t('wsAct') : t('wsEpisode'), content: left, width: '20rem' },
+      { id: 'episode', title: e?.title ?? x.title, label: t('wsEpisode'), content: centre, minWidth: '20rem' },
+      { id: 'cast', title: t('wsCast'), content: <Stack direction="column" gap={4}>{right}<Text size="sm" weight="semibold">{agentOf(agent.id)?.name ?? agent.name}</Text><AgentChat agentId={agent.id} context={x.title} prompts={[t('wsAskPlot'), t('wsAskLook'), t('wsAskRole')]} /></Stack>, width: '22rem' },
+    ]} />
   );
 };
