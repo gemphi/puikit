@@ -1,8 +1,7 @@
-/* The one app shell. Everything comes from theme tokens and the glass (tokens/_glass.scss), so every app wears its own
-   palette through the same surfaces and only the menu data differs.
-   The sidebar is the one bordered thing: a glass holder from nothing at its left edge to glass at its right. Its
-   menus lay the same glass-to; their items lay glass-from, the opposite; hover adds the theme's colour the same way,
-   and the current item lays the glass twice. The header has no border and no ground of its own. */
+/* The one app shell. Everything comes from theme tokens, so every app wears its own palette through the same
+   surfaces and only the menu data differs. The sidebar and side panel are the one surface (tokens.scss); everything
+   inside them (menu rows, rail buttons, tabs) wears the page's shades, left to right, with no borders: a light shade
+   under the pointer, a deeper one for the page you are on. The header has no border and no ground of its own. */
 .root {
   --pui-shell-rail: 3.75rem; --pui-shell-panel: 15rem; --pui-shell-gap: var(--phi-gap);
   --pui-shell-pad: var(--phi-space-6, 1.5rem);
@@ -46,7 +45,7 @@
 /* The logo in black and white: the theme's own ink, never the app's colour. */
 .brandGlyph { display: inline-flex; align-items: center; justify-content: center; flex: none; color: var(--phi-color-text-primary); filter: grayscale(1); }
 .pin { flex: none; display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: var(--phi-radius-sm); color: var(--phi-color-text-secondary); cursor: pointer; }
-.pin:hover { color: var(--phi-color-text-primary); background-image: var(--phi-tint-from-across), var(--phi-glass-from-across); }
+.pin:hover { color: var(--phi-color-text-primary); background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2)); }
 .pinPill { transition: width var(--phi-transition-normal); }
 /* Closed: the glyph centred over the rail; under the pointer it gives way to the pin. */
 .brandClosed { justify-content: center; }
@@ -67,21 +66,19 @@
 .railBtn { display: inline-flex; align-items: center; justify-content: center; inline-size: 2.75rem; block-size: 2.75rem;
   border-radius: var(--phi-radius-sm); border: 1px solid transparent; color: var(--phi-color-text-secondary); background: transparent; cursor: pointer;
   transition: background var(--phi-transition-fast), color var(--phi-transition-fast), border-color var(--phi-transition-fast); }
-.railBtn:hover { background-image: var(--phi-tint-from-across), var(--phi-glass-from-across); color: var(--phi-color-text-primary); }
-.railOn, .railOn:hover { background-image: var(--phi-glass-from-across), var(--phi-glass-from-across); border-color: var(--phi-glass-rim); color: var(--phi-color-text-primary); }
+.railBtn:hover { background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2)); color: var(--phi-color-text-primary); }
+.railOn, .railOn:hover { background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1)); border-color: transparent; color: var(--phi-color-text-primary); }
 .railGlyph { font-weight: var(--phi-font-weight-medium); font-size: var(--phi-font-size-sm); }
 
-.panel { display: flex; flex-direction: column; flex: none; inline-size: var(--pui-shell-panel); min-height: 0; border-inline-start: 1px solid var(--phi-glass-rim);
+.panel { display: flex; flex-direction: column; flex: none; inline-size: var(--pui-shell-panel); min-height: 0;
   animation: puiPanelIn var(--phi-duration, 0.3s) var(--phi-ease, ease-out); }
 @keyframes puiPanelIn { from { opacity: 0; transform: translateX(-6px); } to { opacity: 1; transform: none; } }
 .panelScroll { flex: 1 1 auto; min-height: 0; overflow: auto; scrollbar-width: none; padding: var(--phi-space-3); }
 .panelScroll::-webkit-scrollbar { display: none; }
-.panelFoot { border-top: 1px solid var(--phi-glass-rim-soft); padding: var(--phi-space-2); }
+.panelFoot { padding: var(--phi-space-2); }
 
-/* A menu: glass-to across, and the theme's colour the same way under the pointer. */
-.panelGroup { display: flex; flex-direction: column; gap: 2px; padding: var(--phi-space-2); border-radius: var(--phi-radius-sm);
-  background-image: var(--phi-glass-to-across); border: 1px solid var(--phi-glass-rim-soft); }
-.panelGroup:hover { background-image: var(--phi-tint-to-across), var(--phi-glass-to-across); }
+/* A menu group: no background or border of its own; its rows wear the page's shades (tokens.scss). */
+.panelGroup { display: flex; flex-direction: column; gap: 2px; padding: var(--phi-space-2) 0; border-radius: var(--phi-radius-sm); }
 .groupHead { min-height: 2rem; }
 .panelScroll { display: flex; flex-direction: column; gap: var(--phi-space-2); }
 .panelEnd { margin-top: auto; }
@@ -92,22 +89,25 @@
 /* A row: the fold arrow (or its room) at the left, then the item; children flush under it, never indented. */
 .navEntry { display: flex; flex-direction: column; min-width: 0; }
 .caret, .caretRoom { flex: none; width: 1.5rem; min-width: 1.5rem; height: 1.75rem; }
-.caretRoom { display: block; }
+/* A row with nothing to fold takes the full width: no empty room at its left. */
+.caretRoom { display: none; }
 .caret { display: inline-grid; place-items: center; border-radius: var(--phi-radius-xs); color: var(--phi-color-text-secondary); background: transparent; cursor: pointer; }
-.caret:hover { background-image: var(--phi-tint-from-across), var(--phi-glass-from-across); color: var(--phi-color-text-primary); }
+.caret:hover { background-color: var(--phi-shade-3); color: var(--phi-color-text-primary); }
 .caret svg { transition: transform var(--phi-transition-normal); }
 .caret[aria-expanded='false'] svg { transform: rotate(-90deg); }
-.navRow, .pullRow { min-width: 0; border-radius: var(--phi-radius-xs); border: 1px solid transparent; background: transparent; background-repeat: no-repeat; }
-.navRow:hover, .pullRow:hover { background-image: var(--phi-tint-from-across), var(--phi-glass-from-across); color: var(--phi-color-text-primary); }
-.navRow[aria-current='page'] { background-image: var(--phi-glass-from-across), var(--phi-glass-from-across); border-color: var(--phi-glass-rim); color: var(--phi-color-text-primary); }
+/* Menu rows run the full width of the menu, in the page's shades, no borders: a shade under the pointer, a deeper
+   one for the page you are on, both running left to right like every surface. */
+.navRow, .pullRow { flex: 1 1 auto; width: 100%; min-width: 0; border-radius: var(--phi-radius-sm); border: 0; background: transparent; }
+.navRow:hover, .pullRow:hover { background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2)); color: var(--phi-color-text-primary); }
+.navRow[aria-current='page'] { background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1)); color: var(--phi-color-text-primary); }
 
 /* The app switcher: each row glass from its left edge to nothing, each glyph black and white on a pane of glass. */
-.appRow { display: flex; align-items: center; gap: var(--phi-space-2); padding: var(--phi-space-2) var(--phi-space-3); border-radius: var(--phi-radius-xs);
-  text-decoration: none; color: var(--phi-color-text-primary); background-image: var(--phi-glass-from-across); border: 1px solid var(--phi-glass-rim-soft); }
-.appRow:hover { background-image: var(--phi-tint-from-across), var(--phi-glass-from-across); }
-.appOn { border-color: var(--phi-glass-rim); background-image: var(--phi-glass-from-across), var(--phi-glass-from-across); }
+.appRow { display: flex; align-items: center; gap: var(--phi-space-2); padding: var(--phi-space-2) var(--phi-space-3); border-radius: var(--phi-radius-sm);
+  text-decoration: none; color: var(--phi-color-text-primary); background: transparent; border: 0; }
+.appRow:hover { background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2)); }
+.appOn { background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1)); }
 .appGlyph { display: inline-flex; align-items: center; justify-content: center; inline-size: 2rem; block-size: 2rem; flex: none; border-radius: var(--phi-radius-xs);
-  background: var(--phi-glass-to-down); border: 1px solid var(--phi-glass-rim); color: var(--phi-color-text-primary); filter: grayscale(1);
+  background: var(--phi-shade-2); border: 0; color: var(--phi-color-text-primary); filter: grayscale(1);
   font-weight: var(--phi-font-weight-medium); font-size: var(--phi-font-size-sm); }
 .appText { display: flex; flex-direction: column; min-width: 0; }
 
@@ -138,8 +138,8 @@
 .inner :has(:global(.pui-sections[data-expanded]), :global(.pui-columns[data-expanded])) { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; transform: none !important; filter: none !important; animation: none !important; }
 .inner :global(.pui-sections[data-expanded]), .inner :global(.pui-columns[data-expanded]) {
   position: fixed; z-index: 20; top: var(--pui-shell-head); bottom: var(--pui-shell-gap); right: var(--pui-shell-gap); left: calc(var(--pui-shell-side) + 2px + var(--pui-shell-gap) * 2);
-  max-width: none; height: auto; overflow-y: auto; padding: var(--phi-space-4); border: 1px solid var(--phi-glass-rim); border-radius: var(--phi-radius-md);
-  background-color: var(--phi-glass-ground); background-image: var(--phi-glass-from-down); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur); }
+  max-width: none; height: auto; overflow-y: auto; padding: var(--phi-space-4); border: 0; border-radius: var(--phi-radius-md);
+  background-color: var(--phi-shade-3); background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2)); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur); }
 
 /* The right aside: the opposite of the sidebar, glass at its left edge to nothing. A set width, its own padding and
    spacing like a page's, and no scroll bar of its own: the content area is the one scroll you see. */
@@ -153,7 +153,7 @@
 /* Phone tabs: the menu and the app's tabs in a glass bar at the foot (phones only). */
 .tabs { display: none; }
 .tab { flex: 1 1 0; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: var(--phi-space-1); border-radius: var(--phi-radius-xs); color: var(--phi-color-text-secondary); cursor: pointer; }
-.tabOn { color: var(--phi-color-text-primary); background-image: var(--phi-glass-from-across), var(--phi-glass-from-across); }
+.tabOn { color: var(--phi-color-text-primary); background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1)); }
 
 /* Phone: no sidebar; the header shows the menu button and the glyph, the drawer carries the whole menu. */
 @media (max-width: 900px) {
@@ -165,6 +165,6 @@
   .inner { padding: var(--phi-space-3); }
   .inner :global(.pui-sections[data-expanded]), .inner :global(.pui-columns[data-expanded]) { left: var(--pui-shell-gap); }
   .withTabs .tabs { display: flex; flex: none; gap: var(--phi-space-1); margin: 0 var(--pui-shell-gap) var(--pui-shell-gap); padding: var(--phi-space-1);
-    border: 1px solid var(--phi-glass-rim); border-radius: var(--phi-radius-md); background: var(--phi-glass-to-across); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur); }
+    border: 0; border-radius: var(--phi-radius-md); background: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2)); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur); }
   .withTabs .brandCell { padding-left: var(--pui-shell-gap); }
 }
