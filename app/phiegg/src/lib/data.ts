@@ -2,33 +2,14 @@
 // them; with VITE_PHI_API set, lib/live.ts overlays Phiora's changes on top at boot.
 import "./ids";
 import { rid, srcId } from "./ids";
-import core from "../data/core.json";
-import feed from "../data/feed.json";
-import hosts from "../data/hosts.json";
-import club from "../data/club.json";
+import { core, feed, hosts, club, phipad, messages, events, agents, economy, series as seriesJson, league, ls, roles as rolesJson, casts as castsJson, pools as poolsJson, assets as assetsJson, ride as rideJson, jewel as jewelJson, beauty as beautyJson, collections as collectionsJson } from './datasets';
 import explore from "../data/explore.json";
-import phipad from "../data/phipad.json";
-import messages from "../data/messages.json";
-import events from "../data/events.json";
 import profile from "../data/profile.json";
 import settings from "../data/settings.json";
 import landing from "../data/landing.json";
 import { mediaUrl } from "./media";
-import agents from "../data/agents.json";
 import siteJson from "../data/site.json";
-import economy from "../data/economy.json";
-import seriesJson from "../data/series.json";
-import league from "../data/league.json";
-import ls from "../data/ls.json";
-import rolesJson from "../data/roles.json";
-import castsJson from "../data/casts.json";
-import poolsJson from "../data/pools.json";
-import assetsJson from "../data/assets.json";
-import rideJson from "../data/ride.json";
-import jewelJson from "../data/jewel.json";
-import beautyJson from "../data/beauty.json";
 import threadCounts from '../data/threadCounts.json';
-import collectionsJson from "../data/collections.json";
 import type {
   Agent, AgentsData, ClubPage, CoreData, EventsPage, ExplorePage, FeedPage, Highlight, HostsPage, ID,
   LandingPage, MessagesPage, RolesData, CastsData, SalesData, ShowsData, Show, EconomyData, SeriesData, LeagueData, LsData, StoresData, Store, ShopLook, PoolsData, Pool, PoolLot, PoolQuest, AssetsData, RideItem, RideData, JewelItem, JewelData, EggItem, SumItem, ItemType, ProfileItem, City, World, District, Place, PhipadPage, Post, ProfilePage, SettingsPage, Shot, Tone, User,
