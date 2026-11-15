@@ -3,7 +3,9 @@
    inside them (menu rows, rail buttons, tabs) wears the page's shades, left to right, with no borders: a light shade
    under the pointer, a deeper one for the page you are on. The header has no border and no ground of its own. */
 .root {
-  --pui-shell-rail: 3rem; --pui-shell-panel: 15rem; --pui-shell-gap: var(--phi-gap);
+  --pui-shell-rail: 3rem; --pui-shell-panel: 13.5rem;
+  /* One control size for the whole shell: the pin, every rail icon and every control in the header row. */
+  --pui-shell-control: 2.25rem; --pui-shell-gap: var(--phi-gap);
   --pui-shell-pad: var(--phi-space-6, 1.5rem);
   display: flex; flex-direction: column; width: 100%;
   /* An app shell owns the window: the sidebar runs the full height, the content scrolls inside (one scroll bar). */
@@ -32,10 +34,13 @@
 .closed { --pui-shell-side: var(--pui-shell-rail); }
 
 /* Header: the brand cell over the sidebar, then a lane whose content lines up with the page's own edge. */
-.head { display: flex; align-items: center; flex: none; min-height: var(--pui-shell-head); }
+.head { display: flex; align-items: center; flex: none; min-height: var(--pui-shell-head);
+  --phi-control-height-sm: var(--pui-shell-control); --phi-control-height-md: var(--pui-shell-control); --phi-control-height-lg: var(--pui-shell-control); }
 .head .menuBtn { display: none; }
 .lane { flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: var(--phi-space-3); padding-inline: var(--pui-shell-pad); }
 .crumbs { min-width: 0; }
+/* Every control in the header row is one height: the crumbs, the brand, the app's tools, the account. */
+.lane button, .lane a, .brand { min-height: var(--pui-shell-control); box-sizing: border-box; }
 
 .brandCell { flex: none; position: relative; display: flex; align-items: center; justify-content: space-between; gap: var(--phi-space-1);
   width: calc(var(--pui-shell-side) + var(--pui-shell-gap)); padding-left: var(--pui-shell-gap); transition: width var(--phi-transition-normal); }
@@ -44,12 +49,12 @@
 .brandName { margin: 0; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 /* The logo in black and white: the theme's own ink, never the app's colour. */
 .brandGlyph { display: inline-flex; align-items: center; justify-content: center; flex: none; color: var(--phi-color-text-primary); filter: grayscale(1); }
-.pin { flex: none; display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: var(--phi-radius-sm); color: var(--phi-color-text-secondary); cursor: pointer; }
+.pin { flex: none; display: grid; place-items: center; width: var(--pui-shell-control); height: var(--pui-shell-control); border-radius: var(--phi-radius-sm); color: var(--phi-color-text-secondary); cursor: pointer; }
 .pin:hover { color: var(--phi-color-text-primary); background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2)); }
 .pinPill { transition: width var(--phi-transition-normal); }
 /* Closed: the glyph centred over the rail; under the pointer it gives way to the pin. */
 .brandClosed { justify-content: center; }
-.brandClosed .pin { position: absolute; left: calc(var(--pui-shell-gap) + (var(--pui-shell-rail) - 2.25rem) / 2); opacity: 0; pointer-events: none; transition: opacity var(--phi-transition-fast); }
+.brandClosed .pin { position: absolute; left: calc(var(--pui-shell-gap) + (var(--pui-shell-rail) - var(--pui-shell-control)) / 2); opacity: 0; pointer-events: none; transition: opacity var(--phi-transition-fast); }
 .brandClosed .brand { transition: opacity var(--phi-transition-fast); }
 .brandClosed:hover .pin, .brandClosed:focus-within .pin { opacity: 1; pointer-events: auto; }
 .brandClosed:hover .brand, .brandClosed:focus-within .brand { opacity: 0; }
@@ -66,7 +71,7 @@
 
 .rail { display: flex; flex-direction: column; align-items: center; gap: var(--phi-space-2); flex: none; inline-size: var(--pui-shell-rail); padding-block: var(--phi-space-3); }
 .railGroup { width: 100%; }
-.railBtn { display: inline-flex; align-items: center; justify-content: center; inline-size: 2.25rem; block-size: 2.25rem;
+.railBtn { display: inline-flex; align-items: center; justify-content: center; inline-size: var(--pui-shell-control); block-size: var(--pui-shell-control);
   border-radius: var(--phi-radius-sm); border: 1px solid transparent; color: var(--phi-color-text-secondary); background: transparent; cursor: pointer;
   transition: background var(--phi-transition-fast), color var(--phi-transition-fast), border-color var(--phi-transition-fast); }
 .railBtn:hover { background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2)); color: var(--phi-color-text-primary); }

@@ -9,6 +9,7 @@ import { FONTS, useFont } from './fonts';
 import { LOOKS, useLook } from './looks';
 import { LABEL, USD, useWallet, type Coin } from './wallet';
 import words from './words.json';
+import kit from './kit.module.scss';
 
 const W = words.account;
 const COINS: Coin[] = ['usd', 'egg', 'sum', 'eth'];
@@ -34,7 +35,9 @@ export const AccountDrawer: React.FC<{ onProfile?: () => void; onLook?: (id: str
   const canSignOut = accountsEnabled && me && !me.guest;
   return (
     <>
-      <Pressable rounded="full" aria-label={W.open} aria-expanded={open} onClick={() => setOpen(true)}><Avatar initials={initials} size="sm" /></Pressable>
+      <Pressable rounded="full" aria-label={W.open} aria-expanded={open} onClick={() => setOpen(true)}
+        style={{ width: 'var(--pui-shell-control, 2.25rem)', height: 'var(--pui-shell-control, 2.25rem)', padding: 0, display: 'grid', placeItems: 'center' }}>
+        <Avatar initials={initials} size="md" className={kit.fill} /></Pressable>
       <Drawer isOpen={open} onClose={() => setOpen(false)} position="right" size="md" title={W.title}>
         <Stack direction="column" gap={3}>
           <Stack direction="row" gap={2} align="center"><Avatar initials={initials} size="md" />
