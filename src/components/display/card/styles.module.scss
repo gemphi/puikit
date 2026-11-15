@@ -148,8 +148,9 @@
    `deckDirection` sets the side they peek from: up (default), down, right, left, or both (up and down at once).
    Each copy takes a little more of the card's tint (else the theme primary), so a tinted card's deck is its colour. */
 .deck {
-  --pui-card-step: 9px;
-  --pui-card-shrink: 9px;
+  /* Cascade off: a card is one clean surface, never a stack of copies (user: no cascade anywhere). */
+  --pui-card-step: 0px;
+  --pui-card-shrink: 0px;
   --pui-deck-span: calc(var(--pui-card-deck) * var(--pui-card-step));
   position: relative;
   isolation: isolate;
@@ -166,6 +167,7 @@
   &[data-deck-direction='both'] { padding-bottom: var(--pui-deck-span); }
 }
 .ghost {
+  display: none;
   --gx: 0; --gy: -1; --fan: 1;
   position: absolute;
   z-index: 0;

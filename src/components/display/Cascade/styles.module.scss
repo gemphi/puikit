@@ -87,3 +87,7 @@
   box-shadow: none;
 }
 
+
+/* Cascade off: a tile is one clean surface, never a stack of copies or pocket sheets (user: no cascade anywhere). */
+.cascade { padding-top: 0 !important; padding-bottom: 0 !important; }
+.copy, .sheet, .capSheet { display: none !important; }
