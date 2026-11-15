@@ -83,7 +83,7 @@ export const WelcomePage: React.FC = () => {
       <Backdrop sharp><Image src={itemImage(L.art.heroBack)} alt="" fit="cover" fill /></Backdrop>
       <Box as="section" className={[styles.hero, styles.open].join(' ')} onPointerMove={lean}>
         <Cast art={L.art.heroCast} />
-        <Box className={styles.copy}>
+        <Box className={styles.copy + ' phi-layers'}>
           <Text as="span" className={styles.kicker}>{L.hero.kicker}</Text>
           <Title level={1} className={styles.heroTitle}>{L.hero.title}</Title>
           <Text as="p" className={styles.lede}>{L.hero.body}</Text>

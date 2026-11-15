@@ -7,10 +7,10 @@ import { RADIUS_PRESETS, usePuiTheme, type GradientLevel, type RadiusPreset, typ
 export type Look = { id: string; label: string; style: ThemeStyle; brand: string; palette: string; gradient: GradientLevel; radius: RadiusPreset };
 export const LOOKS: Look[] = [
   // SpaceX first: the rocket-interior look is the house default — instrument-blue seams, brushed panels, square edges.
-  { id: 'spacex', label: 'SpaceX', style: 'spacex', brand: 'spacex', palette: 'none', gradient: 'soft', radius: 'small' },
-  { id: 'apple', label: 'Apple', style: 'apple', brand: 'apple', palette: 'apple', gradient: 'soft', radius: 'medium' },
-  { id: 'organic', label: 'Organic', style: 'organic', brand: 'phiegg', palette: 'opal', gradient: 'vivid', radius: 'pill' },
-  { id: 'muse', label: 'Muse', style: 'muse', brand: 'muse', palette: 'none', gradient: 'flat', radius: 'medium' },
+  { id: 'spacex', label: 'SpaceX', style: 'spacex', brand: 'spacex', palette: 'none', gradient: 'soft', radius: 'r16' },
+  { id: 'apple', label: 'Apple', style: 'apple', brand: 'apple', palette: 'apple', gradient: 'soft', radius: 'r32' },
+  { id: 'organic', label: 'Organic', style: 'organic', brand: 'phiegg', palette: 'opal', gradient: 'vivid', radius: 'r48' },
+  { id: 'muse', label: 'Muse', style: 'muse', brand: 'muse', palette: 'none', gradient: 'flat', radius: 'r32' },
 ];
 /** Gradient level every app starts on (Settings / Appearance change it). */
 export const DEFAULT_GRADIENT = 'soft' as const;

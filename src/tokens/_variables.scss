@@ -100,7 +100,7 @@
   --phi-radius-xs: calc(var(--phi-radius-card) / 16);
   /* A card's own corner (the same as lg), and its inner card's inset: half of it, so the inner card rounds one step
      down (md) and the two rounds run parallel. */
-  --phi-radius-shape: var(--phi-radius-lg);
+  --phi-radius-shape: var(--phi-radius-card);
   --phi-card-inset: calc(var(--phi-radius-lg) / 2);
   --phi-radius-full: 9999px;
 
@@ -274,8 +274,10 @@
 
 /* Pill (egg) corners: controls — buttons, tabs, chips, inputs, menu items — go fully round; containers keep the
    scaled radius, so cards read as soft eggs rather than circles. */
-/* The four corner options: the theme's maximum corner. */
-:root[data-radius='small'] { --phi-radius-card: 16px; }
-:root[data-radius='medium'] { --phi-radius-card: 32px; }
-:root[data-radius='large'] { --phi-radius-card: 48px; }
-:root[data-radius='pill'] { --phi-radius-card: 64px; }
+/* The five corner options: the surface's own corner, 16-48px, 48 the maximum. A surface inside a surface steps one
+   rung down (tokens.scss), never the same corner. */
+:root[data-radius='r16'] { --phi-radius-card: 16px; }
+:root[data-radius='r24'] { --phi-radius-card: 24px; }
+:root[data-radius='r32'] { --phi-radius-card: 32px; }
+:root[data-radius='r40'] { --phi-radius-card: 40px; }
+:root[data-radius='r48'] { --phi-radius-card: 48px; }

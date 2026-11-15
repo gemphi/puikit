@@ -236,13 +236,13 @@ export function brandGradientTokens(primary: string, second: string, isDark: boo
 
 /* ── Radius steps ───────────────────────────────────────────────────────────────────────────────────────────
    Named stops for the provider's corner choice (`borderRadius`, saved as these numbers). PuiProvider writes the nearest
-   stop as data-radius on the root and _variables.scss gives each a fixed corner, the same in every look: 16px, 32px,
-   48px, 64px. Every `--phi-radius-*` token follows it, so one choice rounds every card, deck, tab, button and drawer. */
-export const RADIUS_PRESETS = { small: 0.5, medium: 1, large: 1.75, pill: 3 } as const;
-/** Display names for the four corner presets. Pill is the egg: controls go fully round, containers deeply rounded. */
-export const RADIUS_LABELS: Record<keyof typeof RADIUS_PRESETS, string> = { small: '16px', medium: '32px', large: '48px', pill: '64px' };
-/** Older saved ids map onto the four presets. */
-export const RADIUS_ALIASES: Record<string, keyof typeof RADIUS_PRESETS> = { sharp: 'small', soft: 'medium', round: 'large', pill: 'pill', sm: 'small', md: 'medium', lg: 'large' };
+   stop as data-radius on the root and _variables.scss gives each a fixed corner, the same in every look: 16, 24, 32,
+   40, 48px. Every `--phi-radius-*` token follows it, so one choice rounds every card, deck, tab, button and drawer. */
+export const RADIUS_PRESETS = { r16: 0.5, r24: 0.75, r32: 1, r40: 1.25, r48: 1.5 } as const;
+/** Display names for the five corner presets (px). 48 is the maximum; a surface inside a surface steps one down. */
+export const RADIUS_LABELS: Record<keyof typeof RADIUS_PRESETS, string> = { r16: '16px', r24: '24px', r32: '32px', r40: '40px', r48: '48px' };
+/** Older saved ids map onto the five presets (64/pill is gone; it caps at 48). */
+export const RADIUS_ALIASES: Record<string, keyof typeof RADIUS_PRESETS> = { sharp: 'r16', small: 'r16', sm: 'r16', soft: 'r32', medium: 'r32', md: 'r32', round: 'r48', large: 'r48', lg: 'r48', pill: 'r48' };
 export type RadiusPreset = keyof typeof RADIUS_PRESETS;
 export const radiusPresetOf = (scale: number): RadiusPreset =>
   (Object.entries(RADIUS_PRESETS) as [RadiusPreset, number][]).reduce((a, b) => (Math.abs(b[1] - scale) < Math.abs(a[1] - scale) ? b : a))[0];
