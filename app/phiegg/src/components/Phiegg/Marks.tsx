@@ -6,19 +6,19 @@ import { mediaUrl } from '../../lib/media';
 const M = site.brand;
 /** Wordmark: "phiegg" in soft 3D Phifing (scripts/media/build_media.py). Sized by font-size. */
 export const Wordmark: React.FC = () => <Image className="ph-wordmark" src={mediaUrl('logo/phiegg-3d.svg')} alt={M.name.toLowerCase()} fit="contain" style={{ height: '1.9em', width: 'auto', display: 'block' }} />;
-/** Phiegg mark: egg ∪ triangle, tilted, with a pill inside the oval: parallel to it, 1/3 of the inner height, 75% of the inner width; the oval's right end is softly flattened like a nail tip (site.brand.mark). */
+/** Phiegg mark: the g of Phi-Pill Condensed Light, filled in one colour (site.brand.mark). */
 export const PhieggMark: React.FC<{ size?: string }> = ({ size = '1.5rem' }) => (
-  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth={11} strokeLinejoin="round" width={size} height={size}>
-    <path d={M.mark} transform={`rotate(${M.markRotate} 50 50)`} />
-    <path d="M35,56.06 C43,56.06 45,57.9 50,57.9 C55,57.9 57,56.06 65,56.06 A6,6 0 0 1 65,68.06 C57,68.06 55,66.22 50,66.22 C45,66.22 43,68.06 35,68.06 A6,6 0 0 1 35,56.06 Z" transform={`rotate(${M.markRotate} 50 50)`} fill="currentColor" stroke="none" />
+  <svg viewBox="0 0 100 100" fill="currentColor" width={size} height={size} aria-hidden="true">
+    <path d={M.mark} />
   </svg>
 );
-/** Phipad mark: the Phiegg mark plus a round pill slanting from the bottom-left corner into the oval's centre. */
+/** Phipad mark: the Phiegg g plus a round pill slanting from the bottom-left into the g's bowl (site.brand.phipadPill). */
 export const PhipadMark: React.FC<{ size?: string }> = ({ size = '1.5rem' }) => {
   const p = M.phipadPill;
   return (
-    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeLinejoin="round" width={size} height={size}>
-      <g transform={`rotate(${M.markRotate} 50 50)`}><path d={M.mark} strokeWidth={11} /><line x1={p.x1} y1={p.y1} x2={p.x2} y2={p.y2} strokeWidth={p.width} strokeLinecap="round" /></g>
+    <svg viewBox="0 0 100 100" fill="currentColor" stroke="currentColor" width={size} height={size} aria-hidden="true">
+      <path d={M.mark} stroke="none" />
+      <line x1={p.x1} y1={p.y1} x2={p.x2} y2={p.y2} strokeWidth={p.width} strokeLinecap="round" />
     </svg>
   );
 };
