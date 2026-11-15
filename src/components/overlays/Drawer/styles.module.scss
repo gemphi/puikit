@@ -37,21 +37,19 @@
   height: 100%;
   max-width: 100%;
   overflow: hidden;
-  border: var(--phi-elevation-border, 1px solid var(--phi-color-border));
-  box-shadow: var(--phi-elevation-shadow, var(--phi-shadow-lg));
+  border: 0;
+  box-shadow: none;
   border-radius: 0;
 }
 
 .left {
   left: 0;
-  border-right: var(--phi-elevation-border, 1px solid var(--phi-color-border));
   border-radius: 0 var(--phi-radius-lg) var(--phi-radius-lg) 0;
   animation: slideLeft var(--phi-animation-speed, var(--phi-duration-slow, 0.45s)) var(--phi-ease, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
 }
 
 .right {
   right: 0;
-  border-left: var(--phi-elevation-border, 1px solid var(--phi-color-border));
   border-radius: var(--phi-radius-lg) 0 0 var(--phi-radius-lg);
   animation: slideRight var(--phi-animation-speed, var(--phi-duration-slow, 0.45s)) var(--phi-ease, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
 }
@@ -175,3 +173,15 @@
   backdrop-filter: var(--phi-glass-blur);
   -webkit-backdrop-filter: var(--phi-glass-blur);
 }
+
+/* Sliding out: every drawer leaves the way it came, the backdrop fades, and nothing can be clicked meanwhile.
+   Keep the duration in step with DRAWER_EXIT_MS (index.tsx). */
+@keyframes slideOutRight { from { transform: translateX(0); } to { transform: translateX(100%); } }
+@keyframes slideOutLeft { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+@keyframes slideDown { from { transform: translateY(0); } to { transform: translateY(100%); } }
+@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+.leaving { pointer-events: none; }
+.leaving .backdrop { animation: fadeOut 0.32s ease-in forwards; }
+.leaving .drawer.right { animation: slideOutRight 0.32s cubic-bezier(0.4, 0, 1, 1) forwards; }
+.leaving .drawer.left { animation: slideOutLeft 0.32s cubic-bezier(0.4, 0, 1, 1) forwards; }
+.leaving .drawer.bottom { animation: slideDown 0.32s cubic-bezier(0.4, 0, 1, 1) forwards; }

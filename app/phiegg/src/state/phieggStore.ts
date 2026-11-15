@@ -1,3 +1,4 @@
+import { DRAWER_EXIT_MS } from '@pui/components';
 import { createStore } from '@pui/store';
 import { D, FLAGSHIP_ID, agentOf, clubOf, greetingOf, person, poolOf, postById, site, storySets, t } from '../lib/data';
 import { poolStory } from '../lib/market';
@@ -63,7 +64,7 @@ export interface PhieggState extends Required<Params> {
   /** Bumped when lib/heavy.ts or lib/live.ts lands new data, so open pages re-render over the fresh indexes. */
   dataRev: number;
   nests: Nest[]; nestMsgs: Record<ID, NestMessage[]>; comments: Record<ID, Comment[]>; chats: Record<ID, AgentChatMessage[]>;
-  overlay: Overlay; toast: string | null; rail: string; searchQ: string; appearance: Appearance; view: { mode: 'tile' | 'list' | 'grid'; cols: number }; setView: (v: { mode: 'tile' | 'list' | 'grid'; cols: number }) => void;
+  overlay: Overlay; /** The overlay that is sliding out (it stays a moment so its drawer leaves the way it came). */ closingOverlay: Overlay | null; toast: string | null; rail: string; searchQ: string; appearance: Appearance; view: { mode: 'tile' | 'list' | 'grid'; cols: number }; setView: (v: { mode: 'tile' | 'list' | 'grid'; cols: number }) => void;
   setRail: (r: string) => void; setAppearance: (k: keyof Appearance, v: string) => void; openPerson: (id: ID) => void; openSignIn: () => void; openEditProfile: () => void; openEditClub: (id: ID) => void; openCreate: (createKind: string, initial?: Record<string, unknown>, back?: { recordKind: string; id: ID }) => void; openRecord: (recordKind: string, id: ID) => void;
   /** Delete your own shot from the one database (and the feed). */
   removeShot: (id: ID) => void;
@@ -101,7 +102,7 @@ export const phieggStore = createStore<PhieggState>((set, get) => ({
   // The public home page is where a first visit lands; `#tab` in the address opens a page directly.
   tab: startTab(), dataRev: 0, worldId: D.core.worlds[0].id, showId: D.shows.shows[0]?.id ?? '', clubId: D.club.clubId, profileId: D.profile.userId, cityId: D.core.worlds[0].cities[0].id, storeId: FLAGSHIP_ID, poolId: D.pools.pools[0].id, nestId: '', postId: '', lookId: '', assetId: '', titleId: '', placeId: '', ...START.params,
   ...FLAGS.get(), nests: D.hosts.nests.slice(), nestMsgs: { ...D.hosts.messages }, comments: {}, chats: CHATS.get(),
-  overlay: { kind: 'none' }, toast: null, rail: 'home', searchQ: '', feedKind: 'all',
+  overlay: { kind: 'none' }, closingOverlay: null, toast: null, rail: 'home', searchQ: '', feedKind: 'all',
   appearance: APPEARANCE.get(),
   view: { mode: 'grid', cols: 4 }, setView: (view) => set({ view }),
   setRail: (rail) => set({ rail }),
@@ -147,12 +148,18 @@ export const phieggStore = createStore<PhieggState>((set, get) => ({
   openPlace: (id) => get().go('place', { placeId: id }),
   hist: [],
   go: (tab, p = {}) => { const g = get(); const hist = [...g.hist, { tab: g.tab, p: Object.fromEntries(PARAM_KEYS.map((k) => [k, g[k]])) as Params }].slice(-40);
-    set({ tab, ...p, hist, overlay: { kind: 'none' } } as Partial<PhieggState>); writeRoute(tab, get() as unknown as Record<string, unknown>); },
-  back: () => { const hist = get().hist.slice(); const prev = hist.pop(); if (prev) { set({ tab: prev.tab, ...prev.p, hist, overlay: { kind: 'none' } } as Partial<PhieggState>); writeRoute(prev.tab, get() as unknown as Record<string, unknown>); } },
+    set({ tab, ...p, hist } as Partial<PhieggState>); writeRoute(tab, get() as unknown as Record<string, unknown>); get().close(); },
+  back: () => { const hist = get().hist.slice(); const prev = hist.pop(); if (prev) { set({ tab: prev.tab, ...prev.p, hist } as Partial<PhieggState>); writeRoute(prev.tab, get() as unknown as Record<string, unknown>); get().close(); } },
   toggle: (k, id) => { const on = !get()[k][id]; record((({ liked: ['like', 'unlike'], saved: ['save', 'unsave'], follow: ['follow', 'unfollow'], rsvp: ['rsvp', 'unrsvp'] } as const)[k])[on ? 0 : 1], id);
     set({ [k]: { ...get()[k], [id]: on } } as Partial<PhieggState>); },
   flash: (toast) => { set({ toast }); setTimeout(() => get().toast === toast && set({ toast: null }), site.autoplay.toastMs); },
-  close: () => set({ overlay: { kind: 'none' } }),
+  // Closing slides the open sheet or drawer out first (DRAWER_EXIT_MS), then removes it; an overlay opened in the
+  // meantime is a different object, so it is never the one removed.
+  close: () => {
+    const o = get().overlay; if (o.kind === 'none' || get().closingOverlay === o) return;
+    set({ closingOverlay: o });
+    setTimeout(() => { if (get().overlay === o) set({ overlay: { kind: 'none' } }); if (get().closingOverlay === o) set({ closingOverlay: null }); }, DRAWER_EXIT_MS);
+  },
   openPost: (postId) => { record('open', postId, { refKind: 'post' }); get().go('post', { postId }); },
   openComments: (postId, slide = 0) => set({ overlay: { kind: 'comments', postId, slide } }),
   openStory: (uid, from = 0) => {
