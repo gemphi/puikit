@@ -1,0 +1,38 @@
+// An entity page: a title over glass columns. Nothing here scrolls on its own; the content area is the one scroll.
+.page { display: flex; flex-direction: column; gap: 1.25rem; padding-bottom: 1rem; container-type: inline-size; }
+.head { min-width: 0; }
+.title.title { margin: 0; font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.1; }
+.sub.sub { padding-bottom: 0.3rem; }
+
+.grid { display: grid; grid-template-columns: var(--ph-cols); gap: 1rem; align-items: start; }
+
+/* Each column is a pane of glass with a rim. The left column runs from nothing to glass across, the right column the
+   opposite, and the middle from glass down to nothing (styles/phiegg.scss), so the page brightens towards its middle. */
+.col {
+  min-width: 0; display: flex; flex-direction: column;
+  border: 1px solid var(--phi-glass-rim); border-radius: var(--phi-radius-xl);
+  backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur);
+}
+.left { background-image: var(--phi-glass-to-across); }
+.right { background-image: var(--phi-glass-from-across); }
+.middle { background-image: var(--phi-glass-from-down); }
+/* Under the pointer a column lays the theme's colour the same way it lays its light. */
+.left:hover { background-image: var(--phi-tint-to-across), var(--phi-glass-to-across); }
+.right:hover { background-image: var(--phi-tint-from-across), var(--phi-glass-from-across); }
+.middle:hover { background-image: var(--phi-tint-from-down), var(--phi-glass-from-down); }
+.colHead { display: flex; align-items: center; gap: 0.5rem; min-height: 3rem; padding: 0.5rem 1rem; border-bottom: 1px solid var(--phi-glass-rim-soft); }
+.colBody { padding: 1rem; min-width: 0; }
+
+/* The chat stays in view beside the scrolling columns; its messages fit its height with no scroll bar of their own. */
+.stick { position: sticky; top: 0; height: calc(100vh - 56px - 2.5rem); }
+.stick .colBody { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+.stick .colBody > * { flex: 1 1 auto; min-height: 0; }
+.stick .colBody * { scrollbar-width: none; }
+.stick .colBody *::-webkit-scrollbar { display: none; }
+
+/* A narrow page (a small window, or a docked sidebar on a laptop): one column, the entity itself first. */
+@container (max-width: 760px) {
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .middle { order: -1; }
+  .stick { position: static; height: 32rem; }
+}

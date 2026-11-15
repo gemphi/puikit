@@ -4,6 +4,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '../../../utils/cn';
 import styles from './styles.module.scss';
+import { Box } from '../../layout/Box';
 
 /** What the shell tells the components inside it: whether the menu panel is open beside the content, and the stage
  *  (the layer under the whole shell) a page can paint its picture into. */
@@ -25,5 +26,5 @@ export const Backdrop: React.FC<{ children: React.ReactNode; sharp?: boolean }> 
   const [host, setHost] = useState<HTMLElement | null>(null);
   useEffect(() => { setHost(stage ?? null); }, [stage]);
   if (!host) return null;
-  return createPortal(<div className={cn(styles.backdrop, sharp ? styles.sharp : styles.blurred)}><div className={styles.picture}>{children}</div></div>, host);
+  return createPortal(<Box className={cn(styles.backdrop, sharp ? styles.sharp : styles.blurred)}><Box className={styles.picture}>{children}</Box></Box>, host);
 };

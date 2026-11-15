@@ -125,7 +125,7 @@ export const AppShell: React.FC<AppShellProps> = ({
   return (
     <ShellProvider navOpen={open} stage={stage}>
       <Box className={cn(styles.root, open ? styles.open : styles.closed, tabs?.length && styles.withTabs, className)}>
-        <div ref={setStage} className={styles.stage} aria-hidden />
+        <Box ref={setStage} className={styles.stage} aria-hidden />
         <Box as="header" className={styles.head}>
           {!tabs?.length && <Pressable className={cn(styles.railBtn, styles.menuBtn)} aria-label={L.menu} onClick={() => setDrawer(true)}><MenuIcon size={20} /></Pressable>}
           <ShellBrand brand={brand} open={open} onToggle={() => setOpen(!open)} openLabel={L.openMenu} closeLabel={L.closeMenu}
