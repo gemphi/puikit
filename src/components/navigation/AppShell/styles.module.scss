@@ -3,7 +3,7 @@
    inside them (menu rows, rail buttons, tabs) wears the page's shades, left to right, with no borders: a light shade
    under the pointer, a deeper one for the page you are on. The header has no border and no ground of its own. */
 .root {
-  --pui-shell-rail: 3.75rem; --pui-shell-panel: 15rem; --pui-shell-gap: var(--phi-gap);
+  --pui-shell-rail: 3rem; --pui-shell-panel: 15rem; --pui-shell-gap: var(--phi-gap);
   --pui-shell-pad: var(--phi-space-6, 1.5rem);
   display: flex; flex-direction: column; width: 100%;
   /* An app shell owns the window: the sidebar runs the full height, the content scrolls inside (one scroll bar). */
@@ -59,11 +59,14 @@
 /* The sidebar holder: rail and panel on one pane of glass, the one border in the shell. Its corner is md, a quarter
    of the theme's maximum, never more; everything inside it rounds one step down (sm, then xs). */
 .nav { display: flex; flex: none; min-height: 0; margin: 0 0 var(--pui-shell-gap) var(--pui-shell-gap);
-  overflow: hidden; }  /* its surface: .phi-layers (tokens.scss), like every container */
+  overflow: hidden;
+  /* The sidebar's glass reads from its LEFT edge: shade there fading to nothing toward the content, so its left is
+     always visible against the page (its surface is .phi-layers, tokens.scss; this just reverses the fade). */
+  background-image: linear-gradient(90deg, var(--phi-shade-2) 0%, var(--phi-shade-3) 45%, transparent 100%); }
 
 .rail { display: flex; flex-direction: column; align-items: center; gap: var(--phi-space-2); flex: none; inline-size: var(--pui-shell-rail); padding-block: var(--phi-space-3); }
 .railGroup { width: 100%; }
-.railBtn { display: inline-flex; align-items: center; justify-content: center; inline-size: 2.75rem; block-size: 2.75rem;
+.railBtn { display: inline-flex; align-items: center; justify-content: center; inline-size: 2.25rem; block-size: 2.25rem;
   border-radius: var(--phi-radius-sm); border: 1px solid transparent; color: var(--phi-color-text-secondary); background: transparent; cursor: pointer;
   transition: background var(--phi-transition-fast), color var(--phi-transition-fast), border-color var(--phi-transition-fast); }
 .railBtn:hover { background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2)); color: var(--phi-color-text-primary); }
