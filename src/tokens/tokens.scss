@@ -79,14 +79,11 @@ a.button,
   --phi-shade-3: color-mix(in srgb, var(--phi-card-light) calc(var(--phi-glass-pct, 58%) * 0.48), transparent);
 }
 :where(.pui-card, [data-surface='card'], .phi-layers) {
-  /* X is the bottom and left padding; the right is X/2, the top X/3. X is at least the corner, so text always clears
-     the round and is never cut off by a big radius. */
   /* Bottom padding B halves at every nesting depth (below); right is B/3, left B/2, top B/4, so no two paddings
      match and the bottom is always the biggest. B is at least the corner, so a big radius never clips the text. */
   --phi-card-pad-b: max(var(--phi-radius-card), 1.5rem);
   --phi-card-padding: calc(var(--phi-card-pad-b) / 4) calc(var(--phi-card-pad-b) / 3) var(--phi-card-pad-b) calc(var(--phi-card-pad-b) / 2);
   position: relative;
-  isolation: isolate;
   border: 0;
   border-radius: var(--phi-radius-shape);
   background: linear-gradient(90deg, transparent 0%, var(--phi-shade-3) 100%);
@@ -94,36 +91,17 @@ a.button,
   -webkit-backdrop-filter: var(--phi-glass-blur);
   box-shadow: none;
 }
-:where(.pui-card, [data-surface='card'], .phi-layers)::before,
-:where(.pui-card, [data-surface='card'], .phi-layers)::after {
-  content: '';
-  position: absolute;
-  pointer-events: none;
-  z-index: -1;
-}
-/* The face. */
-:where(.pui-card, [data-surface='card'], .phi-layers)::before {
-  inset: 0 var(--phi-card-layer-right) var(--phi-card-layer-bottom) 0;
-  border-radius: var(--phi-radius-shape);
-  background: linear-gradient(90deg, transparent 0%, var(--phi-shade-2) 100%);
-}
-/* The inner card: the most light. */
-:where(.pui-card, [data-surface='card'], .phi-layers)::after {
-  inset: 0 calc(var(--phi-card-layer-right) * 2) calc(var(--phi-card-layer-bottom) * 2) 0;
-  border-radius: var(--phi-radius-shape);
-  background: linear-gradient(90deg, transparent 0%, var(--phi-shade-1) 100%);
-}
 :where(.phi-layers) { padding: var(--phi-card-layer-top) var(--phi-card-layer-right) var(--phi-card-layer-bottom) var(--phi-card-layer-top); }
-/* A surface inside a surface steps its corner DOWN one rung (8px) per level, never equal to its parent, and lays no
-   second blur over the first. Explicit depth levels, because a custom property cannot read its own inherited value. */
+/* No ::before/::after. A LAYER IS A REAL ELEMENT: a surface inside a surface is the next layer. It steps its corner
+   down one rung (8px) and halves its bottom padding, keeps its own gradient so the real layers stack and brighten
+   inward, and lays no second blur over the first. Each layer obeys these rules on its own. Explicit depth levels,
+   since a custom property cannot read its own inherited value. */
 :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) {
   --phi-radius-shape: max(calc(var(--phi-radius-card) - 8px), 6px);
   --phi-card-pad-b: calc(max(var(--phi-radius-card), 1.5rem) / 2);
-  background: none; backdrop-filter: none; -webkit-backdrop-filter: none;
+  backdrop-filter: none; -webkit-backdrop-filter: none;
 }
 :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) { --phi-radius-shape: max(calc(var(--phi-radius-card) - 16px), 6px); --phi-card-pad-b: calc(max(var(--phi-radius-card), 1.5rem) / 4); }
 :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) { --phi-radius-shape: max(calc(var(--phi-radius-card) - 24px), 6px); --phi-card-pad-b: calc(max(var(--phi-radius-card), 1.5rem) / 8); }
 :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) { --phi-radius-shape: max(calc(var(--phi-radius-card) - 32px), 6px); --phi-card-pad-b: calc(max(var(--phi-radius-card), 1.5rem) / 16); }
 :where(.phi-layers) :where(.phi-layers) { padding: 0; }
-:where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers)::before { inset: 0; }
-:where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers)::after { content: none; }
