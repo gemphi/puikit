@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Avatar, Box, Button, Icon, Input, Pressable, Stack, Text } from '@pui/components';
+import { Avatar, Box, Button, Icon, Input, Pressable, ShellBackButton, Stack, Text } from '@pui/components';
 import { useStore } from '@pui/store';
 import { ChevronLeft, ChevronRight, Search as SearchIcon } from 'lucide-react';
 import { D, cityOf, clubOf, clubsOfCollection, fmt, initials, lookOf, lookStore, person, placeOf, postById, seriesOf, showOf, storeOf, t, worldOf, rideKind } from '../../lib/data';
@@ -93,7 +93,7 @@ export const Crumbs: React.FC<{ compact?: boolean }> = ({ compact }) => {
   else if (s.tab !== 'feed') trail.push([label[s.tab] ? t(label[s.tab]) : s.tab.charAt(0).toUpperCase() + s.tab.slice(1), null]);
   return (
     <Box className={styles.crumbs}>
-      <Button variant="ghost" size="sm" aria-label={t('navBack')} disabled={!s.hist.length} onClick={s.back} icon={<Icon icon={ChevronLeft} size="xs" />} />
+      <ShellBackButton label={t('navBack')} disabled={!s.hist.length} onClick={s.back} />
       <Box as="nav" aria-label="Breadcrumb" className={styles.crumbs}>
         {(compact && trail.length > 2 ? trail.slice(-1) : trail).map(([name, go], i, shown) => { const last = i === shown.length - 1; return (
           <React.Fragment key={i}>{i > 0 && <Text as="span" intent="secondary" flex="none"><Icon icon={ChevronRight} size="xs" /></Text>}

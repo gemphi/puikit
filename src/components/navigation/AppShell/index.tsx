@@ -161,5 +161,6 @@ export const AppShell: React.FC<AppShellProps> = ({
 };
 
 export { APPS as APPS_RAIL } from './Rail';
+export { ShellBack, ShellBackButton, ShellPin } from './Brand';
 export * from './context';
 export default AppShell;

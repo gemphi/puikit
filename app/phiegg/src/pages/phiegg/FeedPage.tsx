@@ -58,10 +58,10 @@ export const FeedPage: React.FC = () => {
   // Every third item is a live market moment, so the feed keeps moving with the pools.
   const items: React.ReactNode[] = []; posts.slice(0, n).forEach((p, i) => { items.push(<ShotCard key={p.id} post={p} />); if (i % 3 === 2 && hot.length) { const h = hot[(i / 3) % hot.length | 0]; items.push(<MarketMoment key={'m' + i} pool={h.pool} k={i} now={now} />); } });
   return (
-    <Page>
+    <Page width="feed">
       <Grid gap={4} xs={1} lg={12}>
         <Col span={8} xs={12} lg={8}>
-          <Stack direction="column" gap={4} maxWidth="36rem">
+          <Stack direction="column" gap={4} maxWidth="36rem" style={{ marginInline: 'auto', width: '100%' }}>
             <StatusRail aria-label="Stories" items={rail} />
             <TabList size="sm" variant="pills" aria-label={t('fdKinds')} activeId={kind} onChange={(id) => { s.go('feed', { feedKind: id }); setN(20); }} items={kinds.map((k) => ({ id: k.id, label: k.label }))} />
             <Composer placeholder={t('sharePh')} onSend={(v) => s.postShot(v)} />

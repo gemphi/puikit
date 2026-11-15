@@ -50,3 +50,8 @@
 .footer {
   flex-shrink: 0;
 }
+
+/* Page widths (Page width="feed" | "reading"): a centred column instead of the full screen. */
+.page.feedWidth, .page.readingWidth { width: 100%; margin-inline: auto; }
+.page.feedWidth { max-width: var(--pui-page-feed, 62rem); }
+.page.readingWidth { max-width: var(--pui-page-reading, 46rem); }

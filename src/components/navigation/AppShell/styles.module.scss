@@ -5,7 +5,9 @@
 .root {
   --pui-shell-rail: 3rem; --pui-shell-panel: 13.5rem;
   /* One control size for the whole shell: the pin, every rail icon and every control in the header row. */
-  --pui-shell-control: 2.25rem; --pui-shell-gap: var(--phi-gap);
+  --pui-shell-control: 2.25rem;
+  /* One icon size and line weight inside those controls: the pin's. Rail icons and the back arrow draw at it. */
+  --pui-shell-icon: 1.25rem; --pui-shell-stroke: 1.75; --pui-shell-gap: var(--phi-gap);
   --pui-shell-pad: var(--phi-space-6, 1.5rem);
   display: flex; flex-direction: column; width: 100%;
   /* An app shell owns the window: the sidebar runs the full height, the content scrolls inside (one scroll bar). */
@@ -122,6 +124,9 @@
 /* Every shell icon carries its side, a faint copy just below and right, as the 3D face does. */
 .railBtn svg, .navRow svg, .tab svg, .appGlyph svg, .brandGlyph svg, .pin svg, .caret svg {
   filter: drop-shadow(0.06em 0.06em 0 color-mix(in srgb, currentColor 30%, transparent)); }
+/* Rail icons, the pin and the back arrow are one size and one weight, whatever size an app drew its icons at. */
+.railBtn svg, .pin svg { width: var(--pui-shell-icon) !important; height: var(--pui-shell-icon) !important; stroke-width: var(--pui-shell-stroke); }
+.pin:disabled, .pin[aria-disabled='true'] { opacity: 0.35; cursor: default; }
 
 /* An appearance setting may tint the sidebar and the content by setting --pui-shell-nav-tint and --pui-shell-main-tint
    on anything around the shell. */
