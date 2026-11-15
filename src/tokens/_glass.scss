@@ -25,8 +25,8 @@
   /* A floating pane (a drawer, a menu, a bar) keeps the page's own colour under its glass, so text over it reads. */
   --phi-glass-ground: color-mix(in srgb, var(--phi-color-background) 80%, transparent);
   /* The rim: on a pale page white would vanish, so the light mode draws it in the theme's own border colour. */
-  --phi-glass-rim: var(--phi-color-border);
-  --phi-glass-rim-soft: color-mix(in srgb, var(--phi-color-border) 60%, transparent);
+  --phi-glass-rim: transparent; /* no rims: surfaces are edged by their shades (tokens.scss) */
+  --phi-glass-rim-soft: transparent;
   --phi-glass-blur: blur(22px) saturate(160%);
   /* The theme's colour, laid the same ways, only under the pointer. */
   --phi-tint-pct: 26%;
@@ -40,6 +40,6 @@
 [data-theme='dark'] {
   --phi-glass-pct: 12%;
   --phi-tint-pct: 34%;
-  --phi-glass-rim: color-mix(in srgb, var(--phi-glass-light) 16%, transparent);
-  --phi-glass-rim-soft: color-mix(in srgb, var(--phi-glass-light) 8%, transparent);
+  --phi-glass-rim: transparent; /* no rims: surfaces are edged by their shades (tokens.scss) */
+  --phi-glass-rim-soft: transparent;
 }

@@ -1,26 +1,26 @@
 import React, { useEffect } from 'react';
 import { usePuiTheme } from '@pui/hooks';
 import { RADIUS_ALIASES, RADIUS_PRESETS, type GradientLevel, type RadiusPreset } from '@pui/providers';
-import { Box, ShellProvider, Stack } from '@pui/components';
+import { AppShell, APPS_RAIL, Box, Stack, Title } from '@pui/components';
 import { useStore } from '@pui/store';
 import { phieggStore } from './state/phieggStore';
-import { Header } from './components/Shell/Header';
-import { MobileTabs, SidebarNav } from './components/Shell/Sidebar';
+import { HeaderEnd } from './components/Shell/HeaderEnd';
+import { appsGlyph, appsItem, currentEntry, parseEntry, shellApps, shellGroups, shellTabs } from './components/Shell/shellData';
+import { Crumbs } from './components/Phiegg/Search';
+import { PhieggMark, Wordmark } from './components/Phiegg/Marks';
 import { SignIn } from './components/Shell/SignIn';
 import { useViewport } from './lib/viewport';
 import { Overlays } from './components/Phiegg/Overlays';
-import { Stage } from './components/Shell/Backdrop';
 import { ItemSheet } from './components/Phiegg/ItemSheet';
 import { AssetSheet } from './components/Phiegg/AssetSheet';
 import { WatchSheet } from './components/Phiegg/WatchSheet';
 import { PlacePage } from './components/Phiegg/Commerce';
-import { stageStore } from './state/stageStore';
 import { useListedLook } from './components/Shell/Appearance';
 import {
   AgentsHubPage, ClubPage, CollectionPage, ListPage, CreatePage, EventsPage, ExplorePage, FeedPage, HostsPage, JoinPage,
   MessagesPage, PhipadPage, ProfilePage, ShowPage, ShowsPage, WorldPage, WorldsPage, ShopPage, PoolPage, SeriesPage, LeaguePage, CityPage, SearchPage, RecentPage, StudioPage, RidesPage, WelcomePage, PostPage,
 } from './pages/phiegg';
-import { site } from './lib/data';
+import { me, site, t } from './lib/data';
 import { useIdentity } from './lib/identity';
 
 const LISTS = Object.keys(site.lists);
@@ -67,8 +67,9 @@ const page = (tab: string, s: S): React.ReactNode => {
   }
 };
 
+/** Phiegg on the shared shell: it hands the shell its menus, its brand and its pages, and the shell decides the rest. */
 export const App: React.FC = () => {
-  const s = useStore(phieggStore); const stage = useStore(stageStore); useIdentity(); useListedLook(); const { mobile } = useViewport();
+  const s = useStore(phieggStore); useIdentity(); useListedLook(); const { compact } = useViewport();
   // Mirror the appearance onto <html> so portalled overlays (drawers, chat, dialogs) share the same gradients and radius.
   const ap = s.appearance;
   // The appearance gradient drives the puikit gradient system (providers/palette.ts) for every surface.
@@ -84,24 +85,26 @@ export const App: React.FC = () => {
     const el = document.documentElement.dataset;
     el.phGradient = ap.gradient; el.phRadius = ap.radius; el.phMotion = ap.motion; el.phOpacity = ap.opacity;
   }, [ap.gradient, ap.radius, ap.motion, ap.opacity]);
+  // An entry id names a page and its params (shellData.tsx); the profile tab opens your own.
+  const go = (id: string) => { const [tab, params] = parseEntry(id); if (tab === 'profile' && !params) s.go('profile', { profileId: me().id }); else s.go(tab, params); };
+  const apps = appsItem();
   return (
-    <Stack direction="column" gap={0} data-ph-radius={s.appearance.radius} data-ph-gradient={s.appearance.gradient} data-ph-motion={s.appearance.motion}
-      data-ph-sidebar={s.appearance.sidebar} data-ph-content={s.appearance.content} data-ph-opacity={s.appearance.opacity}
-      data-ph-side={stage.docked && !mobile ? 'docked' : 'rail'} className="ph-app" width="100vw" height="100vh" overflow="hidden">
-      <Stage />
-      {/* Phiegg's own shell tells the kit's components what the puikit AppShell would: whether the menu panel is open. */}
-      <ShellProvider navOpen={stage.docked && !mobile}>
-      <Header activeTab={s.tab} onSelectTab={(tab) => s.go(tab)} />
-      <Stack direction="row" gap={0} flex="1" minHeight="0" className="ph-body">
-        {!mobile && <SidebarNav activeTab={s.tab} onSelectTab={(tab) => s.go(tab)} />}
-        <Box key={[s.tab, s.worldId, s.showId, s.clubId, s.profileId, s.cityId, s.storeId, s.poolId, s.lookId, s.assetId, s.titleId, s.placeId].join('|')} className="ph-main" flex="1" minWidth="0" scroll="y">
+    <Stack direction="column" gap={0} data-ph-radius={ap.radius} data-ph-gradient={ap.gradient} data-ph-motion={ap.motion}
+      data-ph-sidebar={ap.sidebar} data-ph-content={ap.content} data-ph-opacity={ap.opacity} className="ph-app" width="100vw" height="100vh" overflow="hidden">
+      <AppShell
+        brand={{ name: site.brand.name, glyph: <PhieggMark size="1.5rem" />, wordmark: <Title level={4} size="sm"><Wordmark /></Title> }}
+        groups={shellGroups(s)} view={currentEntry(s)} onView={go}
+        rail={s.rail === apps?.id ? APPS_RAIL : s.rail} onRail={(id) => s.setRail(id === APPS_RAIL && apps ? apps.id : id)}
+        apps={shellApps()} appsLabel={apps?.label ?? t('hdApps')} appsIcon={appsGlyph()} tabs={shellTabs()}
+        crumbs={<Crumbs compact={compact} />} headerRight={<HeaderEnd />}
+        labels={{ openMenu: t('hdMenu'), closeMenu: t('hdCloseMenu'), menu: t('hdMenu'), moreApps: apps?.addLabel ?? t('hdAddApps'), fold: (l, o) => (o ? t('collapse') : t('expand')) + ' ' + l }}
+      >
+        <Box key={[s.tab, s.worldId, s.showId, s.clubId, s.profileId, s.cityId, s.storeId, s.poolId, s.lookId, s.assetId, s.titleId, s.placeId].join('|')}>
           {page(s.tab, s)}
         </Box>
-      </Stack>
-      {mobile && <MobileTabs />}
-      <Overlays />
-      <SignIn />
-      </ShellProvider>
+        <Overlays />
+        <SignIn />
+      </AppShell>
     </Stack>
   );
 };

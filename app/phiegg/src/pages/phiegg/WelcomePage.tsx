@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Box, Button, Card, DataTable, Icon, Image, ItemCard, Pressable, Rows, SpriteImage, Stack, Tag, Text, Title, WorldScene } from '@pui/components';
+import { Backdrop, Box, Button, Card, DataTable, Icon, Image, ItemCard, Pressable, Rows, SpriteImage, Stack, Tag, Text, Title, WorldScene } from '@pui/components';
 import { Minus, Plus } from 'lucide-react';
 import { useStore } from '@pui/store';
 import { D, itemImage, rideSprite, seriesOf, t, worldImage, worldOf, rideKind } from '../../lib/data';
 import { worldLogo } from '../../lib/media';
 import { phieggStore } from '../../state/phieggStore';
-import { Backdrop } from '../../components/Shell/Backdrop';
 import type { RideKind } from '../../types/phiegg';
 import styles from './WelcomePage.module.scss';
 

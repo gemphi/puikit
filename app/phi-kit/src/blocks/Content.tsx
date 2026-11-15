@@ -20,13 +20,13 @@ export const Hero: React.FC<{ b: Block }> = ({ b }) => (
 
 /** Dated news / announcement list. */
 export const News: React.FC<{ b: Block }> = ({ b }) => (
-  <Stack direction="column" gap={3} maxWidth="760px">
+  <Stack direction="column" gap={3}>
     {(b.items || []).map((n: any, i: number) => (
       <Stack key={i} direction="column" gap={2}>
         <Stack direction="row" gap={4} align="start">
           {n.image ? <Frame ratio="4/3" rounded="md" width="8.5rem" flex="none"><Image src={assetUrl(n.image)} alt="" fit="cover" fill loading="lazy" /></Frame> : null}
           <Stack direction="column" gap={1} minWidth="0">
-            <Stack direction="row" gap={2} wrap align="center">{n.tag ? <Tag minimal round>{n.tag}</Tag> : null}<Text size="xs" intent="muted" as="span">{n.date}</Text></Stack>
+            <Stack direction="row" gap={2} wrap align="baseline">{n.tag ? <Text size="xs" weight="medium" as="span">{n.tag}</Text> : null}<Text size="xs" intent="muted" as="span">{n.date}</Text></Stack>
             <Title level={3} size="md">{n.title}</Title>
             <Text size="sm" intent="secondary">{n.body}</Text>
           </Stack>

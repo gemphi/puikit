@@ -14,8 +14,9 @@
   user-select: none;
   transition: all var(--phi-transition-fast);
 
+  /* A round tag is shaped like a button (one control corner everywhere), not a pill. */
   &.round {
-    border-radius: var(--phi-radius-full);
+    border-radius: var(--phi-control-radius);
   }
 
   &.interactive {
@@ -113,3 +114,6 @@
     background-color: rgba(0, 0, 0, 0.1);
   }
 }
+
+/* On a surface (tokens.scss) every tag is a shade of the page's one colour, whatever its intent; the text the page's ink. */
+:global(:is(.pui-card, [data-surface='card'], .phi-layers)) .tag { background-color: transparent; background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2)); border-color: transparent; color: var(--phi-color-text-primary); box-shadow: none; }

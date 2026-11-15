@@ -1,0 +1,26 @@
+{
+  "landing": {
+    "enter": "Enter {app}",
+    "open": "Open {page}",
+    "close": "Make your move in {app}"
+  },
+  "account": {
+    "title": "You",
+    "guest": "Guest",
+    "wallet": "Wallet",
+    "total": "Total",
+    "look": "Look",
+    "mode": "Mode",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "font": "Font",
+    "profile": "Profile",
+    "account": "Account",
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "phione": "Managed by Phione",
+    "manage": "Open Phione",
+    "open": "Open your account"
+  }
+}

@@ -69,7 +69,7 @@ export const SettingsView: React.FC = () => {
 export const ItemPanel: React.FC<{ it: GridItem; onClose: () => void }> = ({ it, onClose }) => (
   <>
     <Stack direction="row" justify="between" align="center">
-      {it.sub ? <Tag minimal round>{it.sub}</Tag> : <Box />}
+      {it.sub ? <Text size="xs" weight="medium" as="span">{it.sub}</Text> : <Box />}
       <Button variant="ghost" size="sm" onClick={onClose}>Close</Button>
     </Stack>
     {it.image ? <Frame ratio="16/10" rounded="lg"><Image src={assetUrl(it.image)} alt="" fit="cover" fill /></Frame> : null}

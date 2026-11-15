@@ -1,28 +1,7 @@
-// Phiegg header: no border, two columns. The brand cell is as wide as the sidebar under it (--ph-side-w, App.tsx);
-// the lane lines up with the content: the same gutter and the same centred width as .ph-main (styles/phiegg.scss).
-// Folds at site.compactBelow (tagline, labels) and below 720px (crumbs -> back, search -> icon + row).
-.bar { position: relative; z-index: 2; flex: none; display: flex; align-items: center; height: 56px; background: transparent; }
-.brand { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 0.25rem; height: 100%; width: calc(var(--ph-side-w) + var(--ph-side-gap)); padding-left: var(--ph-side-gap); transition: width var(--phi-transition-normal); }
-.brand .home { min-width: 0; }
-.phone { width: auto; padding-left: 0.5rem; }
-.pin { flex: none; display: grid; place-items: center; width: 2.25rem; height: 2.25rem; color: var(--phi-color-text-secondary); }
-.pin:hover { color: var(--phi-color-text-primary); }
-.brandOpen { padding-right: 0.5rem; }
-/* Closed: the icon sits centred over the rail; under the pointer it gives way to the pin. */
-.brandClosed { justify-content: center; position: relative; }
-.brandClosed .pin { position: absolute; left: calc(var(--ph-side-gap) + (var(--ph-side-w) - 2.25rem) / 2); opacity: 0; pointer-events: none; transition: opacity var(--phi-transition-fast, 0.15s); }
-.brandClosed .home { transition: opacity var(--phi-transition-fast, 0.15s); }
-.brandClosed:hover .pin, .brandClosed:focus-within .pin { opacity: 1; pointer-events: auto; }
-.brandClosed:hover .home, .brandClosed:focus-within .home { opacity: 0; }
-.lane { flex: 1 1 auto; min-width: 0; height: 100%; display: flex; align-items: center; padding-inline: calc(var(--ph-content-pad) + var(--ph-gutter)); }
-/* The row is the content column's twin: as wide, centred the same way, so its two ends sit on the content's edges. */
-.row { display: flex; align-items: center; gap: 0.75rem; width: 100%; max-width: var(--ph-content-w); margin-inline: auto; min-width: 0; }
-.row > .start, .row > .end { display: flex; align-items: center; min-width: 0; }
-.start { flex: 1 1 auto; gap: 0.75rem; }
-.end { flex: 0 1 auto; gap: 0.5rem; justify-content: flex-end; }
+// Phiegg's tools at the end of the shared shell's header (HeaderEnd.tsx) and its account menu (HeaderMenus.tsx).
+.end { display: flex; align-items: center; min-width: 0; flex: 0 1 auto; gap: 0.5rem; justify-content: flex-end; }
 .searchSlot { flex: 0 1 auto; width: 22rem; min-width: 10rem; display: flex; margin-right: 0.25rem; }
-.compact .searchSlot { width: 15rem; }
-.searchRow { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--phi-color-border); background: var(--phi-color-background); display: flex; > * { flex: 1; max-width: none; } }
+.searchRow { position: fixed; z-index: 30; top: var(--pui-shell-head, 3.5rem); left: 0; right: 0; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--phi-glass-rim); background: var(--phi-glass-to-across), var(--phi-color-background); display: flex; > * { flex: 1; max-width: none; } }
 .pop { min-width: 17rem; padding: 0.75rem !important; right: 0; }
 .item { justify-content: flex-start !important; width: 100%; }
 .avatar { margin-left: 0.25rem; display: grid; place-items: center; }

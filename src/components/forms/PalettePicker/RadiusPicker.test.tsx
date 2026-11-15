@@ -17,11 +17,11 @@ describe('RadiusPicker', () => {
 
   it('sets the theme radius scale every --phi-radius-* token follows', () => {
     const { getByRole } = render(<PuiProvider defaultTheme="light"><RadiusPicker /></PuiProvider>);
-    expect(getByRole('radio', { name: 'Medium' }).getAttribute('aria-checked')).toBe('true');
-    fireEvent.click(getByRole('radio', { name: 'Large' }));
+    expect(getByRole('radio', { name: '32px' }).getAttribute('aria-checked')).toBe('true');
+    fireEvent.click(getByRole('radio', { name: '48px' }));
     expect(document.documentElement.style.getPropertyValue('--phi-radius-scale')).toBe(String(RADIUS_PRESETS.large));
-    expect(getByRole('radio', { name: 'Large' }).getAttribute('aria-checked')).toBe('true');
-    fireEvent.click(getByRole('radio', { name: 'Pill (egg)' }));
+    expect(getByRole('radio', { name: '48px' }).getAttribute('aria-checked')).toBe('true');
+    fireEvent.click(getByRole('radio', { name: '64px' }));
     // pill switches shape too: controls go fully round
     expect(document.documentElement.getAttribute('data-radius')).toBe('pill');
   });

@@ -41,11 +41,21 @@ export function applyFont(id: string): void {
   if (!family) {
     root.removeProperty('--phi-font-family');
     root.removeProperty('--phi-font-heading');
+    match(true);
     return;
   }
   const stack = `"${family}", ${FALLBACK}`;
   root.setProperty('--phi-font-family', stack);
   root.setProperty('--phi-font-heading', stack);
+  // The looks ask Phifing's emphasis at 600, where its Regular answers (paired by darkness, phi-fonts.css). Every
+  // other face keeps its own Regular at 400 for emphasis, as before.
+  match(family.startsWith('Phifing'));
+}
+
+function match(phifing: boolean): void {
+  const root = document.documentElement.style;
+  if (phifing) root.removeProperty('--phi-font-weight-bold');
+  else root.setProperty('--phi-font-weight-bold', '400');
 }
 
 /** Put the saved choice back on boot; with nothing saved, the app's own default (`defaultId`), else the look's face. */

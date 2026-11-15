@@ -49,7 +49,7 @@ export const Rows = ({ children, cols = 4, colsSm = 2, rowHeight, feature, slide
   const narrow = width > 0 && width < 640;
   if (minItemWidth && width) cols = colsSm = fitCols(width, toPx(minItemWidth), toPx('0.75rem'), cols);
   else if (width) { if (narrow) cols = colsSm; else colsSm = cols; }
-  if (perView) itemWidth = `calc((100% - var(--pui-rows-gap) * ${perView - 1}) / ${perView})`;
+  if (perView) itemWidth = `calc((100% - var(--pui-rows-g) * ${perView - 1}) / ${perView})`;
   const items = React.Children.toArray(children).filter(Boolean);
   const vars = { '--pui-rows-cols': String(cols), '--pui-rows-cols-sm': String(colsSm), ...(rowHeight ? { '--pui-rows-h': rowHeight } : {}), ...(itemWidth ? { '--pui-rows-item-w': itemWidth } : {}) } as React.CSSProperties;
   const cell = (node: React.ReactNode, k: React.Key) => <Box key={k} className={styles.cell}>{node}</Box>;

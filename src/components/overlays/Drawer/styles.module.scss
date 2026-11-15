@@ -148,6 +148,8 @@
 .overlay .drawer.bottom.md { height: 64vh; }
 .overlay .drawer.bottom.lg { height: 82vh; }
 .overlay .drawer.bottom.xl { height: 92vh; }
+/* A column expanded in a bottom sheet (a profile beside the chat) grows the sheet to the full height. */
+.overlay .drawer.bottom:has(:global(.pui-columns[data-expanded])) { height: calc(100% - var(--phi-layout-rail-margin, 12px)); }
 .overlay .drawer.bottom.expanded { height: calc(100% - var(--phi-layout-rail-margin, var(--phi-space-3, 12px))); width: auto; }
 .handle { position: absolute; top: 6px; left: 50%; width: 2.5rem; height: 4px; margin-left: -1.25rem; border-radius: var(--phi-radius-full); background: color-mix(in srgb, var(--phi-color-text-primary) 22%, transparent); }
 .bottom .body { padding: 0; display: flex; min-height: 0; }

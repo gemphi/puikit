@@ -56,7 +56,7 @@ describe('Cards, grids and highlights as props', () => {
     const st = container.firstElementChild as HTMLElement;
     expect(st.style.display).toBe('grid');
     expect(st.style.gridTemplateColumns).toContain('220px');
-    expect(st.style.padding).toBe('1rem');
+    expect(st.style.padding).toBe('var(--phi-card-padding)');
     expect(st.getAttribute('surface')).toBeNull();
   });
   it('padding props win over a surface padding', () => {

@@ -26,4 +26,25 @@ describe('AppShell', () => {
     fireEvent.click(screen.getAllByLabelText('Fold Home')[0]);
     expect(screen.queryByText('First post')).toBeNull();
   });
+  it('lists one-page groups as one menu with no heading over itself', () => {
+    const pages = [{ id: 'home', label: 'Home', items: [{ id: 'home', label: 'Home' }] }, { id: 'docs', label: 'Docs', items: [{ id: 'docs', label: 'Docs' }] }];
+    render(<AppShell brand={{ name: 'Phitest' }} groups={pages} view="home" onView={() => {}}>page</AppShell>);
+    const panel = screen.getByRole('complementary', { name: 'Home' });
+    expect(panel.textContent).toContain('Docs');
+    expect(panel.textContent?.match(/Home/g)?.length).toBe(1);
+  });
+  it('lays a group in runs, opens a held panel, and closes on the current rail icon', () => {
+    const runs = [{ id: 'menu', label: 'Menu', items: [], sections: [
+      { id: 'a', items: [{ id: 'shows', label: 'Shows' }] },
+      { id: 'b', end: true, items: [{ id: 'look', label: 'Look', panel: <span>Look panel</span>, open: true }] },
+    ] }];
+    const seen: string[] = [];
+    render(<AppShell brand={{ name: 'Phitest' }} groups={runs} view="shows" onView={(id) => seen.push(id)}><Open /></AppShell>);
+    expect(screen.getByText('Look panel')).toBeTruthy();
+    fireEvent.click(screen.getByText('Look'));
+    expect(screen.queryByText('Look panel')).toBeNull();
+    expect(seen).toEqual([]);
+    fireEvent.click(screen.getByRole('button', { name: 'Menu', pressed: true }));
+    expect(screen.getByTestId('open').textContent).toBe('false');
+  });
 });

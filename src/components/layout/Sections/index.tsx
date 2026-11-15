@@ -6,6 +6,11 @@ import { Button } from '../../primitives/Button';
 import { Text } from '../../primitives/Text';
 import { Title } from '../../primitives/Title';
 import styles from './styles.module.scss';
+import { useTitleShown } from '../ShownTitle';
+
+/** A section's title, left out when it would only repeat a title already shown above (the page's, its column's). */
+const SectionTitle: React.FC<{ title: React.ReactNode; size?: string }> = ({ title, size }) =>
+  useTitleShown(title) ? null : typeof title === 'string' ? (size === 'lg' ? <Title level={3} size="lg">{title}</Title> : <Text size="sm" weight="semibold">{title}</Text>) : <>{title}</>;
 
 export type SectionDef = {
   id: string;
@@ -79,10 +84,10 @@ export const Sections = ({ sections, className, reorderable = false, storageKey,
       {shown.map((x) => {
         const isExp = expanded === x.id; const isFold = !!folded[x.id] && !isExp; const at = open.indexOf(x);
         return (
-          <Box key={x.id} as="section" className={cn(styles.section, isExp && styles.exp, isFold && styles.folded)} aria-label={name(x)} data-section={x.id}>
+          <Box key={x.id} as="section" className={cn(styles.section, variant !== 'plain' && 'phi-layers', isExp && styles.exp, isFold && styles.folded)} aria-label={name(x)} data-section={x.id}>
             <Box className={styles.head}>
               <Box className={styles.title}>
-                {typeof x.title === 'string' ? (size === 'lg' ? <Title level={3} size="lg">{x.title}</Title> : <Text size="sm" weight="semibold">{x.title}</Text>) : x.title}
+                <SectionTitle title={x.title} size={size} />
                 {x.hint && !isFold && <Text size="sm" intent="muted">{x.hint}</Text>}
               </Box>
               {x.actions}

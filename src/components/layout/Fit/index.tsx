@@ -35,14 +35,14 @@ export type MediaStageProps = {
 };
 
 /**
- * MediaStage: a section's picture with its controls under it, sized by the kit, never by the page: column-wide (up to
- * a reading width) in its section, and when the section is expanded, the largest square of the whole stage.
+ * MediaStage: a section's picture with its controls under it, sized by the kit, never by the page: a square as wide as
+ * its column in its section, and when the section is expanded, the largest square of the whole stage.
  */
 export const MediaStage = ({ media, children }: MediaStageProps) => {
   const big = useSectionExpanded();
   return (
     <Stack direction="column" gap={2} className="pui-media-stage">
-      {big ? <Fit ratio={1}>{media}</Fit> : <Box className={styles.column}>{media}</Box>}
+      {big ? <Fit ratio={1}>{media}</Fit> : <Box className={styles.column}><Fit ratio={1}>{media}</Fit></Box>}
       {children}
     </Stack>
   );

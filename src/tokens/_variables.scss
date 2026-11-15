@@ -82,28 +82,26 @@
   --phi-glass-border: rgba(255, 255, 255, 0.48);
   --phi-backdrop-blur: blur(16px) saturate(180%);
 
-  /* Unified Rounding Tokens
+  /* Rounding
      ---------------------------------------------------------------
-     The `*-base` custom properties hold the raw default numeric value
-     for each radius token. The public `--phi-radius-*` tokens then
-     multiply their base by the unitless `--phi-radius-scale` (default
-     1) via `calc()`, so the PuiProvider can rescale every radius in the
-     UI live by writing a single custom property on the document root.
-     `--phi-radius-none` and `--phi-radius-full` are intentionally not
-     scaled: 0 stays 0 and the pill radius stays pill-shaped. */
+     The corner option (16px, 32px, 48px or 64px: data-radius on the root, written by PuiProvider from the saved choice,
+     the same in every look) sets one container corner, a quarter of it, that every container shares: the sidebar,
+     side panels, page columns, sections, cards and drawers all round alike. Parts inside a container step down from it
+     (sm an eighth, xs a sixteenth). Always pixels, never a percentage of the element. Buttons, inputs and chips are not
+     on this scale: every button, input and chip in every look and app takes one corner, a quarter and an eighth of the
+     option, held to 10px and 6px (--phi-control-radius, --phi-chip-radius), so they stay soft rectangles. none stays 0. */
   --phi-radius-none: 0px;
-  --phi-radius-xs-base: 4px;
-  --phi-radius-sm-base: 6px;
-  --phi-radius-md-base: 8px;
-  --phi-radius-lg-base: 10px;
-  --phi-radius-xl-base: 12px;
-  --phi-radius-2xl-base: 16px;
-  --phi-radius-xs: calc(var(--phi-radius-xs-base) * var(--phi-radius-scale, 1));
-  --phi-radius-sm: calc(var(--phi-radius-sm-base) * var(--phi-radius-scale, 1));
-  --phi-radius-md: calc(var(--phi-radius-md-base) * var(--phi-radius-scale, 1));
-  --phi-radius-lg: calc(var(--phi-radius-lg-base) * var(--phi-radius-scale, 1));
-  --phi-radius-xl: calc(var(--phi-radius-xl-base) * var(--phi-radius-scale, 1));
-  --phi-radius-2xl: calc(var(--phi-radius-2xl-base) * var(--phi-radius-scale, 1));
+  --phi-radius-card: 32px;
+  --phi-radius-2xl: calc(var(--phi-radius-card) / 4);
+  --phi-radius-xl: calc(var(--phi-radius-card) / 4);
+  --phi-radius-lg: calc(var(--phi-radius-card) / 4);
+  --phi-radius-md: calc(var(--phi-radius-card) / 4);
+  --phi-radius-sm: calc(var(--phi-radius-card) / 8);
+  --phi-radius-xs: calc(var(--phi-radius-card) / 16);
+  /* A card's own corner (the same as lg), and its inner card's inset: half of it, so the inner card rounds one step
+     down (md) and the two rounds run parallel. */
+  --phi-radius-shape: var(--phi-radius-lg);
+  --phi-card-inset: calc(var(--phi-radius-lg) / 2);
   --phi-radius-full: 9999px;
 
   /* Spacing
@@ -141,7 +139,11 @@
      button, an input and a select on one row are the same height. */
   --phi-control-size-base: 18px;
   --phi-control-size: calc(var(--phi-control-size-base) * var(--phi-space-scale, 1));
-  --phi-control-radius: calc(var(--phi-radius-md) * 1.4);
+  /* Buttons, inputs and chips: one corner for all of them, in every look (see Rounding above). */
+  /* The one gap between things side by side or stacked: cards, columns, sections, groups, the shell's panes. */
+  --phi-gap: var(--phi-space-3, 0.75rem);
+  --phi-control-radius: min(calc(var(--phi-radius-card) / 4), 10px);
+  --phi-chip-radius: min(calc(var(--phi-radius-card) / 8), 6px);
   /* Menu items: a light shade of the theme colour at rest; on hover / active the colours merge and fade away. */
   --phi-control-shade: color-mix(in srgb, var(--phi-color-primary) 9%, var(--phi-color-background-secondary, var(--phi-color-background)));
   --phi-gradient-control-fade: linear-gradient(100deg, color-mix(in srgb, var(--phi-color-primary) 34%, transparent) 0%, color-mix(in srgb, var(--phi-color-accent-2, var(--phi-color-info, #5ac8fa)) 22%, transparent) 52%, transparent 100%);
@@ -187,7 +189,7 @@
   --phi-font-weight-normal: 300;
   --phi-font-weight-medium: 300;
   --phi-font-weight-semibold: 300;
-  --phi-font-weight-bold: 400;
+  --phi-font-weight-bold: 600; /* Phifing Regular, paired by darkness (phi-fonts.css) */
 
   /* Docusaurus Compatibility Invariants */
   --ifm-color-primary: var(--phi-color-primary);
@@ -272,4 +274,8 @@
 
 /* Pill (egg) corners: controls — buttons, tabs, chips, inputs, menu items — go fully round; containers keep the
    scaled radius, so cards read as soft eggs rather than circles. */
-[data-radius='pill'] { --phi-control-radius: var(--phi-radius-full); --phi-chip-radius: var(--phi-radius-full); }
+/* The four corner options: the theme's maximum corner. */
+:root[data-radius='small'] { --phi-radius-card: 16px; }
+:root[data-radius='medium'] { --phi-radius-card: 32px; }
+:root[data-radius='large'] { --phi-radius-card: 48px; }
+:root[data-radius='pill'] { --phi-radius-card: 64px; }

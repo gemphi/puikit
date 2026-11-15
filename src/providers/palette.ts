@@ -235,11 +235,12 @@ export function brandGradientTokens(primary: string, second: string, isDark: boo
 }
 
 /* ── Radius steps ───────────────────────────────────────────────────────────────────────────────────────────
-   Named stops (Small · Medium · Large · Pill (egg)) for the provider's radius scale (`borderRadius` → `--phi-radius-scale`). Every `--phi-radius-*`
-   token multiplies by it, so one choice rounds every card, deck, tab, button, drawer and bubble together. */
+   Named stops for the provider's corner choice (`borderRadius`, saved as these numbers). PuiProvider writes the nearest
+   stop as data-radius on the root and _variables.scss gives each a fixed corner, the same in every look: 16px, 32px,
+   48px, 64px. Every `--phi-radius-*` token follows it, so one choice rounds every card, deck, tab, button and drawer. */
 export const RADIUS_PRESETS = { small: 0.5, medium: 1, large: 1.75, pill: 3 } as const;
 /** Display names for the four corner presets. Pill is the egg: controls go fully round, containers deeply rounded. */
-export const RADIUS_LABELS: Record<keyof typeof RADIUS_PRESETS, string> = { small: 'Small', medium: 'Medium', large: 'Large', pill: 'Pill (egg)' };
+export const RADIUS_LABELS: Record<keyof typeof RADIUS_PRESETS, string> = { small: '16px', medium: '32px', large: '48px', pill: '64px' };
 /** Older saved ids map onto the four presets. */
 export const RADIUS_ALIASES: Record<string, keyof typeof RADIUS_PRESETS> = { sharp: 'small', soft: 'medium', round: 'large', pill: 'pill', sm: 'small', md: 'medium', lg: 'large' };
 export type RadiusPreset = keyof typeof RADIUS_PRESETS;

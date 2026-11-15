@@ -1208,22 +1208,22 @@
   "radii": [
    {
     "id": "small",
-    "label": "Small",
+    "label": "16px",
     "scale": 0.5
    },
    {
     "id": "medium",
-    "label": "Medium",
+    "label": "32px",
     "scale": 1
    },
    {
     "id": "large",
-    "label": "Large",
+    "label": "48px",
     "scale": 1.75
    },
    {
     "id": "pill",
-    "label": "Pill (egg)",
+    "label": "64px",
     "scale": 3
    }
   ],
@@ -1366,6 +1366,18 @@
    {
     "id": "muse",
     "label": "Muse"
+   },
+   {
+    "id": "spacex",
+    "label": "SpaceX"
+   },
+   {
+    "id": "apple",
+    "label": "Apple"
+   },
+   {
+    "id": "organic",
+    "label": "Organic"
    }
   ]
  },

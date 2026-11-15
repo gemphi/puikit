@@ -6,6 +6,7 @@ import { APPS, appUrl, assetUrl, type AppMeta, type NavItem } from './data';
 import type { GridItem } from './blocks/Grid';
 import { AppGlyph, NavIcon } from './icons';
 import { LOOKS, useLook } from './looks';
+import { AccountDrawer } from './AccountDrawer';
 
 export type AccountItem = { id: string; label: string; previews?: { id: string; label: string; sub?: string }[] };
 export type ShellProps = {
@@ -54,7 +55,7 @@ export const PhiShell: React.FC<ShellProps> = ({ app, nav, view, onView, right, 
       apps={apps} appsLabel="Apps"
       foot={foot}
       tools={<LookSwitch />} right={right} onPreview={(leafId, p) => pulled(leafId, p.id)}
-      headerRight={<Button variant="ghost" size="sm" iconLeft={User} onClick={() => onView('_you')}>You</Button>}
+      headerRight={<AccountDrawer onProfile={() => onView('_you')} />}
     >
       {children}
     </AppShell>

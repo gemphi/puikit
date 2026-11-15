@@ -11,7 +11,7 @@
 .itemOn { background-image: var(--phi-gradient-control-fade); color: var(--phi-color-primary); font-weight: var(--phi-font-weight-medium); box-shadow: inset 3px 0 0 var(--phi-color-primary); }
 .menuFoot { margin-top: auto; display: flex; flex-direction: column; gap: 4px; padding-top: 12px; }
 .main { flex: 1; min-width: 0; overflow-y: auto; container-type: inline-size; }
-.inner { padding: clamp(16px, 3cqi, 36px); display: flex; flex-direction: column; gap: 22px; max-width: 1100px; }
+.inner { padding: clamp(16px, 3cqi, 36px); display: flex; flex-direction: column; gap: 22px; }
 .topbar { display: none; align-items: center; gap: 10px; padding: 12px 16px 0; }
 .right { width: min(380px, 100%); flex: none; overflow-y: auto; background: var(--phi-color-background-card); box-shadow: var(--phi-shadow-3); padding: 20px; display: flex; flex-direction: column; gap: 14px; animation: slideIn 0.2s ease; z-index: 44; }
 .title { font-family: var(--phi-font-heading); font-size: clamp(28px, 4cqi, 40px); line-height: 1.1; margin: 0; }

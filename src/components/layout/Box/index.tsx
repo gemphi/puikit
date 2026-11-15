@@ -59,7 +59,7 @@ export const Box = React.forwardRef<HTMLElement, BoxProps>(function Box(
   const domRest = omitStyleProps(props);
 
   return (
-    <Component ref={ref} className={cn(className)} style={computedStyle} {...domRest}>
+    <Component ref={ref} className={cn(className)} style={computedStyle} data-surface={(props as StyleProps).surface} {...domRest}>
       {children}
     </Component>
   );

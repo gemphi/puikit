@@ -80,7 +80,7 @@ export const RadiusPicker = ({ value, onChange, labels = {}, className }: Radius
     <Box className={cn(styles.grid, className)} role="radiogroup" aria-label="Radius">
       {(Object.keys(RADIUS_PRESETS) as RadiusPreset[]).map((k) => (
         <Box key={k} as="button" role="radio" aria-checked={cur === k} className={cn(styles.swatch, cur === k && styles.on)} onClick={() => set(k)}>
-          <Box as="span" className={styles.chip} style={{ width: k === 'pill' ? '1.9rem' : '2.6rem', height: k === 'pill' ? '2.4rem' : '1.9rem', background: 'color-mix(in srgb, var(--phi-color-primary) 45%, var(--phi-color-background-card))', borderRadius: k === 'pill' ? '50% 50% 50% 50% / 60% 60% 40% 40%' : `${Math.round(6 * RADIUS_PRESETS[k])}px` }} />
+          <Box as="span" className={styles.chip} style={{ width: '2.6rem', height: '2.6rem', background: 'color-mix(in srgb, var(--phi-color-primary) 45%, var(--phi-color-background-card))', borderRadius: `${parseInt(RADIUS_LABELS[k], 10) / 4}px` }} />
           <Text size="xs">{labels[k] ?? RADIUS_LABELS[k]}</Text>
         </Box>
       ))}

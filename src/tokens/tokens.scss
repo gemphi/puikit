@@ -52,3 +52,72 @@ a.button,
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(148, 163, 184, 0.45);
 }
+
+/* The one surface. Every container (puikit's Card (.pui-card), a Box or Stack with surface="card", and .phi-layers:
+   the shell's sidebar and side panel, EntityLayout's columns, Sections, Accordion) is three layers of glass, one
+   inside another, and no borders: the gaps between the layers are paddings on every side, in one proportion (the
+   bottom the largest, the right half of it, the top and left half of the right, --phi-card-layer-*).
+   Glass, not paint: each layer is translucent light (the look's on-media light with a breath of its hue in it) over a
+   blur of whatever lies behind -- the page, or an entity's picture across the stage -- so a surface takes the scene's
+   own colours, reads as one light, and the sidebar, the panels and the cards all agree. The light fades from nothing
+   at the left into its shade at the right, all the same way, seamless.
+   The three layers are flush at the top and left (one clean edge) and step in only at the bottom and right, so the
+   only depth is a thin soft edge at the bottom-right, never a cascade. The box carries the blur; the layers inside it
+   only add light, the inner card the most, so a surface brightens inward.
+   1. The box (the blur, the faintest light, the bottom-right edge).  2. The face, in from the bottom-right.
+   3. The inner card, in again, the most light.  Content padding keeps the same proportion, larger (--phi-card-padding). */
+:root {
+  --phi-card-layer-right: 10px;
+  --phi-card-layer-bottom: calc(var(--phi-card-layer-right) * 2);
+  --phi-card-layer-top: calc(var(--phi-card-layer-right) / 2);
+  --phi-card-hue: var(--phi-color-text-accent, var(--phi-color-primary));
+  /* The glass light: the look's on-media light with a breath of its hue, so the page keeps one colour and no paint. */
+  --phi-card-light: color-mix(in srgb, var(--phi-card-hue) 12%, var(--phi-glass-light, #fff));
+  --phi-card-pad-unit: max(var(--phi-radius-shape), 1.5rem);
+  --phi-card-pad-top: calc(var(--phi-card-pad-unit) / 2);
+  --phi-card-pad-right: var(--phi-card-pad-unit);
+  --phi-card-pad-bottom: calc(var(--phi-card-pad-unit) * 2);
+  --phi-card-padding: var(--phi-card-pad-top) var(--phi-card-pad-right) var(--phi-card-pad-bottom) var(--phi-card-pad-top);
+  /* Shades of glass: translucent light at falling strength, 1 the most (the inner card, a control's pressed light),
+     3 the faintest (the box, a control's hover). Light looks strong, dark looks faint (--phi-glass-pct). */
+  --phi-shade-1: color-mix(in srgb, var(--phi-card-light) var(--phi-glass-pct, 58%), transparent);
+  --phi-shade-2: color-mix(in srgb, var(--phi-card-light) calc(var(--phi-glass-pct, 58%) * 0.72), transparent);
+  --phi-shade-3: color-mix(in srgb, var(--phi-card-light) calc(var(--phi-glass-pct, 58%) * 0.48), transparent);
+}
+:where(.pui-card, [data-surface='card'], .phi-layers) {
+  position: relative;
+  isolation: isolate;
+  border: 0;
+  border-radius: var(--phi-radius-shape);
+  background: linear-gradient(90deg, transparent 0%, var(--phi-shade-3) 100%);
+  backdrop-filter: var(--phi-glass-blur);
+  -webkit-backdrop-filter: var(--phi-glass-blur);
+  box-shadow: none;
+}
+:where(.pui-card, [data-surface='card'], .phi-layers)::before,
+:where(.pui-card, [data-surface='card'], .phi-layers)::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+}
+/* The face. */
+:where(.pui-card, [data-surface='card'], .phi-layers)::before {
+  inset: 0 var(--phi-card-layer-right) var(--phi-card-layer-bottom) 0;
+  border-radius: var(--phi-radius-shape);
+  background: linear-gradient(90deg, transparent 0%, var(--phi-shade-2) 100%);
+}
+/* The inner card: the most light. */
+:where(.pui-card, [data-surface='card'], .phi-layers)::after {
+  inset: 0 calc(var(--phi-card-layer-right) * 2) calc(var(--phi-card-layer-bottom) * 2) 0;
+  border-radius: var(--phi-radius-shape);
+  background: linear-gradient(90deg, transparent 0%, var(--phi-shade-1) 100%);
+}
+/* A container surface holds its content inside its face, so nothing inside (a button, a tab) runs past an edge;
+   the container's own spacing then starts from the face. Cards pad themselves (--phi-card-padding). */
+:where(.phi-layers) { padding: var(--phi-card-layer-top) var(--phi-card-layer-right) var(--phi-card-layer-bottom) var(--phi-card-layer-top); }
+/* A surface on a surface is one layer of glass: the face only, and no second blur over the first. */
+:where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) { background: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+:where(.phi-layers) :where(.phi-layers) { padding: 0; }
+:where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers)::before { inset: 0; }
+:where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers)::after { content: none; }

@@ -19,14 +19,6 @@
   --phi-color-border: rgba(0, 0, 0, 0.16);
   --phi-color-border-subtle: rgba(0, 0, 0, 0.08);
   --phi-color-overlay: rgba(0, 0, 0, 0.6);
-  --phi-radius-xs-base: 0px; --phi-radius-sm-base: 0px; --phi-radius-md-base: 2px;
-  --phi-radius-lg-base: 2px; --phi-radius-xl-base: 4px; --phi-radius-2xl-base: 4px;
-  --phi-radius-xs: calc(var(--phi-radius-xs-base) * var(--phi-radius-scale, 1));
-  --phi-radius-sm: calc(var(--phi-radius-sm-base) * var(--phi-radius-scale, 1));
-  --phi-radius-md: calc(var(--phi-radius-md-base) * var(--phi-radius-scale, 1));
-  --phi-radius-lg: calc(var(--phi-radius-lg-base) * var(--phi-radius-scale, 1));
-  --phi-radius-xl: calc(var(--phi-radius-xl-base) * var(--phi-radius-scale, 1));
-  --phi-radius-2xl: calc(var(--phi-radius-2xl-base) * var(--phi-radius-scale, 1));
   --phi-shadow-1: none;
   --phi-shadow-2: 0 0 0 1px rgba(0, 0, 0, 0.08);
   --phi-shadow-3: 0 16px 40px rgba(0, 0, 0, 0.14);
@@ -46,7 +38,7 @@
   --phi-font-heading: "Phifing 4", "Phifing", "D-DIN", "Barlow", "DIN Next", "Arial Narrow", Arial, sans-serif;
   --phi-font-size-base: 0.9375rem;
   --phi-font-weight-semibold: 300;
-  --phi-font-weight-bold: 400;
+  --phi-font-weight-bold: 600; /* Phifing Regular, paired by darkness (phi-fonts.css) */
   --phi-control-height-md-base: 40px;
   --phi-spacex-seam: rgba(0, 82, 136, 0.5);
   --phi-spacex-rim: 0 0 0 1px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
@@ -97,7 +89,6 @@
   letter-spacing: 0;
 }
 :root[data-theme-style='spacex'] :is(button, .button, a.button) {
-  border-radius: var(--phi-radius-sm) !important;
   letter-spacing: 0;
 }
 :root[data-theme-style='spacex'] :focus-visible {
@@ -113,6 +104,10 @@
    and a thin blue seam along its leading edge, like a lit console bezel. Driven by tokens, so it follows the mode. */
 :root[data-theme-style='spacex'] :is(.pui-card, [class*='card'], .pui-surface, [class*='surface']) {
   box-shadow: var(--phi-spacex-rim);
+}
+/* A card surface has no rim: its layered backgrounds are its edges (tokens.scss). */
+:root[data-theme-style='spacex'] :is(.pui-card, [data-surface='card'], .phi-layers) {
+  box-shadow: none;
 }
 :root[data-theme-style='spacex'] .pui-drawer {
   box-shadow: var(--phi-shadow-4);

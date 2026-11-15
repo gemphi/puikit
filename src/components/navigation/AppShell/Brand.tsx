@@ -14,7 +14,8 @@ export const ShellPin: React.FC<{ open: boolean }> = ({ open }) => (
 );
 
 export type ShellBrandProps = {
-  brand: { name: string; glyph?: React.ReactNode };
+  /** `wordmark` is the drawn name shown in place of the plain one. */
+  brand: { name: string; glyph?: React.ReactNode; wordmark?: React.ReactNode };
   open: boolean;
   onHome: () => void;
   onToggle: () => void;
@@ -30,7 +31,7 @@ export const ShellBrand: React.FC<ShellBrandProps> = ({ brand, open, onHome, onT
   <Box className={cn(styles.brandCell, open ? styles.brandOpen : styles.brandClosed)}>
     <Pressable className={styles.brand} onClick={onHome} aria-label={brand.name}>
       {brand.glyph && <Box className={styles.brandGlyph}>{brand.glyph}</Box>}
-      {open && <Text as="span" weight="bold" className={styles.brandName}>{brand.name}</Text>}
+      {open && (brand.wordmark ?? <Text as="span" weight="bold" className={styles.brandName}>{brand.name}</Text>)}
     </Pressable>
     <Pressable className={styles.pin} onClick={onToggle} aria-expanded={open} aria-label={open ? closeLabel : openLabel} title={open ? closeLabel : openLabel}>
       <ShellPin open={open} />
