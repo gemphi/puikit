@@ -24,6 +24,11 @@ export type RowsProps = {
    * cards as stay at least this wide, up to `cols`, so a narrow column or a phone never squeezes too many cards in.
    */
   minItemWidth?: string;
+  /**
+   * Paging: how many cards to render before more are needed (default six rows' worth, at least 24). The next batch
+   * comes in on its own as the reader scrolls near the end, so a list of hundreds never builds hundreds of cards.
+   */
+  pageSize?: number;
   className?: string;
   'aria-label'?: string;
 };
@@ -39,7 +44,7 @@ const toPx = (len: string) => { const n = parseFloat(len); if (!Number.isFinite(
 /** Cards per row that keep each card at least `min` wide (gap included), between 1 and `max`. */
 export const fitCols = (width: number, min: number, gap: number, max: number) => (width > 0 && min > 0 ? Math.max(1, Math.min(max, Math.floor((width + gap) / (min + gap)))) : max);
 
-export const Rows = ({ children, cols = 4, colsSm = 2, rowHeight, feature, slider, itemWidth, perView, minItemWidth, className, ...rest }: RowsProps) => {
+export const Rows = ({ children, cols = 4, colsSm = 2, rowHeight, feature, slider, itemWidth, perView, minItemWidth, pageSize, className, ...rest }: RowsProps) => {
   const ref = useRef<HTMLElement | null>(null); const [width, setWidth] = useState(0);
   // The grid answers to its own width, not the window's: in a narrow drawer on a wide screen it lays out narrow.
   useEffect(() => {
@@ -50,7 +55,21 @@ export const Rows = ({ children, cols = 4, colsSm = 2, rowHeight, feature, slide
   if (minItemWidth && width) cols = colsSm = fitCols(width, toPx(minItemWidth), toPx('0.75rem'), cols);
   else if (width) { if (narrow) cols = colsSm; else colsSm = cols; }
   if (perView) itemWidth = `calc((100% - var(--pui-rows-g) * ${perView - 1}) / ${perView})`;
-  const items = React.Children.toArray(children).filter(Boolean);
+  const all = React.Children.toArray(children).filter(Boolean);
+  // Paging: render a batch, then the next as the end nears. No IntersectionObserver (tests, the server): render all.
+  const canPage = !slider && typeof IntersectionObserver !== 'undefined';
+  const batch = Math.max(pageSize ?? cols * 6, cols);
+  const [shown, setShown] = useState(batch);
+  const more = useRef<HTMLElement | null>(null);
+  useEffect(() => { setShown(batch); }, [all.length, batch]); // a new filter or sort starts from the top again
+  const hasMore = canPage && shown < all.length;
+  useEffect(() => {
+    const el = more.current; if (!hasMore || !el) return;
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) setShown((n) => n + batch); }, { rootMargin: '600px 0px' });
+    io.observe(el); return () => io.disconnect();
+  }, [hasMore, batch, shown]);
+  // While more are coming, keep the shown cards to whole rows so no half row (or leftover slider) appears mid-list.
+  const items = hasMore ? all.slice(0, Math.max(cols, Math.floor(shown / cols) * cols)) : all;
   const vars = { '--pui-rows-cols': String(cols), '--pui-rows-cols-sm': String(colsSm), ...(rowHeight ? { '--pui-rows-h': rowHeight } : {}), ...(itemWidth ? { '--pui-rows-item-w': itemWidth } : {}) } as React.CSSProperties;
   const cell = (node: React.ReactNode, k: React.Key) => <Box key={k} className={styles.cell}>{node}</Box>;
   if (slider) return <Box ref={ref} className={cn(styles.rows, className)} style={vars} aria-label={rest['aria-label']}><Box className={styles.slider} role="list">{items.map((n, i) => cell(n, i))}</Box></Box>;
@@ -68,6 +87,7 @@ export const Rows = ({ children, cols = 4, colsSm = 2, rowHeight, feature, slide
       )}
       {grid.length > 0 && <Box className={styles.grid}>{grid.map((n, i) => cell(n, i))}</Box>}
       {left.length > 0 && <Box className={styles.slider} role="list">{left.map((n, i) => cell(n, 'l' + i))}</Box>}
+      {hasMore && <Box ref={more} aria-hidden="true" style={{ height: 1 }} />}
     </Box>
   );
 };

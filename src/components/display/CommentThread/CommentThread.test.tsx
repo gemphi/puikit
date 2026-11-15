@@ -24,9 +24,9 @@ describe('CommentThread', () => {
 });
 
 describe('CommentThread cascade', () => {
-  it('sits on a card deck by default and bare with depth 0', () => {
+  it('never builds a deck behind the thread (decks are off), whatever the depth', () => {
     const a = render(<CommentThread comments={chain(2)} />);
-    expect(a.container.querySelector('[data-deck-level]')).toBeTruthy();
+    expect(a.container.querySelector('[data-deck-level]')).toBeNull();
     const b = render(<CommentThread comments={chain(2)} depth={0} />);
     expect(b.container.querySelector('[data-deck-level]')).toBeNull();
   });

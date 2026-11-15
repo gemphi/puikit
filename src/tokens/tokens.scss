@@ -82,7 +82,11 @@ a.button,
   /* Bottom padding B halves at every nesting depth (below); right is B/3, left B/2, top B/4, so no two paddings
      match and the bottom is always the biggest. B is at least the corner, so a big radius never clips the text. */
   --phi-card-pad-b: max(var(--phi-radius-card), 1.5rem);
-  --phi-card-padding: calc(var(--phi-card-pad-b) / 4) calc(var(--phi-card-pad-b) / 3) var(--phi-card-pad-b) calc(var(--phi-card-pad-b) / 2);
+  --phi-card-pad-top: calc(var(--phi-card-pad-b) / 4);
+  --phi-card-pad-right: calc(var(--phi-card-pad-b) / 3);
+  --phi-card-pad-bottom: var(--phi-card-pad-b);
+  --phi-card-pad-left: calc(var(--phi-card-pad-b) / 2);
+  --phi-card-padding: var(--phi-card-pad-top) var(--phi-card-pad-right) var(--phi-card-pad-bottom) var(--phi-card-pad-left);
   position: relative;
   border: 0;
   border-radius: var(--phi-radius-shape);
