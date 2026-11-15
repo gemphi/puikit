@@ -92,6 +92,10 @@
 .groupHead { min-height: 2rem; }
 .panelScroll { display: flex; flex-direction: column; gap: var(--phi-space-2); }
 .panelEnd { margin-top: auto; }
+/* The panel's three places, like the rail: top runs from the top, a centre run takes equal free space above and below
+   (so it sits in the middle), the bottom run at the foot. */
+.panelCenter { margin-block: auto; }
+.panelCenter ~ .panelEnd { margin-top: 0; }
 .entryPanel { padding: var(--phi-space-2) 0 var(--phi-space-2) 1.5rem; }
 .inlineRow { display: flex; gap: var(--phi-space-1); }
 .inlineRow > * { flex: 1 1 0; min-width: 0; }

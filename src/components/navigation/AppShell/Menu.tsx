@@ -63,7 +63,7 @@ const Run: React.FC<MenuProps & { items: AppShellLeaf[] }> = ({ items, ...rest }
 
 /**
  * One group's menu in the panel: its title folds the whole menu; every entry that pulls records or holds a panel folds
- * them, the arrow at the left of its row. A group in runs lays each run on its own pane, the `end` run at the foot.
+ * them, the arrow at the left of its row. A group in runs lays them like the rail: top runs from the top, a centre run in the middle, the bottom run at the foot.
  */
 export const GroupMenu: React.FC<MenuProps & { group: AppShellGroup }> = ({ group, ...rest }) => {
   const [shut, setShut] = React.useState(false);
@@ -71,7 +71,7 @@ export const GroupMenu: React.FC<MenuProps & { group: AppShellGroup }> = ({ grou
   return (
     <>
       {runs.map((run, i) => (
-        <Box key={run.id} className={cn(styles.panelGroup, run.end && styles.panelEnd)}>
+        <Box key={run.id} className={cn(styles.panelGroup, run.place === 'center' && styles.panelCenter, (run.end || run.place === 'bottom') && styles.panelEnd)}>
           {i === 0 && (
             <Stack direction="row" gap={1} align="center" className={styles.groupHead}>
               <Caret open={!shut} label={rest.foldLabel(group.label, !shut)} onClick={() => setShut(!shut)} />
