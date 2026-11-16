@@ -28,7 +28,8 @@ export const ShellBackButton: React.FC<{ label: string; onClick: () => void; dis
 );
 
 export type ShellBrandProps = {
-  /** `wordmark` is the drawn name shown in place of the plain one. */
+  /** `wordmark` is the drawn name shown in place of the plain one. With a wordmark the glyph is its first letter: open
+   *  shows the wordmark alone, closed the glyph alone, so the letter stays put and the rest of the word comes and goes. */
   brand: { name: string; glyph?: React.ReactNode; wordmark?: React.ReactNode };
   open: boolean;
   onHome: () => void;
@@ -42,9 +43,9 @@ export type ShellBrandProps = {
  * cell's end. Closed: the glyph alone over the rail; under the pointer it gives way to the pin that opens the panel.
  */
 export const ShellBrand: React.FC<ShellBrandProps> = ({ brand, open, onHome, onToggle, openLabel, closeLabel }) => (
-  <Box className={cn(styles.brandCell, open ? styles.brandOpen : styles.brandClosed)}>
+  <Box className={cn(styles.brandCell, open ? styles.brandOpen : styles.brandClosed, brand.glyph && brand.wordmark && styles.brandLead)}>
     <Pressable className={styles.brand} onClick={onHome} aria-label={brand.name}>
-      {brand.glyph && <Box className={styles.brandGlyph}>{brand.glyph}</Box>}
+      {brand.glyph && !(open && brand.wordmark) && <Box className={styles.brandGlyph}>{brand.glyph}</Box>}
       {open && (brand.wordmark ?? <Text as="span" weight="bold" className={styles.brandName}>{brand.name}</Text>)}
     </Pressable>
     <Pressable className={styles.pin} onClick={onToggle} aria-expanded={open} aria-label={open ? closeLabel : openLabel} title={open ? closeLabel : openLabel}>

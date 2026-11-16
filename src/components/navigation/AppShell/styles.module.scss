@@ -56,6 +56,8 @@
 .pinPill { transition: width var(--phi-transition-normal); }
 /* Closed: the glyph centred over the rail; under the pointer it gives way to the pin. */
 .brandClosed { justify-content: center; }
+/* A glyph that is the wordmark's first letter starts where the wordmark starts, so closing keeps the letter in place. */
+.brandClosed.brandLead { justify-content: flex-start; }
 .brandClosed .pin { position: absolute; left: calc(var(--pui-shell-gap) + (var(--pui-shell-rail) - var(--pui-shell-control)) / 2); opacity: 0; pointer-events: none; transition: opacity var(--phi-transition-fast); }
 .brandClosed .brand { transition: opacity var(--phi-transition-fast); }
 .brandClosed:hover .pin, .brandClosed:focus-within .pin { opacity: 1; pointer-events: auto; }

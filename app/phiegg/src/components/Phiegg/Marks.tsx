@@ -4,15 +4,22 @@ import { site } from '../../lib/data';
 import { mediaUrl } from '../../lib/media';
 
 const M = site.brand;
-/** Wordmark: "phiegg" in soft 3D Phifing (scripts/media/build_media.py). Sized by font-size. */
-export const Wordmark: React.FC = () => <Image className="ph-wordmark" src={mediaUrl('logo/phiegg-3d.svg')} alt={M.name.toLowerCase()} fit="contain" style={{ height: '1.9em', width: 'auto', display: 'block' }} />;
-/** Phiegg mark: the g of Phi-Pill Condensed Light, filled in one colour (site.brand.mark). */
+/**
+ * Wordmark: "phiegg" in soft 3D Phifing (public/logo/phiegg-3d.svg). Sized by font-size. `lead` cuts it to its first
+ * letter, the p, at the same size and place: the brand's icon is the letter already in the logo, so the header can
+ * close to the p and open to the whole word without anything moving (share and aspect from scripts/logo-letter.py).
+ */
+export const Wordmark: React.FC<{ lead?: boolean }> = ({ lead }) => (
+  <Image className="ph-wordmark" src={mediaUrl('logo/phiegg-3d.svg')} alt={M.name.toLowerCase()} fit={lead ? 'cover' : 'contain'}
+    style={{ height: '1.9em', width: lead ? `calc(1.9em * ${M.wordmarkAspect * M.wordmarkLead})` : 'auto', objectPosition: 'left center', display: 'block' }} />
+);
+/** Phiegg mark: the p of the wordmark, its face in one colour (site.brand.mark). */
 export const PhieggMark: React.FC<{ size?: string }> = ({ size = '1.5rem' }) => (
   <svg viewBox="0 0 100 100" fill="currentColor" width={size} height={size} aria-hidden="true">
     <path d={M.mark} />
   </svg>
 );
-/** Phipad mark: the Phiegg g plus a round pill slanting from the bottom-left into the g's bowl (site.brand.phipadPill). */
+/** Phipad mark: the Phiegg g plus a round pill slanting from the bottom-left into the p's bowl (site.brand.phipadPill). */
 export const PhipadMark: React.FC<{ size?: string }> = ({ size = '1.5rem' }) => {
   const p = M.phipadPill;
   return (
