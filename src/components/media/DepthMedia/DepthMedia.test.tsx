@@ -33,8 +33,16 @@ describe('DepthMedia', () => {
     expect(container.querySelectorAll('[data-mid-ghost]')).toHaveLength(0);
   });
 
-  it('tracks the pointer as CSS variables and resets on leave', () => {
+  it('stays still under the pointer when it opens nothing', () => {
     const { container } = render(<DepthMedia back={{ background: 'red' }} />);
+    const root = container.firstElementChild as HTMLElement;
+    root.getBoundingClientRect = () => ({ left: 0, top: 0, width: 100, height: 100, right: 100, bottom: 100, x: 0, y: 0, toJSON: () => ({}) });
+    fireEvent(root, new MouseEvent('pointermove', { clientX: 100, clientY: 50, bubbles: true }));
+    expect(root.style.getPropertyValue('--pui-depth-x')).toBe('');
+  });
+
+  it('tracks the pointer as CSS variables and resets on leave', () => {
+    const { container } = render(<DepthMedia back={{ background: 'red' }} onClick={() => {}} />);
     const root = container.firstElementChild as HTMLElement;
     root.getBoundingClientRect = () => ({ left: 0, top: 0, width: 100, height: 100, right: 100, bottom: 100, x: 0, y: 0, toJSON: () => ({}) });
     // jsdom has no PointerEvent: a MouseEvent of type pointermove carries the coordinates React reads.

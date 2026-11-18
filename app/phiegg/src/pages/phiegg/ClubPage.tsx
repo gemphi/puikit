@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Card, CardBody, Grid, Page, Select, Stack, Tag, Text, Title, TabList } from '@pui/components';
+import { Button, Card, CardBody, Grid, Page, ChoiceRow, Stack, Tag, Text, Title, TabList } from '@pui/components';
 import { useStore } from '@pui/store';
 import { phieggStore } from '../../state/phieggStore';
 import { facetsFor, sortsFor, tableFor } from '../../lib/fields';
@@ -23,7 +23,7 @@ export const ClubPage: React.FC = () => {
   return (
     <Page>
       <Stack direction="column" gap={4}>
-        <Stack direction="row" justify="end"><Select size="sm" value={c.id} aria-label={t('lsChooseClub')} onChange={(e) => s.go('club', { clubId: e.target.value })} options={D.core.clubs.map((x) => ({ value: x.id, label: x.name }))} /></Stack>
+        <ChoiceRow value={c.id} label={t('lsChooseClub')} onChange={(v) => s.go('club', { clubId: v })} options={D.core.clubs.map((x) => ({ value: x.id, label: x.name }))} />
         <Tile tone={c.tone} ratio="21/7" big grid depth={{ clubId: c.id, worldId: c.worldIds[0], personId: c.founderId }} title={c.name} sub={c.tagline} badges={<><Tag round size="sm">{(site.clubStatus as Record<string, string>)[c.status]}</Tag><Tag round size="sm">{c.chain}</Tag></>} />
         <Stack direction="row" gap={2} align="center"><ClubIcon icon={(c as { icon?: string }).icon} size="2rem" /><Text>{c.description}</Text></Stack>
         <Stack direction="row" gap={2} wrap align="center">
@@ -36,11 +36,11 @@ export const ClubPage: React.FC = () => {
         <Grid gap={3} xs={2} md={4}>{[[t('floor'), c.floor ? c.floor + ' ETH' : '·'], [t('holders'), fmt(c.holders)], [t('supply'), fmt(c.supply)], [t('cities'), String(c.worldIds.reduce((n, w) => n + (worldOf(w)?.cities.length ?? 0), 0))]].map(([l, v]) =>
           <Card depth={2} key={l} variant="flat"><CardBody><Text size="xs" intent="muted">{l}</Text><Title level={4} size="lg">{v}</Title></CardBody></Card>)}</Grid>
         <TabList size="sm" variant="pills" activeId={tab} onChange={(id) => setTab(id as typeof tab)} items={D.club.tabs.map((x) => ({ id: x, label: x }))} />
-        {tab === D.club.tabs[0] && <ListView<ClubPiece> rows={pieces} keyOf={(p) => p.id} text={(p) => p.name + ' ' + p.trait + ' ' + p.tokenId}
+        {tab === D.club.tabs[0] && <ListView<ClubPiece> rows={pieces} keyOf={(p) => p.id} text={(p) => p.name + ' ' + p.trait + ' ' + p.tokenId} onRow={(p) => s.openRecord('piece', p.id)}
           facets={facetsFor('piece')}
           sorts={sortsFor('piece')}
           table={tableFor('piece')}
-          render={(p) => <Tile tone={p.tone} ratio="1" depth={{ clubId: c.id, worldId: c.worldIds[0], personId: p.creatorId }} title={p.name} sub={p.tokenId + ' · ' + p.trait} badges={p.ownerId === D.core.currentUserId && <Tag intent="success" round size="sm">{t('yours')}</Tag>} />} />}
+          render={(p) => <Tile tone={p.tone} ratio="1" onClick={() => s.openRecord('piece', p.id)} depth={{ clubId: c.id, worldId: c.worldIds[0], personId: p.creatorId }} title={p.name} sub={p.tokenId + ' · ' + p.trait} badges={p.ownerId === D.core.currentUserId && <Tag intent="success" round size="sm">{t('yours')}</Tag>} />} />}
         {tab === D.club.tabs[1] && <ListView<World> rows={c.worldIds.map((id) => worldOf(id)).filter((w): w is World => !!w)} keyOf={(w) => w.id} text={(w) => w.name + ' ' + w.description} onRow={(w) => s.go('world', { worldId: w.id })}
           facets={facetsFor('world')}
           sorts={sortsFor('world')}

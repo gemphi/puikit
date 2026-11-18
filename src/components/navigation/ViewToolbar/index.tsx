@@ -18,8 +18,7 @@ export type ViewToolbarProps = {
 /** One toolbar for every list: tile (slider) · list · grid as icons, cards per view (tile only) and Filter & sort. */
 export const ViewToolbar = ({ mode, onMode, perView, onPerView, perViewOptions = [1, 2, 3], count, onFilters, filtersOpen, activeFilters = 0, labels = {} }: ViewToolbarProps) => {
   const icon = (m: ViewMode, I: typeof List, label: string) => (
-    <Button key={m} variant="icon" size="sm" aria-label={label} aria-pressed={mode === m} title={label} onClick={() => onMode(m)}
-      style={mode === m ? { backgroundColor: 'var(--phi-color-primary)', color: 'var(--phi-color-text-inverse, #fff)' } : undefined}><I size={16} /></Button>
+    <Button key={m} variant="icon" size="sm" aria-label={label} aria-pressed={mode === m} title={label} onClick={() => onMode(m)}><I size={16} /></Button>
   );
   return (
     <Stack direction="row" gap={1} align="center" wrap>

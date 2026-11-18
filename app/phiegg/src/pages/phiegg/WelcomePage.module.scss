@@ -23,7 +23,12 @@ $scrim: var(--phi-muse-scrim, rgba(0, 0, 0, 0.6));
 .copy { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 1.25rem; max-width: 42rem; padding: 2.25rem 2.5rem 2.75rem; text-align: center; }
 /* The hero's copy sits over the scene, so its glass is the scene's own darkening (the look's scrim) rather than light
    frost: still blurred and still fading in from the left, dark enough that the on-media white reads on any picture. */
-.hero .copy { background: linear-gradient(90deg, color-mix(in srgb, $scrim 60%, transparent) 0%, $scrim 100%); }
+/* The hero's copy wears the sidebar's glass (.phi-layers, tokens.scss), no dark paint of its own: the same shades, over
+   a heavier blur that also dims the scene behind it, so the white type reads on any part of the picture. */
+.hero .copy, .closing .copy {
+  backdrop-filter: blur(48px) saturate(150%) brightness(0.62); -webkit-backdrop-filter: blur(48px) saturate(150%) brightness(0.62);
+  text-shadow: 0 1px 2px color-mix(in srgb, $scrim 70%, transparent), 0 0 1.5rem color-mix(in srgb, $scrim 45%, transparent);
+}
 .kicker.kicker { color: $on-media; opacity: 0.86; }
 .heroTitle { color: $on-media; font-size: clamp(2rem, 4.4vw, 3.5rem); line-height: 1.08; margin: 0; }
 .closingTitle { color: $on-media; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.12; margin: 0; }

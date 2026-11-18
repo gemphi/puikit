@@ -39,7 +39,7 @@ const MarketMoment: React.FC<{ pool: Pool; k: number; now: number }> = ({ pool, 
 /** A right-column card header with the arrow that opens the whole list in the browse sheet. */
 const SeeAll: React.FC<{ title: string; onOpen: () => void }> = ({ title, onOpen }) => (
   <Stack direction="row" justify="between" align="center"><Title level={5} size="sm">{title}</Title>
-    <Button variant="icon" size="sm" onClick={onOpen} aria-label={t('seeAll') + ' · ' + title}><ChevronRight size={16} /></Button></Stack>
+    <Button variant="glass" size="sm" onClick={onOpen} aria-label={t('seeAll') + ' · ' + title}>{t('seeAll')}<ChevronRight size={16} /></Button></Stack>
 );
 
 export const FeedPage: React.FC = () => {

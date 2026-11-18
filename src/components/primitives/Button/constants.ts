@@ -3,6 +3,8 @@ export const BUTTON_VARIANTS = {
   SECONDARY: 'secondary',
   OUTLINE: 'outline',
   GHOST: 'ghost',
+  /** See-through glass over a blur of what is behind it: every "view all", "see all", "all N" button. */
+  GLASS: 'glass',
   DANGER: 'danger',
   ICON: 'icon',
 } as const;

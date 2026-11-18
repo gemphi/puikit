@@ -1,22 +1,23 @@
-.root { display: flex; flex-direction: column; gap: 0.9rem; padding: 1rem; border-radius: var(--phi-radius-lg, 12px); background-color: var(--phi-color-background-secondary); border: 1px solid var(--phi-color-border-subtle, var(--phi-color-border)); }
+// RelationList: every related record is a bank card in an even grid. Shades fade to nothing, no solid fills or
+// borders. Tokens only.
+.root { display: flex; flex-direction: column; gap: var(--phi-space-4, 1rem); padding: var(--phi-space-4, 1rem); border-radius: var(--phi-radius-shape);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--phi-color-primary) 6%, transparent) 0%, transparent 100%); }
 .title { margin: 0; }
-.group { display: flex; flex-direction: column; gap: 0.45rem; min-width: 0; }
+.group { display: flex; flex-direction: column; gap: var(--phi-space-2, 0.5rem); min-width: 0; }
 .head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; }
 .rel { letter-spacing: 0.06em; }
-.items { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-.item {
-  display: inline-flex; align-items: center; gap: 0.5rem; min-width: 0; max-width: 100%;
-  padding: 0.3rem 0.65rem 0.3rem 0.3rem; border-radius: var(--phi-radius-full);
-  background-color: var(--phi-color-background-card); border: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
-  color: inherit; font: inherit; text-align: left;
-}
-.click { cursor: pointer; transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s; }
-.click:hover { transform: translateY(-1px); border-color: var(--phi-color-primary); box-shadow: 0 0.4rem 1rem -0.5rem color-mix(in srgb, var(--phi-color-primary) 60%, transparent); }
-.click:focus-visible { outline: 2px solid var(--phi-color-primary); outline-offset: 1px; }
-.more { padding: 0.3rem 0.75rem; color: var(--phi-color-primary); }
-.media { width: 1.9rem; height: 1.9rem; flex: none; border-radius: 50%; overflow: hidden; display: grid; place-items: center; background: var(--phi-color-background-secondary);
+/* Every card the same width, whatever its text: as many a row as stay at least 14rem wide. */
+.items { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr)); gap: var(--phi-space-3, 0.75rem); }
+.item { display: flex; flex-direction: column; justify-content: space-between; gap: var(--phi-space-2, 0.5rem); min-width: 0; aspect-ratio: 1.586; text-align: left; }
+.click { cursor: pointer; }
+.click:focus-visible { outline: 2px solid var(--phi-color-primary); outline-offset: 2px; }
+.more { border: 0; border-radius: var(--phi-radius-shape); padding: var(--phi-space-3) var(--phi-space-4); font: inherit; color: var(--phi-color-text-primary); background-color: var(--phi-glass-ground); background-image: var(--phi-glass-from-down);
+  -webkit-backdrop-filter: var(--phi-glass-blur); backdrop-filter: var(--phi-glass-blur); }
+.top { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--phi-space-2, 0.5rem); min-width: 0; }
+.kind { letter-spacing: 0.04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.media { width: 3rem; height: 3rem; flex: none; border-radius: 50%; overflow: hidden; display: grid; place-items: center;
   text-align: center; line-height: 1;
   > img { width: 100%; height: 100%; object-fit: cover; }
   > * { max-width: 100%; max-height: 100%; } }
-.text { display: flex; flex-direction: column; min-width: 0; }
-.label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 14rem; }
+.text { display: flex; flex-direction: column; gap: 0.125rem; min-width: 0; }
+.label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

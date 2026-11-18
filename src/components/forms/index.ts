@@ -10,5 +10,6 @@ export * from './FormGroup';
 export * from './Form';
 export * from './PalettePicker';
 export * from './Facets';
+export * from './ChoiceRow';
 export * from './StepForm';
 export * from './RelationPicker';

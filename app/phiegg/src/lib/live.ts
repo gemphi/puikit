@@ -90,6 +90,14 @@ const findIn = (kind: Kind, id: string) => L[kind]().find((r) => r.id === id);
 export const findRecord = (kind: string, id: string): Row | undefined => (kind in L ? findIn(kind as Kind, id) : undefined);
 /** Every record of a live kind. */
 export const recordsOf = (kind: string): Row[] => (kind in L ? L[kind as Kind]() : []);
+/** The kind of any record from its id alone (ids are unique across kinds), so anything listed can be opened. */
+let KIND_OF: Map<string, string> | null = null;
+export const kindOfId = (id: string): string | undefined => {
+  if (!KIND_OF) { KIND_OF = new Map(); for (const k of Object.keys(L) as Kind[]) for (const r of L[k]()) if (!KIND_OF.has(r.id)) KIND_OF.set(r.id, k); }
+  return KIND_OF.get(id);
+};
+/** New, edited or removed records: the next lookup rebuilds. */
+export const forgetKinds = () => { KIND_OF = null; };
 const removeFrom = (kind: Kind, id: string) => {
   const lists: Row[][] = kind === 'look' ? (STORES.map((s) => s.looks) as unknown as Row[][])
     : kind === 'store' ? ([STORES, D.stores.stores] as unknown as Row[][])
@@ -105,7 +113,7 @@ const land = (kind: string, item: Row) => {
   if (!(kind in L)) return;
   const existing = findIn(kind as Kind, item.id);
   if (existing) Object.assign(existing, item); else ADD[kind as Kind]?.(withDefaults(kind, item));
-  refreshIndexes();
+  refreshIndexes(); forgetKinds();
 };
 
 export type WriteResult = { ok: true; item: Row } | { ok: false; status: number; error: string; message: string };
@@ -128,7 +136,7 @@ export async function liveEdit(kind: LiveKind | (string & {}), id: ID, set: Reco
 export async function liveRemove(kind: LiveKind | (string & {}), id: ID): Promise<WriteResult> {
   const r = await apiSend<{ ok: boolean }>('DELETE', `/tree/item/${kind}/${encodeURIComponent(id)}`);
   if (!r.ok) return failOf(r);
-  if (kind in L) { removeFrom(kind as Kind, id); refreshIndexes(); } return { ok: true, item: { id } as Row };
+  if (kind in L) { removeFrom(kind as Kind, id); refreshIndexes(); forgetKinds(); } return { ok: true, item: { id } as Row };
 }
 
 /** Pull Phiora's changes since the seed and lay them over the bundle. Quiet about failures: the bundle stands. */
@@ -150,6 +158,6 @@ export async function bootLive(): Promise<number> {
     else ADD[kind]?.(withDefaults(kind, rec.body.item as Row));
     applied++;
   }));
-  if (applied) refreshIndexes();
+  if (applied) { refreshIndexes(); forgetKinds(); }
   return applied;
 }

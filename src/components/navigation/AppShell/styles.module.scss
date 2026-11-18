@@ -3,9 +3,12 @@
    inside them (menu rows, rail buttons, tabs) wears the page's shades, left to right, with no borders: a light shade
    under the pointer, a deeper one for the page you are on. The header has no border and no ground of its own. */
 .root {
-  --pui-shell-rail: 3rem; --pui-shell-panel: 13.5rem;
+  --pui-shell-rail: 3.25rem; --pui-shell-panel: 13.5rem;
   /* One control size for the whole shell: the pin, every rail icon and every control in the header row. */
   --pui-shell-control: 2.25rem;
+  /* ...and the least height of anything you press anywhere in the app: every button, tab, chip, field and menu row in
+     the sidebar and the content is at least a header control high, so nothing is tiny or of a height of its own. */
+  --phi-control-height-sm: var(--pui-shell-control); --phi-control-height-md: var(--pui-shell-control); --phi-control-height-lg: var(--pui-shell-control);
   /* One icon size and line weight inside those controls: the pin's. Rail icons and the back arrow draw at it. */
   --pui-shell-icon: 1.25rem; --pui-shell-stroke: 1.75; --pui-shell-gap: var(--phi-gap);
   --pui-shell-pad: var(--phi-space-6, 1.5rem);
@@ -58,8 +61,16 @@
 .brandClosed { justify-content: center; }
 /* A glyph that is the wordmark's first letter starts where the wordmark starts, so closing keeps the letter in place. */
 .brandClosed.brandLead { justify-content: flex-start; }
-.brandClosed .pin { position: absolute; left: calc(var(--pui-shell-gap) + (var(--pui-shell-rail) - var(--pui-shell-control)) / 2); opacity: 0; pointer-events: none; transition: opacity var(--phi-transition-fast); }
-.brandClosed .brand { transition: opacity var(--phi-transition-fast); }
+.brandClosed .pin { position: absolute; left: calc(var(--pui-shell-gap) + var(--phi-card-layer-top, 5px) + (var(--pui-shell-rail) - var(--pui-shell-control)) / 2); opacity: 0; pointer-events: none; transition: opacity var(--phi-transition-fast); }
+/* Closed, the logo is the pin's own square in the pin's own place (same size, same left, both centred on the header
+   row), so the pointer swapping one for the other moves nothing; both stand over the rail's icons (the sidebar's
+   layer padding, --phi-card-layer-top, included). The glyph has no ground of its own and fills the whole square, so it
+   stands as big as the wordmark it replaces. */
+.brandClosed .brand { transition: opacity var(--phi-transition-fast); flex: none; justify-content: center; box-sizing: border-box;
+  width: var(--pui-shell-control); height: var(--pui-shell-control); min-height: 0; padding: 0;
+  margin-left: calc(var(--phi-card-layer-top, 5px) + (var(--pui-shell-rail) - var(--pui-shell-control)) / 2); }
+.brandClosed .brandGlyph { width: 100%; height: 100%; box-sizing: border-box; padding: 0; }
+.brandClosed .brandGlyph > * { width: 100% !important; height: 100% !important; }
 .brandClosed:hover .pin, .brandClosed:focus-within .pin { opacity: 1; pointer-events: auto; }
 .brandClosed:hover .brand, .brandClosed:focus-within .brand { opacity: 0; }
 
@@ -69,11 +80,10 @@
    of the theme's maximum, never more; everything inside it rounds one step down (sm, then xs). */
 .nav { display: flex; flex: none; min-height: 0; margin: 0 0 var(--pui-shell-gap) var(--pui-shell-gap);
   overflow: hidden;
-  /* The sidebar's glass reads from its LEFT edge: shade there fading to nothing toward the content, so its left is
-     always visible against the page (its surface is .phi-layers, tokens.scss; this just reverses the fade). */
-  background-image: linear-gradient(90deg, var(--phi-shade-2) 0%, var(--phi-shade-3) 45%, transparent 100%); }
+  /* The sidebar wears the one surface every layer wears (.phi-layers, tokens.scss): see-through, from nothing to the
+     page's shade, over a blur. No colour of its own. */ }
 
-.rail { display: flex; flex-direction: column; align-items: center; gap: var(--phi-space-2); flex: none; inline-size: var(--pui-shell-rail); padding-block: var(--phi-space-3); }
+.rail { display: grid; grid-template-rows: minmax(min-content, 1fr) auto minmax(min-content, 1fr); justify-items: center; gap: var(--phi-space-2); flex: none; inline-size: var(--pui-shell-rail); padding-block: var(--phi-space-3); }
 .railGroup { width: 100%; }
 .railBtn { display: inline-flex; align-items: center; justify-content: center; inline-size: var(--pui-shell-control); block-size: var(--pui-shell-control);
   border-radius: var(--phi-radius-sm); border: 1px solid transparent; color: var(--phi-color-text-secondary); background: transparent; cursor: pointer;
@@ -85,19 +95,24 @@
 .panel { display: flex; flex-direction: column; flex: none; inline-size: var(--pui-shell-panel); min-height: 0;
   animation: puiPanelIn var(--phi-duration, 0.3s) var(--phi-ease, ease-out); }
 @keyframes puiPanelIn { from { opacity: 0; transform: translateX(-6px); } to { opacity: 1; transform: none; } }
-.panelScroll { flex: 1 1 auto; min-height: 0; overflow: auto; scrollbar-width: none; padding: var(--phi-space-3); }
+.panelScroll { flex: 1 1 auto; min-height: 0; overflow-x: hidden; overflow-y: auto; scrollbar-width: none; padding: var(--phi-space-3); }
 .panelScroll::-webkit-scrollbar { display: none; }
 .panelFoot { padding: var(--phi-space-2); }
 
 /* A menu group: no background or border of its own; its rows wear the page's shades (tokens.scss). */
 .panelGroup { display: flex; flex-direction: column; gap: 2px; padding: var(--phi-space-2) 0; border-radius: var(--phi-radius-sm); }
-.groupHead { min-height: 2rem; }
+.groupHead { min-height: var(--pui-shell-control); }
 .panelScroll { display: flex; flex-direction: column; gap: var(--phi-space-2); }
-.panelEnd { margin-top: auto; }
-/* The panel's three places, like the rail: top runs from the top, a centre run takes equal free space above and below
-   (so it sits in the middle), the bottom run at the foot. */
-.panelCenter { margin-block: auto; }
-.panelCenter ~ .panelEnd { margin-top: 0; }
+/* The three places, in the panel and the rail alike: each row is at least as tall as what it holds, so nothing in the
+   sidebar scrolls or is cut; the room left over is shared equally above and below the centre, so the centre stays
+   in the middle whenever it can. Nothing scrolls sideways. */
+.panelScroll { display: grid; grid-template-rows: minmax(min-content, 1fr) auto minmax(min-content, 1fr); align-content: stretch; }
+.placeTop { grid-row: 1; align-self: start; min-height: 0; display: flex; flex-direction: column; gap: var(--phi-space-2); }
+.placeCenter { grid-row: 2; display: flex; flex-direction: column; gap: var(--phi-space-2); }
+.placeBottom { grid-row: 3; align-self: end; min-height: 0; display: flex; flex-direction: column; gap: var(--phi-space-2); }
+/* Lights: an open fold wears the page's shades like an open accordion (display/Accordion), so what is open shows. */
+.groupOpen { border-radius: var(--phi-radius-sm); background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-3) 60%, transparent); }
+.navEntry:has(.caret[aria-expanded='true']) > :first-child { border-radius: var(--phi-radius-sm); background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-3) 60%, transparent); }
 .entryPanel { padding: var(--phi-space-2) 0 var(--phi-space-2) 1.5rem; }
 .inlineRow { display: flex; gap: var(--phi-space-1); }
 .inlineRow > * { flex: 1 1 0; min-width: 0; }
@@ -113,7 +128,7 @@
 .caret[aria-expanded='false'] svg { transform: rotate(-90deg); }
 /* Menu rows run the full width of the menu, in the page's shades, no borders: a shade under the pointer, a deeper
    one for the page you are on, both running left to right like every surface. */
-.navRow, .pullRow { flex: 1 1 auto; width: 100%; min-width: 0; border-radius: var(--phi-radius-sm); border: 0; background: transparent; }
+.navRow, .pullRow { flex: 1 1 auto; width: 100%; min-width: 0; min-height: var(--pui-shell-control); border-radius: var(--phi-radius-sm); border: 0; background: transparent; }
 .navRow:hover, .pullRow:hover { background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2)); color: var(--phi-color-text-primary); }
 .navRow[aria-current='page'] { background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1)); color: var(--phi-color-text-primary); }
 
@@ -143,7 +158,9 @@
 .inner { flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden; scroll-behavior: smooth; scrollbar-width: none; padding: var(--phi-space-2) var(--pui-shell-pad) var(--phi-space-8); }
 /* Every page's blocks stack the one gap apart, in every app: a hero never touches the cards under it. */
 .inner { display: flex; flex-direction: column; gap: var(--phi-gap); }
-.inner > * { max-width: var(--pui-shell-content); margin-inline: auto; width: 100%; animation: puiPageIn var(--phi-duration-slow, 0.4s) var(--phi-ease, ease-out) both; }
+/* backwards, not both: once in, the page lets go of its opacity and transform, which would otherwise make it a backdrop
+   root and leave every glass inside it blurring nothing (the scene behind the page is outside it). */
+.inner > * { max-width: var(--pui-shell-content); margin-inline: auto; width: 100%; animation: puiPageIn var(--phi-duration-slow, 0.4s) var(--phi-ease, ease-out) backwards; }
 .inner::-webkit-scrollbar { display: none; }
 .inner * { scrollbar-width: none; }
 .inner *::-webkit-scrollbar { display: none; }
@@ -180,6 +197,7 @@
   .head .menuBtn { display: inline-flex; margin-left: var(--pui-shell-gap); }
   .brandCell { width: auto; padding-left: var(--phi-space-1); }
   .brandClosed:hover .brand { opacity: 1; }
+  .brandClosed .brand { margin-left: 0; }
   .lane { padding-inline: var(--phi-space-4); }
   .inner { padding: var(--phi-space-3); }
   .inner :global(.pui-sections[data-expanded]), .inner :global(.pui-columns[data-expanded]) { left: var(--pui-shell-gap); }

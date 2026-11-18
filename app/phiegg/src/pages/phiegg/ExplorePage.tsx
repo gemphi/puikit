@@ -30,7 +30,7 @@ export const ExplorePage: React.FC = () => {
         <Rows cols={4} colsSm={2} rowHeight="clamp(10rem, 15vw, 13rem)" aria-label={t('exCollections')}>{collectionFamilies().filter((f) => f.clubs.length > 1 && m(f.nest.name)).slice(0, 8).map((f, i) => (
           <Tile key={f.nest.id} tone={f.clubs[0]?.tone ?? 'accent'} ratio="auto" title={'#' + f.nest.name} depth={{ clubId: f.clubs[0]?.id, worldId: (f.nest as { worldId?: string }).worldId ?? f.clubs[0]?.worldIds[0], entityId: f.nest.id, entityName: f.nest.name }}
             sub={t('colClubsN', { n: f.clubs.length }) + ' · ' + usd(f.volumeUsd)} badges={i < 3 && <Tag round size="sm">{t('exTrending', { n: i + 1 })}</Tag>} onClick={() => s.go('collection', { nestId: f.nest.id })} />))}</Rows>
-        <Stack direction="row" justify="between"><Title level={3} size="lg">{t('worldsToVisit')}</Title><Button size="sm" variant="outline" onClick={() => s.go('worlds')}>{t('allWorlds')}</Button></Stack>
+        <Stack direction="row" justify="between"><Title level={3} size="lg">{t('worldsToVisit')}</Title><Button size="sm" variant="glass" onClick={() => s.go('worlds')}>{t('allWorlds')}</Button></Stack>
         <Rows cols={4} colsSm={2} rowHeight="clamp(10rem, 15vw, 13rem)" aria-label={t('worldsToVisit')}>{worlds.map((w) => <Tile key={w.id} image={worldImage(w)} tone={w.tone} ratio="auto" grid title={w.name} depth={{ worldId: w.id, clubId: w.clubId, personId: w.creatorId }} sub={clubOf(w.clubId)?.name} onClick={() => s.go('world', { worldId: w.id })} />)}</Rows>
         <Title level={3} size="lg">{t('creators')}</Title>
         <Rows slider itemWidth="11.5rem" aria-label={t('creators')}>{people.map((p) => (

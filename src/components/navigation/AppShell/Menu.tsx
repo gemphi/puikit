@@ -30,7 +30,7 @@ const Entry: React.FC<MenuProps & { it: AppShellLeaf; folded: Record<string, boo
     <Box className={styles.navEntry}>
       <Stack direction="row" gap={0} align="center">
         {kids ? <Caret open={open} label={foldLabel(it.label, open)} onClick={() => fold(it.id, !open)} /> : <span className={styles.caretRoom} />}
-        <Pressable row gap={3} fill hover minHeight="40px" paddingX={2} className={styles.navRow}
+        <Pressable row gap={3} fill hover minHeight="var(--pui-shell-control)" paddingX={2} className={styles.navRow}
           aria-current={on ? 'page' : undefined} onClick={() => (it.panel ? fold(it.id, !open) : go(it.id))}>
           {it.icon ?? null}
           <Text as="span" intent="inherit" weight={on ? 'bold' : 'medium'} truncate>{it.label}</Text>
@@ -68,19 +68,27 @@ const Run: React.FC<MenuProps & { items: AppShellLeaf[] }> = ({ items, ...rest }
 export const GroupMenu: React.FC<MenuProps & { group: AppShellGroup }> = ({ group, ...rest }) => {
   const [shut, setShut] = React.useState(false);
   const runs = group.sections ?? [{ id: group.id, items: group.items }];
+  // The panel's three places: top runs from the top, the centre run sits in the very middle, bottom runs at the foot.
+  // Each place holds its own runs (and scrolls on its own), so opening or folding the top never moves the centre.
+  // The group's fold arrow folds the group's own first run only, never what sits in the centre or at the foot.
+  const placeOf = (run: (typeof runs)[number]) => (run.place === 'center' ? 'center' : run.end || run.place === 'bottom' ? 'bottom' : 'top');
+  const block = (run: (typeof runs)[number], i: number) => (
+    <Box key={run.id} className={styles.panelGroup}>
+      {i === 0 && (
+        <Stack direction="row" gap={1} align="center" className={cn(styles.groupHead, !shut && styles.groupOpen)}>
+          <Caret open={!shut} label={rest.foldLabel(group.label, !shut)} onClick={() => setShut(!shut)} />
+          <Text as="span" size="sm" weight="semibold">{group.label}</Text>
+        </Stack>
+      )}
+      {(i > 0 || !shut) && <Run items={run.items} {...rest} />}
+    </Box>
+  );
+  const at = (p: 'top' | 'center' | 'bottom') => runs.map((run, i) => ({ run, i })).filter((x) => placeOf(x.run) === p);
   return (
     <>
-      {runs.map((run, i) => (
-        <Box key={run.id} className={cn(styles.panelGroup, run.place === 'center' && styles.panelCenter, (run.end || run.place === 'bottom') && styles.panelEnd)}>
-          {i === 0 && (
-            <Stack direction="row" gap={1} align="center" className={styles.groupHead}>
-              <Caret open={!shut} label={rest.foldLabel(group.label, !shut)} onClick={() => setShut(!shut)} />
-              <Text as="span" size="sm" weight="semibold">{group.label}</Text>
-            </Stack>
-          )}
-          {!shut && <Run items={run.items} {...rest} />}
-        </Box>
-      ))}
+      <Box className={styles.placeTop}>{at('top').map((x) => block(x.run, x.i))}</Box>
+      {at('center').length > 0 && <Box className={styles.placeCenter}>{at('center').map((x) => block(x.run, x.i))}</Box>}
+      {at('bottom').length > 0 && <Box className={styles.placeBottom}>{at('bottom').map((x) => block(x.run, x.i))}</Box>}
     </>
   );
 };

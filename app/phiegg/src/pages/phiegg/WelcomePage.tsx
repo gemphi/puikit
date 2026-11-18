@@ -94,8 +94,8 @@ export const WelcomePage: React.FC = () => {
         </Box>
       </Box>
 
-      <Section sub={t('wlWorldsHint')} title={t('wlWorlds')} action={<Button variant="outline" onClick={() => s.go('worlds')}>Visit the worlds</Button>}>
-        <Box className={styles.portals}>
+      <Section sub={t('wlWorldsHint')} title={t('wlWorlds')} action={<Button variant="glass" onClick={() => s.go('worlds')}>Visit the worlds</Button>}>
+        <Rows cols={4} colsSm={2} minItemWidth="15rem" aria-label={t('wlWorlds')}>
           {worlds.map((w, i) => {
             const art = L.art.worlds[w.name];
             return (
@@ -108,7 +108,7 @@ export const WelcomePage: React.FC = () => {
               </Pressable>
             );
           })}
-        </Box>
+        </Rows>
       </Section>
 
       <Section title="Everything lives inside">
@@ -159,7 +159,7 @@ export const WelcomePage: React.FC = () => {
       <Box as="section" data-reveal className={styles.closing} onPointerMove={lean}>
         <Box className={styles.scene}><WorldScene seed="phiegg-hatch" night pattern="none" /></Box>
         <Cast art={L.art.closingCast} />
-        <Box className={styles.copy}>
+        <Box className={styles.copy + ' phi-layers'}>
           <Title level={2} className={styles.closingTitle}>{L.cta.title}</Title>
           <Text as="p" className={styles.lede}>{L.cta.body}</Text>
           <Box className={styles.actions}>

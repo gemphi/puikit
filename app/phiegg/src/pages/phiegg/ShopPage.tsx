@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Card, CardBody, Page, Select, Stack, TabList, Tag, Text, Title } from '@pui/components';
+import { Button, Card, CardBody, Page, ChoiceRow, Stack, TabList, Tag, Text, Title } from '@pui/components';
 import { useStore } from '@pui/store';
 import { ShoppingBag } from 'lucide-react';
 import { phieggStore } from '../../state/phieggStore';
@@ -37,12 +37,11 @@ export const ShopPage: React.FC = () => {
           </Stack>
         </Stack>
         <Stack direction="row" gap={2} align="center" wrap>
-          <Select size="sm" value={store.id} aria-label={t('shStores')} onChange={(e) => s.go('shop', { storeId: e.target.value })}
-            options={STORES.map((x) => ({ value: x.id, label: x.name }))} />
           {pending > 0 && <Tag minimal round>{t('shPending', { n: pending })}</Tag>}
           <Button variant="outline" iconLeft={ShoppingBag} onClick={s.openCart}>{t('shCart', { n: cart.length })}</Button>
         </Stack>
       </Stack>
+      <ChoiceRow value={store.id} label={t('shStores')} onChange={(v) => s.go('shop', { storeId: v })} options={STORES.map((x) => ({ value: x.id, label: x.name }))} />
       <TabList size="sm" variant="pills" activeId={tab} onChange={setTab} items={[{ id: 'looks', label: t('lsLooks'), count: looks.length }, ...(lots.length ? [{ id: 'lots', label: t('lsLots'), count: lots.length }] : [])]} />
       {tab === 'looks' ? (
         <ListView<ShopLook> rows={looks} keyOf={(l) => l.id} text={(l) => l.name + ' ' + l.colour + ' ' + l.garments.join(' ')}

@@ -1,0 +1,19 @@
+// ChoiceRow: options in view as an even grid of chips, like a filter's options; a long list is one line and a glass
+// "All N". Shades fade to nothing, no solid fills or borders. Tokens only.
+.root { display: flex; flex-direction: column; gap: var(--phi-space-2, 0.5rem); min-width: 0; }
+.head { display: flex; align-items: center; justify-content: space-between; gap: var(--phi-space-3, 0.75rem); min-width: 0; }
+/* A short filter, never a long search bar. */
+.filter { width: min(16rem, 100%); margin-left: auto; }
+.line { display: flex; align-items: flex-start; gap: 0.375rem; min-width: 0; }
+.grid { flex: 1 1 auto; min-width: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--pui-choice-min, 8rem)), 1fr)); gap: 0.375rem; }
+/* Closed: only the first line of options shows. */
+.one { grid-template-rows: auto; grid-auto-rows: 0; row-gap: 0; overflow: hidden; }
+.all { flex: none; }
+.option {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.375rem; min-width: 0; width: 100%; min-height: var(--phi-control-height-md); padding: 0 0.75rem;
+  border: 0; border-radius: var(--phi-radius-sm, 0.5rem); cursor: pointer; text-align: left; color: var(--phi-color-text-primary); font: inherit;
+  background: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2));
+  &:hover { background: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1)); }
+  &:focus-visible { outline: 2px solid var(--phi-color-text-primary); outline-offset: -2px; }
+}
+.on { color: var(--phi-color-text-primary); background: linear-gradient(90deg, var(--phi-shade-1), var(--phi-shade-1)); font-weight: var(--phi-font-weight-semibold, 600); }

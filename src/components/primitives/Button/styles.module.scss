@@ -27,48 +27,51 @@
 
 /* Height comes from the shared ladder so a button, an input and a select on
    one row line up; padding only sets the horizontal rhythm. */
-.sm { min-height: var(--phi-control-height-sm); padding: 0 0.75rem; font-size: var(--phi-font-size-sm); }
+/* Every button is one height (the theme's control height): a size changes padding and type, never height. */
+.sm { min-height: var(--phi-control-height-md); padding: 0 0.75rem; font-size: var(--phi-font-size-sm); }
 .md { min-height: var(--phi-control-height-md); padding: 0 1rem; }
-.lg { min-height: var(--phi-control-height-lg); padding: 0 1.25rem; font-size: var(--phi-font-size-lg); }
+.lg { min-height: var(--phi-control-height-md); padding: 0 1.25rem; font-size: var(--phi-font-size-lg); }
 
 /* A square icon button is exactly as tall as a text button of the same size, so the two line up on a row. */
-.iconSm { width: var(--phi-control-height-sm); height: var(--phi-control-height-sm); }
+.iconSm { width: var(--phi-control-height-md); height: var(--phi-control-height-md); }
 .iconMd { width: var(--phi-control-height-md); height: var(--phi-control-height-md); }
-.iconLg { width: var(--phi-control-height-lg); height: var(--phi-control-height-lg); }
+.iconLg { width: var(--phi-control-height-md); height: var(--phi-control-height-md); }
 
 .primary {
-  background-color: var(--phi-color-primary);
-  /* A brand may define a control gradient; solid brands resolve to none.
-     Clipped to the padding box so nothing fringes past the rounded edges. */
-  background-image: var(--phi-gradient-control, none);
-  background-clip: padding-box;
-  color: var(--phi-color-text-inverse);
-  &:hover:not(:disabled):not(.disabled) {
-    background-color: var(--phi-color-primary-hover);
-    background-image: var(--phi-gradient-control-hover, none);
-  }
+  /* No colour of its own: buttons wear the page's shades in the page's ink, one colour per page. The main action is
+     the deeper shade, the rest the resting one; under the pointer each goes one shade deeper. */
+  background-color: transparent;
+  background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1));
+  color: var(--phi-color-text-primary);
+  border-color: transparent;
+  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: linear-gradient(90deg, var(--phi-shade-1), var(--phi-shade-1)); }
 }
 
-.secondary {
-  background-color: var(--phi-color-secondary);
-  color: var(--phi-color-text-inverse);
-  &:hover:not(:disabled):not(.disabled) { background-color: var(--phi-color-secondary-hover); }
+.secondary, .outline {
+  background-color: transparent;
+  background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2));
+  color: var(--phi-color-text-primary);
+  border-color: transparent;
+  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1)); }
 }
 
-.outline {
-  background-color: var(--phi-control-bg-active, transparent);
-  background-image: var(--phi-gradient-control-soft, none);
-  color: var(--phi-color-primary);
-  border-color: var(--phi-control-border, var(--phi-color-border));
-  &:hover:not(:disabled):not(.disabled) { background-color: var(--phi-control-bg-hover, var(--phi-color-primary-light)); }
+/* Glass: the same see-through surface as the sidebar and the drawer (tokens.scss one surface): the page's shades
+   across, over a blur of what lies behind, in the page's ink; no colour of its own. A pressed one (liked, saved, the
+   view shown) wears a deeper shade. Every "view all" and every action on an item. */
+.glass {
+  background-color: transparent;
+  background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2));
+  -webkit-backdrop-filter: var(--phi-glass-blur); backdrop-filter: var(--phi-glass-blur);
+  color: var(--phi-color-text-primary);
+  border-color: transparent;
+  &:hover:not(:disabled):not(.disabled), &[aria-pressed='true'] { background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1)); }
 }
 
-/* Ghost buttons rest on the theme's control surface (never bare text), tinted by the palette's gradient level. */
 .ghost {
-  background-color: var(--phi-control-bg, transparent);
-  background-image: var(--phi-gradient-control-soft, none);
-  color: var(--phi-control-text, var(--phi-color-text-primary));
-  &:hover:not(:disabled):not(.disabled) { background-color: var(--phi-control-bg-hover, var(--phi-color-background-secondary)); }
+  background-color: transparent;
+  background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2));
+  color: var(--phi-color-text-primary);
+  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1)); }
 }
 
 .danger {
@@ -80,10 +83,10 @@
 .icon {
   padding: 0;
   border-radius: var(--phi-control-radius, var(--phi-radius-md));
-  background-color: var(--phi-control-bg, transparent);
-  background-image: var(--phi-gradient-control-soft, none);
-  color: var(--phi-control-text, var(--phi-color-text-primary));
-  &:hover:not(:disabled):not(.disabled) { background-color: var(--phi-control-bg-hover, var(--phi-color-background-secondary)); }
+  background-color: transparent;
+  background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2));
+  color: var(--phi-color-text-primary);
+  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1)); }
 }
 .fullWidth { width: 100%; }
 .loading { cursor: wait; opacity: 0.8; }

@@ -69,7 +69,7 @@ export const SearchBox: React.FC<{ autoFocus?: boolean; onPick?: () => void }> =
                 </Pressable>); })}
             </Box>))}
           {q.trim() && !flat.length && <Text size="sm" intent="muted">{t('navNoMatch', { q: q.trim() })}</Text>}
-          {q.trim() && <Button variant="ghost" size="sm" onClick={() => { const v = q.trim(); shut(); phieggStore.setState({ searchQ: v }); s.go('search'); onPick?.(); }}>{t('srSeeAll', { q: q.trim() })}</Button>}
+          {q.trim() && <Button variant="glass" size="sm" onClick={() => { const v = q.trim(); shut(); phieggStore.setState({ searchQ: v }); s.go('search'); onPick?.(); }}>{t('srSeeAll', { q: q.trim() })}</Button>}
         </Box>)}
     </Box>
   );

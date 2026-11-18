@@ -26,7 +26,7 @@ export const WorldPage: React.FC = () => {
     <Page>
       <Stack direction="column" gap={4}>
         <Stack direction="row" gap={1} overflow="auto">{near.map((x) => <Button key={x.id} size="sm" variant="ghost" icon={<EntityAvatar id={x.id} name={x.name} size="xs" />} onClick={() => s.go('world', { worldId: x.id })}>{x.name}</Button>)}
-          <Button size="sm" variant="primary" onClick={() => s.go('worlds')}>{t('allWorlds')}</Button></Stack>
+          <Button size="sm" variant="glass" onClick={() => s.go('worlds')}>{t('allWorlds')}</Button></Stack>
         <Tile image={worldImage(w)} tone={w.tone} ratio="21/8" big grid title={w.name} sub={w.description} depth={{ worldId: w.id, clubId: w.clubId, personId: w.creatorId }}
           badges={<><Tag round size="sm">{(site.worldKinds as Record<string, string>)[w.kind]}</Tag><Tag round size="sm">{t('insideNow', { n: fmt(w.visitorsNow) })}</Tag>{w.agents && <Tag round size="sm">{t('agentsCount', { n: fmt(w.agents) })}</Tag>}</>} />
         <Stack direction="row" gap={2} wrap>

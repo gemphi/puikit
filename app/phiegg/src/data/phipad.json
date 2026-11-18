@@ -58,6 +58,38 @@
       "pool": 500000,
       "currency": "USDC",
       "body": "Avatars with provable, portable ownership."
+    },
+    {
+      "id": "t_runway",
+      "name": "Runway & shows",
+      "tone": "accent",
+      "pool": 800000,
+      "currency": "USDC",
+      "body": "Live and recorded shows that drop looks to holders."
+    },
+    {
+      "id": "t_commerce",
+      "name": "Club commerce",
+      "tone": "sand",
+      "pool": 700000,
+      "currency": "USDC",
+      "body": "Stores, pools and lots run by a club for its holders."
+    },
+    {
+      "id": "t_quests",
+      "name": "Quests & play",
+      "tone": "sage",
+      "pool": 600000,
+      "currency": "USDC",
+      "body": "Challenges across worlds that pay out in club coins."
+    },
+    {
+      "id": "t_tools",
+      "name": "Creator tools",
+      "tone": "ink",
+      "pool": 400000,
+      "currency": "USDC",
+      "body": "Fitting, rendering and publishing tools for designers."
     }
   ],
   "stages": [

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Card, CardBody, DataTable, Page, Select, Stack, Tag, Text, Title, TabList, type DataTableColumn } from '@pui/components';
+import { Button, Card, CardBody, DataTable, Page, ChoiceRow, Stack, Tag, Text, Title, TabList, type DataTableColumn } from '@pui/components';
 import { useStore } from '@pui/store';
 import { Trophy } from 'lucide-react';
 import { phieggStore } from '../../state/phieggStore';
@@ -37,7 +37,7 @@ export const LeaguePage: React.FC = () => {
         </CardBody></Card>
       ) : (
         <Stack direction="column" gap={3}>
-          <Stack direction="row" justify="end"><Select size="sm" value={round} aria-label={t('lgBracket')} onChange={(e) => setRound(e.target.value)} options={L.rounds.map((x) => ({ value: x.id, label: x.label }))} /></Stack>
+          <ChoiceRow value={round} label={t('lgBracket')} onChange={setRound} options={L.rounds.map((x) => ({ value: x.id, label: x.label }))} />
           <Text size="sm" intent="muted">{t('lgRoundMetric', { metric: metric(r.metric) })}</Text>
           <Stack direction="column" gap={2}>
             {r.matches.map((m) => (

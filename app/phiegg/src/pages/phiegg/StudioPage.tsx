@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Button, Card, CardBody, ChatBubble, Col, DataTable, Grid, ItemCard, Page, Select, Stack, TabList, Tag, Text, Textarea, Title } from '@pui/components';
+import { Button, Card, CardBody, ChatBubble, Col, DataTable, Grid, ItemCard, Page, ChoiceRow, Stack, TabList, Tag, Text, Textarea, Title } from '@pui/components';
 import { useStore } from '@pui/store';
 import { D, eggsOfHost, fmt, hostOf, lookOf, person, poolOf, profileItemOf, profileItemOfHolder, seriesOf, storeOfClub, sumOf, t, usd } from '../../lib/data';
 import { useOwned } from '../../lib/cart';
@@ -83,10 +83,10 @@ export const StudioPage: React.FC = () => {
             <Stack direction="row" gap={1} wrap>{specs.map((x) => <Tag key={x} minimal round size="sm">{x}</Tag>)}</Stack>
             {sc.steps.map((st, i) => (
               <ItemCard key={st.id} variant="flat" padding="sm" stackBelow="lg" media={<Tag round size="sm" intent="primary">{i + 1}</Tag>} title={st.label} meta={`${st.type.toUpperCase()}${st.kind ? ' · ' + st.kind : ''} · ${st.hint}`}
-                actions={<Select size="sm" value={pickOf(st)} aria-label={st.label} onChange={(e) => setPicks({ ...picks, [st.id]: e.target.value })} options={optionsFor(st)} />} />))}
+                actions={<ChoiceRow value={String(pickOf(st))} label={st.label} minWidth="6rem" onChange={(v) => setPicks({ ...picks, [st.id]: v })} options={optionsFor(st).map((o) => ({ value: String(o.value), label: o.label }))} />} />))}
             <Text size="xs" weight="bold" intent="muted">{t('stPersona')}</Text>
             <TabList size="sm" variant="pills" aria-label={t('stVoice')} activeId={voice} onChange={setVoice} items={SC.voices.map((v) => ({ id: v, label: v }))} />
-            <Stack direction="row" gap={2} align="center"><Text size="sm">{t('stAudience')}</Text><Select size="sm" value={audience} aria-label={t('stAudience')} onChange={(e) => setAudience(e.target.value)} options={SC.audiences.map((a) => ({ value: a, label: a }))} /></Stack>
+            <ChoiceRow value={audience} label={t('stAudience')} showLabel onChange={setAudience} options={SC.audiences.map((a) => ({ value: a, label: a }))} />
             <Textarea value={greeting} aria-label={t('stEdit')} onChange={(e) => setGreeting(e.target.value)} rows={3} />
             <Text size="xs" weight="bold" intent="muted">{t('stPreview')}</Text>
             <ChatBubble avatar={<PersonAvatar id={agentId} size="sm" />} name={person(agentId).name}>{fill(greeting, names)}</ChatBubble>

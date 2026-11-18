@@ -11,9 +11,9 @@ describe('RelationList', () => {
       <RelationList title="Connected" max={3} groups={[{ id: 'worlds', label: 'Worlds', items: items.map((x) => ({ ...x, onClick: open })) }, { id: 'none', label: 'Nothing', items: [] }]} />,
     );
     expect(queryByText('Nothing')).toBeNull();
-    expect(getAllByRole('button').filter((b) => /World/.test(b.textContent ?? ''))).toHaveLength(3);
+    expect(getAllByRole('button').filter((b) => /World \d/.test(b.textContent ?? ''))).toHaveLength(3);
     fireEvent.click(getByText('Show all 9'));
-    expect(getAllByRole('button').filter((b) => /World/.test(b.textContent ?? ''))).toHaveLength(9);
+    expect(getAllByRole('button').filter((b) => /World \d/.test(b.textContent ?? ''))).toHaveLength(9);
     fireEvent.click(getByText('World 4'));
     expect(open).toHaveBeenCalled();
   });
