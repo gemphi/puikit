@@ -7,7 +7,7 @@ import { phieggStore } from './state/phieggStore';
 import { HeaderEnd } from './components/Shell/HeaderEnd';
 import { appsGlyph, appsItem, currentEntry, parseEntry, shellApps, shellGroups, shellTabs } from './components/Shell/shellData';
 import { Crumbs } from './components/Phiegg/Search';
-import { Wordmark } from './components/Phiegg/Marks';
+import { Icon, Wordmark } from './components/Phiegg/Marks';
 import { SignIn } from './components/Shell/SignIn';
 import { useViewport } from './lib/viewport';
 import { Overlays } from './components/Phiegg/Overlays';
@@ -92,8 +92,9 @@ export const App: React.FC = () => {
     <Stack direction="column" gap={0} data-ph-radius={ap.radius} data-ph-gradient={ap.gradient} data-ph-motion={ap.motion}
       data-ph-sidebar={ap.sidebar} data-ph-content={ap.content} data-ph-opacity={ap.opacity} className="ph-app" width="100vw" height="100vh" overflow="hidden">
       <AppShell
-        brand={{ name: site.brand.name, glyph: <Title level={4} size="sm"><Wordmark lead /></Title>, wordmark: <Title level={4} size="sm"><Wordmark /></Title> }}
+        brand={{ name: site.brand.name, glyph: <Icon size="100%" />, wordmark: <Title level={4} size="sm"><Wordmark /></Title> }}
         groups={shellGroups(s)} view={currentEntry(s)} onView={go}
+        collapseKey={s.tab === 'asset' ? 'asset:' + s.assetId : s.tab === 'look' ? 'look:' + s.lookId : undefined}
         rail={s.rail === apps?.id ? APPS_RAIL : s.rail} onRail={(id) => s.setRail(id === APPS_RAIL && apps ? apps.id : id)}
         apps={shellApps()} appsLabel={apps?.label ?? t('hdApps')} appsIcon={appsGlyph()} tabs={shellTabs()}
         crumbs={<Crumbs compact={compact} />} headerRight={<HeaderEnd />}
