@@ -33,7 +33,9 @@
   align-items: center;
   gap: 0.4rem;
   white-space: nowrap;
-  padding: 0.5rem 1rem;
+  /* One height with every button (the theme's control height). */
+  min-height: var(--phi-control-height-md); display: inline-flex; align-items: center;
+  padding: 0 1rem;
   border: none;
   border-bottom: 2px solid transparent;
   /* Glass (tokens/_glass.scss): from nothing to glass across at rest; the theme's colour under the pointer. */
@@ -60,10 +62,11 @@
 .icon { display: inline-flex; flex: none; }
 .count { font-size: 0.85em; opacity: 0.72; font-variant-numeric: tabular-nums; }
 
+/* The tab shown: the page's ink and its underline, no colour of its own. */
 .active {
-  color: var(--phi-color-primary);
-  border-bottom-color: var(--phi-color-primary);
-  background-color: var(--phi-control-bg-active, transparent);
+  color: var(--phi-color-text-primary);
+  border-bottom-color: var(--phi-color-text-primary);
+  background-color: transparent;
 }
 
 .indicator { display: none; }
@@ -85,9 +88,9 @@
     height: var(--pui-tab-h, 0px);
     transform: translate3d(var(--pui-tab-x, 0px), var(--pui-tab-y, 0px), 0);
     border-radius: var(--phi-control-radius, var(--phi-radius-md));
-    background-color: var(--phi-color-primary);
-    background-image: var(--phi-gradient-control, none);
-    box-shadow: 0 0.35rem 0.9rem -0.35rem color-mix(in srgb, var(--phi-color-primary) 70%, transparent);
+    /* The page's deeper shade, like a pressed button: no fill of its own. */
+    background-color: transparent;
+    background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1));
     pointer-events: none;
   }
   &[data-ready='true'] .indicator {
@@ -96,10 +99,10 @@
   .active {
     background-color: transparent;
     background-image: none;
-    color: var(--phi-gradient-control-text, var(--phi-color-text-inverse, #fff));
+    color: var(--phi-color-text-primary);
   }
   /* Before measuring (first paint, tests) the active tab paints its own pill. */
-  &:not([data-ready='true']) .active { background-color: var(--phi-color-primary); background-image: var(--phi-gradient-control, none); }
+  &:not([data-ready='true']) .active { background-color: transparent; background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1)); }
 }
 
 /* On a surface (tokens.scss) the active pill is a shade of the page's one colour, not a solid fill. */

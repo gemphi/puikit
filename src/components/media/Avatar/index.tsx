@@ -21,6 +21,9 @@ type AvatarProps = {
   shades?: boolean;
   /** Picks the shade set (stable per person / record). Defaults to alt + initials. */
   seed?: string;
+  /** The record's own colours (taken from its pictures), first and second: the shades are mixed from them instead of
+   *  a theme pair picked by `seed`. */
+  colors?: string[];
   /** Deck: this many smaller circles stacked behind, peeking out above (0–3). Defaults to 2 on the shaded icon. */
   deck?: number;
   className?: string;
@@ -35,7 +38,7 @@ export const spriteVars = ({ src, cols, rows = cols, index }: { src: string; col
 };
 const toneOf = (seed: string) => { let h = 0; for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0; return h % TONES; };
 
-export const Avatar = ({ src, sprite, alt = '', initials, icon, size = 'md', shades = true, seed, deck, className = '' }: AvatarProps) => {
+export const Avatar = ({ src, sprite, alt = '', initials, icon, size = 'md', shades = true, seed, colors, deck, className = '' }: AvatarProps) => {
   const split = shades && !src && !sprite;
   const levels = Math.max(0, Math.min(3, deck ?? (split ? 2 : 0)));
   return (
@@ -43,7 +46,8 @@ export const Avatar = ({ src, sprite, alt = '', initials, icon, size = 'md', sha
       direction="row" align="center" justify="center"
       className={cn(styles.avatar, styles[size], split && styles.split, levels > 0 && styles['deck' + levels], className)}
       aria-label={alt || initials}
-      data-tone={split ? toneOf(seed ?? alt + (initials ?? '')) : undefined}
+      data-tone={split && !colors?.length ? toneOf(seed ?? alt + (initials ?? '')) : undefined}
+      style={split && colors?.length ? ({ '--av-a': colors[0], '--av-b': colors[1] ?? colors[0] } as React.CSSProperties) : undefined}
     >
       {sprite ? (
         <Span role="img" aria-label={alt} className={styles.sprite} style={spriteVars(sprite)} />

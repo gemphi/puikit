@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { usePortalTarget } from '../usePortalTarget';
 import { useDismiss } from '../useDismiss';
@@ -65,6 +65,14 @@ type DrawerProps = {
   header?: React.ReactNode;
 };
 
+/** How long a drawer takes to slide out (keep in step with .leaving in styles.module.scss). */
+export const DRAWER_EXIT_MS = 320;
+/**
+ * A host that removes its drawer itself (an app's overlay layer) says so here a moment early, so the drawer slides out
+ * before it goes instead of vanishing. A drawer that is closed through `isOpen` slides out on its own.
+ */
+export const DrawerClosingContext = createContext(false);
+
 export const Drawer = ({
   isOpen,
   onClose,
@@ -97,7 +105,19 @@ export const Drawer = ({
   // `portalTarget` is null during server rendering, where there is no DOM.
   const portalTarget = usePortalTarget();
   useDismiss(isOpen && !docked && !!onClose, onClose ?? (() => {}));
-  if (!isOpen) return null;
+  // Slide in and slide out, never just appear or drop: stay mounted while sliding away, then go.
+  const hostClosing = useContext(DrawerClosingContext);
+  const [rendered, setRendered] = useState(isOpen);
+  const [leaving, setLeaving] = useState(false);
+  useEffect(() => {
+    if (isOpen) { setRendered(true); setLeaving(false); return undefined; }
+    if (!rendered) return undefined;
+    setLeaving(true);
+    const id = setTimeout(() => { setRendered(false); setLeaving(false); }, DRAWER_EXIT_MS);
+    return () => clearTimeout(id);
+  }, [isOpen]); // eslint-disable-line react-hooks/exhaustive-deps
+  const out = leaving || hostClosing;
+  if (!isOpen && !rendered) return null;
 
   const sheet = (
       <Card hoverable={false} tint="none" className={cn('pui-drawer', styles.drawer, styles[position], styles[size], isExpanded && styles.expanded, isFolded && styles.folded)} data-position={position} data-expanded={isExpanded || undefined} data-folded={isFolded || undefined}>
@@ -131,14 +151,14 @@ export const Drawer = ({
   // (never over a sidebar) and the page scrolls clear of it with no spacer.
   if (docked) {
     return (
-      <Stack className={cn(styles.dock, className)} role="region" aria-label={typeof title === 'string' ? title : undefined}>
+      <Stack className={cn(styles.dock, out && styles.leaving, className)} role="region" aria-label={typeof title === 'string' ? title : undefined}>
         {sheet}
       </Stack>
     );
   }
   if (!portalTarget) return null;
   return createPortal(
-    <Stack className={cn(styles.overlay, className)} role="dialog" aria-modal="true">
+    <Stack className={cn(styles.overlay, out && styles.leaving, className)} role="dialog" aria-modal="true">
       <Stack className={styles.backdrop} onClick={onClose} aria-hidden="true" />
       {sheet}
     </Stack>, portalTarget);

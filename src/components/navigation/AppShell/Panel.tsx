@@ -29,7 +29,7 @@ export const AppsList: React.FC<{ apps: AppShellApp[]; moreLabel: string }> = ({
     <Stack direction="column" gap={1}>
       {mine.map((a) => <AppRow key={a.id} a={a} />)}
       {rest.length > 0 && (
-        <Pressable row gap={2} fill hover minHeight="36px" paddingX={3} className={styles.navRow} aria-expanded={more} onClick={() => setMore(!more)}>
+        <Pressable row gap={2} fill hover minHeight="var(--pui-shell-control)" paddingX={3} className={styles.navRow} aria-expanded={more} onClick={() => setMore(!more)}>
           <Plus size={16} /><Text as="span" size="sm" intent="inherit">{moreLabel}</Text>
         </Pressable>
       )}

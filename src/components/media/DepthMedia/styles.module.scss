@@ -233,3 +233,7 @@
       scale(calc(1 - var(--pui-deck-k) * 0.05));
   }
 }
+
+/* Cascade off: the media is one clean surface, never a stack of copies (user: no cascade anywhere). */
+.deck, .deck[data-deck-dir='down'] { padding-top: 0 !important; padding-bottom: 0 !important; }
+.ghost, .ghostBack { display: none !important; }

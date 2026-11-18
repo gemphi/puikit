@@ -20,11 +20,19 @@ $scrim: var(--phi-muse-scrim, rgba(0, 0, 0, 0.6));
 .hero.open::after { content: none; }
 .closing { min-height: 24rem; padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.25rem, 5vw, 4rem); }
 .hero::after, .closing::after { content: ''; position: absolute; inset: 0; z-index: 0; background: radial-gradient(62% 58% at 50% 46%, $scrim 0%, transparent 100%), linear-gradient(180deg, rgba(5, 9, 11, 0.28) 0%, $scrim 100%); }
-.copy { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 1.25rem; max-width: 46rem; }
+.copy { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 1.25rem; max-width: 42rem; padding: 2.25rem 2.5rem 2.75rem; text-align: center; }
+/* The hero's copy sits over the scene, so its glass is the scene's own darkening (the look's scrim) rather than light
+   frost: still blurred and still fading in from the left, dark enough that the on-media white reads on any picture. */
+/* The hero's copy wears the sidebar's glass (.phi-layers, tokens.scss), no dark paint of its own: the same shades, over
+   a heavier blur that also dims the scene behind it, so the white type reads on any part of the picture. */
+.hero .copy, .closing .copy {
+  backdrop-filter: blur(48px) saturate(150%) brightness(0.62); -webkit-backdrop-filter: blur(48px) saturate(150%) brightness(0.62);
+  text-shadow: 0 1px 2px color-mix(in srgb, $scrim 70%, transparent), 0 0 1.5rem color-mix(in srgb, $scrim 45%, transparent);
+}
 .kicker.kicker { color: $on-media; opacity: 0.86; }
 .heroTitle { color: $on-media; font-size: clamp(2rem, 4.4vw, 3.5rem); line-height: 1.08; margin: 0; }
 .closingTitle { color: $on-media; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.12; margin: 0; }
-.lede.lede { color: $on-media; font-size: clamp(1rem, 1.6vw, 1.25rem) !important; line-height: 1.5 !important; max-width: 38rem; }
+.lede.lede { color: $on-media; opacity: 0.92; font-size: clamp(1rem, 1.6vw, 1.25rem) !important; line-height: 1.5 !important; max-width: 36rem; }
 .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 0.5rem; }
 .glass.glass { color: $on-media; background: var(--phi-muse-glass, rgba(255, 255, 255, 0.16)); border-color: var(--phi-muse-glass-border, rgba(255, 255, 255, 0.42)); backdrop-filter: blur(16px); }
 .glass.glass:hover { background: color-mix(in srgb, var(--phi-muse-glass, rgba(255, 255, 255, 0.16)) 60%, $on-media 20%); }

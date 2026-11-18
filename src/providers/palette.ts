@@ -239,10 +239,10 @@ export function brandGradientTokens(primary: string, second: string, isDark: boo
    stop as data-radius on the root and _variables.scss gives each a fixed corner, the same in every look: 16px, 32px,
    48px, 64px. Every `--phi-radius-*` token follows it, so one choice rounds every card, deck, tab, button and drawer. */
 export const RADIUS_PRESETS = { small: 0.5, medium: 1, large: 1.75, pill: 3 } as const;
-/** Display names for the four corner presets. Pill is the egg: controls go fully round, containers deeply rounded. */
+/** Display names for the four corner presets. */
 export const RADIUS_LABELS: Record<keyof typeof RADIUS_PRESETS, string> = { small: '16px', medium: '32px', large: '48px', pill: '64px' };
-/** Older saved ids map onto the four presets. */
-export const RADIUS_ALIASES: Record<string, keyof typeof RADIUS_PRESETS> = { sharp: 'small', soft: 'medium', round: 'large', pill: 'pill', sm: 'small', md: 'medium', lg: 'large' };
+/** Older saved ids map onto the four presets (r16-r48 from the five-stop ladder, which is gone). */
+export const RADIUS_ALIASES: Record<string, keyof typeof RADIUS_PRESETS> = { sharp: 'small', soft: 'medium', round: 'large', sm: 'small', md: 'medium', lg: 'large', r16: 'small', r24: 'small', r32: 'medium', r40: 'large', r48: 'large' };
 export type RadiusPreset = keyof typeof RADIUS_PRESETS;
 export const radiusPresetOf = (scale: number): RadiusPreset =>
   (Object.entries(RADIUS_PRESETS) as [RadiusPreset, number][]).reduce((a, b) => (Math.abs(b[1] - scale) < Math.abs(a[1] - scale) ? b : a))[0];

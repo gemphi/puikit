@@ -32,8 +32,6 @@ export const StatusRail = ({ items, className, ...rest }: StatusRailProps) => (
       <Box key={it.id} as="button" role="listitem" className={cn(styles.item, it.seen && styles.seen, it.live && styles.live)} onClick={it.onClick}
         style={it.color ? ({ '--phi-color-primary': it.color, '--phi-color-accent-2': it.color } as React.CSSProperties) : undefined}>
         {/* the capsule cascades upward, like the cards it sits above */}
-        <Box as="span" className={styles.ghost} style={{ '--pui-status-k': '2' } as React.CSSProperties} aria-hidden="true" />
-        <Box as="span" className={styles.ghost} style={{ '--pui-status-k': '1' } as React.CSSProperties} aria-hidden="true" />
         <Box as="span" className={styles.capsule}>
           <Box as="span" className={styles.ring}><Box as="span" className={styles.thumb}>{it.thumb}</Box></Box>
           <Box as="span" className={styles.label}>{it.label}</Box>

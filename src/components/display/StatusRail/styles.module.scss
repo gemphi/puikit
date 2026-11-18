@@ -48,10 +48,10 @@
   gap: 0.3rem;
   min-width: 0;
   padding: 0.55rem 0.4rem 0.6rem;
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--phi-color-primary) 14%, transparent);
-  transition: transform var(--phi-duration-fast) var(--phi-ease-spring), box-shadow var(--phi-transition-normal);
+  box-shadow: none; /* no rim: the card is one clean surface */
+  transition: transform var(--phi-duration-fast) var(--phi-ease-spring);
 }
-/* Two copies above, each narrower, a step higher and a shade deeper — the same cascade as the card decks. */
+/* No stacked copies any more (decks are off everywhere); the rule stays only for any app still drawing one. */
 .ghost {
   position: absolute;
   z-index: 0;

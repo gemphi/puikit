@@ -1,9 +1,14 @@
+import { DRAWER_EXIT_MS } from '@pui/components';
 import { createStore } from '@pui/store';
 import { D, FLAGSHIP_ID, agentOf, clubOf, greetingOf, person, poolOf, postById, site, storySets, t } from '../lib/data';
 import { poolStory } from '../lib/market';
 import { reply, type AgentResult } from '../lib/agent';
 import { chat as modelChat, hasApi, persisted } from '@phi-kit/api';
-import { liveCreate, liveRemove } from '../lib/live';
+import { kindOfId, liveCreate, liveRemove } from '../lib/live';
+import pagesJson from '../data/pages.json';
+
+/** Where each kind opens (data/pages.json); a kind not listed opens its record page. */
+const PAGE_OF = (pagesJson as { pages: Record<string, string> }).pages;
 import type { Shot } from '../types/phiegg';
 import type { AgentChatMessage, Comment, ID, Nest, NestKind, NestMessage, StoryFrame } from '../types/phiegg';
 import { record } from '../lib/activity';
@@ -63,8 +68,10 @@ export interface PhieggState extends Required<Params> {
   /** Bumped when lib/heavy.ts or lib/live.ts lands new data, so open pages re-render over the fresh indexes. */
   dataRev: number;
   nests: Nest[]; nestMsgs: Record<ID, NestMessage[]>; comments: Record<ID, Comment[]>; chats: Record<ID, AgentChatMessage[]>;
-  overlay: Overlay; toast: string | null; rail: string; searchQ: string; appearance: Appearance; view: { mode: 'tile' | 'list' | 'grid'; cols: number }; setView: (v: { mode: 'tile' | 'list' | 'grid'; cols: number }) => void;
+  overlay: Overlay; /** The overlay that is sliding out (it stays a moment so its drawer leaves the way it came). */ closingOverlay: Overlay | null; toast: string | null; rail: string; searchQ: string; appearance: Appearance; view: { mode: 'tile' | 'list' | 'grid'; cols: number }; setView: (v: { mode: 'tile' | 'list' | 'grid'; cols: number }) => void;
   setRail: (r: string) => void; setAppearance: (k: keyof Appearance, v: string) => void; openPerson: (id: ID) => void; openSignIn: () => void; openEditProfile: () => void; openEditClub: (id: ID) => void; openCreate: (createKind: string, initial?: Record<string, unknown>, back?: { recordKind: string; id: ID }) => void; openRecord: (recordKind: string, id: ID) => void;
+  /** Open any record: its own page when its kind has one (data/pages.json), a person's profile or chat, else its record page. */
+  openRef: (ref: DetailRef) => void; openId: (id: ID) => void;
   /** Delete your own shot from the one database (and the feed). */
   removeShot: (id: ID) => void;
   /** Share a shot from the composer: a real record in the one database when Phiora is on. */
@@ -101,7 +108,7 @@ export const phieggStore = createStore<PhieggState>((set, get) => ({
   // The public home page is where a first visit lands; `#tab` in the address opens a page directly.
   tab: startTab(), dataRev: 0, worldId: D.core.worlds[0].id, showId: D.shows.shows[0]?.id ?? '', clubId: D.club.clubId, profileId: D.profile.userId, cityId: D.core.worlds[0].cities[0].id, storeId: FLAGSHIP_ID, poolId: D.pools.pools[0].id, nestId: '', postId: '', lookId: '', assetId: '', titleId: '', placeId: '', ...START.params,
   ...FLAGS.get(), nests: D.hosts.nests.slice(), nestMsgs: { ...D.hosts.messages }, comments: {}, chats: CHATS.get(),
-  overlay: { kind: 'none' }, toast: null, rail: 'home', searchQ: '', feedKind: 'all',
+  overlay: { kind: 'none' }, closingOverlay: null, toast: null, rail: 'home', searchQ: '', feedKind: 'all',
   appearance: APPEARANCE.get(),
   view: { mode: 'grid', cols: 4 }, setView: (view) => set({ view }),
   setRail: (rail) => set({ rail }),
@@ -109,7 +116,7 @@ export const phieggStore = createStore<PhieggState>((set, get) => ({
   // Agents open in the chat sheet with their details beside the chat; people open their profile drawer.
   openPerson: (id) => (agentOf(id) ? get().openChat(id, undefined, true) : set({ overlay: { kind: 'person', id } })),
   // A look, an asset, a title or a place is an entity: clicking one opens its page. Sheets are for what you do there.
-  openLook: (id) => { record('view', id, { refKind: 'look' }); get().go('look', { lookId: id }); },
+  openLook: (id) => { record('view', id, { refKind: 'look' }); get().closeDetails(); set({ overlay: { kind: 'none' } }); get().go('look', { lookId: id }); },
   openSwap: (giveId, getId) => set({ overlay: { kind: 'swap', giveId, getId } }),
   openStat: (poolId, metricId) => set({ overlay: { kind: 'stat', poolId, metricId } }),
   openList: (list) => set({ overlay: { kind: 'list', list } }),
@@ -118,6 +125,13 @@ export const phieggStore = createStore<PhieggState>((set, get) => ({
   openEditProfile: () => set({ overlay: { kind: 'editProfile' } }),
   openCreate: (createKind, initial, back) => set({ overlay: { kind: 'create', createKind, initial, back } }),
   openRecord: (recordKind, id) => set({ overlay: { kind: 'record', recordKind, id } }),
+  openRef: ({ kind, id }) => {
+    if (kind === 'person' || kind === 'agent') { get().openPerson(id); return; }
+    const tab = PAGE_OF[kind];
+    if (tab && ID_PARAM[tab]) { get().closeDetails(); set({ overlay: { kind: 'none' } }); get().go(tab, { [ID_PARAM[tab]]: id } as never); return; }
+    get().openRecord(kind, id);
+  },
+  openId: (id) => { const kind = kindOfId(id); if (kind) get().openRef({ kind, id }); },
   openEditClub: (id) => set({ overlay: { kind: 'editClub', id } }),
   removeShot: (id) => {
     const done = () => { set({ overlay: { kind: 'none' }, dataRev: Date.now() }); if (get().tab === 'post') get().back(); get().flash(t('shotRemoved')); };
@@ -143,16 +157,23 @@ export const phieggStore = createStore<PhieggState>((set, get) => ({
     const shot = { id: 's_' + Date.now(), ...fields } as unknown as Shot;
     D.feed.shots.unshift(shot); set({ dataRev: Date.now() }); get().flash(t('shared')); },
   openSeries: (id) => get().go('title', { titleId: id }),
-  openAsset: (id) => { record('view', id, { refKind: 'asset' }); get().go('asset', { assetId: id }); },
+  // A new asset opens on its own: the details panel and any sheet over the page close (the shell folds its menu).
+  openAsset: (id) => { record('view', id, { refKind: 'asset' }); get().closeDetails(); set({ overlay: { kind: 'none' } }); get().go('asset', { assetId: id }); },
   openPlace: (id) => get().go('place', { placeId: id }),
   hist: [],
   go: (tab, p = {}) => { const g = get(); const hist = [...g.hist, { tab: g.tab, p: Object.fromEntries(PARAM_KEYS.map((k) => [k, g[k]])) as Params }].slice(-40);
-    set({ tab, ...p, hist, overlay: { kind: 'none' } } as Partial<PhieggState>); writeRoute(tab, get() as unknown as Record<string, unknown>); },
-  back: () => { const hist = get().hist.slice(); const prev = hist.pop(); if (prev) { set({ tab: prev.tab, ...prev.p, hist, overlay: { kind: 'none' } } as Partial<PhieggState>); writeRoute(prev.tab, get() as unknown as Record<string, unknown>); } },
+    set({ tab, ...p, hist } as Partial<PhieggState>); writeRoute(tab, get() as unknown as Record<string, unknown>); get().close(); },
+  back: () => { const hist = get().hist.slice(); const prev = hist.pop(); if (prev) { set({ tab: prev.tab, ...prev.p, hist } as Partial<PhieggState>); writeRoute(prev.tab, get() as unknown as Record<string, unknown>); get().close(); } },
   toggle: (k, id) => { const on = !get()[k][id]; record((({ liked: ['like', 'unlike'], saved: ['save', 'unsave'], follow: ['follow', 'unfollow'], rsvp: ['rsvp', 'unrsvp'] } as const)[k])[on ? 0 : 1], id);
     set({ [k]: { ...get()[k], [id]: on } } as Partial<PhieggState>); },
   flash: (toast) => { set({ toast }); setTimeout(() => get().toast === toast && set({ toast: null }), site.autoplay.toastMs); },
-  close: () => set({ overlay: { kind: 'none' } }),
+  // Closing slides the open sheet or drawer out first (DRAWER_EXIT_MS), then removes it; an overlay opened in the
+  // meantime is a different object, so it is never the one removed.
+  close: () => {
+    const o = get().overlay; if (o.kind === 'none' || get().closingOverlay === o) return;
+    set({ closingOverlay: o });
+    setTimeout(() => { if (get().overlay === o) set({ overlay: { kind: 'none' } }); if (get().closingOverlay === o) set({ closingOverlay: null }); }, DRAWER_EXIT_MS);
+  },
   openPost: (postId) => { record('open', postId, { refKind: 'post' }); get().go('post', { postId }); },
   openComments: (postId, slide = 0) => set({ overlay: { kind: 'comments', postId, slide } }),
   openStory: (uid, from = 0) => {

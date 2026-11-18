@@ -17,7 +17,9 @@ const glyph = (id: string, name: string) => <EntityAvatar id={id} name={name} si
 /** Label, thumbnail and where it opens, for any related record. */
 function describe(r: Ref, s: S): RelationItem | null {
   const it = describeBase(r, s);
-  return it;
+  // Every related record opens the one way any record opens (state openRef: its page, else its record page);
+  // nests keep their own place (a collection's page, or the hosts).
+  return it && r.kind !== 'nest' ? { ...it, onClick: () => s.openRef(r) } : it;
 }
 function describeBase(r: Ref, s: S): RelationItem | null {
   const k = r.kind + ':' + r.id;

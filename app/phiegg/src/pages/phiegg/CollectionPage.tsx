@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardBody, Grid, Page, Select, Stack, Tag, Text, Title } from '@pui/components';
+import { Card, CardBody, Grid, Page, ChoiceRow, Stack, Tag, Text, Title } from '@pui/components';
 import { useStore } from '@pui/store';
 import { phieggStore } from '../../state/phieggStore';
 import { D, STORES, clubOf, clubsOfCollection, collectionOf, fmt, jewelOf, person, rideOf, t, usd, worldOf } from '../../lib/data';
@@ -47,7 +47,7 @@ export const CollectionPage: React.FC = () => {
   return (
     <Page>
       <Stack direction="column" gap={4}>
-        <Stack direction="row" justify="end"><Select size="sm" value={col.id} aria-label={t('colBadge')} onChange={(e) => s.go('collection', { nestId: e.target.value })} options={all.map((x) => ({ value: x.id, label: '#' + x.name }))} /></Stack>
+        <ChoiceRow value={col.id} label={t('colBadge')} onChange={(v) => s.go('collection', { nestId: v })} options={all.map((x) => ({ value: x.id, label: '#' + x.name }))} />
         <Tile tone={lead?.tone ?? 'accent'} ratio="21/7" big grid depth={{ clubId: lead?.id, worldId: world?.id, entityId: col.id, entityName: col.name }}
           title={'#' + col.name} sub={clubs.length > 1 ? t('colClubsN', { n: clubs.length }) + ' · ' + t('colPftsN', { n: fmt(pfts.length) }) : t('colOne')}
           badges={<><Tag round size="sm">{t('colBadge')}</Tag>{world && <Tag round size="sm">{world.name}</Tag>}</>} />

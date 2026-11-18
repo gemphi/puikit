@@ -8,8 +8,8 @@
 
 /* Black and white: the logo (the 3D wordmark and the mark) and every app's icon are drawn in the page's ink, white in
    the dark mode and black in the light; the wordmark keeps its 3D shading in greys. */
-.ph-wordmark { filter: grayscale(1) contrast(1.2) brightness(0.45); }
-[data-theme='dark'] .ph-wordmark { filter: grayscale(1) contrast(1.1) brightness(2.1); }
+.ph-wordmark, .ph-icon { filter: grayscale(1) contrast(1.2) brightness(0.45); }
+[data-theme='dark'] .ph-wordmark, [data-theme='dark'] .ph-icon { filter: grayscale(1) contrast(1.1) brightness(2.1); }
 
 /* The Appearance "gradient" (flat · soft · vivid · aurora) and the palette drive the puikit gradient system
    (providers/palette.ts): every surface by depth, page, cards, cards in cards, media layers, drawers, dialogs,
@@ -44,3 +44,8 @@ html:root[data-ph-opacity='60'] .pui-shell-content [class*='card'] { backdrop-fi
 /* The wordmark: glyph SVGs in a row, top-aligned, never squeezed. */
 .ph-wordmark { display: inline-flex; align-items: flex-start; gap: 0.08em; line-height: 0; }
 .ph-wordmark > svg { flex: none; }
+
+/* A list card that opens its record (components/Phiegg/Views.tsx ListView): the card fills it, and the whole card is
+   the target. */
+.ph-open { display: flex; flex-direction: column; cursor: pointer; min-width: 0; min-height: 0; }
+.ph-open > * { flex: 1 1 auto; min-height: 0; }

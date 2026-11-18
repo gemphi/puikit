@@ -11,8 +11,17 @@
   @media (max-width: 640px) { --pui-rows-n: var(--pui-rows-cols-sm); }
 }
 .cell { min-width: 0; min-height: 0; display: flex; flex-direction: column; > * { flex: 1 1 auto; } }
-.grid { display: grid; grid-template-columns: repeat(var(--pui-rows-n), minmax(0, 1fr)); gap: var(--pui-rows-g); }
+.grid { display: grid; grid-template-columns: repeat(var(--pui-rows-n), minmax(0, 1fr)); gap: var(--pui-rows-g);
+  /* Never a thin card: a row is at least a bank card's height for its column (set from the measured width). */
+  grid-auto-rows: minmax(var(--pui-rows-min-h, auto), auto); }
 .fixed .grid { grid-auto-rows: var(--pui-rows-h); }
+/* Mosaic: every row is one bank card high (--pui-rows-cell-h), every card fills its cell, and a big card fills the
+   cells its block gives it, so content never moves the rows and big cards are exact multiples of small ones. A card's
+   own fixed shape gives way (aspect-ratio auto). Gaps grow with the cards. */
+.mosaic { gap: var(--pui-rows-mg, var(--pui-rows-g)); }
+.mosaic .grid { gap: var(--pui-rows-mg, var(--pui-rows-g)); grid-auto-rows: var(--pui-rows-cell-h); }
+.mosaic .slider > .cell { height: var(--pui-rows-cell-h); }
+.mosaic .cell > * { height: 100%; min-height: 0; aspect-ratio: auto !important; }
 .fixed .slider > .cell { height: var(--pui-rows-h); }
 .feature { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: var(--pui-rows-g); }
 .fixed .feature { height: calc(var(--pui-rows-h) * 2 + var(--pui-rows-g)); }
@@ -37,7 +46,16 @@
   margin-top: -1.6rem;
   &::-webkit-scrollbar { display: none; }
   > .cell {
+    min-height: var(--pui-rows-min-h, auto);
     flex: 0 0 var(--pui-rows-item-w, calc((100% - var(--pui-rows-g) * (var(--pui-rows-n) - 1)) / var(--pui-rows-n)));
     scroll-snap-align: start;
   }
 }
+/* A card in a mosaic cell fills it without cutting anything: every box between the cell and the card's picture frame
+   becomes a column that fills, the frame takes the height that is left (its picture contained), and everything else
+   (name, price, tags) keeps its own size. */
+.mosaic .cell :is(div, section, article, a, button):has(:global(.pui-frame)) { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; }
+.mosaic .cell :global(.pui-frame) { flex: 1 1 0 !important; min-height: 3rem; height: auto; aspect-ratio: auto !important; }
+.mosaic .cell :is(div, section, article):has(:global(.pui-frame)) > :not(:global(.pui-frame)):not(:has(:global(.pui-frame))) { flex-shrink: 0; }
+.mosaic .cell :global(.pui-frame) > * { width: 100%; height: 100%; min-height: 0; max-height: 100%; }
+.mosaic .cell :global(.pui-frame) img { width: 100%; height: 100%; object-fit: contain; }

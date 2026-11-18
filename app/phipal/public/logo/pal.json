@@ -1,0 +1,11 @@
+{
+ "source": "the sketch: the P with a quarter circle for its hole and its foot cut short; walls and shoulder from Phi-Soft Light's p",
+ "font": "../../../../../phikit/crates/phiber/assets/phi-fonts/Phi-Soft/PhiSoft-Light.otf",
+ "letter": "p",
+ "hole": 160,
+ "round": { "top": 130, "bottom": 43, "foot": 15 },
+ "fill": 88,
+ "tile": { "pad": 0.1, "radius": 22, "back": "#00ff00", "ink": "#ff1aa8", "order": "qp" },
+ "out": { "p": "pal-p.svg", "q": "pal-q.svg", "sheet": "pal-sheet.svg" },
+ "registry": { "file": "../../../phi-kit/src/registry.json", "key": "phipal", "letter": "p" }
+}

@@ -5,31 +5,11 @@
 // Stories stay on their original ids (data/stories.json loads lazily and joins nothing outside itself).
 // Stores, shows and sales load lazily too (lib/heavy.ts); their ids come from data/heavyIds.json (scripts/heavy-ids.mjs).
 import { buildIdMap, mapKeys as keysOf, remapDeep, reverseOf, treeId, type IdMap, type TreeEntry } from '@phi-kit/normalize';
+import { heavyIds, core, feed, hosts, club, phipad, messages, events, agents, economy, series, ls, roles, casts, pools, assets, ride, jewel, league, beauty, collections } from './datasets';
 import manifest from '../data/tree.json';
-import heavyIds from '../data/heavyIds.json';
-import core from '../data/core.json';
-import feed from '../data/feed.json';
-import hosts from '../data/hosts.json';
-import club from '../data/club.json';
-import phipad from '../data/phipad.json';
-import messages from '../data/messages.json';
-import events from '../data/events.json';
-import agents from '../data/agents.json';
-import economy from '../data/economy.json';
-import series from '../data/series.json';
-import ls from '../data/ls.json';
-import roles from '../data/roles.json';
-import casts from '../data/casts.json';
-import pools from '../data/pools.json';
-import assets from '../data/assets.json';
-import ride from '../data/ride.json';
-import jewel from '../data/jewel.json';
 import explore from '../data/explore.json';
 import profile from '../data/profile.json';
 import landing from '../data/landing.json';
-import league from '../data/league.json';
-import beauty from '../data/beauty.json';
-import collections from '../data/collections.json';
 
 const FILES: Record<string, unknown> = { core, feed, hosts, club, phipad, messages, events, agents, economy, series, ls, roles, casts, pools, assets, ride, jewel, collections };
 const HEAVY = new Set(['stores', 'shows', 'sales']);

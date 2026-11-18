@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, ItemCard, Rows, Select, Spinner, Stack, Tag, TabList, Text, Title } from '@pui/components';
+import { Button, ItemCard, Rows, ChoiceRow, Spinner, Stack, Tag, TabList, Text, Title } from '@pui/components';
 import { EntityPage } from './EntityPage';
 import { useStore } from '@pui/store';
 import { D, agentOf, clubOf, hostOf, lookOf, person, poolOf, seriesOf, t, usd, worldOf } from '../../lib/data';
@@ -91,8 +91,8 @@ export const WatchSheet: React.FC<{ id: string }> = ({ id }) => {
   };
   const right = !prod ? <Spinner /> : (
     <Stack direction="column" gap={2}>
-      <Stack direction="row" justify="between" align="center" gap={2}><Text size="xs" intent="muted">{t('wsCastN', { n: prod.roles.length })}</Text>
-        <Select size="sm" value={part} aria-label={t('wsPart')} onChange={(ev) => setPart(ev.target.value)} options={parts.map((p) => ({ value: p, label: p === 'all' ? t('wsAllParts') : p }))} /></Stack>
+      <Text size="xs" intent="muted">{t('wsCastN', { n: prod.roles.length })}</Text>
+      <ChoiceRow value={part} label={t('wsPart')} onChange={setPart} options={parts.map((p) => ({ value: p, label: p === 'all' ? t('wsAllParts') : p }))} />
       {roles.map(role)}
     </Stack>
   );

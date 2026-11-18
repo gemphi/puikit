@@ -10,8 +10,9 @@ export type AppShellLeaf = {
   id: string; label: string; icon?: React.ReactNode; previews?: AppShellPreview[]; items?: AppShellLeaf[];
   panel?: React.ReactNode; open?: boolean; inline?: boolean;
 };
-/** A run of entries in a group's menu; the `end` one sits at the panel's foot. */
-export type AppShellSection = { id: string; items: AppShellLeaf[]; end?: boolean };
+/** A run of entries in a group's menu. `place` lays it in the panel the way the rail lays its groups: `top` (the
+ *  default) from the top, `center` in the middle of the free space, `bottom` at the foot (`end` is the older name). */
+export type AppShellSection = { id: string; items: AppShellLeaf[]; place?: 'top' | 'center' | 'bottom'; end?: boolean };
 export type AppShellGroup = {
   id: string;
   label: string;

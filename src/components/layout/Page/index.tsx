@@ -14,15 +14,21 @@ export type PageProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'align'> & {
   direction?: StackProps['direction'];
   gap?: StackProps['gap'];
   mainProps?: PageSectionProps;
+  /**
+   * How wide the page runs. `full` (default) fills the screen beside the sidebar; `feed` is one centred column, a feed
+   * and its slim side column (a social feed reads best narrow, never edge to edge); `reading` is a centred column for
+   * long text. The widths are tokens (--pui-page-feed, --pui-page-reading), so an app or look can retune them.
+   */
+  width?: 'full' | 'feed' | 'reading';
   className?: string;
   children?: React.ReactNode;
 };
 
-export const Page = ({ header, sidebar, footer, direction = 'row', gap = 2, mainProps, className = '', children, ...props }: PageProps) => {
+export const Page = ({ header, sidebar, footer, direction = 'row', gap = 2, mainProps, width = 'full', className = '', children, ...props }: PageProps) => {
   const { className: mainClassName, ...mainSectionProps } = mainProps ?? {};
 
   return (
-    <Stack direction={direction} gap={gap} className={cn('pui-page', styles.page, className)} {...props}>
+    <Stack direction={direction} gap={gap} className={cn('pui-page', styles.page, width === 'feed' && styles.feedWidth, width === 'reading' && styles.readingWidth, className)} data-width={width} {...props}>
       {/* `Box`, not `Section`: Section sets `width: 100%`, which inside this flex
           row resolves against the whole page and pushes the content column
           off-screen. The rail must size to its own content. */}

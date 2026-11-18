@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, CardBody, Image, MediaStage, Input, Rows, Stack, TabList, Tag, Text, Title } from '@pui/components';
+import { Bookmark, Heart, Share2, ShoppingBag } from 'lucide-react';
 import { useStore } from '@pui/store';
 import { useWallet } from '@phi-kit/wallet';
 import { D, itemImage, lookOf, lookStore, lotsOfPool, poolOf, t, usd } from '../../lib/data';
@@ -68,6 +69,13 @@ export const ItemSheet: React.FC<{ id: string }> = ({ id }) => {
     <PageSections id="item" size="sm" sections={[
       { id: 'look', title: l.name, expandable: true, collapsible: true, content: (
         <MediaStage media={<LookImage look={l} src={src} />}>
+          {/* The usual actions on an item, in the sidebar's glass: like, save, share, cart. */}
+          <Stack direction="row" gap={2} wrap>
+            <Button variant="glass" iconLeft={Heart} aria-pressed={!!s.liked[l.id]} onClick={() => s.toggle('liked', l.id)}>{t('isLike')}</Button>
+            <Button variant="glass" iconLeft={Bookmark} aria-pressed={!!s.saved[l.id]} onClick={() => { s.toggle('saved', l.id); s.flash(t('saved')); }}>{t('isSave')}</Button>
+            <Button variant="glass" iconLeft={Share2} onClick={() => { void navigator.clipboard?.writeText(location.href); s.flash(t('isCopied')); }}>{t('isShare')}</Button>
+            <Button variant="glass" iconLeft={ShoppingBag} aria-pressed={cart.includes(l.id)} onClick={() => toggleCart(l.id)}>{cart.includes(l.id) ? t('shInCart') : t('shAddCart')}</Button>
+          </Stack>
           {Object.keys(views).length > 1 && <TabList size="sm" variant="pills" aria-label={t('isAngles')} activeId={angle} onChange={setAngle} items={Object.keys(views).map((k) => ({ id: k, label: D.ls.views.find((v) => v.id === k)?.label ?? k }))} />}
         </MediaStage>) },
       { id: 'buy', title: t('isBuy'), expandable: true, collapsible: true, closable: true, content: (
@@ -109,7 +117,7 @@ export const ItemSheet: React.FC<{ id: string }> = ({ id }) => {
       title={l.name} sub={<>{store.name} · {l.rarity}</>} columns={[
         { id: 'variants', title: t('isVariantsTitle'), content: left, width: '19rem' },
         { id: 'item', title: l.name, label: t('isItem'), content: centre, minWidth: '20rem' },
-        { id: 'chat', title: <Stack direction="row" gap={2} align="center"><PersonAvatar id={agent.id} size="xs" /><Text size="sm" weight="semibold">{agent.name}</Text></Stack>, label: t('chat'), content: chat, width: '22rem' },
+        { id: 'chat', title: <Stack direction="row" gap={2} align="center"><PersonAvatar id={agent.id} size="xs" /><Text size="sm" weight="semibold">{agent.name}</Text></Stack>, label: t('chat'), content: chat, width: '22rem', folded: true },
       ]} />
   );
 };

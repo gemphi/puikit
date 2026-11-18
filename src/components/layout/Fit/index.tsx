@@ -8,6 +8,8 @@ import styles from './styles.module.scss';
 /** The ratio a Fit gives what it holds: a Frame inside takes it instead of its own. */
 const FitRatio = createContext<string | null>(null);
 export const useFitRatio = () => useContext(FitRatio);
+/** Give what it holds a ratio of its own ('auto' fills the box it is in: a mosaic's big cell). */
+export const FitRatioProvider = FitRatio.Provider;
 
 export type FitProps = {
   /** Width over height of the box (1: a square, 0.75: portrait 3:4, 16/9: wide). */

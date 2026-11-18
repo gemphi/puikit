@@ -19,7 +19,7 @@ type AccordionItemProps = {
 
 export const AccordionItem = ({ title, open, onToggle, children }: AccordionItemProps) => {
   return (
-    <Stack direction="column" className={cn(styles.item, 'phi-layers')}>
+    <Stack direction="column" className={styles.item}>
       <Row
         align="center"
         justify="between"

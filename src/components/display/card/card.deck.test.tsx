@@ -4,20 +4,17 @@ import { render } from '@testing-library/react';
 import { Card } from './index';
 import { deckShadow } from '../../../utils/deck';
 
-describe('Card depth', () => {
-  it('stacks n real copies of the card surface behind it, deepest first, hidden from readers', () => {
+describe('Card depth (decks are off)', () => {
+  it('builds no stacked copies: depth is accepted from older callers and draws nothing', () => {
     const { container } = render(<Card depth={3}>top</Card>);
-    const deck = container.firstElementChild as HTMLElement;
-    expect(deck.dataset.depth).toBe('3');
-    expect(deck.dataset.deckDirection).toBe('up');
-    const ghosts = [...deck.querySelectorAll<HTMLElement>('[data-deck-level]')];
-    expect(ghosts.map((g) => g.dataset.deckLevel)).toEqual(['3', '2', '1']);
-    expect(ghosts.every((g) => g.getAttribute('aria-hidden') === 'true')).toBe(true);
-    expect(deck.querySelector('article')!.textContent).toBe('top');
+    const el = container.firstElementChild as HTMLElement;
+    expect(el.tagName).toBe('ARTICLE');
+    expect(container.querySelectorAll('[data-deck-level]').length).toBe(0);
+    expect(el.textContent).toBe('top');
   });
-  it('can hang the deck below (the opposite cascade)', () => {
-    const deck = render(<Card depth={2} deckDirection="down">x</Card>).container.firstElementChild as HTMLElement;
-    expect(deck.dataset.deckDirection).toBe('down');
+  it('builds nothing in any direction either', () => {
+    const { container } = render(<Card depth={2} deckDirection="both">x</Card>);
+    expect(container.querySelectorAll('[data-deck-level]').length).toBe(0);
     expect(deckShadow(2, 7, 6, 'down')).toMatch(/^0 7px/);
   });
   it('is a plain card without depth', () => {
@@ -51,25 +48,24 @@ describe('Card tint from its content', () => {
 describe('Card with a card inside', () => {
   const Tileish = () => { useCardTint(undefined, undefined, true); return <span>tile</span>; };
   const Face = () => { useCardTint('#c2185b', 16); return <span>face</span>; };
-  it('drops its own surface and deck when its content is a card of its own', async () => {
+  it('keeps its own surface and padding when its content is a tile: the tile is its inner layer', async () => {
     const { container } = render(<Card depth={2}><Face /><Tileish /></Card>);
     await new Promise((r) => setTimeout(r, 0));
     const card = container.querySelector('article')!;
-    expect(card.getAttribute('data-surface')).toBe('none');
+    expect(card.getAttribute('data-surface')).toBeNull();
     expect(container.querySelectorAll('[data-deck-level]').length).toBe(0);
-    expect(card.style.getPropertyValue('--pui-card-tint')).toBe('');
   });
   it('keeps its surface when it holds several tiles (a list or a sheet)', async () => {
     const { container } = render(<Card><Tileish /><Tileish /></Card>);
     await new Promise((r) => setTimeout(r, 0));
     expect(container.querySelector('article')!.getAttribute('data-surface')).toBeNull();
   });
-  it('goes bare again when the second tile leaves', async () => {
+  it('keeps its surface when a tile leaves too (never bare)', async () => {
     const { container, rerender } = render(<Card><Tileish /><Tileish /></Card>);
     await new Promise((r) => setTimeout(r, 0));
     rerender(<Card><Tileish /></Card>);
     await new Promise((r) => setTimeout(r, 0));
-    expect(container.querySelector('article')!.getAttribute('data-surface')).toBe('none');
+    expect(container.querySelector('article')!.getAttribute('data-surface')).toBeNull();
   });
   it('never goes bare with tint="none" (a drawer, a modal)', async () => {
     const { container } = render(<Card tint="none"><Tileish /></Card>);

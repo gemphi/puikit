@@ -49,7 +49,7 @@ const leaf = (it: SecItem, s: PhieggState): AppShellLeaf => ({
 export const shellGroups = (s: PhieggState): AppShellGroup[] => rail().filter(([r]) => r.role !== 'apps').map(([r, place]) => {
   const conf = MENUS.secondary[r.id];
   if (!conf) return { id: r.id, label: r.label, icon: railGlyph(r), place, items: [{ id: r.id, label: r.label, icon: railGlyph(r) }] };
-  const sections = conf.sections.map((sec) => ({ id: r.id + ':' + sec.position, end: sec.position === 'bottom', items: sec.items.map((it) => leaf(it, s)) }));
+  const sections = conf.sections.map((sec) => ({ id: r.id + ':' + sec.position, place: (['top', 'center', 'bottom'] as const).find((p) => p === sec.position) ?? 'top', items: sec.items.map((it) => leaf(it, s)) }));
   return { id: r.id, label: conf.title || r.label, icon: railGlyph(r), place, to: r.tab, sections, items: sections.flatMap((x) => x.items) };
 });
 

@@ -49,6 +49,8 @@ export type AppShellProps = {
   labels?: Partial<AppShellLabels>;
   children: React.ReactNode;
   className?: string;
+  /** Change it to fold the menu panel (and the phone drawer) away: opening a record full width, say a new asset. */
+  collapseKey?: string;
 };
 
 const KEY = 'pui:shell:open';
@@ -65,6 +67,7 @@ const readOpen = () => { try { return localStorage.getItem(KEY) !== '0'; } catch
  * from useShell.
  */
 export const AppShell: React.FC<AppShellProps> = ({
+  collapseKey,
   brand, groups, view, onView, rail, onRail, apps, appsLabel = 'Apps', appsIcon, foot = [], tabs, tools, right, onPreview, crumbs, headerRight, labels, children, className = '',
 }) => {
   const L: AppShellLabels = { openMenu: 'Open the menu', closeMenu: 'Close the menu', menu: 'Menu', moreApps: 'More apps', fold: (l, o) => (o ? 'Fold ' : 'Open ') + l, ...labels };
@@ -84,6 +87,9 @@ export const AppShell: React.FC<AppShellProps> = ({
   const lastRail = React.useRef(rail);
   React.useEffect(() => { if (rail !== undefined && rail !== lastRail.current) setOpen(true); lastRail.current = rail; }, [rail]);
 
+  // A new collapseKey (a record opened full width) folds the panel and the drawer away.
+  const lastKey = React.useRef(collapseKey);
+  React.useEffect(() => { if (collapseKey && collapseKey !== lastKey.current) { setOpen(false); setDrawer(false); } lastKey.current = collapseKey; }, [collapseKey]); // eslint-disable-line react-hooks/exhaustive-deps
   const go = (id: string) => { onView(id); setDrawer(false); };
   // The current icon closes its open panel. Otherwise a leaf group navigates, a group opens its menu (and goes to its
   // own page when it has one).
@@ -161,5 +167,6 @@ export const AppShell: React.FC<AppShellProps> = ({
 };
 
 export { APPS as APPS_RAIL } from './Rail';
+export { ShellBack, ShellBackButton, ShellPin } from './Brand';
 export * from './context';
 export default AppShell;

@@ -126,8 +126,13 @@ export const Card = ({
   const list = [...reports.values()];
   const firstHex = list.find((r) => r.hex);
   const reported: TintReport | null = list.length ? { hex: firstHex?.hex, strength: firstHex?.strength, bare: list.filter((r) => r.bare).length === 1 } : null;
-  const bare = tint === undefined && !!reported?.bare;
-  const deck = bare ? 0 : clampDeck(depth);
+  // A tile inside a card is the card's inner layer (a real nested layer), never a reason for the card to drop its
+  // surface or its padding: so a card is never bare, and its text always sits inside its padding.
+  const bare = false;
+  // Decks are off: no stacked copies anywhere, and none are even built (they only cost the page). `depth` and
+  // `deckDirection` are still accepted from older callers and draw nothing.
+  const deck = 0;
+  void reported; void depth; void deckDirection; void clampDeck;
   const hex = tint === 'none' || bare ? undefined : tint ?? reported?.hex;
   const tinted = hex ? tintVars(hex, tintPrimary, tint ? tintStrength : reported?.strength ?? tintStrength) : undefined;
   // A card with onClick is a control: pointer, focusable, Enter / Space activate it (no style prop needed in apps).

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card, CardBody, Drawer, Icon, Input, Modal, ProgressBar, Rows, Stack, Tag, Text, Textarea, Title, TabList, Toast, CommentThread } from '@pui/components';
+import { Button, Card, CardBody, Drawer, DrawerClosingContext, Icon, Input, Modal, ProgressBar, Rows, Stack, Tag, Text, Textarea, Title, TabList, Toast, CommentThread } from '@pui/components';
 import { useStore } from '@pui/store';
 import { ChevronLeft, ChevronRight, Pause, Play, Send } from 'lucide-react';
 import { D, agentOf, fmt, person, poolOf, postById, postsBy, site, storySets, t } from '../../lib/data';
@@ -171,6 +171,7 @@ const PersonDrawer: React.FC = () => {
 
 export const Overlays: React.FC = () => {
   const s = useStore(phieggStore);
-  return <>{s.overlay.kind === 'story' && <Story />}{s.overlay.kind === 'comments' && <Comments />}{s.overlay.kind === 'chat' && <ChatSheet />}{s.overlay.kind === 'nest' && <NestNew />}{s.overlay.kind === 'person' && <PersonDrawer />}{s.overlay.kind === 'editProfile' && <EditProfile />}{s.overlay.kind === 'create' && <CreateSheet />}{s.overlay.kind === 'record' && <RecordSheet />}{s.overlay.kind === 'editClub' && <EditClub />}<CommerceOverlays /><PoolOverlays />{s.overlay.kind === 'list' && <CollectionSheet list={s.overlay.list} />}
-    {s.toast && <Toast message={s.toast} placement="center" />}</>;
+  // Tells the open drawer when it is sliding out, so it leaves the way it came instead of vanishing.
+  return <DrawerClosingContext.Provider value={s.overlay.kind !== 'none' && s.closingOverlay === s.overlay}>{s.overlay.kind === 'story' && <Story />}{s.overlay.kind === 'comments' && <Comments />}{s.overlay.kind === 'chat' && <ChatSheet />}{s.overlay.kind === 'nest' && <NestNew />}{s.overlay.kind === 'person' && <PersonDrawer />}{s.overlay.kind === 'editProfile' && <EditProfile />}{s.overlay.kind === 'create' && <CreateSheet />}{s.overlay.kind === 'record' && <RecordSheet />}{s.overlay.kind === 'editClub' && <EditClub />}<CommerceOverlays /><PoolOverlays />{s.overlay.kind === 'list' && <CollectionSheet list={s.overlay.list} />}
+    {s.toast && <Toast message={s.toast} placement="center" />}</DrawerClosingContext.Provider>;
 };

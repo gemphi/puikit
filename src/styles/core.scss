@@ -63,7 +63,10 @@ html, body {
    baseline, so a row that centres its items centres the letters themselves rather than the font's ascent and
    descent (which differ from face to face, and push some faces' letters up or down). Only boxes of text are trimmed:
    a box holding an icon or a picture keeps its full height. Cards are left as they are. */
-:where(button, [role='button']:not(article), [role='tab'], [role='menuitem'], [role='option']) :where(span, div, p):not(:has(svg, img, canvas, video)) {
+/* Only the control's own text box is trimmed (its direct child), never every box inside it: a trimmed block keeps the
+   normal spacing between its inner lines and trims only its outer top and bottom, so a row holding a name over a role,
+   or an author over a time, keeps its lines apart instead of laying them on top of each other. */
+:where(button, [role='button']:not(article), [role='tab'], [role='menuitem'], [role='option']) > :where(span, div, p):not(:has(svg, img, canvas, video)) {
   text-box: trim-both cap alphabetic;
 }
 /* A box that holds only an icon has no line of text, so it carries no line height: the icon is the box, and centring

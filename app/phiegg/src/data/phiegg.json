@@ -18,13 +18,6 @@
    "role": "apps"
   },
   {
-   "id": "shop",
-   "icon": "ShopNest",
-   "label": "Shop",
-   "tab": "shop",
-   "slot": "top"
-  },
-  {
    "id": "home",
    "icon": "Home",
    "label": "Home",
@@ -131,6 +124,13 @@
      ]
     }
    ]
+  },
+  {
+   "id": "shop",
+   "icon": "ShopNest",
+   "label": "Shop",
+   "tab": "shop",
+   "slot": "top"
   },
   {
    "id": "chat",

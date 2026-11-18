@@ -27,32 +27,29 @@
 }
 
 .drawer {
-  /* The drawer is a reading surface over arbitrary content — imagery, video —
-     so its ground is opaque whatever the theme style. A glassy card wash here
-     let the page bleed through the text. */
-  /* Opaque even when the theme's card colour is translucent (Apple, Glass): card tone over the page ground. */
-  background-color: var(--phi-color-background);
-  background-image: linear-gradient(var(--phi-color-background-card), var(--phi-color-background-card));
+  /* Glass, the same surface as the sidebar: translucent light over a blur, no opaque ground, so the drawer is one
+     with the app and never a second colour in dark mode. */
+  background: linear-gradient(90deg, transparent 0%, var(--phi-shade-3) 100%);
+  backdrop-filter: var(--phi-glass-blur);
+  -webkit-backdrop-filter: var(--phi-glass-blur);
   position: absolute;
   top: 0;
   height: 100%;
   max-width: 100%;
   overflow: hidden;
-  border: var(--phi-elevation-border, 1px solid var(--phi-color-border));
-  box-shadow: var(--phi-elevation-shadow, var(--phi-shadow-lg));
+  border: 0;
+  box-shadow: none;
   border-radius: 0;
 }
 
 .left {
   left: 0;
-  border-right: var(--phi-elevation-border, 1px solid var(--phi-color-border));
   border-radius: 0 var(--phi-radius-lg) var(--phi-radius-lg) 0;
   animation: slideLeft var(--phi-animation-speed, var(--phi-duration-slow, 0.45s)) var(--phi-ease, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
 }
 
 .right {
   right: 0;
-  border-left: var(--phi-elevation-border, 1px solid var(--phi-color-border));
   border-radius: var(--phi-radius-lg) 0 0 var(--phi-radius-lg);
   animation: slideRight var(--phi-animation-speed, var(--phi-duration-slow, 0.45s)) var(--phi-ease, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
 }
@@ -103,28 +100,17 @@
   }
 }
 
-/* The drawer is the rail's sibling surface: an opaque page ground with the
-   same mirrored rail gradient and the same dividing edge — one skin, shared
-   tokens, no hardcoded second look. */
+/* The drawer is the sidebar's sibling: the one glass surface, no opaque ground, no rim. */
 .overlay .drawer {
-  background-color: var(--phi-color-background);
-  /* An app's chosen gradient (--phi-gradient-drawer) wins over the theme's rail wash. */
-  background-image: var(--phi-gradient-drawer, var(--phi-gradient-rail-reverse, none));
-  border: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
-  /* Floating, apple-cornered, from the theme's own tokens. */
-  border-radius: var(--phi-radius-xl, var(--phi-radius-lg, 16px));
+  border: 0;
+  border-radius: var(--phi-radius-shape);
   top: var(--phi-layout-rail-margin, var(--phi-space-3, 12px));
   height: calc(100% - var(--phi-layout-rail-margin, var(--phi-space-3, 12px)) * 2);
 }
 .overlay .drawer.right { right: var(--phi-layout-rail-margin, var(--phi-space-3, 12px)); }
 .overlay .drawer.left { left: var(--phi-layout-rail-margin, var(--phi-space-3, 12px)); }
-.overlay .drawer.left {
-  background-image: var(--phi-gradient-drawer, var(--phi-gradient-rail, none));
-  border-inline-end: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
-}
-.overlay .drawer.right {
-  border-inline-start: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
-}
+
+
 
 /* Expanded: the drawer grows to the window (minus the rail margin) — same side, same skin. */
 .overlay .drawer.expanded {
@@ -178,14 +164,24 @@
 .handleButton { border: 0; padding: 0; cursor: pointer; }
 .handleButton:hover { background: color-mix(in srgb, var(--phi-color-primary) 55%, transparent); }
 
-/* Glass (tokens/_glass.scss): a drawer keeps the page's colour under it and lays glass from the edge it opens from:
-   a right drawer from its left edge to nothing, a left one the opposite, a bottom sheet from its top down. */
+/* Glass, the one surface, exactly as the sidebar: translucent light fading in from the left, over a blur, no opaque
+   ground and no rim, so the drawer never reads as a second colour in any mode. */
 .overlay .drawer, .dock .drawer {
-  background-color: var(--phi-glass-ground);
-  background-image: var(--phi-glass-from-down);
-  border-color: var(--phi-glass-rim);
+  background-color: transparent;
+  background-image: linear-gradient(90deg, transparent 0%, var(--phi-shade-3) 100%);
+  border-color: transparent;
   backdrop-filter: var(--phi-glass-blur);
   -webkit-backdrop-filter: var(--phi-glass-blur);
 }
-.overlay .drawer.right { background-image: var(--phi-glass-from-across); }
-.overlay .drawer.left { background-image: var(--phi-glass-to-across); }
+
+/* Sliding out: every drawer leaves the way it came, the backdrop fades, and nothing can be clicked meanwhile.
+   Keep the duration in step with DRAWER_EXIT_MS (index.tsx). */
+@keyframes slideOutRight { from { transform: translateX(0); } to { transform: translateX(100%); } }
+@keyframes slideOutLeft { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+@keyframes slideDown { from { transform: translateY(0); } to { transform: translateY(100%); } }
+@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+.leaving { pointer-events: none; }
+.leaving .backdrop { animation: fadeOut 0.32s ease-in forwards; }
+.leaving .drawer.right { animation: slideOutRight 0.32s cubic-bezier(0.4, 0, 1, 1) forwards; }
+.leaving .drawer.left { animation: slideOutLeft 0.32s cubic-bezier(0.4, 0, 1, 1) forwards; }
+.leaving .drawer.bottom { animation: slideDown 0.32s cubic-bezier(0.4, 0, 1, 1) forwards; }

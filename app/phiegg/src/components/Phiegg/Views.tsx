@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DataTable, FacetFilters, FilterLayout, Rows, Stack, StageSlider, Text, ViewToolbar, facetsOf, matchFacets, type DataTableColumn } from '@pui/components';
+import { Box, DataTable, FacetFilters, FilterLayout, Rows, Stack, StageSlider, Text, ViewToolbar, facetsOf, matchFacets, type DataTableColumn } from '@pui/components';
 import { useStore } from '@pui/store';
 import { garmentOf, t } from '../../lib/data';
 import { phieggStore } from '../../state/phieggStore';
@@ -52,7 +52,17 @@ export function ListView<T>({ rows, keyOf, text, facets = [], sorts = [], render
   /** Opens a row from the table. */
   onRow?: (r: T) => void;
 }) {
-  const { view } = useStore(phieggStore);
+  const { view, openId } = useStore(phieggStore);
+  // Every record opens: the page's own action, else its record by id (state openId: its page, or its record page).
+  const openRow = onRow ?? ((r: T) => openId(keyOf(r)));
+  // A click on the card opens it; a click on something of its own inside (Buy, a link, a field) does only that.
+  const card = (r: T) => (
+    <Box className="ph-open" onClick={(e: React.MouseEvent) => {
+      const hit = (e.target as Element).closest('button, a, input, select, textarea, label, [role="button"], [role="radio"], [role="checkbox"], [role="tab"]');
+      if (hit && hit !== e.currentTarget && (e.currentTarget as Element).contains(hit)) return;
+      openRow(r);
+    }}>{render(r)}</Box>
+  );
   const [open, setOpen] = useState(false); const [q, setQ] = useState(''); const [sel, setSel] = useState<Record<string, string>>({}); const [sort, setSort] = useState(sorts[0]?.id ?? '');
   const ql = q.trim().toLowerCase();
   const by = sorts.find((x) => x.id === sort)?.by;
@@ -67,10 +77,10 @@ export function ListView<T>({ rows, keyOf, text, facets = [], sorts = [], render
           search={text ? q : undefined} onSearch={text ? setQ : undefined} sorts={sorts.map((x) => ({ id: x.id, label: x.label }))} sort={sort} onSort={setSort}
           labels={{ search: t('searchPh'), sort: t('lsSort'), all: t('seAll'), clear: t('lsClear') }} />}>
         {shown.length === 0 ? <Text intent="muted">{empty ?? t('lsNone')}</Text>
-          : view.mode === 'list' && table ? <DataTable rows={shown} getKey={(r) => keyOf(r)} columns={table} onRowClick={onRow ? (r) => onRow(r) : undefined}
+          : view.mode === 'list' && table ? <DataTable rows={shown} getKey={(r) => keyOf(r)} columns={table} onRowClick={(r) => openRow(r)}
               stickyHeader stickyFirst maxHeight="34rem" limit={groupBy ? undefined : 25} groupBy={groupBy} />
           : view.mode === 'tile' && slider ? slider(shown)
-          : <ViewGrid cols={cols} minItemWidth={minItemWidth}>{shown.map((r) => <React.Fragment key={keyOf(r)}>{render(r)}</React.Fragment>)}</ViewGrid>}
+          : <ViewGrid cols={cols} minItemWidth={minItemWidth}>{shown.map((r) => <React.Fragment key={keyOf(r)}>{card(r)}</React.Fragment>)}</ViewGrid>}
       </FilterLayout>
     </Stack>
   );

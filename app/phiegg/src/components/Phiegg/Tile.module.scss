@@ -7,7 +7,10 @@
 .ink { color: var(--phi-color-gray-50); }
 .neutral { color: var(--phi-color-text-primary); }
 .glyph { width: 100%; height: 100%; display: grid; place-items: center; color: var(--phi-color-primary); }
-.avatarRing { padding: 2px; border: 2px solid var(--phi-color-primary); }
+.avatarRing { flex: none; padding: 2px; border: 2px solid var(--phi-shade-1); }
+/* A row of rings: one line, each ring its own size; the rings that would wrap are hidden, so none is squeezed or cut. */
+.ringRow { flex: 1 1 auto; min-width: 0; display: flex; flex-wrap: wrap; gap: var(--phi-space-2); overflow: hidden;
+  height: calc(var(--pui-ring, 3.5rem) + 8px); }
 
 .animate { animation: phSlideIn 0.45s cubic-bezier(0.2, 0.8, 0.2, 1); }
 @keyframes phSlideIn { from { opacity: 0; transform: translateX(8%) scale(0.98); } to { opacity: 1; transform: none; } }

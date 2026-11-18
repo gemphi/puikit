@@ -34,9 +34,9 @@ export const PostPage: React.FC = () => {
         <Tile key={slide} animate {...postTile(post, slide)} ratio="4/5" big title={sl.title} sub={sl.caption}
           badges={<>{n > 1 && <Tag round size="sm">{t('slideOf', { i: slide + 1, n })}</Tag>}{n > 1 && <Tag round size="sm" interactive onClick={() => setAuto(!auto)}>{auto ? t('autoplayOn') : t('autoplayOff')}</Tag>}</>} />
         {n > 1 && <Stack direction="row" justify="center" gap={2}>
-          <Button variant="ghost" icon={<Icon icon={ChevronLeft} size="sm" />} onClick={() => step(-1)} aria-label={t('prev')} />
+          <Button variant="glass" icon={<Icon icon={ChevronLeft} size="sm" />} onClick={() => step(-1)} aria-label={t('prev')} />
           <TabList size="sm" variant="pills" aria-label="Slides" activeId={String(slide)} onChange={(id) => { setAuto(false); setSlide(Number(id)); }} items={post.slides.map((_, i) => ({ id: String(i), label: String(i + 1) }))} />
-          <Button variant="ghost" icon={<Icon icon={ChevronRight} size="sm" />} onClick={() => step(1)} aria-label={t('next')} />
+          <Button variant="glass" icon={<Icon icon={ChevronRight} size="sm" />} onClick={() => step(1)} aria-label={t('next')} />
         </Stack>}
       </Box>
       <Stack direction="column" gap={4} className={styles.side}>
@@ -44,13 +44,13 @@ export const PostPage: React.FC = () => {
         <Text>{post.caption} <Text as="span" intent="primary">{post.tags.join(' ')}</Text></Text>
         {world && <Box><Tag round interactive onClick={() => s.go('world', { worldId: world.id })}>{world.name}</Tag></Box>}
         <Stack direction="row" gap={2} wrap>
-          <Button variant={liked ? 'secondary' : 'outline'} iconLeft={Heart} onClick={() => s.toggle('liked', post.id)}>{fmt(post.likes + (liked ? 1 : 0))}</Button>
-          <Button variant="outline" iconLeft={MessageCircle} onClick={() => s.openComments(post.id, slide)}>{fmt(count)}</Button>
-          <Button variant="outline" icon={<Icon icon={Repeat} size="sm" />} onClick={() => s.flash(t('reshared'))} aria-label={t('reshared')} />
-          <Button variant={saved ? 'secondary' : 'outline'} icon={<Icon icon={Bookmark} size="sm" />} onClick={() => { s.toggle('saved', post.id); s.flash(t('saved')); }} aria-label={t('saved')} />
+          <Button variant="glass" aria-pressed={liked} iconLeft={Heart} onClick={() => s.toggle('liked', post.id)}>{fmt(post.likes + (liked ? 1 : 0))}</Button>
+          <Button variant="glass" iconLeft={MessageCircle} onClick={() => s.openComments(post.id, slide)}>{fmt(count)}</Button>
+          <Button variant="glass" icon={<Icon icon={Repeat} size="sm" />} onClick={() => s.flash(t('reshared'))} aria-label={t('reshared')} />
+          <Button variant="glass" aria-pressed={saved} icon={<Icon icon={Bookmark} size="sm" />} onClick={() => { s.toggle('saved', post.id); s.flash(t('saved')); }} aria-label={t('saved')} />
         </Stack>
-        {sl.lookId && <Box><Button variant="primary" iconLeft={ShoppingBag} onClick={() => s.openLook(sl.lookId as string)}>{t('poShopLook')}</Button></Box>}
-        <Box><Button variant="ghost" onClick={() => s.openPerson(person(post.authorId).id)}>{t('viewProfile')}</Button><Button variant="ghost" onClick={() => s.openComments(post.id, slide)}>{t('poViewComments')}</Button></Box>
+        {sl.lookId && <Box><Button variant="glass" iconLeft={ShoppingBag} onClick={() => s.openLook(sl.lookId as string)}>{t('poShopLook')}</Button></Box>}
+        <Box><Button variant="glass" onClick={() => s.openPerson(person(post.authorId).id)}>{t('viewProfile')}</Button><Button variant="glass" onClick={() => s.openComments(post.id, slide)}>{t('poViewComments')}</Button></Box>
         {mine && <Box><Button size="sm" variant="danger" onClick={() => s.removeShot(post.id)}>{t('shotRemove')}</Button></Box>}
       </Stack>
       <Box className={styles.more}><Connected kind="post" id={post.id} /></Box>

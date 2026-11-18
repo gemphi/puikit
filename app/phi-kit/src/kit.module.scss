@@ -53,3 +53,6 @@
 
 /* A record's plain fields in the right-bar: one line each, a hairline that fades out. */
 .fieldRow { border-bottom: 1px solid color-mix(in srgb, var(--phi-color-border) 70%, transparent); }
+
+/* Fills its holder exactly (the header's account avatar takes the shell's one control size). */
+.fill { width: 100% !important; height: 100% !important; }

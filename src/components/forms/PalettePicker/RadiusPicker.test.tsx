@@ -22,7 +22,6 @@ describe('RadiusPicker', () => {
     expect(document.documentElement.style.getPropertyValue('--phi-radius-scale')).toBe(String(RADIUS_PRESETS.large));
     expect(getByRole('radio', { name: '48px' }).getAttribute('aria-checked')).toBe('true');
     fireEvent.click(getByRole('radio', { name: '64px' }));
-    // pill switches shape too: controls go fully round
     expect(document.documentElement.getAttribute('data-radius')).toBe('pill');
   });
 });

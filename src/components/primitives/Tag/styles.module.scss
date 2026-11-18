@@ -1,5 +1,8 @@
 .tag {
   display: inline-flex;
+  /* As wide as its label wherever it stands: a column never stretches a tag into a strip. */
+  width: fit-content;
+  max-width: 100%;
   align-items: center;
   gap: var(--phi-space-1);
   font-family: var(--phi-font-family);

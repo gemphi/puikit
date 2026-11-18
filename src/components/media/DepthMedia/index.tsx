@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { cn } from '../../../utils/cn';
 import { Box } from '../../layout/Box';
 import { Image } from '../Image';
+import { useFitRatio } from '../../layout/Fit';
 import styles from './styles.module.scss';
 
 /** One layer of a DepthMedia: an image, a CSS background (tone, gradient), or any node (an Avatar). */
@@ -78,11 +79,12 @@ export const DepthMedia = ({
   back, mid, front, ratio = '4/5', tilt = true, grid = false, game = true, midSize = 0.74, frontSize = 0.42,
   deck = 0, midDeck = 3, deckDirection = 'up', footerIcon, badges, children, onClick, className, style, ...rest
 }: DepthMediaProps) => {
+  ratio = useFitRatio() ?? ratio; // a Fit or a mosaic's big cell gives its own shape
   const n = Math.max(0, Math.min(8, Math.round(deck)));
   const m = mid ? Math.max(0, Math.min(5, Math.round(midDeck))) : 0;
   const ref = useRef<HTMLElement | null>(null);
   const move = (e: React.PointerEvent) => {
-    const el = ref.current; if (!el || !tilt) return;
+    const el = ref.current; if (!el || !tilt || !onClick) return; // only a card that opens something moves under the pointer
     const r = el.getBoundingClientRect();
     el.style.setProperty('--pui-depth-x', (((e.clientX - r.left) / r.width) * 2 - 1).toFixed(3));
     el.style.setProperty('--pui-depth-y', (((e.clientY - r.top) / r.height) * 2 - 1).toFixed(3));
@@ -92,7 +94,7 @@ export const DepthMedia = ({
   const frame = (
     <Box
       ref={n ? undefined : ref}
-      className={cn(styles.depth, tilt && styles.tilt, game && styles.game, onClick && styles.click, !n && className)}
+      className={cn(styles.depth, onClick && tilt && styles.tilt, onClick && game && styles.game, onClick && styles.click, !n && className)}
       style={n ? vars : { ...vars, ...style }}
       onPointerMove={n ? undefined : move}
       onPointerLeave={n ? undefined : leave}

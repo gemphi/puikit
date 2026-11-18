@@ -3,7 +3,7 @@
 // which are editable. Every list's Filter & sort drawer, every record table and every edit sheet reads this one
 // file, so controls are declared once and configurable, never hand-built per page.
 import React from 'react';
-import { Input, RelationPicker, type RelationOption, Select, StepForm, type StepFormSection, type StepFormStep, TabList, Textarea, type DataTableColumn } from '@pui/components';
+import { Input, RelationPicker, type RelationOption, ChoiceRow, StepForm, type StepFormSection, type StepFormStep, TabList, Textarea, type DataTableColumn } from '@pui/components';
 import { CircleUser, Coins, FileText, Layers, Link2, Palette, Truck, Package, CreditCard, MapPin, ClipboardCheck, ShieldCheck, Sparkles } from 'lucide-react';
 import kindsJson from '../data/kinds.json';
 import { D, PFTS, clubOf, fmt, person, poolOf, site, t, usd, worldOf, type SiteCopyKey } from './data';
@@ -116,6 +116,10 @@ export function tableFor<T>(kind: string, over: Over<T> = {}): DataTableColumn<T
 /** A record as people read it, from its kind's declaration: each declared field's label and shown value (links become
     the linked records' names, formats and resolvers applied), in declared order, empty fields left out. */
 export function describe(kind: string, row: Record<string, unknown>): { id: string; label: string; value: React.ReactNode; group?: string }[] {
+  // A kind with nothing declared still shows: its own plain fields (text, numbers, yes/no), named from their keys.
+  if (!fieldsOf(kind).length) return Object.entries(row)
+    .filter(([k, v]) => k !== 'id' && !/(Id|Ids)$/.test(k) && v !== '' && v != null && ['string', 'number', 'boolean'].includes(typeof v))
+    .map(([k, v]) => ({ id: k, label: k.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/^./, (c) => c.toUpperCase()), value: String(v) }));
   return fieldsOf(kind).map((f) => {
     const raw = dig(row, f.path ?? f.id);
     if (raw == null || raw === '' || (Array.isArray(raw) && !raw.length)) return null;
@@ -162,7 +166,7 @@ export const FieldControl: React.FC<{ field: FieldDecl; value: string; onChange:
   switch (field.control) {
     case 'textarea': return <Textarea value={value} rows={3} onChange={(e) => onChange(e.target.value)} />;
     case 'radio': return <TabList size="sm" variant="pills" activeId={value} onChange={(id) => onChange(String(id))} items={(field.options ?? []).map((o) => ({ id: o, label: o }))} />;
-    case 'select': return <Select value={value} onChange={(e) => onChange(e.target.value)} options={(field.options ?? []).map((o) => ({ value: o, label: o }))} />;
+    case 'select': return <ChoiceRow value={value} label={field.label ?? field.id} onChange={onChange} options={(field.options ?? []).map((o) => ({ value: o, label: o }))} />;
     case 'link': case 'links': {
       const opts = optionsOf(field.kind ?? '');
       const sel = value ? value.split(',').filter(Boolean) : [];

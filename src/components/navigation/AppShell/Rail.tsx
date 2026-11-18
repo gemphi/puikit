@@ -31,10 +31,9 @@ export const Rail: React.FC<RailProps> = ({ label, groups, footGroups, footLeave
   const at = (p: 'top' | 'center' | 'bottom') => groups.filter((g) => (g.place ?? 'top') === p);
   return (
     <Box as="nav" className={styles.rail} aria-label={label}>
-      <Stack direction="column" gap={1} align="center" className={styles.railGroup}>{at('top').map(group)}</Stack>
-      <Box flex="1" />
-      {at('center').length > 0 && <><Stack direction="column" gap={1} align="center" className={styles.railGroup}>{at('center').map(group)}</Stack><Box flex="1" /></>}
-      <Stack direction="column" gap={1} align="center" className={styles.railGroup}>
+      <Stack direction="column" gap={1} align="center" className={cn(styles.railGroup, styles.placeTop)}>{at('top').map(group)}</Stack>
+      <Stack direction="column" gap={1} align="center" className={cn(styles.railGroup, styles.placeCenter)}>{at('center').map(group)}</Stack>
+      <Stack direction="column" gap={1} align="center" className={cn(styles.railGroup, styles.placeBottom)}>
         {at('bottom').map(group)}
         {apps && btn(APPS, apps.label, apps.icon ?? <Grid3x3 size={20} />, railId === APPS, pickApps)}
         {footGroups.map(group)}
