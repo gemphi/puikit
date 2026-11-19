@@ -6,13 +6,15 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  border-radius: var(--phi-radius-xl);
-  background: var(--phi-color-background-secondary, var(--phi-color-background));
-  background-image: var(--phi-gradient-media, none);
+  border-radius: var(--phi-radius-lg);
+  /* The kit's one surface, no theme colour (a picture's own blurred copy is its ground). */
+  background: var(--phi-surface);
   color: var(--phi-color-text-primary);
   transform-style: preserve-3d;
   transition: transform var(--phi-duration-slow, 0.5s) var(--phi-ease, ease-out), box-shadow var(--phi-duration-slow, 0.5s) var(--phi-ease, ease-out);
   min-height: 8rem;
+  /* The caption reads its own card's width, so a small card never squeezes its title to a letter. */
+  container-type: inline-size;
 }
 .click { cursor: pointer; }
 .click:focus-visible { outline: 2px solid var(--phi-color-primary); outline-offset: 2px; }
@@ -55,8 +57,7 @@
 }
 .mid {
   z-index: 1;
-  background: color-mix(in srgb, var(--phi-color-background-card, #fff) 72%, transparent);
-  background-image: var(--phi-gradient-child, none);
+  background: var(--phi-surface);
   border: 1px solid color-mix(in srgb, var(--phi-color-text-primary) 12%, transparent);
   box-shadow: 0 1.25rem 2.5rem -1rem rgba(0, 0, 0, 0.45), 0 0.25rem 0.75rem rgba(0, 0, 0, 0.12);
   transform: translate3d(calc(var(--pui-depth-x) * 10px), calc(-50% + var(--pui-depth-y) * 10px), 0) rotate(2.5deg);
@@ -68,8 +69,7 @@
 .midGhost {
   z-index: 1;
   overflow: hidden;
-  background: color-mix(in srgb, var(--phi-color-background-card, #fff) 64%, transparent);
-  background-image: var(--phi-gradient-child, none);
+  background: var(--phi-surface);
   border: 1px solid color-mix(in srgb, var(--phi-color-text-primary) 14%, transparent);
   box-shadow: 0 0.9rem 1.6rem -0.9rem rgba(0, 0, 0, 0.5);
   transform-origin: 50% 100%;
@@ -97,17 +97,17 @@
   // top-left corner of the mid layer — clear of the caption (bottom-left) and the frame edge (right)
   left: -20%;
   top: -8%;
-  border-radius: 50%;
+  border-radius: var(--phi-radius-full);
   padding: 3px;
   background: var(--phi-color-background);
-  background-image: var(--phi-gradient-grandchild, none);
+  background-image: var(--phi-surface);
   /* the photo is a deck too: two smaller circles stacked behind it */
   box-shadow: 0 -0.45rem 0 -0.2rem color-mix(in srgb, var(--phi-color-primary) 34%, var(--phi-color-background-card, #fff)),
     0 -0.85rem 0 -0.42rem color-mix(in srgb, var(--phi-color-accent-2, var(--phi-color-success)) 28%, var(--phi-color-background-card, #fff)),
     0 0.75rem 1.5rem -0.5rem rgba(0, 0, 0, 0.5);
   transform: translate3d(calc(var(--pui-depth-x) * 8px), calc(var(--pui-depth-y) * 8px), 0) rotate(-2.5deg);
   transition: transform var(--phi-duration, 0.3s) var(--phi-ease, ease-out);
-  .clip { inset: 3px; border-radius: 50%; }
+  .clip { inset: 3px; border-radius: var(--phi-radius-full); }
   // Avatars and glyphs fill the disc.
   .clip > * { width: 100% !important; height: 100% !important; font-size: 1.1em; }
 }
@@ -117,17 +117,31 @@
 .caption {
   position: absolute; z-index: 3; left: 0; right: 0; bottom: 0;
   display: flex; align-items: flex-end; gap: 0.6rem;
-  padding: 4.5rem calc(0.75rem + var(--phi-radius-card, 12px) * 0.4) calc(0.75rem + var(--phi-radius-card, 12px) * 0.2);
-  /* The footer shade: strongest at the bottom edge, gone by the top of the caption. */
-  background: var(--pui-depth-scrim, linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.42) 38%, rgba(0, 0, 0, 0.12) 72%, transparent 100%));
-  color: #fff;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+  /* Just tall enough for its words, so the picture runs almost to the foot. */
+  padding: 2.25rem calc(0.75rem + var(--phi-radius-card) * 0.4) calc(0.75rem + var(--phi-radius-card) * 0.2);
+  /* The caption's ink is the page's; light under the words, from the foot up to nothing, makes it read on any picture. */
+  background: linear-gradient(0deg, var(--phi-shade-1), transparent);
+  color: var(--phi-color-text-primary);
+  text-shadow: 0 1px 2px color-mix(in srgb, var(--phi-color-background) 55%, transparent);
   :global(*) { color: inherit; }
+}
+.glass {
+  /* The glass bottom, as on the stage and every related card: the picture blurs and darkens more the lower it goes. */
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  /* No live blur per tile (dozens of them stall painting); the words carry a soft shadow instead. */
+  mask-image: linear-gradient(0deg, var(--phi-color-background) 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(0deg, var(--phi-color-background) 0%, transparent 100%);
 }
 .captionText { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; flex: 0 1 62%; > * { max-width: 100%; }
   /* Long titles stop at two lines and subtitles at one, so they never run into the badges above. */
   > :first-child { display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   > :nth-child(2) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } }
+/* A small card: no ring, the title takes the caption's whole width and steps down a size. */
+@container (max-width: 13rem) {
+  .footIcon { display: none; }
+  .captionText { flex: 1 1 auto; > :first-child { font-size: 0.875rem; } }
+  .caption { padding-inline: calc(0.5rem + var(--phi-radius-card) * 0.2); }
+}
 .footIcon { flex: none; width: clamp(2rem, 18%, 3.25rem); aspect-ratio: 1; filter: drop-shadow(0 0.25rem 0.5rem rgba(0, 0, 0, 0.35)); > * { width: 100% !important; height: 100% !important; } }
 
 // Tilt the whole frame toward the pointer.
@@ -138,7 +152,7 @@
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--phi-color-text-primary) 8%, transparent);
   &::before {
     content: ''; position: absolute; inset: 0; z-index: 4; pointer-events: none;
-    background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.28) 50%, transparent 65%);
+    background: linear-gradient(115deg, transparent 35%, var(--phi-shade-1) 50%, transparent 65%);
     transform: translateX(-120%);
   }
   &:hover {
@@ -189,7 +203,7 @@
   left: 0; right: 0; bottom: 0;
   top: calc(var(--pui-deck) * var(--pui-deck-step));
   z-index: 0;
-  border-radius: var(--phi-radius-xl);
+  border-radius: var(--phi-radius-lg);
   overflow: hidden;
   background: var(--phi-color-background-secondary);
   border: 1px solid color-mix(in srgb, var(--phi-color-text-primary) 14%, transparent);
@@ -237,3 +251,18 @@
 /* Cascade off: the media is one clean surface, never a stack of copies (user: no cascade anywhere). */
 .deck, .deck[data-deck-dir='down'] { padding-top: 0 !important; padding-bottom: 0 !important; }
 .ghost, .ghostBack { display: none !important; }
+
+/* The owner at the top right; the actions down the right, glass rounds that spring in one after another on hover. */
+.owner { position: absolute; z-index: 4; top: var(--phi-space-3); right: var(--phi-space-3); border-radius: var(--phi-radius-full); }
+.acts { position: absolute; z-index: 4; right: var(--phi-space-3); top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: var(--phi-space-2); }
+.act {
+  display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border: 0; cursor: pointer; border-radius: var(--phi-radius-full) !important;
+  color: var(--phi-color-text-primary); background-image: var(--phi-label);
+  opacity: 0; transform: translateX(0.75rem) scale(0.9);
+  transition: opacity var(--phi-duration) var(--phi-ease), transform var(--phi-duration-slow) var(--phi-ease-spring);
+}
+.act:nth-child(2) { transition-delay: 30ms; } .act:nth-child(3) { transition-delay: 60ms; } .act:nth-child(4) { transition-delay: 90ms; } .act:nth-child(5) { transition-delay: 120ms; }
+.depth:hover .act, .depth:focus-within .act { opacity: 1; transform: none; backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur); }
+.actOn { background-image: var(--phi-label-strong); }
+.actOn svg { fill: currentColor; }
+@media (hover: none) { .act { opacity: 1; transform: none; } }

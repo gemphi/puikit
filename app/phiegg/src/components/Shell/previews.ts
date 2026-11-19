@@ -8,13 +8,13 @@ export interface Preview { id: string; label: string; meta: string; open: () => 
 export function previews(source: string, s: PhieggState, n: number): Preview[] {
   const rows: Preview[] = (() => {
     switch (source) {
-      case 'nests': return s.nests.filter((x) => !x.parentId).map((x) => ({ id: x.id, label: '# ' + x.name, meta: x.unread ? String(x.unread) : '', open: () => s.go('hosts') }));
+      case 'nests': return s.nests.filter((x) => !x.parentId).map((x) => ({ id: x.id, label: '# ' + x.name, meta: x.unread ? String(x.unread) : '', open: () => s.go('host', { hostId: x.hostId }) }));
       case 'worlds': return [...D.core.worlds].sort((a, b) => b.visitorsNow - a.visitorsNow).map((w) => ({ id: w.id, label: w.name, meta: fmt(w.visitorsNow), open: () => s.go('world', { worldId: w.id }) }));
       case 'quests': case 'sponsored': return D.economy.quests.filter((q) => source === 'quests' || q.kind === 'sponsored').map((q) => ({ id: q.id, label: q.title, meta: fmt(q.entrants), open: () => s.go(source === 'quests' ? 'quests' : 'play') }));
       case 'recipients': return D.messages.conversations.map((c) => ({ id: c.id, label: c.title, meta: c.unread ? String(c.unread) : c.at, open: () => s.go('messages') }));
       case 'agents': return D.agents.agents.map((a) => ({ id: a.id, label: a.name, meta: a.status, open: () => s.openPerson(a.id), who: a.id }));
       case 'voice': return D.messages.voiceRooms.map((v) => ({ id: v.id, label: v.title, meta: fmt(v.listeners), open: () => s.go('messages') }));
-      case 'hosts': return D.hosts.hosts.map((h) => ({ id: h.id, label: h.name, meta: t('online', { n: fmt(h.online) }), open: () => s.go('hosts') }));
+      case 'hosts': return D.hosts.hosts.map((h) => ({ id: h.id, label: h.name, meta: t('online', { n: fmt(h.online) }), open: () => s.go('host', { hostId: h.id }) }));
       case 'shows': return D.shows.shows.map((x) => ({ id: x.id, label: x.title, meta: String(x.looks.length), open: () => s.go('show', { showId: x.id }) }));
       case 'drops': return D.events.events.filter((e) => e.kind === 'drop').map((e) => ({ id: e.id, label: e.title, meta: e.startsAt.slice(5, 10), open: () => s.go('drops') }));
       case 'coins': return D.economy.coins.map((c) => ({ id: c.id, label: c.symbol, meta: (c.change24h > 0 ? '+' : '') + c.change24h + '%', open: () => s.go('coins') }));

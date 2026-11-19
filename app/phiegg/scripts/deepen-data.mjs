@@ -118,7 +118,7 @@ for (const c of core.clubs) {
       });
     }
   });
-  stores.stores.push({ id: 'g_st_' + c.id, clubId: c.id, code: c.ticker, name: c.name + ' Store', tagline: c.tagline, pools: cols, looks });
+  stores.stores.push({ id: 'g_st_' + c.id, clubId: c.id, code: c.ticker, name: c.name, tagline: c.tagline, pools: cols, looks });
 }
 save('stores', stores);
 

@@ -3,9 +3,9 @@
 .content { min-width: 0; }
 .aside {
   position: sticky; top: 0.75rem; max-height: calc(100vh - 6rem); overflow: auto;
-  border-radius: var(--phi-radius-xl);
+  border-radius: var(--phi-radius-lg);
   background-color: var(--phi-color-background-card);
-  background-image: linear-gradient(90deg, color-mix(in srgb, var(--phi-color-primary) 10%, transparent) 0%, transparent 70%), var(--phi-gradient-child, none);
+  background-image: var(--phi-label-soft);
   box-shadow: inset 0 0 0 1px var(--phi-color-border-subtle, var(--phi-color-border));
   animation: puiFilterIn var(--phi-duration, 0.3s) var(--phi-ease, ease-out);
 }

@@ -1,15 +1,9 @@
-/* A post's page: the shot gets the room, its actions sit calmly beside it. */
-.page { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(1.5rem, 3vw, 3rem); align-items: start; width: 100%; max-width: 76rem; margin-inline: auto; animation: rise 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
-.stage { display: flex; flex-direction: column; gap: 0.75rem; min-width: 0; }
-.side { position: sticky; top: 1rem; min-width: 0; }
-.more { grid-column: 1 / -1; min-width: 0; }
+/* A post's sheet, like a profile: the post and its actions on the left, more of its city in the middle, related on
+   the right; one column on a narrow screen. Theme tokens only. */
+.cols { display: grid; grid-template-columns: minmax(18rem, 1fr) minmax(0, 2fr); gap: var(--phi-gap); align-items: start; container-type: inline-size; }
+.side { min-width: 0; }
+.mid { min-width: 0; }
+.acts { display: flex; flex-wrap: wrap; gap: var(--phi-space-1); }
+.thumb { display: inline-grid; width: 1.5rem; height: 1.5rem; border-radius: var(--phi-radius-sm); overflow: hidden; > img { width: 100%; height: 100%; object-fit: cover; } }
 
-@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-
-@media (max-width: 860px) {
-  .page { grid-template-columns: minmax(0, 1fr); }
-  .side { position: static; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .page { animation: none; }
-}
+@media (max-width: 760px) { .cols { grid-template-columns: minmax(0, 1fr); } .side { position: static; } }

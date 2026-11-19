@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
-import { Button, Card, CardBody, Page, ChoiceRow, Stack, TabList, Tag, Text, Title } from '@pui/components';
+import React, { useMemo } from 'react';
+import { Button, Page, Stack, Tag, Text, Title } from '@pui/components';
 import { useStore } from '@pui/store';
-import { ShoppingBag } from 'lucide-react';
 import { phieggStore } from '../../state/phieggStore';
-import { facetsFor, listOf, sortsFor, tableFor } from '../../lib/fields';
-import { STORES, clubOf, fmt, lookOf, lotsOfPool, poolOf, storeOf, t, usd } from '../../lib/data';
-import { lookLive, poolNumbers, quote, useNow } from '../../lib/market';
-import { LotCard } from '../../components/Phiegg/Pools';
-import { useCart, useOwned } from '../../lib/cart';
-import { ListView } from '../../components/Phiegg/Views';
-import { LookImage } from '../../components/Phiegg/LookImage';
-import type { PoolLot, ShopLook } from '../../types/phiegg';
+import { fmt, itemOf, storeOf, t } from '../../lib/data';
+import { poolNumbers, useNow } from '../../lib/market';
+import { useCart } from '../../lib/cart';
+import { TabLists } from '../../components/Phiegg/KindList';
+import { inPlace, placeLabel } from '../../lib/shopMenu';
+import { routeOf, rowsOf } from '../../lib/route';
+import type { ShopLook } from '../../types/phiegg';
 
-/** Every club's store: its pools as one row of tabs, then looks (solo) and lots (packs, drops) at moving prices, each
- *  list with Filter & sort and a table sortable by its headings. Looks open in the item sheet; buying spends the wallet. */
+/** A shop: its name and numbers, then its path's tabs (data/route.json). Each tab is a kind and the rows of it that
+ *  belong to this shop, drawn by the one list of any kind; the page names no kind and no card. */
+const TABS = routeOf('shop').tab ?? [];
+
 export const ShopPage: React.FC = () => {
-  const s = useStore(phieggStore); const { cart, offers } = useCart(); const mine = useOwned();
-  const store = storeOf(s.storeId); const club = clubOf(store.clubId);
+  const s = useStore(phieggStore); const { offers } = useCart();
+  const store = storeOf(s.storeId); const club = itemOf('club', store.clubId);
   const pending = offers.filter((o) => o.status === 'pending').length; const now = useNow(2000);
-  const [tab, setTab] = useState<string>('looks');
-  const poolName = (id: string) => store.pools.find((p) => p.id === id)?.name ?? poolOf(id)?.name ?? '';
-  const looks = store.pools.flatMap((p) => p.lookIds.map(lookOf).filter((l): l is ShopLook => !!l));
-  const lots = store.pools.flatMap((p) => { const pool = poolOf(p.id); return pool ? lotsOfPool(pool) : []; });
-  const totals = store.pools.map((p) => poolOf(p.id)).filter((p): p is NonNullable<typeof p> => !!p).map((p) => poolNumbers(p, now));
+  const cat = s.shopView.cat;
+  // Each tab with its rows; a tab that follows the menu keeps the rows under the entry picked. Only tabs with rows show.
+  const tabs = useMemo(() => TABS.map((tab) => ({ tab, rows: rowsOf(tab, store).filter((r) => !tab.menu || inPlace(r as unknown as ShopLook, cat)) })).filter((x) => x.rows.length > 0),
+    [store, cat, s.dataRev]); // eslint-disable-line react-hooks/exhaustive-deps
+  const totals = store.pools.map((p) => itemOf('pool', p.id)).filter((p): p is NonNullable<typeof p> => !!p).map((p) => poolNumbers(p, now));
   const sold = totals.reduce((n, x) => n + x.sold, 0), supply = totals.reduce((n, x) => n + x.supply, 0);
   return (
     <Page><Stack direction="column" gap={4}>
@@ -33,39 +33,22 @@ export const ShopPage: React.FC = () => {
           <Stack direction="row" gap={1} wrap align="center">
             {club && <Button size="sm" variant="ghost" onClick={() => s.go('club', { clubId: club.id })}>{t('byClub', { name: club.name })}</Button>}
             {supply > 0 && <Tag minimal round size="sm">{t('plSold', { sold: fmt(sold), supply: fmt(supply) })}</Tag>}
-            {store.pools.map((p) => poolOf(p.id) && <Tag key={p.id} minimal round size="sm" interactive onClick={() => s.go('pool', { poolId: p.id })}>{p.name}</Tag>)}
+            {store.pools.map((p) => itemOf('pool', p.id) && <Tag key={p.id} minimal round size="sm" interactive onClick={() => s.go('pool', { poolId: p.id })}>{p.name}</Tag>)}
           </Stack>
         </Stack>
         <Stack direction="row" gap={2} align="center" wrap>
+          <Button variant="glass" onClick={() => s.go('shops')}>{t('pgShops')}</Button>
           {pending > 0 && <Tag minimal round>{t('shPending', { n: pending })}</Tag>}
-          <Button variant="outline" iconLeft={ShoppingBag} onClick={s.openCart}>{t('shCart', { n: cart.length })}</Button>
         </Stack>
       </Stack>
-      <ChoiceRow value={store.id} label={t('shStores')} onChange={(v) => s.go('shop', { storeId: v })} options={STORES.map((x) => ({ value: x.id, label: x.name }))} />
-      <TabList size="sm" variant="pills" activeId={tab} onChange={setTab} items={[{ id: 'looks', label: t('lsLooks'), count: looks.length }, ...(lots.length ? [{ id: 'lots', label: t('lsLots'), count: lots.length }] : [])]} />
-      {tab === 'looks' ? (
-        <ListView<ShopLook> rows={looks} keyOf={(l) => l.id} text={(l) => l.name + ' ' + l.colour + ' ' + l.garments.join(' ')}
-          facets={facetsFor<ShopLook>('look', { get: { owned: (l) => (mine[l.id] ? t('lsOwned') : t('lsOpen')) } })}
-          sorts={sortsFor<ShopLook>('look')}
-          table={[...tableFor<ShopLook>('look'),
-            { id: 'live', header: t('lsColLive'), cell: (l) => usd(lookLive(l, now).total), sortValue: (l) => lookLive(l, now).total, align: 'right' },
-            { id: 'minted', header: t('lsColMinted'), cell: (l) => l.minted + ' / ' + l.edition, sortValue: (l) => l.minted / (l.edition || 1), align: 'right' }]}
-          render={(l) => (
-            <Card depth={2} deckDirection="both" tint={l.hex} tintStrength={22} onClick={() => s.openLook(l.id)}><CardBody><Stack direction="column" gap={2}>
-              <LookImage look={l} />
-              <Stack direction="row" gap={1}><Tag minimal round size="sm">{l.rarity}</Tag>{mine[l.id] ? <Tag intent="success" minimal round size="sm">{t('shOwned')}</Tag> : null}</Stack>
-              <Text weight="bold">{l.name}</Text>
-              <Text size="xs" intent="muted" numeric>{t('plLive', { v: usd(lookLive(l, now).total) })} · {t('shMinted', { minted: l.minted, edition: l.edition })}</Text>
-            </Stack></CardBody></Card>)} />
-      ) : (
-        <ListView<PoolLot> rows={lots} keyOf={(x) => x.id} text={(x) => x.title}
-          facets={facetsFor<PoolLot>('lot')}
-          sorts={[{ id: 'value', label: t('lsSortValue'), by: (a, b) => quote(b, now).total - quote(a, now).total }, { id: 'sold', label: t('lsSortSold'), by: (a, b) => quote(b, now).sold / b.supply - quote(a, now).sold / a.supply }, { id: 'new', label: t('lsSortNew'), by: (a, b) => a.opensAt.localeCompare(b.opensAt) }]}
-          table={[...tableFor<PoolLot>('lot'),
-            { id: 'total', header: t('lsColValue'), cell: (x) => usd(quote(x, now).total), sortValue: (x) => quote(x, now).total, align: 'right' },
-            { id: 'sold', header: t('lsColSold'), cell: (x) => fmt(quote(x, now).sold) + ' / ' + fmt(x.supply), sortValue: (x) => quote(x, now).sold / x.supply, align: 'right' }]}
-          render={(x) => <LotCard lot={x} now={now} />} />
-      )}
+      <TabLists tabs={tabs} on={s.shopView.tab} onTab={(id) => s.setShopView({ tab: id, cat: '' })} label={store.name}>
+        {/* The menu entry picked (Women, Women · Dresses...) over its rows, with the way back to all of them. */}
+        {(tab) => (tab.menu && cat ? (
+          <Stack direction="row" gap={2} align="center">
+            <Tag round>{placeLabel(store.id, cat)}</Tag>
+            <Button variant="ghost" size="sm" onClick={() => s.setShopView({ cat: '' })}>{t('seAll')}</Button>
+          </Stack>) : null)}
+      </TabLists>
     </Stack></Page>
   );
 };

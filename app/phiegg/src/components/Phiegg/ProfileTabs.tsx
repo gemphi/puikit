@@ -2,7 +2,7 @@ import React from 'react';
 import { ItemCard, Spinner, SpriteImage, Text } from '@pui/components';
 import { useStore } from '@pui/store';
 import { useOwned } from '../../lib/cart';
-import { D, clubOf, jewelSprite, rideKind, rideSprite, eggsOfHost, fmt, hostOf, lookOf, person, postById, profileItemOfHolder, salesOfItem, seriesOf, t, usd } from '../../lib/data';
+import { D, jewelSprite, rideKind, rideSprite, eggsOfHost, fmt, person, postById, profileItemOfHolder, salesOfItem, t, typeName, usd, itemOf } from '../../lib/data';
 import { useCredits } from '../../lib/productions';
 import { spriteOfCell } from '../../lib/portraits';
 import { phieggStore } from '../../state/phieggStore';
@@ -36,18 +36,18 @@ export const ProfileTab: React.FC<{ id: string; tab: 'Likes' | 'Items' | 'Hosts'
     return <ListView rows={hs} keyOf={(h) => h.id} text={(h) => h.name} empty={t('prNoHosts')} onRow={(h) => s.openDetails({ kind: 'host', id: h.id })}
       sorts={[{ id: 'm', label: t('lsSortHolders'), by: (a, b) => b.members - a.members }]}
       table={[{ id: 'n', header: t('lsColName'), cell: (h) => h.name, sortValue: (h) => h.name }, { id: 'm', header: t('prMembers'), cell: (h) => fmt(h.members), sortValue: (h) => h.members, align: 'right' }, { id: 'o', header: t('prOnline'), cell: (h) => fmt(h.online), sortValue: (h) => h.online, align: 'right' }]}
-      render={(h) => <ItemCard depth={2} deckDirection="right" tint={clubOf(h.clubId)?.colors?.[0]} tintStrength={22} onClick={() => s.openDetails({ kind: 'host', id: h.id })} media={<EntityAvatar id={h.id} name={h.name} size="lg" />} title={h.name} meta={`${fmt(h.members)} ${t('prMembers').toLowerCase()} · ${fmt(h.online)} ${t('prOnline').toLowerCase()}`}>{h.gated}</ItemCard>} />;
+      render={(h) => <ItemCard depth={2} deckDirection="right" onClick={() => s.openDetails({ kind: 'host', id: h.id })} media={<EntityAvatar id={h.id} name={h.name} size="lg" />} title={h.name} meta={`${fmt(h.members)} ${t('prMembers').toLowerCase()} · ${fmt(h.online)} ${t('prOnline').toLowerCase()}`}>{h.gated}</ItemCard>} />;
   }
 
   if (tab === 'Credits') {
     if (!credits) return <Spinner />;
-    const rows = credits.map(([sid, character, part]) => ({ sid, character, part, x: seriesOf(sid) })).filter((r) => r.x);
+    const rows = credits.map(([sid, character, part]) => ({ sid, character, part, x: itemOf('series', sid) })).filter((r) => r.x);
     return <ListView rows={rows} keyOf={(r) => r.sid + r.character} text={(r) => r.character + ' ' + r.x!.title} empty={t('prNoCredits')} onRow={(r) => s.openSeries(r.sid)}
       facets={[{ id: 'kind', label: t('prKind'), get: (r) => r.x!.kind }, { id: 'part', label: t('prPart'), get: (r) => r.part }, { id: 'genre', label: t('seGenre'), get: (r) => r.x!.genre }]}
       sorts={[{ id: 'views', label: t('seSortViews'), by: (a, b) => b.x!.views - a.x!.views }, { id: 'az', label: t('lsSortAz'), by: (a, b) => a.x!.title.localeCompare(b.x!.title) }]}
       table={[{ id: 't', header: t('prTitle'), cell: (r) => r.x!.title, sortValue: (r) => r.x!.title }, { id: 'c', header: t('prCharacter'), cell: (r) => r.character, sortValue: (r) => r.character },
         { id: 'p', header: t('prPart'), cell: (r) => r.part, sortValue: (r) => r.part }, { id: 'k', header: t('prKind'), cell: (r) => r.x!.kind, sortValue: (r) => r.x!.kind }]}
-      render={(r) => <ItemCard depth={2} deckDirection="right" tint={clubOf(r.x!.clubId)?.colors?.[0]} tintStrength={22} onClick={() => s.openSeries(r.sid)} media={<EntityAvatar id={r.x!.clubId} name={r.x!.title} size="lg" />} title={r.x!.title} meta={`${r.character} · ${r.part}`}>{r.x!.genre} · {r.x!.kind}{r.x!.seasonCount && r.x!.seasonCount > 1 ? ` · ${r.x!.seasonCount} seasons` : ''}</ItemCard>} />;
+      render={(r) => <ItemCard depth={2} deckDirection="right" onClick={() => s.openSeries(r.sid)} media={<EntityAvatar id={r.x!.clubId} name={r.x!.title} size="lg" />} title={r.x!.title} meta={`${r.character} · ${r.part}`}>{r.x!.genre} · {r.x!.kind}{r.x!.seasonCount && r.x!.seasonCount > 1 ? ` · ${r.x!.seasonCount} seasons` : ''}</ItemCard>} />;
   }
 
   // Items: the profile PFT they wear, looks they hold (yours, or bought in the ledger), EGG items of their hosts.
@@ -57,14 +57,14 @@ export const ProfileTab: React.FC<{ id: string; tab: 'Likes' | 'Items' | 'Hosts'
   type Row = { id: string; type: ItemType; name: string; usd: number; sub: string; media: React.ReactNode; open: () => void; hex?: string };
   const rows: Row[] = [
     ...(pft ? [{ id: pft.id, hex: pft.bg, type: 'pft' as const, name: pft.name, usd: pft.priceUsd, sub: t('prProfilePft'), media: <SpriteImage sprite={spriteOfCell(pft.sheet, pft.index)} alt={pft.name} />, open: () => s.openAsset(pft.id) }] : []),
-    ...lookIds.map(lookOf).filter((l): l is ShopLook => !!l).map((l) => ({ id: l.id, type: 'pft' as const, name: l.name, usd: l.usd, sub: `${l.colour} · ${l.rarity}`, media: <LookImage look={l} cascade={0} />, open: () => s.openLook(l.id), hex: l.hex })),
+    ...lookIds.map(((id) => itemOf('look', id))).filter((l): l is ShopLook => !!l).map((l) => ({ id: l.id, type: 'pft' as const, name: l.name, usd: l.usd, sub: `${l.colour} · ${l.rarity}`, media: <LookImage look={l} cascade={0} />, open: () => s.openLook(l.id), hex: l.hex })),
     // Rides and Maison Once pieces this person holds (their owner on every item).
     ...D.ride.list.filter((r) => r.holderId === id && r.mode === 'sale').map((r) => ({ id: r.id, hex: r.hex, type: 'pft' as const, name: r.name, usd: r.priceUsd, sub: rideKind(r.kind) + ' · ' + r.make, media: <SpriteImage sprite={rideSprite(r)} alt={r.name} ratio="16 / 10" />, open: () => s.openAsset(r.id) })),
     ...D.jewel.list.filter((j) => j.holderId === id).map((j) => ({ id: j.id, hex: j.hex, type: 'pft' as const, name: j.name, usd: j.priceUsd, sub: j.piece + ' · ' + j.metal, media: <SpriteImage sprite={jewelSprite(j)} alt={j.name} />, open: () => s.openAsset(j.id) })),
-    ...hostIds.flatMap(eggsOfHost).map((e) => ({ id: e.id, type: 'egg' as const, name: e.name, usd: e.priceUsd, sub: hostOf(e.hostId)?.name ?? '', media: <EntityAvatar id={e.hostId} name={e.name} size="md" />, open: () => s.openAsset(e.id) })),
+    ...hostIds.flatMap(eggsOfHost).map((e) => ({ id: e.id, type: 'egg' as const, name: e.name, usd: e.priceUsd, sub: itemOf('host', e.hostId)?.name ?? '', media: <EntityAvatar id={e.hostId} name={e.name} size="md" />, open: () => s.openAsset(e.id) })),
   ];
   return <ListView<Row> rows={rows} keyOf={(r) => r.id} text={(r) => r.name} empty={t('prNoItems')} onRow={(r) => r.open()} minItemWidth="13rem"
-    facets={[{ id: 'type', label: t('asType'), get: (r) => r.type.toUpperCase() }]} sorts={[{ id: 'p', label: t('lsSortPrice'), by: (a, b) => b.usd - a.usd }]}
-    table={[{ id: 'n', header: t('lsColName'), cell: (r) => r.name, sortValue: (r) => r.name }, { id: 't', header: t('asType'), cell: (r) => r.type.toUpperCase(), sortValue: (r) => r.type }, { id: 'u', header: t('asPrice'), cell: (r) => usd(r.usd), sortValue: (r) => r.usd, align: 'right' }]}
-    render={(r) => <ItemCard depth={1} deckDirection="both" tint={r.hex} tintStrength={22} layout="vertical" onClick={r.open} media={r.media} title={r.name} meta={r.type.toUpperCase()} aside={<Text size="xs" weight="bold" numeric>{usd(r.usd)}</Text>}>{r.sub}</ItemCard>} />;
+    facets={[{ id: 'type', label: t('asType'), get: (r) => typeName(r.type) }]} sorts={[{ id: 'p', label: t('lsSortPrice'), by: (a, b) => b.usd - a.usd }]}
+    table={[{ id: 'n', header: t('lsColName'), cell: (r) => r.name, sortValue: (r) => r.name }, { id: 't', header: t('asType'), cell: (r) => typeName(r.type), sortValue: (r) => r.type }, { id: 'u', header: t('asPrice'), cell: (r) => usd(r.usd), sortValue: (r) => r.usd, align: 'right' }]}
+    render={(r) => <ItemCard depth={1} deckDirection="both" layout="vertical" onClick={r.open} media={r.media} title={r.name} meta={typeName(r.type)} aside={<Text size="xs" weight="bold" numeric>{usd(r.usd)}</Text>}>{r.sub}</ItemCard>} />;
 };

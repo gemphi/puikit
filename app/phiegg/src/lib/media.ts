@@ -10,6 +10,9 @@ const keyOf = (path: string) => {
   const p = path.replace(/^\//, '');
   const logo = p.match(/^logos\/(.+)\.svg$/);
   if (logo) return `worlds/${logo[1]}/logo.svg`;
+  // A world's own files (world/<slug>/mark.webp, world/<slug>/view/…) sit with the rest of that world in the bucket.
+  const own = p.match(/^world\/(.+)$/);
+  if (own) return `worlds/${own[1]}`;
   if (/^(items|rides|jewels|portraits|welcome|logo)\//.test(p)) return 'assets/' + p;
   if (p.startsWith('worlds/')) return 'assets/scenes/' + p.slice('worlds/'.length);
   if (p.startsWith('assets/')) return p;

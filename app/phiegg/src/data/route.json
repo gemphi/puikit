@@ -1,0 +1,64 @@
+{
+ "_": "What each path of the site has. A path names the kind of record it shows and the id it carries (param), the menu its rail shows, the tools at the end of its header, and its tabs in order. The layout reads this and loops; no page decides its own header, menu or tabs. A path with a `title` and tabs and no page of its own is a list page: its title, its line (`sub`), its tabs. A path has `default`, then what its `menu` gives, then its own. A path with param `recordId` shows its kind's record page, so a kind gets a page by adding one line here. A tab names a kind and the rows of it that belong to the path's record: `where` and `not` map a field of the row to a value, or to `$path` into the path's record (one value or, with `*`, any of several); `menu` says the menu entry picked narrows it. A rule's field may step through a link (`worldId.kind` is the kind of the row's world). A title or a line may carry figures: `{count}` is how many rows the path lists, `{shows.season}` a value of the data. `on` is the tab that is on when the path opens; `like` names a path this one is the same as, but for what it says itself. `side` is the right sidebar for a path (the default, or its own): groups with an icon (a lucide name) and a place on the rail, each with a menu of the rows of a `kind` that belong to the path's record (`@` is the path's own kind, `where` as on a tab, at most `limit`, 16 unless said) and then plain `link`s to paths; a group with nothing to show is left out. The trail at the top of a page is read here too: `name` is what a path is called (words or a copy key), `up` the list a record's path sits under (and what that is called there, and its params), `upBy` the same when a field of the record decides, `record` the kind of record a path names when that is not its `kind`. A record kept inside another (a zone in its world, a look in its shop) gets that one in its trail from data/source.json.",
+ "default": { "header": ["search", "phipad", "account"], "side": [
+   { "id": "switch", "label": "Switch", "icon": "Repeat", "place": "top", "kind": "@" },
+   { "id": "center", "label": "Center", "icon": "Compass", "place": "center", "link": [ { "label": "pgWorlds", "path": "worlds" }, { "label": "pgHosts", "path": "hosts" }, { "label": "pgShows", "path": "shows" }, { "label": "pgEvents", "path": "events" } ] },
+   { "id": "market", "label": "Market", "icon": "Store", "place": "bottom", "link": [ { "label": "pgShops", "path": "shops" }, { "label": "pgPools", "path": "pools" }, { "label": "Coins", "path": "coins" }, { "label": "Quests", "path": "quests" } ] } ] },
+ "menu": {
+  "shop": { "header": ["search", "cart", "account"] }
+ },
+ "path": {
+  "world": { "kind": "world", "param": "worldId", "up": { "path": "worlds" }, "side": [
+   { "id": "switch", "label": "Switch", "icon": "Repeat", "place": "top", "kind": "world" },
+   { "id": "center", "label": "Center", "icon": "Compass", "place": "center", "kind": "city", "where": { "id": "$cities.*.id" }, "link": [ { "label": "pgHosts", "path": "hosts" }, { "label": "pgShows", "path": "shows" }, { "label": "pgEvents", "path": "events" } ] },
+   { "id": "market", "label": "Market", "icon": "Store", "place": "bottom", "kind": "store", "where": { "clubId": "$clubId" }, "link": [ { "label": "pgShops", "path": "shops" }, { "label": "pgPools", "path": "pools" } ] } ] },
+  "city": { "kind": "city", "param": "cityId", "up": { "path": "worlds" } },
+  "club": { "kind": "club", "param": "clubId", "up": { "path": "explore", "name": "pgClubs" } },
+  "show": { "kind": "show", "param": "showId", "up": { "path": "shows" } },
+  "profile": { "param": "profileId", "record": ["agent", "person"], "up": { "path": "explore", "name": "pgCreators" } },
+  "collection": { "param": "nestId", "record": "nest", "up": { "path": "hosts" } },
+  "post": { "kind": ["post", "feedPost"], "param": "postId", "up": { "path": "feed", "name": "pgFeedPosts", "params": { "feedKind": "all" } },
+   "upBy": { "field": "kind", "reel": { "path": "feed", "name": "pgReels", "params": { "feedKind": "reels" } } } },
+  "place": { "kind": "place", "param": "placeId", "up": { "path": "worlds" } },
+  "title": { "kind": "series", "param": "titleId", "up": { "path": "series" } },
+  "asset": { "kind": ["egg", "sum", "profilePft", "ride", "jewel"], "param": "assetId" },
+  "worlds": { "name": "pgWorlds", "title": "{count} worlds", "sub": "Every world on Phiegg: virtual cities, AR layers over real streets, and agentic worlds run by agent citizens.", "tab": [
+   { "id": "all", "label": "All", "kind": "world" }, { "id": "virtual", "label": "Virtual", "kind": "world", "where": { "kind": "virtual" } },
+   { "id": "ar", "label": "AR", "kind": "world", "where": { "kind": "ar" } }, { "id": "agentic", "label": "Agentic", "kind": "world", "where": { "kind": "agentic" } } ] },
+  "shows": { "name": "pgShows", "title": "{shows.season} shows", "sub": "Every world walks a {shows.season} show: 64 looks, each on its own pose from a {shows.poses.length}-pose library.", "tab": [
+   { "id": "all", "label": "All", "kind": "show" }, { "id": "virtual", "label": "Virtual", "kind": "show", "where": { "worldId.kind": "virtual" } },
+   { "id": "ar", "label": "AR", "kind": "show", "where": { "worldId.kind": "ar" } }, { "id": "agentic", "label": "Agentic", "kind": "show", "where": { "worldId.kind": "agentic" } } ] },
+  "events": { "name": "pgEvents", "title": "Events & drops", "tab": [
+   { "id": "all", "label": "All", "kind": "event" }, { "id": "drop", "label": "Drops", "kind": "event", "where": { "kind": "drop" } },
+   { "id": "runway", "label": "Runways", "kind": "event", "where": { "kind": "runway" } }, { "id": "party", "label": "Parties", "kind": "event", "where": { "kind": "party" } },
+   { "id": "talk", "label": "Talks", "kind": "event", "where": { "kind": "talk" } }, { "id": "show", "label": "Shows", "kind": "event", "where": { "kind": "show" } } ] },
+  "drops": { "like": "events", "name": "drops", "title": "Drops", "on": "drop" },
+  "hosts": { "name": "pgHosts", "title": "Hosts", "sub": "Where each club gathers: channels, worlds and the people in them.", "tab": [ { "id": "all", "label": "All", "kind": "host" } ] },
+  "host": { "param": "hostId", "record": "host", "up": { "path": "hosts" } },
+  "nests": { "like": "host" }, "channels": { "like": "host" },
+  "feed": { "name": "pgFeed" }, "explore": { "name": "pgExplore" }, "search": { "name": "search" }, "recent": { "name": "recent" }, "messages": { "name": "pgMessages" },
+  "phipad": { "name": "pgPhipad" }, "agents-hub": { "name": "pgAgents" }, "agents": { "like": "agents-hub" }, "studio": { "name": "seStudio" }, "rides": { "name": "pgRides" },
+  "series": { "name": "watchTitle" }, "watch": { "like": "series" }, "league": { "name": "League" }, "create": { "name": "create" }, "join": { "name": "join" },
+  "shops": { "menu": "shop", "name": "pgShops", "title": "Shops", "sub": "Every house and its looks, packs and drops.", "tab": [{ "id": "all", "label": "All", "kind": "store" }] },
+  "casts": { "name": "pgCasts", "title": "Casts", "sub": "Shows, rehearsals and talks, live and played back.", "tab": [{ "id": "all", "label": "All", "kind": "cast" }] },
+  "quests": { "title": "Quests", "sub": "Challenges across the 64 worlds. Rewards pay out in club coins.", "tab": [{ "id": "all", "label": "All", "kind": "quest" }] },
+  "play": { "title": "Sponsored quests", "sub": "Quests sponsored by clubs. Play, win coin rewards, climb the front row.", "tab": [{ "id": "all", "label": "All", "kind": "quest", "where": { "kind": "sponsored" } }] },
+  "coins": { "title": "Coins", "sub": "Every club has a coin. PHI is the platform coin.", "tab": [{ "id": "all", "label": "All", "kind": "coin" }] },
+  "pools": { "name": "pgPools", "title": "Pools", "sub": "Every store line, club drop and fashion show is a pool: the centre of your PFTs. Live prices, stats, quests and swaps.", "tab": [
+   { "id": "all", "label": "All", "kind": "pool" }, { "id": "pft", "label": "PFTs", "kind": "pool", "where": { "kind": "pft" } }, { "id": "show", "label": "Show drop", "kind": "pool", "where": { "kind": "show" } },
+   { "id": "drop", "label": "Club drop", "kind": "pool", "where": { "kind": "drop" } }, { "id": "collection", "label": "Store", "kind": "pool", "where": { "kind": "collection" } } ] },
+  "shop": { "kind": "store", "param": "storeId", "menu": "shop", "up": { "path": "shops" }, "tab": [
+   { "id": "looks", "label": "Looks", "kind": "look", "where": { "id": "$pools.*.lookIds.*" }, "menu": true },
+   { "id": "items", "label": "Items", "kind": "piece", "where": { "clubId": "$clubId" } },
+   { "id": "packs", "label": "Packs", "kind": "lot", "where": { "poolId": "$pools.*.id", "kind": "pack" } },
+   { "id": "drops", "label": "Drops", "kind": "lot", "where": { "poolId": "$pools.*.id", "kind": "drop" } },
+   { "id": "sales", "label": "Sales", "kind": "sale", "where": { "itemId": "$pools.*.lookIds.*", "event": "sale" } },
+   { "id": "nests", "label": "Nests", "kind": "nest", "where": { "id": "$looks.*.nestId" } },
+   { "id": "shows", "label": "Shows", "kind": "show", "where": { "clubId": "$clubId" } },
+   { "id": "posts", "label": "Posts", "kind": "feedPost", "where": { "clubId": "$clubId" }, "not": { "kind": "reel" } },
+   { "id": "reels", "label": "Reels", "kind": "feedPost", "where": { "clubId": "$clubId", "kind": "reel" } } ] },
+  "look": { "kind": "look", "param": "lookId", "menu": "shop", "up": { "path": "shops" } },
+  "pool": { "kind": "pool", "param": "poolId", "menu": "shop", "up": { "path": "pools" } },
+  "piece": { "kind": "piece", "param": "recordId", "menu": "shop", "up": { "path": "shops" } }
+ }
+}

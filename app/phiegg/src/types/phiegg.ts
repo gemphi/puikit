@@ -33,9 +33,14 @@ export interface Club {
 }
 
 export type WorldKind = 'virtual' | 'ar' | 'agentic';
+/** A zone of a world (a world is a city: World = City -> Zones -> Places, and Lands). */
 export interface City { id: ID; name: string; population: number; vibe: string }
+/** One view of a world's own renders (public/cities/<slug>/<view>-sm|lg.webp): sm for cards and strips, lg for the page. */
+export interface WorldView { view: string; sm: string; lg: string }
 export interface World {
   id: ID; name: string; clubId: ID; kind: WorldKind; tone: Tone;
+  /** The generator that made it (bold-cities …), so a rerun can replace its own records. */
+  origin?: string;
   visitorsNow: number; description: string; cities: City[];
   /** The pool this world is the party of, and its colours. */
   poolId?: ID; colors?: string[];
@@ -46,6 +51,10 @@ export interface World {
   agents?: number;
   /** generated default image, assets/worlds/<id>.png (served from public/worlds) */
   image?: string;
+  /** A world with its own renders (the Bold Cities, scripts/bold-cities.py): its mark and every view, cut out on a clear background. */
+  logo?: string; gallery?: WorldView[];
+  /** The land type it stands on, 1-16, and its group (BC-Land-Types-Phase-01). */
+  land?: number; landName?: string; landGroup?: string;
 }
 
 export interface CoreData { currentUserId: ID; users: User[]; clubs: Club[]; worlds: World[] }
@@ -79,10 +88,16 @@ export interface HostsPage {
 export interface CreateNestInput { hostId: ID; parentId: ID | null; kind: NestKind; name: string; topic?: string }
 
 // ── Shots (posts) ──────────────────────────────────────────────
-export type ShotMediaKind = 'image' | 'look' | 'world-capture';
+export type ShotMediaKind = 'image' | 'look' | 'world-capture' | 'reel';
 export interface Shot {
   id: ID; authorId: ID; clubId: ID | null; worldId: ID | null;
-  media: { kind: ShotMediaKind; tone: Tone; ratio: '1/1' | '4/5'; title: string; src?: string; hex?: string; lookId?: ID; family?: string };
+  /** The generator that made it (city-life …). */
+  origin?: string;
+  /** Where it was posted: the zone (a world's city) it is pinned to. */
+  cityId?: ID;
+  media: { kind: ShotMediaKind; tone: Tone; ratio: '1/1' | '4/5'; title: string; src?: string; hex?: string; lookId?: ID; family?: string;
+    /** More pictures after the cover, each its own slide (a world's views). */
+    views?: { view: string; src: string }[] };
   caption: string; likes: number; comments: number; reshares: number;
   createdAt: ISODate; tags: string[]; lookItems: string[];
 }
@@ -162,11 +177,11 @@ export interface Agent {
   highlights: Highlight[];
   wardrobe: { title: string; pieces: string[] };
 }
-export interface Comment { id: ID; authorId: ID; text: string; likes: number; at: string }
+export interface Comment { id: ID; authorId: ID; text: string; likes: number; at: string; parentId?: ID | null }
 export interface Slide { title: string; tone: Tone; caption?: string; src?: string; hex?: string; lookId?: ID; family?: string }
 /** Carousel post (agents and people). Feed shots convert to this for the shot viewer. */
 export interface Post {
-  id: ID; authorId: ID; kind: ShotMediaKind; clubId: ID | null; worldId: ID | null;
+  id: ID; authorId: ID; kind: ShotMediaKind; clubId: ID | null; worldId: ID | null; cityId?: ID;
   caption: string; likes: number; createdAt: ISODate; tags: string[];
   slides: Slide[]; comments: Comment[];
 }
@@ -296,7 +311,7 @@ export interface LsData {
 }
 
 // ── Places (data/places.json): world → city → district → place ──
-export type PlaceKind = 'boutique' | 'atelier' | 'runway' | 'fitting' | 'gallery' | 'cafe' | 'cinema' | 'studio' | 'screening' | 'library' | 'theatre' | 'market' | 'club';
+export type PlaceKind = 'boutique' | 'atelier' | 'runway' | 'fitting' | 'gallery' | 'cafe' | 'cinema' | 'studio' | 'screening' | 'library' | 'theatre' | 'market' | 'club' | 'arcade' | 'park' | 'plaza';
 export interface Place { id: ID; name: string; kind: PlaceKind; clubId: ID; tone: Tone; hours: string; visitors: number; rating: number; desc: string }
 export interface District { id: ID; name: string; vibe: string; tone: Tone; places: Place[] }
 export interface PlacesData { cities: Record<ID, { worldId: ID; tone: Tone; desc: string }>; districts: Record<ID, District[]> }

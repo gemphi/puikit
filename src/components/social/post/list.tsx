@@ -106,7 +106,7 @@ export const PostList: React.FC<PostListProps> = ({
               size="sm"
               className={styles.glassControl}
               aria-label={copy.previous}
-              disabled={atStart}
+              hidden={atStart}
               onClick={() => page(-1)}
               icon={<ChevronUp size={16} />}
             />
@@ -115,7 +115,7 @@ export const PostList: React.FC<PostListProps> = ({
               size="sm"
               className={styles.glassControl}
               aria-label={copy.next}
-              disabled={atEnd}
+              hidden={atEnd}
               onClick={() => page(1)}
               icon={<ChevronDown size={16} />}
             />

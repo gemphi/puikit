@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { BrowseSheet, Button, Card, CardBody, Stack, Tag, Text, type BrowseFacet, type BrowseLayout } from '@pui/components';
 import { useStore } from '@pui/store';
-import { D, clubOf, fmt, site, t, worldOf } from '../../lib/data';
+import { D, fmt, site, t, itemOf } from '../../lib/data';
 import { livePools, useNow } from '../../lib/market';
 import { phieggStore, type PhieggState } from '../../state/phieggStore';
 import { AgentChat } from './AgentChat';
@@ -35,11 +35,11 @@ const SOURCES: Record<string, Source<DropRow> | Source<Club> | Source<Ev>> = {
   drops: {
     title: () => t('drops'),
     items: (now) => livePools(now, 400),
-    key: (r) => r.pool.id, text: (r) => r.pool.name + ' ' + (clubOf(r.pool.clubId)?.name ?? ''),
+    key: (r) => r.pool.id, text: (r) => r.pool.name + ' ' + (itemOf('club', r.pool.clubId)?.name ?? ''),
     facets: [
       { id: 'kind', label: 'Kind', get: (r) => t(('plKind_' + r.pool.kind) as 'plKind_show') },
-      { id: 'club', label: 'Club', get: (r) => clubOf(r.pool.clubId)?.name },
-      { id: 'world', label: 'World', get: (r) => worldOf(r.pool.worldId)?.name },
+      { id: 'club', label: 'Club', get: (r) => itemOf('club', r.pool.clubId)?.name },
+      { id: 'world', label: 'World', get: (r) => itemOf('world', r.pool.worldId)?.name },
       { id: 'sold', label: 'Sold', get: (r) => band(r.N.supply ? r.N.sold / r.N.supply : 0) },
     ],
     card: (r, _s, now) => <PoolCard pool={r.pool} now={now} />,
@@ -53,7 +53,7 @@ const SOURCES: Record<string, Source<DropRow> | Source<Club> | Source<Ev>> = {
       { id: 'status', label: 'Status', get: (r) => (site.clubStatus as Record<string, string>)[r.status] },
       { id: 'tag', label: 'Tag', get: (r) => r.tags[0] },
       { id: 'chain', label: 'Chain', get: (r) => r.chain },
-      { id: 'world', label: 'World', get: (r) => worldOf(r.worldIds[0])?.name },
+      { id: 'world', label: 'World', get: (r) => itemOf('world', r.worldIds[0])?.name },
     ],
     card: (c, s) => (
       <Card depth={2}><CardBody><Stack direction="column" gap={2}>
@@ -74,12 +74,12 @@ const SOURCES: Record<string, Source<DropRow> | Source<Club> | Source<Ev>> = {
     facets: [
       { id: 'kind', label: 'Kind', get: (r) => r.kind },
       { id: 'genre', label: 'Genre', get: (r) => r.genre },
-      { id: 'world', label: 'World', get: (r) => worldOf(r.worldId)?.name },
+      { id: 'world', label: 'World', get: (r) => itemOf('world', r.worldId)?.name },
       { id: 'month', label: 'Month', get: (r) => r.startsAt.slice(0, 7) },
     ],
-    card: (e, s) => { const going = !!s.rsvp[e.id]; const club = clubOf(e.clubId); return (
+    card: (e, s) => { const going = !!s.rsvp[e.id]; const club = itemOf('club', e.clubId); return (
       <Card depth={2}><CardBody><Stack direction="column" gap={2}>
-        <Tile tone={club?.tone ?? 'accent'} ratio="16/10" depth={{ clubId: e.clubId, worldId: e.worldId }} title={e.title} sub={worldOf(e.worldId)?.name} badges={<Tag round size="sm">{e.kind}{e.genre ? ' · ' + e.genre : ''}</Tag>} />
+        <Tile tone={club?.tone ?? 'accent'} ratio="16/10" depth={{ clubId: e.clubId, worldId: e.worldId }} title={e.title} sub={itemOf('world', e.worldId)?.name} badges={<Tag round size="sm">{e.kind}{e.genre ? ' · ' + e.genre : ''}</Tag>} />
         <Text size="xs" intent="muted">{e.startsAt.slice(0, 10)} · {fmt(e.rsvps + (going ? 1 : 0))} RSVPs</Text>
         <Button size="sm" variant={going ? 'secondary' : 'primary'} onClick={() => s.toggle('rsvp', e.id)}>{going ? t('going') : t('rsvp')}</Button>
       </Stack></CardBody></Card>); },

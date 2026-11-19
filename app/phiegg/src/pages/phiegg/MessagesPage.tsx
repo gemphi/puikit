@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { Avatar, Button, Card, CardBody, Col, Grid, Icon, Input, Page, Stack, Tag, Text, Title } from '@pui/components';
+import { Avatar, Button, Card, CardBody, Grid, Page, Pressable, Stack, Tag, Text } from '@pui/components';
 import { useStore } from '@pui/store';
-import { Hand, Mic, MicOff, Search as SearchIcon } from 'lucide-react';
+import { Hand, Mic, MicOff } from 'lucide-react';
 import { phieggStore } from '../../state/phieggStore';
-import { D, hostOf, initials, me, person, t } from '../../lib/data';
+import { D, initials, me, person, t, itemOf } from '../../lib/data';
 import { ROOM, sendDm, useDms, useRoom } from '../../lib/messages';
-import { Composer } from '../../components/Phiegg/Overlays';
+import { ChatColumns } from '../../components/Phiegg/ChatColumns';
+import { PersonAvatar } from '../../components/Phiegg/PersonAvatar';
+import { Details } from '../../components/Phiegg/Details';
+import { PageSections } from '../../components/Phiegg/PageSections';
 import { PersonLine } from '../../components/Phiegg/PersonLine';
 import { LookAttachment } from '../../components/Phiegg/LookAttachment';
 
@@ -18,40 +21,28 @@ export const MessagesPage: React.FC = () => {
   const msgs = dms[conv] ?? [];
   const list = D.messages.conversations.filter((x) => !q.trim() || x.title.toLowerCase().includes(q.trim().toLowerCase()));
   const lastOf = (id: string) => { const m = dms[id]; return m?.length ? m[m.length - 1] : undefined; };
+  const [who, setWho] = useState<string | null>(null);
+  const people = c.userIds.length ? (
+    <Stack direction="column" gap={3}>
+      <Stack direction="column" gap={1}>{c.userIds.map((id) => (
+        <Pressable key={id} row gap={2} pad="sm" hover selected={(who ?? c.userIds[0]) === id} onClick={() => setWho(id)}><PersonLine id={id} size="sm" /></Pressable>))}</Stack>
+      <Details at={{ kind: 'person', id: who ?? c.userIds[0] }} />
+    </Stack>) : undefined;
   return (
     <Page>
       <Stack direction="column" gap={4}>
-        <Title level={2} size="xl">{t('dmTitle')}</Title>
-        <Grid gap={4} xs={1} lg={12}>
-          <Col span={4} xs={12} lg={4}><Stack direction="column" gap={2}>
-            <Input value={q} placeholder={t('dmFilter')} aria-label={t('dmFilter')} icon={<Icon icon={SearchIcon} size="xs" />} onChange={(e) => setQ(e.target.value)} />
-            {list.map((x) => { const last = lastOf(x.id); const unread = !read[x.id] && x.unread > 0; return (
-              <Button key={x.id} variant={x.id === conv ? 'primary' : 'ghost'} onClick={() => { setConv(x.id); setRead({ ...read, [x.id]: true }); }}
-                align="start" tall>
-                <Stack direction="row" gap={2} align="center" width="100%" minWidth="0">
-                  <Avatar initials={initials(x.title)} size="sm" />
-                  <Stack direction="column" gap={0} align="start" grow={1} minWidth="0">
-                    <Text size="sm" weight="bold">{x.title}</Text>
-                    <Text size="xs" truncate opacity={0.75} maxWidth="100%">{last?.text ?? x.last}</Text>
-                  </Stack>
-                  <Stack direction="column" gap={0} align="end"><Text size="xs" opacity={0.7}>{last?.at ?? x.at}</Text>{unread && <Tag round size="sm" intent="primary">{t('dmUnread', { n: x.unread })}</Tag>}</Stack>
-                </Stack>
-              </Button>); })}
-          </Stack></Col>
-          <Col span={8} xs={12} lg={8}><Card depth={2}><CardBody><Stack direction="column" gap={3}>
-            <Stack direction="row" gap={2} align="center"><Avatar initials={initials(c.title)} size="md" /><Stack direction="column" gap={0}><Title level={4} size="md">{c.title}</Title>
-              <Text size="xs" intent="muted">{c.userIds.map((id) => '@' + person(id).handle).join(' · ')}</Text></Stack></Stack>
-            <Stack direction="column" gap={2} maxHeight="52vh" scroll="y">
-              {msgs.map((m) => <Stack key={m.id} direction="column" gap={1}><PersonLine id={m.authorId} sub={m.at} size="sm" /><Text size="sm">{m.text}</Text>{'lookId' in m && <LookAttachment id={(m as { lookId?: string }).lookId} />}</Stack>)}
-            </Stack>
-            <Composer placeholder={t('messagePh', { name: c.title })} onSend={(v) => sendDm(conv, my.id, v, t('now'))} />
-          </Stack></CardBody></Card></Col>
-        </Grid>
-
-        <Title level={3} size="lg">{t('voiceRooms')}</Title>
+        <ChatColumns height="calc(100vh - 12rem)"
+          labels={{ list: t('dmTitle'), search: t('dmFilter'), people: t('dmPeople') }}
+          rows={list.map((x) => { const last = lastOf(x.id); return { id: x.id, title: x.title, sub: last?.text ?? x.last, at: last?.at ?? x.at, unread: !read[x.id] ? x.unread : 0, avatar: <Avatar initials={initials(x.title)} size="sm" /> }; })}
+          selected={conv} onSelect={(id) => { setConv(id); setWho(null); setRead({ ...read, [id]: true }); }}
+          head={<Stack direction="row" gap={2} align="center"><Avatar initials={initials(c.title)} size="xs" /><Text size="sm" weight="semibold">{c.title}</Text></Stack>}
+          lines={msgs.map((m) => ({ id: m.id, mine: m.authorId === my.id, avatar: <PersonAvatar id={m.authorId} size="sm" />, who: person(m.authorId).name, at: m.at, text: m.text,
+            attachment: 'lookId' in m ? <LookAttachment id={(m as { lookId?: string }).lookId} /> : undefined }))}
+          onSend={(v) => sendDm(conv, my.id, v, t('now'))} placeholder={t('messagePh', { name: c.title })} people={people} />
+        <PageSections id="messages" sections={[{ id: 'rooms', title: t('voiceRooms'), content: (
         <Grid gap={3} xs={1} sm={2} md={3}>{D.messages.voiceRooms.map((v) => { const inRoom = room.id === v.id; return (
           <Card depth={2} key={v.id} variant={inRoom ? 'default' : 'flat'}><CardBody><Stack direction="column" gap={2}>
-            <Stack direction="row" gap={1} align="center"><Tag intent={v.live ? 'success' : undefined} round size="sm">{v.live ? t('live_') : v.startsAt}</Tag><Text size="xs" intent="muted">{hostOf(v.hostId)?.name}</Text>
+            <Stack direction="row" gap={1} align="center"><Tag intent={v.live ? 'success' : undefined} round size="sm">{v.live ? t('live_') : v.startsAt}</Tag><Text size="xs" intent="muted">{itemOf('host', v.hostId)?.name}</Text>
               {inRoom && <Tag intent="primary" round size="sm">{t('vrIn')}</Tag>}</Stack>
             <Text weight="bold">{v.title}</Text>
             <Stack direction="row" gap={1} align="center">{v.speakerIds.map((id) => <Avatar key={id} initials={person(id).initials} size="sm" />)}
@@ -64,6 +55,7 @@ export const MessagesPage: React.FC = () => {
                 </Stack>
               : <Button size="sm" variant="primary" onClick={() => { ROOM.set({ id: v.id, muted: true, hand: false }); s.flash(t('joined', { name: v.title })); }}>{t('join')}</Button>}
           </Stack></CardBody></Card>); })}</Grid>
+        ) }]} />
       </Stack>
     </Page>
   );

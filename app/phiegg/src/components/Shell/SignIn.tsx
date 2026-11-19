@@ -4,7 +4,7 @@ import { useStore } from '@pui/store';
 import { Bot, Mail, Wallet as WalletIcon, type LucideIcon } from 'lucide-react';
 import { AccountPanel } from '@phi-kit/AccountDialog';
 import { accountsEnabled } from '@phi-kit/auth';
-import { D, clubOf, me, site, t } from '../../lib/data';
+import { D, me, site, t, itemOf } from '../../lib/data';
 import { ONBOARDING } from '../../lib/onboarding';
 import { phieggStore } from '../../state/phieggStore';
 
@@ -42,7 +42,7 @@ export const SignIn: React.FC = () => {
     return (
       <Stack direction="column" gap={3}>
         <Text intent="secondary">{x.body}</Text>
-        {x.id === 'verify' && <Stack direction="row" gap={1} wrap>{my.clubIds.map((id) => <Tag key={id} round minimal intent="primary">{clubOf(id)?.name ?? id}</Tag>)}
+        {x.id === 'verify' && <Stack direction="row" gap={1} wrap>{my.clubIds.map((id) => <Tag key={id} round minimal intent="primary">{itemOf('club', id)?.name ?? id}</Tag>)}
           {prov && <Tag round minimal>{t('siVia', { provider: prov.label })}</Tag>}</Stack>}
         {x.id === 'role' && <Stack direction="row" gap={1} wrap><TabList size="sm" variant="pills" activeId={role} onChange={setRole} items={si.roles.map((r) => ({ id: r, label: r }))} /></Stack>}
         {x.id === 'hello' && <Input value={hello} autoFocus placeholder={t('siHello', { host: lobby ? '#' + lobby.name : host.name })} aria-label={x.title}

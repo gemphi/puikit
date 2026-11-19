@@ -6,8 +6,12 @@ import {
 } from 'lucide-react';
 import { appMeta, appUrl, APPS } from '@phi-kit/data';
 import { AppGlyph } from '@phi-kit/icons';
-import { site, t } from '../../lib/data';
-import { MENUS, type RailItem, type SecItem } from '../../lib/menus';
+import * as Lucide from 'lucide-react';
+import { itemOf, site, storeOf, t } from '../../lib/data';
+import { PARAM_OF, PATH_OF, routeOf, rowsOf } from '../../lib/route';
+import { titleOf } from '../../lib/fields';
+import { MENUS, type MenuEntry, type RailItem, type SecItem } from '../../lib/menus';
+import { shopMenu } from '../../lib/shopMenu';
 import type { PhieggState } from '../../state/phieggStore';
 import { ChatHex, GLYPH_SIZE, GridCut, HomeCut, HostPyramid, MenuBars, ShopNest, YouPill } from '../Phiegg/Marks';
 import { EntityAvatar } from '../Phiegg/EntityAvatar';
@@ -46,15 +50,50 @@ const leaf = (it: SecItem, s: PhieggState): AppShellLeaf => ({
 
 /** Phiegg's menu records (lib/menus.ts) as the shared shell's groups: every rail entry a group in its rail place, its
  *  panel's sections as runs (the bottom one at the panel's foot); a rail entry with no panel is a page of its own. */
+/** Is the app in a shop (the path's menu, data/route.json)? */
+export const inShop = (s: PhieggState) => routeOf(s.tab).menu === 'shop';
+/** In a shop the shop's rail group is that brand's own menu, like a storefront's: its kinds at the top; in the middle
+ *  the entries of the path's menu that hold its products (data/menu.json, lib/shopMenu.ts), each folding its own; all
+ *  shops at the foot. */
+const shopGroup = (s: PhieggState, r: RailItem, place: AppShellGroup['place']): AppShellGroup => {
+  const store = storeOf(s.storeId);
+  // The shop's own menu (data/menu.json for the path `shop`), an entry and whatever it holds, to any depth.
+  const leaf = (e: MenuEntry): AppShellLeaf => ({ id: 'shopview:cat:' + e.id, label: e.label, ...(e.items ? { items: e.items.map(leaf) } : {}) });
+  const sections: AppShellGroup['sections'] = [
+    { id: 'shop:kinds', place: 'top', items: (routeOf('shop').tab ?? []).map((x) => ({ id: 'shopview:tab:' + x.id, label: x.label })) },
+    { id: 'shop:cats', place: 'center', items: [{ id: 'shopview:cat:', label: t('seAll') }, ...shopMenu(store).map(leaf)] },
+    { id: 'shop:all', place: 'bottom', items: [{ id: 'shops', label: t('pgShops'), icon: railGlyph(r) }] },
+  ];
+  return { id: r.id, label: store.name, icon: railGlyph(r), place, sections, items: sections.flatMap((x) => x.items) };
+};
+
 export const shellGroups = (s: PhieggState): AppShellGroup[] => rail().filter(([r]) => r.role !== 'apps').map(([r, place]) => {
+  if (r.tab === 'shop' && inShop(s)) return shopGroup(s, r, place);
   const conf = MENUS.secondary[r.id];
   if (!conf) return { id: r.id, label: r.label, icon: railGlyph(r), place, items: [{ id: r.id, label: r.label, icon: railGlyph(r) }] };
   const sections = conf.sections.map((sec) => ({ id: r.id + ':' + sec.position, place: (['top', 'center', 'bottom'] as const).find((p) => p === sec.position) ?? 'top', items: sec.items.map((it) => leaf(it, s)) }));
   return { id: r.id, label: conf.title || r.label, icon: railGlyph(r), place, to: r.tab, sections, items: sections.flatMap((x) => x.items) };
 });
 
+/** The right sidebar for where the app is (data/route.json `side`): each group's menu is the rows of a kind that belong
+ *  to the record the path shows (other worlds, this world's zones, its club's shops), then its plain links. A group
+ *  with nothing to show is left out. No path is named here. */
+export const sideGroups = (s: PhieggState): AppShellGroup[] => {
+  const route = routeOf(s.tab); const id = route.param ? (s as unknown as Record<string, string>)[route.param] : undefined;
+  const own = [route.record ?? route.kind ?? []].flat(); const mine = id ? own.find((k) => itemOf(k, id)) : own[0]; const record = mine && id ? itemOf(mine, id) : undefined;
+  const word = (k: string) => (k in site.copy ? t(k as keyof typeof site.copy) : k);
+  return (route.side ?? []).flatMap((g) => {
+    const kind = g.kind === '@' ? mine : g.kind; const path = kind ? PATH_OF[kind] : undefined; const param = path ? PARAM_OF[path] : undefined;
+    const rows = kind && path && param ? rowsOf({ id: g.id, label: g.label, kind, where: g.where }, record).filter((r) => r.id !== id).slice(0, g.limit ?? 16) : [];
+    const items: AppShellLeaf[] = [...rows.map((r) => ({ id: entryId({ tab: path!, params: { [param!]: r.id } }), label: titleOf(kind!, r) })), ...(g.link ?? []).map((l) => ({ id: l.path, label: word(l.label) }))];
+    const G = (Lucide as unknown as Record<string, LucideIcon>)[g.icon] ?? Circle;
+    return items.length ? [{ id: 'side:' + g.id, label: word(g.label), icon: <Icon icon={G} size="md" />, place: g.place, items }] : [];
+  });
+};
+
 /** The current entry: the one whose page and params match where the app is; the bare page otherwise. */
 export const currentEntry = (s: PhieggState): string => {
+  if (inShop(s)) return s.shopView.cat ? 'shopview:cat:' + s.shopView.cat : 'shopview:tab:' + (s.shopView.tab || 'items');
   const all = Object.values(MENUS.secondary).flatMap((c) => c.sections.flatMap((x) => x.items)).filter((it) => !it.panel);
   const on = all.find((it) => it.tab === s.tab && Object.entries(it.params ?? {}).every(([k, v]) => (s as unknown as Record<string, unknown>)[k] === v));
   return on ? entryId(on) : s.tab;

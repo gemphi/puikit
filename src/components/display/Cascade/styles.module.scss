@@ -34,7 +34,7 @@
   z-index: calc(var(--pui-pocket) - var(--pui-pocket-k) + 1);
   border-radius: var(--phi-radius-lg, 12px) var(--phi-radius-lg, 12px) 0 0;
   background: color-mix(in srgb, var(--phi-color-background-card, #fff) 80%, transparent);
-  background-image: var(--phi-gradient-child, none);
+  background-image: var(--phi-surface);
   border: 1px solid color-mix(in srgb, var(--phi-color-text-primary) 12%, transparent);
   border-bottom: 0;
   box-shadow: 0 -0.4rem 0.9rem -0.5rem rgba(0, 0, 0, 0.4);
@@ -54,7 +54,7 @@
   z-index: calc(var(--pui-cap) - var(--pui-pocket-k) + 1);
   border-radius: 0 0 var(--phi-radius-lg, 12px) var(--phi-radius-lg, 12px);
   background: color-mix(in srgb, var(--phi-color-background-card, #fff) 80%, transparent);
-  background-image: var(--phi-gradient-child, none);
+  background-image: var(--phi-surface);
   border: 1px solid color-mix(in srgb, var(--phi-color-text-primary) 12%, transparent);
   border-top: 0;
   box-shadow: 0 0.4rem 0.9rem -0.5rem rgba(0, 0, 0, 0.4);

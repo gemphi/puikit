@@ -18,23 +18,26 @@
   --phi-glass-light: var(--phi-muse-on-media, #fff);
   --phi-glass-pct: 58%;
   --phi-glass: color-mix(in srgb, var(--phi-glass-light) var(--phi-glass-pct), transparent);
-  --phi-glass-to-across: linear-gradient(90deg, transparent, var(--phi-glass));
-  --phi-glass-from-across: linear-gradient(90deg, var(--phi-glass), transparent);
-  --phi-glass-to-down: linear-gradient(180deg, transparent, var(--phi-glass));
-  --phi-glass-from-down: linear-gradient(180deg, var(--phi-glass), transparent);
+  /* Every way glass was once laid is now the one surface (tokens.scss --phi-surface), so a tab bar, a drawer, a
+     column, a field and a card can never drift apart; the four names stay for the components that ask by way. */
+  --phi-glass-to-across: var(--phi-surface);
+  --phi-glass-from-across: var(--phi-surface);
+  --phi-glass-to-down: var(--phi-surface);
+  --phi-glass-from-down: var(--phi-surface);
   /* A floating pane (a drawer, a menu, a bar) keeps the page's own colour under its glass, so text over it reads. */
   --phi-glass-ground: color-mix(in srgb, var(--phi-color-background) 80%, transparent);
   /* The rim: on a pale page white would vanish, so the light mode draws it in the theme's own border colour. */
   --phi-glass-rim: transparent; /* no rims: surfaces are edged by their shades (tokens.scss) */
   --phi-glass-rim-soft: transparent;
-  --phi-glass-blur: blur(22px) saturate(160%);
+  /* Blur only: a saturation boost recoloured whatever lay under a surface, so two cards read as two colours. */
+  --phi-glass-blur: blur(22px);
   /* The theme's colour, laid the same ways, only under the pointer. */
   --phi-tint-pct: 26%;
   --phi-tint: color-mix(in srgb, var(--phi-color-primary) var(--phi-tint-pct), transparent);
   --phi-tint-to-across: linear-gradient(90deg, transparent, var(--phi-tint));
   --phi-tint-from-across: linear-gradient(90deg, var(--phi-tint), transparent);
-  --phi-tint-to-down: linear-gradient(180deg, transparent, var(--phi-tint));
-  --phi-tint-from-down: linear-gradient(180deg, var(--phi-tint), transparent);
+  --phi-tint-to-down: linear-gradient(90deg, transparent, var(--phi-tint));
+  --phi-tint-from-down: linear-gradient(90deg, var(--phi-tint), transparent);
 }
 
 [data-theme='dark'] {

@@ -1,7 +1,7 @@
 // Offline agent brain: in-persona replies + tool-like actions (style a look,
 // RSVP, open a world). Intents, templates and wardrobes all come from data.
 // To use an LLM instead, replace reply(), keep the AgentResult contract.
-import { D, eventOf, t } from "./data";
+import { D, t, itemOf } from "./data";
 import { site } from "./data";
 import type { Agent, AgentChatMessage, ID } from "../types/phiegg";
 
@@ -18,7 +18,7 @@ export function reply(a: Agent, text: string): AgentResult {
     ] };
   }
   if (has(I.event)) {
-    const e = eventOf(has(I.party) ? I.partyEvent : I.defaultEvent);
+    const e = itemOf('event', has(I.party) ? I.partyEvent : I.defaultEvent);
     if (e) return { rsvp: e.id, msgs: [{ role: "agent", action: t("rsvpConfirmed", { title: e.title }) }, { role: "agent", text: t("agentRsvp") }] };
   }
   if (has(I.world)) {

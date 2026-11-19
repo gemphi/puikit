@@ -7,4 +7,4 @@
   &:focus-visible { outline: 2px solid var(--phi-color-primary); outline-offset: 1px; }
 }
 .on { border-color: var(--phi-color-primary); background: var(--phi-color-primary-light, rgba(0, 113, 227, 0.08)); }
-.chip { width: 2.25rem; height: 2.25rem; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--phi-color-border, rgba(0, 0, 0, 0.1)); }
+.chip { width: 2.25rem; height: 2.25rem; border-radius: var(--phi-radius-full); box-shadow: inset 0 0 0 1px var(--phi-color-border, rgba(0, 0, 0, 0.1)); }

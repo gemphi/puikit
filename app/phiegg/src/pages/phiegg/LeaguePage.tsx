@@ -3,7 +3,7 @@ import { Button, Card, CardBody, DataTable, Page, ChoiceRow, Stack, Tag, Text, T
 import { useStore } from '@pui/store';
 import { Trophy } from 'lucide-react';
 import { phieggStore } from '../../state/phieggStore';
-import { D, clubOf, fmt, site, t } from '../../lib/data';
+import { D, fmt, site, t, itemOf } from '../../lib/data';
 import { Tile } from '../../components/Phiegg/Tile';
 
 type Conf = { title: string; sub: string };
@@ -12,9 +12,9 @@ type Conf = { title: string; sub: string };
 export const LeaguePage: React.FC = () => {
   const s = useStore(phieggStore); const L = D.league; const c = (site.lists as unknown as Record<string, Conf>).league;
   const [tab, setTab] = useState<'table' | 'rounds'>('table'); const [round, setRound] = useState(L.rounds[0].id);
-  const champ = clubOf(L.champion); const r = L.rounds.find((x) => x.id === round)!;
+  const champ = itemOf('club', L.champion); const r = L.rounds.find((x) => x.id === round)!;
   const metric = (id: string) => L.metrics.find((m) => m.id === id)?.label ?? id;
-  const name = (id: string) => clubOf(id)?.name ?? id;
+  const name = (id: string) => itemOf('club', id)?.name ?? id;
   type Row = (typeof L.table)[number] & { rank: number };
   const rows: Row[] = [...L.table].sort((a, b) => Number(b.score) - Number(a.score)).map((x, i) => ({ ...x, rank: i + 1 }));
   const cols: DataTableColumn<Row>[] = [

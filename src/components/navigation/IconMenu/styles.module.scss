@@ -1,0 +1,20 @@
+// IconMenu: a record's menu of icons, centred and pinned under the header. Tokens only.
+.menu {
+  position: sticky; top: 0; z-index: 3; align-self: center; margin-inline: auto; width: fit-content; max-width: 100%;
+  display: flex; gap: var(--phi-space-1, 0.25rem); padding: var(--phi-space-2, 0.5rem);
+  overflow-x: auto; scrollbar-width: none; &::-webkit-scrollbar { display: none; }
+  border-radius: var(--phi-radius-lg, 1rem);
+  background-color: transparent; background-image: var(--phi-glass-to-across); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur);
+}
+.item {
+  flex: none; display: flex; flex-direction: column; align-items: center; gap: var(--phi-space-1, 0.25rem);
+  min-width: 4.5rem; padding: var(--phi-space-2, 0.5rem) var(--phi-space-2, 0.5rem);
+  border-radius: var(--phi-radius-md, 0.75rem); color: var(--phi-color-text);
+  &:hover { background-image: var(--phi-label-soft); }
+}
+.icon {
+  display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: var(--phi-radius-full);
+  background-image: var(--phi-label); color: var(--phi-color-text-primary);
+}
+.label { white-space: nowrap; }
+.on .icon { background-image: var(--phi-label-strong); }

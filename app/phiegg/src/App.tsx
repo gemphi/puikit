@@ -5,7 +5,7 @@ import { AppShell, APPS_RAIL, Box, Stack, Title } from '@pui/components';
 import { useStore } from '@pui/store';
 import { phieggStore } from './state/phieggStore';
 import { HeaderEnd } from './components/Shell/HeaderEnd';
-import { appsGlyph, appsItem, currentEntry, parseEntry, shellApps, shellGroups, shellTabs } from './components/Shell/shellData';
+import { appsGlyph, appsItem, currentEntry, inShop, parseEntry, shellApps, shellGroups, shellTabs, sideGroups } from './components/Shell/shellData';
 import { Crumbs } from './components/Phiegg/Search';
 import { Icon, Wordmark } from './components/Phiegg/Marks';
 import { SignIn } from './components/Shell/SignIn';
@@ -17,13 +17,15 @@ import { WatchSheet } from './components/Phiegg/WatchSheet';
 import { PlacePage } from './components/Phiegg/Commerce';
 import { useListedLook } from './components/Shell/Appearance';
 import {
-  AgentsHubPage, ClubPage, CollectionPage, ListPage, CreatePage, EventsPage, ExplorePage, FeedPage, HostsPage, JoinPage,
-  MessagesPage, PhipadPage, ProfilePage, ShowPage, ShowsPage, WorldPage, WorldsPage, ShopPage, PoolPage, SeriesPage, LeaguePage, CityPage, SearchPage, RecentPage, StudioPage, RidesPage, WelcomePage, PostPage,
+  AgentsHubPage, ClubPage, CollectionPage, ListPage, CreatePage, ExplorePage, FeedPage, HostPage, JoinPage,
+  MessagesPage, PhipadPage, ProfilePage, ShowPage, WorldPage, ShopPage, PoolPage, SeriesPage, LeaguePage, CityPage, SearchPage, RecentPage, StudioPage, RidesPage, WelcomePage, PostPage,
 } from './pages/phiegg';
 import { me, site, t } from './lib/data';
+import { MENUS } from './lib/menus';
+import { routeOf } from './lib/route';
+import { RecordView } from './components/Phiegg/RecordSheet';
 import { useIdentity } from './lib/identity';
 
-const LISTS = Object.keys(site.lists);
 
 type S = ReturnType<typeof phieggStore.getState>;
 /** Every tab named in data/site.json (rail, secondary panels, agent hrefs) resolves to a page here. A look, an asset,
@@ -33,7 +35,11 @@ const page = (tab: string, s: S): React.ReactNode => {
   if (tab === 'pool') return <PoolPage />;
   if (tab === 'series' || tab === 'watch') return <SeriesPage />;
   if (tab === 'league') return <LeaguePage />;
-  if (LISTS.includes(tab)) return <ListPage key={tab} kind={tab} />;
+  // A path with a title and tabs is a list (worlds, shows, events, hosts, pools…); one that carries a record id and
+  // has no page of its own shows its kind's record (data/route.json).
+  const route = routeOf(tab);
+  if (route.title && route.tab) return <ListPage key={tab} path={tab} />;
+  if (route.param === 'recordId' && typeof route.kind === 'string') return <RecordView key={s.recordId} kind={route.kind} id={s.recordId} page />;
   switch (tab) {
     case 'feed': return <FeedPage />;
     case 'recent': return <RecentPage />;
@@ -47,11 +53,9 @@ const page = (tab: string, s: S): React.ReactNode => {
     case 'place': return <PlacePage id={s.placeId} />;
     case 'search': return <SearchPage />;
     case 'explore': return <ExplorePage />;
-    case 'hosts': case 'nests': case 'channels': return <HostsPage />;
-    case 'worlds': return <WorldsPage />;
+    case 'host': case 'nests': case 'channels': return <HostPage />;
     case 'world': return <WorldPage />;
     case 'city': return <CityPage />;
-    case 'shows': return <ShowsPage />;
     case 'show': return <ShowPage />;
     case 'club': return <ClubPage />;
     case 'collection': return <CollectionPage />;
@@ -59,8 +63,6 @@ const page = (tab: string, s: S): React.ReactNode => {
     case 'messages': return <MessagesPage />;
     case 'agents': case 'agents-hub': return <AgentsHubPage />;
     case 'phipad': return <PhipadPage />;
-    case 'events': return <EventsPage key="events" />;
-    case 'drops': return <EventsPage key="drops" only="Drops" />;
     case 'create': return <CreatePage />;
     case 'join': return <JoinPage />;
     default: return <FeedPage />;
@@ -76,6 +78,16 @@ export const App: React.FC = () => {
   const { gradientLevel, setGradientLevel, borderRadius, setBorderRadius } = usePuiTheme();
   useEffect(() => { if (gradientLevel !== ap.gradient) setGradientLevel(ap.gradient as GradientLevel); }, [ap.gradient]);
   // The appearance radius drives the puikit radius scale, so every --phi-radius-* token (cards, decks, tabs, buttons) follows it.
+  // A change of default (site.json appearance.rev) moves a saved appearance still on the old default once.
+  useEffect(() => {
+    const rev = (site as unknown as { appearance: { rev?: { id: string; from: Partial<Record<keyof typeof ap, string>> }; defaults: Record<string, string> } }).appearance;
+    if (!rev.rev) return;
+    try {
+      if (localStorage.getItem('phiegg:appearance-rev') === rev.rev.id) return;
+      for (const [k, v] of Object.entries(rev.rev.from)) if (ap[k as keyof typeof ap] === v) s.setAppearance(k as keyof typeof ap, rev.defaults[k]);
+      localStorage.setItem('phiegg:appearance-rev', rev.rev.id);
+    } catch { /* no storage: the defaults already apply */ }
+  }, []);
   useEffect(() => {
     const id = (RADIUS_ALIASES[ap.radius] ?? ap.radius) as RadiusPreset;
     if (id !== ap.radius && RADIUS_PRESETS[id]) { s.setAppearance('radius', id); return; } // older saved ids (sharp/soft/round)
@@ -86,21 +98,27 @@ export const App: React.FC = () => {
     el.phGradient = ap.gradient; el.phRadius = ap.radius; el.phMotion = ap.motion; el.phOpacity = ap.opacity;
   }, [ap.gradient, ap.radius, ap.motion, ap.opacity]);
   // An entry id names a page and its params (shellData.tsx); the profile tab opens your own.
-  const go = (id: string) => { const [tab, params] = parseEntry(id); if (tab === 'profile' && !params) s.go('profile', { profileId: me().id }); else s.go(tab, params); };
+  // In a shop the sidebar opens on the shop's own menu (shellData shopGroup); leaving it returns to Home's.
+  const shopRail = Object.values(MENUS.rail).flat().find((r) => r.tab === 'shop')?.id;
+  useEffect(() => { if (!shopRail) return; if (inShop(s)) { if (s.rail !== shopRail) s.setRail(shopRail); } else if (s.rail === shopRail) s.setRail('home'); }, [s.tab]); // eslint-disable-line react-hooks/exhaustive-deps
+  const go = (id: string) => {
+    // A pick in a shop's own menu sets the shop's tab or category (state shopView), the page follows.
+    if (id.startsWith('shopview:')) { const [, k, v] = id.split(':'); s.setShopView(k === 'tab' ? { tab: v, cat: '' } : { cat: v, tab: v ? 'looks' : s.shopView.tab }); return; }
+    const [tab, params] = parseEntry(id); if (tab === 'profile' && !params) s.go('profile', { profileId: me().id }); else s.go(tab, params); };
   const apps = appsItem();
   return (
     <Stack direction="column" gap={0} data-ph-radius={ap.radius} data-ph-gradient={ap.gradient} data-ph-motion={ap.motion}
       data-ph-sidebar={ap.sidebar} data-ph-content={ap.content} data-ph-opacity={ap.opacity} className="ph-app" width="100vw" height="100vh" overflow="hidden">
       <AppShell
         brand={{ name: site.brand.name, glyph: <Icon size="100%" />, wordmark: <Title level={4} size="sm"><Wordmark /></Title> }}
-        groups={shellGroups(s)} view={currentEntry(s)} onView={go}
+        groups={shellGroups(s)} view={currentEntry(s)} onView={go} side={{ label: t('pgExplore'), groups: sideGroups(s) }}
         collapseKey={s.tab === 'asset' ? 'asset:' + s.assetId : s.tab === 'look' ? 'look:' + s.lookId : undefined}
         rail={s.rail === apps?.id ? APPS_RAIL : s.rail} onRail={(id) => s.setRail(id === APPS_RAIL && apps ? apps.id : id)}
         apps={shellApps()} appsLabel={apps?.label ?? t('hdApps')} appsIcon={appsGlyph()} tabs={shellTabs()}
         crumbs={<Crumbs compact={compact} />} headerRight={<HeaderEnd />}
         labels={{ openMenu: t('hdMenu'), closeMenu: t('hdCloseMenu'), menu: t('hdMenu'), moreApps: apps?.addLabel ?? t('hdAddApps'), fold: (l, o) => (o ? t('collapse') : t('expand')) + ' ' + l }}
       >
-        <Box key={[s.tab, s.worldId, s.showId, s.clubId, s.profileId, s.cityId, s.storeId, s.poolId, s.lookId, s.assetId, s.titleId, s.placeId].join('|')}>
+        <Box key={[s.tab, s.worldId, s.showId, s.clubId, s.profileId, s.cityId, s.storeId, s.poolId, s.hostId, s.lookId, s.assetId, s.titleId, s.placeId].join('|')}>
           {page(s.tab, s)}
         </Box>
         <Overlays />

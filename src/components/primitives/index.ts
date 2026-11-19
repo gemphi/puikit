@@ -7,3 +7,4 @@ export * from './Text';
 export * from './Span';
 export * from './Divider';
 export * from './Pressable';
+export * from './Label';

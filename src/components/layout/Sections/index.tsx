@@ -9,8 +9,12 @@ import styles from './styles.module.scss';
 import { useTitleShown } from '../ShownTitle';
 
 /** A section's title, left out when it would only repeat a title already shown above (the page's, its column's). */
-const SectionTitle: React.FC<{ title: React.ReactNode; size?: string }> = ({ title, size }) =>
-  useTitleShown(title) ? null : typeof title === 'string' ? (size === 'lg' ? <Title level={3} size="lg">{title}</Title> : <Text size="sm" weight="semibold">{title}</Text>) : <>{title}</>;
+/** Its icon goes with it: a section whose title is already shown keeps no bare icon either. */
+const SectionTitle: React.FC<{ title: React.ReactNode; size?: string; icon?: React.ReactNode }> = ({ title, size, icon }) =>
+  useTitleShown(title) ? null : <>
+    {icon && <Box as="span" className={cn(styles.icon, 'pui-label-icon')} aria-hidden="true">{icon}</Box>}
+    {typeof title === 'string' ? (size === 'lg' ? <Title level={3} size="lg">{title}</Title> : <Text size="sm" weight="semibold">{title}</Text>) : title}
+  </>;
 
 export type SectionDef = {
   id: string;
@@ -27,8 +31,14 @@ export type SectionDef = {
   /** Start folded. */
   defaultCollapsed?: boolean;
   actions?: React.ReactNode;
+  /** The layouts its content can take (tile, grid, list): one icon in the header, the choices shown under it on hover. */
+  layouts?: { id: string; label: string; icon: React.ReactNode }[];
+  layout?: string;
+  onLayout?: (id: string) => void;
   hidden?: boolean;
   label?: string;
+  /** A glyph before the title (info, chat, stats, zones…), so a reader finds a section by its look. */
+  icon?: React.ReactNode;
 };
 
 export type SectionsProps = {
@@ -41,7 +51,8 @@ export type SectionsProps = {
   /** Header size: `sm` inside sheets and cards, `lg` for the sections of a page. */
   size?: 'sm' | 'lg';
   /** `card` (default) frames every section; `plain` leaves the page background. */
-  variant?: 'card' | 'plain';
+  /** card: a surface; plain: no surface, a rule under the head; band: no surface, a band of light that hugs its content. */
+  variant?: 'card' | 'plain' | 'band';
   expandLabel?: string; collapseLabel?: string; foldLabel?: string; closeLabel?: string; upLabel?: string; downLabel?: string; resetLabel?: string;
 };
 
@@ -68,8 +79,10 @@ export const Sections = ({ sections, className, reorderable = false, storageKey,
   useEffect(() => { save(storageKey, { order, closed, folded }); }, [storageKey, order, closed, folded]);
   const rank = (id: string) => { const i = order.indexOf(id); return i < 0 ? order.length + sections.findIndex((x) => x.id === id) : i; };
   const live = sections.filter((x) => !x.hidden).sort((a, b) => rank(a.id) - rank(b.id));
-  const shut = live.filter((x) => closed[x.id]);
-  const open = live.filter((x) => !closed[x.id]);
+  // A section that cannot close is never shut, even by a close saved before it could not.
+  const isShut = (x: SectionDef) => !!closed[x.id] && x.closable !== false;
+  const shut = live.filter(isShut);
+  const open = live.filter((x) => !isShut(x));
   const shown = open.filter((x) => !expanded || x.id === expanded);
   const name = (x: SectionDef) => x.label ?? (typeof x.title === 'string' ? x.title : x.id);
   const move = (id: string, by: number) => {
@@ -84,16 +97,25 @@ export const Sections = ({ sections, className, reorderable = false, storageKey,
       {shown.map((x) => {
         const isExp = expanded === x.id; const isFold = !!folded[x.id] && !isExp; const at = open.indexOf(x);
         return (
-          <Box key={x.id} as="section" className={cn(styles.section, variant !== 'plain' && 'phi-layers', isExp && styles.exp, isFold && styles.folded)} aria-label={name(x)} data-section={x.id}>
+          <Box key={x.id} as="section" className={cn(styles.section, variant === 'card' && 'phi-layers', isExp && styles.exp, isFold && styles.folded)} aria-label={name(x)} data-section={x.id}>
             <Box className={styles.head}>
               <Box className={styles.title}>
-                <SectionTitle title={x.title} size={size} />
+                <SectionTitle title={x.title} size={size} icon={x.icon} />
                 {x.hint && !isFold && <Text size="sm" intent="muted">{x.hint}</Text>}
               </Box>
-              {x.actions}
+              {x.actions && <Box as="span" className={styles.actions}>{x.actions}</Box>}
+              {x.layouts?.length ? (() => { const on = x.layouts.find((l) => l.id === x.layout) ?? x.layouts[0]; return (
+                <Box as="span" className={styles.layout}>
+                  <Button variant="icon" size="sm" aria-label={on.label} title={on.label} aria-haspopup="true">{on.icon}</Button>
+                  <Box as="span" className={styles.layoutMenu} role="menu">{x.layouts.map((l) => (
+                    <Button key={l.id} variant="glass" size="sm" role="menuitemradio" aria-checked={l.id === on.id} aria-pressed={l.id === on.id} onClick={() => x.onLayout?.(l.id)}>{l.icon}<span>{l.label}</span></Button>))}
+                  </Box>
+                </Box>); })() : null}
+              <Box as="span" className={styles.tools}>
               {reorderable && !expanded && <>
-                <Button variant="icon" size="sm" onClick={() => move(x.id, -1)} disabled={at <= 0} aria-label={upLabel}><ArrowUp size={icon} /></Button>
-                <Button variant="icon" size="sm" onClick={() => move(x.id, 1)} disabled={at >= open.length - 1} aria-label={downLabel}><ArrowDown size={icon} /></Button>
+                {/* Only the moves that can be made show: none up for the first section, none down for the last. */}
+                {at > 0 && <Button variant="icon" size="sm" onClick={() => move(x.id, -1)} aria-label={upLabel}><ArrowUp size={icon} /></Button>}
+                {at < open.length - 1 && <Button variant="icon" size="sm" onClick={() => move(x.id, 1)} aria-label={downLabel}><ArrowDown size={icon} /></Button>}
               </>}
               {x.collapsible && !isExp && (
                 <Button variant="icon" size="sm" onClick={() => setFolded({ ...folded, [x.id]: !isFold })} aria-label={isFold ? expandLabel : foldLabel} aria-expanded={!isFold}>
@@ -108,6 +130,7 @@ export const Sections = ({ sections, className, reorderable = false, storageKey,
               {x.closable && (
                 <Button variant="icon" size="sm" onClick={() => { if (isExp) setExpanded(null); setClosed({ ...closed, [x.id]: true }); }} aria-label={closeLabel}><X size={icon} /></Button>
               )}
+              </Box>
             </Box>
             {!isFold && <Box className={styles.body}><Expanded.Provider value={isExp}>{x.content}</Expanded.Provider></Box>}
           </Box>

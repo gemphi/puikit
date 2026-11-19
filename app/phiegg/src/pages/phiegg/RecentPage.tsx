@@ -1,7 +1,7 @@
 import React from 'react';
 import { Avatar, Button, Card, CardBody, Page, Rows, Stack, Tag, Text, Title } from '@pui/components';
 import { useStore } from '@pui/store';
-import { D, cityOf, clubOf, initials, lookOf, person, poolOf, postById, showOf, storeOf, t, usd, worldImage, worldOf } from '../../lib/data';
+import { D, cityOf, initials, person, postById, storeOf, t, usd, worldImage, itemOf, type Item } from '../../lib/data';
 import { phieggStore } from '../../state/phieggStore';
 import { Tile } from '../../components/Phiegg/Tile';
 import { ListView } from '../../components/Phiegg/Views';
@@ -15,10 +15,10 @@ type Visit = { key: string; tab: string; p: Params; title: string; kind: string;
 const describe = (tab: string, p: Params): Visit | null => {
   const v = (title: string | undefined, kind: string, id: string | undefined, tone: Tone = 'neutral') => (title ? { key: tab + ':' + (id ?? ''), tab, p, title, kind, tone } : null);
   switch (tab) {
-    case 'club': { const c = clubOf(p.clubId!); return v(c?.name, t('pgClubs'), p.clubId, c?.tone); }
-    case 'world': { const w = worldOf(p.worldId!); return v(w?.name, t('pgWorlds'), p.worldId, 'sage'); }
+    case 'club': { const c = itemOf('club', p.clubId!); return v(c?.name, t('pgClubs'), p.clubId, c?.tone); }
+    case 'world': { const w = itemOf('world', p.worldId!); return v(w?.name, t('pgWorlds'), p.worldId, 'sage'); }
     case 'city': { const h = cityOf(p.cityId!); return v(h?.city.name, h?.world.name ?? '', p.cityId, 'accent'); }
-    case 'show': { const x = showOf(p.showId!); return v(x?.title, t('pgShows'), p.showId, 'ink'); }
+    case 'show': { const x = itemOf('show', p.showId!); return v(x?.title, t('pgShows'), p.showId, 'ink'); }
     case 'profile': return v(person(p.profileId!).name, t('pgCreators'), p.profileId, 'accent');
     case 'shop': return v(storeOf(p.storeId!).name, t('pgShop'), p.storeId, 'neutral');
     case 'feed': case 'recent': return null;
@@ -26,9 +26,9 @@ const describe = (tab: string, p: Params): Visit | null => {
   }
 };
 
-const START = ((D.landing as unknown as { featured?: { worldIds: string[] } }).featured?.worldIds ?? []).map(worldOf).filter((w): w is NonNullable<ReturnType<typeof worldOf>> => !!w).slice(0, 8);
+const START = ((D.landing as unknown as { featured?: { worldIds: string[] } }).featured?.worldIds ?? []).map(((id) => itemOf('world', id))).filter((w): w is Item<'world'> => !!w).slice(0, 8);
 const evLabel = (k: string) => t(('ev_' + k.replace('.', '_')) as 'ev_buy');
-const refName = (e: ActivityEvent) => lookOf(e.ref)?.name ?? postById(e.ref)?.slides[0]?.title ?? (e.refKind === 'agent' || e.ref.startsWith('u_') || e.ref.startsWith('ag_') ? person(e.ref).name : undefined) ?? clubOf(e.ref)?.name ?? poolOf(e.ref)?.name ?? e.ref;
+const refName = (e: ActivityEvent) => itemOf('look', e.ref)?.name ?? postById(e.ref)?.slides[0]?.title ?? (e.refKind === 'agent' || e.ref.startsWith('u_') || e.ref.startsWith('ag_') ? person(e.ref).name : undefined) ?? itemOf('club', e.ref)?.name ?? itemOf('pool', e.ref)?.name ?? e.ref;
 
 export const RecentPage: React.FC = () => {
   const s = useStore(phieggStore); const activity = useActivity().events;

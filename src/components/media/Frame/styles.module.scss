@@ -1,8 +1,8 @@
 .frame { position: relative; display: grid; place-items: center; overflow: hidden; width: 100%; min-width: 0; flex: none;
-  background: var(--phi-color-background-secondary); }
-.frame[data-tint] { background: color-mix(in oklab, var(--pui-frame-tint) var(--pui-frame-strength, 24%), var(--phi-color-background-card)); }
+  /* A picture's ground is the kit's surface, tinted or not: we cannot control the picture, only what it sits on. */
+  background: var(--phi-surface); }
 .frame > img { width: 100%; height: 100%; }
 .r-none { border-radius: 0; } .r-md { border-radius: var(--phi-radius-md); } .r-lg { border-radius: var(--phi-radius-lg); }
 .centered { margin-inline: auto; }
-.r-full { border-radius: 999px; }
+.r-full { border-radius: var(--phi-radius-full); }
 .endStart { place-items: end start; padding: 0.75rem 0.9rem; }

@@ -134,5 +134,102 @@
       "sr_naimroyal1",
       "sr_naimroyal2"
     ]
+  },
+  "stage": {
+    "_": "The full-screen stage: the 16 Bold Cities (worlds of this origin), each shown whole over its own colours.",
+    "origin": "bold-cities",
+    "auto": 7000,
+    "enter": "Enter {name}",
+    "about": "About",
+    "sub": "{land} · {n} inside now",
+    "lead": [
+      {
+        "id": "home-character",
+        "src": "home/showcase-character.webp",
+        "title": "Where virtual worlds get dressed.",
+        "sub": "Hosts for your community, nests that grow into worlds and cities, and a feed of shots made for fashion."
+      },
+      {
+        "id": "home-city",
+        "src": "home/showcase-city.webp",
+        "title": "Sixteen cities to step into",
+        "sub": "Zones to walk, hosts to join, shows on the runway and shops on every corner."
+      }
+    ],
+    "_lead": "The first slides on the Home stage, before the cities: finished renders the user chose (2026-11-19)."
+  },
+  "ask": {
+    "title": "Chat",
+    "body": "Lora's Spark knows every look, city and drop. Ask her what to wear tonight, where the show is, or what a PFT is worth.",
+    "agentId": "ag_lora",
+    "context": "the welcome page",
+    "fan": [
+      "home/phi-bird/back.webp",
+      "home/phi-bird/violet-rain.webp",
+      "home/phi-bird/phantom-gold.webp",
+      "home/phi-bird/beach-day.webp",
+      "home/phi-bird/plain.webp",
+      "home/phi-bird/front.webp"
+    ],
+    "_fan": "The pictures fanned out either side of the chat, three a side from the left: finished renders of Lora's Spark's Phi Bird dress (scripts/media/home-pictures.json), 2026-11-19.",
+    "prompts": [
+      "What should I wear in Lava City?",
+      "Where is the next show?",
+      "What is a PFT?"
+    ]
+  },
+  "step": {
+    "before": "Step into",
+    "after": "sixteen cities",
+    "body": "Each city is its own world: zones to walk, hosts to join, shows on the runway and shops on every corner.",
+    "cta": "Step in"
+  },
+  "tour": [
+    {
+      "title": "Worlds",
+      "image": "world/wand-city/view/close-up-1-1280.webp",
+      "body": "Virtual cities, AR layers over real streets, and agentic worlds run by agent citizens - every world a club builds and runs.",
+      "cta": "Visit",
+      "tab": "worlds",
+      "_": "Tour pictures are finished city renders and showcase posts, never screenshots of the app."
+    },
+    {
+      "title": "Pools",
+      "image": "world/naim-city/post/showcase.webp",
+      "body": "Clubs run pools of quests - the ways the next hatch gets made. Nests grow into worlds and cities; hosts are gated by what you hold.",
+      "cta": "Explore",
+      "tab": "explore"
+    },
+    {
+      "title": "Feed",
+      "image": "world/lace-city/post/showcase.webp",
+      "body": "Shots, looks and drops from across the worlds - tagged to the pieces you own. Every sale, quest and show earns $EGG.",
+      "cta": "Open",
+      "tab": "feed"
+    }
+  ],
+  "rows": {
+    "worlds": "Worlds",
+    "posts": "Posts",
+    "rides": "Rides",
+    "stories": "Stories",
+    "compare": "Compare"
+  },
+  "post": {
+    "origin": "city-life",
+    "picture": "/showcase.",
+    "_": "The posts the home page shows (its floating pills and its posts row): posts of this origin whose picture path holds `picture`. The cities' showcase scenes; the character posts wore stand-in Lora's Spark renders and are left out (2026-11-19)."
+  },
+  "closing": {
+    "world": "Lava City"
+  },
+  "cascade": {
+    "_": "Every slider on Home: at least `min` cards, three in view (the middle the largest, a smaller one each side) and the next two as thin edges; cities are picked at random on each visit.",
+    "min": 7,
+    "sides": 2,
+    "sideScale": 0.5,
+    "overlap": 0.5,
+    "outerOverlap": 0.85,
+    "rides": 8
   }
 }

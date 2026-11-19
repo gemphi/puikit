@@ -3,7 +3,7 @@ import { Box, Button, Drawer, Pressable, Stack, Tag, Text, Title } from '@pui/co
 import { Connected } from './Connected';
 import { useStore } from '@pui/store';
 import { useWallet } from '@phi-kit/wallet';
-import { cityOf, clubOf, fmt, hostOf, lookOf, placeOf, seriesOf, site, storeOfClub, t, usd, worldOf } from '../../lib/data';
+import { cityOf, fmt, placeOf, site, storeOfClub, t, usd, itemOf } from '../../lib/data';
 import { checkout, removeFromCart, useCart } from '../../lib/cart';
 import { hasApi } from '@phi-kit/api';
 import { liveCreate } from '../../lib/live';
@@ -19,7 +19,7 @@ import type { ShopLook } from '../../types/phiegg';
 const CartDrawer: React.FC = () => {
   const s = useStore(phieggStore); const { cart } = useCart(); const w = useWallet(); const [msg, setMsg] = useState('');
   const [stage, setStage] = useState<'cart' | 'steps'>('cart');
-  const items = cart.map(lookOf).filter((l): l is ShopLook => !!l); const total = items.reduce((a, l) => a + l.usd, 0);
+  const items = cart.map(((id) => itemOf('look', id))).filter((l): l is ShopLook => !!l); const total = items.reduce((a, l) => a + l.usd, 0);
   // The checkout steps: the order kind's declared form (data/kinds.json), then pay. The wallet settles the money;
   // the order itself becomes a record in the one database when Phiora is on.
   const place = async (values: Record<string, unknown>) => {
@@ -57,7 +57,7 @@ const CartDrawer: React.FC = () => {
 /** A place inside a city district, on its own page (#/place/<id>): what it is, who runs it, and where to go next. */
 export const PlacePage: React.FC<{ id: string }> = ({ id }) => {
   const s = useStore(phieggStore); usePlaces(); const hit = placeOf(id); if (!hit) return null;
-  const { place: p, district, cityId } = hit; const where = cityOf(cityId); const club = clubOf(p.clubId); const store = club && storeOfClub(club.id);
+  const { place: p, district, cityId } = hit; const where = cityOf(cityId); const club = itemOf('club', p.clubId); const store = club && storeOfClub(club.id);
   const kinds = (site as unknown as { placeKinds: Record<string, string> }).placeKinds; const kind = kinds[p.kind] ?? p.kind;
   const others = district.places.filter((x) => x.id !== p.id);
   const tile = (ratio: '16/9') => <Tile animate tone={p.tone} ratio={ratio} depth={{ clubId: p.clubId, worldId: where?.world.id }} title={p.name} sub={district.vibe} badges={<Tag round size="sm">{kind}</Tag>} />;

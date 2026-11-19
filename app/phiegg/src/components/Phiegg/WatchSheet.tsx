@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, ItemCard, Rows, ChoiceRow, Spinner, Stack, Tag, TabList, Text, Title } from '@pui/components';
 import { EntityPage } from './EntityPage';
 import { useStore } from '@pui/store';
-import { D, agentOf, clubOf, hostOf, lookOf, person, poolOf, seriesOf, t, usd, worldOf } from '../../lib/data';
+import { D, person, t, usd, itemOf } from '../../lib/data';
 import { useProduction } from '../../lib/productions';
 import { useStory } from '../../lib/lazy';
 import { record } from '../../lib/activity';
@@ -20,14 +20,14 @@ import type { ProdRole } from '../../types/phiegg';
  * The hierarchy runs to sales: title → season → episode → the look worn (a PFT in the club's pool).
  */
 export const WatchSheet: React.FC<{ id: string }> = ({ id }) => {
-  const s = useStore(phieggStore); const x = seriesOf(id); const prod = useProduction(id); const story = useStory(x?.storyId);
+  const s = useStore(phieggStore); const x = itemOf('series', id); const prod = useProduction(id); const story = useStory(x?.storyId);
   const [season, setSeason] = useState(1); const [ep, setEp] = useState(1); const [part, setPart] = useState('all');
   useEffect(() => { setSeason(1); setEp(1); setPart('all'); }, [id]);
   if (!x) return null;
-  const club = clubOf(x.clubId); const world = worldOf(x.worldId); const host = hostOf(x.hostId);
+  const club = itemOf('club', x.clubId); const world = itemOf('world', x.worldId); const host = itemOf('host', x.hostId);
   const agent = D.agents.agents.find((a) => a.clubIds.includes(x.clubId)) ?? D.agents.agents[0];
   const se = prod?.seasons.find((z) => z.n === season) ?? prod?.seasons[0]; const e = se?.episodes.find((z) => z.n === ep) ?? se?.episodes[0];
-  const shopLook = e ? lookOf(e.shop.lookId) : undefined; const pool = poolOf(e?.shop.poolId ?? x.poolId ?? undefined);
+  const shopLook = e ? itemOf('look', e.shop.lookId) : undefined; const pool = itemOf('pool', e?.shop.poolId ?? x.poolId ?? undefined);
   const parts = prod ? ['all', ...new Set(prod.roles.map((r) => r.part))] : ['all'];
   const roles = (prod?.roles ?? []).filter((r) => part === 'all' || r.part === part);
   const pick = (n: number) => { setEp(n); record('open', `${x.id}:${season}:${n}`, { refKind: 'episode', with: x.id }); };
@@ -76,7 +76,7 @@ export const WatchSheet: React.FC<{ id: string }> = ({ id }) => {
   );
 
   const role = (r: ProdRole) => {
-    const h = hostOf(r.hostId ?? undefined); const looks = r.lookIds.map(lookOf).filter((l): l is NonNullable<typeof l> => !!l);
+    const h = itemOf('host', r.hostId ?? undefined); const looks = r.lookIds.map(((id) => itemOf('look', id))).filter((l): l is NonNullable<typeof l> => !!l);
     return (
       <ItemCard key={r.personId + r.character} variant="flat" padding="sm" stackBelow="md" onClick={() => s.openPerson(r.personId)}
         media={<PersonAvatar id={r.personId} size="md" />} title={r.character} meta={`${person(r.personId).name} · ${r.part}`}
@@ -103,7 +103,7 @@ export const WatchSheet: React.FC<{ id: string }> = ({ id }) => {
     <EntityPage picture={picture} wear={shopLook?.hex} title={x.title} sub={<>{x.genre} · {x.era}{x.seasonCount && x.seasonCount > 1 ? ' · ' + x.seasonCount + ' seasons' : ''}</>} columns={[
       { id: 'episodes', title: x.kind === 'series' ? t('wsSeasons') : x.kind === 'play' ? t('wsAct') : t('wsEpisode'), content: left, width: '20rem' },
       { id: 'episode', title: e?.title ?? x.title, label: t('wsEpisode'), content: centre, minWidth: '20rem' },
-      { id: 'cast', title: t('wsCast'), content: <Stack direction="column" gap={4}>{right}<Text size="sm" weight="semibold">{agentOf(agent.id)?.name ?? agent.name}</Text><AgentChat agentId={agent.id} context={x.title} prompts={[t('wsAskPlot'), t('wsAskLook'), t('wsAskRole')]} /></Stack>, width: '22rem' },
+      { id: 'cast', title: t('wsCast'), content: <Stack direction="column" gap={4}>{right}<Text size="sm" weight="semibold">{itemOf('agent', agent.id)?.name ?? agent.name}</Text><AgentChat agentId={agent.id} context={x.title} prompts={[t('wsAskPlot'), t('wsAskLook'), t('wsAskRole')]} /></Stack>, width: '22rem' },
     ]} />
   );
 };

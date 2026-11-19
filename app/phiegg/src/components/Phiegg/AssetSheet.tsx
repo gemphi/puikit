@@ -3,7 +3,7 @@ import { Button, DataTable, Input, ItemCard, SpriteImage, Stack, Swatch, Tag, Te
 import { EntityPage } from './EntityPage';
 import { useStore } from '@pui/store';
 import { useWallet } from '@phi-kit/wallet';
-import { D, cityOf, jewelOf, jewelSprite, rideOf, ridePrice, rideSprite, clubOf, eggOf, eggUsd, fmt, hostOf, person, poolOf, profileItemOf, seriesOf, sumOf, t, usd, worldOf, rideKind, rideMode } from '../../lib/data';
+import { D, cityOf, jewelSprite, ridePrice, rideSprite, eggUsd, fmt, person, t, usd, rideKind, rideMode, itemOf } from '../../lib/data';
 import { buyAsset, deposit, sumYield, useHoldings } from '../../lib/holdings';
 import { useNow } from '../../lib/market';
 import { spriteOfCell } from '../../lib/portraits';
@@ -26,13 +26,13 @@ const egg = (n: number) => fmt(Math.round(n)) + ' EGG';
  */
 export const AssetSheet: React.FC<{ id: string }> = ({ id }) => {
   const s = useStore(phieggStore); const w = useWallet(); const held = useHoldings(); const now = useNow(1000);
-  const e = eggOf(id), m = sumOf(id), p = profileItemOf(id), c = rideOf(id), j = jewelOf(id); const [amt, setAmt] = useState('100'); const [msg, setMsg] = useState('');
+  const e = itemOf('egg', id), m = itemOf('sum', id), p = itemOf('profilePft', id), c = itemOf('ride', id), j = itemOf('jewel', id); const [amt, setAmt] = useState('100'); const [msg, setMsg] = useState('');
   // A profile PFT's background and outfit are its theme; the page wears them while it is open.
   // A ride's or a jewel's designer theme does the same.
   const th = c?.theme ?? j?.theme;
   usePageTheme(p?.bg ?? th?.colours[0], p?.outfit ?? th?.colours[1], 'vivid', c ? 'ride' : j ? 'jewel' : 'profile');
   if (!e && !m && !p && !c && !j) return null;
-  const it = (e ?? m ?? p ?? c ?? j)!; const clubId = it.clubId; const club = clubOf(clubId); const pool = poolOf(e?.poolId ?? m?.poolId ?? p?.poolId);
+  const it = (e ?? m ?? p ?? c ?? j)!; const clubId = it.clubId; const club = itemOf('club', clubId); const pool = itemOf('pool', e?.poolId ?? m?.poolId ?? p?.poolId);
   const agent = D.agents.agents.find((a) => a.clubIds.includes(clubId)) ?? D.agents.agents[0];
   const mine = held[id];
   const typeTag = e ? t('itEgg') + ' · ' + t(e.kind === 'gate' ? 'itGate' : e.kind === 'earnings' ? 'itEarnings' : 'itLand') : m ? t('itSum') + ' · ' + t('itMachine') : c ? `${t('itPft')} · ${rideKind(c.kind)} · ${rideMode(c.mode)}` : j ? t(j.kind === 'watch' ? 'itWatch' : 'itJewel') : t('itProfile');
@@ -42,8 +42,8 @@ export const AssetSheet: React.FC<{ id: string }> = ({ id }) => {
   const put = () => { const n = Number(amt); setMsg(m && n >= m.minEgg && deposit(id, n, m.name) ? t('asBought', { name: m.name }) : t('asNoEgg')); };
 
   const rows: Row[] = e ? [
-    { id: 'kind', k: t('asKind'), v: typeTag }, { id: 'host', k: t('asHost'), v: hostOf(e.hostId)?.name ?? '·' }, { id: 'owner', k: t('asOwner'), v: e.ownerId ? person(e.ownerId).name : '·' },
-    { id: 'world', k: t('asWorld'), v: worldOf(e.worldId)?.name ?? '·' }, { id: 'price', k: t('asPrice'), v: <Text as="span" size="sm" weight="bold" numeric>{egg(e.priceEgg)} · {usd(e.priceUsd)}</Text> },
+    { id: 'kind', k: t('asKind'), v: typeTag }, { id: 'host', k: t('asHost'), v: itemOf('host', e.hostId)?.name ?? '·' }, { id: 'owner', k: t('asOwner'), v: e.ownerId ? person(e.ownerId).name : '·' },
+    { id: 'world', k: t('asWorld'), v: itemOf('world', e.worldId)?.name ?? '·' }, { id: 'price', k: t('asPrice'), v: <Text as="span" size="sm" weight="bold" numeric>{egg(e.priceEgg)} · {usd(e.priceUsd)}</Text> },
     { id: 'supply', k: t('asSupply'), v: `${fmt(e.sold)} / ${fmt(e.supply)}` }, { id: 'yield', k: t('asYield'), v: egg(e.yieldDay) },
     ...(e.sharePct ? [{ id: 'share', k: t('asShare'), v: e.sharePct + '%' }] : []), ...(e.sizeM2 ? [{ id: 'size', k: t('asSize'), v: fmt(e.sizeM2) + ' m²' }] : []),
   ] : m ? [
@@ -56,7 +56,7 @@ export const AssetSheet: React.FC<{ id: string }> = ({ id }) => {
     ...(c.kind === 'fun' ? [{ id: 'minutes', k: t('rdMinutes'), v: String(c.minutes) }, { id: 'thrill', k: t('rdThrill'), v: '★'.repeat(c.thrill ?? 1) }]
       : [{ id: 'speed', k: t('carTop'), v: <Text as="span" size="sm" numeric>{fmt(c.topKmh)} km/h · {fmt(c.rangeKm)} km</Text> }]),
     ...(c.cargoM3 ? [{ id: 'cargo', k: t('rdCargo'), v: c.cargoM3 + ' m³' }] : []),
-    { id: 'lane', k: t('carLane'), v: `${c.lane} · ${cityOf(c.cityId)?.city.name ?? ''}, ${worldOf(c.worldId)?.name ?? ''}` },
+    { id: 'lane', k: t('carLane'), v: `${c.lane} · ${cityOf(c.cityId)?.city.name ?? ''}, ${itemOf('world', c.worldId)?.name ?? ''}` },
     { id: 'price', k: c.mode === 'sale' ? t('asPrice') : c.mode === 'fun' ? t('rdTicket') : t('rdFare'), v: <Text as="span" size="sm" weight="bold" numeric>{usd(ridePrice(c))} · {egg(priceEgg)}</Text> },
     ...(c.mode === 'sale' ? [{ id: 'supply', k: t('asSupply'), v: `${fmt(c.minted)} / ${fmt(c.edition)} · ${t('holders')} ${fmt(c.owners)}` }] : [{ id: 'today', k: t('rdToday'), v: fmt(c.ridesToday) }]),
     { id: 'theme', k: t('carTheme'), v: <Stack direction="row" gap={1} wrap>{c.theme.kinds.map((k) => <Tag key={k} minimal round size="sm">{k}</Tag>)}<Tag minimal round size="sm">{c.theme.mood}</Tag></Stack> },
@@ -94,16 +94,16 @@ export const AssetSheet: React.FC<{ id: string }> = ({ id }) => {
       { id: 'details', title: t('asFacts'), expandable: true, content: <Facts rows={rows} /> },
     ]} />
   );
-  const titles = (e?.seriesIds ?? m?.seriesIds ?? []).map(seriesOf).filter((x): x is NonNullable<typeof x> => !!x);
-  const inputs = (m?.inputs ?? []).map(eggOf).filter((x): x is NonNullable<typeof x> => !!x);
+  const titles = (e?.seriesIds ?? m?.seriesIds ?? []).map(((id) => itemOf('series', id))).filter((x): x is NonNullable<typeof x> => !!x);
+  const inputs = (m?.inputs ?? []).map(((id) => itemOf('egg', id))).filter((x): x is NonNullable<typeof x> => !!x);
   const left = (
     <Stack direction="column" gap={2}>
       <Text size="xs" weight="bold" intent="muted">{t('asLinked')}</Text>
       {pool && <ItemCard variant="flat" padding="sm" stackBelow="never" onClick={() => s.go('pool', { poolId: pool.id })} media={<EntityAvatar id={pool.id} name={pool.name} size="sm" />} title={pool.name} meta={t('lsPool')} />}
       {club && <ItemCard variant="flat" padding="sm" stackBelow="never" onClick={() => s.go('club', { clubId: club.id })} media={<EntityAvatar id={club.id} name={club.name} size="sm" />} title={club.name} meta={t('lsColClub')} />}
-      {e && hostOf(e.hostId) && <ItemCard variant="flat" padding="sm" stackBelow="never" onClick={() => s.openDetails({ kind: 'host', id: e.hostId })} media={<EntityAvatar id={e.hostId} name={hostOf(e.hostId)!.name} size="sm" />} title={hostOf(e.hostId)!.name} meta={t('asHost')} />}
+      {e && itemOf('host', e.hostId) && <ItemCard variant="flat" padding="sm" stackBelow="never" onClick={() => s.openDetails({ kind: 'host', id: e.hostId })} media={<EntityAvatar id={e.hostId} name={itemOf('host', e.hostId)!.name} size="sm" />} title={itemOf('host', e.hostId)!.name} meta={t('asHost')} />}
       {(e?.ownerId ?? p?.holderId ?? c?.holderId ?? j?.holderId) && <ItemCard variant="flat" padding="sm" stackBelow="never" onClick={() => s.openPerson((e?.ownerId ?? p?.holderId ?? c?.holderId ?? j?.holderId)!)} media={<PersonAvatar id={(e?.ownerId ?? p?.holderId ?? c?.holderId ?? j?.holderId)!} size="sm" />} title={person((e?.ownerId ?? p?.holderId ?? c?.holderId ?? j?.holderId)!).name} meta={e ? t('asOwner') : t('asHolder')} />}
-      {(c ?? j) && worldOf((c ?? j)!.worldId) && <ItemCard variant="flat" padding="sm" stackBelow="never" onClick={() => s.go('world', { worldId: (c ?? j)!.worldId })} media={<EntityAvatar id={(c ?? j)!.worldId} name={worldOf((c ?? j)!.worldId)!.name} size="sm" />} title={worldOf((c ?? j)!.worldId)!.name} meta={t('asWorld')} />}
+      {(c ?? j) && itemOf('world', (c ?? j)!.worldId) && <ItemCard variant="flat" padding="sm" stackBelow="never" onClick={() => s.go('world', { worldId: (c ?? j)!.worldId })} media={<EntityAvatar id={(c ?? j)!.worldId} name={itemOf('world', (c ?? j)!.worldId)!.name} size="sm" />} title={itemOf('world', (c ?? j)!.worldId)!.name} meta={t('asWorld')} />}
       {inputs.length > 0 && <><Text size="xs" weight="bold" intent="muted">{t('asInputs')}</Text>
         {inputs.slice(0, 12).map((x) => <ItemCard key={x.id} variant="flat" padding="sm" stackBelow="never" onClick={() => s.openAsset(x.id)} media={<EntityAvatar id={x.hostId} name={x.name} size="sm" />} title={x.name} aside={<Text size="xs" numeric>{egg(x.priceEgg)}</Text>} />)}</>}
       {titles.length > 0 && <><Text size="xs" weight="bold" intent="muted">{t('asTitles')}</Text>

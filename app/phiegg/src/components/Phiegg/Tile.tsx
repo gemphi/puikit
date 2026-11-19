@@ -1,11 +1,12 @@
 import React from 'react';
-import { DepthMedia, Pressable, Text, Title, WorldScene, useCardTint } from '@pui/components';
+import type { DepthAction } from '@pui/components';
+import { DepthMedia, Picture, Pressable, Text, Title, WorldScene } from '@pui/components';
 import type { DepthLayer } from '@pui/components';
-import { clubOf, worldOf } from '../../lib/data';
+import { itemOf } from '../../lib/data';
 
 /** Scene base colour per tone, mixes of the theme, so the scenes follow the palette. */
 const SCENE_COLOR: Record<string, string> = { accent: 'var(--phi-color-primary)', sage: 'var(--phi-color-success)', neutral: 'var(--phi-color-gray-500, #8a8a8e)', ink: 'var(--phi-color-gray-800, #2c2c2e)' };
-import { renderColour, renderFor, toneBackground } from '../../lib/depth';
+import { renderColour, renderFor } from '../../lib/depth';
 import { PersonAvatar } from './PersonAvatar';
 import { EntityAvatar } from './EntityAvatar';
 import styles from './Tile.module.scss';
@@ -31,6 +32,11 @@ type TileProps = {
   deckDirection?: 'up' | 'down';
   /** The PFT's own colour (a look's hex). Defaults to one of the club's / world's look colours, so no card is random. */
   color?: string;
+  /** The picture alone, as an object: no look in the middle, no face in front, no deck (a world's own render). */
+  solo?: boolean;
+  /** Who it belongs to, at the top right; and its actions down the right on hover (kit DepthMedia). */
+  owner?: React.ReactNode;
+  actions?: DepthAction[];
 };
 
 /**
@@ -45,23 +51,19 @@ type TileProps = {
  */
 export function tileColour({ tone, title, sub, depth = {}, color }: Pick<TileProps, 'tone' | 'title' | 'sub' | 'depth' | 'color'>) {
   const seed = (title ?? '') + (sub ?? '') + tone;
-  const club = clubOf(depth.clubId);
-  const world = worldOf(depth.worldId) ?? worldOf(club?.worldIds?.[0]);
+  const club = itemOf('club', depth.clubId);
+  const world = itemOf('world', depth.worldId) ?? itemOf('world', club?.worldIds?.[0]);
   const palette = club?.colors?.length ? club.colors : world?.colors;
   const want = color ?? (palette?.length ? palette[[...seed].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7) % palette.length] : undefined);
   const render = depth.mid ? { src: depth.mid, hex: renderColour(depth.mid) ?? want } : renderFor(seed, depth.clubId, want);
   return { seed, club, world, render, hex: render?.hex ?? want };
 }
 
-export const Tile: React.FC<TileProps> = ({ tone, title, sub, ratio = '4/5', big, badges, onClick, animate, image, drawn, depth = {}, grid, deck = 3, deckDirection = 'up', color }) => {
+export const Tile: React.FC<TileProps> = ({ tone, title, sub, ratio = '4/5', big, badges, onClick, animate, image, drawn, depth = {}, grid, deck = 3, deckDirection = 'up', color, solo, owner, actions }) => {
   const { seed, club, world, render, hex } = tileColour({ tone, title, sub, depth, color });
   // The parent layer: the card's own picture when it has one (a world's scene), else the SVG scene drawn in the card's
   // colour, so the dress, the scene and the card around it are one colour.
   const scene = drawn ? undefined : image;
-  // A tile is a card of its own: the card around it drops its surface, so there is one card, not a card in a card.
-  useCardTint(undefined, undefined, true);
-  const ground = hex ? `color-mix(in srgb, ${hex} 30%, var(--phi-color-background-card, #fff))` : toneBackground(tone);
-  const frame = hex ? `color-mix(in srgb, ${hex} 14%, var(--phi-color-background-card, #fff))` : toneBackground(tone);
   // Front layer: the person behind the card, else its club's icon, else the record's own icon.
   const face: DepthLayer = depth.face
     ? { node: depth.face }
@@ -76,15 +78,20 @@ export const Tile: React.FC<TileProps> = ({ tone, title, sub, ratio = '4/5', big
     <DepthMedia
       className={[styles.tile, ratio === 'auto' ? styles.fill : '', styles[tone], animate ? styles.animate : ''].join(' ')}
       ratio={ratio}
-      back={scene ? { src: scene, background: ground, alt: '' }
-        : { node: <WorldScene seed={depth.worldId ?? depth.clubId ?? seed} color={hex ?? SCENE_COLOR[worldOf(depth.worldId)?.tone ?? tone] ?? SCENE_COLOR.accent} night={(worldOf(depth.worldId)?.tone ?? tone) === 'ink'} />, background: ground }}
-      mid={{ src: render?.src, background: frame, fit: 'contain', alt: '' }}
-      front={face}
+      // A picture of its own (a post, a city): its blurred copy fills the card and the picture sits whole in the middle,
+      // never on a painted colour.
+      back={scene && solo ? { node: <Picture src={scene} /> }
+        : scene ? { src: scene, alt: '' }
+        : { node: <WorldScene seed={depth.worldId ?? depth.clubId ?? seed} color={hex ?? SCENE_COLOR[itemOf('world', depth.worldId)?.tone ?? tone] ?? SCENE_COLOR.accent} night={(itemOf('world', depth.worldId)?.tone ?? tone) === 'ink'} /> }}
+      mid={solo ? undefined : { src: render?.src, fit: 'contain', alt: '' }}
+      front={solo ? undefined : face}
       midSize={big ? 0.8 : 0.72}
       grid={grid}
-      deck={deck}
+      deck={solo ? 0 : deck}
       deckDirection={deckDirection}
-      footerIcon={footerIcon}
+      footerIcon={solo || scene ? undefined : footerIcon}
+      owner={owner}
+      actions={actions}
       badges={badges}
       onClick={onClick}
       aria-label={onClick ? title : undefined}

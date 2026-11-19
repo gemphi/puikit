@@ -71,12 +71,38 @@ a.button,
   --phi-card-layer-bottom: calc(var(--phi-card-layer-right) * 2);
   --phi-card-layer-top: calc(var(--phi-card-layer-right) / 2);
   --phi-card-hue: var(--phi-color-text-accent, var(--phi-color-primary));
-  /* The glass light: the look's on-media light with a breath of its hue, so the page keeps one colour and no paint. */
-  --phi-card-light: color-mix(in srgb, var(--phi-card-hue) 12%, var(--phi-glass-light, #fff));
+  /* The glass light: the look's on-media light, clean. Its hue share is 0 (a breath of the theme's colour made every
+     shade on a page with no picture of its own read blue and dirty); a look may raise --phi-card-hue-pct. */
+  --phi-card-hue-pct: 0%;
+  --phi-card-light: color-mix(in srgb, var(--phi-card-hue) var(--phi-card-hue-pct), var(--phi-glass-light, #fff));
   /* Shades of glass: translucent light, 1 the most (the inner card, a control's pressed light), 3 the faintest. */
   --phi-shade-1: color-mix(in srgb, var(--phi-card-light) var(--phi-glass-pct, 58%), transparent);
   --phi-shade-2: color-mix(in srgb, var(--phi-card-light) calc(var(--phi-glass-pct, 58%) * 0.72), transparent);
   --phi-shade-3: color-mix(in srgb, var(--phi-card-light) calc(var(--phi-glass-pct, 58%) * 0.48), transparent);
+  /* THE surface: every card (whatever its variant), row, fact, region, tile, picture frame, avatar, tab bar, drawer,
+     column and field wears this one gradient: light at its foot fading to nothing at its head, so a heading at the
+     top of a surface stands free on the page, and a card in a card brightens on its own. Never a theme colour, so no two surfaces on a page can
+     differ. A look changes every surface at once by changing this line (the glass tokens in _glass.scss are it). */
+  --phi-surface: linear-gradient(0deg, var(--phi-shade-2) 0%, transparent 100%);
+  /* THE label: an icon never sits bare on a page: it sits in a chip of this light, which runs from the icon's left
+     towards its words and is gone before them. The same light fills controls and rows. Change it here, once. */
+  --phi-label: linear-gradient(90deg, var(--phi-shade-2), transparent);
+  /* Its two other strengths (a quiet rest, and the light a pointer, a press or a choice brings up) and their mirrors,
+     for what sits at the right and runs the other way (my side of a chat, a right-hand rail). Every control fill,
+     hover and chosen state in the kit is one of these six or the surface: no component writes a gradient of its own. */
+  --phi-label-soft: linear-gradient(90deg, var(--phi-shade-3), transparent);
+  --phi-label-strong: linear-gradient(90deg, var(--phi-shade-1), transparent);
+  --phi-label-end: linear-gradient(90deg, transparent, var(--phi-shade-2));
+  --phi-label-end-soft: linear-gradient(90deg, transparent, var(--phi-shade-3));
+  --phi-label-end-strong: linear-gradient(90deg, transparent, var(--phi-shade-1));
+}
+/* An icon with its words (the kit's Label, a section's heading, a relation's): the icon sits in a chip of the label's
+   light, which fades from the icon's left towards the words; the words themselves sit on nothing. The chip is only
+   round the icon. */
+:where(.pui-label) { display: inline-flex; align-items: center; gap: var(--phi-space-2); min-width: 0; max-width: 100%; }
+:where(.pui-label-icon) {
+  display: inline-grid; place-items: center; flex: none; min-width: 1.75rem; min-height: 1.75rem; padding: var(--phi-space-1);
+  border-radius: var(--phi-radius-md); background: var(--phi-label);
 }
 :where(.pui-card, [data-surface='card'], .phi-layers) {
   /* Bottom padding B halves at every nesting depth (below); right is B/3, left B/2, top B/4, so no two paddings
@@ -90,22 +116,34 @@ a.button,
   position: relative;
   border: 0;
   border-radius: var(--phi-radius-shape);
-  background: linear-gradient(90deg, transparent 0%, var(--phi-shade-3) 100%);
+  background: var(--phi-surface);
   backdrop-filter: var(--phi-glass-blur);
   -webkit-backdrop-filter: var(--phi-glass-blur);
   box-shadow: none;
 }
 :where(.phi-layers) { padding: var(--phi-card-layer-top) var(--phi-card-layer-right) var(--phi-card-layer-bottom) var(--phi-card-layer-top); }
 /* No ::before/::after. A LAYER IS A REAL ELEMENT: a surface inside a surface is the next layer. It steps its corner
-   down the ladder (lg, then sm, then xs) and halves its bottom padding, keeps its own gradient so the real layers stack and brighten
+   down the ladder (lg, then sm, and no further: a card deeper in still keeps an eighth of the option, so no card reads sharp) and halves its bottom padding, keeps its own gradient so the real layers stack and brighten
    inward, and lays no second blur over the first. Each layer obeys these rules on its own. Explicit depth levels,
    since a custom property cannot read its own inherited value. */
 :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) {
-  --phi-radius-shape: var(--phi-radius-sm);
+  --phi-radius-shape: var(--phi-radius-md);
   --phi-card-pad-b: calc(max(var(--phi-radius-card), 1.5rem) / 2);
   backdrop-filter: none; -webkit-backdrop-filter: none;
 }
-:where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) { --phi-radius-shape: var(--phi-radius-xs); --phi-card-pad-b: calc(max(var(--phi-radius-card), 1.5rem) / 4); }
-:where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) { --phi-radius-shape: var(--phi-radius-xs); --phi-card-pad-b: calc(max(var(--phi-radius-card), 1.5rem) / 8); }
-:where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) { --phi-radius-shape: var(--phi-radius-xs); --phi-card-pad-b: calc(max(var(--phi-radius-card), 1.5rem) / 16); }
+:where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) { --phi-radius-shape: var(--phi-radius-md); --phi-card-pad-b: calc(max(var(--phi-radius-card), 1.5rem) / 4); }
+:where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) { --phi-radius-shape: var(--phi-radius-md); --phi-card-pad-b: calc(max(var(--phi-radius-card), 1.5rem) / 8); }
+:where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) { --phi-radius-shape: var(--phi-radius-md); --phi-card-pad-b: calc(max(var(--phi-radius-card), 1.5rem) / 16); }
 :where(.phi-layers) :where(.phi-layers) { padding: 0; }
+
+:root {
+  /* Nested layers sit close to their child, like a tight grid: the middle layer 24px from the child and the outer 32px
+     from the middle at the top and right; the left takes half the right and the bottom half the top. Each layer's light
+     runs the other way from the one round it, so the bands read as a grid. */
+  --phi-layer-in: 24px; --phi-layer-out: 32px;
+}
+
+
+/* What cannot act is not shown (an arrow at the end of its row, a step with nowhere to go): hidden always hides,
+   whatever display a component gives itself. */
+[hidden] { display: none !important; }

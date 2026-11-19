@@ -4,6 +4,7 @@ export * from './Breadcrumbs';
 export * from './Tabs';
 export * from './sidebar'; // Sidebar, SidebarHeader, SidebarBody, SidebarFooter, SidebarNav, useSidebarContext
 export * from './TabList';
+export * from './IconMenu'; // IconMenu: a record's menu of icons
 export * from './Pagination';
 export * from './ProgressSteps';
 export * from './Navbar';

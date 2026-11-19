@@ -14,7 +14,7 @@
 .fold { margin-left: auto; flex: none; }
 /* A folded side column: a strip as tall as the page's first screen, its name running down it; a click opens it. */
 .strip { position: sticky; top: 0; align-items: center; justify-content: flex-start; gap: var(--phi-space-3); min-height: min(32rem, calc(100vh - 12rem));
-  padding: var(--phi-space-3) 0; cursor: pointer; color: var(--phi-color-text-secondary); }
+  padding: var(--phi-space-3) 0; cursor: pointer; color: var(--phi-color-text-secondary); background: var(--phi-surface); border-radius: var(--phi-radius-md); }
 .strip:hover { color: var(--phi-color-text-primary); }
 .stripName { writing-mode: vertical-rl; white-space: nowrap; }
 .colBody { padding: 1rem; min-width: 0; }
@@ -25,6 +25,11 @@
 .stick .colBody > * { flex: 1 1 auto; min-height: 0; }
 .stick .colBody * { scrollbar-width: none; }
 .stick .colBody *::-webkit-scrollbar { display: none; }
+
+/* A column held in view (stick): it stays under the header and scrolls inside itself while its neighbours scroll by. */
+.hold { position: sticky; top: 0; max-height: calc(100vh - 56px - 2.5rem); }
+.hold .colBody { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; }
+.hold .colBody::-webkit-scrollbar { display: none; }
 
 /* A desktop: the middle column is as wide as the screen is tall, less the header, title and its own head, so the
    square picture in it fits the screen; the side columns share what is left. */
@@ -37,4 +42,6 @@
   .grid { grid-template-columns: minmax(0, 1fr); }
   .middle { order: -1; }
   .stick { position: static; height: 32rem; }
+  .hold { position: static; max-height: none; }
+  .hold .colBody { overflow: visible; }
 }

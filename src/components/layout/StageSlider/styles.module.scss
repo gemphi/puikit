@@ -1,6 +1,7 @@
 // StageSlider: every slide shares one grid cell; offsets and scales come from the component, motion from the theme.
-.root { display: flex; flex-direction: column; gap: var(--phi-space-3, 0.75rem); min-width: 0; outline: none; }
-.stage { position: relative; display: grid; justify-items: center; align-items: center; overflow-x: clip; padding: 0 var(--pui-stage-pad, 3rem); }
+.root { --pui-stage-pad: 0rem; display: flex; flex-direction: column; gap: var(--phi-space-3, 0.75rem); min-width: 0; outline: none; }
+/* The slides run to the stage's edges (no room kept for the arrows): the arrows are doors over the ends. */
+.stage { position: relative; display: grid; justify-items: center; align-items: center; overflow-x: clip; padding: 0; }
 .slide {
   grid-area: 1 / 1; width: var(--pui-stage-w); max-width: 100%; transform-origin: center center;
   transition: transform var(--phi-transition-slow, 0.35s ease), filter var(--phi-transition-normal, 0.2s ease);
@@ -8,14 +9,17 @@
   &:hover { filter: brightness(1); }
 }
 .centre { filter: none; cursor: auto; }
-.arrow {
-  position: absolute; top: 50%; z-index: 20; transform: translateY(-50%);
-  width: 2.5rem; height: 3.5rem; border-radius: var(--phi-radius-2xl, 1rem);
-  background: color-mix(in srgb, var(--phi-color-background) 82%, transparent); backdrop-filter: blur(8px);
-  box-shadow: var(--phi-shadow-sm);
+.arrow.arrow {
+  /* Two doors that close the row from either end, square on the outside and rounded only on the side facing the
+     slides; glass, its light running from the edge inward. */
+  /* Two thirds of the old door's width, half again the old square's height, centred, 8px in from the row's edge. */
+  position: absolute; top: 50%; z-index: 20; width: calc(2.75rem * 2 / 3); height: calc(3.5rem * 1.5); transform: translateY(-50%);
+  backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur); box-shadow: none;
 }
-.prev { left: 0; }
-.next { right: 0; }
+.prev.prev { left: var(--phi-space-2); border-radius: 0 var(--phi-radius-lg) var(--phi-radius-lg) 0 !important; background-image: var(--phi-label-strong); }
+.next.next { right: var(--phi-space-2); border-radius: var(--phi-radius-lg) 0 0 var(--phi-radius-lg) !important; background-image: var(--phi-label-end-strong); }
+.prev.prev:hover { background-image: var(--phi-label-strong), var(--phi-label); }
+.next.next:hover { background-image: var(--phi-label-end-strong), var(--phi-label-end); }
 .foot { display: flex; align-items: center; gap: var(--phi-space-3, 0.75rem); width: min(100%, var(--pui-stage-w, 35rem)); margin: 0 auto; }
 .meter { flex: 1; min-width: 0; }
 // Fill: the slider is a container; the centre is the least of the row's share of its width (less the arrows' room,

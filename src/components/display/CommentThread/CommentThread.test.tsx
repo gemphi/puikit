@@ -14,7 +14,7 @@ describe('CommentThread', () => {
   it('folds and unfolds replies', () => {
     render(<CommentThread comments={chain(3)} openDepth={1} />);
     expect(screen.queryByText('level 1')).toBeNull();
-    fireEvent.click(screen.getByText('Show 2 replies'));
+    fireEvent.click(screen.getByLabelText('Show 2 replies'));
     expect(screen.getByText('level 1')).toBeTruthy();
   });
   it('treats orphans as top level', () => {
@@ -27,7 +27,7 @@ describe('CommentThread cascade', () => {
   it('never builds a deck behind the thread (decks are off), whatever the depth', () => {
     const a = render(<CommentThread comments={chain(2)} />);
     expect(a.container.querySelector('[data-deck-level]')).toBeNull();
-    const b = render(<CommentThread comments={chain(2)} depth={0} />);
+    const b = render(<CommentThread comments={chain(2)} />);
     expect(b.container.querySelector('[data-deck-level]')).toBeNull();
   });
 });

@@ -7,3 +7,13 @@
 }
 // MediaStage in its section: a square as wide as the column.
 .column { width: 100%; aspect-ratio: 1; display: flex; }
+
+/* A stage's own actions float over the picture's top left, on their own glass. */
+.stage { position: relative; }
+.actions { position: absolute; top: var(--phi-space-3, 0.75rem); left: var(--phi-space-3, 0.75rem); z-index: 2; display: flex; flex-direction: column; gap: var(--phi-space-2, 0.5rem); }
+.action {
+  display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: var(--phi-radius-full);
+  background: color-mix(in srgb, var(--phi-color-background-card) 72%, transparent); backdrop-filter: blur(12px); color: var(--phi-color-text);
+  &:hover { color: var(--phi-color-primary); }
+}
+.on { color: var(--phi-color-primary); }

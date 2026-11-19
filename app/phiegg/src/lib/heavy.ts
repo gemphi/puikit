@@ -25,6 +25,7 @@ export function loadHeavy(): Promise<void> {
     STORES.push(...stores.stores);
     D.shows.shows.push(...shows.shows);
     D.shows.poses.push(...shows.poses);
+    D.shows.season = shows.season; // the season the shows' own title and line name
     D.sales.sales.push(...sales.sales);
     refreshIndexes();
   });

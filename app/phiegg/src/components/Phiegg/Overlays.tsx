@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card, CardBody, Drawer, DrawerClosingContext, Icon, Input, Modal, ProgressBar, Rows, Stack, Tag, Text, Textarea, Title, TabList, Toast, CommentThread } from '@pui/components';
+import { Button, Card, CardBody, ChatComposer, Drawer, DrawerClosingContext, Icon, Input, Modal, ProgressBar, Rows, Stack, Tag, Text, Textarea, Title, TabList, Toast, CommentThread } from '@pui/components';
 import { useStore } from '@pui/store';
 import { ChevronLeft, ChevronRight, Pause, Play, Send } from 'lucide-react';
-import { D, agentOf, fmt, person, poolOf, postById, postsBy, site, storySets, t } from '../../lib/data';
+import { D, fmt, person, postById, postsBy, site, storySets, t, itemOf } from '../../lib/data';
 import { useThreadFor } from '../../lib/lazy';
 import { phieggStore } from '../../state/phieggStore';
-import { liveCreate, liveEdit, type LiveKind, findRecord, liveRemove } from '../../lib/live';
+import { liveCreate, liveEdit, type LiveKind, liveRemove } from '../../lib/live';
 import { KindForm, describe, kindLabel } from '../../lib/fields';
 import { withDefaults } from '../../lib/kindDefaults';
 import { RecordSheet } from './RecordSheet';
@@ -20,12 +20,8 @@ import { CollectionSheet } from './CollectionSheet';
 import { Connected } from './Connected';
 import { ChatSheet } from './ChatSheet';
 
-const Composer: React.FC<{ placeholder: string; onSend: (v: string) => void }> = ({ placeholder, onSend }) => {
-  const [v, setV] = useState('');
-  const send = () => { if (v.trim()) { onSend(v.trim()); setV(''); } };
-  return <Stack direction="row" gap={2}><Input value={v} placeholder={placeholder} onChange={(e) => setV(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && send()} />
-    <Button variant="primary" icon={<Icon icon={Send} size="sm" />} onClick={send}>{t('send')}</Button></Stack>;
-};
+/** Where a message is written: the kit's one composer, with this app's word for Send. */
+const Composer: React.FC<{ placeholder: string; onSend: (v: string) => void }> = ({ placeholder, onSend }) => <ChatComposer placeholder={placeholder} sendLabel={t('send')} onSend={onSend} />;
 export { Composer };
 
 const Story: React.FC = () => {
@@ -35,7 +31,7 @@ const Story: React.FC = () => {
   useEffect(() => { if (!o || o.paused) return; const id = setInterval(() => setEl((e) => e + tickMs), tickMs); return () => clearInterval(id); }, [o?.paused, o?.idx]);
   useEffect(() => { if (el >= storyMs) s.storyStep(1); }, [el]);
   if (!o) return null;
-  const f = o.frames[o.idx]; const p = person(o.uid); const segs = o.frames.filter((x) => x.setK === f.setK); const pool = poolOf(o.uid);
+  const f = o.frames[o.idx]; const p = person(o.uid); const segs = o.frames.filter((x) => x.setK === f.setK); const pool = itemOf('pool', o.uid);
   return (
     <Modal isOpen onClose={s.close} size="sm" title={pool ? <Stack direction="row" gap={2} align="center"><EntityAvatar id={pool.id} name={pool.name} size="sm" /><Stack direction="column" gap={0}><Text size="sm" weight="bold">{pool.name}</Text><Text size="xs" intent="muted">{f.set}</Text></Stack></Stack> : <PersonLine id={p.id} sub={f.set} size="sm" />}>
       <Stack direction="column" gap={3}>
@@ -53,21 +49,41 @@ const Story: React.FC = () => {
   );
 };
 
-/** A post's comments: what a comment button opens, from the post's page or its card. */
+/** A post's comments as one block: the thread, then the composer held at its foot. The post's page shows it in its
+ *  Chat section; anywhere else the comment button opens it in a drawer at the right (Comments, below). */
+export const PostComments: React.FC<{ postId: string; slide?: number }> = ({ postId, slide = 0 }) => {
+  const s = useStore(phieggStore); const post = postById(postId);
+  const thread = useThreadFor(postId, D.shows.shows.find((x) => x.id === postId)?.looks[slide]?.poseId);
+  if (!post) return null;
+  const p = person(post.authorId);
+  type TC = { id: string; targetId?: string; parentId: string | null; authorId: string; text: string; at: string; likes: number };
+  const all: TC[] = [...post.comments.map((c) => ({ ...c, parentId: null })), ...((thread ?? []) as TC[]), ...(s.comments[post.id] ?? []).map((c) => ({ ...c, parentId: c.parentId ?? null }))];
+  const me = D.core.currentUserId;
+  return (
+    <Stack direction="column" gap={3}>
+      {/* The same chat as everywhere: each comment and reply a bubble with its writer's picture; Reply and Like work. */}
+      <CommentThread aria-label={t('lsColComments')} maxDepth={6}
+        comments={all.map((c) => ({ id: c.id, parentId: c.parentId, author: person(c.authorId).name, avatar: <PersonAvatar id={c.authorId} size="sm" />, meta: c.at, text: c.text,
+          mine: c.authorId === me, liked: !!s.liked[c.id], likes: (c.likes ?? 0) + (s.liked[c.id] ? 1 : 0) }))}
+        onReply={(parentId, text) => s.comment(post.id, text, parentId)} onLike={(id) => s.toggle('liked', id)}
+        labels={{ reply: t('tcReply'), hide: t('tcHide'), show: (n) => t('tcShow', { n }), like: t('isLike'), send: t('send'), replyTo: t('tcReply') }} />
+      <Composer placeholder={p.isAgent ? t('commentAgentPh', { name: p.name }) : t('commentPh')} onSend={(v) => s.comment(post.id, v)} />
+    </Stack>
+  );
+};
+
+/** A post's comments opened from its card: a drawer at the right, as wide as a column (never a window with the
+ *  thread in a strip of it), the post's picture at its head so it is clear what the comments are on. */
 const Comments: React.FC = () => {
   const s = useStore(phieggStore); const o = s.overlay.kind === 'comments' ? s.overlay : null;
   const post = o ? postById(o.postId) : undefined;
-  const thread = useThreadFor(o?.postId, D.shows.shows.find((x) => x.id === o?.postId)?.looks[o?.slide ?? 0]?.poseId);
   if (!o || !post) return null;
-  const p = person(post.authorId);
-  type TC = { id: string; targetId?: string; parentId: string | null; authorId: string; text: string; at: string; likes: number };
-  const all: TC[] = [...post.comments.map((c) => ({ ...c, parentId: null })), ...((thread ?? []) as TC[]), ...(s.comments[post.id] ?? []).map((c) => ({ ...c, parentId: null }))];
+  const sl = post.slides[o.slide] ?? post.slides[0];
   return (
-    <Drawer isOpen onClose={s.close} position="bottom" size="lg" expandable expandLabel={t('expand')} collapseLabel={t('collapse')} title={t('comments', { n: all.length })}>
+    <Drawer isOpen onClose={s.close} position="right" size="md" title={sl.title}>
       <Stack direction="column" gap={3}>
-        <CommentThread aria-label={t('lsColComments')} maxDepth={6} depth={2} comments={all.map((c) => ({ id: c.id, parentId: c.parentId, author: <PersonLine id={c.authorId} size="sm" />, meta: c.at, text: c.text }))}
-          labels={{ reply: t('tcReply'), hide: t('tcHide'), show: (n) => t('tcShow', { n }) }} />
-        <Composer placeholder={p.isAgent ? t('commentAgentPh', { name: p.name }) : t('commentPh')} onSend={(v) => s.comment(post.id, v)} />
+        <Tile {...postTile(post, o.slide)} ratio="4/3" title={sl.title} sub={person(post.authorId).name} onClick={() => { s.close(); s.openPost(post.id); }} />
+        <PostComments postId={post.id} slide={o.slide} />
       </Stack>
     </Drawer>
   );
@@ -150,7 +166,7 @@ const PersonDrawer: React.FC = () => {
   const s = useStore(phieggStore); const o = s.overlay.kind === 'person' ? s.overlay : null;
   const [wide, setWide] = useState(false);
   if (!o) return null;
-  const p = person(o.id); const ag = agentOf(p.id); const all = postsBy(p.id); const posts = all.slice(0, wide ? 18 : 6); const sets = storySets(p.id);
+  const p = person(o.id); const ag = itemOf('agent', p.id); const all = postsBy(p.id); const posts = all.slice(0, wide ? 18 : 6); const sets = storySets(p.id);
   return (
     <Drawer isOpen onClose={s.close} position="right" size="md" expandable expanded={wide} onExpandedChange={setWide} expandLabel={t('expand')} collapseLabel={t('collapse')}
       title={<Stack direction="row" gap={2} align="center"><PersonAvatar id={p.id} size="lg" /><Stack direction="column" gap={0}><Title level={4} size="md">{p.name}</Title><Text size="xs" intent="muted">@{p.handle}{ag ? ' · ' + ag.role : ''}</Text></Stack></Stack>}

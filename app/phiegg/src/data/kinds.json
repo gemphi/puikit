@@ -382,7 +382,8 @@
         "path": "likes",
         "dir": "desc"
       }
-    ]
+    ],
+    "title": "{slides.0.title}"
   },
   "place": {
     "fields": [
@@ -485,7 +486,8 @@
         "label": "lsWorld",
         "control": "select",
         "facet": true,
-        "via": "world"
+        "via": "world",
+        "table": true
       },
       {
         "id": "genre",
@@ -582,12 +584,6 @@
         "via": "world"
       },
       {
-        "id": "venue",
-        "label": "lsVenue",
-        "control": "select",
-        "facet": true
-      },
-      {
         "id": "looks.length",
         "label": "lsColLooks",
         "control": "number",
@@ -600,6 +596,14 @@
         "label": "lsColPoses",
         "control": "number",
         "align": "right",
+        "table": true
+      },
+      {
+        "id": "venue",
+        "path": "venueCityId.name",
+        "label": "lsVenue",
+        "control": "select",
+        "facet": true,
         "table": true
       }
     ],
@@ -1186,13 +1190,155 @@
     "label": "City"
   },
   "host": {
-    "label": "Host"
+    "label": "Host",
+    "fields": [
+      {
+        "id": "name",
+        "label": "lsColName",
+        "table": true
+      },
+      {
+        "id": "clubId",
+        "label": "lsColClub",
+        "via": "club",
+        "facet": true,
+        "table": true
+      },
+      {
+        "id": "worldId",
+        "label": "lsWorld",
+        "via": "world",
+        "facet": true
+      },
+      {
+        "id": "genre",
+        "label": "lsGenre",
+        "facet": true
+      },
+      {
+        "id": "gated",
+        "label": "Access",
+        "table": true
+      },
+      {
+        "id": "members",
+        "label": "prMembers",
+        "format": "fmt",
+        "table": true,
+        "align": "right"
+      },
+      {
+        "id": "online",
+        "label": "prOnline",
+        "format": "fmt",
+        "table": true,
+        "align": "right"
+      }
+    ],
+    "sorts": [
+      {
+        "id": "members",
+        "label": "prMembers",
+        "path": "members",
+        "dir": "desc"
+      },
+      {
+        "id": "online",
+        "label": "prOnline",
+        "path": "online",
+        "dir": "desc"
+      },
+      {
+        "id": "az",
+        "label": "lsSortAz",
+        "path": "name",
+        "dir": "az"
+      }
+    ]
   },
   "nest": {
-    "label": "Nest"
+    "label": "Nest",
+    "title": "#{name}"
   },
   "quest": {
-    "label": "Quest"
+    "label": "Quest",
+    "fields": [
+      {
+        "id": "title",
+        "label": "lsColName",
+        "table": true
+      },
+      {
+        "id": "worldId",
+        "label": "lsWorld",
+        "via": "world",
+        "facet": true,
+        "table": true
+      },
+      {
+        "id": "sponsorClubId",
+        "label": "lsSponsor",
+        "via": "club",
+        "facet": true
+      },
+      {
+        "id": "rewardCoin",
+        "label": "lsColReward",
+        "facet": true
+      },
+      {
+        "id": "reward",
+        "label": "lsColReward",
+        "table": true,
+        "align": "right"
+      },
+      {
+        "id": "entrants",
+        "label": "lsColEntrants",
+        "format": "fmt",
+        "table": true,
+        "align": "right"
+      },
+      {
+        "id": "progress",
+        "label": "lsColProgress",
+        "format": "percent",
+        "table": true,
+        "align": "right"
+      },
+      {
+        "id": "endsAt",
+        "label": "lsColEnds",
+        "format": "date",
+        "table": true
+      }
+    ],
+    "sorts": [
+      {
+        "id": "reward",
+        "label": "lsSortReward",
+        "path": "reward",
+        "dir": "desc"
+      },
+      {
+        "id": "entrants",
+        "label": "lsSortEntrants",
+        "path": "entrants",
+        "dir": "desc"
+      },
+      {
+        "id": "ends",
+        "label": "lsSortEnds",
+        "path": "endsAt",
+        "dir": "az"
+      },
+      {
+        "id": "az",
+        "label": "lsSortAz",
+        "path": "title",
+        "dir": "az"
+      }
+    ]
   },
   "round": {
     "label": "Round",
@@ -1514,5 +1660,170 @@
         "facet": true
       }
     ]
+  },
+  "coin": {
+    "label": "Coin",
+    "fields": [
+      {
+        "id": "symbol",
+        "label": "lsColName",
+        "table": true
+      },
+      {
+        "id": "name",
+        "label": "lsColName"
+      },
+      {
+        "id": "clubId",
+        "label": "lsColClub",
+        "via": "club",
+        "facet": true,
+        "table": true
+      },
+      {
+        "id": "price",
+        "label": "lsColPrice",
+        "format": "price",
+        "table": true,
+        "align": "right"
+      },
+      {
+        "id": "change24h",
+        "label": "lsCol24h",
+        "format": "signed",
+        "table": true,
+        "align": "right"
+      },
+      {
+        "id": "holders",
+        "label": "lsColHolders",
+        "format": "fmt",
+        "table": true,
+        "align": "right"
+      }
+    ],
+    "sorts": [
+      {
+        "id": "holders",
+        "label": "lsSortHolders",
+        "path": "holders",
+        "dir": "desc"
+      },
+      {
+        "id": "price",
+        "label": "lsSortPrice",
+        "path": "price",
+        "dir": "desc"
+      },
+      {
+        "id": "move",
+        "label": "lsSortChange",
+        "path": "change24h",
+        "dir": "desc",
+        "abs": true
+      },
+      {
+        "id": "az",
+        "label": "lsSortAz",
+        "path": "symbol",
+        "dir": "az"
+      }
+    ]
+  },
+  "store": {
+    "label": "Shop",
+    "fields": [
+      {
+        "id": "name",
+        "label": "lsColName",
+        "table": true
+      },
+      {
+        "id": "tagline",
+        "label": "lsColName"
+      },
+      {
+        "id": "clubId",
+        "label": "lsColClub",
+        "via": "club",
+        "facet": true,
+        "table": true
+      },
+      {
+        "id": "looks.length",
+        "label": "lsLooks",
+        "format": "fmt",
+        "table": true,
+        "align": "right"
+      }
+    ],
+    "sorts": [
+      {
+        "id": "looks",
+        "label": "lsLooks",
+        "path": "looks.length",
+        "dir": "desc"
+      },
+      {
+        "id": "az",
+        "label": "lsSortAz",
+        "path": "name",
+        "dir": "az"
+      }
+    ]
+  },
+  "cast": {
+    "label": "Cast",
+    "fields": [
+      {
+        "id": "title",
+        "label": "lsColName",
+        "table": true
+      },
+      {
+        "id": "kind",
+        "label": "lsColKind",
+        "facet": true,
+        "table": true
+      },
+      {
+        "id": "worldId",
+        "label": "lsWorld",
+        "via": "world",
+        "facet": true,
+        "table": true
+      },
+      {
+        "id": "clubId",
+        "label": "lsColClub",
+        "via": "club",
+        "facet": true
+      },
+      {
+        "id": "plays",
+        "label": "lsColVol",
+        "format": "fmt",
+        "table": true,
+        "align": "right"
+      }
+    ],
+    "sorts": [
+      {
+        "id": "plays",
+        "label": "lsSortVol",
+        "path": "plays",
+        "dir": "desc"
+      },
+      {
+        "id": "az",
+        "label": "lsSortAz",
+        "path": "title",
+        "dir": "az"
+      }
+    ]
+  },
+  "feedPost": {
+    "label": "Post",
+    "title": "{slides.0.title}"
   }
 }

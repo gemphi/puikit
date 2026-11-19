@@ -22,21 +22,28 @@ export type MenuProps = {
   foldLabel: (label: string, open: boolean) => string;
 };
 
-/** One entry: the fold arrow (or its room) at the left, then the entry; what it folds sits flush under it. */
+/** Is the page shown this entry or one of its sub-menu's entries (at any depth)? */
+const holds = (it: AppShellLeaf, view: string): boolean => it.id === view || (it.items ?? []).some((x) => holds(x, view));
+
+/** One entry: the fold arrow (or its room) at the left, then the entry; what it folds sits flush under it: the records
+ *  it pulls, its panel, or its sub-menu (entries of their own, which may hold sub-menus too, a storefront's
+ *  department > category > item). An entry with a sub-menu opens it and also goes to its own page; it starts open when
+ *  the page shown is inside it. */
 const Entry: React.FC<MenuProps & { it: AppShellLeaf; folded: Record<string, boolean>; fold: (id: string, open: boolean) => void }> = ({ it, view, go, onPreview, foldLabel, folded, fold }) => {
-  const pulls = it.previews ?? []; const kids = pulls.length > 0 || !!it.panel;
-  const open = folded[it.id] ?? (it.open || view === it.id); const on = view === it.id && !it.panel;
+  const pulls = it.previews ?? []; const subs = it.items ?? []; const kids = pulls.length > 0 || !!it.panel || subs.length > 0;
+  const open = folded[it.id] ?? (it.open || (subs.length ? holds(it, view) : view === it.id)); const on = view === it.id && !it.panel;
   return (
     <Box className={styles.navEntry}>
       <Stack direction="row" gap={0} align="center">
         {kids ? <Caret open={open} label={foldLabel(it.label, open)} onClick={() => fold(it.id, !open)} /> : <span className={styles.caretRoom} />}
         <Pressable row gap={3} fill hover minHeight="var(--pui-shell-control)" paddingX={2} className={styles.navRow}
-          aria-current={on ? 'page' : undefined} onClick={() => (it.panel ? fold(it.id, !open) : go(it.id))}>
+          aria-current={on ? 'page' : undefined} onClick={() => { if (it.panel) { fold(it.id, !open); return; } if (subs.length) fold(it.id, true); go(it.id); }}>
           {it.icon ?? null}
           <Text as="span" intent="inherit" weight={on ? 'bold' : 'medium'} truncate>{it.label}</Text>
         </Pressable>
       </Stack>
       {open && it.panel ? <Box className={styles.entryPanel}>{it.panel}</Box> : null}
+      {open && subs.length > 0 ? <Box role="group" aria-label={it.label} className={styles.subMenu}><Run items={subs} view={view} go={go} onPreview={onPreview} foldLabel={foldLabel} /></Box> : null}
       {open && pulls.map((p) => (
         <Pressable key={p.id} row gap={2} fill hover paddingY={1} paddingX={2} className={styles.pullRow} onClick={() => (p.onSelect ? p.onSelect() : onPreview?.(it.id, p))}>
           {p.avatar ?? <Avatar size="xs" src={p.image} alt={p.label} initials={initials(p.label)} seed={p.id} />}

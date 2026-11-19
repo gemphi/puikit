@@ -1,23 +1,65 @@
-// RelationList: every related record is a bank card in an even grid. Shades fade to nothing, no solid fills or
-// borders. Tokens only.
-.root { display: flex; flex-direction: column; gap: var(--phi-space-4, 1rem); padding: var(--phi-space-4, 1rem); border-radius: var(--phi-radius-shape);
-  background: linear-gradient(180deg, color-mix(in srgb, var(--phi-color-primary) 6%, transparent) 0%, transparent 100%); }
+// RelationList: one row per relation, picture-first cards three across. Shades fade to nothing. Tokens only.
+.root { display: flex; flex-direction: column; gap: var(--phi-space-5, 1.25rem); container-type: inline-size; }
 .title { margin: 0; }
-.group { display: flex; flex-direction: column; gap: var(--phi-space-2, 0.5rem); min-width: 0; }
-.head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; }
-.rel { letter-spacing: 0.06em; }
-/* Every card the same width, whatever its text: as many a row as stay at least 14rem wide. */
-.items { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr)); gap: var(--phi-space-3, 0.75rem); }
-.item { display: flex; flex-direction: column; justify-content: space-between; gap: var(--phi-space-2, 0.5rem); min-width: 0; aspect-ratio: 1.586; text-align: left; }
+/* Each relation is one region with one background: its heading sits on it, its cards inside it. */
+.group { display: flex; flex-direction: column; gap: var(--phi-space-3, 0.75rem); min-width: 0;
+  padding: calc(var(--phi-layer-in) / 2) calc(var(--phi-layer-in) / 2) calc(var(--phi-layer-in) / 4) calc(var(--phi-layer-in) / 4);
+  border-radius: var(--phi-radius-lg); background-image: var(--phi-surface); }
+// The relation's heading: its name on the left, its tools on the right, both clear of the edges.
+.head {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--phi-space-2, 0.5rem); min-height: 2.75rem;
+  padding: var(--phi-space-1, 0.25rem) var(--phi-space-2, 0.5rem) var(--phi-space-1, 0.25rem) var(--phi-space-3, 0.75rem);
+}
+.name { display: inline-flex; align-items: center; gap: var(--phi-space-2, 0.5rem); min-width: 0; color: var(--phi-color-text-primary); }
+.tools { display: inline-flex; align-items: center; gap: var(--phi-space-1, 0.25rem); flex: none; }
+// Three across; two in a narrow column; one on a phone.
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--phi-space-3, 0.75rem); }
+.slider {
+  display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 2 * var(--phi-space-3, 0.75rem)) / 3); gap: var(--phi-space-3, 0.75rem);
+  overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+  > * { scroll-snap-align: start; }
+}
+@container (max-width: 520px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .slider { grid-auto-columns: calc((100% - var(--phi-space-3, 0.75rem)) / 2); }
+}
+@container (max-width: 200px) { .grid { grid-template-columns: minmax(0, 1fr); } .slider { grid-auto-columns: 80%; } }
+/* A card off screen is not painted (its glass is a live blur), so long rows and sliders stay quick. */
+.item { position: relative; display: flex; flex-direction: column; min-width: 0; overflow: hidden; text-align: left; }
 .click { cursor: pointer; }
 .click:focus-visible { outline: 2px solid var(--phi-color-primary); outline-offset: 2px; }
-.more { border: 0; border-radius: var(--phi-radius-shape); padding: var(--phi-space-3) var(--phi-space-4); font: inherit; color: var(--phi-color-text-primary); background-color: var(--phi-glass-ground); background-image: var(--phi-glass-from-down);
-  -webkit-backdrop-filter: var(--phi-glass-blur); backdrop-filter: var(--phi-glass-blur); }
-.top { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--phi-space-2, 0.5rem); min-width: 0; }
-.kind { letter-spacing: 0.04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.media { width: 3rem; height: 3rem; flex: none; border-radius: 50%; overflow: hidden; display: grid; place-items: center;
-  text-align: center; line-height: 1;
-  > img { width: 100%; height: 100%; object-fit: cover; }
-  > * { max-width: 100%; max-height: 100%; } }
-.text { display: flex; flex-direction: column; gap: 0.125rem; min-width: 0; }
-.label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+// The picture fills the card's top, centred; a record with none shows its glyph large on the theme's gradient.
+.picture {
+  position: relative; display: grid; place-items: center; aspect-ratio: var(--pui-rel-ratio, 4 / 3); overflow: hidden;
+  > img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+}
+.face { background: var(--phi-label); } /* across only: light to nothing, no colour */
+/* A picture node (a sprite cell) is given its row's shape by the page, so it fills the frame like every other card in the row. */
+.fill { position: absolute; inset: 0; display: grid; place-items: center; > * { width: 100% !important; height: 100% !important; } img { object-fit: cover; } }
+.glyph { display: grid; place-items: center; transform: scale(1.75); }
+// The name and line sit on the picture's foot, on glass that blurs the picture more the lower it goes (no box).
+.glass {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 55%; pointer-events: none; z-index: 1;
+  /* No live blur per card (dozens of them stall painting); the words carry a soft shadow instead. */
+  mask-image: linear-gradient(0deg, var(--phi-color-background) 0%, var(--phi-color-background) 35%, transparent 100%); -webkit-mask-image: linear-gradient(0deg, var(--phi-color-background) 0%, var(--phi-color-background) 35%, transparent 100%);
+}
+.text {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; display: flex; flex-direction: column; gap: 0.125rem; min-width: 0;
+  padding: var(--phi-space-2, 0.5rem) var(--phi-space-3, 0.75rem) var(--phi-space-3, 0.75rem);
+}
+.label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 0 1px 6px color-mix(in srgb, var(--phi-color-background) 70%, transparent); }
+// The strip of single records: small cards side by side (their picture, the relation, the name), wrapping.
+.strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 11rem), 1fr)); gap: var(--phi-space-2); }
+/* Doubled: the strip's small card is a row (picture, then words), whatever the card's own layout says. */
+.one.one { display: flex; flex-direction: row; align-items: center; justify-content: flex-start; text-align: left; gap: var(--phi-space-2); min-width: 0; min-height: 0; padding: var(--phi-space-1); }
+.oneArt {
+  flex: none; display: grid; place-items: center; width: 3rem; aspect-ratio: 1; overflow: hidden; border-radius: var(--phi-radius-sm);
+  > * { width: 100% !important; height: 100% !important; } > img { object-fit: cover; }
+}
+.oneText { display: flex; flex-direction: column; min-width: 0; gap: 0.125rem; > :first-child { display: inline-flex; align-items: center; gap: 0.25rem; } }
+
+/* A card's picture is the kit's Picture (media/Picture): blurred ground, a room of the surface, the picture whole. */
+.item > * { position: relative; z-index: 1; }
+.item > .glass { position: absolute; z-index: 1; }
+.item > .text { position: absolute; z-index: 2; }

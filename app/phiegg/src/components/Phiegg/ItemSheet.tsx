@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card, CardBody, Image, MediaStage, Input, Rows, Stack, TabList, Tag, Text, Title } from '@pui/components';
-import { Bookmark, Heart, Share2, ShoppingBag } from 'lucide-react';
+import { Button, Card, CardBody, FullScreen, Image, MediaStage, Input, Rows, Stack, TabList, Tag, Text, Title } from '@pui/components';
+import { Bookmark, Heart, Maximize2, Share2, ShoppingBag } from 'lucide-react';
 import { useStore } from '@pui/store';
 import { useWallet } from '@phi-kit/wallet';
-import { D, itemImage, lookOf, lookStore, lotsOfPool, poolOf, t, usd } from '../../lib/data';
+import { D, itemImage, lookStore, lotsOfPool, t, usd, itemOf } from '../../lib/data';
 import { buy, makeOffer, toggleCart, useCart, useOwned, withdrawOffer } from '../../lib/cart';
 import { itemStats, lookLive, quote, useNow } from '../../lib/market';
 import { phieggStore } from '../../state/phieggStore';
@@ -26,57 +26,64 @@ import type { ShopLook } from '../../types/phiegg';
  * controls on the right of its header.
  */
 export const ItemSheet: React.FC<{ id: string }> = ({ id }) => {
-  const s = useStore(phieggStore); const l = lookOf(id); const w = useWallet(); const mine = useOwned(); const { cart, offers } = useCart(); const now = useNow(1000);
-  const [angle, setAngle] = useState('FRONT'); const [opaque, setOpaque] = useState(false); const [bid, setBid] = useState(''); const [msg, setMsg] = useState('');
+  const s = useStore(phieggStore); const l = itemOf('look', id); const w = useWallet(); const mine = useOwned(); const { cart, offers } = useCart(); const now = useNow(1000);
+  const [angle, setAngle] = useState('FRONT'); const [full, setFull] = useState(false); const [opaque, setOpaque] = useState(false); const [bid, setBid] = useState(''); const [msg, setMsg] = useState('');
   useEffect(() => { if (l) { setBid(String(Math.round(l.floor))); setAngle('FRONT'); setOpaque(false); setMsg(''); } }, [id]);
   const store = l ? lookStore(l) : undefined;
   const agent = D.agents.agents.find((a) => store && a.clubIds.includes(store.clubId)) ?? D.agents.agents[0];
   // The page wears the look: its designer theme when it has one, else its own render colour.
   const tc = useThemeColours(l); usePageTheme(tc?.[0] ?? l?.hex, tc?.[1], 'vivid', 'look');
   if (!l || !store) return null;
-  const pool = poolOf(l.poolId); const live = lookLive(l, now);
+  const pool = itemOf('pool', l.poolId); const live = lookLive(l, now);
   const pending = offers.find((o) => o.lookId === l.id && o.status === 'pending');
   const views = (opaque && l.opaque ? l.opaque : l.views);
   const src = views[angle] ?? l.views.FRONT;
   const doBuy = () => setMsg(buy(l, t('shBuyLabel', { name: l.name })) ? t('shBought', { name: l.name, n: l.minted + 1, edition: l.edition }) : t('shTopUp'));
   const doOffer = () => { const n = Number(bid); if (!(n > 0)) return; const r = makeOffer(l, n, t('shOfferLabelLog', { name: l.name }));
     setMsg(r === 'accepted' ? t('shOfferAccepted', { name: l.name }) : r === 'pending' ? t('shOfferSent') : t('shTopUp')); };
-  const siblings = (pool?.lookIds ?? store.looks.map((x) => x.id)).map(lookOf).filter((x): x is ShopLook => !!x && x.id !== l.id);
+  const siblings = (pool?.lookIds ?? store.looks.map((x) => x.id)).map(((id) => itemOf('look', id))).filter((x): x is ShopLook => !!x && x.id !== l.id);
   const lots = pool ? lotsOfPool(pool).filter((lot) => lot.itemIds.includes(l.id)) : [];
 
-  // ── left: variants and related content ──
+  // ── left: what goes with the item, each its own region (heading, background, fold and expand): its angles, the lots
+  // it is in, the looks alike (its pool's), and what it links to. A region with nothing in it is not shown.
   const left = (
-    <Stack direction="column" gap={3}>
-      <Text size="xs" weight="bold" intent="muted">{t('isAngles')}</Text>
-      <Rows cols={3} colsSm={3} minItemWidth="5rem">{Object.keys(views).map((k) => (
-        <Card key={k} padding="sm" tint={l.hex} tintStrength={22} selected={k === angle} onClick={() => { setAngle(k); record('angle', l.id, { refKind: 'look', note: k }); }}><CardBody>
-          <LookImage look={l} src={views[k]} cascade={1} /><Text size="xs" weight={k === angle ? 'bold' : undefined}>{D.ls.views.find((v) => v.id === k)?.label ?? k}</Text></CardBody></Card>))}</Rows>
-      {l.opaque && <TabList size="sm" variant="pills" activeId={opaque ? 'opaque' : 'sheer'} onChange={(v) => setOpaque(v === 'opaque')} items={[{ id: 'sheer', label: t('shSheer') }, { id: 'opaque', label: t('shOpaque') }]} />}
-      {lots.length > 0 && <><Text size="xs" weight="bold" intent="muted">{t('isInLots')}</Text>
-        {lots.map((lot) => { const q = quote(lot, now); return (
+    <PageSections id="item-side" size="sm" sections={[
+      { id: 'angles', title: t('isAngles'), content: (
+        <Stack direction="column" gap={2}>
+          <Rows cols={3} colsSm={3} minItemWidth="5rem">{Object.keys(views).map((k) => (
+            <Card key={k} padding="sm" selected={k === angle} onClick={() => { setAngle(k); record('angle', l.id, { refKind: 'look', note: k }); }}><CardBody>
+              <LookImage look={l} src={views[k]} cascade={1} /><Text size="xs" weight={k === angle ? 'bold' : undefined}>{D.ls.views.find((v) => v.id === k)?.label ?? k}</Text></CardBody></Card>))}</Rows>
+          {l.opaque && <TabList size="sm" variant="pills" activeId={opaque ? 'opaque' : 'sheer'} onChange={(v) => setOpaque(v === 'opaque')} items={[{ id: 'sheer', label: t('shSheer') }, { id: 'opaque', label: t('shOpaque') }]} />}
+        </Stack>) },
+      { id: 'lots', title: t('isInLots'), hint: String(lots.length), hidden: !lots.length, content: (
+        <Stack direction="column" gap={2}>{lots.map((lot) => { const q = quote(lot, now); return (
           <Card key={lot.id} padding="sm" onClick={() => pool && s.go('pool', { poolId: pool.id })}><CardBody>
-            <Text size="sm" weight="bold">{lot.title}</Text><Text size="xs" intent="muted">{t('plTotal', { v: usd(q.total) })} · {t('plSold', { sold: q.sold.toLocaleString('en-US'), supply: q.supply.toLocaleString('en-US') })}</Text></CardBody></Card>); })}</>}
-      <Text size="xs" weight="bold" intent="muted">{t('isVariants', { pool: pool?.name ?? store.name })}</Text>
-      <Rows cols={3} colsSm={2} minItemWidth="7.5rem">{siblings.slice(0, 12).map((x) => (
-        <Card key={x.id} padding="sm" deckDirection="right" depth={1} tint={x.hex} tintStrength={22} onClick={() => s.openLook(x.id)}><CardBody>
-          <LookImage look={x} cascade={1} /><Text size="xs" weight="bold">{x.name}</Text><Text size="xs" intent="muted">{usd(lookLive(x, now).total)}</Text></CardBody></Card>))}</Rows>
-      <Connected kind="look" id={l.id} max={4} />
-    </Stack>
+            <Text size="sm" weight="bold">{lot.title}</Text><Text size="xs" intent="muted">{t('plTotal', { v: usd(q.total) })} · {t('plSold', { sold: q.sold.toLocaleString('en-US'), supply: q.supply.toLocaleString('en-US') })}</Text></CardBody></Card>); })}</Stack>) },
+      { id: 'alike', title: t('isVariants'), hint: String(siblings.length), hidden: !siblings.length, content: (
+        <Rows cols={2} colsSm={2} minItemWidth="7.5rem">{siblings.slice(0, 12).map((x) => (
+          <Card key={x.id} padding="sm" onClick={() => s.openLook(x.id)}><CardBody>
+            <LookImage look={x} cascade={1} /><Text size="xs" weight="bold">{x.name}</Text><Text size="xs" intent="muted">{usd(lookLive(x, now).total)}</Text></CardBody></Card>))}</Rows>) },
+      { id: 'linked', title: t('asLinked'), content: <Connected kind="look" id={l.id} max={4} bare /> },
+    ]} />
   );
+
+  // The usual actions on an item float as icons over the picture's empty corner: like, save, share, cart, full screen.
+  const icon = (G: typeof Heart) => <G size={18} />;
+  const actions = [
+    { id: 'like', label: t('isLike'), icon: icon(Heart), active: !!s.liked[l.id], onClick: () => s.toggle('liked', l.id) },
+    { id: 'save', label: t('isSave'), icon: icon(Bookmark), active: !!s.saved[l.id], onClick: () => { s.toggle('saved', l.id); s.flash(t('saved')); } },
+    { id: 'share', label: t('isShare'), icon: icon(Share2), onClick: () => { void navigator.clipboard?.writeText(location.href); s.flash(t('isCopied')); } },
+    { id: 'cart', label: cart.includes(l.id) ? t('shInCart') : t('shAddCart'), icon: icon(ShoppingBag), active: cart.includes(l.id), onClick: () => toggleCart(l.id) },
+    { id: 'full', label: t('isFull'), icon: icon(Maximize2), onClick: () => setFull(true) },
+  ];
+  const keys = Object.keys(views); const at = keys.indexOf(angle);
 
   // ── centre: the item as content, in three rows ──
   const centre = (
     <PageSections id="item" size="sm" sections={[
       { id: 'look', title: l.name, expandable: true, collapsible: true, content: (
-        <MediaStage media={<LookImage look={l} src={src} />}>
-          {/* The usual actions on an item, in the sidebar's glass: like, save, share, cart. */}
-          <Stack direction="row" gap={2} wrap>
-            <Button variant="glass" iconLeft={Heart} aria-pressed={!!s.liked[l.id]} onClick={() => s.toggle('liked', l.id)}>{t('isLike')}</Button>
-            <Button variant="glass" iconLeft={Bookmark} aria-pressed={!!s.saved[l.id]} onClick={() => { s.toggle('saved', l.id); s.flash(t('saved')); }}>{t('isSave')}</Button>
-            <Button variant="glass" iconLeft={Share2} onClick={() => { void navigator.clipboard?.writeText(location.href); s.flash(t('isCopied')); }}>{t('isShare')}</Button>
-            <Button variant="glass" iconLeft={ShoppingBag} aria-pressed={cart.includes(l.id)} onClick={() => toggleCart(l.id)}>{cart.includes(l.id) ? t('shInCart') : t('shAddCart')}</Button>
-          </Stack>
-          {Object.keys(views).length > 1 && <TabList size="sm" variant="pills" aria-label={t('isAngles')} activeId={angle} onChange={setAngle} items={Object.keys(views).map((k) => ({ id: k, label: D.ls.views.find((v) => v.id === k)?.label ?? k }))} />}
+        <MediaStage media={<LookImage look={l} src={src} />} actions={actions}>
+          {Object.keys(views).length > 1 && <TabList size="sm" variant="pills" place="center" aria-label={t('isAngles')} activeId={angle} onChange={setAngle} items={Object.keys(views).map((k) => ({ id: k, label: D.ls.views.find((v) => v.id === k)?.label ?? k }))} />}
         </MediaStage>) },
       { id: 'buy', title: t('isBuy'), expandable: true, collapsible: true, closable: true, content: (
         <Stack direction="column" gap={2}>
@@ -113,12 +120,16 @@ export const ItemSheet: React.FC<{ id: string }> = ({ id }) => {
   const chat = <AgentChat agentId={agent.id} context={l.name} prompts={[t('isAskStyle'), t('isAskSwap'), t('isAskPrice')]} />;
 
   return (
+    <>{full && <FullScreen label={l.name} media={<LookImage look={l} src={src} />} onClose={() => setFull(false)} closeLabel={t('close')}
+      onPrev={at > 0 ? () => setAngle(keys[at - 1]) : undefined} onNext={at < keys.length - 1 ? () => setAngle(keys[at + 1]) : undefined} prevLabel={t('prev')} nextLabel={t('next')}
+      actions={actions.filter((x) => x.id !== 'full').map((x) => ({ ...x }))} />}
     <EntityPage stickLast picture={<Image src={itemImage(src)} alt="" fit="cover" fill />}
       title={l.name} sub={<>{store.name} · {l.rarity}</>} columns={[
         { id: 'variants', title: t('isVariantsTitle'), content: left, width: '19rem' },
         { id: 'item', title: l.name, label: t('isItem'), content: centre, minWidth: '20rem' },
         { id: 'chat', title: <Stack direction="row" gap={2} align="center"><PersonAvatar id={agent.id} size="xs" /><Text size="sm" weight="semibold">{agent.name}</Text></Stack>, label: t('chat'), content: chat, width: '22rem', folded: true },
       ]} />
+    </>
   );
 };
 

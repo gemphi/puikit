@@ -1,15 +1,12 @@
 export { FeedPage } from './FeedPage';
 export { ExplorePage } from './ExplorePage';
-export { HostsPage } from './HostsPage';
+export { HostPage } from './HostPage';
 export { CollectionPage } from './CollectionPage';
 export { ClubPage } from './ClubPage';
-export { WorldsPage } from './WorldsPage';
 export { WorldPage } from './WorldPage';
-export { ShowsPage } from './ShowsPage';
 export { ShowPage } from './ShowPage';
 export { AgentsHubPage } from './AgentsHubPage';
 export { ProfilePage } from './ProfilePage';
-export { EventsPage } from './EventsPage';
 export { MessagesPage } from './MessagesPage';
 export { PhipadPage } from './PhipadPage';
 export { ListPage } from './ListPage';

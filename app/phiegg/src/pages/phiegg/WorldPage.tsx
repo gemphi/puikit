@@ -1,69 +1,105 @@
-import React from 'react';
-import { Button, Icon, ItemCard, Page, Stack, Tag, Text, Title } from '@pui/components';
+import React, { useEffect, useState } from 'react';
+import * as L from 'lucide-react';
+import { Avatar, Button, Card, CardBody, Frame, FullScreen, Image, ItemCard, Rows, Showcase, Stack, Tag, Text, Title, type SectionDef } from '@pui/components';
 import { useStore } from '@pui/store';
+import { Bookmark, Clapperboard, Heart, LogIn, MapPin, Maximize2, Plus, Share2, Shield, type LucideIcon } from 'lucide-react';
 import { phieggStore } from '../../state/phieggStore';
 import { usePlaces } from '../../lib/lazy';
-import { D, clubOf, clubsInWorld, districtsOf, fmt, jewelsOfWorld, ridesOfWorld, showForWorld, site, t, worldImage, worldOf } from '../../lib/data';
+import { mediaUrl } from '../../lib/media';
+import { D, clubsInWorld, districtsOf, eggsOfWorld, fmt, jewelsOfWorld, person, ridesOfWorld, shotPost, shotsOfWorld, showForWorld, site, t, viewLabel, worldImage, worldMark, itemOf } from '../../lib/data';
 import { JewelList, RideList } from '../../components/Phiegg/Rides';
 import { Tile } from '../../components/Phiegg/Tile';
-import { MapPin, Plus } from 'lucide-react';
+import { useCityParts } from '../../components/Phiegg/CityParts';
+import { postTile } from '../../components/Phiegg/ShotCard';
 import { Connected } from '../../components/Phiegg/Connected';
 import { EntityAvatar } from '../../components/Phiegg/EntityAvatar';
-import { ListView } from '../../components/Phiegg/Views';
+import { EntityPage } from '../../components/Phiegg/EntityPage';
 import { PageSections } from '../../components/Phiegg/PageSections';
-import type { City, Club } from '../../types/phiegg';
+import { AgentChat } from '../../components/Phiegg/AgentChat';
+import { PersonAvatar } from '../../components/Phiegg/PersonAvatar';
+import { Stats } from '../../components/Phiegg/Details';
+import { ListView } from '../../components/Phiegg/Views';
+import type { City, Club, World } from '../../types/phiegg';
+
+/**
+ * A world's page (#/world/<id>), opened the way a fashion item is: the world under the whole window, the world itself
+ * as an object on its stage with its actions, then About, Zones, Posts, PFTs, clubs, rides and jewellery, and a chat
+ * with the club's agent beside it. A world is a city: its zones are the old
+ * "cities" (World = City -> Zones -> Places, and Lands).
+ */
+const WORLD_MENU = (site as unknown as { worldMenu: { items: { id: string; label: string; icon: string }[] } }).worldMenu.items;
+const glyph = (name: string) => { const G = (L as unknown as Record<string, L.LucideIcon>)[name]; return G ? <G size={18} /> : null; };
 
 export const WorldPage: React.FC = () => {
   const s = useStore(phieggStore);
-  const w = worldOf(s.worldId) ?? D.core.worlds[0]; const placesReady = !!usePlaces();
-  const club = clubOf(w.clubId); const show = showForWorld(w.id);
+  const w = itemOf('world', s.worldId) ?? D.core.worlds[0]; const placesReady = !!usePlaces();
+  const [full, setFull] = useState(false);
+  useEffect(() => setFull(false), [w.id]);
+  const club = itemOf('club', w.clubId); const show = showForWorld(w.id);
   const nest = s.nests.find((n) => n.kind === 'world' && n.worldId === w.id);
   const hostId = nest?.hostId ?? club?.hostId ?? D.hosts.hosts[0].id;
-  const i = D.core.worlds.findIndex((x) => x.id === w.id);
-  const near = [...D.core.worlds.slice(i + 1), ...D.core.worlds.slice(0, i)].slice(0, 8);
   const clubs = clubsInWorld(w.id); const rides = ridesOfWorld(w.id); const jewels = jewelsOfWorld(w.id);
-  return (
-    <Page>
-      <Stack direction="column" gap={4}>
-        <Stack direction="row" gap={1} overflow="auto">{near.map((x) => <Button key={x.id} size="sm" variant="ghost" icon={<EntityAvatar id={x.id} name={x.name} size="xs" />} onClick={() => s.go('world', { worldId: x.id })}>{x.name}</Button>)}
-          <Button size="sm" variant="glass" onClick={() => s.go('worlds')}>{t('allWorlds')}</Button></Stack>
-        <Tile image={worldImage(w)} tone={w.tone} ratio="21/8" big grid title={w.name} sub={w.description} depth={{ worldId: w.id, clubId: w.clubId, personId: w.creatorId }}
-          badges={<><Tag round size="sm">{(site.worldKinds as Record<string, string>)[w.kind]}</Tag><Tag round size="sm">{t('insideNow', { n: fmt(w.visitorsNow) })}</Tag>{w.agents && <Tag round size="sm">{t('agentsCount', { n: fmt(w.agents) })}</Tag>}</>} />
-        <Stack direction="row" gap={2} wrap>
-          <Button variant="primary" onClick={() => s.flash(t('entering', { name: w.name }))}>{t('enterWorld', { name: w.name })}</Button>
-          {club && <Button variant="outline" onClick={() => s.go('club', { clubId: club.id })}>{t('byClub', { name: club.name })}</Button>}
-          {show && <Button variant="secondary" onClick={() => s.go('show', { showId: show.id })}>{t('showCard', { season: show.season, looks: show.looks.length })}</Button>}
-        </Stack>
-        <PageSections id="world" sections={[
-          { id: 'cities', title: t('wdCities'), expandable: true, actions: <Button size="sm" variant="ghost" iconLeft={Plus} onClick={() => s.openNest(hostId, nest?.id ?? null, 'city')}>{t('nestCity')}</Button>, content: (
-        <ListView<City> rows={w.cities} keyOf={(c) => c.id} text={(c) => c.name + ' ' + c.vibe} cols={3} onRow={(c) => s.go('city', { cityId: c.id, worldId: w.id })}
-          facets={[{ id: 'vibe', label: t('lsVibe'), get: (c) => c.vibe }]}
-          sorts={[{ id: 'pop', label: t('lsSortResidents'), by: (a, b) => b.population - a.population }, { id: 'az', label: t('lsSortAz'), by: (a, b) => a.name.localeCompare(b.name) }]}
-          table={[{ id: 'name', header: t('lsColName'), cell: (c) => c.name, sortValue: (c) => c.name }, { id: 'vibe', header: t('lsVibe'), cell: (c) => c.vibe, sortValue: (c) => c.vibe },
-            { id: 'pop', header: t('lsColResidents'), cell: (c) => fmt(c.population), sortValue: (c) => c.population, align: 'right' },
-            ...(placesReady ? [{ id: 'places', header: t('lsPlace'), cell: (c: City) => districtsOf(c.id).reduce((n, d) => n + d.places.length, 0), sortValue: (c: City) => districtsOf(c.id).reduce((n, d) => n + d.places.length, 0), align: 'right' as const }] : [])]}
-          render={(c) => (
-            <ItemCard depth={2} deckDirection="both" variant="flat" layout="vertical" onClick={() => s.go('city', { cityId: c.id, worldId: w.id })}
-              media={<Tile image={worldImage(w)} tone={w.tone} ratio="16/9" title={c.name} depth={{ worldId: w.id, clubId: w.clubId }} />}
-              title={<Stack direction="row" gap={2} align="center"><Icon icon={MapPin} size="sm" /><Title level={4} size="md">{c.name}</Title></Stack>}
-              meta={t('wdCityCard', { vibe: c.vibe, n: fmt(c.population) })}
-              actions={<Button size="sm" variant="outline" onClick={() => s.go('city', { cityId: c.id, worldId: w.id })}>{t('visit')}</Button>}>
-              {placesReady && <Text size="xs" intent="muted">{t('ctDistricts', { n: districtsOf(c.id).length })} · {t('ctPlaces', { n: districtsOf(c.id).reduce((n, d) => n + d.places.length, 0) })}</Text>}
-            </ItemCard>)} />
-          ) },
-          { id: 'clubs', title: t('wdClubs', { name: w.name }), hidden: clubs.length < 2, expandable: true, content: (
-          <ListView<Club> rows={clubs} keyOf={(c) => c.id} text={(c) => c.name + ' ' + c.tagline} cols={3} onRow={(c) => s.go('club', { clubId: c.id })}
-            sorts={[{ id: 'holders', label: t('lsSortHolders'), by: (a, b) => b.holders - a.holders }, { id: 'az', label: t('lsSortAz'), by: (a, b) => a.name.localeCompare(b.name) }]}
-            table={[{ id: 'name', header: t('lsColName'), cell: (c) => c.name, sortValue: (c) => c.name }, { id: 'holders', header: t('lsColHolders'), cell: (c) => fmt(c.holders), sortValue: (c) => c.holders, align: 'right' }]}
-            render={(c) => (
-              <ItemCard depth={2} deckDirection="both" variant="flat" layout="vertical" onClick={() => s.go('club', { clubId: c.id })}
-                media={<Tile tone={c.tone} ratio="16/9" title={c.name} sub={c.tagline} depth={{ worldId: w.id, clubId: c.id, personId: c.founderId }} />}
-                title={c.name} meta={c.tagline} aside={<Tag minimal round size="sm">{c.ticker}</Tag>} />)} />          ) },
-          { id: 'rides', title: t('rdWorld', { name: w.name }), hint: t('rdWorldHint', { n: rides.length }), hidden: !rides.length, expandable: true, content: <RideList rows={rides} world={false} /> },
-          { id: 'jewels', title: t('jwTitle'), hint: t('jwHint', { n: jewels.length }), hidden: !jewels.length, expandable: true, content: <JewelList rows={jewels} /> },
-          { id: 'related', title: t('asLinked'), content: <Connected kind="world" id={w.id} bare /> },
-        ]} />
-      </Stack>
-    </Page>
+  const posts = shotsOfWorld(w.id).map(shotPost); const eggs = eggsOfWorld(w.id);
+  const agent = D.agents.agents.find((a) => club && a.clubIds.includes(club.id));
+  const shown = w.gallery?.[0];
+  const big = shown ? mediaUrl(shown.lg) : worldImage(w);
+  const placesIn = (c: City) => districtsOf(c.id).reduce((n, d) => n + d.places.length, 0);
+  const residents = w.cities.reduce((n, c) => n + c.population, 0);
+  const mark = worldMark(w);
+
+  // ── centre: the world as an object on its stage, then what it holds ──
+  // A city is wide: its stage is a wide frame the size of the column, so the whole city fits the screen (never a square that overflows it).
+  const stage = w.gallery?.length && big
+    ? <Frame ratio="16/9" rounded="lg"><Image src={big} alt={w.name} fit="contain" fill /></Frame>
+    : <Tile image={worldImage(w)} tone={w.tone} ratio="1" big grid title={w.name} depth={{ worldId: w.id, clubId: w.clubId, personId: w.creatorId }} />;
+  const facts: [string, React.ReactNode][] = [
+    [t('wdKind'), (site.worldKinds as Record<string, string>)[w.kind]],
+    ...(w.land ? [[t('wdLand'), [w.landName, t('ctLand', { n: w.land }), w.landGroup].filter(Boolean).join(' · ')] as [string, React.ReactNode]] : []),
+    [t('wdResidents'), fmt(residents)], [t('wdInside'), fmt(w.visitorsNow)], [t('wdZoneCount'), w.cities.length],
+    ...(placesReady ? [[t('wdPlaceCount'), w.cities.reduce((n, c) => n + placesIn(c), 0)] as [string, React.ReactNode]] : []),
+    ...(club ? [[t('wdClub'), club.name] as [string, React.ReactNode]] : []),
+    ...(w.creatorId ? [[t('wdCreator'), person(w.creatorId).name] as [string, React.ReactNode]] : []),
+  ];
+  // The city's views as slides: each whole, with the city's mark; its land and who is inside under the view's name.
+  const slides = (w.gallery ?? []).map((g) => ({ id: g.view, src: mediaUrl(g.lg), thumb: mediaUrl(g.sm), mark, title: viewLabel(g.view),
+    sub: [w.landName && w.landName !== w.name ? w.landName : w.landGroup, t('insideNow', { n: fmt(w.visitorsNow) })].filter(Boolean).join(' · ') }));
+  const act = (I: LucideIcon, label: string, onClick: () => void, on?: boolean) => (
+    <Button key={label} variant="glass" size="sm" icon={<I size={16} fill={on ? 'currentColor' : 'none'} />} aria-label={label} title={label} aria-pressed={on} onClick={onClick} />);
+  const acts = <>
+    <Button variant="glass" size="sm" iconLeft={LogIn} onClick={() => s.flash(t('entering', { name: w.name }))}>{t('enterWorld', { name: w.name })}</Button>
+    {club && act(Shield, t('byClub', { name: club.name }), () => s.go('club', { clubId: club.id }))}
+    {show && act(Clapperboard, t('showCard', { season: show.season, looks: show.looks.length }), () => s.go('show', { showId: show.id }))}
+    {act(Heart, t('isLike'), () => s.toggle('liked', w.id), !!s.liked[w.id])}
+    {act(Bookmark, t('isSave'), () => { s.toggle('saved', w.id); s.flash(t('saved')); }, !!s.saved[w.id])}
+    {act(Share2, t('isShare'), () => { void navigator.clipboard?.writeText(location.href); s.flash(t('isCopied')); })}
+    {slides.length > 0 && act(Maximize2, t('isFull'), () => setFull(true))}
+  </>;
+  // What the city holds: the same sections under the square, in the full-screen sheet and under its posts.
+  const parts = useCityParts(w);
+  const centre = (
+    <PageSections id="world-item" size="sm" sections={[
+      // The city as a square on its own blur (whole, never cropped), its views as the picker, its actions as glass icons at
+      // the foot of the square; everything else scrolls under it. Full screen opens the same view and sheet as a post.
+      { id: 'world', title: w.name, collapsible: true, content: slides.length
+        ? <Showcase ratio="1" auto={0} slides={slides} labels={{ prev: t('slPrev'), next: t('slNext'), picker: t('ctViews') }} actions={() => <>{acts}</>} />
+        : <Stack direction="column" gap={2}>{stage}<Stack direction="row" gap={1} wrap>{acts}</Stack></Stack> },
+      ...parts,
+    ]} />
   );
+
+  const columns = [
+    { id: 'world', title: w.name, label: t('wdWorld'), content: centre, minWidth: '20rem' },
+    ...(agent ? [{ id: 'chat', title: <Stack direction="row" gap={2} align="center"><PersonAvatar id={agent.id} size="xs" /><Text size="sm" weight="semibold">{agent.name}</Text></Stack>,
+      label: t('chat'), content: <AgentChat agentId={agent.id} context={w.name} prompts={[]} />, width: '22rem', folded: true }] : []),
+  ];
+  return (<>
+    {full && big && <FullScreen label={w.name} fill={big} media={<Image src={big} alt={w.name} fit="contain" fill />} onClose={() => setFull(false)} closeLabel={t('close')}
+      menuLabel={w.name} infoLabel={t('wdAbout')}
+      menu={WORLD_MENU.filter((m) => parts.some((p) => p.id === m.id && !p.hidden)).map((m) => ({ id: m.id, label: m.label, icon: glyph(m.icon),
+        section: m.id }))}>
+      <PageSections id="world-full" size="sm" sections={parts} />
+    </FullScreen>}
+    <EntityPage stickLast={!!agent} picture={big ? <Image src={big} alt="" fit="cover" fill /> : undefined}
+      title={w.name} sub={<>{w.landGroup ?? (site.worldKinds as Record<string, string>)[w.kind]} · {t('insideNow', { n: fmt(w.visitorsNow) })}</>} columns={columns} />
+  </>);
 };

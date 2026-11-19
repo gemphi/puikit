@@ -41,37 +41,39 @@
   /* No colour of its own: buttons wear the page's shades in the page's ink, one colour per page. The main action is
      the deeper shade, the rest the resting one; under the pointer each goes one shade deeper. */
   background-color: transparent;
-  background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1));
+  background-image: var(--phi-label-strong);
   color: var(--phi-color-text-primary);
   border-color: transparent;
-  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: linear-gradient(90deg, var(--phi-shade-1), var(--phi-shade-1)); }
+  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: var(--phi-label-strong), var(--phi-label); }
 }
 
 .secondary, .outline {
   background-color: transparent;
-  background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2));
+  background-image: var(--phi-label);
   color: var(--phi-color-text-primary);
   border-color: transparent;
-  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1)); }
+  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: var(--phi-label-strong); }
 }
 
-/* Glass: the same see-through surface as the sidebar and the drawer (tokens.scss one surface): the page's shades
+/* Every button's gradient runs from the page's faintest shade to its strongest, left to right, so it reads as a
+   gradient on any page (the gradient connects everything); hover and press lay a second, deeper one over it.
+   Glass: the same see-through surface as the sidebar and the drawer (tokens.scss one surface): the page's shades
    across, over a blur of what lies behind, in the page's ink; no colour of its own. A pressed one (liked, saved, the
    view shown) wears a deeper shade. Every "view all" and every action on an item. */
 .glass {
   background-color: transparent;
-  background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2));
+  background-image: var(--phi-label);
   -webkit-backdrop-filter: var(--phi-glass-blur); backdrop-filter: var(--phi-glass-blur);
   color: var(--phi-color-text-primary);
   border-color: transparent;
-  &:hover:not(:disabled):not(.disabled), &[aria-pressed='true'] { background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1)); }
+  &:hover:not(:disabled):not(.disabled), &[aria-pressed='true'] { background-image: var(--phi-label-strong); }
 }
 
 .ghost {
   background-color: transparent;
-  background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2));
+  background-image: var(--phi-label);
   color: var(--phi-color-text-primary);
-  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1)); }
+  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: var(--phi-label-strong); }
 }
 
 .danger {
@@ -84,9 +86,9 @@
   padding: 0;
   border-radius: var(--phi-control-radius, var(--phi-radius-md));
   background-color: transparent;
-  background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2));
+  background-image: var(--phi-label);
   color: var(--phi-color-text-primary);
-  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1)); }
+  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: var(--phi-label-strong); }
 }
 .fullWidth { width: 100%; }
 .loading { cursor: wait; opacity: 0.8; }
@@ -110,19 +112,19 @@
    variant: a gradient of the look's one colour, in the page's one ink, so nothing on a surface brings a second colour. */
 :global(:is(.pui-card, [data-surface='card'], .phi-layers)) .button {
   background-color: transparent;
-  background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2));
+  background-image: var(--phi-label);
   border-color: transparent;
   color: var(--phi-color-text-primary);
   backdrop-filter: var(--phi-glass-blur);
   -webkit-backdrop-filter: var(--phi-glass-blur);
-  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-2)); }
+  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: var(--phi-label-strong); }
 }
 
 /* A pressed toggle (a view switch, a filter that is on) is the page's deeper shade, never a fill of its own: one colour
    per page, on a surface or off it. */
 .button[aria-pressed='true'] {
   background-color: transparent;
-  background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1));
+  background-image: var(--phi-label-strong);
   border-color: transparent;
   color: var(--phi-color-text-primary);
 }

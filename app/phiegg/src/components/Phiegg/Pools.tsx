@@ -3,7 +3,7 @@ import { Button, Card, CardBody, Drawer, Grid, Input, ProgressBar, Stack, TabLis
 import { useStore } from '@pui/store';
 import { useWallet } from '@phi-kit/wallet';
 import { ArrowRightLeft } from 'lucide-react';
-import { D, clubOf, coinOf, fmt, lotsOfPool, metricOf, poolOf, poolQuestOf, shadeOf, showLookOf, t, unitName, usd } from '../../lib/data';
+import { D, fmt, lotsOfPool, showLookOf, t, unitName, usd, itemOf } from '../../lib/data';
 import { buyLot, doSwap, poolNumbers, poolStats, quote, quoteSwapOf, statQuest, swapRules, useNow, useSwaps, valueOf, fmtStat, type StatRow } from '../../lib/market';
 import { enterQuest, leaveQuest, useEconomy } from '../../lib/economy';
 import { useOwned } from '../../lib/cart';
@@ -19,7 +19,7 @@ const pct = (n: number) => (n > 0 ? '+' : '') + (n * 100).toFixed(1) + '%';
 
 /** A pool at a glance: three-layer tile, kind, sold counter, floor, 24h volume and the moving value. */
 export const PoolCard: React.FC<{ pool: Pool; now: number }> = ({ pool, now }) => {
-  const s = useStore(phieggStore); const club = clubOf(pool.clubId);
+  const s = useStore(phieggStore); const club = itemOf('club', pool.clubId);
   const N = poolNumbers(pool, now); const st = poolStats(pool, now); const vol = st.find((x) => x.metric.id === 'vol24h');
   return (
     <Card depth={2} onClick={() => s.go('pool', { poolId: pool.id })}><CardBody><Stack direction="column" gap={2}>
@@ -52,7 +52,7 @@ export const LotCard: React.FC<{ lot: PoolLot; now: number }> = ({ lot, now }) =
         {shown.map((u, k) => (
           <Stack key={u.index} direction="row" gap={2} align="center">
             <Text size="xs" intent="muted" numeric width="1.6rem">{k + 1}</Text>
-            <Stack flex="1" minWidth="0"><ProgressBar value={q.high ? u.usd / q.high : 0} color={shadeOf(u.itemId)?.hex ?? showLookOf(u.itemId)?.look.hex} animate={false} /></Stack>
+            <Stack flex="1" minWidth="0"><ProgressBar value={q.high ? u.usd / q.high : 0} color={itemOf('shade', u.itemId)?.hex ?? showLookOf(u.itemId)?.look.hex} animate={false} /></Stack>
             <Text size="xs" truncate flex="0 1 9rem" minWidth="0">{itemName(u.itemId)}</Text>
             <Text size="xs" weight="bold" numeric align="right" width="5rem">{usd(u.usd)}</Text>
             {lot.kind === 'drop' && <Button size="sm" variant="ghost" disabled={w.usd < u.usd || q.remaining <= 0} onClick={() => buy(q.units.indexOf(u))}>{t('plBuyUnit')}</Button>}
@@ -90,7 +90,7 @@ export const StatGrid: React.FC<{ pool: Pool; now: number; groups?: string[] }> 
 /** A stat and its quest: what it measures, where it stands, the target, and join / leave. */
 const StatDrawer: React.FC<{ poolId: string; metricId: string }> = ({ poolId, metricId }) => {
   const s = useStore(phieggStore); const now = useNow(1000); const eco = useEconomy();
-  const pool = poolOf(poolId); const m = metricOf(metricId); if (!pool || !m) return null;
+  const pool = itemOf('pool', poolId); const m = itemOf('metric', metricId); if (!pool || !m) return null;
   const row = poolStats(pool, now).find((r) => r.metric.id === metricId) as StatRow; const q = statQuest(pool, row); const inQ = !!eco.quests[q.id];
   return (
     <Drawer isOpen onClose={s.close} position="right" size="sm" title={<Stack direction="column" gap={0}><Title level={4} size="md">{m.label}</Title><Text size="xs" intent="muted">{pool.name} · {t('plStatQuest')}</Text></Stack>}
@@ -116,7 +116,7 @@ const SwapDrawer: React.FC<{ giveId: string; getId?: string }> = ({ giveId, getI
   const candidates = useMemo(() => { const ql = q.trim().toLowerCase(); return D.stores.stores.flatMap((x) => x.looks).filter((l) => !owned[l.id] && (!ql || l.name.toLowerCase().includes(ql))).slice(0, 24); }, [q, owned]);
   const rules = swapRules(); const quoteNow = get ? quoteSwapOf(give, get, now) : undefined;
   const msg = !quoteNow ? '' : quoteNow.reason === 'limit' ? t('plLimit', { left: usd(quoteNow.allowanceUsd) }) : quoteNow.reason === 'reserve' ? t('plReserve', { v: usd(quoteNow.difference) })
-    : quoteNow.reason === 'funds' ? t('plFunds', { v: usd(-quoteNow.difference) }) : quoteNow.direction === 'receive' ? t('plReceive', { pool: poolOf(quoteNow.sponsorPoolId)?.name ?? '', v: usd(quoteNow.difference) })
+    : quoteNow.reason === 'funds' ? t('plFunds', { v: usd(-quoteNow.difference) }) : quoteNow.direction === 'receive' ? t('plReceive', { pool: itemOf('pool', quoteNow.sponsorPoolId)?.name ?? '', v: usd(quoteNow.difference) })
     : quoteNow.direction === 'pay' ? t('plPay', { v: usd(-quoteNow.difference) }) : t('plEven');
   return (
     <Drawer isOpen onClose={s.close} position="right" size="md" title={<Stack direction="row" gap={2} align="center"><ArrowRightLeft size={18} /><Title level={4} size="md">{t('plSwapTitle', { name: itemName(give) })}</Title></Stack>}
@@ -131,8 +131,8 @@ const SwapDrawer: React.FC<{ giveId: string; getId?: string }> = ({ giveId, getI
         <Input value={q} placeholder={t('plPickTarget')} onChange={(e) => setQ(e.target.value)} aria-label={t('plPickTarget')} />
         <Grid gap={2} xs={2} sm={3}>
           {candidates.map((l) => { const v = valueOf(l.id, now); return (
-            <Card key={l.id} depth={1} tint={l.hex} tintStrength={22} selected={get === l.id} onClick={() => setGet(l.id)} padding="sm"><CardBody>
-              <LookImage look={l} cascade={2} /><Text size="xs" weight="bold">{l.name}</Text><Text size="xs" intent="muted">{usd(v?.usd ?? l.usd)} · {poolOf(l.poolId)?.name}</Text>
+            <Card key={l.id} depth={1} selected={get === l.id} onClick={() => setGet(l.id)} padding="sm"><CardBody>
+              <LookImage look={l} cascade={2} /><Text size="xs" weight="bold">{l.name}</Text><Text size="xs" intent="muted">{usd(v?.usd ?? l.usd)} · {itemOf('pool', l.poolId)?.name}</Text>
             </CardBody></Card>); })}
         </Grid>
       </Stack>
@@ -147,14 +147,14 @@ export const PoolOverlays: React.FC = () => {
 
 /** The pool quest: its pool of stats, its sub-quests and the coins taking part. */
 export const PoolQuestCard: React.FC<{ pool: Pool }> = ({ pool }) => {
-  const s = useStore(phieggStore); const eco = useEconomy(); const pq = poolQuestOf(pool.questId); if (!pq) return null;
+  const s = useStore(phieggStore); const eco = useEconomy(); const pq = itemOf('poolQuest', pool.questId); if (!pq) return null;
   const inQ = !!eco.quests[pq.id];
   return (
     <Card depth={2}><CardBody><Stack direction="column" gap={2}>
       <Stack direction="row" justify="between" align="center" gap={2}><Stack direction="column" gap={0}><Text size="xs" intent="muted" weight="bold">{t('plQuest')}</Text><Title level={4} size="md">{pq.title}</Title></Stack>
         {inQ ? <Tag round intent="success">{t('plJoined')}</Tag> : <Button variant="primary" size="sm" onClick={() => { enterQuest(pq.id); s.flash(t('joined_', { name: pq.title })); }}>{t('plEnter')}</Button>}</Stack>
       <Text size="sm" intent="secondary">{t('plQuestHas', { m: pq.metricIds.length, q: pq.metricIds.length + pq.questIds.length, c: pq.coinIds.length })} · {t('reward', { n: pq.reward, coin: pq.rewardCoin })} · {t('entrants', { n: fmt(pq.entrants + (inQ ? 1 : 0)) })}</Text>
-      <Stack direction="row" gap={1} wrap>{pq.coinIds.map((id) => { const c = coinOf(id); return c ? <Tag key={id} round minimal intent="primary">{c.symbol} · ${c.price}</Tag> : null; })}</Stack>
+      <Stack direction="row" gap={1} wrap>{pq.coinIds.map((id) => { const c = itemOf('coin', id); return c ? <Tag key={id} round minimal intent="primary">{c.symbol} · ${c.price}</Tag> : null; })}</Stack>
     </Stack></CardBody></Card>
   );
 };

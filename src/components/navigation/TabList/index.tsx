@@ -21,6 +21,9 @@ type TabListProps = {
   variant?: 'default' | 'pills';
   /** Accessible name of the tab row. */
   'aria-label'?: string;
+  /** `center` (the default): a page's row of tabs, centred at no more than half the content's width; more tabs than fit scroll sideways
+   *  in place and the row stays under the header while the page scrolls. */
+  place?: 'start' | 'center';
   className?: string;
 };
 
@@ -30,7 +33,7 @@ type TabListProps = {
  * pill, radius and motion all come from theme tokens (--phi-control-*, --phi-gradient-control, --phi-radius-*,
  * --phi-transition-*).
  */
-export const TabList = ({ items, activeId, onChange, size = 'md', variant = 'default', className = '', ...rest }: TabListProps) => {
+export const TabList = ({ items, activeId, onChange, size = 'md', variant = 'default', place = 'center', className = '', ...rest }: TabListProps) => {
   const row = useRef<HTMLElement | null>(null);
   useLayoutEffect(() => {
     const el = row.current; if (!el) return;
@@ -58,7 +61,7 @@ export const TabList = ({ items, activeId, onChange, size = 'md', variant = 'def
     return () => { ro?.disconnect(); el.removeEventListener('scroll', edges); };
   }, [activeId, items.length]);
   return (
-    <Box ref={row} className={cn(styles.tabList, styles[size], styles[variant], className)} role="tablist" aria-label={rest['aria-label']}>
+    <Box ref={row} className={cn(styles.tabList, styles[size], styles[variant], place === 'center' && styles.center, className)} role="tablist" aria-label={rest['aria-label']}>
       <Box as="span" className={styles.indicator} aria-hidden="true" />
       {items.map((item) => {
         const isActive = activeId === item.id;

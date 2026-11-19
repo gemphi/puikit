@@ -34,15 +34,15 @@ export const usePlaces = PLACES.use;
 const SHARDS = 16;
 const shardOf = (id: string) => [...id].reduce((h, c) => (Math.imul(h, 31) + c.charCodeAt(0)) >>> 0, 7) % SHARDS;
 const files = import.meta.glob<{ default: { comments: ThreadComment[] } }>('../data/threads/*.json');
-const shard = Array.from({ length: SHARDS }, (_, i) => lazy<{ comments: ThreadComment[] }>(() => files[`../data/threads/${String(i).padStart(2, '0')}.json`]()));
+// A shard takes the database's ids as it loads (its posts, its writers), like every other data file.
+const shard = Array.from({ length: SHARDS }, (_, i) => lazy<{ comments: ThreadComment[] }>(() => files[`../data/threads/${String(i).padStart(2, '0')}.json`]().then((m) => { remapDoc(m.default); return m; })));
 /** The thread under one post (and its pose, for show looks). */
 export function useThreadFor(...dbIds: (string | undefined)[]): ThreadComment[] | undefined {
-  // Shards were cut and keyed on the original ids, so the database id goes back through the map first.
-  const ids = dbIds.map((x) => (x ? srcId(x) : x));
-  const keys = [...new Set(ids.filter((x): x is string => !!x).map(shardOf))];
+  // Shards were cut on the original ids, so the database id goes back through the map to find its shard.
+  const keys = [...new Set(dbIds.filter((x): x is string => !!x).map((x) => shardOf(srcId(x))))];
   const docs = keys.map((k) => shard[k].use());
   if (docs.some((d) => !d)) return undefined;
-  const want = new Set(ids.filter(Boolean));
+  const want = new Set(dbIds.filter(Boolean));
   return docs.flatMap((d) => d!.comments.filter((c) => want.has(c.targetId)));
 }
 

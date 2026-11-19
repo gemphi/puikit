@@ -246,7 +246,7 @@
   /* Glass is an OPACITY gradient of the theme's own lightness — top a touch
      brighter than the foot — never a colored fill. */
   background-color: transparent;
-  background-image: var(--phi-social-glass-gradient, linear-gradient(180deg, color-mix(in srgb, var(--phi-color-text-primary) 16%, transparent), color-mix(in srgb, var(--phi-color-text-primary) 5%, transparent)));
+  background-image: var(--phi-social-glass-gradient, var(--phi-label));
   color: var(--phi-color-text-primary);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -254,7 +254,7 @@
 
   &:hover {
     transform: scale(1.06);
-    background-image: var(--phi-social-glass-gradient-hover, linear-gradient(180deg, color-mix(in srgb, var(--phi-color-text-primary) 26%, transparent), color-mix(in srgb, var(--phi-color-text-primary) 10%, transparent)));
+    background-image: var(--phi-social-glass-gradient-hover, var(--phi-label-strong));
   }
 
   &:focus-visible {
@@ -279,7 +279,7 @@
   transform: translateX(-50%);
   width: 1.25rem;
   height: 1.25rem;
-  border-radius: 50%;
+  border-radius: var(--phi-radius-full);
   border: none;
   cursor: pointer;
   display: flex;
@@ -331,7 +331,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.65) 0%, transparent 38%);
+  background-image: linear-gradient(90deg, color-mix(in srgb, var(--phi-color-background) 62%, transparent) 0%, transparent 60%);
 }
 
 .tileMeta {
@@ -415,7 +415,7 @@
 button.glassControl,
 .glassControl {
   background-color: transparent;
-  background-image: var(--phi-social-glass-gradient, linear-gradient(180deg, color-mix(in srgb, var(--phi-color-text-primary) 16%, transparent), color-mix(in srgb, var(--phi-color-text-primary) 5%, transparent)));
+  background-image: var(--phi-social-glass-gradient, var(--phi-label));
   color: var(--phi-color-text-primary);
   border: none;
   backdrop-filter: blur(10px);
@@ -423,7 +423,7 @@ button.glassControl,
 }
 button.glassControl:hover:not(:disabled),
 .glassControl:hover:not(:disabled) {
-  background-image: var(--phi-social-glass-gradient-hover, linear-gradient(180deg, color-mix(in srgb, var(--phi-color-text-primary) 26%, transparent), color-mix(in srgb, var(--phi-color-text-primary) 10%, transparent)));
+  background-image: var(--phi-social-glass-gradient-hover, var(--phi-label-strong));
 }
 
 /* ------------------------------------------------------ the post overlay */
@@ -495,7 +495,7 @@ button.glassControl:hover:not(:disabled),
   min-height: 0;
   overflow: hidden;
   background-color: var(--phi-color-background);
-  border-radius: var(--phi-radius-xl, var(--phi-radius-lg, 16px));
+  border-radius: var(--phi-radius-lg, 16px);
   margin: var(--phi-layout-rail-margin, var(--phi-space-3, 12px));
   animation: postOverlayPanelIn var(--phi-transition-medium, 0.25s) ease;
 
@@ -574,7 +574,7 @@ button.glassControl:hover:not(:disabled),
 
   &:hover {
     transform: none;
-    background-image: var(--phi-social-glass-gradient, linear-gradient(180deg, color-mix(in srgb, var(--phi-color-text-primary) 16%, transparent), color-mix(in srgb, var(--phi-color-text-primary) 5%, transparent)));
+    background-image: var(--phi-social-glass-gradient, var(--phi-label));
   }
 }
 
@@ -702,7 +702,7 @@ button.glassControl:hover:not(:disabled),
   background-image: var(--phi-gradient-rail-reverse, none);
   /* The drawer floats like the rail: block margins, the theme's corners. */
   border: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
-  border-radius: var(--phi-radius-xl, var(--phi-radius-lg, 16px));
+  border-radius: var(--phi-radius-lg, 16px);
   margin: var(--phi-layout-rail-margin, var(--phi-space-3, 12px));
   margin-inline-start: 0;
   overflow: hidden;

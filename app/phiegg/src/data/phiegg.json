@@ -30,12 +30,6 @@
      "position": "top",
      "items": [
       {
-       "id": "welcome",
-       "label": "Welcome",
-       "tab": "welcome",
-       "icon": "Sparkles"
-      },
-      {
        "id": "explore",
        "label": "Explore",
        "tab": "explore",

@@ -8,6 +8,7 @@ import { randomBytes, createHash } from 'node:crypto';
 import { createStore } from './store.mjs';
 import { ensureWallet, swap, spend, earn, USD, LedgerError } from './ledger.mjs';
 import { loadCatalog, buy, offer, sell } from './shop.mjs';
+import { loadMenus, menuOf } from './menu.mjs';
 import { modelFromEnv } from './model.mjs';
 import { AuthError, checkEmail, checkPassword, checkSignup, hashPassword, publicMe, throttle, verifyPassword } from './auth.mjs';
 import { mailerFromEnv, resetMail, verifyMail } from './mail.mjs';
@@ -60,6 +61,7 @@ export function createPhiora({
     return os ? b + ' on ' + os : b;
   };
   const catalog = loadCatalog(shopDataDir);
+  const menus = loadMenus(shopDataDir);
   // The database is the source of the records; the data files only seed it. On start, in development, changed files
   // are loaded again (records changed through the API stay as they are); in production (PHI_ENV=production) only an
   // empty database is loaded, and `npm run seed` is the way to bring file changes in. PHI_SEED=0 skips it.
@@ -160,6 +162,8 @@ export function createPhiora({
       if (route === 'GET /health') return send(res, 200, { ok: true, store: store.kind, mail: mailer.kind, model: { provider: model.provider, configured: model.configured }, looks: catalog.size });
 
       let m;
+      // The menu a path has, as the arrays its data holds (menu.mjs).
+      if (route === 'GET /menu') return send(res, 200, menuOf(menus, url.searchParams.get('path'), url.searchParams.get('id')), { 'cache-control': 'public, max-age=60' });
       // An app's menus and pages are records (apps.mjs); the document is composed from them. Before the database has
       // them (or for an app it does not hold) the app's own file answers.
       if (route === 'GET /app') return send(res, 200, { apps: appList(await appRecords()) });

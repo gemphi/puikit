@@ -39,6 +39,9 @@ export type AppShellProps = {
   tools?: React.ReactNode;
   /** Optional right aside. */
   right?: React.ReactNode;
+  /** A second sidebar at the right edge, the same rail and menus as the left one: what the page that is open offers
+   *  (switch to another, its centre, its market). It starts as icons only; an icon opens its menu beside it. */
+  side?: { label: string; groups: AppShellGroup[] };
   /** A pulled record under a menu entry was picked. */
   onPreview?: (leafId: string, preview: AppShellPreview) => void;
   /** Where you are, when the app knows more than the menu does (an entity's own trail); the menu's trail otherwise. */
@@ -68,7 +71,7 @@ const readOpen = () => { try { return localStorage.getItem(KEY) !== '0'; } catch
  */
 export const AppShell: React.FC<AppShellProps> = ({
   collapseKey,
-  brand, groups, view, onView, rail, onRail, apps, appsLabel = 'Apps', appsIcon, foot = [], tabs, tools, right, onPreview, crumbs, headerRight, labels, children, className = '',
+  brand, groups, view, onView, rail, onRail, apps, appsLabel = 'Apps', appsIcon, foot = [], tabs, tools, right, side, onPreview, crumbs, headerRight, labels, children, className = '',
 }) => {
   const L: AppShellLabels = { openMenu: 'Open the menu', closeMenu: 'Close the menu', menu: 'Menu', moreApps: 'More apps', fold: (l, o) => (o ? 'Fold ' : 'Open ') + l, ...labels };
   const footGroups = foot.filter((f): f is AppShellGroup => Array.isArray(f.items) && f.items.length > 0);
@@ -98,6 +101,9 @@ export const AppShell: React.FC<AppShellProps> = ({
     const leaf = leafOf(g); if (leaf) go(leaf.id); else { if (g.to) go(g.to); setOpen(true); }
     setRail(g.id);
   };
+  // The right sidebar keeps its own open menu: closed (icons only) until one is picked, and again on the same icon.
+  const [sideRail, setSideRail] = React.useState(''); const sideGroup = side?.groups.find((g) => g.id === sideRail);
+  const pickSide = (g: AppShellGroup) => { const leaf = leafOf(g); if (leaf) { go(leaf.id); setSideRail(''); return; } if (g.to) go(g.to); setSideRail(g.id === sideRail ? '' : g.id); };
   const pickApps = () => { if (railId === APPS && open) { setOpen(false); return; } setRail(APPS); setOpen(true); };
 
   // Groups that are one page each make one menu of pages, so a page never shows its own name as a heading over itself.
@@ -150,6 +156,12 @@ export const AppShell: React.FC<AppShellProps> = ({
           </Box>
           <Box as="main" className={styles.main}><Box className={cn(styles.inner, 'pui-shell-content')}>{children}</Box></Box>
           {right ? <Box as="aside" className={cn(styles.right, 'phi-layers')}>{right}</Box> : null}
+          {side?.groups.length ? (
+            <Box className={cn(styles.nav, styles.navEnd, 'phi-layers')} data-side="end">
+              {sideGroup && <Box as="aside" className={styles.panel} aria-label={sideGroup.label}><Box className={styles.panelScroll}><GroupMenu key={sideGroup.id} group={sideGroup} {...menu} /></Box></Box>}
+              <Rail label={side.label} groups={side.groups} footGroups={[]} footLeaves={[]} railId={sideRail} view={view} pick={pickSide} pickApps={() => undefined} go={go} />
+            </Box>
+          ) : null}
         </Box>
         {tabs?.length ? <PhoneTabs tabs={tabs} view={view} go={go} menu={{ label: L.menu, icon: <MenuIcon size={18} />, open: drawer, onClick: () => setDrawer(!drawer) }} /> : null}
 

@@ -4,3 +4,5 @@ export * from './DepthMedia';
 export * from './WorldScene';
 export * from './SpriteImage';
 export * from './Frame';
+export * from './Showcase';
+export * from './Picture';

@@ -4,7 +4,7 @@ import { EntityAvatar } from './EntityAvatar';
 import { hasApi } from '@phi-kit/api';
 import { canDesign, saveTheme, useTheme } from '../../lib/themes';
 import { useStore } from '@pui/store';
-import { castOf, clubOf, person, salesOfItem, seriesOf, showOf, site, t, usd } from '../../lib/data';
+import { person, salesOfItem, site, t, usd, itemOf } from '../../lib/data';
 import { useActivity } from '../../lib/activity';
 import { phieggStore } from '../../state/phieggStore';
 import type { ShopLook } from '../../types/phiegg';
@@ -29,7 +29,7 @@ export const ItemSpecs: React.FC<{ look: ShopLook }> = ({ look }) => {
     { id: 'garments', field: t('spGarments'), value: sp.garments.join(', ') }, { id: 'sizes', field: t('spSizes'), value: sp.sizes.join(' · ') + ' · ' + sp.fit },
     { id: 'fits', field: t('spFits'), value: sp.fits.join(', ') }, { id: 'season', field: t('spSeason'), value: sp.season ?? '·' }, { id: 'collection', field: t('spCollection'), value: sp.collection ?? '·' },
     { id: 'renders', field: t('spRenders'), value: sp.renders.angles.length ? sp.renders.angles.join(' · ') + (sp.renders.opaque ? ' · opaque' : '') : '·' },
-    { id: 'house', field: t('spProvenance'), value: clubOf(sp.provenance.clubId)?.name ?? '·' }, { id: 'designerBy', field: t('spDesignerBy'), value: sp.provenance.designerId ? person(sp.provenance.designerId).name : '·' },
+    { id: 'house', field: t('spProvenance'), value: itemOf('club', sp.provenance.clubId)?.name ?? '·' }, { id: 'designerBy', field: t('spDesignerBy'), value: sp.provenance.designerId ? person(sp.provenance.designerId).name : '·' },
     { id: 'mint', field: t('spMintDate'), value: sp.provenance.mintDate ?? '·' }, { id: 'supply', field: t('spSupply'), value: `${sp.supply.minted} / ${sp.supply.edition} · ${sp.supply.owners} owners` },
     { id: 'utility', field: t('spUtility'), value: sp.utility.join(' · ') }, { id: 'tags', field: t('spTags'), value: sp.tags.join(' · ') },
     { id: 'physical', field: t('spPhysical'), value: sp.physical.available ? 'Made ' + sp.physical.made : '·' },
@@ -102,9 +102,9 @@ export const ItemStatsTable: React.FC<{ stats: { label: string; text: string }[]
 export const ItemAppears: React.FC<{ look: ShopLook }> = ({ look }) => {
   const s = useStore(phieggStore); const a = look.specs?.appearsIn;
   const rows = [
-    ...(a?.seriesIds ?? []).map((id) => ({ id, kind: t('apTitle'), name: seriesOf(id)?.title ?? id, open: () => s.openSeries(id), tone: seriesOf(id)?.tone ?? 'accent', clubId: seriesOf(id)?.clubId })),
-    ...(a?.showIds ?? []).map((id) => ({ id, kind: t('apShow'), name: showOf(id)?.title ?? id, open: () => s.go('show', { showId: id }), tone: showOf(id)?.tone ?? 'accent', clubId: showOf(id)?.clubId })),
-    ...(a?.castIds ?? []).map((id) => ({ id, kind: t('apCast'), name: castOf(id)?.title ?? id, open: () => s.openDetails({ kind: 'cast', id }), tone: 'neutral', clubId: castOf(id)?.clubId })),
+    ...(a?.seriesIds ?? []).map((id) => ({ id, kind: t('apTitle'), name: itemOf('series', id)?.title ?? id, open: () => s.openSeries(id), tone: itemOf('series', id)?.tone ?? 'accent', clubId: itemOf('series', id)?.clubId })),
+    ...(a?.showIds ?? []).map((id) => ({ id, kind: t('apShow'), name: itemOf('show', id)?.title ?? id, open: () => s.go('show', { showId: id }), tone: itemOf('show', id)?.tone ?? 'accent', clubId: itemOf('show', id)?.clubId })),
+    ...(a?.castIds ?? []).map((id) => ({ id, kind: t('apCast'), name: itemOf('cast', id)?.title ?? id, open: () => s.openDetails({ kind: 'cast', id }), tone: 'neutral', clubId: itemOf('cast', id)?.clubId })),
   ];
   if (!rows.length) return <Text size="sm" intent="muted">{t('isAppearsNone')}</Text>;
   return (

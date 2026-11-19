@@ -1,0 +1,62 @@
+// FullScreen: an item over the whole app, filling the screen. Tokens only.
+.root {
+  position: fixed; inset: 0; z-index: var(--phi-z-modal, 1000);
+  /* The page's own ground under the item's blurred picture; no colour mixed in. */
+  background: var(--phi-color-background);
+}
+// One scroll: the item stays where it is, the sheet comes up over it.
+.scroll { position: absolute; inset: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; &::-webkit-scrollbar { display: none; } }
+/* The item's own colours, blurred, under everything (fixed while the sheet scrolls). */
+.ground { position: fixed; inset: -6%; width: 112%; height: 112%; object-fit: cover; filter: blur(64px); opacity: 0.6; pointer-events: none; }
+.stage { position: sticky; top: 0; height: 100vh; transform: translateY(calc(var(--pui-fs-y, 0px) / -3)); will-change: transform; }
+/* The controls give way as the sheet comes up over the picture. */
+.top, .steps, .handle, .info, .bar { opacity: calc(1 - var(--pui-fs-k, 0)); pointer-events: auto; transition: opacity var(--phi-duration-fast) linear; }
+.info { position: absolute; left: var(--phi-space-4, 1rem); bottom: var(--phi-space-4, 1rem); z-index: 3; }
+// The item fills the screen; a picture keeps its shape, centred.
+.media { position: absolute; inset: 0; display: grid; place-items: center; > * { width: 100%; height: 100%; } img { object-fit: contain; } }
+.sheet {
+  position: relative; z-index: 1; margin: -1.25rem auto 0; width: min(100%, 96rem); min-height: 80vh;
+  padding: var(--phi-space-5, 1.25rem) var(--phi-space-4, 1rem) 6rem;
+  border-radius: var(--phi-radius-lg, 1rem) var(--phi-radius-lg, 1rem) 0 0;
+}
+// Controls float over the item on their own glass.
+.round {
+  display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: var(--phi-radius-full); flex: none;
+  background-color: transparent; background-image: var(--phi-glass-to-across); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur);
+  color: var(--phi-color-text);
+  &:disabled { opacity: 0.35; }
+}
+.top { position: absolute; top: var(--phi-space-4, 1rem); left: var(--phi-space-4, 1rem); right: 5rem; z-index: 3; display: flex; align-items: center; gap: var(--phi-space-3, 0.75rem); pointer-events: none; > * { pointer-events: auto; } }
+.title { margin: 0; text-shadow: 0 1px 12px color-mix(in srgb, var(--phi-color-background) 70%, transparent); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.steps { position: absolute; right: var(--phi-space-4, 1rem); top: 50%; transform: translateY(-50%); z-index: 3; display: flex; flex-direction: column; gap: var(--phi-space-2, 0.5rem); }
+.handle { position: absolute; left: 50%; bottom: var(--phi-space-4, 1rem); transform: translateX(-50%); z-index: 3; }
+// The item's buttons: a small pill of icons at the bottom right.
+.bar {
+  position: absolute; right: var(--phi-space-4, 1rem); bottom: var(--phi-space-4, 1rem); z-index: 3;
+  display: flex; gap: 2px; padding: var(--phi-space-1, 0.25rem); border-radius: var(--phi-radius-md); max-width: calc(100vw - 7rem); overflow-x: auto; scrollbar-width: none;
+}
+.action {
+  display: inline-flex; align-items: center; gap: var(--phi-space-1, 0.25rem); min-width: 2.5rem; height: 2.5rem; justify-content: center; padding: 0 var(--phi-space-2, 0.5rem);
+  border-radius: var(--phi-radius-md); color: var(--phi-color-text);
+  &:hover { background-image: var(--phi-label-soft); }
+}
+.on { color: var(--phi-color-text-primary); font-weight: var(--phi-font-weight-semibold); }
+@media (max-width: 640px) { .steps { display: none; } .bar { right: 50%; transform: translateX(50%); bottom: 4.25rem; } }
+
+/* The item's menu: the sheet's first column, as tall as the sheet, wearing the kit's one surface; its entries (an icon
+   with its word under it) stay in view while the sheet scrolls. */
+.withMenu { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--phi-gap); align-items: stretch; }
+.body { min-width: 0; }
+.menu { align-self: stretch; border-radius: var(--phi-radius-lg); background: var(--phi-surface); padding: var(--phi-space-2) var(--phi-space-1); }
+.menuList { position: sticky; top: calc(var(--phi-space-4) * 2 + 2.75rem);
+  padding-top: calc(var(--phi-space-4) + 2.75rem - var(--phi-space-2)); display: flex; flex-direction: column; gap: var(--phi-space-1); }
+.menuItem {
+  display: flex; flex-direction: column; align-items: center; gap: 0.125rem; min-width: 3.5rem; padding: var(--phi-space-1);
+  border-radius: var(--phi-radius-md); color: var(--phi-color-text-primary);
+  &:hover { background-image: var(--phi-label-end); }
+}
+.menuIcon { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: var(--phi-radius-full); background-image: var(--phi-surface); }
+@media (max-width: 760px) {
+  .withMenu { grid-template-columns: minmax(0, 1fr); }
+  .menuList { position: static; flex-direction: row; overflow-x: auto; scrollbar-width: none; }
+}

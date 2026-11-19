@@ -1,10 +1,10 @@
-.row { display: flex; align-items: stretch; width: 100%; height: 100%; min-height: 0; overflow-x: auto; }
-.strip { display: flex; flex-direction: column; gap: 0.25rem; padding: 0.5rem 0.25rem; border-right: 1px solid var(--phi-color-border-subtle, var(--phi-color-border)); background: var(--phi-color-background-secondary); }
-.col { display: flex; flex-direction: column; min-height: 0; flex: 0 1 auto; border-right: 1px solid var(--phi-color-border-subtle, var(--phi-color-border)); background-image: var(--phi-gradient-child, none); animation: puiColIn var(--phi-duration, 0.3s) var(--phi-ease, ease-out); transition: width var(--phi-transition-slow), flex-basis var(--phi-transition-slow), min-width var(--phi-transition-slow); }
-.col:last-child { border-right: 0; }
+.row { display: flex; align-items: stretch; gap: var(--phi-gap); width: 100%; height: 100%; min-height: 0; overflow-x: auto; }
+/* Each column, and the strip the closed ones fold into, is the one surface (tokens.scss) with the one corner. */
+.strip { display: flex; flex-direction: column; gap: 0.25rem; padding: 0.5rem 0.25rem; border-radius: var(--phi-radius-md); background: var(--phi-surface); }
+.col { display: flex; flex-direction: column; min-height: 0; flex: 0 1 auto; border-radius: var(--phi-radius-md); background: var(--phi-surface); animation: puiColIn var(--phi-duration, 0.3s) var(--phi-ease, ease-out); transition: width var(--phi-transition-slow), flex-basis var(--phi-transition-slow), min-width var(--phi-transition-slow); }
 .flex { flex: 1 1 0; min-width: 0; }
 .exp { flex: 1 1 auto; width: auto !important; }
-.head { display: flex; align-items: center; gap: 0.25rem; padding: 0.5rem 0.6rem; min-height: 2.75rem; border-bottom: 1px solid var(--phi-color-border-subtle, var(--phi-color-border)); }
+.head { display: flex; align-items: center; gap: 0.25rem; padding: 0.5rem 0.6rem; min-height: 2.75rem; }
 .title { flex: 1; min-width: 0; display: flex; align-items: center; gap: 0.5rem; overflow: hidden; }
 .body { flex: 1; min-height: 0; overflow: auto; padding: 0.75rem; }
 @keyframes puiColIn { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: none; } }
@@ -15,10 +15,3 @@
   .col:not(:last-child) { display: none; }
   .col { width: 100% !important; min-width: 0 !important; }
 }
-
-/* Glass (tokens/_glass.scss): the left column runs from nothing to glass across, the right one the opposite, and the
-   ones between from glass down to nothing, so a row of columns brightens towards its middle. */
-.col { background-image: var(--phi-glass-from-down); border-color: var(--phi-glass-rim-soft); }
-.col:first-child:not(:last-child), .strip + .col:not(:last-child) { background-image: var(--phi-glass-to-across); }
-.col:last-child:not(:first-child) { background-image: var(--phi-glass-from-across); }
-.strip { background: var(--phi-glass-to-across); }
