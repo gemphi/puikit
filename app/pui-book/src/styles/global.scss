@@ -1,9 +1,9 @@
 /* PUIBook global styles */
 :root {
   --phi-brand-gradient: linear-gradient(135deg, #7c3aed 0%, #c026d3 100%);
-  --phi-sidebar-gradient: linear-gradient(180deg, rgba(0,0,0,0.03) 0%, transparent 100%);
-  --phi-header-gradient: linear-gradient(90deg, rgba(0,0,0,0.03) 0%, transparent 100%);
-  --phi-card-gradient: linear-gradient(180deg, rgba(240, 240, 245, 0.7) 0%, rgba(255, 255, 255, 0.1) 100%);
+  --phi-sidebar-gradient: var(--phi-label);
+  --phi-header-gradient: var(--phi-label);
+  --phi-card-gradient: var(--phi-surface);
   
   --phi-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
@@ -13,9 +13,9 @@
 }
 
 .dark {
-  --phi-sidebar-gradient: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, transparent 100%);
-  --phi-header-gradient: linear-gradient(90deg, rgba(255,255,255,0.03) 0%, transparent 100%);
-  --phi-card-gradient: linear-gradient(180deg, rgba(124, 58, 237, 0.15) 0%, rgba(15, 15, 20, 0.2) 100%);
+  --phi-sidebar-gradient: var(--phi-label);
+  --phi-header-gradient: var(--phi-label);
+  --phi-card-gradient: var(--phi-surface);
   
   --phi-scrollbar-track: #1a1a1a;
   --phi-scrollbar-thumb: #4a4a4a;

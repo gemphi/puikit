@@ -6,7 +6,9 @@ export type AppMeta = { look?: string; mode?: 'light' | 'dark'; key: string; nam
 export type NavItem = { id: string; label: string; icon: string; items?: NavItem[]; image?: string; pull?: Record<string, unknown>; previews?: import('./blocks/Grid').GridItem[] };
 export type Block = { kind: string; title?: string; [k: string]: any };
 export type View = { title: string; sub?: string; blocks: Block[] };
-export type AppData = { app: string; start?: string; bare?: boolean; nav: NavItem[]; views: Record<string, View>; profile?: import('./Profile').ProfileSpec };
+export type AppData = { app: string; start?: string; bare?: boolean; nav: NavItem[];
+  /** The right sidebar: groups like `nav`, shown as icons at the right edge, each opening its menu. */
+  side?: NavItem[]; views: Record<string, View>; profile?: import('./Profile').ProfileSpec };
 
 export const APPS = registry as AppMeta[];
 export const appMeta = (key: string) => APPS.find((a) => a.key === key) as AppMeta;

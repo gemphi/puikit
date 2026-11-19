@@ -84,8 +84,8 @@
   inset-inline: 0;
   inset-block-end: 0;
   padding: var(--phi-space-4);
-  background: linear-gradient(180deg, transparent, rgb(0 0 0 / 55%));
-  color: #fff;
+  background: var(--phi-surface);
+  color: var(--phi-color-text-primary);
 }
 
 .rail {

@@ -67,7 +67,7 @@ export const PhiApp: React.FC<{ appKey: string }> = ({ appKey }) => {
   if (data?.bare) return <Box as="main" style={{ minHeight: '100vh', padding: 'clamp(1rem, 3vw, 2.5rem)' }}>{page}</Box>;
 
   return (
-    <PhiShell app={app} nav={nav} view={cur} onView={go} onRecord={openItem} account={account} right={open ? <ItemPanel it={open} onClose={() => setOpen(null)} /> : null}>
+    <PhiShell app={app} nav={nav} side={data?.side} view={cur} onView={go} onRecord={openItem} account={account} right={open ? <ItemPanel it={open} onClose={() => setOpen(null)} /> : null}>
       {page}
       {record ? <RecordSheet kind={record.kind} id={record.id} onClose={() => go('#/' + cur)} go={go} formFor={formFor} /> : null}
     </PhiShell>

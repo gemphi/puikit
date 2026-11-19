@@ -1,7 +1,7 @@
-import { AppShell, type AppShellGroup, Button, Stack, TabList, Text } from '@pui/components';
+import { AppShell, type AppShellGroup, Button, Stack, TabList, Text, columnStore, useColumnEntries } from '@pui/components';
 import { usePuiTheme } from '@pui/providers';
 import React from 'react';
-import { Moon, Sun, User, Settings } from 'lucide-react';
+import { Columns3, Eye, EyeOff, Moon, Sun, User, Settings } from 'lucide-react';
 import { APPS, appUrl, assetUrl, type AppMeta, type NavItem } from './data';
 import type { GridItem } from './blocks/Grid';
 import { AppGlyph, NavIcon } from './icons';
@@ -12,6 +12,8 @@ export type AccountItem = { id: string; label: string; previews?: { id: string; 
 export type ShellProps = {
   app: AppMeta; nav: NavItem[]; view: string; onView: (id: string) => void;
   right?: React.ReactNode; children: React.ReactNode;
+  /** The right sidebar's groups, as data, like `nav` (the app's config `side`). */
+  side?: NavItem[];
   /** A record pulled under a menu entry was picked. */
   onRecord?: (it: GridItem) => void;
   /** The account (You) sub-nav: Overview, a leaf per profile section, Wallet, Account, Settings. */
@@ -33,7 +35,13 @@ const toGroups = (nav: NavItem[]): AppShellGroup[] => nav.map((n) => ({
  * Every Phi app's shell is the puikit {@link AppShell}; this wrapper only feeds it the app's data — menu groups, the
  * app switcher, the built-in You/Settings, and the look switch. Nothing here is per-app logic.
  */
-export const PhiShell: React.FC<ShellProps> = ({ app, nav, view, onView, right, onRecord, account, children }) => {
+export const PhiShell: React.FC<ShellProps> = ({ app, nav, side = [], view, onView, right, onRecord, account, children }) => {
+  // The right sidebar, the same in every app: the page's own columns (shown or hidden by picking one, so no column
+  // keeps a strip of its own), then whatever groups the app's data names.
+  const columns = useColumnEntries();
+  const panels: AppShellGroup[] = columns.length ? [{ id: '_panels', label: 'Panels', icon: <Columns3 size={20} />, items: columns.map((c) => ({ id: 'col:' + c.id, label: c.label, icon: c.open ? <Eye size={16} /> : <EyeOff size={16} /> })) }] : [];
+  const sideGroups = [...panels, ...toGroups(side).map((g) => ({ ...g, id: 'side:' + g.id }))];
+  const pick = (id: string) => { if (id.startsWith('col:')) columnStore.toggle(id.slice(4)); else onView(id); };
   const pulled = (leafId: string, id: string) => {
     // An account data point (You › Your rounds › a round): open that record's sheet; the leaf id carries the kind.
     if (leafId.startsWith('_you_')) { onView('#/' + leafId.slice(5) + '/' + id); return; }
@@ -51,7 +59,7 @@ export const PhiShell: React.FC<ShellProps> = ({ app, nav, view, onView, right, 
   return (
     <AppShell
       brand={{ name: app.name, tagline: app.tagline, color: app.color, glyph: <AppGlyph paths={app.icon} size={22} /> }}
-      groups={toGroups(nav)} view={view} onView={onView}
+      groups={toGroups(nav)} view={view} onView={pick} side={{ label: app.name, groups: sideGroups }}
       apps={apps} appsLabel="Apps"
       foot={foot}
       tools={<LookSwitch />} right={right} onPreview={(leafId, p) => pulled(leafId, p.id)}

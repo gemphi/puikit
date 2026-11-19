@@ -431,3 +431,11 @@ To give those three pools their records I ran `node scripts/pools.mjs`. It rewri
   - which component a path draws is still a switch in `App.tsx`
   - the app keeps 7 style files of its own (search, shot card, tile, header, explore, post page, welcome)
   - the kit still has the older `social/comment/panel.tsx` and the card's switched-off stacked copies
+
+## 28. Every app: shared components and data only (2026-11-20)
+- The ask: no app keeps its own components, only data; cover the layout fixes centrally on all apps; complete it now - **Partly**
+- Where the apps stand (counted): 13 apps are already data only, one entry file and one data file each on the shared app (`app/phi` with `phi-kit`): phiace, phiano, phiapp, phiber, phient, phihub, phinet, phinux, phiora, phipal, phiret, phisum, and the host itself. Phipad and Phidao have 3 files each. Every kit fix reaches all of these with no change in them
+- Central now, in the shared shell every one of those apps uses (`phi-kit/src/PhiShell.tsx`): the right sidebar. It lists the page's own columns (Panels), then whatever groups the app's data names under `side` (same shape as `nav`). No app writes it - **Done** (phi, phipad, phidao and phione type-check; on the host the corner scale measures 32, 16, 8, 4 and the surface runs from the foot)
+- App styles onto the kit's tokens: uaia (11 surface lights mixed by hand from cyan and violet, and a 50% corner), chanel (a painted black scrim under a tile's label), pui-book (three of its own gradient variables), phi-kit (a 50% corner) - **Done** (not looked at in the browser). Left: uaia's hero picture, its masked grid and its gradient headline, which are content
+- Not done, and not a night's work: four apps are still written as their own components and need moving to data on the shared app: chanel (25 files), uaia (25), phione (22), phlick (17). pui-book (29) is the kit's own book. Phiegg (66 files) is part way: 11 paths are data only, 18 pages still write their own cards - **Open**
+- No config app names a `side` in its data yet, so their right sidebar shows only Panels, and only on a page with columns - **Open**
