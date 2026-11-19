@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { usePuiTheme } from '@pui/hooks';
 import { RADIUS_ALIASES, RADIUS_PRESETS, type GradientLevel, type RadiusPreset } from '@pui/providers';
-import { AppShell, APPS_RAIL, Box, Stack, Title } from '@pui/components';
+import { AppShell, APPS_RAIL, Box, Stack, Title, columnStore, useColumnEntries } from '@pui/components';
 import { useStore } from '@pui/store';
 import { phieggStore } from './state/phieggStore';
 import { HeaderEnd } from './components/Shell/HeaderEnd';
@@ -101,7 +101,10 @@ export const App: React.FC = () => {
   // In a shop the sidebar opens on the shop's own menu (shellData shopGroup); leaving it returns to Home's.
   const shopRail = Object.values(MENUS.rail).flat().find((r) => r.tab === 'shop')?.id;
   useEffect(() => { if (!shopRail) return; if (inShop(s)) { if (s.rail !== shopRail) s.setRail(shopRail); } else if (s.rail === shopRail) s.setRail('home'); }, [s.tab]); // eslint-disable-line react-hooks/exhaustive-deps
+  const columns = useColumnEntries();
   const go = (id: string) => {
+    // A column of the page, picked in the right sidebar: shown or hidden.
+    if (id.startsWith('col:')) { columnStore.toggle(id.slice(4)); return; }
     // A pick in a shop's own menu sets the shop's tab or category (state shopView), the page follows.
     if (id.startsWith('shopview:')) { const [, k, v] = id.split(':'); s.setShopView(k === 'tab' ? { tab: v, cat: '' } : { cat: v, tab: v ? 'looks' : s.shopView.tab }); return; }
     const [tab, params] = parseEntry(id); if (tab === 'profile' && !params) s.go('profile', { profileId: me().id }); else s.go(tab, params); };
@@ -111,7 +114,7 @@ export const App: React.FC = () => {
       data-ph-sidebar={ap.sidebar} data-ph-content={ap.content} data-ph-opacity={ap.opacity} className="ph-app" width="100vw" height="100vh" overflow="hidden">
       <AppShell
         brand={{ name: site.brand.name, glyph: <Icon size="100%" />, wordmark: <Title level={4} size="sm"><Wordmark /></Title> }}
-        groups={shellGroups(s)} view={currentEntry(s)} onView={go} side={{ label: t('pgExplore'), groups: sideGroups(s) }}
+        groups={shellGroups(s)} view={currentEntry(s)} onView={go} side={{ label: t('pgExplore'), groups: sideGroups(s, columns) }}
         collapseKey={s.tab === 'asset' ? 'asset:' + s.assetId : s.tab === 'look' ? 'look:' + s.lookId : undefined}
         rail={s.rail === apps?.id ? APPS_RAIL : s.rail} onRail={(id) => s.setRail(id === APPS_RAIL && apps ? apps.id : id)}
         apps={shellApps()} appsLabel={apps?.label ?? t('hdApps')} appsIcon={appsGlyph()} tabs={shellTabs()}

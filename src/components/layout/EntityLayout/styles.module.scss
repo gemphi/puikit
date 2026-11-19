@@ -5,18 +5,19 @@
 .title.title { margin: 0; font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.1; }
 .sub.sub { padding-bottom: 0.3rem; }
 
-.grid { --pui-entity-strip: 3.25rem; display: grid; grid-template-columns: var(--pui-entity-cols); gap: var(--phi-gap); align-items: start;
+.grid { display: grid; grid-template-columns: var(--pui-entity-cols); gap: var(--phi-gap); align-items: start;
   transition: grid-template-columns var(--phi-duration, 0.3s) var(--phi-ease, ease-out); }
 
 /* Each column is a surface (.phi-layers, tokens.scss), like every container. */
-.col { min-width: 0; display: flex; flex-direction: column; }
+.col { position: relative; min-width: 0; display: flex; flex-direction: column; }
 .colHead { display: flex; align-items: center; gap: 0.5rem; min-height: 3rem; padding: 0.5rem 1rem; }
-.fold { margin-left: auto; flex: none; }
-/* A folded side column: a strip as tall as the page's first screen, its name running down it; a click opens it. */
-.strip { position: sticky; top: 0; align-items: center; justify-content: flex-start; gap: var(--phi-space-3); min-height: min(32rem, calc(100vh - 12rem));
-  padding: var(--phi-space-3) 0; cursor: pointer; color: var(--phi-color-text-secondary); background: var(--phi-surface); border-radius: var(--phi-radius-md); }
-.strip:hover { color: var(--phi-color-text-primary); }
-.stripName { writing-mode: vertical-rl; white-space: nowrap; }
+.fold { margin-left: auto; flex: none; opacity: 0; transition: opacity var(--phi-transition-fast); }
+.col:hover .fold, .col:focus-within .fold { opacity: 1; }
+@media (hover: none) { .fold { opacity: 1; } }
+/* A side column's inner edge drags (it lies in the gap beside the column). */
+.grip { position: absolute; top: 0; bottom: 0; width: var(--phi-gap); cursor: col-resize; touch-action: none; z-index: 1; border-radius: var(--phi-radius-full); }
+.gripEnd { right: calc(var(--phi-gap) * -1); } .gripStart { left: calc(var(--phi-gap) * -1); }
+.grip:hover, .grip:active { background: var(--phi-shade-2); }
 .colBody { padding: 1rem; min-width: 0; }
 
 /* The chat stays in view beside the scrolling columns; its messages fit its height with no scroll bar of their own. */

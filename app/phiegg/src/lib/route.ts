@@ -16,7 +16,9 @@ export type Route = { kind?: string | string[]; param?: string; menu?: string; h
   side?: SideGroup[] };
 /** A group on the right sidebar: its icon (a lucide name), where on the rail it sits, and its menu: rows of a kind
  *  that belong to the path's record (`@` is the path's own kind; `where` as on a tab), then plain links to paths. */
-export type SideGroup = { id: string; label: string; icon: string; place?: 'top' | 'center' | 'bottom'; kind?: string; where?: Record<string, string>; limit?: number; link?: { label: string; path: string }[] };
+export type SideGroup = { id: string; label: string; icon: string; place?: 'top' | 'center' | 'bottom'; kind?: string; where?: Record<string, string>; limit?: number; link?: { label: string; path: string }[];
+  /** This group lists the page's own columns (chat, linked, people): picking one shows or hides it. */
+  columns?: boolean };
 /** The list a path sits under: its path, what it is called there when that differs from the path's own name, and its params. */
 export type Up = { path: string; name?: string; params?: Record<string, string> };
 

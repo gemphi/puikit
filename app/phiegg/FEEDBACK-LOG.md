@@ -414,3 +414,20 @@ To give those three pools their records I ran `node scripts/pools.mjs`. It rewri
 - "Remove old Lora's Spark images except those that came today": the nine character posts are off in `scripts/media/city-life.json`, both generators rerun, and their 27 pictures moved to `_temp/puikit-phiegg-old-lora-posts`. No post shows a `character-` picture - **Done** (81 city posts changed their picture, 0 dangling links). Lora's Spark's 46 shop looks, the look posts that show them and the look every tile wears are also older renders and are still there - **Open** (needs the user's word: removing them empties the shop until new renders come)
 - "All the comments and all the kinds must use the shared component with variants": comments, done in section 25; kinds draw through `KindList` and `card.json` on the list pages; the entity pages (world, club, show, asset, profile) are still their own pages - **Open**
 - "Send the PR": committed and pushed on `ui-core-defaults`; `reference/` (the Directus copy) left out - see the reply for the link
+
+## 27. No strips, columns that drag, folds lit from the foot (2026-11-19, midnight)
+- "Remove that weird chat and the related vertical things; the menu drives what is in": a folded column left a tall strip with its name running down it (Chat, Linked). The strips are gone from both column layouts in the kit. A column that is closed is listed in the kit's `columnStore`, and the right sidebar has a Panels group (`columns` in `route.json`) that shows and hides the page's columns - **Done** (measured on Forest: nothing written vertically; Panels lists Chat; picking it opens the chat column)
+- "Columns must be resizable on all screens": every edge between two columns drags (`Columns`), and a side column's inner edge drags (`EntityLayout`) - **Done in code** (kit tests pass; the drag itself was not exercised in the browser)
+- "Header actions on hover, three dots on smaller screens": a column's expand and close show while the pointer is over the column; under 900px they sit behind a three-dots button - **Done in code** (not looked at on a narrow screen)
+- "Swap the gradients of the accordions: nothing at the top, the shade at the bottom": the accordion's item, the sidebar's folding group and open group, and the filter group are the one surface (lit from the foot); they were lit across the head - **Done** (not compared side by side in the browser)
+- A width that was dragged is not remembered after a reload - **Open**
+
+### Where "common components only" stands
+- One component each, used everywhere it applies: the shell and both sidebars; the list (toolbar, filter, table, grid, stage); the card of a kind (`card.json`); the message, the thread and the composer; the chat layout; the trail; the avatar; the surface and label lights; the corner scale.
+- Pages: 25. On the one list and route data with no page of their own: 11 paths (worlds, shows, events, drops, hosts, quests, play, coins, pools, shops, casts). On the shared chat layout: host, messages, the agent sheet. On the shared entity layout: world, club, profile, look, asset, title, place.
+- Not there yet:
+  - 18 pages still write cards themselves (`Card`, `ItemCard`) instead of a declared card: agents, city, club, collection, create, explore, feed, join, league, messages (voice rooms), phipad, pool, recent, search, series, show, studio, welcome
+  - two column layouts exist in the kit (`Columns` and `EntityLayout`); they share the store and the drag, and should be one component with variants
+  - which component a path draws is still a switch in `App.tsx`
+  - the app keeps 7 style files of its own (search, shot card, tile, header, explore, post page, welcome)
+  - the kit still has the older `social/comment/panel.tsx` and the card's switched-off stacked copies

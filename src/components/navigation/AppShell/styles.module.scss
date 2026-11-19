@@ -122,9 +122,9 @@
 .placeCenter { grid-row: 2; display: flex; flex-direction: column; gap: var(--phi-space-2); }
 .placeBottom { grid-row: 3; align-self: end; min-height: 0; display: flex; flex-direction: column; gap: var(--phi-space-2); }
 /* Lights: an open fold wears the page's shades like an open accordion (display/Accordion), so what is open shows. */
-.groupOpen { border-radius: var(--phi-radius-sm); background-image: var(--phi-label); }
+.groupOpen { border-radius: var(--phi-radius-sm); background-image: var(--phi-surface); }
 /* An entry that folds is a container like a drawer's filter group, open or folded: the same corner and shade. */
-.navEntry:has(> :first-child > .caret) { border-radius: var(--phi-radius-md); background: var(--phi-label-soft); /* the folding group's shade, left to right only: same in the drawer and the sidebar */ padding-bottom: var(--phi-space-1); }
+.navEntry:has(> :first-child > .caret) { border-radius: var(--phi-radius-md); background: var(--phi-surface); /* the folding group is lit from its foot, its head free: same in the drawer and the sidebar */ padding-bottom: var(--phi-space-1); }
 .entryPanel { padding: var(--phi-space-2) 0 var(--phi-space-2) 1.5rem; }
 /* A sub-menu steps in under its entry, past the fold arrow; no line, only the folding group's light. */
 .subMenu { display: flex; flex-direction: column; padding: 0 0 var(--phi-space-1) var(--phi-space-4); }

@@ -78,14 +78,15 @@ export const shellGroups = (s: PhieggState): AppShellGroup[] => rail().filter(([
 /** The right sidebar for where the app is (data/route.json `side`): each group's menu is the rows of a kind that belong
  *  to the record the path shows (other worlds, this world's zones, its club's shops), then its plain links. A group
  *  with nothing to show is left out. No path is named here. */
-export const sideGroups = (s: PhieggState): AppShellGroup[] => {
+export const sideGroups = (s: PhieggState, columns: { id: string; label: string; open: boolean }[] = []): AppShellGroup[] => {
   const route = routeOf(s.tab); const id = route.param ? (s as unknown as Record<string, string>)[route.param] : undefined;
   const own = [route.record ?? route.kind ?? []].flat(); const mine = id ? own.find((k) => itemOf(k, id)) : own[0]; const record = mine && id ? itemOf(mine, id) : undefined;
   const word = (k: string) => (k in site.copy ? t(k as keyof typeof site.copy) : k);
   return (route.side ?? []).flatMap((g) => {
     const kind = g.kind === '@' ? mine : g.kind; const path = kind ? PATH_OF[kind] : undefined; const param = path ? PARAM_OF[path] : undefined;
     const rows = kind && path && param ? rowsOf({ id: g.id, label: g.label, kind, where: g.where }, record).filter((r) => r.id !== id).slice(0, g.limit ?? 16) : [];
-    const items: AppShellLeaf[] = [...rows.map((r) => ({ id: entryId({ tab: path!, params: { [param!]: r.id } }), label: titleOf(kind!, r) })), ...(g.link ?? []).map((l) => ({ id: l.path, label: word(l.label) }))];
+    const shown = (Lucide as unknown as Record<string, LucideIcon>).Eye, hidden = (Lucide as unknown as Record<string, LucideIcon>).EyeOff;
+    const items: AppShellLeaf[] = [...(g.columns ? columns.map((c) => ({ id: 'col:' + c.id, label: c.label, icon: <Icon icon={c.open ? shown : hidden} size="sm" /> })) : []), ...rows.map((r) => ({ id: entryId({ tab: path!, params: { [param!]: r.id } }), label: titleOf(kind!, r) })), ...(g.link ?? []).map((l) => ({ id: l.path, label: word(l.label) }))];
     const G = (Lucide as unknown as Record<string, LucideIcon>)[g.icon] ?? Circle;
     return items.length ? [{ id: 'side:' + g.id, label: word(g.label), icon: <Icon icon={G} size="md" />, place: g.place, items }] : [];
   });
