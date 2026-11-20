@@ -6,7 +6,7 @@ import { Stack } from '../../layout/Stack';
 import { Text } from '../../primitives/Text';
 import { Pressable } from '../../primitives/Pressable';
 import { Link } from '../Link';
-import type { AppShellApp, AppShellTab } from './types';
+import type { AppShellApp, AppShellGroup, AppShellTab } from './types';
 import styles from './styles.module.scss';
 
 export { Caret, GroupMenu, PageMenu } from './Menu';
@@ -37,6 +37,19 @@ export const AppsList: React.FC<{ apps: AppShellApp[]; moreLabel: string }> = ({
     </Stack>
   );
 };
+
+/** Phones: the rail itself as the bar at the foot. Each group is its icon alone on a ground of its own (its name is
+ *  said to a screen reader, not drawn); the one whose menu is open, or whose page is shown, is lit. */
+export const PhoneRail: React.FC<{ label: string; groups: AppShellGroup[]; on: string; current?: string; pick: (g: AppShellGroup) => void; inDrawer?: boolean }> = ({ label, groups, on, current, pick, inDrawer }) => (
+  <Box as="nav" aria-label={label} className={inDrawer ? styles.tabsIn : styles.tabs}>
+    {groups.map((g) => (
+      <Pressable key={g.id} aria-label={g.label} aria-expanded={on === g.id} aria-current={current === g.id ? 'page' : undefined}
+        className={cn(styles.tab, styles.tabIcon, (on === g.id || (!on && current === g.id)) && styles.tabOn)} onClick={() => pick(g)}>
+        {g.icon ?? <span className={styles.railGlyph}>{g.label.slice(0, 1)}</span>}
+      </Pressable>
+    ))}
+  </Box>
+);
 
 /** Phones: the menu button and the app's tabs in a bar at the foot. */
 export const PhoneTabs: React.FC<{ tabs: AppShellTab[]; view: string; go: (id: string) => void; menu: { label: string; icon: React.ReactNode; open: boolean; onClick: () => void } }> = ({ tabs, view, go, menu }) => (

@@ -110,6 +110,8 @@ export const shellApps = (): AppShellApp[] => {
   return [...mine.map((a) => row(a, false)), ...rest.map((a) => row(a, true))];
 };
 
-/** Phone tabs: the menus in slot `mobile`. */
-export const shellTabs = (): AppShellTab[] => MENUS.mobile.map((m) => ({ id: m.tab, label: m.label, icon: <Icon icon={TAB_ICON[m.icon] ?? Circle} size="sm" /> }));
+/** The phone's bar as rail entries: the menus in slot `mobile` that name one. */
+export const shellPhoneRail = (): string[] => MENUS.mobile.map((m) => m.rail).filter((id): id is string => !!id);
+/** Phone tabs: the menus in slot `mobile` that are pages of their own. */
+export const shellTabs = (): AppShellTab[] => MENUS.mobile.filter((m) => m.tab && !m.rail).map((m) => ({ id: m.tab!, label: m.label ?? '', icon: <Icon icon={TAB_ICON[m.icon ?? ''] ?? Circle} size="sm" /> }));
 export const appsGlyph = () => { const a = appsItem(); return a ? railGlyph(a) : undefined; };

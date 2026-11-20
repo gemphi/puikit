@@ -6,7 +6,7 @@ import { AppShell, APPS_RAIL, Box, Stack, Title, columnStore, useColumnEntries }
 import { useStore } from '@pui/store';
 import { phieggStore } from './state/phieggStore';
 import { HeaderEnd } from './components/Shell/HeaderEnd';
-import { appsGlyph, appsItem, currentEntry, inShop, parseEntry, shellApps, shellGroups, shellTabs, sideGroups } from './components/Shell/shellData';
+import { appsGlyph, appsItem, currentEntry, inShop, parseEntry, shellApps, shellGroups, shellPhoneRail, shellTabs, sideGroups } from './components/Shell/shellData';
 import { Crumbs } from './components/Phiegg/Search';
 import { Icon, Wordmark } from './components/Phiegg/Marks';
 import { SignIn } from './components/Shell/SignIn';
@@ -119,7 +119,7 @@ export const App: React.FC = () => {
         /* The page that is open, by its path and the record it shows: a new one folds both sidebars away. */
         collapseKey={s.tab + ':' + String((s as unknown as Record<string, unknown>)[PARAM_OF[s.tab] ?? ''] ?? '')}
         rail={s.rail === apps?.id ? APPS_RAIL : s.rail} onRail={(id) => s.setRail(id === APPS_RAIL && apps ? apps.id : id)}
-        apps={shellApps()} appsLabel={apps?.label ?? t('hdApps')} appsIcon={appsGlyph()} tabs={shellTabs()}
+        apps={shellApps()} appsLabel={apps?.label ?? t('hdApps')} appsIcon={appsGlyph()} tabs={shellTabs()} phoneRail={shellPhoneRail()}
         crumbs={<Crumbs compact={compact} />} headerRight={<HeaderEnd />}
         labels={{ openMenu: t('hdMenu'), closeMenu: t('hdCloseMenu'), menu: t('hdMenu'), moreApps: apps?.addLabel ?? t('hdAddApps'), fold: (l, o) => (o ? t('collapse') : t('expand')) + ' ' + l }}
       >

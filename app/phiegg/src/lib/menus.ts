@@ -10,8 +10,9 @@ import { srcId } from './ids';
 export type RailItem = { id: string; icon: string; label: string; tab?: string; role?: string; apps?: string[]; addLabel?: string };
 export type SecItem = { label: string; tab: string; icon: string; source?: string; panel?: string; params?: Record<string, string>; inline?: boolean };
 export type Section = { position: string; items: SecItem[] };
-/** A phone tab (slot `mobile`): the bottom bar below the compact breakpoint. */
-export type MobileTab = { id: string; label: string; icon: string; tab: string };
+/** A phone tab (slot `mobile`): the bottom bar below the compact breakpoint. One that names a `rail` entry is that
+ *  entry on the phone: its icon, and its own menu when pressed. */
+export type MobileTab = { id: string; label?: string; icon?: string; tab?: string; rail?: string };
 type Menu = { id: string; label?: string; icon?: string; slot?: string; title?: string; position?: string; items?: Menu[] } & Record<string, unknown>;
 
 const SLOTS = ['top', 'center', 'bottom'] as const;

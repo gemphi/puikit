@@ -230,6 +230,13 @@
 .tabs { display: none; }
 .tab { flex: 1 1 0; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: var(--phi-space-1); border-radius: var(--phi-radius-xs); color: var(--phi-color-text-secondary); cursor: pointer; }
 .tabOn { color: var(--phi-color-text-primary); background-image: var(--phi-label); }
+/* The rail as the phone's bar: an icon alone, on the ground every control stands on; lit when its menu is open. */
+/* The same bar at the foot of an open menu (the drawer covers the page's own), so another icon swaps the menu and the
+   same one shuts it. */
+.tabsIn { display: flex; gap: var(--phi-space-1); width: 100%; }
+.tabIcon { justify-content: center; min-height: 2.75rem; border-radius: var(--phi-radius-md); background-image: var(--phi-control-ground); }
+.tabIcon.tabOn { background-image: var(--phi-control-ground-strong), var(--phi-control-ground); }
+.tabIcon svg { width: var(--pui-shell-icon) !important; height: var(--pui-shell-icon) !important; stroke-width: var(--pui-shell-stroke); }
 
 /* The right sidebar: the same holder mirrored. It is lit at its left, toward the page, and disappears to the right;
    its icons and rows are lit at the right and gone to the left. */

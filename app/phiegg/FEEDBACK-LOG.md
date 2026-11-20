@@ -596,3 +596,10 @@ To give those three pools their records I ran `node scripts/pools.mjs`. It rewri
 - The side card's words still read through the front card; the front slide's ground is nearly all the page's colour (`--phi-glass-ground-deep`) - **Done** (seen)
 - The event card's tags stand in a region - **Done**, not seen
 - On a phone a ladder name is cut short ("Moss…") beside the price and Buy - **Open**
+
+## 48. The phone bar is the menu, not a second one (2026-11-20)
+- "Don't change the menu on mobile: Home, Chat, Menu, User; on clicking bring each secondary menu and not loads": the bar at the foot of a phone was five pages of its own (Shots, Explore, Hosts, Agents, Profile) and a Menu button that opened every menu at once. It is now the rail's own Home, Chat, Menu and You; an icon opens that group's menu alone, another icon swaps it, the same one shuts it - **Done** (seen at 375px: Chat, Menu, Home, You)
+- "Add those grounds on the mobile icons; show the icon, who cares about the name": each is its icon alone on the control's ground, lit when its menu is open; the name is kept for screen readers only - **Done** (seen)
+- "Stop altering my data": the only data touched is the five `slot: mobile` entries in `data/phiegg.json`, replaced by four that name rail entries (`rail: home` and so on); the old five are kept in `gemphi/_temp/phiegg-mobile-tabs-2026-11-20.json`. No record, label or menu entry was changed. Which change of data was meant is not known - **Waiting** on the user if it was something else
+- "Change content for mobile": not understood beyond the bar - **Waiting**
+- Shop, Host and Apps are on the desktop rail and not on the phone bar (four were named) - **Open** if wanted
