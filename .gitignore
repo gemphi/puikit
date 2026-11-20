@@ -21,8 +21,9 @@ Claude outputs/
 # mock Phiora dev state
 app/phi-kit/dev/.mock-phiora-state.json
 
-# The local media store: the bucket's contents, built by scripts/media/build_media.py
-media/
+# The local media store at the top of the repository: the bucket's contents, built by scripts/media/build_media.py.
+# Only that folder: scripts/media and deploy/aws/media are code.
+/media/
 
 .terraform/
 *.tfstate*
