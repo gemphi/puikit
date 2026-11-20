@@ -587,3 +587,12 @@ To give those three pools their records I ran `node scripts/pools.mjs`. It rewri
 - "Split filter and sort, an icon each, tooltips from the kit, more filters and sorts": two icons, two drawers, the kit's Tooltip on every toolbar icon; any sort can be turned round (all lists); lots gain Stock, Move and Size filters and six more sorts - **Done** for lots; more filters for the other kinds - **Open**
 - Not seen: phone width, the list and grid modes, the pool page's lot grid, other apps' lists (same kit parts)
 - "Yes, other cards": the pool, quest, pool quest, coin, look and stat cards and the stat drawer take the same parts. A status (sold, progress) is a region with its bar and its percent; loose lines of figures ("Floor · 24h · Value", "entrants · ends") are the kit's new `Figure` on a ground each - **Done** (pools, quests and coins seen; the look card, the stat tiles and drawer and the pool quest type-checked, not seen). The event card is left as it was (already a row with tags) - **Open** if wanted
+
+## 47. The slider on a phone and in a narrow column, and the cards not yet seen (2026-11-20)
+- "Next": the cards left unseen were opened. Stat tiles, the stat drawer, the lot grid on a pool page and the look card read right - **Done** (seen). The pool quest's Join button filled its whole row; it keeps its own size - **Done**
+- On a phone the drop card stood 160px wide between the two arrows. A stage of a phone's width now shows the centre alone at its full width, with the arrows first and last in the row under it - **Done** (seen at 375px)
+- A stage too narrow to keep its centre readable (352px) with side slides shows fewer a side; a wide one keeps them - **Done** (seen at 1300 and 2400px)
+- A slide of rows was still squeezed when it was first measured narrow; it is known by its changing shape at two widths - **Done**
+- The side card's words still read through the front card; the front slide's ground is nearly all the page's colour (`--phi-glass-ground-deep`) - **Done** (seen)
+- The event card's tags stand in a region - **Done**, not seen
+- On a phone a ladder name is cut short ("Moss…") beside the price and Buy - **Open**

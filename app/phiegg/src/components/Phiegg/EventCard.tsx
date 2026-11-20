@@ -22,6 +22,6 @@ export const EventCard: React.FC<{ e: PhieggEvent }> = ({ e }) => {
       </Stack>}
       title={e.title} meta={t('dateLine', { time: e.startsAt.slice(11, 16), place, n: fmt(e.rsvps + (going ? 1 : 0)) })}
       actions={<Button variant="glass" onClick={() => { s.toggle('rsvp', e.id); if (!going) s.flash(t('calendarAdded')); }}>{going ? t('going') : e.kind === 'drop' ? t('remind') : t('rsvp')}</Button>}>
-      <Stack direction="row" gap={1} wrap><Tag intent="primary" minimal round size="sm">{kinds[e.kind]}</Tag>{e.price && <Tag minimal round size="sm">{t('priceLine', { price: e.price, supply: fmt(e.supply ?? 0) })}</Tag>}{itemOf('club', e.clubId) && <Tag minimal round size="sm">{itemOf('club', e.clubId)!.name}</Tag>}{e.recurring && <Tag intent="success" minimal round size="sm">{t('evRecurring', { when: e.recurring.toLowerCase() })}</Tag>}</Stack>
+      <Stack direction="row" gap={1} wrap surface="region"><Tag intent="primary" minimal round size="sm">{kinds[e.kind]}</Tag>{e.price && <Tag minimal round size="sm">{t('priceLine', { price: e.price, supply: fmt(e.supply ?? 0) })}</Tag>}{itemOf('club', e.clubId) && <Tag minimal round size="sm">{itemOf('club', e.clubId)!.name}</Tag>}{e.recurring && <Tag intent="success" minimal round size="sm">{t('evRecurring', { when: e.recurring.toLowerCase() })}</Tag>}</Stack>
     </ItemCard>);
 };

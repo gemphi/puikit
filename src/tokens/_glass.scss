@@ -33,6 +33,8 @@
   --phi-glass-blur: blur(22px);
   /* A surface that stands in front of other content (the slide in front of a stage): what is behind is a wash. */
   --phi-glass-blur-deep: blur(56px);
+  /* And the ground under it: nearly all of the page's colour, so nothing behind reads through as words. */
+  --phi-glass-ground-deep: color-mix(in srgb, var(--phi-color-background) 94%, transparent);
   /* The theme's colour, laid the same ways, only under the pointer. */
   --phi-tint-pct: 26%;
   --phi-tint: color-mix(in srgb, var(--phi-color-primary) var(--phi-tint-pct), transparent);

@@ -159,7 +159,7 @@ export const PoolQuestCard: React.FC<{ pool: Pool }> = ({ pool }) => {
   return (
     <Card depth={2}><CardBody><Stack direction="column" gap={2}>
       <Stack direction="row" justify="between" align="center" gap={2} surface="region"><Stack direction="column" gap={0}><Text size="xs" intent="muted" weight="bold">{t('plQuest')}</Text><Title level={4} size="md">{pq.title}</Title></Stack>
-        {inQ ? <Tag round intent="success">{t('plJoined')}</Tag> : <Button variant="glass" onClick={() => { enterQuest(pq.id); s.flash(t('joined_', { name: pq.title })); }}>{t('plEnter')}</Button>}</Stack>
+        <Stack flex="none">{inQ ? <Tag round intent="success">{t('plJoined')}</Tag> : <Button variant="glass" onClick={() => { enterQuest(pq.id); s.flash(t('joined_', { name: pq.title })); }}>{t('plEnter')}</Button>}</Stack></Stack>
       <Stack surface="region"><Text size="sm" intent="secondary">{t('plQuestHas', { m: pq.metricIds.length, q: pq.metricIds.length + pq.questIds.length, c: pq.coinIds.length })}</Text></Stack>
       <FigureRow><Figure label={t('lsColReward')} value={t('reward', { n: pq.reward, coin: pq.rewardCoin })} /><Figure label={t('lsColEntrants')} value={fmt(pq.entrants + (inQ ? 1 : 0))} /></FigureRow>
       <Stack direction="row" gap={1} wrap surface="region">{pq.coinIds.map((id) => { const c = itemOf('coin', id); return c ? <Tag key={id} round minimal intent="primary">{c.symbol} · ${c.price}</Tag> : null; })}</Stack>
