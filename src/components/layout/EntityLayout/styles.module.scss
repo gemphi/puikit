@@ -16,10 +16,11 @@
   padding: 0 var(--phi-space-4) var(--phi-space-4); }
 .hero .title.title { font-size: clamp(2.25rem, 6vw, 4.5rem); }
 .hero .sub.sub { padding-bottom: 0; max-width: 44rem; }
-.heroTabs { position: sticky; top: 0; z-index: 3; display: flex; justify-content: center; align-items: center; gap: var(--phi-space-3); min-width: 0; }
-/* The record's one action, at the right end of the tabs' row. */
-.heroAction { flex: none; margin-left: auto; }
-.heroTabs:has(.heroAction) > :first-child:not(.heroAction) { margin-left: auto; }
+/* The tabs stand in the middle of the row whatever is at its end: three tracks, the tabs in the middle one, the
+   record's one action at the right end of the third. */
+.heroTabs { position: sticky; top: 0; z-index: 3; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: var(--phi-space-3); min-width: 0; }
+.heroTabs > :not(.heroAction) { grid-column: 2; min-width: 0; max-width: 100%; }
+.heroAction { grid-column: 3; justify-self: end; }
 /* Held over the page as it scrolls, the tabs wash out what passes behind them with a blur alone: no colour of their
    own is laid under them. */
 .heroTabs > :not(.heroAction) { backdrop-filter: var(--phi-glass-blur-deep); -webkit-backdrop-filter: var(--phi-glass-blur-deep); border-radius: var(--phi-radius-md); }

@@ -25,8 +25,9 @@ import type { ShopLook } from '../../types/phiegg';
  * with the store's agent on the right. Every column expands or closes, every row expands, folds or closes, with the
  * controls on the right of its header.
  */
-/** The look page's tabs: its sections, in order, and the word for each (data/site.json). */
-const PARTS: [string, SiteCopyKey][] = [['look', 'isItem'], ['buy', 'isBuy'], ['specs', 'isSpecs'], ['activity', 'isActivity'], ['price', 'isPrice2'], ['appears', 'isAppears'], ['stats', 'plItemStats']];
+/** The look page's tabs: few, one short word each (data/site.json), and the parts of the page each one shows. Info,
+ *  what the item is, comes first. */
+const PARTS: [string, SiteCopyKey, string[]][] = [['info', 'isTabInfo', ['specs']], ['buy', 'isTabBuy', ['buy']], ['activity', 'isTabActivity', ['activity']], ['stats', 'isTabStats', ['price', 'stats']], ['related', 'isTabRelated', ['appears']]];
 
 export const ItemSheet: React.FC<{ id: string }> = ({ id }) => {
   const s = useStore(phieggStore); const l = itemOf('look', id); const w = useWallet(); const mine = useOwned(); const { cart, offers } = useCart(); const now = useNow(1000);
@@ -80,17 +81,11 @@ export const ItemSheet: React.FC<{ id: string }> = ({ id }) => {
     { id: 'full', label: t('isFull'), icon: icon(Maximize2), onClick: () => setFull(true) },
   ];
   const keys = Object.keys(views); const at = keys.indexOf(angle);
-  // The page's tabs are its own sections; a tab brings its section into view under the held tabs.
-  const [part, setPart] = useState('look');
-  const goPart = (id: string) => { setPart(id); document.querySelector(`[data-section="${id}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+  // The page's tabs are its own parts; the one that is on is the one shown at the picture's right.
+  const [part, setPart] = useState('info');
 
   // ── centre: the item as content, in three rows ──
-  const centre = (
-    <PageSections id="item" size="sm" sections={[
-      { id: 'look', title: l.name, expandable: true, collapsible: true, content: (
-        <MediaStage media={<LookImage look={l} src={src} />} actions={actions}>
-          {Object.keys(views).length > 1 && <TabList size="sm" variant="pills" place="center" aria-label={t('isAngles')} activeId={angle} onChange={setAngle} items={Object.keys(views).map((k) => ({ id: k, label: D.ls.views.find((v) => v.id === k)?.label ?? k }))} />}
-        </MediaStage>) },
+  const parts = [
       { id: 'buy', title: t('isBuy'), expandable: true, collapsible: true, closable: true, content: (
         <Stack direction="column" gap={2}>
           <Stack direction="row" gap={2} align="end" wrap><Title level={3} size="lg">{usd(l.usd)}</Title><Text size="sm" intent="muted" numeric>{t('plLive', { v: usd(live.total) })}</Text>
@@ -114,13 +109,16 @@ export const ItemSheet: React.FC<{ id: string }> = ({ id }) => {
           {msg && <Text size="sm" role="status">{msg}</Text>}
           <Stack direction="row" gap={1} wrap>{l.garments.map((g) => <Tag key={g} minimal round size="sm">{g}</Tag>)}<Tag minimal round size="sm">{t('shColour', { colour: l.colour })}</Tag></Stack>
         </Stack>) },
-      { id: 'specs', title: t('isSpecs'), expandable: true, collapsible: true, closable: true, content: <ItemSpecs look={l} /> },
+      { id: 'look', title: l.name, expandable: true, collapsible: true, content: (
+        <MediaStage media={<LookImage look={l} src={src} />} actions={actions}>
+          {Object.keys(views).length > 1 && <TabList size="sm" variant="pills" place="center" aria-label={t('isAngles')} activeId={angle} onChange={setAngle} items={Object.keys(views).map((k) => ({ id: k, label: D.ls.views.find((v) => v.id === k)?.label ?? k }))} />}
+        </MediaStage>) },
       { id: 'activity', title: t('isActivity'), expandable: true, collapsible: true, closable: true, content: <ItemActivity look={l} /> },
       { id: 'price', title: t('isPrice2'), expandable: true, collapsible: true, closable: true, content: <ItemPrice look={l} live={live.total} /> },
-      { id: 'appears', title: t('isAppears'), expandable: true, collapsible: true, closable: true, content: <ItemAppears look={l} /> },
       { id: 'stats', title: t('plItemStats'), expandable: true, collapsible: true, closable: true, content: <ItemStatsTable stats={itemStats(l, now)} /> },
-    ]} />
-  );
+      { id: 'appears', title: t('isAppears'), expandable: true, collapsible: true, closable: true, content: <ItemAppears look={l} /> },
+      { id: 'specs', title: t('isSpecs'), expandable: true, collapsible: true, closable: true, content: <ItemSpecs look={l} /> },
+  ];
 
   // ── right: chat with the store's agent about this item (the shared chat area) ──
   const chat = <AgentChat agentId={agent.id} context={l.name} prompts={[t('isAskStyle'), t('isAskSwap'), t('isAskPrice')]} />;
@@ -129,15 +127,22 @@ export const ItemSheet: React.FC<{ id: string }> = ({ id }) => {
     <>{full && <FullScreen label={l.name} media={<LookImage look={l} src={src} />} onClose={() => setFull(false)} closeLabel={t('close')}
       onPrev={at > 0 ? () => setAngle(keys[at - 1]) : undefined} onNext={at < keys.length - 1 ? () => setAngle(keys[at + 1]) : undefined} prevLabel={t('prev')} nextLabel={t('next')}
       actions={actions.filter((x) => x.id !== 'full').map((x) => ({ ...x }))} />}
-    <EntityPage stickLast picture={<Image src={itemImage(src)} alt="" fit="cover" fill />}
-      title={l.name} sub={<>{store.name} · {l.rarity}</>}
-      /* The look opens like every profile: its name over its picture, then its tabs (the sections of the page, each
-         brought into view), and the one action at their right. */
-      hero={{ tabs: <TabList size="sm" variant="pills" aria-label={l.name} activeId={part} onChange={goPart} items={PARTS.map(([id, key]) => ({ id, label: t(key) }))} /> }}
-      action={<Button variant="glass" disabled={w.usd < l.usd} onClick={doBuy}>{w.usd < l.usd ? t('shNoFunds') : t('shBuy', { price: usd(l.usd) })}</Button>}
+    <EntityPage stickLast
+      picture={<Image src={itemImage(src)} alt="" fit="cover" fill />}
+      /* What it costs is said at once, under its name, and again on the action at the heading's right. */
+      title={l.name} sub={<>{usd(l.usd)} · {t('plLive', { v: usd(live.total) })} · {store.name} · {l.rarity}</>}
+      action={<Button variant="glass" disabled={w.usd < l.usd} title={w.usd < l.usd ? t('shNoFunds') : undefined} onClick={doBuy}>{t('shBuy', { price: usd(l.usd) })}</Button>}
+      /* The picture at the left, as wide as the screen is tall (the kit's middle column) and held in view; at its
+         right one column: the page's tabs, and under them the part the tab that is on names. The two share the width
+         about evenly (their widths are their weights), so neither is a strip. */
       columns={[
-        { id: 'variants', title: t('isVariantsTitle'), content: left, width: '19rem' },
-        { id: 'item', title: l.name, label: t('isItem'), content: centre, minWidth: '20rem' },
+        { id: 'item', title: l.name, label: t('isItem'), content: parts.find((x) => x.id === 'look')?.content, width: '32rem', stick: true },
+        { id: 'facts', title: l.name, label: t('isSpecs'), width: '30rem', content: (
+          <Stack direction="column" gap={3}>
+            <TabList size="sm" variant="pills" aria-label={l.name} activeId={part} onChange={setPart} items={PARTS.map(([id, key]) => ({ id, label: t(key) }))} />
+            <PageSections id="item" size="sm" sections={parts.filter((x) => PARTS.find(([id]) => id === part)?.[2].includes(x.id))} />
+            {part === 'related' ? left : null}
+          </Stack>) },
         { id: 'chat', title: <Stack direction="row" gap={2} align="center"><PersonAvatar id={agent.id} size="xs" /><Text size="sm" weight="semibold">{agent.name}</Text></Stack>, label: t('chat'), content: chat, width: '22rem', folded: true },
       ]} />
     </>
