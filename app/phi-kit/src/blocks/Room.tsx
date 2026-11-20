@@ -111,13 +111,13 @@ export const Room: React.FC<{ b: Block }> = ({ b }) => {
           return (
             <ChatBubble key={x.id} side={own ? 'me' : 'them'} name={own ? mine : m?.name} time={x.at}
               avatar={<Pressable aria-label={say(W.open, 'name', m?.name ?? '')} onClick={() => setWho(x.by)}><Face file={file} m={m} /></Pressable>}
-              actions={<Button variant="icon" size="sm" aria-label={W.like} title={W.like} aria-pressed={!!given[key + '/' + x.id + '/heart']} onClick={() => give(x.id, 'heart')}><Heart size={15} /></Button>}>
+              actions={<Button variant="icon" aria-label={W.like} title={W.like} aria-pressed={!!given[key + '/' + x.id + '/heart']} onClick={() => give(x.id, 'heart')}><Heart size={15} /></Button>}>
               <Stack direction="column" gap={2}>
                 {x.text && <Text as="span" size="sm">{x.text}</Text>}
                 {x.image?.length ? <Shot list={x.image} alt={m?.name ?? ''} /> : null}
                 {marks.length ? (
                   <Stack direction="row" gap={1} wrap>
-                    {marks.map((k) => <Button key={k.icon} size="sm" variant={k.on ? 'primary' : 'glass'} iconLeft={iconOf(k.icon)} aria-pressed={k.on} onClick={() => give(x.id, k.icon)}>{k.n}</Button>)}
+                    {marks.map((k) => <Button key={k.icon} variant="glass" iconLeft={iconOf(k.icon)} aria-pressed={k.on} onClick={() => give(x.id, k.icon)}>{k.n}</Button>)}
                   </Stack>) : null}
               </Stack>
             </ChatBubble>

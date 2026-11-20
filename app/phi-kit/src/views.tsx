@@ -36,7 +36,7 @@ export const YouView: React.FC<{ profile?: ProfileSpec }> = ({ profile }) => {
       </Stack>}
       <Stack as="section" direction="column" gap={3}>
         <Title level={2} size="lg">Your apps</Title>
-        <Stack direction="row" gap={2} wrap align="center">{APPS.filter((a) => a.built).map((a) => <Button key={a.key} variant="outline" size="sm" href={appUrl(a.key)}>{a.name}</Button>)}</Stack>
+        <Stack direction="row" gap={2} wrap align="center">{APPS.filter((a) => a.built).map((a) => <Button key={a.key} variant="glass" href={appUrl(a.key)}>{a.name}</Button>)}</Stack>
       </Stack>
     </>
   );
@@ -73,7 +73,7 @@ export const ItemPanel: React.FC<{ it: GridItem; onClose: () => void }> = ({ it,
   <>
     <Stack direction="row" justify="between" align="center">
       {it.sub ? <Text size="xs" weight="medium" as="span">{it.sub}</Text> : <Box />}
-      <Button variant="ghost" size="sm" onClick={onClose}>Close</Button>
+      <Button variant="glass" onClick={onClose}>Close</Button>
     </Stack>
     {it.image ? <Frame ratio="16/10" rounded="lg"><Image src={assetUrl(it.image)} alt="" fit="cover" fill /></Frame> : null}
     <Title level={2} size="2xl">{it.title}</Title>
@@ -87,6 +87,6 @@ export const ItemPanel: React.FC<{ it: GridItem; onClose: () => void }> = ({ it,
       </Stack>) : null}
     {it.cost ? <Text as="span" size="xs" intent="muted">Cost · {it.cost.toLocaleString('en-US')} USD</Text> : null}
     {it.meta ? <Text as="span" size="xs" intent="muted" mono>{it.meta}</Text> : null}
-    {it.app ? <Button variant="primary" href={it.href || appUrl(it.app)}>Open in {it.app[0].toUpperCase() + it.app.slice(1)}</Button> : null}
+    {it.app ? <Button variant="glass" href={it.href || appUrl(it.app)}>Open in {it.app[0].toUpperCase() + it.app.slice(1)}</Button> : null}
   </>
 );

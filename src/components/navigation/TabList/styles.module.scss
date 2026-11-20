@@ -15,6 +15,9 @@
   scroll-behavior: smooth;
   scrollbar-width: none;
   padding: 0.125rem;
+  /* Every row of tabs stands on the one surface, lit from its foot to nothing like every other ground; its tabs are lit
+     from their foot too, the one that is on the most. */
+  border-radius: var(--phi-radius-md); background-color: transparent; background-image: var(--phi-surface);
   isolation: isolate;
   --pui-tab-pad: 1rem; /* a tab's side padding: the underline of the tab that is on spans its label */
   &::-webkit-scrollbar { display: none; }
@@ -128,8 +131,7 @@
   align-self: center; margin-inline: auto; width: fit-content; max-width: min(100%, max(50%, 40rem));
   overflow-x: auto; scrollbar-width: none; &::-webkit-scrollbar { display: none; }
   position: sticky; top: 0; z-index: 3;
-  /* The row has no light of its own (it heads what is under it, and the tab that is on carries the light, from its
-     foot); only the blur of what scrolls beneath, so the labels stay readable. */
-  background-color: transparent; background-image: none; backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur);
+  /* Over the blur of what scrolls beneath, so the labels stay readable; the row's light is the tab row's own (.tabList). */
+  backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur);
   border-radius: var(--phi-radius-md); padding: var(--phi-space-1, 0.25rem);
 }

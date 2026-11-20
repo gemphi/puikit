@@ -52,10 +52,10 @@ export const PoolPage: React.FC = () => {
         badges={<><Tag round size="sm">{t(('plKind_' + pool.kind) as 'plKind_show')}</Tag>{pool.kind === 'show' && <Tag round size="sm" intent="primary">{t('plShowDrop')}</Tag>}<Tag round size="sm">{t('plSold', { sold: N.sold.toLocaleString('en-US'), supply: N.supply.toLocaleString('en-US') })}</Tag></>} />
       <Text intent="secondary">{pool.desc}</Text>
       <Stack direction="row" gap={2} wrap>
-        <Button variant="primary" size="sm" onClick={() => s.openCreate('pft', { poolId: pool.id })}>Mint an item</Button>
-        {club && <Button variant="outline" size="sm" onClick={() => s.go('club', { clubId: club.id })}>{club.name}</Button>}
-        {store && <Button variant="outline" size="sm" onClick={() => s.go('shop', { storeId: store.id })}>{store.name}</Button>}
-        {show && <Button variant="outline" size="sm" onClick={() => s.go('show', { showId: show.id })}>{show.title}</Button>}
+        <Button variant="glass" onClick={() => s.openCreate('pft', { poolId: pool.id })}>Mint an item</Button>
+        {club && <Button variant="glass" onClick={() => s.go('club', { clubId: club.id })}>{club.name}</Button>}
+        {store && <Button variant="glass" onClick={() => s.go('shop', { storeId: store.id })}>{store.name}</Button>}
+        {show && <Button variant="glass" onClick={() => s.go('show', { showId: show.id })}>{show.title}</Button>}
         <Tag round minimal>{t('plValue', { v: usd(N.total) })}</Tag>
       </Stack>
 
@@ -84,7 +84,7 @@ export const PoolPage: React.FC = () => {
                   : <Input value={answers[qq.id] ?? ''} inputMode={qq.kind === 'number' ? 'numeric' : undefined} placeholder={t('plAnswer')} aria-label={qq.text.replace('{pool}', pool.name)} onChange={(e) => setAnswers({ ...answers, [qq.id]: e.target.value })} />}
               </Stack>))}
           </Stack>))}
-        <Button variant="primary" onClick={() => s.flash(t('plApplied'))}>{t('plApply')}</Button>
+        <Button variant="glass" onClick={() => s.flash(t('plApplied'))}>{t('plApply')}</Button>
         </Stack> },
         { id: 'team', title: t('plTeam'), hint: t('plTeamSub', { club: club?.name ?? '' }), hidden: !(pool.teamIds?.length), content: (
         <Rows slider itemWidth="15rem">{(pool.teamIds ?? []).map(((id) => itemOf('host', id))).filter((h): h is Item<'host'> => !!h).map((h) => (
@@ -106,7 +106,7 @@ export const PoolPage: React.FC = () => {
             <LookImage look={l} /><Text weight="bold">{l.name}</Text>
             <Stack direction="row" justify="between"><Text size="xs" numeric>{t('plLive', { v: usd(q.total) })}</Text>
               <Text size="xs" intent={q.change >= 0 ? 'success' : 'danger'}>{(q.change >= 0 ? '+' : '') + (q.change * 100).toFixed(1)}%</Text></Stack>
-            {mine[l.id] && <Button size="sm" variant="outline" onClick={(e: React.MouseEvent) => { e.stopPropagation(); s.openSwap(l.id); }}>{t('plSwap')}</Button>}
+            {mine[l.id] && <Button variant="glass" onClick={(e: React.MouseEvent) => { e.stopPropagation(); s.openSwap(l.id); }}>{t('plSwap')}</Button>}
           </Stack></CardBody></Card>); })}</Grid>
         ) },
         { id: 'liquidity', title: t('plLiquidity'), hidden: !liq, content: liq && <Stack direction="column" gap={2}>
@@ -115,8 +115,8 @@ export const PoolPage: React.FC = () => {
         <Text size="xs" intent="muted">{t('tvl', { n: usd(liq.tvl + (st?.usd ?? 0)) })} · {liq.stakers + (st ? 1 : 0)}</Text>
         {st && <Tag round minimal intent="success">{t('accrued', { usd: '$' + accrued(liq.id).toFixed(6), day: '$' + (st.usd * liq.apr / 100 / 365).toFixed(4) })}</Tag>}
         <Stack direction="row" gap={2}>
-          <Button size="sm" variant="primary" onClick={() => s.flash(stake(liq.id, 100) ? t('staked', { name: liq.name }) : t('noFunds'))}>{t('stake')} $100</Button>
-          {st && <Button size="sm" variant="ghost" onClick={() => { const back = unstake(liq.id); s.flash(t('unstaked', { usd: usd(back), name: liq.name })); }}>{t('unstake')}</Button>}
+          <Button variant="glass" onClick={() => s.flash(stake(liq.id, 100) ? t('staked', { name: liq.name }) : t('noFunds'))}>{t('stake')} $100</Button>
+          {st && <Button variant="glass" onClick={() => { const back = unstake(liq.id); s.flash(t('unstaked', { usd: usd(back), name: liq.name })); }}>{t('unstake')}</Button>}
         </Stack>
         </Stack> },
       ]} />

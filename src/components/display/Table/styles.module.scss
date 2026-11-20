@@ -26,12 +26,12 @@
 
 .th { font-weight: var(--phi-font-weight-semibold); color: var(--phi-color-text-secondary); }
 
-/* Rows: shade to nothing, alternating direction; the header row is the deepest shade. */
-.thead .tr { background: var(--phi-label); }
-.tbody .tr { background: var(--phi-label-end-soft); }
-.tbody .tr:nth-child(even) { background: var(--phi-label-soft); }
-.tbody .tr:hover { background: var(--phi-label); }
-.tbody .tr:nth-child(even):hover { background: var(--phi-label-end); }
+/* Rows are rows (tokens.scss, A ROW): lit from one side by what holds the table, every other one from the other side;
+   the header row and the row under the pointer are the stronger light. */
+.thead .tr { background: var(--phi-row-ground-strong); }
+.tbody .tr { background: var(--phi-row-ground); }
+.tbody .tr:nth-child(even) { background: var(--phi-row-holder); }
+.tbody .tr:hover, .tbody .tr:nth-child(even):hover { background: var(--phi-row-ground-strong); }
 
 /* Header: top corners round, bottom edge straight. Body: the last row closes the table with the bottom corners. */
 .thead .tr:first-child .th:first-child { border-top-left-radius: var(--pui-table-radius); }

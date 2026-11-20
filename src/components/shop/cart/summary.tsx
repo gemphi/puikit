@@ -100,7 +100,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
 
         {onCheckout && (
           <Button
-            variant="primary"
+            variant="glass"
             size="lg"
             fullWidth
             loading={loading}

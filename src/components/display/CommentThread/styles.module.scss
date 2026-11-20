@@ -3,14 +3,15 @@
 .area { display: flex; flex-direction: column; gap: var(--phi-space-2, 0.5rem); min-width: 0; min-height: 0; }
 .thread {
   display: flex; flex-direction: column; gap: var(--phi-space-2, 0.5rem); min-width: 0;
-  padding: var(--phi-space-2, 0.5rem); border-radius: var(--phi-radius-md); background: var(--phi-surface);
+  /* No ground of its own: the thread lies in a region, and each comment is one. */
+  border-radius: var(--phi-radius-md);
 }
 .thread:empty { display: none; }
 // A comment holds its band and, under it, its replies: one box, lit from its foot, so a reply reads as inside it.
-.comment { display: flex; flex-direction: column; gap: var(--phi-space-1, 0.25rem); min-width: 0; border-radius: var(--phi-radius-md); background: var(--phi-surface); }
+.comment { display: flex; flex-direction: column; gap: var(--phi-space-1, 0.25rem); min-width: 0; border-radius: var(--phi-radius-md); }
 // Its actions are icon buttons at the right of the comment's own band (ChatBubble actions).
 .action { min-height: 0; padding: 0.15rem var(--phi-space-1, 0.25rem); font-size: var(--phi-font-size-xs, 0.75rem); background: none; }
-.action:hover { background-image: var(--phi-label); }
+.action:hover { background-image: var(--phi-control-ground-strong); }
 .reply { padding: 0 var(--phi-space-2, 0.5rem) var(--phi-space-2, 0.5rem) var(--pui-thread-indent, var(--phi-space-4, 1rem)); }
 // Replies step in by one space a level, inside their comment's box.
 .replies {

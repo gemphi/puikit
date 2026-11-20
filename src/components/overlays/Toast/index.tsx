@@ -37,7 +37,7 @@ export const Toast = ({ message, variant = TOAST_VARIANTS.INFO, onClose, placeme
   return createPortal(
     <Stack direction="row" align="center" justify="between" className={cn(styles.toast, styles[variant], placement === 'center' && styles.center, className)} role="status">
       <Text size="sm">{message}</Text>
-      {onClose && <Button variant="icon" size="sm" onClick={onClose} aria-label="Close">
+      {onClose && <Button variant="icon" onClick={onClose} aria-label="Close">
         <X size={14} />
       </Button>}
     </Stack>, portalTarget);

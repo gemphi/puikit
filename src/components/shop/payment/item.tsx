@@ -76,12 +76,12 @@ export const PaymentItem: React.FC<PaymentItemProps> = ({
           {(onRemove || onSetDefault) && (
             <Stack direction="row" gap={2}>
               {onSetDefault && !method.isDefault && (
-                <Button variant="ghost" size="sm" onClick={() => onSetDefault(method.id)}>
+                <Button variant="glass" onClick={() => onSetDefault(method.id)}>
                   {labels.setDefault ?? 'Set as default'}
                 </Button>
               )}
               {onRemove && (
-                <Button variant="ghost" size="sm" onClick={() => onRemove(method.id)}>
+                <Button variant="glass" onClick={() => onRemove(method.id)}>
                   {labels.remove ?? 'Remove'}
                 </Button>
               )}

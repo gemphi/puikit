@@ -48,8 +48,7 @@ export const WishlistItem: React.FC<WishlistItemProps> = ({
         <Stack direction="row" align="center" gap={2} data-actions="true">
           {onMoveToCart && (
             <Button
-              variant="primary"
-              size="sm"
+              variant="glass"
               icon={<ShoppingCart size={14} />}
               onClick={() => onMoveToCart(id)}
             >
@@ -57,7 +56,7 @@ export const WishlistItem: React.FC<WishlistItemProps> = ({
             </Button>
           )}
           {onRemove && (
-            <Button variant="ghost" size="sm" onClick={() => onRemove(id)} aria-label="Remove">
+            <Button variant="glass" onClick={() => onRemove(id)} aria-label="Remove">
               <Text as="span" intent="danger">
                 <Trash2 size={15} />
               </Text>

@@ -10,7 +10,7 @@
   line-height: 1;
   border-radius: var(--phi-chip-radius, var(--phi-radius-sm));
   /* Every tag wears the label's light (tokens.scss), whatever its intent and wherever it stands: one light, no rim. */
-  background: var(--phi-label-soft);
+  background: var(--phi-control-ground);
   color: var(--phi-color-text-primary);
   border: 0;
   white-space: nowrap;
@@ -24,7 +24,7 @@
 
   &.interactive {
     cursor: pointer;
-    &:hover { background: var(--phi-label-strong); }
+    &:hover { background: var(--phi-control-ground-strong); }
   }
 
   /* Sizes */
@@ -44,17 +44,17 @@
   }
 
   /* An intent is a stronger light, never a colour of its own. */
-  &.intent-primary, &.intent-success, &.intent-warning, &.intent-error, &.intent-info { background: var(--phi-label-strong); }
+  &.intent-primary, &.intent-success, &.intent-warning, &.intent-error, &.intent-info { background: var(--phi-control-ground-strong); }
 
   /* Nothing sits on a page for free: the quietest tag still stands on a faint light, from its foot. */
   &.minimal { background: var(--phi-control-ground); }
   /* With no ground of its own, a minimal tag's icon takes the label's chip, so it never sits bare. */
-  &.minimal .icon { padding: var(--phi-space-1); border-radius: var(--phi-chip-radius, var(--phi-radius-sm)); background: var(--phi-label); }
+  /* The tag is the icon's ground now; the icon needs no chip of its own. */
 
   /* A minimal tag you can press is a control: it rests on the theme's control surface like every button. */
   &.minimal.interactive {
-    background: var(--phi-surface);
-    &:hover { background: var(--phi-label-strong); filter: none; }
+    background: var(--phi-control-ground);
+    &:hover { background: var(--phi-control-ground-strong); filter: none; }
   }
 }
 
@@ -83,6 +83,6 @@
 
   &:hover {
     opacity: 1;
-    background: var(--phi-label-strong);
+    background: var(--phi-control-ground-strong);
   }
 }

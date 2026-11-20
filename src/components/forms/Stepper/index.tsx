@@ -27,11 +27,11 @@ export const Stepper = ({ value, onChange, min = 1, max = 99, className = '' }: 
 
   return (
     <Stack direction="row" align="center" gap={2} className={cn(styles.stepper, className)}>
-      <Button variant="icon" size="sm" onClick={decrease} disabled={value <= min} aria-label="Decrease quantity">
+      <Button variant="icon" onClick={decrease} disabled={value <= min} aria-label="Decrease quantity">
         <Icon name={Minus} size="sm" />
       </Button>
       <Span className={styles.value}>{value}</Span>
-      <Button variant="icon" size="sm" onClick={increase} disabled={value >= max} aria-label="Increase quantity">
+      <Button variant="icon" onClick={increase} disabled={value >= max} aria-label="Increase quantity">
         <Icon name={Plus} size="sm" />
       </Button>
     </Stack>

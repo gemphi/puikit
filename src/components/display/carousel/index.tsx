@@ -96,8 +96,7 @@ export const Carousel: React.FC<CarouselProps> = ({
       <Box className={styles.viewport}>
         {showControls && scrollable && (
           <Button
-            variant="outline"
-            size="sm"
+            variant="glass"
             className={styles.control}
             aria-label={copy.prev}
             hidden={atStart}
@@ -116,8 +115,7 @@ export const Carousel: React.FC<CarouselProps> = ({
 
         {showControls && scrollable && (
           <Button
-            variant="outline"
-            size="sm"
+            variant="glass"
             className={styles.control}
             aria-label={copy.next}
             hidden={atEnd}

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { PARAM_OF } from './lib/route';
 import { usePuiTheme } from '@pui/hooks';
 import { RADIUS_ALIASES, RADIUS_PRESETS, type GradientLevel, type RadiusPreset } from '@pui/providers';
 import { AppShell, APPS_RAIL, Box, Stack, Title, columnStore, useColumnEntries } from '@pui/components';
@@ -115,7 +116,8 @@ export const App: React.FC = () => {
       <AppShell
         brand={{ name: site.brand.name, glyph: <Icon size="100%" />, wordmark: <Title level={4} size="sm"><Wordmark /></Title> }}
         groups={shellGroups(s)} view={currentEntry(s)} onView={go} side={{ label: t('pgExplore'), groups: sideGroups(s, columns) }}
-        collapseKey={s.tab === 'asset' ? 'asset:' + s.assetId : s.tab === 'look' ? 'look:' + s.lookId : undefined}
+        /* The page that is open, by its path and the record it shows: a new one folds both sidebars away. */
+        collapseKey={s.tab + ':' + String((s as unknown as Record<string, unknown>)[PARAM_OF[s.tab] ?? ''] ?? '')}
         rail={s.rail === apps?.id ? APPS_RAIL : s.rail} onRail={(id) => s.setRail(id === APPS_RAIL && apps ? apps.id : id)}
         apps={shellApps()} appsLabel={apps?.label ?? t('hdApps')} appsIcon={appsGlyph()} tabs={shellTabs()}
         crumbs={<Crumbs compact={compact} />} headerRight={<HeaderEnd />}

@@ -83,7 +83,7 @@ export const Agent: React.FC<{ b: Block }> = ({ b }) => {
         <Stack as="label" direction="column" gap={1}><Text as="span" size="xs" intent="muted">Parameters (JSON)</Text>
           <Textarea value={params} onChange={(e) => setParams(e.target.value)} minRows={3} aria-label="Parameters" /></Stack>
         <Stack direction="row" gap={2} align="center">
-          <Button variant="primary" size="sm" disabled={!hasPhient || !verb} loading={busy} onClick={() => void run()} icon={<Icon icon={Play} size="xs" />}>Run {verb}</Button>
+          <Button variant="glass" disabled={!hasPhient || !verb} loading={busy} onClick={() => void run()} icon={<Icon icon={Play} size="xs" />}>Run {verb}</Button>
           {err && <Text as="span" size="sm" intent="danger" role="alert">{err}</Text>}
         </Stack>
         {last && <Stack direction="column" gap={1} surface="sunken" maxHeight="20rem" scroll="y">

@@ -13,6 +13,4 @@
 .banner { border-radius: var(--phi-radius-md); overflow: hidden; }
 .banner > * { display: block; width: 100%; }
 .face { margin-top: -2.25rem; padding-left: var(--phi-space-3); position: relative; z-index: 1; width: fit-content; }
-/* The picture over the name (no column beside it): lit from the foot. */
-.stacked.stacked { background: var(--phi-surface-soft); }
 .fact + .fact { border-top: 1px solid color-mix(in srgb, var(--phi-color-border) 60%, transparent); }

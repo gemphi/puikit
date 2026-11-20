@@ -64,7 +64,7 @@ export const ActiveFilters: React.FC<ActiveFiltersProps> = ({
         </Tag>
       ))}
       {onClearAll && (
-        <Button variant="ghost" size="sm" onClick={onClearAll}>
+        <Button variant="glass" onClick={onClearAll}>
           {copy.clearAll}
         </Button>
       )}

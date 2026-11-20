@@ -66,16 +66,16 @@ export const AccountDrawer: React.FC<{ onProfile?: () => void; onLook?: (id: str
 
             <AccordionItem title={W.account} open={!!shown.account} onToggle={() => fold('account')}>
               <Stack direction="column" gap={0}>
-                {onProfile ? <Button variant="ghost" iconLeft={User} onClick={go(onProfile)}>{W.profile}</Button> : null}
-                {accountsEnabled ? <Button variant="ghost" iconLeft={UserCog} onClick={go(() => setAccount(true))}>{W.account}</Button> : null}
+                {onProfile ? <Button variant="glass" iconLeft={User} onClick={go(onProfile)}>{W.profile}</Button> : null}
+                {accountsEnabled ? <Button variant="glass" iconLeft={UserCog} onClick={go(() => setAccount(true))}>{W.account}</Button> : null}
                 {canSignOut
-                  ? <Button variant="ghost" iconLeft={LogOut} onClick={go(() => { void signOut(); })}>{W.signOut}</Button>
-                  : accountsEnabled ? <Button variant="ghost" iconLeft={LogIn} onClick={go(() => setAccount(true))}>{W.signIn}</Button> : null}
+                  ? <Button variant="glass" iconLeft={LogOut} onClick={go(() => { void signOut(); })}>{W.signOut}</Button>
+                  : accountsEnabled ? <Button variant="glass" iconLeft={LogIn} onClick={go(() => setAccount(true))}>{W.signIn}</Button> : null}
               </Stack>
             </AccordionItem>
           </Accordion>
 
-          <Stack direction="row" justify="between" align="center"><Text size="xs" intent="muted">{W.phione}</Text><Button variant="outline" size="sm" href={appUrl('phione')}>{W.manage}</Button></Stack>
+          <Stack direction="row" justify="between" align="center"><Text size="xs" intent="muted">{W.phione}</Text><Button variant="glass" href={appUrl('phione')}>{W.manage}</Button></Stack>
         </Stack>
       </Drawer>
       {accountsEnabled ? <AccountDialog isOpen={account} onClose={() => setAccount(false)} /> : null}

@@ -78,7 +78,7 @@ const LookSwitch: React.FC = () => {
     <Stack direction="column" gap={1} paddingX={2} paddingBottom={2}>
       <Stack direction="row" gap={1} align="center" justify="between">
         <Text as="span" size="xs" intent="muted">Look</Text>
-        <Button variant="ghost" size="sm" onClick={() => setTheme(isDark ? 'light' : 'dark')} iconLeft={isDark ? Sun : Moon}>{isDark ? 'Light' : 'Dark'}</Button>
+        <Button variant="glass" onClick={() => setTheme(isDark ? 'light' : 'dark')} iconLeft={isDark ? Sun : Moon}>{isDark ? 'Light' : 'Dark'}</Button>
       </Stack>
       <TabList size="sm" variant="pills" aria-label="Look" activeId={look.id} onChange={setLook} items={LOOKS.map((l) => ({ id: l.id, label: l.label }))} />
     </Stack>

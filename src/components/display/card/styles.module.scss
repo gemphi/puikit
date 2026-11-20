@@ -58,7 +58,7 @@
 
 .selected {
   /* Chosen: the page's strongest light, from the left to nothing; no ring, no colour. */
-  --pui-card-face: var(--phi-label-strong), var(--phi-surface);
+  --pui-card-face: var(--phi-control-ground-strong), var(--phi-depth-ground, var(--phi-surface));
 }
 
 .card .card { box-shadow: none; }
@@ -185,8 +185,9 @@
    nested); under the pointer, or chosen, the page's light comes up over it. A card never brings a colour of its own,
    its tint's or the theme's. The blur is the layer rule's (tokens.scss), so only the outermost layer blurs. Its deck
    copies and its picture's frame follow. */
-.card { background: var(--pui-card-face, var(--phi-surface)); }
-.hoverable:hover, .clickable:hover { --pui-card-face: var(--phi-label-end), var(--phi-surface); }
+/* The ground its depth gives it (tokens.scss, GROUPED THINGS), unless a variant or a state says its own face. */
+.card { background: var(--pui-card-face, var(--phi-depth-ground, var(--phi-surface))); }
+.hoverable:hover, .clickable:hover { --pui-card-face: var(--phi-control-ground-strong), var(--phi-depth-ground, var(--phi-surface)); }
 .ghost {
   background: linear-gradient(var(--ghost-angle), color-mix(in srgb, var(--phi-glass-light) calc(var(--phi-glass-pct) + var(--pui-card-k) * 4%), transparent) 0%, transparent 100%);
   border-color: var(--phi-glass-rim-soft);

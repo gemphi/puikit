@@ -120,10 +120,10 @@ export const RecordView: React.FC<{ kind: string; id: ID; page?: boolean }> = ({
   return (
     <Shell page={page} onClose={() => s.close()} title={row ? titleOf(kind, row) : id}
       footer={!editing && row ? (confirm
-        ? <Stack direction="row" gap={2} justify="between" align="center"><Text size="sm">Remove this {kindLabel(kind)} for good?</Text><Stack direction="row" gap={2}><Button variant="ghost" onClick={() => setConfirm(false)}>Keep it</Button><Button variant="primary" disabled={busy} onClick={remove}>Remove</Button></Stack></Stack>
-        : <Stack direction="row" gap={2} justify="between"><Button variant="ghost" onClick={() => setConfirm(true)}>Remove</Button><Stack direction="row" gap={2}>
-          {actionsOf(kind).map((a) => <Button key={a.label} variant="outline" onClick={() => s.openCreate(a.create, { [a.link]: id }, { recordKind: kind, id: id })}>{a.label}</Button>)}
-          <Button variant="primary" onClick={() => setEditing(true)}>Edit</Button></Stack></Stack>) : undefined}>
+        ? <Stack direction="row" gap={2} justify="between" align="center"><Text size="sm">Remove this {kindLabel(kind)} for good?</Text><Stack direction="row" gap={2}><Button variant="glass" onClick={() => setConfirm(false)}>Keep it</Button><Button variant="glass" disabled={busy} onClick={remove}>Remove</Button></Stack></Stack>
+        : <Stack direction="row" gap={2} justify="between"><Button variant="glass" onClick={() => setConfirm(true)}>Remove</Button><Stack direction="row" gap={2}>
+          {actionsOf(kind).map((a) => <Button key={a.label} variant="glass" onClick={() => s.openCreate(a.create, { [a.link]: id }, { recordKind: kind, id: id })}>{a.label}</Button>)}
+          <Button variant="glass" onClick={() => setEditing(true)}>Edit</Button></Stack></Stack>) : undefined}>
       {!row ? <Text intent="muted">This record is not here any more.</Text>
         : editing ? <KindForm kind={kind} initial={row} onSubmit={save} submitLabel="Save" cancelLabel="Back" onCancel={() => setEditing(false)} busy={busy} fill />
         : <Box ref={bodyRef}><Stack direction={wide ? 'row' : 'column'} gap={wide ? 5 : 4} align={wide ? 'start' : 'stretch'}>
@@ -133,8 +133,8 @@ export const RecordView: React.FC<{ kind: string; id: ID; page?: boolean }> = ({
                 <Stack direction="row" justify="between" align="center">
                   <Text size="xs" intent="muted">{`${at + 1} of ${siblings.length} in ${nameOf(parent)}`}</Text>
                   <Stack direction="row" gap={1}>
-                    <Button variant="icon" size="sm" aria-label="Previous" onClick={() => step(-1)}><ChevronLeft size={16} /></Button>
-                    <Button variant="icon" size="sm" aria-label="Next" onClick={() => step(1)}><ChevronRight size={16} /></Button>
+                    <Button variant="icon" aria-label="Previous" onClick={() => step(-1)}><ChevronLeft size={16} /></Button>
+                    <Button variant="icon" aria-label="Next" onClick={() => step(1)}><ChevronRight size={16} /></Button>
                   </Stack>
                 </Stack>
                 <Stack direction="row" gap={2} scroll="x" paddingBottom={1} aria-label={'All in ' + nameOf(parent)}>

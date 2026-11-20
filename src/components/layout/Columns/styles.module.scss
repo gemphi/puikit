@@ -1,6 +1,6 @@
 .row { display: flex; align-items: stretch; gap: var(--phi-gap); width: 100%; height: 100%; min-height: 0; overflow-x: auto; }
 /* Each column is the one surface (tokens.scss) with the one corner. A closed column leaves no strip: a menu brings it back. */
-.col { display: flex; flex-direction: column; min-height: 0; flex: 0 1 auto; border-radius: var(--phi-radius-md); background: var(--phi-surface); animation: puiColIn var(--phi-duration, 0.3s) var(--phi-ease, ease-out); }
+.col { display: flex; flex-direction: column; min-height: 0; flex: 0 1 auto; border-radius: var(--phi-radius-md); animation: puiColIn var(--phi-duration, 0.3s) var(--phi-ease, ease-out); }
 .flex { flex: 1 1 0; min-width: 0; }
 .exp { flex: 1 1 auto; width: auto !important; }
 .head { display: flex; align-items: center; gap: 0.25rem; padding: 0.5rem 0.6rem; min-height: 2.75rem; }

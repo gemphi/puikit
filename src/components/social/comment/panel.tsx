@@ -132,7 +132,7 @@ export const CommentsPanel: React.FC<CommentsPanelProps> = ({
           {copy.title(count ?? comments.length)}
         </Title>
         {onClose && (
-          <Button variant="ghost" size="sm" aria-label={copy.close} icon={<X size={16} />} onClick={onClose} />
+          <Button variant="glass" aria-label={copy.close} icon={<X size={16} />} onClick={onClose} />
         )}
       </Box>
 
@@ -146,7 +146,7 @@ export const CommentsPanel: React.FC<CommentsPanelProps> = ({
           {replyTo && (
             <Stack direction="row" align="center" justify="between" gap={2}>
               <Span variant="muted">{copy.replyingTo(replyTo.handle)}</Span>
-              <Button variant="ghost" size="sm" onClick={() => setReplyTo(null)}>
+              <Button variant="glass" onClick={() => setReplyTo(null)}>
                 {copy.cancelReply}
               </Button>
             </Stack>
@@ -160,7 +160,7 @@ export const CommentsPanel: React.FC<CommentsPanelProps> = ({
                 if (e.key === 'Enter') submit();
               }}
             />
-            <Button variant="primary" size="sm" aria-label={copy.post} icon={<Send size={14} />} onClick={submit} />
+            <Button variant="glass" aria-label={copy.post} icon={<Send size={14} />} onClick={submit} />
           </Box>
         </Box>
       )}

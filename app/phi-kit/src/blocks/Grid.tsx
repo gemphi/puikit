@@ -31,11 +31,11 @@ export const Grid: React.FC<{ b: Block; onOpen: (it: GridItem) => void }> = ({ b
       title={it.title} meta={it.sub} aside={cardTag(it)}
       actions={it.action ? (
         it.app || it.href
-          ? <Button variant="outline" size="sm" href={it.href || appUrl(it.app!)} onClick={stop}>{it.action}</Button>
-          : <Button variant={done[i] ? 'ghost' : 'outline'} size="sm" onClick={(e) => { stop(e); setDone((d) => ({ ...d, [i]: !d[i] })); }}>{done[i] ? it.done || 'Done' : it.action}</Button>
+          ? <Button variant="glass" href={it.href || appUrl(it.app!)} onClick={stop}>{it.action}</Button>
+          : <Button variant="glass" onClick={(e) => { stop(e); setDone((d) => ({ ...d, [i]: !d[i] })); }}>{done[i] ? it.done || 'Done' : it.action}</Button>
       ) : undefined}>
       {it.body ? <Text as="p" size="sm" intent="secondary">{it.body}</Text> : null}
-      {it.chipList?.length ? <Stack direction="row" gap={1} wrap>{it.chipList.map((c) => <Button key={c} size="sm" variant="ghost" onClick={(e) => { stop(e); b.onChip?.(it, c); }}><Text as="span" size="xs" mono>{c}</Text></Button>)}</Stack> : null}
+      {it.chipList?.length ? <Stack direction="row" gap={1} wrap>{it.chipList.map((c) => <Button key={c} variant="glass" onClick={(e) => { stop(e); b.onChip?.(it, c); }}><Text as="span" size="xs" mono>{c}</Text></Button>)}</Stack> : null}
       {it.meta ? <Text as="span" size="xs" intent="muted" mono>{it.meta}</Text> : null}
       {it.fields?.length ? <Stack direction="row" gap={1} wrap>{it.fields.slice(0, 3).map(([k, v]) => <Tag key={k} minimal round size="sm">{k} · {v}</Tag>)}</Stack> : null}
       <CardExtra it={it} />

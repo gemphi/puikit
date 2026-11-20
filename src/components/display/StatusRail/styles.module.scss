@@ -33,7 +33,7 @@
 /* The capsule: the theme's child gradient over a primary-tinted card — holds the thumbnail and the caption. */
 .capsule, .ghost {
   border-radius: var(--phi-radius-lg);
-  background: var(--phi-surface);
+  background: var(--phi-control-ground);
 }
 .capsule {
   position: relative;

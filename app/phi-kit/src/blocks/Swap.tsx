@@ -22,7 +22,7 @@ export const Swap: React.FC<{ b: Block }> = ({ b }) => {
       <Text as="span" size="xs" intent="muted">You receive</Text>
       <Stack direction="row" gap={2} wrap align="center"><Text as="span" font="heading" size="3xl" lineHeight={1} flex="1">{fmt(to, got)}</Text>{sel(to, setTo, 'To')}</Stack>
       <Text as="span" size="xs" intent="muted">1 {LABEL[from]} = {fmt(to, quote(1, from, to, 0))} {LABEL[to]} · fee {(fee * 100).toFixed(1)}%</Text>
-      <Button variant="primary" disabled={!ok} onClick={() => { if (swap(n, from, to, fee)) setMsg('Swapped ' + fmt(from, n) + ' ' + LABEL[from] + ' for ' + fmt(to, got) + ' ' + LABEL[to]); }}>{ok ? 'Swap' : n > w[from] ? 'Not enough ' + LABEL[from] : 'Enter an amount'}</Button>
+      <Button variant="glass" disabled={!ok} onClick={() => { if (swap(n, from, to, fee)) setMsg('Swapped ' + fmt(from, n) + ' ' + LABEL[from] + ' for ' + fmt(to, got) + ' ' + LABEL[to]); }}>{ok ? 'Swap' : n > w[from] ? 'Not enough ' + LABEL[from] : 'Enter an amount'}</Button>
       {msg ? <Text as="span" size="sm" intent="secondary" flex="1" role="status">{msg}</Text> : null}
     </Stack>
   );

@@ -106,29 +106,29 @@ export const Sections = ({ sections, className, reorderable = false, storageKey,
               {x.actions && <Box as="span" className={styles.actions}>{x.actions}</Box>}
               {x.layouts?.length ? (() => { const on = x.layouts.find((l) => l.id === x.layout) ?? x.layouts[0]; return (
                 <Box as="span" className={styles.layout}>
-                  <Button variant="icon" size="sm" aria-label={on.label} title={on.label} aria-haspopup="true">{on.icon}</Button>
+                  <Button variant="icon" aria-label={on.label} title={on.label} aria-haspopup="true">{on.icon}</Button>
                   <Box as="span" className={styles.layoutMenu} role="menu">{x.layouts.map((l) => (
-                    <Button key={l.id} variant="glass" size="sm" role="menuitemradio" aria-checked={l.id === on.id} aria-pressed={l.id === on.id} onClick={() => x.onLayout?.(l.id)}>{l.icon}<span>{l.label}</span></Button>))}
+                    <Button key={l.id} variant="glass" role="menuitemradio" aria-checked={l.id === on.id} aria-pressed={l.id === on.id} onClick={() => x.onLayout?.(l.id)}>{l.icon}<span>{l.label}</span></Button>))}
                   </Box>
                 </Box>); })() : null}
               <Box as="span" className={styles.tools}>
               {reorderable && !expanded && <>
                 {/* Only the moves that can be made show: none up for the first section, none down for the last. */}
-                {at > 0 && <Button variant="icon" size="sm" onClick={() => move(x.id, -1)} aria-label={upLabel}><ArrowUp size={icon} /></Button>}
-                {at < open.length - 1 && <Button variant="icon" size="sm" onClick={() => move(x.id, 1)} aria-label={downLabel}><ArrowDown size={icon} /></Button>}
+                {at > 0 && <Button variant="icon" onClick={() => move(x.id, -1)} aria-label={upLabel}><ArrowUp size={icon} /></Button>}
+                {at < open.length - 1 && <Button variant="icon" onClick={() => move(x.id, 1)} aria-label={downLabel}><ArrowDown size={icon} /></Button>}
               </>}
               {x.collapsible && !isExp && (
-                <Button variant="icon" size="sm" onClick={() => setFolded({ ...folded, [x.id]: !isFold })} aria-label={isFold ? expandLabel : foldLabel} aria-expanded={!isFold}>
+                <Button variant="icon" onClick={() => setFolded({ ...folded, [x.id]: !isFold })} aria-label={isFold ? expandLabel : foldLabel} aria-expanded={!isFold}>
                   {isFold ? <ChevronDown size={icon} /> : <ChevronUp size={icon} />}
                 </Button>
               )}
               {x.expandable && (
-                <Button variant="icon" size="sm" onClick={() => setExpanded(isExp ? null : x.id)} aria-label={isExp ? collapseLabel : expandLabel} aria-pressed={isExp}>
+                <Button variant="icon" onClick={() => setExpanded(isExp ? null : x.id)} aria-label={isExp ? collapseLabel : expandLabel} aria-pressed={isExp}>
                   {isExp ? <Minimize2 size={icon} /> : <Maximize2 size={icon} />}
                 </Button>
               )}
               {x.closable && (
-                <Button variant="icon" size="sm" onClick={() => { if (isExp) setExpanded(null); setClosed({ ...closed, [x.id]: true }); }} aria-label={closeLabel}><X size={icon} /></Button>
+                <Button variant="icon" onClick={() => { if (isExp) setExpanded(null); setClosed({ ...closed, [x.id]: true }); }} aria-label={closeLabel}><X size={icon} /></Button>
               )}
               </Box>
             </Box>
@@ -138,8 +138,8 @@ export const Sections = ({ sections, className, reorderable = false, storageKey,
       })}
       {(shut.length > 0 || (reorderable && changed)) && (
         <Box className={styles.strip} aria-label="Closed sections">
-          {shut.map((x) => <Button key={x.id} size="sm" variant="ghost" icon={<PanelBottomOpen size={14} />} onClick={() => setClosed({ ...closed, [x.id]: false })}>{name(x)}</Button>)}
-          {reorderable && changed && <Button size="sm" variant="ghost" icon={<RotateCcw size={14} />} onClick={reset}>{resetLabel}</Button>}
+          {shut.map((x) => <Button key={x.id} variant="glass" icon={<PanelBottomOpen size={14} />} onClick={() => setClosed({ ...closed, [x.id]: false })}>{name(x)}</Button>)}
+          {reorderable && changed && <Button variant="glass" icon={<RotateCcw size={14} />} onClick={reset}>{resetLabel}</Button>}
         </Box>
       )}
     </Box>

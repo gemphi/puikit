@@ -101,7 +101,7 @@ export const OrderItem: React.FC<OrderItemProps> = ({
           <Stack direction="row" align="center" justify="between" gap={3}>
             <Price amount={total} currency={currency} />
             {onViewDetails && (
-              <Button variant="outline" size="sm" onClick={() => onViewDetails(id)}>
+              <Button variant="glass" onClick={() => onViewDetails(id)}>
                 {detailsLabel}
               </Button>
             )}

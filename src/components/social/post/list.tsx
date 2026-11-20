@@ -102,8 +102,7 @@ export const PostList: React.FC<PostListProps> = ({
         {posts.length > 1 && pager && (
           <Box className={styles.pager}>
             <Button
-              variant="secondary"
-              size="sm"
+              variant="glass"
               className={styles.glassControl}
               aria-label={copy.previous}
               hidden={atStart}
@@ -111,8 +110,7 @@ export const PostList: React.FC<PostListProps> = ({
               icon={<ChevronUp size={16} />}
             />
             <Button
-              variant="secondary"
-              size="sm"
+              variant="glass"
               className={styles.glassControl}
               aria-label={copy.next}
               hidden={atEnd}

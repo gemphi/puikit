@@ -46,14 +46,14 @@ export const ShowPage: React.FC = () => {
   // ── sheet header: the player controls ──
   const controls = (
     <Stack direction="row" gap={2} align="center" minWidth="0">
-      <Button variant="ghost" size="sm" icon={<Icon icon={ChevronLeft} size="sm" />} onClick={() => step(-1)} aria-label={t('prev')} />
-      <Button variant="primary" size="sm" iconLeft={playing ? Pause : Play} onClick={() => setPlaying(!playing)}>{playing ? t('autoplayOn') : t('autoplayOff')}</Button>
-      <Button variant="ghost" size="sm" icon={<Icon icon={ChevronRight} size="sm" />} onClick={() => step(1)} aria-label={t('next')} />
+      <Button variant="glass" icon={<Icon icon={ChevronLeft} size="sm" />} onClick={() => step(-1)} aria-label={t('prev')} />
+      <Button variant="glass" iconLeft={playing ? Pause : Play} onClick={() => setPlaying(!playing)}>{playing ? t('autoplayOn') : t('autoplayOff')}</Button>
+      <Button variant="glass" icon={<Icon icon={ChevronRight} size="sm" />} onClick={() => step(1)} aria-label={t('next')} />
       <Stack direction="column" gap={1} grow={1} minWidth="0">
         <Text size="sm" weight="semibold" truncate>{t('lookOf', { i: look.n, n })} · {look.title}</Text>
         <ProgressBar value={(idx + 1) / n} size="sm" animate={false} />
       </Stack>
-      {pft && <Button size="sm" variant="outline" onClick={() => s.openLook(pft.id)}>{t('shOpenPft')}</Button>}
+      {pft && <Button variant="glass" onClick={() => s.openLook(pft.id)}>{t('shOpenPft')}</Button>}
     </Stack>
   );
 
@@ -68,8 +68,8 @@ export const ShowPage: React.FC = () => {
       <Stack direction="row" gap={1} wrap>{look.pieces.map((x) => <Tag key={x} minimal round intent="primary">{x}</Tag>)}</Stack>
       {pft && <ItemCard depth={2} mediaSize="lg" onClick={() => s.openLook(pft.id)} media={<LookImage look={pft} cascade={1} />}
         title={pft.name} meta={t('shThePft') + ' · ' + pft.colour + ' · ' + pft.rarity}
-        actions={<><Button size="sm" variant="primary" onClick={(e) => { e.stopPropagation(); s.openLook(pft.id); }}>{t('shOpenPft')}</Button>
-          {dropPool && <Button size="sm" variant="outline" onClick={(e) => { e.stopPropagation(); s.go('pool', { poolId: dropPool.id }); }}>{t('plOpensDrop')}</Button>}</>}>
+        actions={<><Button variant="glass" onClick={(e) => { e.stopPropagation(); s.openLook(pft.id); }}>{t('shOpenPft')}</Button>
+          {dropPool && <Button variant="glass" onClick={(e) => { e.stopPropagation(); s.go('pool', { poolId: dropPool.id }); }}>{t('plOpensDrop')}</Button>}</>}>
         <Text size="xs" intent="muted" numeric>{t('plLive', { v: usd(lookLive(pft, now).total) })}</Text>
       </ItemCard>}
       <Card depth={1} variant="flat"><CardBody><Title level={5} size="sm">{t('pose')} · {pose.name}</Title><Rig rig={pose.rig} /></CardBody></Card>
@@ -90,8 +90,8 @@ export const ShowPage: React.FC = () => {
           badges={<><Tag round size="sm">{t('looksN', { n })}</Tag><Tag round size="sm">{t('posesN', { n: show.poseIds.length })}</Tag><Tag round size="sm">{show.date.slice(0, 10)}</Tag>{dropPool && <Tag round size="sm" intent="primary">{t('plShowDrop')}</Tag>}</>} />
         <Stack direction="row" gap={2} wrap align="center">
           <Text size="sm">{t('hostedBy', { name: host.name })}</Text>
-          <Button size="sm" variant="outline" onClick={() => s.go('world', { worldId: w.id })}>{w.name}</Button>
-          {dropPool && <Button size="sm" variant="outline" onClick={() => s.go('pool', { poolId: dropPool.id })}>{t('plOpensDrop')} · {t('plSold', { sold: dropN!.sold.toLocaleString('en-US'), supply: dropN!.supply.toLocaleString('en-US') })} · {usd(dropN!.total)}</Button>}
+          <Button variant="glass" onClick={() => s.go('world', { worldId: w.id })}>{w.name}</Button>
+          {dropPool && <Button variant="glass" onClick={() => s.go('pool', { poolId: dropPool.id })}>{t('plOpensDrop')} · {t('plSold', { sold: dropN!.sold.toLocaleString('en-US'), supply: dropN!.supply.toLocaleString('en-US') })} · {usd(dropN!.total)}</Button>}
         </Stack>
         {/* The stage: the look walking now, on its own colour. */}
         <Stack maxWidth="30rem" width="100%" centered>

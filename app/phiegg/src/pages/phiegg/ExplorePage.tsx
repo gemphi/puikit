@@ -29,14 +29,14 @@ export const ExplorePage: React.FC = () => {
         <Rows cols={4} colsSm={2} rowHeight="clamp(10rem, 15vw, 13rem)" aria-label={t('exCollections')}>{collectionFamilies().filter((f) => f.clubs.length > 1 && m(f.nest.name)).slice(0, 8).map((f, i) => (
           <Tile key={f.nest.id} tone={f.clubs[0]?.tone ?? 'accent'} ratio="auto" title={'#' + f.nest.name} depth={{ clubId: f.clubs[0]?.id, worldId: (f.nest as { worldId?: string }).worldId ?? f.clubs[0]?.worldIds[0], entityId: f.nest.id, entityName: f.nest.name }}
             sub={t('colClubsN', { n: f.clubs.length }) + ' · ' + usd(f.volumeUsd)} badges={i < 3 && <Tag round size="sm">{t('exTrending', { n: i + 1 })}</Tag>} onClick={() => s.go('collection', { nestId: f.nest.id })} />))}</Rows>
-        <Stack direction="row" justify="between"><Title level={3} size="lg">{t('worldsToVisit')}</Title><Button size="sm" variant="glass" onClick={() => s.go('worlds')}>{t('allWorlds')}</Button></Stack>
+        <Stack direction="row" justify="between"><Title level={3} size="lg">{t('worldsToVisit')}</Title><Button variant="glass" onClick={() => s.go('worlds')}>{t('allWorlds')}</Button></Stack>
         <Rows cols={4} colsSm={2} rowHeight="clamp(10rem, 15vw, 13rem)" aria-label={t('worldsToVisit')}>{worlds.map((w) => <Tile key={w.id} image={worldImage(w)} tone={w.tone} ratio="auto" grid title={w.name} depth={{ worldId: w.id, clubId: w.clubId, personId: w.creatorId }} sub={itemOf('club', w.clubId)?.name} onClick={() => s.go('world', { worldId: w.id })} />)}</Rows>
         <Title level={3} size="lg">{t('creators')}</Title>
         <Rows slider itemWidth="11.5rem" aria-label={t('creators')}>{people.map((p) => (
           <Card depth={2} key={p.id}><CardBody><Stack direction="column" align="center" gap={1}><PersonAvatar id={p.id} size="lg" />
             <Text size="sm" weight="bold" truncate maxWidth="100%">{p.name}</Text>
             <Text size="xs" intent="muted">{fmt(p.followers)} {t('followers')}</Text>
-            <Button size="sm" variant={s.follow[p.id] ? 'secondary' : 'outline'} onClick={() => s.toggle('follow', p.id)}>{s.follow[p.id] ? t('following') : t('follow')}</Button></Stack></CardBody></Card>))}</Rows>
+            <Button variant="glass" onClick={() => s.toggle('follow', p.id)}>{s.follow[p.id] ? t('following') : t('follow')}</Button></Stack></CardBody></Card>))}</Rows>
       </Stack>
     </Page>
   );

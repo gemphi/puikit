@@ -63,9 +63,9 @@ export const WorldPage: React.FC = () => {
   const slides = (w.gallery ?? []).map((g) => ({ id: g.view, src: mediaUrl(g.lg), thumb: mediaUrl(g.sm), mark, title: viewLabel(g.view),
     sub: [w.landName && w.landName !== w.name ? w.landName : w.landGroup, t('insideNow', { n: fmt(w.visitorsNow) })].filter(Boolean).join(' · ') }));
   const act = (I: LucideIcon, label: string, onClick: () => void, on?: boolean) => (
-    <Button key={label} variant="glass" size="sm" icon={<I size={16} fill={on ? 'currentColor' : 'none'} />} aria-label={label} title={label} aria-pressed={on} onClick={onClick} />);
+    <Button key={label} variant="glass" icon={<I size={16} fill={on ? 'currentColor' : 'none'} />} aria-label={label} title={label} aria-pressed={on} onClick={onClick} />);
   const acts = <>
-    <Button variant="glass" size="sm" iconLeft={LogIn} onClick={() => s.flash(t('entering', { name: w.name }))}>{t('enterWorld', { name: w.name })}</Button>
+    <Button variant="glass" iconLeft={LogIn} onClick={() => s.flash(t('entering', { name: w.name }))}>{t('enterWorld', { name: w.name })}</Button>
     {club && act(Shield, t('byClub', { name: club.name }), () => s.go('club', { clubId: club.id }))}
     {show && act(Clapperboard, t('showCard', { season: show.season, looks: show.looks.length }), () => s.go('show', { showId: show.id }))}
     {act(Heart, t('isLike'), () => s.toggle('liked', w.id), !!s.liked[w.id])}

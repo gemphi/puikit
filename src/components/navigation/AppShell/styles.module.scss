@@ -126,7 +126,7 @@
 /* A menu group is a region of the sidebar: a faint card running against it, its heading part of it (no ground of its
    own); its rows run against the region in turn, the sidebar's way. */
 .panelGroup { display: flex; flex-direction: column; gap: 2px; padding: var(--phi-space-2); border-radius: var(--phi-radius-md);
-  background-image: var(--pui-nav-against-soft, var(--phi-label-soft));
+  background-image: var(--pui-nav-against, var(--phi-label));
   --pui-nav-item-soft: var(--pui-nav-with-soft, var(--phi-label-end-soft)); --pui-nav-item: var(--pui-nav-with, var(--phi-label-end)); }
 .groupHead { min-height: var(--pui-shell-control); }
 .panelScroll { display: flex; flex-direction: column; gap: var(--phi-space-2); }

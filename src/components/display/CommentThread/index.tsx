@@ -88,17 +88,17 @@ export const CommentThread = ({ comments, maxDepth = 6, openDepth = Infinity, on
     const children = kids.get(c.id) ?? []; const total = count(c.id);
     const open = toggled[c.id] ?? level + 1 < openDepth;
     return (
-      <Box key={c.id} role="listitem" className={styles.comment} data-depth={Math.min(level, maxDepth)}>
+      <Box key={c.id} role="listitem" className={styles.comment + ' phi-region'} data-depth={Math.min(level, maxDepth)}>
         {/* The comment's actions are icons at the right of its own band: like, reply, and its replies folded or shown. */}
         <ChatBubble side={c.mine ? 'me' : 'them'} avatar={c.avatar} name={c.author} time={c.meta}
           actions={(onReply || onLike || total > 0 || c.actions) ? <>
             {onLike && (
-              <Button size="sm" variant="ghost" className={styles.action} aria-pressed={!!c.liked} aria-label={L.like} title={L.like} onClick={() => onLike(c.id)}
+              <Button variant="glass" className={styles.action} aria-pressed={!!c.liked} aria-label={L.like} title={L.like} onClick={() => onLike(c.id)}
                 icon={<Heart size={14} fill={c.liked ? 'currentColor' : 'none'} />}>{c.likes ? String(c.likes) : undefined}</Button>
             )}
-            {onReply && <Button size="sm" variant="ghost" className={styles.action} aria-expanded={replying === c.id} aria-label={L.reply} title={L.reply}
+            {onReply && <Button variant="glass" className={styles.action} aria-expanded={replying === c.id} aria-label={L.reply} title={L.reply}
               icon={<Reply size={14} />} onClick={() => setReplying(replying === c.id ? null : c.id)} />}
-            {total > 0 && <Button size="sm" variant="ghost" className={styles.action} aria-expanded={open} aria-label={open ? L.hide : L.show(total)} title={open ? L.hide : L.show(total)}
+            {total > 0 && <Button variant="glass" className={styles.action} aria-expanded={open} aria-label={open ? L.hide : L.show(total)} title={open ? L.hide : L.show(total)}
               icon={open ? <ChevronUp size={14} /> : <ChevronDown size={14} />} onClick={() => setToggled((x) => ({ ...x, [c.id]: !open }))}>{String(total)}</Button>}
             {c.actions}
           </> : undefined}>{c.text}</ChatBubble>

@@ -4,7 +4,7 @@
 /* Each relation is one region with one background: its heading sits on it, its cards inside it. */
 .group { display: flex; flex-direction: column; gap: var(--phi-space-3, 0.75rem); min-width: 0;
   padding: calc(var(--phi-layer-in) / 2) calc(var(--phi-layer-in) / 2) calc(var(--phi-layer-in) / 4) calc(var(--phi-layer-in) / 4);
-  border-radius: var(--phi-radius-lg); background-image: var(--phi-surface); }
+  border-radius: var(--phi-radius-lg); }
 // The relation's heading: its name on the left, its tools on the right, both clear of the edges.
 .head {
   display: flex; align-items: center; justify-content: space-between; gap: var(--phi-space-2, 0.5rem); min-height: 2.75rem;

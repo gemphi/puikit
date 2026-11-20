@@ -49,7 +49,7 @@ const ColumnHead: React.FC<{ title: React.ReactNode; fold?: { side: 'left' | 'ri
   return (
     <Box className={styles.colHead}>
       {!shown && (typeof title === 'string' ? <Text weight="semibold">{title}</Text> : title)}
-      {fold && <Button variant="glass" size="sm" className={styles.fold} icon={<Icon size={16} />} aria-label={fold.label} title={fold.label} onClick={fold.onFold} />}
+      {fold && <Button variant="glass" className={styles.fold} icon={<Icon size={16} />} aria-label={fold.label} title={fold.label} onClick={fold.onFold} />}
     </Box>
   );
 };

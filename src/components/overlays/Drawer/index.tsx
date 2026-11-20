@@ -124,16 +124,16 @@ export const Drawer = ({
         <CardHeader className={cn(header != null && styles.headerBar)} action={
           <Stack direction="row" gap={1} align="center">
             {docked && (
-              <Button variant="icon" size="sm" onClick={() => setFolded(!isFolded)} aria-label={isFolded ? unfoldLabel : foldLabel} aria-expanded={!isFolded}>
+              <Button variant="icon" onClick={() => setFolded(!isFolded)} aria-label={isFolded ? unfoldLabel : foldLabel} aria-expanded={!isFolded}>
                 {isFolded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
               </Button>
             )}
             {expandable && !isFolded && (
-              <Button variant="icon" size="sm" onClick={() => setExpanded(!isExpanded)} aria-label={isExpanded ? collapseLabel : expandLabel} aria-pressed={isExpanded}>
+              <Button variant="icon" onClick={() => setExpanded(!isExpanded)} aria-label={isExpanded ? collapseLabel : expandLabel} aria-pressed={isExpanded}>
                 {isExpanded ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
               </Button>
             )}
-            {onClose && <Button variant="icon" size="sm" onClick={onClose} aria-label="Close"><X size={18} /></Button>}
+            {onClose && <Button variant="icon" onClick={onClose} aria-label="Close"><X size={18} /></Button>}
           </Stack>
         }>
           {header != null ? header : title && <Title variant="h3" className={styles.title}>{title}</Title>}

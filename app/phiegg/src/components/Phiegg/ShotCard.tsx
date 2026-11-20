@@ -40,7 +40,7 @@ export const ShotCard: React.FC<{ post: Post }> = ({ post }) => {
   ];
   return (
     /* A post on the page's light alone (transparent to light, left to right), its author clear of its picture. */
-    <Box className={styles.post}><Stack direction="column" gap={4}>
+    <Box className={styles.post} surface="region"><Stack direction="column" gap={4}>
       <Stack direction="row" justify="between" align="center">
         <Stack direction="column" gap={1}><PersonLine id={post.authorId} sub={[club?.name, ago(post.createdAt)].filter(Boolean).join(' · ')} /><Pinned worldId={post.worldId} cityId={post.cityId} /></Stack>
         {post.slides.length > 1 && <Tag minimal round icon={<Icon icon={Layers} size="xs" />}>{post.slides.length}</Tag>}

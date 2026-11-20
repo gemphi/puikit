@@ -107,7 +107,7 @@ export const Form: React.FC<{ b: Block }> = ({ b }) => {
               <Control f={f} value={vals[f.id] ?? ''} options={opts[f.id]} onChange={set(f.id)} />
             </Stack>
           ))}
-          <Button type="submit" variant={b.submitVariant ?? 'primary'} size="sm" loading={!!b.busy} disabled={!!b.disabled || allFields.some((f) => missing(f, vals[f.id] ?? ''))}>{b.submitLabel ?? 'Submit'}</Button>
+          <Button type="submit" variant={b.submitVariant ?? 'primary'} loading={!!b.busy} disabled={!!b.disabled || allFields.some((f) => missing(f, vals[f.id] ?? ''))}>{b.submitLabel ?? 'Submit'}</Button>
           {b.note ? <Text as="span" size="sm" intent="secondary" role="status">{b.note}</Text> : null}
         </Stack>
         {b.output ? <Stack direction="column" surface="sunken" maxHeight="20rem" scroll="y"><Text size="xs" mono pre>{b.output}</Text></Stack> : null}
@@ -122,8 +122,8 @@ export const Form: React.FC<{ b: Block }> = ({ b }) => {
         <Text intent="secondary">{b.done ?? 'Received. It is on your profile and under review.'}</Text>
         <Text size="sm" weight="medium">{done.name}</Text>
         <Stack direction="row" gap={2} wrap>
-          <Button variant="primary" href="#/_you">See it on your profile</Button>
-          <Button variant="outline" onClick={() => { setVals(blank()); setAt(0); setDone(null); }}>{b.againLabel ?? 'Submit another'}</Button>
+          <Button variant="glass" href="#/_you">See it on your profile</Button>
+          <Button variant="glass" onClick={() => { setVals(blank()); setAt(0); setDone(null); }}>{b.againLabel ?? 'Submit another'}</Button>
         </Stack>
       </Stack>
     );

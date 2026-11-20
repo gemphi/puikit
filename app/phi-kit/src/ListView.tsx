@@ -113,9 +113,9 @@ export function ListView<T>({ rows, keyOf, text, facets = [], sorts = [], render
       </FilterLayout>
       {pages > 1 ? (
         <Stack direction="row" gap={2} align="center">
-          <Button size="sm" variant="outline" disabled={cur === 0} onClick={() => setPage(cur - 1)}>Previous</Button>
+          <Button variant="glass" disabled={cur === 0} onClick={() => setPage(cur - 1)}>Previous</Button>
           <Text as="span" size="xs" intent="muted">Page {cur + 1} of {pages}</Text>
-          <Button size="sm" variant="outline" disabled={cur >= pages - 1} onClick={() => setPage(cur + 1)}>Next</Button>
+          <Button variant="glass" disabled={cur >= pages - 1} onClick={() => setPage(cur + 1)}>Next</Button>
         </Stack>
       ) : null}
     </Stack>

@@ -131,7 +131,7 @@ export const FileBrowser: React.FC<FileBrowserProps> = ({
         </Stack>
         <Stack direction="row" gap={2} align="center">
           <input ref={inputRef} className={styles.fileInput} type="file" accept={accept} multiple={multiple} onChange={onInputChange} />
-          <Button variant="primary" size="sm" icon={<Upload size={15} />} onClick={chooseFiles}>Import files</Button>
+          <Button variant="glass" icon={<Upload size={15} />} onClick={chooseFiles}>Import files</Button>
         </Stack>
       </Stack>
 
@@ -145,8 +145,8 @@ export const FileBrowser: React.FC<FileBrowserProps> = ({
           onChange={(event) => setQuery(event.target.value)}
         />
         <Stack direction="row" gap={1} className={styles.viewToggle}>
-          <Button variant={view === 'grid' ? 'primary' : 'ghost'} size="sm" aria-label="Grid view" onClick={() => setView('grid')} icon={<Grid2X2 size={15} />} />
-          <Button variant={view === 'list' ? 'primary' : 'ghost'} size="sm" aria-label="List view" onClick={() => setView('list')} icon={<List size={15} />} />
+          <Button variant="glass" aria-label="Grid view" onClick={() => setView('grid')} icon={<Grid2X2 size={15} />} />
+          <Button variant="glass" aria-label="List view" onClick={() => setView('list')} icon={<List size={15} />} />
         </Stack>
       </Stack>
 
@@ -164,8 +164,7 @@ export const FileBrowser: React.FC<FileBrowserProps> = ({
             {folders.map((item) => (
               <Button
                 key={item.id}
-                variant={folder === item.id ? 'primary' : 'ghost'}
-                size="sm"
+                variant="glass"
                 fullWidth
                 className={styles.folderButton}
                 onClick={() => setFolder(item.id)}
@@ -185,7 +184,7 @@ export const FileBrowser: React.FC<FileBrowserProps> = ({
             <Stack align="center" justify="center" className={styles.empty}>
               <FileIcon size={28} />
               <Text intent="secondary">No files match this view.</Text>
-              <Button variant="outline" size="sm" onClick={chooseFiles}>Choose files</Button>
+              <Button variant="glass" onClick={chooseFiles}>Choose files</Button>
             </Stack>
           ) : (
             visibleFiles.map((file) => (

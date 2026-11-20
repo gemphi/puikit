@@ -98,8 +98,7 @@ export const EditorialItem: React.FC<EditorialItemProps> = ({
           {ctaLabel && (
             <Stack direction="row">
               <Button
-                variant={isFeature ? 'primary' : 'outline'}
-                size="sm"
+                variant="glass"
                 onClick={(e) => navigate(e as unknown as React.MouseEvent)}
               >
                 {ctaLabel}

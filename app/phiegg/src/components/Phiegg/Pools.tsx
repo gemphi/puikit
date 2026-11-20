@@ -55,11 +55,11 @@ export const LotCard: React.FC<{ lot: PoolLot; now: number }> = ({ lot, now }) =
             <Stack flex="1" minWidth="0"><ProgressBar value={q.high ? u.usd / q.high : 0} color={itemOf('shade', u.itemId)?.hex ?? showLookOf(u.itemId)?.look.hex} animate={false} /></Stack>
             <Text size="xs" truncate flex="0 1 9rem" minWidth="0">{itemName(u.itemId)}</Text>
             <Text size="xs" weight="bold" numeric align="right" width="5rem">{usd(u.usd)}</Text>
-            {lot.kind === 'drop' && <Button size="sm" variant="ghost" disabled={w.usd < u.usd || q.remaining <= 0} onClick={() => buy(q.units.indexOf(u))}>{t('plBuyUnit')}</Button>}
+            {lot.kind === 'drop' && <Button variant="glass" disabled={w.usd < u.usd || q.remaining <= 0} onClick={() => buy(q.units.indexOf(u))}>{t('plBuyUnit')}</Button>}
           </Stack>))}
-        {q.units.length > shown.length && <Button size="sm" variant="ghost" onClick={() => setAll(true)}>{t('plMore', { n: q.units.length - shown.length })}</Button>}
+        {q.units.length > shown.length && <Button variant="glass" onClick={() => setAll(true)}>{t('plMore', { n: q.units.length - shown.length })}</Button>}
       </Stack>
-      {lot.kind === 'pack' && <Button variant="primary" disabled={w.usd < q.total || q.remaining <= 0} onClick={() => buy(null)}>{w.usd < q.total ? t('shNoFunds') : t('plBuyPack', { v: usd(q.total) })}</Button>}
+      {lot.kind === 'pack' && <Button variant="glass" disabled={w.usd < q.total || q.remaining <= 0} onClick={() => buy(null)}>{w.usd < q.total ? t('shNoFunds') : t('plBuyPack', { v: usd(q.total) })}</Button>}
     </Stack></CardBody></Card>
   );
 };
@@ -94,15 +94,15 @@ const StatDrawer: React.FC<{ poolId: string; metricId: string }> = ({ poolId, me
   const row = poolStats(pool, now).find((r) => r.metric.id === metricId) as StatRow; const q = statQuest(pool, row); const inQ = !!eco.quests[q.id];
   return (
     <Drawer isOpen onClose={s.close} position="right" size="sm" title={<Stack direction="column" gap={0}><Title level={4} size="md">{m.label}</Title><Text size="xs" intent="muted">{pool.name} · {t('plStatQuest')}</Text></Stack>}
-      footer={inQ ? <Stack direction="row" gap={2} align="center"><Tag round intent="success">{t('plJoined')}</Tag><Button variant="ghost" onClick={() => leaveQuest(q.id)}>{t('qLeave')}</Button></Stack>
-        : <Button variant="primary" onClick={() => { enterQuest(q.id); s.flash(t('joined_', { name: q.title })); }}>{t('plEnter')}</Button>}>
+      footer={inQ ? <Stack direction="row" gap={2} align="center"><Tag round intent="success">{t('plJoined')}</Tag><Button variant="glass" onClick={() => leaveQuest(q.id)}>{t('qLeave')}</Button></Stack>
+        : <Button variant="glass" onClick={() => { enterQuest(q.id); s.flash(t('joined_', { name: q.title })); }}>{t('plEnter')}</Button>}>
       <Stack direction="column" gap={3}>
         <Title level={2} size="xl">{row.text}</Title>
         <Text intent="secondary">{m.hint}</Text>
         <Text weight="bold">{q.title}</Text>
         <ProgressBar value={row.progress} />
         <Stack direction="row" gap={1} wrap><Tag round minimal>{t('reward', { n: q.reward, coin: q.rewardCoin })}</Tag>{q.endsAt && <Tag round minimal>{t('plEnds', { date: q.endsAt.slice(5, 10) })}</Tag>}</Stack>
-        <Button variant="outline" onClick={() => s.go('pool', { poolId: pool.id })}>{t('plOpen')}</Button>
+        <Button variant="glass" onClick={() => s.go('pool', { poolId: pool.id })}>{t('plOpen')}</Button>
       </Stack>
     </Drawer>
   );
@@ -122,7 +122,7 @@ const SwapDrawer: React.FC<{ giveId: string; getId?: string }> = ({ giveId, getI
     <Drawer isOpen onClose={s.close} position="right" size="md" title={<Stack direction="row" gap={2} align="center"><ArrowRightLeft size={18} /><Title level={4} size="md">{t('plSwapTitle', { name: itemName(give) })}</Title></Stack>}
       footer={quoteNow && <Stack direction="column" gap={2}>
         <Text size="sm" weight="bold" role="status" intent={quoteNow.allowed ? undefined : 'danger'}>{msg}</Text>
-        <Button variant="primary" disabled={!quoteNow.allowed} onClick={() => { const r = doSwap(give, get); if (r?.allowed) { s.flash(t('plSwapped', { give: itemName(give), get: itemName(get) })); s.close(); } }}>{t('plConfirmSwap')}</Button></Stack>}>
+        <Button variant="glass" disabled={!quoteNow.allowed} onClick={() => { const r = doSwap(give, get); if (r?.allowed) { s.flash(t('plSwapped', { give: itemName(give), get: itemName(get) })); s.close(); } }}>{t('plConfirmSwap')}</Button></Stack>}>
       <Stack direction="column" gap={3}>
         <Text size="xs" intent="muted">{t('plAllowance', { limit: usd(rules.withdrawLimitUsd), left: usd(quoteNow?.allowanceUsd ?? rules.withdrawLimitUsd) })}</Text>
         <Text size="xs" intent="muted" weight="bold">{t('plGive')}</Text>
@@ -152,7 +152,7 @@ export const PoolQuestCard: React.FC<{ pool: Pool }> = ({ pool }) => {
   return (
     <Card depth={2}><CardBody><Stack direction="column" gap={2}>
       <Stack direction="row" justify="between" align="center" gap={2}><Stack direction="column" gap={0}><Text size="xs" intent="muted" weight="bold">{t('plQuest')}</Text><Title level={4} size="md">{pq.title}</Title></Stack>
-        {inQ ? <Tag round intent="success">{t('plJoined')}</Tag> : <Button variant="primary" size="sm" onClick={() => { enterQuest(pq.id); s.flash(t('joined_', { name: pq.title })); }}>{t('plEnter')}</Button>}</Stack>
+        {inQ ? <Tag round intent="success">{t('plJoined')}</Tag> : <Button variant="glass" onClick={() => { enterQuest(pq.id); s.flash(t('joined_', { name: pq.title })); }}>{t('plEnter')}</Button>}</Stack>
       <Text size="sm" intent="secondary">{t('plQuestHas', { m: pq.metricIds.length, q: pq.metricIds.length + pq.questIds.length, c: pq.coinIds.length })} · {t('reward', { n: pq.reward, coin: pq.rewardCoin })} · {t('entrants', { n: fmt(pq.entrants + (inQ ? 1 : 0)) })}</Text>
       <Stack direction="row" gap={1} wrap>{pq.coinIds.map((id) => { const c = itemOf('coin', id); return c ? <Tag key={id} round minimal intent="primary">{c.symbol} · ${c.price}</Tag> : null; })}</Stack>
     </Stack></CardBody></Card>

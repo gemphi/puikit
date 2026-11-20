@@ -80,7 +80,7 @@ const ThemeEditor: React.FC<{ look: ShopLook }> = ({ look }) => {
       <Stack direction="row" gap={1} wrap>{[...new Set([...vocab, ...kinds])].map((k) => <Tag key={k} interactive round size="sm" minimal={!kinds.includes(k)} intent={kinds.includes(k) ? 'primary' : undefined} onClick={() => toggle(k)}>{k}</Tag>)}</Stack>
       <Stack direction="row" gap={2} align="center"><Input value={draft} placeholder={t('spThemeAdd')} aria-label={t('spThemeAdd')} onChange={(e) => setDraft(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && add()} />
         <Input value={mood} placeholder={t('spThemeMood')} aria-label={t('spThemeMood')} onChange={(e) => setMood(e.target.value)} /></Stack>
-      <Stack direction="row" gap={2} align="center"><Button size="sm" variant="primary" onClick={save}>{t('spThemeSave')}</Button>{msg && <Text size="xs" role="status" intent="muted">{msg}</Text>}</Stack>
+      <Stack direction="row" gap={2} align="center"><Button variant="glass" onClick={save}>{t('spThemeSave')}</Button>{msg && <Text size="xs" role="status" intent="muted">{msg}</Text>}</Stack>
     </Stack></CardBody></Card>
   );
 };

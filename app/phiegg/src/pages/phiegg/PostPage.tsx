@@ -85,7 +85,7 @@ export const PostPage: React.FC = () => {
         <Pinned worldId={post.worldId} cityId={post.cityId} />
         <Text size="md">{post.caption} <Text as="span" intent="secondary">{post.tags.join(' ')}</Text></Text>
         <Box className={styles.acts}>{acts.map((a) => (
-          <Button key={a.id} variant="glass" size="sm" icon={a.icon} aria-label={a.label} title={a.label} aria-pressed={a.active} onClick={a.onClick}>{a.count}</Button>))}</Box>
+          <Button key={a.id} variant="glass" icon={a.icon} aria-label={a.label} title={a.label} aria-pressed={a.active} onClick={a.onClick}>{a.count}</Button>))}</Box>
       </Stack>) },
     { id: 'chat', title: t('chat'), hint: fmt(count), content: <PostComments postId={post.id} slide={slide} /> },
     { id: 'related', title: t('asLinked'), content: <Connected kind="post" id={post.id} bare /> },

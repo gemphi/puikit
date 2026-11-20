@@ -61,8 +61,8 @@ const SOURCES: Record<string, Source<DropRow> | Source<Club> | Source<Ev>> = {
           badges={<Tag round size="sm">{(site.clubStatus as Record<string, string>)[c.status]}</Tag>} />
         <Text size="xs" intent="muted">{fmt(c.holders)} {t('holders')}{c.floor ? ' · ' + c.floor + ' ETH ' + t('floor') : ''}</Text>
         <Stack direction="row" gap={2}>
-          <Button size="sm" variant={s.follow[c.id] ? 'secondary' : 'primary'} onClick={() => s.toggle('follow', c.id)}>{s.follow[c.id] ? t('following') : t('follow')}</Button>
-          <Button size="sm" variant="outline" onClick={() => s.go('club', { clubId: c.id })}>{t('view')}</Button>
+          <Button variant="glass" onClick={() => s.toggle('follow', c.id)}>{s.follow[c.id] ? t('following') : t('follow')}</Button>
+          <Button variant="glass" onClick={() => s.go('club', { clubId: c.id })}>{t('view')}</Button>
         </Stack>
       </Stack></CardBody></Card>),
     clubOf: (r) => r.id, prompts: () => [t('lsAskClub'), t('lsAskPerks'), t('lsAskNew')],
@@ -81,7 +81,7 @@ const SOURCES: Record<string, Source<DropRow> | Source<Club> | Source<Ev>> = {
       <Card depth={2}><CardBody><Stack direction="column" gap={2}>
         <Tile tone={club?.tone ?? 'accent'} ratio="16/10" depth={{ clubId: e.clubId, worldId: e.worldId }} title={e.title} sub={itemOf('world', e.worldId)?.name} badges={<Tag round size="sm">{e.kind}{e.genre ? ' · ' + e.genre : ''}</Tag>} />
         <Text size="xs" intent="muted">{e.startsAt.slice(0, 10)} · {fmt(e.rsvps + (going ? 1 : 0))} RSVPs</Text>
-        <Button size="sm" variant={going ? 'secondary' : 'primary'} onClick={() => s.toggle('rsvp', e.id)}>{going ? t('going') : t('rsvp')}</Button>
+        <Button variant="glass" onClick={() => s.toggle('rsvp', e.id)}>{going ? t('going') : t('rsvp')}</Button>
       </Stack></CardBody></Card>); },
     clubOf: (r) => r.clubId, prompts: () => [t('lsAskEvent'), t('lsAskTonight'), t('lsAskWear')],
   } as Source<Ev>,

@@ -39,7 +39,6 @@ export const PortalSidebar: React.FC<PortalSidebarProps> = ({
           {onToggleSidebar && (
             <Button
               variant="icon"
-              size="sm"
               onClick={onToggleSidebar}
               aria-label="Collapse sidebar"
               iconLeft={PanelLeftClose}

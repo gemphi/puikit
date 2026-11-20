@@ -73,7 +73,7 @@ export const WelcomePage: React.FC = () => {
       {bg && <Backdrop><Image key={bg} className={styles.ground} src={bg} alt="" /></Backdrop>}
       <Showcase slides={slides} auto={L.stage.auto} picker={false} onChange={(x) => setBg(x.src)} labels={{ prev: t('slPrev'), next: t('slNext'), picker: L.rows.worlds }}
         actions={(x) => <>
-          {cities.some((w) => w.id === x.id) && <Button variant="primary" onClick={() => s.go('world', { worldId: x.id })}>{fill(L.stage.enter, { name: String(x.title) })}</Button>}
+          {cities.some((w) => w.id === x.id) && <Button variant="glass" onClick={() => s.go('world', { worldId: x.id })}>{fill(L.stage.enter, { name: String(x.title) })}</Button>}
           <Button variant="glass" onClick={() => s.go('feed', { feedKind: 'all' })}>{L.hero.primary}</Button>
           <Button variant="glass" onClick={() => s.openSignIn()}>{t('hdSignIn')}</Button>
         </>} />
@@ -100,14 +100,14 @@ export const WelcomePage: React.FC = () => {
         <Title level={2} className={styles.after}>{L.step.after}</Title>
         <Box className={styles.stepFoot}>
           <Text as="p" className={styles.lede}>{L.step.body}</Text>
-          <Button variant="primary" onClick={() => s.go('worlds')}>{L.step.cta}</Button>
+          <Button variant="glass" onClick={() => s.go('worlds')}>{L.step.cta}</Button>
         </Box>
       </Box>
 
       {/* The tour: one part at a time on its own stage, a finished city picture whole behind its words. */}
       <Showcase height="min(36rem, 72vh)" auto={L.stage.auto} picker={false} labels={{ prev: t('slPrev'), next: t('slNext'), picker: L.rows.compare }}
         slides={L.tour.map((x) => ({ id: x.tab, src: mediaUrl(x.image), title: x.title, sub: x.body }))}
-        actions={(x) => { const f = L.tour.find((y) => y.tab === x.id)!; return <Button variant="primary" onClick={() => s.go(f.tab as Tab)}>{f.cta}</Button>; }} />
+        actions={(x) => { const f = L.tour.find((y) => y.tab === x.id)!; return <Button variant="glass" onClick={() => s.go(f.tab as Tab)}>{f.cta}</Button>; }} />
 
       {/* Every slider on Home is the same cascade: the middle card the largest, one smaller each side, the next two as thin edges. */}
       <PageSections variant="band" id="welcome-rows" sections={[
@@ -126,7 +126,7 @@ export const WelcomePage: React.FC = () => {
 
       {close && <Showcase height="min(34rem, 70vh)" auto={0} slides={[{ id: close.id, src: view(close, 'lg')!, thumb: view(close, 'sm'), title: L.cta.title, sub: L.cta.body, mark: worldMark(close) }]}
         actions={() => <>
-          <Button variant="primary" onClick={() => s.go('phipad')}>{L.cta.primary}</Button>
+          <Button variant="glass" onClick={() => s.go('phipad')}>{L.cta.primary}</Button>
           <Button variant="glass" onClick={() => s.go('join')}>{L.cta.secondary}</Button>
         </>} />}
     </Box>

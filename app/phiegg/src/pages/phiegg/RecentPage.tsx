@@ -38,7 +38,7 @@ export const RecentPage: React.FC = () => {
     <Page><Stack direction="column" gap={4}>
       <Stack direction="row" justify="between" align="end" wrap gap={2}>
         <Stack direction="column" gap={1}><Title level={2} size="xl">{t('rcTitle')}</Title><Text intent="secondary">{t('rcSub')}</Text></Stack>
-        <Button variant="ghost" size="sm" disabled={!s.hist.length} onClick={() => phieggStore.setState({ hist: [] })}>{t('rcClear')}</Button>
+        <Button variant="glass" disabled={!s.hist.length} onClick={() => phieggStore.setState({ hist: [] })}>{t('rcClear')}</Button>
       </Stack>
       {!visits.length && <Stack direction="column" gap={2}>
         <Text intent="muted">{t('rcEmpty')}</Text>
@@ -54,9 +54,9 @@ export const RecentPage: React.FC = () => {
           <Card depth={2} onClick={() => s.go(x.tab, x.p as Record<string, string>)}><CardBody><Tile tone={x.tone} ratio="16/9" title={x.title} sub={x.kind || undefined} /></CardBody></Card>)} />}
       <Stack direction="column" gap={1}><Title level={4} size="md">{t('rcActivity')}</Title><Text size="sm" intent="muted">{t('rcActivitySub')}</Text></Stack>
       {!activity.length && <Stack direction="row" gap={2} wrap>
-        <Button variant="outline" size="sm" onClick={() => s.go('shop')}>{t('rcGoShop')}</Button>
-        <Button variant="outline" size="sm" onClick={() => s.go('quests')}>{t('rcGoQuests')}</Button>
-        <Button variant="outline" size="sm" onClick={() => s.go('events')}>{t('rcGoEvents')}</Button></Stack>}
+        <Button variant="glass" onClick={() => s.go('shop')}>{t('rcGoShop')}</Button>
+        <Button variant="glass" onClick={() => s.go('quests')}>{t('rcGoQuests')}</Button>
+        <Button variant="glass" onClick={() => s.go('events')}>{t('rcGoEvents')}</Button></Stack>}
       {activity.length > 0 && <ListView<ActivityEvent> rows={activity} keyOf={(e) => e.id} text={(e) => evLabel(e.kind) + ' ' + refName(e) + ' ' + (e.note ?? '')}
         facets={[{ id: 'kind', label: t('isEvent'), get: (e) => evLabel(e.kind) }, { id: 'ref', label: t('lsColKind'), get: (e) => e.refKind }]}
         sorts={[{ id: 'new', label: t('lsSortRecent'), by: (a, b) => b.at - a.at }, { id: 'usd', label: t('lsSortPrice'), by: (a, b) => (b.usd ?? 0) - (a.usd ?? 0) }]}
@@ -67,7 +67,7 @@ export const RecentPage: React.FC = () => {
           <Text size="sm" weight="bold">{refName(e)}</Text><Text size="xs" intent="muted">{new Date(e.at).toLocaleString()}{e.usd ? ' · ' + usd(Math.abs(e.usd)) : ''}</Text></Stack></CardBody></Card>} />}
       <Title level={4} size="md">{t('rcChats')}</Title>
       <Stack direction="column" gap={1}>{D.messages.conversations.map((c) => (
-        <Button key={c.id} variant="ghost" onClick={() => s.go('messages')} align="start" tall>
+        <Button key={c.id} variant="glass" onClick={() => s.go('messages')} align="start" tall>
           <Stack direction="row" gap={2} align="center"><Avatar initials={initials(c.title)} size="sm" />
             <Stack direction="column" gap={0} align="start"><Text size="sm" weight="bold">{c.title}</Text><Text size="xs" intent="muted">{c.last}</Text></Stack>
             {c.unread > 0 && <Tag round size="sm" intent="primary">{c.unread}</Tag>}</Stack>

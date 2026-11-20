@@ -46,14 +46,14 @@ export const useCityParts = (w: World): SectionDef[] => {
           <StatGrid size="sm" items={facts.map(([label, value]) => ({ label, value }))} />
           {w.tags?.length ? <Stack direction="row" gap={1} wrap>{w.tags.map((x) => <Tag key={x} minimal round size="sm">{x}</Tag>)}</Stack> : null}
         </Stack>) },
-      { id: 'zones', title: t('wdCities'), hint: String(w.cities.length), expandable: true, actions: <Button size="sm" variant="ghost" iconLeft={Plus} onClick={() => s.openNest(hostId, nest?.id ?? null, 'city')}>{t('nestCity')}</Button>, content: (
+      { id: 'zones', title: t('wdCities'), hint: String(w.cities.length), expandable: true, actions: <Button variant="glass" iconLeft={Plus} onClick={() => s.openNest(hostId, nest?.id ?? null, 'city')}>{t('nestCity')}</Button>, content: (
         // A world has a handful of zones: one readable row each, whatever the app's list mode (a slider of three is no list).
         <Stack direction="column" gap={2}>{w.cities.map((c) => (
           <ItemCard key={c.id} variant="flat" stackBelow="never" onClick={() => s.go('city', { cityId: c.id, worldId: w.id })}
             media={mark ? <Avatar size="lg" src={mark} fit="contain" alt={c.name} colors={entityPalette(w.id)} /> : <EntityAvatar id={c.id} name={c.name} size="lg" />}
             title={<Title level={4} size="md">{c.name}</Title>}
             meta={placesReady ? t('wdZoneLine', { vibe: c.vibe, n: fmt(c.population), places: placesIn(c) }) : t('wdCityCard', { vibe: c.vibe, n: fmt(c.population) })}
-            actions={<Button size="sm" variant="outline" onClick={() => s.go('city', { cityId: c.id, worldId: w.id })}>{t('visit')}</Button>} />))}
+            actions={<Button variant="glass" onClick={() => s.go('city', { cityId: c.id, worldId: w.id })}>{t('visit')}</Button>} />))}
         </Stack>) },
       { id: 'posts', title: t('wdPosts'), hint: String(posts.length), expandable: true, content: posts.length
         ? <Rows cols={3} colsSm={2} minItemWidth="9rem">{posts.slice(0, 12).map((p) => <Tile key={p.id} {...postTile(p)} ratio="4/5" title={p.slides[0].title} sub={person(p.authorId).name} onClick={() => s.openPost(p.id)} />)}</Rows>

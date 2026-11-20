@@ -90,15 +90,20 @@ export const AppShell: React.FC<AppShellProps> = ({
   const lastRail = React.useRef(rail);
   React.useEffect(() => { if (rail !== undefined && rail !== lastRail.current) setOpen(true); lastRail.current = rail; }, [rail]);
 
-  // A new collapseKey (a record opened full width) folds the panel and the drawer away.
-  const lastKey = React.useRef(collapseKey);
-  React.useEffect(() => { if (collapseKey && collapseKey !== lastKey.current) { setOpen(false); setDrawer(false); } lastKey.current = collapseKey; }, [collapseKey]); // eslint-disable-line react-hooks/exhaustive-deps
+  // A new collapseKey (the app names the page that is open: a new page, a new record) folds both sidebars and the
+  // drawer away, so a page always opens with the room to itself. A rail icon that opens its own menu as it goes to
+  // its page keeps that menu open (the person just asked for it).
+  const lastKey = React.useRef(collapseKey); const keep = React.useRef(false);
+  React.useEffect(() => {
+    if (collapseKey && collapseKey !== lastKey.current) { if (!keep.current) setOpen(false); setSideRail(''); setDrawer(false); }
+    keep.current = false; lastKey.current = collapseKey;
+  }, [collapseKey]); // eslint-disable-line react-hooks/exhaustive-deps
   const go = (id: string) => { onView(id); setDrawer(false); };
   // The current icon closes its open panel. Otherwise a leaf group navigates, a group opens its menu (and goes to its
   // own page when it has one).
   const pick = (g: AppShellGroup) => {
     if (g.id === railId && open && !leafOf(g)) { setOpen(false); return; }
-    const leaf = leafOf(g); if (leaf) go(leaf.id); else { if (g.to) go(g.to); setOpen(true); }
+    const leaf = leafOf(g); if (leaf) go(leaf.id); else { if (g.to) { keep.current = true; go(g.to); } setOpen(true); }
     setRail(g.id);
   };
   // The right sidebar keeps its own open menu: closed (icons only) until one is picked, and again on the same icon.

@@ -98,7 +98,7 @@ export const RelationList = ({ title, groups, max = 3, layout = 'grid', showAllL
         const all = !!open[g.id]; const how = shape[g.id] ?? g.layout ?? layout;
         const items = how === 'slider' || all ? g.items : g.items.slice(0, max);
         const pick = (to: RelationLayout, I: typeof LayoutGrid, label: string) => (
-          <Button variant="icon" size="sm" aria-label={label} title={label} aria-pressed={how === to} onClick={() => setShape({ ...shape, [g.id]: to })}><I size={16} /></Button>
+          <Button variant="icon" aria-label={label} title={label} aria-pressed={how === to} onClick={() => setShape({ ...shape, [g.id]: to })}><I size={16} /></Button>
         );
         return (
           <Box key={g.id} className={styles.group}>
@@ -110,7 +110,7 @@ export const RelationList = ({ title, groups, max = 3, layout = 'grid', showAllL
               </Box>
               <Box as="span" className={styles.tools}>
                 {g.items.length > 3 && <>{pick('grid', LayoutGrid, labels.grid ?? 'Grid')}{pick('slider', GalleryHorizontal, labels.slider ?? 'Slider')}</>}
-                {how === 'grid' && g.items.length > max && <Button size="sm" variant="ghost" aria-expanded={all} onClick={() => setOpen({ ...open, [g.id]: !all })}>{all ? showLessLabel : showAllLabel(g.items.length)}</Button>}
+                {how === 'grid' && g.items.length > max && <Button variant="glass" aria-expanded={all} onClick={() => setOpen({ ...open, [g.id]: !all })}>{all ? showLessLabel : showAllLabel(g.items.length)}</Button>}
               </Box>
             </Box>
             <Box className={how === 'slider' ? styles.slider : styles.grid} style={g.ratio ? ({ '--pui-rel-ratio': g.ratio } as React.CSSProperties) : undefined}>{items.map((it) => <Item key={g.id + ':' + it.id} it={it} />)}</Box>

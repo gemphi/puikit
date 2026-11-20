@@ -28,7 +28,7 @@ export const facetCols = (labels: string[]): 1 | 2 | 3 => { const n = Math.max(0
 
 /** One accordion group: a header (label, the current choice, a chevron) over an equal-width grid of options. */
 const Group = ({ id, label, current, open, onToggle, cols, children }: { id: string; label: string; current?: string; open: boolean; onToggle: () => void; cols: number; children: React.ReactNode }) => (
-  <Box className={cn(styles.group, open && styles.open)} role="group" aria-label={label}>
+  <Box className={cn(styles.group, 'phi-region', open && styles.open)} role="group" aria-label={label}>
     <Box as="button" className={styles.head} aria-expanded={open} aria-controls={'facet-' + id} onClick={onToggle}>
       <Text as="span" size="xs" weight="bold">{label}</Text>
       {current && <Text as="span" size="xs" intent="primary" className={styles.current}>{current}</Text>}

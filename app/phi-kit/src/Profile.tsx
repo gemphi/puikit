@@ -104,7 +104,7 @@ const SectionView: React.FC<{ s: ProfileSection; mine: Mine; onOpen: (it: GridIt
     <Stack as="section" direction="column" gap={2}>
       <Stack direction="row" gap={2} align="center" justify="between" wrap>
         <Stack direction="row" gap={2} align="center"><Title level={2} size="lg">{s.title}</Title><Tag minimal round size="sm">{mine.loaded ? rows.length : '…'}</Tag></Stack>
-        {s.action ? <Button variant="outline" size="sm" href={(s.action.app ? appUrl(s.action.app) : '') + '#/' + s.action.view}>{s.action.label}</Button> : null}
+        {s.action ? <Button variant="glass" href={(s.action.app ? appUrl(s.action.app) : '') + '#/' + s.action.view}>{s.action.label}</Button> : null}
       </Stack>
       {rows.length
         ? <Block b={{ kind: 'table', cols: s.cols ?? s.fields.map(human), rows: rows.map((r) => s.fields.map((f) => when(r[f]))), routes: rows.map((r) => '#/' + s.kind + '/' + r.id) }} onOpen={onOpen} />

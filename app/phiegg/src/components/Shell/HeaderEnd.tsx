@@ -23,10 +23,10 @@ export const HeaderEnd: React.FC = () => {
   const tool: Record<string, () => React.ReactNode> = {
     // Search is an icon and a row of its own on a phone.
     search: () => (mobile
-      ? <Button variant="ghost" size="sm" aria-label={t('hdSearch')} aria-expanded={searching} onClick={() => setSearching(!searching)} icon={<Icon icon={searching ? X : SearchIcon} size="xs" />} />
+      ? <Button variant="glass" aria-label={t('hdSearch')} aria-expanded={searching} onClick={() => setSearching(!searching)} icon={<Icon icon={searching ? X : SearchIcon} size="xs" />} />
       : <Box className={styles.searchSlot}><SearchBox /></Box>),
-    phipad: () => <Button variant="primary" size="sm" aria-label={site.brand.sub} onClick={() => s.go('phipad')} icon={<PhipadMark size="1rem" />}>{compact ? undefined : site.brand.sub}</Button>,
-    cart: () => <Button variant="primary" size="sm" aria-label={t('shCart', { n: cart.length })} onClick={s.openCart} icon={<Icon icon={ShoppingBag} size="xs" />}>{compact ? undefined : t('shCart', { n: cart.length })}</Button>,
+    phipad: () => <Button variant="glass" aria-label={site.brand.sub} onClick={() => s.go('phipad')} icon={<PhipadMark size="1rem" />}>{compact ? undefined : site.brand.sub}</Button>,
+    cart: () => <Button variant="glass" aria-label={t('shCart', { n: cart.length })} onClick={s.openCart} icon={<Icon icon={ShoppingBag} size="xs" />}>{compact ? undefined : t('shCart', { n: cart.length })}</Button>,
     // The account drawer is the shared one (phi-kit), the same in every app; Phiegg only says where its profile is.
     account: () => <AccountDrawer onProfile={() => s.go('profile', { profileId: me().id })} onLook={setLook} />,
   };

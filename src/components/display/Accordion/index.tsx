@@ -19,7 +19,7 @@ type AccordionItemProps = {
 
 export const AccordionItem = ({ title, open, onToggle, children }: AccordionItemProps) => {
   return (
-    <Stack direction="column" className={styles.item}>
+    <Stack direction="column" className={styles.item + ' phi-region'}>
       <Row
         align="center"
         justify="between"

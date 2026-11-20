@@ -36,12 +36,12 @@
   position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); display: inline-flex; align-items: center; gap: 0.125rem;
   padding: 0.125rem; border-radius: var(--phi-radius-full); opacity: 0; pointer-events: none; transition: opacity var(--phi-transition-fast);
   /* Light glass, never a dark pill: the page's light from the left fading to nothing, over a blur. */
-  background: var(--phi-label); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur);
+  background: var(--phi-control-ground); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur);
 }
 .section:hover > .head > .tools, .section:focus-within > .head > .tools { display: inline-flex; }
 /* A head's buttons are icons alone, with no ground of their own: only standalone buttons and tabs wear one. */
 .head button { background: none !important; box-shadow: none; }
-.head button:hover { background-image: var(--phi-label) !important; }
+.head button:hover { background-image: var(--phi-control-ground-strong) !important; }
 @media (hover: none) { .tools { display: inline-flex; } }
 /* The heading: its icon in the label's chip (tokens.scss .pui-label-icon), its words on nothing; the tools keep the
    header's far end. */
@@ -77,7 +77,7 @@
 .layout { position: relative; display: inline-flex; flex: none; }
 .layoutMenu {
   position: absolute; top: 100%; right: 0; z-index: 6; display: none; gap: var(--phi-space-1); padding: var(--phi-space-1);
-  border-radius: var(--phi-radius-md); background: var(--phi-label);
+  border-radius: var(--phi-radius-md); background: var(--phi-control-ground);
   backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur); white-space: nowrap;
   > button { display: inline-flex; align-items: center; gap: var(--phi-space-1); }
 }

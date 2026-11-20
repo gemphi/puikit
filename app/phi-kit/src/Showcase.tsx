@@ -74,7 +74,7 @@ export const FeatureShowcase: React.FC<{
                   ))}
                 </Stack>
               ) : null}
-              {f.cta ? <Box><Button variant="primary" onClick={f.cta.onClick} href={f.cta.href}>{f.cta.label}</Button></Box> : null}
+              {f.cta ? <Box><Button variant="glass" onClick={f.cta.onClick} href={f.cta.href}>{f.cta.label}</Button></Box> : null}
             </Stack>
           );
           // Alternate which side the screenshot sits on; on narrow widths the row wraps to a column (media first).

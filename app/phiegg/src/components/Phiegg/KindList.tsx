@@ -119,7 +119,7 @@ const KindSlider: React.FC<{ kind: string; rows: ItemRow[]; label: string }> = (
   const glyph = stage.icon ? (Glyph as unknown as Record<string, Glyph.LucideIcon>)[stage.icon] : undefined;
   return (
     <StageSlider aria-label={label} index={i} onIndexChange={setI} prevLabel={t('slPrev')} nextLabel={t('slNext')} positionLabel={(k, n) => t('slPos', { i: k, n })}
-      footer={stage.action ? <Button variant="primary" size="sm" iconLeft={glyph} onClick={() => open(cur)}>{t(stage.action as SiteCopyKey)}</Button> : undefined}
+      footer={stage.action ? <Button variant="glass" iconLeft={glyph} onClick={() => open(cur)}>{t(stage.action as SiteCopyKey)}</Button> : undefined}
       items={rows.map((r) => ({ id: r.id, label: titleOf(kind, r), node: <Layout kind={kind} row={r} decl={card} open={() => open(r)} /> }))} />
   );
 };

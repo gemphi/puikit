@@ -109,10 +109,10 @@ export const PreferencesModal: React.FC<PreferencesModalProps> = ({
 
   const footer = (
     <Stack direction="row" gap={2} justify="end">
-      <Button variant="outline" size="sm" onClick={reset}>
+      <Button variant="glass" onClick={reset}>
         Reset to defaults
       </Button>
-      <Button variant="primary" size="sm" onClick={onClose}>
+      <Button variant="glass" onClick={onClose}>
         Done
       </Button>
     </Stack>

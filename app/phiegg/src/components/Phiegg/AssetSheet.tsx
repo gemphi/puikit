@@ -87,8 +87,8 @@ export const AssetSheet: React.FC<{ id: string }> = ({ id }) => {
         <Stack direction="column" gap={2}>
           {mine && <Tag intent="success" round>{t('asHeld')} · {m ? t('asHolding', { n: fmt(mine.egg), date: new Date(mine.at).toISOString().slice(0, 10) }) + ' · +' + egg(sumYield(mine, m.apy, now)) : '×' + mine.qty}</Tag>}
           {m ? <Stack direction="row" gap={2} align="center"><Input inputMode="numeric" value={amt} aria-label={t('asMin')} onChange={(ev) => setAmt(ev.target.value.replace(/[^0-9]/g, ''))} />
-              <Button variant="primary" disabled={w.egg < Number(amt)} onClick={put}>{t('asDeposit', { v: egg(Number(amt) || 0) })}</Button></Stack>
-            : <Button variant="primary" disabled={w.egg < priceEgg || (!!j && !!j.holderId)} onClick={buy}>{w.egg < priceEgg ? t('asNoEgg') : c && c.mode !== 'sale' ? t(c.mode === 'fun' ? 'rdBook' : 'rdHire', { v: egg(priceEgg) }) : t('asBuyEgg', { v: egg(priceEgg) })}</Button>}
+              <Button variant="glass" disabled={w.egg < Number(amt)} onClick={put}>{t('asDeposit', { v: egg(Number(amt) || 0) })}</Button></Stack>
+            : <Button variant="glass" disabled={w.egg < priceEgg || (!!j && !!j.holderId)} onClick={buy}>{w.egg < priceEgg ? t('asNoEgg') : c && c.mode !== 'sale' ? t(c.mode === 'fun' ? 'rdBook' : 'rdHire', { v: egg(priceEgg) }) : t('asBuyEgg', { v: egg(priceEgg) })}</Button>}
           {msg && <Text size="sm" role="status">{msg}</Text>}
         </Stack>) },
       { id: 'details', title: t('asFacts'), expandable: true, content: <Facts rows={rows} /> },

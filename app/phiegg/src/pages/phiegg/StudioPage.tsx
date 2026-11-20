@@ -95,10 +95,10 @@ export const StudioPage: React.FC = () => {
               { id: 't', k: t('stTotal'), v: usd(value.total), n: value.total }, { id: 's', k: t('stSum'), v: usd(value.yearly), n: value.yearly }]} getKey={(r) => r.id}
               columns={[{ id: 'k', header: t('isField'), cell: (r) => r.k }, { id: 'v', header: t('isValue'), cell: (r) => <Text as="span" size="sm" weight="bold" numeric>{r.v}</Text>, align: 'right', sortValue: (r) => r.n }]} />
             <Stack direction="row" gap={2} align="center" wrap>
-              <Button variant="primary" onClick={save}>{t('stSave')}</Button>
-              <Button variant="outline" onClick={() => s.openChat(agentId, fill(greeting, names))}>{t('stRun')}</Button>
-              {chosen.sum && itemOf('sum', chosen.sum) && <Button variant="ghost" onClick={() => s.openAsset(chosen.sum)}>{itemOf('sum', chosen.sum)!.name}</Button>}
-              {chosen.gate && <Button variant="ghost" onClick={() => s.openAsset(chosen.gate)}>{nameOf({ id: 'gate', type: 'egg', label: '', hint: '' }, chosen.gate)}</Button>}
+              <Button variant="glass" onClick={save}>{t('stSave')}</Button>
+              <Button variant="glass" onClick={() => s.openChat(agentId, fill(greeting, names))}>{t('stRun')}</Button>
+              {chosen.sum && itemOf('sum', chosen.sum) && <Button variant="glass" onClick={() => s.openAsset(chosen.sum)}>{itemOf('sum', chosen.sum)!.name}</Button>}
+              {chosen.gate && <Button variant="glass" onClick={() => s.openAsset(chosen.gate)}>{nameOf({ id: 'gate', type: 'egg', label: '', hint: '' }, chosen.gate)}</Button>}
               {msg && <Text size="sm" role="status">{msg}</Text>}
             </Stack>
           </Stack></CardBody></Card>
@@ -108,7 +108,7 @@ export const StudioPage: React.FC = () => {
             sorts={[{ id: 'new', label: t('lsSortRecent'), by: (a, b) => b.at - a.at }]}
             table={[{ id: 'sc', header: t('stTemplates'), cell: (f) => SC.scenarios.find((x) => x.id === f.scenarioId)?.title ?? f.scenarioId }, { id: 'v', header: t('stVoice'), cell: (f) => f.voice }, { id: 'a', header: t('stAgent'), cell: (f) => person(f.agentId).name }, { id: 'at', header: t('isWhen'), cell: (f) => new Date(f.at).toLocaleString(), sortValue: (f) => f.at }]}
             render={(f) => <ItemCard depth={1} media={<PersonAvatar id={f.agentId} size="md" />} title={SC.scenarios.find((x) => x.id === f.scenarioId)?.title ?? f.scenarioId} meta={`${f.voice} · ${f.audience} · ${person(f.agentId).name}`}
-              actions={<><Button size="sm" variant="primary" onClick={() => s.openChat(f.agentId, f.greeting)}>{t('stRun')}</Button><Button size="sm" variant="ghost" onClick={() => removeFlow(f.id)}>{t('stDelete')}</Button></>}>{f.greeting}</ItemCard>} />
+              actions={<><Button variant="glass" onClick={() => s.openChat(f.agentId, f.greeting)}>{t('stRun')}</Button><Button variant="glass" onClick={() => removeFlow(f.id)}>{t('stDelete')}</Button></>}>{f.greeting}</ItemCard>} />
         </Stack></Col>
       </Grid>
     </Stack></Page>

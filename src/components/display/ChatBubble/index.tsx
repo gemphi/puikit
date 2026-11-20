@@ -59,7 +59,7 @@ export const ChatComposer = ({ onSend, placeholder, sendLabel = 'Send', autoFocu
   const [draft, setDraft] = useState('');
   const send = () => { const text = draft.trim(); if (!text) return; onSend(text); setDraft(''); };
   return (
-    <Box className={cn(styles.composer, className)} data-surface="composer">
+    <Box className={cn(styles.composer, 'phi-region', className)}>
       <Input autoFocus={autoFocus} value={draft} placeholder={placeholder} aria-label={placeholder ?? sendLabel}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDraft(e.target.value)} onKeyDown={(e: React.KeyboardEvent) => e.key === 'Enter' && send()} />
       <Button variant="glass" icon={<Send size={16} />} aria-label={sendLabel} title={sendLabel} onClick={send} />

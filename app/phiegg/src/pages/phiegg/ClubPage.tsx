@@ -26,7 +26,7 @@ const FIRST = (site as unknown as { clubTabsFirst: string[] }).clubTabsFirst;
  */
 /** One action as an icon: its name as its label and tooltip, pressed when on. */
 const act = (I: LucideIcon, label: string, onClick: () => void, on?: boolean) => (
-  <Button key={label} variant="glass" size="sm" icon={<I size={16} fill={on ? 'currentColor' : 'none'} />} aria-label={label} title={label} aria-pressed={on} onClick={onClick} />
+  <Button key={label} variant="glass" icon={<I size={16} fill={on ? 'currentColor' : 'none'} />} aria-label={label} title={label} aria-pressed={on} onClick={onClick} />
 );
 
 export const ClubPage: React.FC = () => {

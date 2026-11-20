@@ -49,11 +49,11 @@ export const MessagesPage: React.FC = () => {
               {inRoom && <Avatar initials={my.initials} size="sm" />}<Text size="xs">{t('listening', { n: v.listeners + (inRoom ? 1 : 0) })}</Text></Stack>
             {inRoom
               ? <Stack direction="row" gap={1} wrap>
-                  <Button size="sm" variant={room.muted ? 'outline' : 'primary'} iconLeft={room.muted ? MicOff : Mic} onClick={() => ROOM.set({ ...room, muted: !room.muted })}>{room.muted ? t('vrUnmute') : t('vrMute')}</Button>
-                  <Button size="sm" variant={room.hand ? 'primary' : 'outline'} iconLeft={Hand} onClick={() => ROOM.set({ ...room, hand: !room.hand })}>{room.hand ? t('vrHandDown') : t('vrHand')}</Button>
-                  <Button size="sm" variant="ghost" onClick={() => { ROOM.set({ id: null, muted: true, hand: false }); s.flash(t('vrLeft', { name: v.title })); }}>{t('vrLeave')}</Button>
+                  <Button variant="glass" iconLeft={room.muted ? MicOff : Mic} onClick={() => ROOM.set({ ...room, muted: !room.muted })}>{room.muted ? t('vrUnmute') : t('vrMute')}</Button>
+                  <Button variant="glass" iconLeft={Hand} onClick={() => ROOM.set({ ...room, hand: !room.hand })}>{room.hand ? t('vrHandDown') : t('vrHand')}</Button>
+                  <Button variant="glass" onClick={() => { ROOM.set({ id: null, muted: true, hand: false }); s.flash(t('vrLeft', { name: v.title })); }}>{t('vrLeave')}</Button>
                 </Stack>
-              : <Button size="sm" variant="primary" onClick={() => { ROOM.set({ id: v.id, muted: true, hand: false }); s.flash(t('joined', { name: v.title })); }}>{t('join')}</Button>}
+              : <Button variant="glass" onClick={() => { ROOM.set({ id: v.id, muted: true, hand: false }); s.flash(t('joined', { name: v.title })); }}>{t('join')}</Button>}
           </Stack></CardBody></Card>); })}</Grid>
         ) }]} />
       </Stack>

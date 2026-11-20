@@ -14,7 +14,7 @@ export const JoinPage: React.FC = () => {
         <Card depth={2} key={h.id}><CardBody><Stack direction="column" gap={2}>
           <Tile animate tone={h.tone} ratio="16/9" title={h.name} sub={itemOf('club', h.clubId)?.name} />
           <Stack direction="row" gap={1} wrap><Tag minimal round size="sm" intent="success">{h.gated}</Tag><Tag minimal round size="sm">{t('online', { n: fmt(h.online) })}</Tag></Stack>
-          <Button variant={s.follow[h.id] ? 'secondary' : 'primary'} size="sm" onClick={() => { s.toggle('follow', h.id); s.flash(t('joined_', { name: h.name })); }}>{s.follow[h.id] ? t('following') : t('join')}</Button>
+          <Button variant="glass" onClick={() => { s.toggle('follow', h.id); s.flash(t('joined_', { name: h.name })); }}>{s.follow[h.id] ? t('following') : t('join')}</Button>
         </Stack></CardBody></Card>))}</Grid>
     </Stack></Page>
   );

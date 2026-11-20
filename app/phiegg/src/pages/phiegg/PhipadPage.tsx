@@ -18,13 +18,13 @@ export const PhipadPage: React.FC = () => {
     <Page>
       <Stack direction="column" gap={4}>
         <Card depth={2} variant="hero"><CardBody><Stack direction="column" gap={2}><Title level={4} size="md">{site.brand.sub}</Title><Title level={1} size="3xl">{P.hero.subtitle}</Title><Text>{P.hero.body}</Text>
-          <Button variant="primary" onClick={() => setOpen(!open)}>{t('submitClub')}</Button></Stack></CardBody></Card>
+          <Button variant="glass" onClick={() => setOpen(!open)}>{t('submitClub')}</Button></Stack></CardBody></Card>
         {open && <Card depth={2}><CardBody><Stack direction="column" gap={3}>
           <TabList size="sm" variant="pills" activeId={route} onChange={(id) => setRoute(id as typeof route)} items={P.routes.map((r) => ({ id: r.id, label: r.title }))} />
           <Input value={name} placeholder={t('clubName')} onChange={(e) => setName(e.target.value)} />
           {route === 'phipad' && <><TabList size="sm" variant="pills" activeId={track} onChange={(id) => setTrack(id as typeof track)} items={P.tracks.map((x) => ({ id: x.id, label: x.name }))} />
             <Input value={ask} placeholder={t('askUsdc')} onChange={(e) => setAsk(e.target.value.replace(/\D/g, ''))} /></>}
-          <Button variant="primary" disabled={!name.trim()} onClick={submit}>{route === 'phipad' ? t('submitPad') : t('submitDirect')}</Button>
+          <Button variant="glass" disabled={!name.trim()} onClick={submit}>{route === 'phipad' ? t('submitPad') : t('submitDirect')}</Button>
         </Stack></CardBody></Card>}
         <Title level={3} size="lg">{t('tracks')}</Title>
         <Grid gap={3} xs={1} sm={2} md={4}>{P.tracks.map((x) => <Tile key={x.id} tone={x.tone} ratio="4/3" title={'$' + fmt(x.pool)} sub={x.name + ' · ' + x.body} />)}</Grid>

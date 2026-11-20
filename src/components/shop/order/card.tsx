@@ -85,7 +85,7 @@ export const OrderCard: React.FC<OrderCardProps> = ({
             <Price amount={total} />
           </Stack>
           {onViewDetails && (
-            <Button variant="ghost" size="sm" iconRight={ArrowRight} onClick={() => onViewDetails(id)}>
+            <Button variant="glass" iconRight={ArrowRight} onClick={() => onViewDetails(id)}>
               Details
             </Button>
           )}

@@ -33,7 +33,7 @@ export const Query: React.FC<{ b: Block }> = ({ b }) => {
     <Stack as="form" direction="column" gap={3} onSubmit={run}>
       {samples.length ? (
         <Stack direction="row" gap={2} wrap>
-          {samples.map((s) => <Button key={s.label} type="button" variant="ghost" size="sm" onClick={() => setBody(JSON.stringify(s.query, null, 2))}>{s.label}</Button>)}
+          {samples.map((s) => <Button key={s.label} type="button" variant="glass" onClick={() => setBody(JSON.stringify(s.query, null, 2))}>{s.label}</Button>)}
         </Stack>
       ) : null}
       <Textarea aria-label="Query" rows={8} value={body} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setBody(e.target.value)} />

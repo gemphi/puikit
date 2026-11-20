@@ -90,18 +90,18 @@ export const ItemSheet: React.FC<{ id: string }> = ({ id }) => {
           <Stack direction="row" gap={2} align="end" wrap><Title level={3} size="lg">{usd(l.usd)}</Title><Text size="sm" intent="muted" numeric>{t('plLive', { v: usd(live.total) })}</Text>
             <Tag minimal round size="sm">{l.rarity}</Tag>{pool && <Tag minimal round size="sm" interactive onClick={() => s.go('pool', { poolId: pool.id })}>{pool.name}</Tag>}</Stack>
           <Text size="xs" intent="muted">{t('shFloorLine', { floor: usd(l.floor), change: (l.change7d > 0 ? '+' : '') + l.change7d, owners: l.owners, minted: l.minted, edition: l.edition })}</Text>
-          {mine[l.id] ? <Stack direction="row" gap={2} align="center"><Tag intent="success" round>{t('shInCollection')}</Tag><Button variant="primary" onClick={() => s.openSwap(l.id)}>{t('plSwap')}</Button></Stack> : (
+          {mine[l.id] ? <Stack direction="row" gap={2} align="center"><Tag intent="success" round>{t('shInCollection')}</Tag><Button variant="glass" onClick={() => s.openSwap(l.id)}>{t('plSwap')}</Button></Stack> : (
             <Stack direction="column" gap={2}>
               <Stack direction="row" gap={2} wrap>
-                <Button variant="primary" disabled={w.usd < l.usd} onClick={doBuy}>{w.usd < l.usd ? t('shNoFunds') : t('shBuy', { price: usd(l.usd) })}</Button>
-                <Button variant="outline" onClick={() => toggleCart(l.id)}>{cart.includes(l.id) ? t('shInCart') : t('shAddCart')}</Button>
+                <Button variant="glass" disabled={w.usd < l.usd} onClick={doBuy}>{w.usd < l.usd ? t('shNoFunds') : t('shBuy', { price: usd(l.usd) })}</Button>
+                <Button variant="glass" onClick={() => toggleCart(l.id)}>{cart.includes(l.id) ? t('shInCart') : t('shAddCart')}</Button>
               </Stack>
               {pending ? (
-                <Stack direction="row" gap={2} align="center"><Text size="sm">{t('shOfferPending', { price: usd(pending.usd) })}</Text><Button size="sm" variant="ghost" onClick={() => withdrawOffer(l.id)}>{t('shWithdraw')}</Button></Stack>
+                <Stack direction="row" gap={2} align="center"><Text size="sm">{t('shOfferPending', { price: usd(pending.usd) })}</Text><Button variant="glass" onClick={() => withdrawOffer(l.id)}>{t('shWithdraw')}</Button></Stack>
               ) : (
                 <Stack direction="row" gap={2} align="center">
                   <Input inputMode="numeric" value={bid} aria-label={t('shOfferLabel')} onChange={(e) => setBid(e.target.value.replace(/[^0-9]/g, ''))} onKeyDown={(e) => e.key === 'Enter' && doOffer()} />
-                  <Button variant="outline" onClick={doOffer}>{t('shOffer')}</Button>
+                  <Button variant="glass" onClick={doOffer}>{t('shOffer')}</Button>
                 </Stack>
               )}
             </Stack>)}

@@ -50,7 +50,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {onToggleWishlist && (
           <Button
             variant="icon"
-            size="sm"
             data-wishlist="true"
             data-active={inWishlist ? 'true' : 'false'}
             aria-label="Wishlist"
@@ -88,8 +87,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <Price amount={price} saleAmount={salePrice} />
           {onAddToCart && (
             <Button
-              variant="primary"
-              size="sm"
+              variant="glass"
               icon={<ShoppingCart size={15} />}
               onClick={() => onAddToCart(id)}
             >

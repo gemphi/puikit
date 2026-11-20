@@ -38,11 +38,11 @@ const Story: React.FC = () => {
       <Stack direction="column" gap={3}>
         <Stack direction="row" gap={1}>{segs.map((x) => <Stack key={x.i} grow={1}><ProgressBar value={x.i < f.i ? 1 : x.i === f.i ? el / storyMs : 0} size="sm" animate={false} /></Stack>)}</Stack>
         <Tile key={o.idx} animate tone={f.tone} ratio="9/16" big depth={pool ? { clubId: pool.clubId, worldId: pool.worldId, entityId: pool.id, entityName: pool.name } : { personId: o.uid }} title={f.title} sub={f.caption} onClick={() => s.storyStep(1)} />
-        {pool && <Button variant="primary" onClick={() => s.go('pool', { poolId: pool.id })}>{t('plOpen')}</Button>}
+        {pool && <Button variant="glass" onClick={() => s.go('pool', { poolId: pool.id })}>{t('plOpen')}</Button>}
         <Stack direction="row" gap={2} justify="center">
-          <Button variant="ghost" icon={<Icon icon={ChevronLeft} size="sm" />} onClick={() => s.storyStep(-1)} aria-label={t('prev')} />
-          <Button variant="ghost" icon={<Icon icon={o.paused ? Play : Pause} size="sm" />} onClick={() => s.pause(!o.paused)} aria-label={t('pause')} />
-          <Button variant="ghost" icon={<Icon icon={ChevronRight} size="sm" />} onClick={() => s.storyStep(1)} aria-label={t('next')} />
+          <Button variant="glass" icon={<Icon icon={ChevronLeft} size="sm" />} onClick={() => s.storyStep(-1)} aria-label={t('prev')} />
+          <Button variant="glass" icon={<Icon icon={o.paused ? Play : Pause} size="sm" />} onClick={() => s.pause(!o.paused)} aria-label={t('pause')} />
+          <Button variant="glass" icon={<Icon icon={ChevronRight} size="sm" />} onClick={() => s.storyStep(1)} aria-label={t('next')} />
         </Stack>
         <Composer placeholder={t('reply', { name: p.name })} onSend={(v) => p.isAgent ? s.openChat(p.id, v) : (s.close(), s.flash(t('replySent', { name: p.name })))} />
       </Stack>
@@ -98,7 +98,7 @@ const NestNew: React.FC = () => {
   const kinds = D.hosts.nestKinds.filter((k) => (inWorld ? !['world', 'stage'].includes(k.kind) : k.kind !== 'city'));
   return (
     <Modal isOpen onClose={s.close} size="md" title={t('nestIn', { where: parent?.name ?? '' })}
-      footer={<Stack direction="row" gap={2} justify="end"><Button variant="ghost" onClick={s.close}>{t('cancel')}</Button><Button variant="primary" disabled={!name.trim()} onClick={() => s.createNest(name, kind)}>{t('nestIt')}</Button></Stack>}>
+      footer={<Stack direction="row" gap={2} justify="end"><Button variant="glass" onClick={s.close}>{t('cancel')}</Button><Button variant="glass" disabled={!name.trim()} onClick={() => s.createNest(name, kind)}>{t('nestIt')}</Button></Stack>}>
       <Stack direction="column" gap={3}><Text size="sm" intent="muted">{t('nestHint')}</Text>
         <TabList size="sm" variant="pills" activeId={kind} onChange={(id) => setKind(id as typeof kind)} items={kinds.map((k) => ({ id: k.kind, label: k.label }))} />
         <Input value={name} placeholder={t('nestName')} onChange={(e) => setName(e.target.value)} /></Stack>

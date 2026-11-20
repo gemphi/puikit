@@ -69,5 +69,5 @@ export const inFacet = (items: GridItem[], list: string[] | undefined, value: st
 
 /** The link from a short grid to the full page (`more: { label, view }`). */
 export const More: React.FC<{ more: { label: string; view?: string; href?: string } }> = ({ more }) => (
-  <Stack direction="row" justify="end"><Button size="sm" variant="ghost" href={more.href || '#/' + more.view}>{more.label}</Button></Stack>
+  <Stack direction="row" justify="end"><Button variant="glass" href={more.href || '#/' + more.view}>{more.label}</Button></Stack>
 );

@@ -67,20 +67,20 @@ export const Columns = ({ columns, className, expandLabel = 'Expand', collapseLa
         const style = isExp ? { minWidth: c.minWidth } : px ? { width: px, minWidth: 0, flex: '0 0 auto' } : c.width ? { width: c.width, minWidth: c.minWidth ?? `min(${c.width}, 14rem)` } : { minWidth: c.minWidth };
         return (
           <React.Fragment key={c.id}>
-            <Box as="section" className={cn(styles.col, !c.width && !px && styles.flex, isExp && styles.exp)} style={style} aria-label={typeof c.title === 'string' ? c.title : c.label}>
+            <Box as="section" className={cn(styles.col, 'phi-region', !c.width && !px && styles.flex, isExp && styles.exp)} style={style} aria-label={typeof c.title === 'string' ? c.title : c.label}>
               <Box className={styles.head}>
-                {c.onBack && <Button variant="icon" size="sm" onClick={c.onBack} aria-label={c.backLabel ?? 'Back'}><ArrowLeft size={16} /></Button>}
+                {c.onBack && <Button variant="icon" onClick={c.onBack} aria-label={c.backLabel ?? 'Back'}><ArrowLeft size={16} /></Button>}
                 <Box className={styles.title}>{typeof c.title === 'string' ? <Text size="sm" weight="semibold">{c.title}</Text> : c.title}</Box>
-                {acts && <Button variant="icon" size="sm" className={styles.dots} aria-label={moreLabel} aria-expanded={more === c.id} onClick={() => setMore(more === c.id ? null : c.id)}><MoreHorizontal size={16} /></Button>}
+                {acts && <Button variant="icon" className={styles.dots} aria-label={moreLabel} aria-expanded={more === c.id} onClick={() => setMore(more === c.id ? null : c.id)}><MoreHorizontal size={16} /></Button>}
                 <Box className={cn(styles.acts, more === c.id && styles.actsOpen)}>
                   {c.actions}
                   {c.expandable && (
-                    <Button variant="icon" size="sm" onClick={() => setExpanded(isExp ? null : c.id)} aria-label={isExp ? collapseLabel : expandLabel} aria-pressed={isExp}>
+                    <Button variant="icon" onClick={() => setExpanded(isExp ? null : c.id)} aria-label={isExp ? collapseLabel : expandLabel} aria-pressed={isExp}>
                       {isExp ? <Minimize2 size={15} /> : <Maximize2 size={15} />}
                     </Button>
                   )}
                   {c.closable && (
-                    <Button variant="icon" size="sm" onClick={() => { if (isExp) setExpanded(null); if (c.onClose) c.onClose(); else columnStore.set(c.id, false); }} aria-label={closeLabel}>
+                    <Button variant="icon" onClick={() => { if (isExp) setExpanded(null); if (c.onClose) c.onClose(); else columnStore.set(c.id, false); }} aria-label={closeLabel}>
                       <X size={16} />
                     </Button>
                   )}

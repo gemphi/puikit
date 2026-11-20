@@ -51,7 +51,7 @@ function recordOf(id: string, s: S, page: boolean, own: boolean): ProfileRecord 
   if (sales.length) panes.push({ id: 'sales', label: t('colSales'), icon: <Icon icon={Receipt} size="xs" />, count: fmt(sales.length), body: () => <Activity rows={sales} s={s} /> });
   if (ag) panes.push({ id: 'ask', label: t('prAsk'), icon: <Icon icon={Sparkles} size="xs" />, body: () => (
     <Stack direction="column" gap={2} align="start"><Text size="sm">{ag.askHint}</Text>
-      {ag.prompts.map((q) => <Button key={q} variant="glass" size="sm" onClick={() => s.openChat(ag.id, q)}>{q}</Button>)}
+      {ag.prompts.map((q) => <Button key={q} variant="glass" onClick={() => s.openChat(ag.id, q)}>{q}</Button>)}
       <Stack direction="row" gap={1} wrap>{ag.abilities.map((x) => <Tag key={x} minimal round size="sm">{x}</Tag>)}</Stack></Stack>) });
 
   const about: [string, React.ReactNode][] = ag ? [[t('house'), ag.house], [t('home'), ag.home], [t('chats'), ag.stats.conversations], [t('looks'), ag.stats.looks], [t('rating'), ag.stats.rating], [t('since'), ag.since]] : p.user?.wallet ? [[t('wallet'), p.user.wallet]] : [];

@@ -14,12 +14,12 @@ const pct = (n: number) => (n > 0 ? '+' : '') + n + '%';
 const Amount: React.FC<{ label: string; initial?: number; onConfirm: (n: number) => boolean; variant?: 'primary' | 'outline' }> = ({ label, initial = 100, onConfirm, variant = 'outline' }) => {
   const [open, setOpen] = useState(false); const [v, setV] = useState(String(initial));
   return (
-    <Popover portal isOpen={open} onOpenChange={setOpen} placement="bottom-start" trigger={<Button variant={variant} size="sm">{label}</Button>}>
+    <Popover portal isOpen={open} onOpenChange={setOpen} placement="bottom-start" trigger={<Button variant={variant}>{label}</Button>}>
       <Stack direction="column" gap={2} minWidth="12rem">
         <Text size="xs" intent="muted" weight="bold">{t('stakeAmt')}</Text>
         <Input type="number" min={1} value={v} aria-label={t('stakeAmt')} onChange={(e) => setV(e.target.value)} />
-        <Stack direction="row" gap={1}>{[50, 100, 500].map((n) => <Button key={n} size="sm" variant="ghost" onClick={() => setV(String(n))}>{usd(n)}</Button>)}</Stack>
-        <Button size="sm" variant="primary" onClick={() => { if (onConfirm(Number(v))) setOpen(false); }}>{label} {usd(Number(v) || 0)}</Button>
+        <Stack direction="row" gap={1}>{[50, 100, 500].map((n) => <Button key={n} variant="glass" onClick={() => setV(String(n))}>{usd(n)}</Button>)}</Stack>
+        <Button variant="glass" onClick={() => { if (onConfirm(Number(v))) setOpen(false); }}>{label} {usd(Number(v) || 0)}</Button>
       </Stack>
     </Popover>
   );
@@ -35,9 +35,9 @@ export const QuestCard: React.FC<{ q: Quest }> = ({ q }) => {
       <ProgressBar value={q.progress} size="sm" animate={false} />
       {inQ
         ? <Stack direction="row" gap={1} align="center"><Tag round intent="success" size="sm">{t('qEntered')}</Tag>
-            <Button variant="primary" size="sm" onClick={() => s.go('world', { worldId: q.worldId })}>{itemOf('world', q.worldId)?.name ?? t('playQuest')}</Button>
-            <Button variant="ghost" size="sm" onClick={() => { leaveQuest(q.id); s.flash(t('qLeft', { name: q.title })); }}>{t('qLeave')}</Button></Stack>
-        : <Button variant="primary" size="sm" onClick={() => { enterQuest(q.id); s.flash(t('joined_', { name: q.title })); }}>{t('playQuest')}</Button>}
+            <Button variant="glass" onClick={() => s.go('world', { worldId: q.worldId })}>{itemOf('world', q.worldId)?.name ?? t('playQuest')}</Button>
+            <Button variant="glass" onClick={() => { leaveQuest(q.id); s.flash(t('qLeft', { name: q.title })); }}>{t('qLeave')}</Button></Stack>
+        : <Button variant="glass" onClick={() => { enterQuest(q.id); s.flash(t('joined_', { name: q.title })); }}>{t('playQuest')}</Button>}
     </Stack></CardBody></Card>
   );
 };
@@ -49,7 +49,7 @@ export const CoinCard: React.FC<{ x: Coin }> = ({ x }) => {
     <ItemCard depth={2} stackBelow="always" media={<EntityAvatar id={x.clubId ?? x.id} name={x.name} size="md" />} title={x.symbol} meta={x.name}
       aside={<Stack direction="column" gap={0} align="end"><Text weight="bold" numeric>{'$' + x.price}</Text><Text size="xs" numeric intent={x.change24h >= 0 ? 'success' : 'danger'}>{pct(x.change24h)}</Text></Stack>}
       actions={<><Amount label={t('buy')} variant="primary" onConfirm={(n) => { const ok = buyCoin(x.id, n); s.flash(ok ? t('bought', { n: (n / x.price).toFixed(2), coin: x.symbol }) : t('noFunds')); return ok; }} />
-        {held > 0 && <Button variant="ghost" size="sm" onClick={() => { const got = sellCoin(x.id); s.flash(t('sold', { coin: x.symbol, usd: usd(got) })); }}>{t('sell')}</Button>}</>}>
+        {held > 0 && <Button variant="glass" onClick={() => { const got = sellCoin(x.id); s.flash(t('sold', { coin: x.symbol, usd: usd(got) })); }}>{t('sell')}</Button>}</>}>
       <Stack direction="column" gap={1}>
         <Text size="xs" intent="muted">{fmt(x.holders + (held ? 1 : 0))} {t('holders')}</Text>
         {held > 0 && <Tag round minimal intent="primary">{t('youHold', { n: held.toFixed(2) + ' ' + x.symbol })} · {usd(held * x.price)}</Tag>}

@@ -27,7 +27,7 @@ export const CreatePage: React.FC = () => {
         { id: 'start', title: t('crStart'), hint: t('crStartHint'), content: (
           <Rows cols={4} colsSm={1} minItemWidth="14rem">{KINDS.filter((k) => k.action !== 'post').map((k) => (
             <ItemCard key={k.id} depth={1} variant="flat" onClick={() => act(k)} media={<Icon icon={ICONS[k.icon] ?? Sparkles} size="lg" />} title={k.label}
-              actions={<Button size="sm" variant="outline" onClick={(e) => { e.stopPropagation(); act(k); }}>{t('open')}</Button>}>{k.body}</ItemCard>))}</Rows>) },
+              actions={<Button variant="glass" onClick={(e) => { e.stopPropagation(); act(k); }}>{t('open')}</Button>}>{k.body}</ItemCard>))}</Rows>) },
         { id: 'quests', title: t('crQuests'), hint: t('crQuestsHint'), content: (
           <Rows cols={3} colsSm={1} minItemWidth="16rem">{quests.map((q) => { const w = itemOf('world', q.worldId); return (
             <ItemCard key={q.id} depth={1} variant="flat" onClick={() => s.go('quests')} media={<EntityAvatar id={q.worldId} name={w?.name ?? q.title} size="md" />} title={q.title}

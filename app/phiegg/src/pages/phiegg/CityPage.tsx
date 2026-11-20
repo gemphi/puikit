@@ -26,7 +26,7 @@ export const CityPage: React.FC = () => {
     <Page><Stack direction="column" gap={4}>
       <Stack direction="row" gap={2} align="center">
         <Box flex="1" minWidth="0"><TabList size="sm" variant="pills" aria-label={t('wCities')} activeId={city.id} onChange={(id) => s.go('city', { cityId: id, worldId: world.id })} items={world.cities.map((c) => ({ id: c.id, label: c.name }))} /></Box>
-        <Button size="sm" variant="outline" onClick={() => s.go('world', { worldId: world.id })}>{world.name}</Button>
+        <Button variant="glass" onClick={() => s.go('world', { worldId: world.id })}>{world.name}</Button>
       </Stack>
       <Tile image={worldImage(world)} tone={meta?.tone ?? world.tone} ratio="21/7" big title={city.name} sub={city.vibe + ' · ' + world.name}
         depth={{ worldId: world.id, clubId: world.clubId, face: worldMark(world) && <Avatar size="xl" src={worldMark(world)} fit="contain" alt={world.name} colors={entityPalette(world.id)} /> }}

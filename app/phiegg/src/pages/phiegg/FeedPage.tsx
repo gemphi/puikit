@@ -31,8 +31,8 @@ const MarketMoment: React.FC<{ pool: Pool; k: number; now: number }> = ({ pool, 
       <ProgressBar value={sold.progress} size="sm" animate={false} />
       <Stack direction="row" gap={2} align="center" wrap>
         <Stack grow={1}><Text size="xs" intent="muted">{q.title} · {Math.round(q.progress * 100)}%</Text></Stack>
-        <Button size="sm" variant="ghost" onClick={() => s.openStat(pool.id, stat.metric.id)}>{t('plStatQuest')}</Button>
-        <Button size="sm" variant="primary" onClick={() => s.go('pool', { poolId: pool.id })}>{t('plOpensDrop')}</Button>
+        <Button variant="glass" onClick={() => s.openStat(pool.id, stat.metric.id)}>{t('plStatQuest')}</Button>
+        <Button variant="glass" onClick={() => s.go('pool', { poolId: pool.id })}>{t('plOpensDrop')}</Button>
       </Stack>
     </Stack></CardBody></Card>
   );
@@ -40,7 +40,7 @@ const MarketMoment: React.FC<{ pool: Pool; k: number; now: number }> = ({ pool, 
 
 /** A region's one action: an icon that opens the whole list in the browse sheet. */
 const SeeAll: React.FC<{ label: string; onOpen: () => void }> = ({ label, onOpen }) => (
-  <Button variant="icon" size="sm" onClick={onOpen} aria-label={t('seeAll') + ' · ' + label} title={t('seeAll')}><L.ArrowUpRight size={16} /></Button>
+  <Button variant="icon" onClick={onOpen} aria-label={t('seeAll') + ' · ' + label} title={t('seeAll')}><L.ArrowUpRight size={16} /></Button>
 );
 const glyph = (name?: string) => { const G = name ? (L as unknown as Record<string, L.LucideIcon>)[name] : undefined; return G ? <Icon icon={G} size="xs" /> : undefined; };
 
@@ -70,7 +70,7 @@ export const FeedPage: React.FC = () => {
             <TabList size="sm" variant="pills" place="center" aria-label={t('fdKinds')} activeId={kind} onChange={(id) => { s.go('feed', { feedKind: id }); setN(20); }} items={kinds.map((k) => ({ id: k.id, label: k.label, icon: glyph(k.icon) }))} />
             <Composer placeholder={t('sharePh')} onSend={(v) => s.postShot(v)} />
             {items.length ? items : <Text intent="muted">{t('fdNone')}</Text>}
-            {n < posts.length && <Button variant="outline" onClick={() => setN(n + 20)}>{t('loadMore', { n: posts.length - n })}</Button>}
+            {n < posts.length && <Button variant="glass" onClick={() => setN(n + 20)}>{t('loadMore', { n: posts.length - n })}</Button>}
           </Stack>
         </Col>
         <Col span={4} xs={12} lg={4}>

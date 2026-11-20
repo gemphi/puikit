@@ -60,18 +60,18 @@ export const WatchSheet: React.FC<{ id: string }> = ({ id }) => {
         {world && <Tag minimal round interactive onClick={() => s.go('world', { worldId: world.id })}>{world.name}</Tag>}
       </Stack>
       {e.guestIds.length > 0 && <Stack direction="column" gap={1}><Text size="xs" weight="bold" intent="muted">{t('wsGuests')}</Text>
-        <Stack direction="row" gap={1} wrap>{e.guestIds.map((g) => <Button key={g} size="sm" variant="ghost" icon={<PersonAvatar id={g} size="xs" />} onClick={() => s.openPerson(g)}>{person(g).name}</Button>)}</Stack></Stack>}
+        <Stack direction="row" gap={1} wrap>{e.guestIds.map((g) => <Button key={g} variant="glass" icon={<PersonAvatar id={g} size="xs" />} onClick={() => s.openPerson(g)}>{person(g).name}</Button>)}</Stack></Stack>}
       {shopLook && <Stack direction="column" gap={1}><Text size="xs" weight="bold" intent="muted">{t('wsShop')}</Text>
         <ItemCard depth={2} mediaSize="lg" onClick={() => s.openLook(shopLook.id)} media={<LookImage look={shopLook} cascade={1} />}
           title={shopLook.name} meta={`${prod.roles.find((r) => r.lookIds.includes(shopLook.id))?.character ?? prod.roles[0]?.character ?? ''} ${e.shop.moment}`}
           aside={<Text size="sm" weight="bold" numeric>{usd(shopLook.usd)}</Text>}
-          actions={<>{<Button size="sm" variant="primary" onClick={(ev) => { ev.stopPropagation(); s.openLook(shopLook.id); }}>{t('shOpenPft')}</Button>}{pool && <Button size="sm" variant="outline" onClick={(ev) => { ev.stopPropagation(); s.go('pool', { poolId: pool.id }); }}>{pool.name}</Button>}</>}>
+          actions={<>{<Button variant="glass" onClick={(ev) => { ev.stopPropagation(); s.openLook(shopLook.id); }}>{t('shOpenPft')}</Button>}{pool && <Button variant="glass" onClick={(ev) => { ev.stopPropagation(); s.go('pool', { poolId: pool.id }); }}>{pool.name}</Button>}</>}>
           {shopLook.colour} · {shopLook.rarity}
         </ItemCard></Stack>}
       <Stack direction="column" gap={1}><Text size="xs" weight="bold" intent="muted">{t('wsThemes')}</Text>
         <Stack direction="row" gap={1} wrap>{[...prod.themes.motifs, ...prod.themes.moods].map((m) => <Tag key={m} minimal round size="sm" intent="primary">{m}</Tag>)}</Stack>
         <Text size="xs" intent="muted">{t('wsConflict')}: {prod.themes.conflict} · {t('wsStakes')}: {prod.themes.stakes}</Text></Stack>
-      {host && <Button variant="primary" onClick={() => s.go('hosts')}>{t('seWatch', { host: host.name })}</Button>}
+      {host && <Button variant="glass" onClick={() => s.go('hosts')}>{t('seWatch', { host: host.name })}</Button>}
     </Stack>
   );
 
@@ -80,7 +80,7 @@ export const WatchSheet: React.FC<{ id: string }> = ({ id }) => {
     return (
       <ItemCard key={r.personId + r.character} variant="flat" padding="sm" stackBelow="md" onClick={() => s.openPerson(r.personId)}
         media={<PersonAvatar id={r.personId} size="md" />} title={r.character} meta={`${person(r.personId).name} · ${r.part}`}
-        actions={h ? <Button size="sm" variant="ghost" onClick={(ev) => { ev.stopPropagation(); s.openDetails({ kind: 'host', id: h.id }); }}>{t('wsPlaysThrough', { host: h.name })}</Button> : undefined}>
+        actions={h ? <Button variant="glass" onClick={(ev) => { ev.stopPropagation(); s.openDetails({ kind: 'host', id: h.id }); }}>{t('wsPlaysThrough', { host: h.name })}</Button> : undefined}>
         <Stack direction="column" gap={1}>
           <Text size="xs">{r.arc} · {r.traits.join(', ')}</Text>
           {r.actions.length > 0 && <Stack direction="row" gap={1} wrap>{r.actions.map((a) => <Tag key={a} minimal round size="sm">{a}</Tag>)}</Stack>}

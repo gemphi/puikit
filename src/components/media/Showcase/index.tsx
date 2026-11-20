@@ -73,8 +73,8 @@ export const Showcase = ({ slides, actions, auto = 7000, height, ratio, onChange
         {actions && <Box className={styles.actions}>{actions(s)}</Box>}
       </Box>
       {n > 1 && <>
-        <Button variant="glass" size="sm" className={cn(styles.step, styles.prev)} aria-label={labels.prev ?? 'Previous'} icon={<ChevronLeft size={18} />} onClick={() => go(at - 1)} />
-        <Button variant="glass" size="sm" className={cn(styles.step, styles.next)} aria-label={labels.next ?? 'Next'} icon={<ChevronRight size={18} />} onClick={() => go(at + 1)} />
+        <Button variant="glass" className={cn(styles.step, styles.prev)} aria-label={labels.prev ?? 'Previous'} icon={<ChevronLeft size={18} />} onClick={() => go(at - 1)} />
+        <Button variant="glass" className={cn(styles.step, styles.next)} aria-label={labels.next ?? 'Next'} icon={<ChevronRight size={18} />} onClick={() => go(at + 1)} />
         {picker && <Box className={styles.picker} role="tablist" aria-label={labels.picker ?? 'Slides'}>
           {slides.map((x, i) => (
             <Pressable key={x.id} role="tab" aria-selected={i === at} aria-label={typeof x.title === 'string' ? x.title : x.id} className={cn(styles.pick, i === at && styles.on)} onClick={() => go(i)}>

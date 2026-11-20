@@ -65,7 +65,7 @@ export const ChoiceRow = ({ options: every, value, onChange, label, showLabel, m
           })}
         </Box>
         {long && (
-          <Button variant="glass" size="sm" className={styles.all} aria-expanded={all} onClick={() => { setAll(!all); setQ(''); }}>
+          <Button variant="glass" className={styles.all} aria-expanded={all} onClick={() => { setAll(!all); setQ(''); }}>
             {all ? labels.less ?? 'Fewer' : (labels.all ?? ((n: number) => `All ${n}`))(every.length)}
           </Button>
         )}

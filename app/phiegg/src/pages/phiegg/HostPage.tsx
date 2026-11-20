@@ -44,7 +44,7 @@ export const HostPage: React.FC = () => {
           </Stack>
         </Stack>
         <Stack direction="row" gap={2} align="center" wrap>
-          <Button variant="primary" iconLeft={Plus} onClick={() => s.openNest(hostId, nest?.kind === 'world' ? nest.id : null, nest?.kind === 'world' ? 'city' : 'channel')}>{t('nest')}</Button>
+          <Button variant="glass" iconLeft={Plus} onClick={() => s.openNest(hostId, nest?.kind === 'world' ? nest.id : null, nest?.kind === 'world' ? 'city' : 'channel')}>{t('nest')}</Button>
           <Button variant="glass" onClick={() => s.openDetails({ kind: 'host', id: host.id })}>{t('details')}</Button>
           <Button variant="glass" onClick={() => s.go('hosts')}>{t('pgHosts')}</Button>
         </Stack>
@@ -56,7 +56,7 @@ export const HostPage: React.FC = () => {
         head={<Text size="sm" weight="semibold">{glyph[nest.kind]} {nest.name}</Text>}
         intro={<Stack direction="row" gap={2} align="center" wrap>
           <Text size="sm" intent="muted">{nest.topic}</Text>
-          {world && <><Button size="sm" variant="glass" onClick={() => s.go('world', { worldId: world.id })}>{t('openWorld')}</Button><Button size="sm" variant="glass" onClick={() => s.openNest(hostId, nest.id, 'city')}>{t('nestCity')}</Button></>}
+          {world && <><Button variant="glass" onClick={() => s.go('world', { worldId: world.id })}>{t('openWorld')}</Button><Button variant="glass" onClick={() => s.openNest(hostId, nest.id, 'city')}>{t('nestCity')}</Button></>}
         </Stack>}
         lines={(s.nestMsgs[nest.id] ?? []).map((m) => ({ id: m.id, mine: m.authorId === my.id, avatar: <PersonAvatar id={m.authorId} size="sm" />, who: person(m.authorId).name, at: m.at, text: m.text,
           attachment: 'lookId' in m ? <LookAttachment id={(m as { lookId?: string }).lookId} /> : undefined }))}

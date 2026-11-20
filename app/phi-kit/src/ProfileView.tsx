@@ -89,7 +89,7 @@ const Identity: React.FC<{ r: ProfileRecord; heading: 1 | 2; line?: boolean; chi
     // its tags, its facts, the note), so each runs against the card and what you press runs against its region (tokens.scss).
     <Stack as="section" direction="column" gap={2} surface="card" aria-label={r.name} className={css.card}>
       {/* The picture stands over the name, with no column beside it, so this part is lit from its foot. */}
-      <Stack direction="column" gap={3} surface="region" className={css.stacked}>
+      <Stack direction="column" gap={3} surface="region">
         <Box className={css.top}>
           {r.banner && <Box className={css.banner}>{r.banner}</Box>}
           <Box className={r.banner ? css.face : undefined}>{r.avatar}</Box>

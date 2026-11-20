@@ -11,7 +11,7 @@
   /* A row is a card: its picture at the left, its words at the right. The row is lit from one side and the picture's
      holder from the other (tokens.scss, A ROW, decides which by what holds the row), so the two lights run against
      each other and meet in the middle, and a row is never bare on the page. */
-  background-image: var(--phi-row-ground); }
+  background-image: var(--phi-row-ground); --phi-control-ground: var(--phi-surface); --phi-control-ground-strong: var(--phi-surface-strong); }
 /* The same holder as .phi-holder (tokens.scss), for a row whose picture carries no class of its own. */
 .row > :is(div, picture, figure):first-child:not(:only-child):not(:global(.phi-holder)) { flex: none; padding: var(--phi-space-1); border-radius: var(--phi-radius-md); background-image: var(--phi-row-holder); }
 .inline.row { display: inline-flex; }

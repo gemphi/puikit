@@ -17,14 +17,14 @@
 .ph-app { position: relative; background-color: var(--phi-color-background); color: var(--phi-color-text-primary); }
 
 /* Appearance shades: −2…+2 darken / lighten the shell's sidebar (rail + panel) and its content area, in every theme. */
-.ph-app[data-ph-sidebar='-2'] { --pui-shell-nav-tint: rgba(0, 0, 0, 0.14); }
-.ph-app[data-ph-sidebar='-1'] { --pui-shell-nav-tint: rgba(0, 0, 0, 0.07); }
-.ph-app[data-ph-sidebar='1'] { --pui-shell-nav-tint: rgba(255, 255, 255, 0.10); }
-.ph-app[data-ph-sidebar='2'] { --pui-shell-nav-tint: rgba(255, 255, 255, 0.20); }
-.ph-app[data-ph-content='-2'] { --pui-shell-main-tint: rgba(0, 0, 0, 0.12); }
-.ph-app[data-ph-content='-1'] { --pui-shell-main-tint: rgba(0, 0, 0, 0.06); }
-.ph-app[data-ph-content='1'] { --pui-shell-main-tint: rgba(255, 255, 255, 0.10); }
-.ph-app[data-ph-content='2'] { --pui-shell-main-tint: rgba(255, 255, 255, 0.20); }
+.ph-app[data-ph-sidebar='-2'] { --pui-shell-nav-tint: color-mix(in srgb, var(--phi-color-background) 14%, transparent); }
+.ph-app[data-ph-sidebar='-1'] { --pui-shell-nav-tint: color-mix(in srgb, var(--phi-color-background) 7%, transparent); }
+.ph-app[data-ph-sidebar='1'] { --pui-shell-nav-tint: color-mix(in srgb, var(--phi-glass-light, var(--phi-color-text-primary)) 10%, transparent); }
+.ph-app[data-ph-sidebar='2'] { --pui-shell-nav-tint: color-mix(in srgb, var(--phi-glass-light, var(--phi-color-text-primary)) 20%, transparent); }
+.ph-app[data-ph-content='-2'] { --pui-shell-main-tint: color-mix(in srgb, var(--phi-color-background) 12%, transparent); }
+.ph-app[data-ph-content='-1'] { --pui-shell-main-tint: color-mix(in srgb, var(--phi-color-background) 6%, transparent); }
+.ph-app[data-ph-content='1'] { --pui-shell-main-tint: color-mix(in srgb, var(--phi-glass-light, var(--phi-color-text-primary)) 10%, transparent); }
+.ph-app[data-ph-content='2'] { --pui-shell-main-tint: color-mix(in srgb, var(--phi-glass-light, var(--phi-color-text-primary)) 20%, transparent); }
 
 /* Surface opacity: cards let the page show through (Glass adds a frosted blur). */
 html:root[data-ph-opacity='90'] { --phi-surface-opacity: 90%; }

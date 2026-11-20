@@ -78,7 +78,9 @@ export const GroupMenu: React.FC<MenuProps & { group: AppShellGroup }> = ({ grou
   // The panel's three places: top runs from the top, the centre run sits in the very middle, bottom runs at the foot.
   // Each place holds its own runs (and scrolls on its own), so opening or folding the top never moves the centre.
   // The group's fold arrow folds the group's own first run only, never what sits in the centre or at the foot.
-  const placeOf = (run: (typeof runs)[number]) => (run.place === 'center' ? 'center' : run.end || run.place === 'bottom' ? 'bottom' : 'top');
+  // A run with no place of its own takes its group's, so a menu opens beside its own icon on the rail (a group in the
+  // middle of the rail opens in the middle of the panel, one at the foot at the foot).
+  const placeOf = (run: (typeof runs)[number]) => { const p = run.place ?? (run.end ? 'bottom' : group.place); return p === 'center' ? 'center' : p === 'bottom' ? 'bottom' : 'top'; };
   const block = (run: (typeof runs)[number], i: number) => (
     <Box key={run.id} className={styles.panelGroup}>
       {i === 0 && (

@@ -15,7 +15,7 @@ const LookPage: React.FC<{ look: Look; looks: Look[]; onLook: (id: string | null
   const sameCut = looks.filter((l) => l.cut === look.cut);
   return (
     <Stack as="article" direction="column" gap={4}>
-      <Button variant="ghost" onClick={() => onLook(null)} style={{ alignSelf: 'flex-start' }}>All looks</Button>
+      <Button variant="glass" onClick={() => onLook(null)} style={{ alignSelf: 'flex-start' }}>All looks</Button>
       <Stack autoFill="22rem" gap={5} align="start">
         <Stack direction="column" gap={3}>
           {shown ? <Frame ratio="1/1" rounded="none"><Image src={assetUrl(shown.image)} alt={look.title + ', ' + shown.label} fit="cover" fill /></Frame> : null}

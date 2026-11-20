@@ -33,7 +33,7 @@ export const ChatSheet: React.FC = () => {
 
   // A message's picture opens its sender; what can be done with a look (run it, keep it) sits at the right as icons.
   const face = (id: string) => <Pressable onClick={() => s.openDetails({ kind: 'person', id })}><PersonAvatar id={id} size="sm" /></Pressable>;
-  const act = (G: typeof Play, label: string, onClick: () => void) => <Button key={label} size="sm" variant="ghost" icon={<Icon icon={G} size="sm" />} aria-label={label} title={label} onClick={onClick} />;
+  const act = (G: typeof Play, label: string, onClick: () => void) => <Button key={label} variant="glass" icon={<Icon icon={G} size="sm" />} aria-label={label} title={label} onClick={onClick} />;
   const lines: ChatLine[] = msgs.map((m, i) => {
     const id = String(i);
     if ('look' in m) return { id, mine: false, avatar: face(ag.id), who: ag.name,

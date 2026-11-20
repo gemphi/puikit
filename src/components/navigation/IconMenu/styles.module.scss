@@ -10,11 +10,11 @@
   flex: none; display: flex; flex-direction: column; align-items: center; gap: var(--phi-space-1, 0.25rem);
   min-width: 4.5rem; padding: var(--phi-space-2, 0.5rem) var(--phi-space-2, 0.5rem);
   border-radius: var(--phi-radius-md, 0.75rem); color: var(--phi-color-text);
-  &:hover { background-image: var(--phi-label-soft); }
+  &:hover { background-image: var(--phi-control-ground); }
 }
 .icon {
   display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: var(--phi-radius-full);
-  background-image: var(--phi-label); color: var(--phi-color-text-primary);
+  background-image: var(--phi-control-ground-strong); color: var(--phi-color-text-primary);
 }
 .label { white-space: nowrap; }
-.on .icon { background-image: var(--phi-label-strong); }
+.on .icon { background-image: var(--phi-control-ground-strong); }
