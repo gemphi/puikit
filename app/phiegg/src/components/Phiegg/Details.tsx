@@ -8,6 +8,7 @@ import { phieggStore, type DetailRef } from '../../state/phieggStore';
 import { PersonAvatar } from './PersonAvatar';
 import { PersonLine } from './PersonLine';
 import { PersonProfile } from './PersonProfile';
+import { ProfileView } from '@phi-kit/ProfileView';
 import { EntityAvatar } from './EntityAvatar';
 import { Connected } from './Connected';
 import { Tile } from './Tile';
@@ -58,7 +59,7 @@ export const Activity: React.FC<{ rows: SaleEvent[]; s: S; hideItem?: boolean }>
 const HostRow: React.FC<{ id: string; s: S }> = ({ id, s }) => {
   const h = itemOf('host', id); if (!h) return null; const r = itemOf('role', h.roleTypeId);
   return <Row media={<EntityAvatar id={h.id} name={h.name} size="md" />} title={h.name} sub={[r?.name, h.genre, fmt(h.members) + ' members'].filter(Boolean).join(' · ')}
-    end={<Button size="sm" variant={s.follow[h.id] ? 'secondary' : 'outline'} onClick={(e) => { e.stopPropagation(); s.toggle('follow', h.id); }}>{s.follow[h.id] ? 'Following' : 'Follow'}</Button>}
+    end={<Button variant="glass" onClick={(e) => { e.stopPropagation(); s.toggle('follow', h.id); }}>{s.follow[h.id] ? 'Following' : 'Follow'}</Button>}
     onClick={() => s.openDetails({ kind: 'host', id: h.id })} />;
 };
 const CastRow: React.FC<{ id: string; s: S }> = ({ id, s }) => {
@@ -67,19 +68,12 @@ const CastRow: React.FC<{ id: string; s: S }> = ({ id, s }) => {
     end={c.live ? <Tag intent="error" round size="sm">LIVE</Tag> : undefined} onClick={() => s.openDetails({ kind: 'cast', id: c.id })} />;
 };
 
-/** Header + tabs for any record. */
-const Panel: React.FC<{ media: React.ReactNode; title: string; sub?: React.ReactNode; actions?: React.ReactNode; tabs: Tab[] }> = ({ media, title, sub, actions, tabs }) => {
-  const [tab, setTab] = useState(tabs[0]?.id);
-  const cur = tabs.find((x) => x.id === tab) ?? tabs[0];
-  return (
-    <Stack direction="column" gap={3}>
-      <Stack direction="row" gap={3} align="center">{media}<Stack direction="column" gap={0} minWidth="0"><Title level={4} size="lg">{title}</Title>{sub && <Text size="sm" intent="muted">{sub}</Text>}</Stack></Stack>
-      {actions && <Stack direction="row" gap={2} wrap>{actions}</Stack>}
-      <Box scroll="x"><TabList size="sm" variant="pills" aria-label={title} activeId={cur?.id} onChange={setTab} items={tabs.map((x) => ({ id: x.id, label: x.label, count: x.n ? fmt(x.n) : undefined }))} /></Box>
-      <Box key={cur?.id}>{cur?.body()}</Box>
-    </Stack>
-  );
-};
+/** Any record's details are the one profile (the kit's ProfileView), the same card a person's is: its picture and name,
+ *  its own buttons, then a tab per relation with its count. Nothing here draws a header or tabs of its own. */
+const Panel: React.FC<{ media: React.ReactNode; title: string; sub?: React.ReactNode; actions?: React.ReactNode; tabs: Tab[] }> = ({ media, title, sub, actions, tabs }) => (
+  <ProfileView key={title} variant="popup" record={{ id: title, name: title, avatar: media, role: typeof sub === 'string' ? sub : undefined, about: typeof sub === 'string' ? undefined : sub,
+    controls: actions, panes: tabs.map((x) => ({ id: x.id, label: x.label, count: x.n ? fmt(x.n) : undefined, body: x.body })) }} />
+);
 
 /** The details column of the chat sheet: whatever record is on top of the back stack. */
 export const Details: React.FC<{ at: DetailRef }> = ({ at }) => {
@@ -92,7 +86,7 @@ export const Details: React.FC<{ at: DetailRef }> = ({ at }) => {
     const h = itemOf('host', id); if (!h) return <Empty text="Unknown host." />;
     const r = itemOf('role', h.roleTypeId); const cat = itemOf('roleCategory', r?.categoryId); const casts = castsOfHost(id); const members = D.core.users.filter((u) => u.hostIds?.includes(id));
     return <Panel key={k + id} media={<EntityAvatar id={id} name={h.name} size="xl" />} title={h.name} sub={[r?.name, cat?.name, h.genre].filter(Boolean).join(' · ')}
-      actions={<><Button size="sm" variant={s.follow[id] ? 'secondary' : 'primary'} onClick={() => s.toggle('follow', id)}>{s.follow[id] ? 'Following' : 'Follow host'}</Button>{h.ownerId && <Button size="sm" variant="outline" onClick={() => s.openDetails({ kind: 'person', id: h.ownerId! })}>Profile: {person(h.ownerId).name}</Button>}<Button size="sm" variant="ghost" onClick={() => s.go('hosts')}>Enter host</Button></>}
+      actions={<><Button variant="glass" onClick={() => s.toggle('follow', id)}>{s.follow[id] ? 'Following' : 'Follow host'}</Button>{h.ownerId && <Button variant="glass" onClick={() => s.openDetails({ kind: 'person', id: h.ownerId! })}>Profile: {person(h.ownerId).name}</Button>}<Button variant="glass" onClick={() => s.go('hosts')}>Enter host</Button></>}
       tabs={[
         { id: 'role', label: 'Role', body: () => <Stack direction="column" gap={2}><Text size="sm">{r ? `${r.name}, one of 64 host roles in ${cat?.name}. Genres: ${r.genres.join(', ')}.` : 'No role yet.'}</Text><Text size="xs" weight="bold">BEHAVIOURS</Text>{(h.behaviours ?? []).map((b) => <Text key={b} size="sm">• {b}</Text>)}{h.clubId && itemOf('club', h.clubId) && <Row media={<EntityAvatar id={h.clubId} name={itemOf('club', h.clubId)!.name} />} title={itemOf('club', h.clubId)!.name} sub="Club" onClick={() => s.openDetails({ kind: 'club', id: h.clubId! })} />}</Stack> },
         { id: 'casts', label: 'Casts', n: casts.length, body: () => casts.length ? <Stack direction="column" gap={0}>{casts.map((c) => <CastRow key={c.id} id={c.id} s={s} />)}</Stack> : <Empty text="Not cast yet." /> },
@@ -105,7 +99,7 @@ export const Details: React.FC<{ at: DetailRef }> = ({ at }) => {
     const c = itemOf('cast', id); if (!c) return <Empty text="Unknown cast." />;
     const chat = [...c.chat, ...((s.comments['cast:' + id] ?? []).map((x) => ({ id: x.id, authorId: x.authorId, text: x.text, at: x.at })))];
     return <Panel key={k + id} media={<EntityAvatar id={id} name={c.title} size="xl" />} title={c.title} sub={<>{c.kind}{c.live ? ' · live now' : ''} · {itemOf('world', c.worldId)?.name}</>}
-      actions={<>{c.showId && <Button size="sm" variant="primary" onClick={() => s.go('show', { showId: c.showId! })}>Watch show</Button>}{c.seriesId && <Button size="sm" variant="primary" onClick={() => s.openSeries(c.seriesId!)}>Watch {c.kind}</Button>}</>}
+      actions={<>{c.showId && <Button variant="glass" onClick={() => s.go('show', { showId: c.showId! })}>Watch show</Button>}{c.seriesId && <Button variant="glass" onClick={() => s.openSeries(c.seriesId!)}>Watch {c.kind}</Button>}</>}
       tabs={[
         ...((c.memberIds?.length ?? 0) > 0 ? [{ id: 'cast', label: 'Cast', n: c.memberIds!.length, body: () => <Stack direction="column" gap={1}>{c.memberIds!.map((u) => <PersonLine key={u} id={u} size="sm" />)}</Stack> }] : []),
         { id: 'hosts', label: 'Hosts', n: c.hostIds.length, body: () => <Stack direction="column" gap={0}>{c.hostIds.map((h) => <HostRow key={h} id={h} s={s} />)}</Stack> },
@@ -124,7 +118,7 @@ export const Details: React.FC<{ at: DetailRef }> = ({ at }) => {
     const name = k === 'look' ? itemOf('look', id)?.name : itemOf('piece', id)?.name; const rows = salesOfItem(id);
     const last = rows.find((x) => x.event === 'sale'); const owner = rows.find((x) => x.event !== 'list' && x.event !== 'offer')?.toId;
     return <Panel key={k + id} media={<Box width="5rem">{itemThumb(k, id, s)}</Box>} title={name ?? id} sub={owner ? <>Owned by {person(owner).name}</> : undefined}
-      actions={<>{k === 'look' && <Button size="sm" variant="primary" onClick={() => s.openLook(id)}>Buy / offer</Button>}{owner && <Button size="sm" variant="outline" onClick={() => s.openDetails({ kind: 'person', id: owner })}>Owner</Button>}</>}
+      actions={<>{k === 'look' && <Button variant="glass" onClick={() => s.openLook(id)}>Buy / offer</Button>}{owner && <Button variant="glass" onClick={() => s.openDetails({ kind: 'person', id: owner })}>Owner</Button>}</>}
       tabs={[
         { id: 'activity', label: 'Activity', n: rows.length, body: () => <Activity rows={rows} s={s} hideItem /> },
         { id: 'stats', label: 'Stats', body: () => <StatGrid size="sm" items={facts([['Last sale', last ? usd(last.priceUsd) : '·'], ['Sales', fmt(rows.filter((x) => x.event === 'sale').length)], ['Offers', fmt(rows.filter((x) => x.event === 'offer').length)], ['Listed', rows.some((x) => x.event === 'list') ? 'Yes' : 'No']])} /> },
@@ -134,6 +128,6 @@ export const Details: React.FC<{ at: DetailRef }> = ({ at }) => {
   // Clubs, worlds, shows, series, roles, quests… : facts + relations.
   const label = k === 'club' ? itemOf('club', id)?.name : k === 'world' ? itemOf('world', id)?.name : k === 'show' ? itemOf('show', id)?.title : k === 'series' ? itemOf('series', id)?.title : k === 'role' ? itemOf('role', id)?.name : k === 'store' ? STORES.find((x) => x.id === id)?.name : id;
   return <Panel key={k + id} media={<EntityAvatar id={id} name={label ?? id} size="xl" />} title={label ?? id} sub={k}
-    actions={k === 'club' ? <Button size="sm" variant="primary" onClick={() => s.go('club', { clubId: id })}>Open club</Button> : k === 'world' ? <Button size="sm" variant="primary" onClick={() => s.go('world', { worldId: id })}>Enter world</Button> : k === 'show' ? <Button size="sm" variant="primary" onClick={() => s.go('show', { showId: id })}>Watch</Button> : undefined}
+    actions={k === 'club' ? <Button variant="glass" onClick={() => s.go('club', { clubId: id })}>Open club</Button> : k === 'world' ? <Button variant="glass" onClick={() => s.go('world', { worldId: id })}>Enter world</Button> : k === 'show' ? <Button variant="glass" onClick={() => s.go('show', { showId: id })}>Watch</Button> : undefined}
     tabs={[{ id: 'links', label: 'Connected', body: () => <Connected kind={k as 'club'} id={id} max={10} inPanel /> }]} />;
 };

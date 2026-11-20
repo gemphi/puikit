@@ -24,6 +24,9 @@ export type ProfileRecord = {
   bio?: string; more?: string;
   counts?: [string, React.ReactNode][];
   actions?: ProfileAction[];
+  /** Buttons an app draws itself (a record's own verbs), in the same region as the actions, and words about it that
+   *  are more than a string. */
+  controls?: React.ReactNode; about?: React.ReactNode;
   marks?: ProfileMark[];
   tags?: string[];
   facts?: [string, React.ReactNode][];
@@ -65,11 +68,12 @@ const Facts: React.FC<{ r: ProfileRecord }> = ({ r }) => (
 /** Who it is: banner, picture, name, what they are, what to do, their numbers, words and memberships. */
 const Identity: React.FC<{ r: ProfileRecord; heading: 1 | 2; line?: boolean; children?: React.ReactNode }> = ({ r, heading, line, children }) => {
   const main = (r.actions ?? []).filter((a) => a.primary); const rest = (r.actions ?? []).filter((a) => !a.primary);
-  const actions = (main.length > 0 || rest.length > 0) && (
+  const actions = (main.length > 0 || rest.length > 0 || r.controls) && (
     <Stack direction="row" gap={2} wrap align="center" surface="region">
       {/* Every action is the one button, lit from its foot and never filled; the one that is on is only pressed. */}
       {main.map((a) => <Button key={a.id} variant="glass" iconLeft={a.icon} aria-pressed={a.on} onClick={a.onClick}>{a.label}</Button>)}
       {rest.map((a) => <Button key={a.id} variant="glass" icon={<a.icon size={16} />} aria-label={a.label} title={a.label} aria-pressed={a.on} onClick={a.onClick} />)}
+      {r.controls}
     </Stack>
   );
   const name = (
@@ -98,8 +102,9 @@ const Identity: React.FC<{ r: ProfileRecord; heading: 1 | 2; line?: boolean; chi
         <Stack direction="row" gap={4} wrap surface="region">
           {r.counts.map(([l, v]) => <Stack key={l} direction="column" gap={0}><Text as="span" font="heading" size="lg" lineHeight={1.1}>{v}</Text><Text as="span" size="xs" intent="muted">{l}</Text></Stack>)}
         </Stack>) : null}
-      {(r.bio || r.more) && (
+      {(r.bio || r.more || r.about) && (
         <Stack direction="column" gap={2} surface="region">
+          {r.about}
           {r.bio && <Text size="sm">{r.bio}</Text>}
           {r.more && <Text size="sm" intent="muted">{r.more}</Text>}
         </Stack>)}

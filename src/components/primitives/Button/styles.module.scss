@@ -41,18 +41,18 @@
   /* No colour of its own: buttons wear the page's shades in the page's ink, one colour per page. The main action is
      the deeper shade, the rest the resting one; under the pointer each goes one shade deeper. */
   background-color: transparent;
-  background-image: var(--phi-surface-strong);
+  background-image: var(--phi-control-ground-strong);
   color: var(--phi-color-text-primary);
   border-color: transparent;
-  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: var(--phi-surface-strong), var(--phi-surface); }
+  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: var(--phi-control-ground-strong), var(--phi-control-ground); }
 }
 
 .secondary, .outline {
   background-color: transparent;
-  background-image: var(--phi-surface);
+  background-image: var(--phi-control-ground);
   color: var(--phi-color-text-primary);
   border-color: transparent;
-  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: var(--phi-surface-strong); }
+  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: var(--phi-control-ground-strong); }
 }
 
 /* Every button's gradient runs from the page's faintest shade to its strongest, left to right, so it reads as a
@@ -62,18 +62,18 @@
    view shown) wears a deeper shade. Every "view all" and every action on an item. */
 .glass {
   background-color: transparent;
-  background-image: var(--phi-surface);
-  -webkit-backdrop-filter: var(--phi-glass-blur); backdrop-filter: var(--phi-glass-blur);
+  background-image: var(--phi-control-ground);
+  /* No blur of its own: a button is only a light, never a filled slab over what lies behind. */
   color: var(--phi-color-text-primary);
   border-color: transparent;
-  &:hover:not(:disabled):not(.disabled), &[aria-pressed='true'] { background-image: var(--phi-surface-strong); }
+  &:hover:not(:disabled):not(.disabled), &[aria-pressed='true'] { background-image: var(--phi-control-ground-strong); }
 }
 
 .ghost {
   background-color: transparent;
-  background-image: var(--phi-surface);
+  background-image: var(--phi-control-ground);
   color: var(--phi-color-text-primary);
-  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: var(--phi-surface-strong); }
+  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: var(--phi-control-ground-strong); }
 }
 
 .danger {
@@ -86,9 +86,9 @@
   padding: 0;
   border-radius: var(--phi-control-radius, var(--phi-radius-md));
   background-color: transparent;
-  background-image: var(--phi-surface);
+  background-image: var(--phi-control-ground);
   color: var(--phi-color-text-primary);
-  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: var(--phi-surface-strong); }
+  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: var(--phi-control-ground-strong); }
 }
 .fullWidth { width: 100%; }
 .loading { cursor: wait; opacity: 0.8; }
@@ -112,19 +112,17 @@
    variant: a gradient of the look's one colour, in the page's one ink, so nothing on a surface brings a second colour. */
 :global(:is(.pui-card, [data-surface='card'], .phi-layers)) .button {
   background-color: transparent;
-  background-image: var(--phi-surface);
+  background-image: var(--phi-control-ground);
   border-color: transparent;
   color: var(--phi-color-text-primary);
-  backdrop-filter: var(--phi-glass-blur);
-  -webkit-backdrop-filter: var(--phi-glass-blur);
-  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: var(--phi-surface-strong); }
+  &:hover:not(:disabled):not(.disabled) { background-color: transparent; background-image: var(--phi-control-ground-strong); }
 }
 
 /* A pressed toggle (a view switch, a filter that is on) is the page's deeper shade, never a fill of its own: one colour
    per page, on a surface or off it. */
 .button[aria-pressed='true'] {
   background-color: transparent;
-  background-image: var(--phi-surface-strong);
+  background-image: var(--phi-control-ground-strong);
   border-color: transparent;
   color: var(--phi-color-text-primary);
 }
