@@ -109,7 +109,7 @@ const Identity: React.FC<{ r: ProfileRecord; heading: 1 | 2; line?: boolean; chi
           {r.more && <Text size="sm" intent="muted">{r.more}</Text>}
         </Stack>)}
       {r.marks?.length ? (
-        <Stack direction="row" gap={2} wrap surface="region">
+        <Stack direction="column" gap={1} surface="region">
           {r.marks.map((m) => <Button key={m.id} variant="glass" icon={m.media} onClick={m.onClick}>{m.label}</Button>)}
         </Stack>) : null}
       {r.tags?.length ? <Stack direction="row" gap={1} wrap surface="region">{r.tags.map((x) => <Tag key={x} minimal round size="sm">{x}</Tag>)}</Stack> : null}

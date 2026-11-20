@@ -146,6 +146,11 @@ a.button,
    in. So a group always shows against its parent, no two neighbours in depth run the same way, and no ground is ever
    filled from edge to edge. This is the one place that decides it: no component alternates its own grounds. */
 :where([data-surface='region'], .phi-region) { min-width: 0; padding: var(--phi-space-3); border-radius: var(--phi-radius-md); background: var(--phi-surface); }
+/* A region that stacks its things in a column is a list of rows: each thing you press in it is a row as wide as the
+   region, its picture and words starting at the left, never a small button floating at one side. A region that lays
+   its things in a line shares the line between the named ones (an icon keeps its own size). */
+:is([data-surface='region'], .phi-region)[data-dir='column'] > :is(button, a) { display: flex; width: 100%; justify-content: flex-start; text-align: start; }
+:is([data-surface='region'], .phi-region)[data-dir='row'] > :is(button, a):not([aria-label]) { flex: 1 1 8rem; }
 /* What you press (a button, a tag) runs against the ground it stands on in the same way: on the page it is lit from
    its foot; on a surface lit from its foot it is lit from its left; on one lit from its left, from its foot. A control
    reads --phi-control-ground (and -strong, under the pointer or when on) and never chooses a direction itself. */
