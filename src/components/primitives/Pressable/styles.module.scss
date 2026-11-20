@@ -12,7 +12,8 @@
      holder from the other (tokens.scss, A ROW, decides which by what holds the row), so the two lights run against
      each other and meet in the middle, and a row is never bare on the page. */
   background-image: var(--phi-row-ground); }
-.row > :is(div, picture, figure):first-child:not(:only-child) { flex: none; padding: 0.2rem; border-radius: var(--phi-radius-md); background-image: var(--phi-row-holder); }
+/* The same holder as .phi-holder (tokens.scss), for a row whose picture carries no class of its own. */
+.row > :is(div, picture, figure):first-child:not(:only-child):not(:global(.phi-holder)) { flex: none; padding: var(--phi-space-1); border-radius: var(--phi-radius-md); background-image: var(--phi-row-holder); }
 .inline.row { display: inline-flex; }
 .gap0 { gap: 0; } .gap1 { gap: 0.25rem; } .gap2 { gap: 0.5rem; } .gap3 { gap: 0.75rem; } .gap4 { gap: 1rem; }
 .fill { width: 100%; }

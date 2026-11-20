@@ -39,7 +39,7 @@ export const ItemCard = ({ media, title, meta, children, aside, actions, stackBe
   <Card {...card} className={cn(styles.card, className)}>
     <Box className={styles.frame}>
       <Box className={cn(styles.item, styles['stack-' + stackBelow], styles['media-' + mediaSize], layout === 'vertical' && styles.vertical)} data-stack={stackBelow} data-layout={layout}>
-        {media != null && <Box className={styles.media}>{media}</Box>}
+        {media != null && <Box className={cn(styles.media, layout !== 'vertical' && 'phi-holder')}>{media}</Box>}
         <Box className={styles.head}>
           <Box className={styles.title}>{title}</Box>
           {meta != null && <Box className={styles.meta}>{meta}</Box>}

@@ -15,8 +15,4 @@
 .face { margin-top: -2.25rem; padding-left: var(--phi-space-3); position: relative; z-index: 1; width: fit-content; }
 /* The picture over the name (no column beside it): lit from the foot. */
 .stacked.stacked { background: var(--phi-surface-soft); }
-/* The picture beside the words (the one-line profile): the row is lit at its right, under the words; the picture's
-   holder at its left. They run against each other and meet in the middle. */
-.line.line { background: var(--phi-label-end-soft); }
-.photo { flex: none; padding: var(--phi-space-1); border-radius: var(--phi-radius-md); background-image: var(--phi-label); }
 .fact + .fact { border-top: 1px solid color-mix(in srgb, var(--phi-color-border) 60%, transparent); }

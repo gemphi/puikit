@@ -83,7 +83,7 @@ const Identity: React.FC<{ r: ProfileRecord; heading: 1 | 2; line?: boolean; chi
     </Stack>
   );
   // The line: a profile said in one row (the account's own head, a row in a list).
-  if (line) return <Stack direction="row" gap={3} align="center" wrap surface="card" className={css.line}><Box className={css.photo}>{r.avatar}</Box><Stack direction="column" gap={1} minWidth="12rem" flex="1">{name}{r.bio && <Text size="sm" intent="secondary">{r.bio}</Text>}</Stack>{r.status && <Label icon={r.status.icon}>{r.status.label}</Label>}{actions}</Stack>;
+  if (line) return <Stack direction="row" gap={3} align="center" wrap surface="card" className="phi-row"><Box className="phi-holder">{r.avatar}</Box><Stack direction="column" gap={1} minWidth="12rem" flex="1">{name}{r.bio && <Text size="sm" intent="secondary">{r.bio}</Text>}</Stack>{r.status && <Label icon={r.status.icon}>{r.status.label}</Label>}{actions}</Stack>;
   return (
     // Every part of the card is a region of its own (who it is, what to do, its numbers, its words, where it belongs,
     // its tags, its facts, the note), so each runs against the card and what you press runs against its region (tokens.scss).

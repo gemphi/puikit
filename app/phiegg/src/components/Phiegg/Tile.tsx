@@ -103,5 +103,5 @@ export const Tile: React.FC<TileProps> = ({ tone, title, sub, ratio = '4/5', big
 };
 
 export const Ring: React.FC<{ onClick?: () => void; children: React.ReactNode; label: string }> = ({ onClick, children, label }) => (
-  <Pressable inline rounded="full" className={styles.avatarRing} onClick={onClick} aria-label={label}>{children}</Pressable>
+  <Pressable inline rounded="full" className={styles.avatarRing + ' phi-holder'} onClick={onClick} aria-label={label}>{children}</Pressable>
 );

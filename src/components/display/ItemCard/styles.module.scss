@@ -1,11 +1,10 @@
 // ItemCard: one row when wide, header + body rows when narrow. The card measures itself (container query). Tokens only.
 .card { min-width: 0; }
 /* Laid as a row (its picture beside its words) the card is a ROW (tokens.scss): lit from one side, never from its
-   foot, and its picture stands in a holder lit from the other side. Stacked (picture over words) it keeps the light
+   foot, and its picture stands in a holder lit from the other side (.phi-holder). Stacked (picture over words) it keeps the light
    its depth gives it. */
 .card:not(:has(.vertical)) { --pui-card-face: var(--phi-row-ground); }
 .card:not(:has(.vertical)):is(:hover, [aria-current], [aria-selected='true']) { --pui-card-face: var(--phi-row-ground-strong), var(--phi-row-ground); }
-.card:not(:has(.vertical)) .media { padding: var(--phi-space-1); border-radius: var(--phi-radius-md); background-image: var(--phi-row-holder); }
 .frame { container-type: inline-size; min-width: 0; }
 .item {
   display: grid; min-width: 0;
