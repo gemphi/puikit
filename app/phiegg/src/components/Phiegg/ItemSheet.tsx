@@ -3,7 +3,7 @@ import { Button, Card, CardBody, FullScreen, Image, ItemCard, MediaStage, Input,
 import { Bookmark, Heart, Maximize2, Share2, ShoppingBag } from 'lucide-react';
 import { useStore } from '@pui/store';
 import { useWallet } from '@phi-kit/wallet';
-import { D, itemImage, lookStore, lotsOfPool, person, salesOfItem, t, usd, itemOf, type SiteCopyKey } from '../../lib/data';
+import { D, itemImage, lookStore, lotsOfPool, person, salesOfItem, t, usd, itemOf } from '../../lib/data';
 import { buy, makeOffer, toggleCart, useCart, useOwned, withdrawOffer } from '../../lib/cart';
 import { itemStats, lookLive, quote, useNow } from '../../lib/market';
 import { phieggStore } from '../../state/phieggStore';
@@ -17,6 +17,7 @@ import { useThemeColours } from '../../lib/themes';
 import { usePageTheme } from '../../lib/pageTheme';
 import { PersonAvatar } from './PersonAvatar';
 import { EntityPage } from './EntityPage';
+import { ItemOwners, ItemParts, type ItemPartId } from './ItemParts';
 import type { ShopLook } from '../../types/phiegg';
 
 /**
@@ -25,9 +26,8 @@ import type { ShopLook } from '../../types/phiegg';
  * with the store's agent on the right. Every column expands or closes, every row expands, folds or closes, with the
  * controls on the right of its header.
  */
-/** An item's tabs, the same set wherever an item is shown: Info, Stats, Trail, Owner, then what it is related to.
- *  One short word each (data/site.json), and the parts of the page each one shows. */
-const PARTS: [string, SiteCopyKey, string[]][] = [['info', 'isTabInfo', ['buy', 'specs']], ['stats', 'isTabStats', ['price', 'stats']], ['trail', 'isTabTrail', ['activity']], ['owner', 'isTabOwner', ['owner']], ['related', 'isTabRelated', ['appears']]];
+/** What each of an item's tabs (ItemParts) shows on a look's page: the parts of the page, by id. */
+const PARTS: [ItemPartId, string[]][] = [['info', ['buy', 'specs']], ['stats', ['price', 'stats']], ['trail', ['activity']], ['owner', ['owner']], ['related', ['appears']]];
 
 export const ItemSheet: React.FC<{ id: string }> = ({ id }) => {
   const s = useStore(phieggStore); const l = itemOf('look', id); const w = useWallet(); const mine = useOwned(); const { cart, offers } = useCart(); const now = useNow(1000);
@@ -81,12 +81,10 @@ export const ItemSheet: React.FC<{ id: string }> = ({ id }) => {
     { id: 'full', label: t('isFull'), icon: icon(Maximize2), onClick: () => setFull(true) },
   ];
   const keys = Object.keys(views); const at = keys.indexOf(angle);
-  // The page's tabs are its own parts; the one that is on is the one shown at the picture's right.
-  const [part, setPart] = useState('info');
 
   // ── centre: the item as content, in three rows ──
   // Who holds it: everyone its ledger hands it to (a mint, a sale, a transfer), the newest first, each once.
-  const holders = salesOfItem(l.id).filter((x) => x.toId).sort((a, b) => b.at.localeCompare(a.at))
+  const holders = salesOfItem(l.id).filter((x) => x.toId && x.event !== 'offer').sort((a, b) => b.at.localeCompare(a.at))
     .filter((x, i, all) => all.findIndex((y) => y.toId === x.toId) === i).map((x) => ({ id: x.toId as string, at: x.at, usd: x.priceUsd || 0 }));
   const parts = [
       { id: 'buy', title: t('isBuy'), expandable: true, collapsible: true, closable: true, content: (
@@ -120,11 +118,7 @@ export const ItemSheet: React.FC<{ id: string }> = ({ id }) => {
       { id: 'price', title: t('isPrice2'), expandable: true, collapsible: true, closable: true, content: <ItemPrice look={l} live={live.total} /> },
       { id: 'stats', title: t('plItemStats'), expandable: true, collapsible: true, closable: true, content: <ItemStatsTable stats={itemStats(l, now)} /> },
       { id: 'appears', title: t('isAppears'), expandable: true, collapsible: true, closable: true, content: <ItemAppears look={l} /> },
-      { id: 'owner', title: t('isTabOwner'), expandable: true, collapsible: true, content: holders.length
-        ? <Stack direction="column" gap={1}>{holders.map((h) => (
-            <ItemCard key={h.id} variant="flat" stackBelow="never" onClick={() => s.go('profile', { profileId: h.id })} media={<PersonAvatar id={h.id} size="md" />}
-              title={person(h.id).name} meta={t('isHeldSince', { date: h.at.slice(0, 10) })} aside={h.usd ? <Tag minimal round size="sm">{usd(h.usd)}</Tag> : undefined} />))}</Stack>
-        : <Text size="sm" intent="muted">{t('isNoOwner')}</Text> },
+      { id: 'owner', title: t('isTabOwner'), expandable: true, collapsible: true, content: <ItemOwners rows={holders} /> },
       { id: 'specs', title: t('isSpecs'), expandable: true, collapsible: true, closable: true, content: <ItemSpecs look={l} /> },
   ];
 
@@ -146,11 +140,8 @@ export const ItemSheet: React.FC<{ id: string }> = ({ id }) => {
       columns={[
         { id: 'item', title: l.name, label: t('isItem'), content: parts.find((x) => x.id === 'look')?.content, width: '32rem', stick: true },
         { id: 'facts', title: l.name, label: t('isSpecs'), width: '30rem', content: (
-          <Stack direction="column" gap={3}>
-            <TabList size="sm" variant="pills" aria-label={l.name} activeId={part} onChange={setPart} items={PARTS.map(([id, key]) => ({ id, label: t(key) }))} />
-            <PageSections id="item" size="sm" sections={parts.filter((x) => PARTS.find(([id]) => id === part)?.[2].includes(x.id))} />
-            {part === 'related' ? left : null}
-          </Stack>) },
+          <ItemParts label={l.name} parts={PARTS.map(([id, ids]) => ({ id, content: (
+            <Stack direction="column" gap={3}><PageSections id="item" size="sm" sections={parts.filter((x) => ids.includes(x.id))} />{id === 'related' ? left : null}</Stack>) }))} />) },
         { id: 'chat', title: <Stack direction="row" gap={2} align="center"><PersonAvatar id={agent.id} size="xs" /><Text size="sm" weight="semibold">{agent.name}</Text></Stack>, label: t('chat'), content: chat, width: '22rem', folded: true },
       ]} />
     </>

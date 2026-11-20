@@ -13,6 +13,7 @@ import { EntityAvatar } from './EntityAvatar';
 import { PersonAvatar } from './PersonAvatar';
 import { Tile } from './Tile';
 import { PageSections } from './PageSections';
+import { ItemOwners, ItemParts } from './ItemParts';
 import { usePageTheme } from '../../lib/pageTheme';
 
 type Row = { id: string; k: string; v: React.ReactNode };
@@ -39,6 +40,7 @@ export const AssetSheet: React.FC<{ id: string }> = ({ id }) => {
   const priceEgg = e ? e.priceEgg : p ? Math.round(p.priceUsd / D.assets.eggUsd) : c ? Math.round(ridePrice(c) / D.assets.eggUsd) : j ? Math.round(j.priceUsd / D.assets.eggUsd) : m?.minEgg ?? 0;
   // A ride for fun or for hire is a ticket: it is booked, not owned.
   const buy = () => setMsg(buyAsset(id, priceEgg, it.name) ? t(c && c.mode !== 'sale' ? 'rdBooked' : 'asBought', { name: it.name }) : t('asNoEgg'));
+  const buyWord = c && c.mode !== 'sale' ? t(c.mode === 'fun' ? 'rdBook' : 'rdHire', { v: egg(priceEgg) }) : t('asBuyEgg', { v: egg(priceEgg) });
   const put = () => { const n = Number(amt); setMsg(m && n >= m.minEgg && deposit(id, n, m.name) ? t('asBought', { name: m.name }) : t('asNoEgg')); };
 
   const rows: Row[] = e ? [
@@ -80,20 +82,18 @@ export const AssetSheet: React.FC<{ id: string }> = ({ id }) => {
     : c ? <SpriteImage sprite={rideSprite(c)} alt={c.name} ratio="16 / 10" radius="xl" maxWidth="28rem" />
     : j ? <SpriteImage sprite={jewelSprite(j)} alt={j.name} radius="xl" maxWidth="18rem" />
     : <Tile tone={club?.tone ?? 'accent'} ratio="16/9" depth={{ worldId: e?.worldId ?? club?.worldIds?.[0], clubId, personId: e?.ownerId ?? undefined }} title={(e ?? m)!.name} sub={typeTag} />;
-  const centre = (
-    <PageSections id="asset" size="sm" sections={[
-      { id: 'item', title: it.name, expandable: true, content: <Stack direction="column" gap={2}>{hero}{e && <Text>{e.desc}</Text>}{th && <Text>{th.story}</Text>}</Stack> },
-      { id: 'buy', title: t('asBuy'), content: (
-        <Stack direction="column" gap={2}>
-          {mine && <Tag intent="success" round>{t('asHeld')} · {m ? t('asHolding', { n: fmt(mine.egg), date: new Date(mine.at).toISOString().slice(0, 10) }) + ' · +' + egg(sumYield(mine, m.apy, now)) : '×' + mine.qty}</Tag>}
-          {m ? <Stack direction="row" gap={2} align="center"><Input inputMode="numeric" value={amt} aria-label={t('asMin')} onChange={(ev) => setAmt(ev.target.value.replace(/[^0-9]/g, ''))} />
-              <Button variant="glass" disabled={w.egg < Number(amt)} onClick={put}>{t('asDeposit', { v: egg(Number(amt) || 0) })}</Button></Stack>
-            : <Button variant="glass" disabled={w.egg < priceEgg || (!!j && !!j.holderId)} onClick={buy}>{w.egg < priceEgg ? t('asNoEgg') : c && c.mode !== 'sale' ? t(c.mode === 'fun' ? 'rdBook' : 'rdHire', { v: egg(priceEgg) }) : t('asBuyEgg', { v: egg(priceEgg) })}</Button>}
-          {msg && <Text size="sm" role="status">{msg}</Text>}
-        </Stack>) },
-      { id: 'details', title: t('asFacts'), expandable: true, content: <Facts rows={rows} /> },
-    ]} />
-  );
+  // What the tabs show. Info: what it is, in words. Stats: what it is, in numbers. Owner: who holds it.
+  const STAT = new Set(['price', 'supply', 'yield', 'share', 'size', 'apy', 'tvl', 'min', 'holders', 'seats', 'speed', 'cargo', 'today', 'minutes', 'thrill', 'hours', 'case']);
+  const story = e?.desc ?? th?.story;
+  const buyPanel = (
+    <Stack direction="column" gap={2}>
+      {mine && <Tag intent="success" round>{t('asHeld')} · {m ? t('asHolding', { n: fmt(mine.egg), date: new Date(mine.at).toISOString().slice(0, 10) }) + ' · +' + egg(sumYield(mine, m.apy, now)) : '×' + mine.qty}</Tag>}
+      {m ? <Stack direction="row" gap={2} align="center"><Input inputMode="numeric" value={amt} aria-label={t('asMin')} onChange={(ev) => setAmt(ev.target.value.replace(/[^0-9]/g, ''))} />
+          <Button variant="glass" disabled={w.egg < Number(amt)} onClick={put}>{t('asDeposit', { v: egg(Number(amt) || 0) })}</Button></Stack>
+        : <Button variant="glass" disabled={w.egg < priceEgg || (!!j && !!j.holderId)} onClick={buy}>{w.egg < priceEgg ? t('asNoEgg') : buyWord}</Button>}
+      {msg && <Text size="sm" role="status">{msg}</Text>}
+    </Stack>);
+  const ownerId = e?.ownerId ?? p?.holderId ?? c?.holderId ?? j?.holderId;
   const titles = (e?.seriesIds ?? m?.seriesIds ?? []).map(((id) => itemOf('series', id))).filter((x): x is NonNullable<typeof x> => !!x);
   const inputs = (m?.inputs ?? []).map(((id) => itemOf('egg', id))).filter((x): x is NonNullable<typeof x> => !!x);
   const left = (
@@ -111,10 +111,22 @@ export const AssetSheet: React.FC<{ id: string }> = ({ id }) => {
     </Stack>
   );
   return (
-    <EntityPage stickLast picture={hero} title={it.name} sub={<>{typeTag}{club ? ' · ' + club.name : ''}</>} columns={[
-      { id: 'linked', title: t('asLinked'), content: left, width: '19rem' },
-      { id: 'item', title: it.name, label: t('asDetails'), content: centre, minWidth: '20rem' },
-      { id: 'chat', title: agent.name, label: t('chat'), content: <AgentChat agentId={agent.id} context={it.name} prompts={[e ? t('asAskHost') : m ? t('asAskSum') : c ? t('asAskRide') : j ? t('asAskJewel') : t('asAskPft')]} />, width: '21rem' },
-    ]} />
+    <EntityPage stickLast picture={hero} title={it.name} sub={<>{usd(priceEgg * D.assets.eggUsd)} · {egg(priceEgg)} · {typeTag}{club ? ' · ' + club.name : ''}</>}
+      /* The one action, at the heading's right: buy it (book it, hire it), or for a SUM go to its deposit. */
+      action={m ? undefined : <Button variant="glass" disabled={w.egg < priceEgg || (!!j && !!j.holderId)} title={w.egg < priceEgg ? t('asNoEgg') : undefined} onClick={buy}>{buyWord}</Button>}
+      /* As a look's page: the picture at the left, held in view; at its right the item's tabs and the part that is on. */
+      columns={[
+        { id: 'item', title: it.name, label: t('asDetails'), content: hero, width: '32rem', stick: true },
+        { id: 'facts', title: it.name, label: t('asFacts'), width: '30rem', content: (
+          <ItemParts label={it.name} parts={[
+            { id: 'info', content: <PageSections id="asset" size="sm" sections={[
+              { id: 'buy', title: t('asBuy'), content: <Stack direction="column" gap={2}>{story && <Text>{story}</Text>}{buyPanel}</Stack> },
+              { id: 'details', title: t('asFacts'), expandable: true, content: <Facts rows={rows.filter((r) => !STAT.has(r.id))} /> }]} /> },
+            { id: 'stats', hidden: !rows.some((r) => STAT.has(r.id)), content: <PageSections id="asset-stats" size="sm" sections={[{ id: 'stats', title: t('isTabStats'), expandable: true, content: <Facts rows={rows.filter((r) => STAT.has(r.id))} /> }]} /> },
+            { id: 'owner', hidden: !ownerId, content: <PageSections id="asset-owner" size="sm" sections={[{ id: 'owner', title: t('isTabOwner'), content: <ItemOwners rows={ownerId ? [{ id: ownerId }] : []} /> }]} /> },
+            { id: 'related', content: left },
+          ]} />) },
+        { id: 'chat', title: agent.name, label: t('chat'), content: <AgentChat agentId={agent.id} context={it.name} prompts={[e ? t('asAskHost') : m ? t('asAskSum') : c ? t('asAskRide') : j ? t('asAskJewel') : t('asAskPft')]} />, width: '22rem', folded: true },
+      ]} />
   );
 };
