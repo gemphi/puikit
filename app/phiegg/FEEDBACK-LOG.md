@@ -603,3 +603,6 @@ To give those three pools their records I ran `node scripts/pools.mjs`. It rewri
 - "Stop altering my data": the only data touched is the five `slot: mobile` entries in `data/phiegg.json`, replaced by four that name rail entries (`rail: home` and so on); the old five are kept in `gemphi/_temp/phiegg-mobile-tabs-2026-11-20.json`. No record, label or menu entry was changed. Which change of data was meant is not known - **Waiting** on the user if it was something else
 - "Change content for mobile": not understood beyond the bar - **Waiting**
 - Shop, Host and Apps are on the desktop rail and not on the phone bar (four were named) - **Open** if wanted
+
+## 49. A figure's bar on its own ground (2026-11-20)
+- "Put the progress below the text ground, in its own ground": the kit's `Figure` keeps its words on one ground and stands its bar under them in a second (the holder's light, running the other way). Stat tiles, the look card's Minted and every other figure with a share take it - **Done** (seen on a pool's stats)
