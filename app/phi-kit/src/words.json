@@ -4,6 +4,14 @@
     "open": "Open {page}",
     "close": "Make your move in {app}"
   },
+  "profile": {
+    "note": "Note, only you see it",
+    "notePh": "Add a note",
+    "highlights": "Highlights",
+    "identity": "Phione identity",
+    "guest": "Not signed in",
+    "manage": "Manage in Phione"
+  },
   "account": {
     "title": "You",
     "guest": "Guest",

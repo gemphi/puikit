@@ -1,0 +1,16 @@
+/* The one profile (ProfileView). Tokens only: surfaces are the kit's card surface, corners the theme's, gaps the theme's. */
+.root { min-width: 0; }
+.grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--phi-gap, 1rem); align-items: start; min-width: 0; }
+.side { min-width: 0; }
+/* Two parts side by side where there is room for both (ProfileView measures it): the identity keeps a reading width
+   and stays in view while the relations scroll. */
+.two { grid-template-columns: minmax(17rem, 22rem) minmax(0, 1fr); }
+.two > .side { position: sticky; top: 0; }
+.card { min-width: 0; }
+.name { overflow-wrap: break-word; min-width: 0; }
+/* The banner with the picture standing on its lower edge. The banner takes the card's own corner, one step in. */
+.top { position: relative; display: flex; flex-direction: column; }
+.banner { border-radius: var(--phi-radius-md); overflow: hidden; }
+.banner > * { display: block; width: 100%; }
+.face { margin-top: -2.25rem; padding-left: var(--phi-space-3); position: relative; z-index: 1; width: fit-content; }
+.fact + .fact { border-top: 1px solid color-mix(in srgb, var(--phi-color-border) 60%, transparent); }

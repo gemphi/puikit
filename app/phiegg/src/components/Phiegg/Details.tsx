@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Box, Button, Card, Cascade, ChatBubble, ChatComposer, Frame, Grid, Image, Input, ItemCard as RowCard, Pressable, Stack, TabList, Tag, Text, Title } from '@pui/components';
 import { useStore } from '@pui/store';
-import { D, STORES, castsOfHost, castsOfPerson, fmt, hostsOwnedBy, itemImage, itemsOfPerson, person, salesOfItem, salesOfPerson, statsOfPerson, usd, itemOf, t } from '../../lib/data';
+import { D, STORES, castsOfHost, fmt, itemImage, person, salesOfItem, usd, itemOf, t } from '../../lib/data';
 import type { SaleEvent } from '../../types/phiegg';
 import { phieggStore, type DetailRef } from '../../state/phieggStore';
 import { PersonAvatar } from './PersonAvatar';
 import { PersonLine } from './PersonLine';
+import { PersonProfile } from './PersonProfile';
 import { EntityAvatar } from './EntityAvatar';
 import { Connected } from './Connected';
 import { Tile } from './Tile';
@@ -51,7 +52,7 @@ const ItemCard: React.FC<{ kind: 'piece' | 'look'; id: string; s: S }> = ({ kind
 const EVENT_INTENT: Record<string, 'success' | 'primary' | 'warning' | undefined> = { sale: 'success', mint: 'primary', offer: 'warning', list: undefined, transfer: undefined };
 const itemName = (x: SaleEvent) => (x.itemKind === 'look' ? itemOf('look', x.itemId)?.name : itemOf('piece', x.itemId)?.name) ?? x.itemId;
 /** OpenSea-style activity table. */
-const Activity: React.FC<{ rows: SaleEvent[]; s: S; hideItem?: boolean }> = ({ rows, s, hideItem }) => (
+export const Activity: React.FC<{ rows: SaleEvent[]; s: S; hideItem?: boolean }> = ({ rows, s, hideItem }) => (
   <Stack direction="column" gap={0}>
     {rows.length === 0 && <Empty text="No activity yet." />}
     {rows.slice(0, 60).map((x) => (
@@ -84,40 +85,19 @@ const Panel: React.FC<{ media: React.ReactNode; title: string; sub?: React.React
     <Stack direction="column" gap={3}>
       <Stack direction="row" gap={3} align="center">{media}<Stack direction="column" gap={0} minWidth="0"><Title level={4} size="lg">{title}</Title>{sub && <Text size="sm" intent="muted">{sub}</Text>}</Stack></Stack>
       {actions && <Stack direction="row" gap={2} wrap>{actions}</Stack>}
-      <Box scroll="x"><TabList size="sm" variant="pills" activeId={cur?.id} onChange={setTab} items={tabs.map((x) => ({ id: x.id, label: x.n != null ? `${x.label} · ${fmt(x.n)}` : x.label }))} /></Box>
+      <Box scroll="x"><TabList size="sm" variant="pills" aria-label={title} activeId={cur?.id} onChange={setTab} items={tabs.map((x) => ({ id: x.id, label: x.label, count: x.n ? fmt(x.n) : undefined }))} /></Box>
       <Box key={cur?.id}>{cur?.body()}</Box>
     </Stack>
   );
 };
-
-function personTabs(id: string, s: S): Tab[] {
-  const st = statsOfPerson(id); const items = itemsOfPerson(id); const owned = hostsOwnedBy(id); const casts = castsOfPerson(id); const sales = salesOfPerson(id);
-  const following = id === D.core.currentUserId ? D.hosts.hosts.filter((h) => s.follow[h.id]) : [];
-  return [
-    { id: 'items', label: 'Items', n: items.length, body: () => items.length ? <Grid gap={2} xs={2} sm={3}>{items.slice(0, 24).map((it) => <ItemCard key={it.id} kind={it.kind} id={it.id} s={s} />)}</Grid> : <Empty text="No items held." /> },
-    { id: 'hosts', label: 'Hosts', n: owned.length + following.length, body: () => (
-      <Stack direction="column" gap={2}>
-        <Text size="xs" weight="bold">HOSTS (children of this profile)</Text>{owned.length ? owned.map((h) => <HostRow key={h.id} id={h.id} s={s} />) : <Empty text="No hosts yet." />}
-        {id === D.core.currentUserId && <><Text size="xs" weight="bold">FOLLOWING</Text>{following.length ? following.map((h) => <HostRow key={h.id} id={h.id} s={s} />) : <Empty text="Follow hosts to see them here." />}</>}
-      </Stack>) },
-    { id: 'casts', label: 'Casts', n: casts.length, body: () => casts.length ? <Stack direction="column" gap={0}>{casts.map((c) => <CastRow key={c.id} id={c.id} s={s} />)}</Stack> : <Empty text="Not in a cast yet." /> },
-    { id: 'stats', label: 'Stats', body: () => <Stats rows={[['Items', fmt(st.items)], ['Volume', usd(st.volumeUsd)], ['Bought', usd(st.boughtUsd)], ['Sold', usd(st.soldUsd)], ['Trades', fmt(st.trades)], ['Floor (listed)', st.floorUsd ? usd(st.floorUsd) : '·'], ['Best sale', st.bestSaleUsd ? usd(st.bestSaleUsd) : '·'], ['Hosts', fmt(st.hosts)], ['Casts', fmt(st.casts)]]} /> },
-    { id: 'sales', label: 'Sales', n: sales.length, body: () => <Activity rows={sales} s={s} /> },
-    { id: 'links', label: 'Connected', body: () => <Connected kind="person" id={id} max={8} inPanel /> },
-  ];
-}
 
 /** The details column of the chat sheet: whatever record is on top of the back stack. */
 export const Details: React.FC<{ at: DetailRef }> = ({ at }) => {
   const s = useStore(phieggStore);
   const [msg, setMsg] = useState('');
   const k = at.kind, id = at.id;
-  if (k === 'person') {
-    const p = person(id); const ag = itemOf('agent', id);
-    return <Panel key={k + id} media={<PersonAvatar id={id} size="xl" />} title={p.name} sub={<>@{p.handle}{ag ? ' · ' + ag.role : ''} · {fmt(p.followers)} followers</>}
-      actions={<>{ag && <Button size="sm" variant="primary" onClick={() => s.openChat(id)}>Chat</Button>}<Button size="sm" variant={s.follow[id] ? 'secondary' : 'outline'} onClick={() => s.toggle('follow', id)}>{s.follow[id] ? 'Following' : 'Follow'}</Button><Button size="sm" variant="ghost" onClick={() => s.go('profile', { profileId: id })}>Open profile</Button></>}
-      tabs={[{ id: 'about', label: 'About', body: () => <Stack direction="column" gap={2}><Text>{p.bio}</Text>{ag && <><Text size="sm" intent="muted">{ag.style}</Text><Stack direction="row" gap={1} wrap>{ag.abilities.map((x) => <Tag key={x} minimal round intent="success">{x}</Tag>)}</Stack></>}<Stack direction="row" gap={1} wrap>{p.badges.map((b) => <Tag key={b} minimal round intent="primary">{b}</Tag>)}</Stack></Stack> }, ...personTabs(id, s)]} />;
-  }
+  // A person is the one profile (PersonProfile), here as in their drawer and on their page.
+  if (k === 'person') return <PersonProfile key={id} id={id} variant="popup" />;
   if (k === 'host') {
     const h = itemOf('host', id); if (!h) return <Empty text="Unknown host." />;
     const r = itemOf('role', h.roleTypeId); const cat = itemOf('roleCategory', r?.categoryId); const casts = castsOfHost(id); const members = D.core.users.filter((u) => u.hostIds?.includes(id));

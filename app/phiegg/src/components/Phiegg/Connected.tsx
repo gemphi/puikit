@@ -74,7 +74,7 @@ export function relationGroups(kind: Kind, id: string, s: S): RelationGroup[] {
   })).filter((g) => g.items.length > 0);
 }
 
-const listLabels = () => ({ showAllLabel: (n: number) => t('showAllN', { n }), showLessLabel: t('showLess'), labels: { grid: t('lyGrid'), slider: t('lySlider') } });
+export const listLabels = () => ({ showAllLabel: (n: number) => t('showAllN', { n }), showLessLabel: t('showLess'), labels: { grid: t('lyGrid'), slider: t('lySlider') } });
 
 /** Everything a record links to and everything that links to it, each one a step away, one row per relation. */
 export const Connected: React.FC<{ kind: Kind; id: string; max?: number; inPanel?: boolean; bare?: boolean }> = ({ kind, id, max = 3, bare }) => {

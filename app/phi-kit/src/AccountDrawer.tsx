@@ -8,6 +8,7 @@ import { appUrl } from './data';
 import { FONTS, useFont } from './fonts';
 import { LOOKS, useLook } from './looks';
 import { LABEL, USD, useWallet, type Coin } from './wallet';
+import { ProfileView } from './ProfileView';
 import words from './words.json';
 import kit from './kit.module.scss';
 
@@ -40,8 +41,8 @@ export const AccountDrawer: React.FC<{ onProfile?: () => void; onLook?: (id: str
         <Avatar initials={initials} size="md" className={kit.fill} /></Pressable>
       <Drawer isOpen={open} onClose={() => setOpen(false)} position="right" size="md" title={W.title}>
         <Stack direction="column" gap={3}>
-          <Stack direction="row" gap={2} align="center"><Avatar initials={initials} size="md" />
-            <Stack direction="column" gap={0}><Text weight="medium">{name}</Text>{me?.handle ? <Text size="xs" intent="muted">@{me.handle}</Text> : null}</Stack></Stack>
+          <ProfileView variant="line" record={{ id: me?.id ?? 'guest', name, handle: me?.handle ?? undefined, avatar: <Avatar initials={initials} seed={me?.id} size="md" />,
+            actions: onProfile ? [{ id: 'profile', label: W.profile, icon: User, onClick: go(onProfile) }] : [] }} />
 
           <Accordion>
             <AccordionItem open={!!shown.wallet} onToggle={() => fold('wallet')}

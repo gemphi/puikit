@@ -10,6 +10,7 @@ import { KindForm, describe, kindLabel } from '../../lib/fields';
 import { withDefaults } from '../../lib/kindDefaults';
 import { RecordSheet } from './RecordSheet';
 import { PersonLine } from './PersonLine';
+import { PersonProfile } from './PersonProfile';
 import { PersonAvatar } from './PersonAvatar';
 import { EntityAvatar } from './EntityAvatar';
 import { Tile } from './Tile';
@@ -162,25 +163,14 @@ const EditClub: React.FC = () => {
   return <EditSheet kind="club" id={club.id} row={club as unknown as Record<string, unknown>} title={t('editClub')} savedMsg={t('ecSaved')} />;
 };
 
+/** A person opened from anywhere: the one profile (PersonProfile) in the drawer at the right; widened, it lays out as the page. */
 const PersonDrawer: React.FC = () => {
   const s = useStore(phieggStore); const o = s.overlay.kind === 'person' ? s.overlay : null;
   const [wide, setWide] = useState(false);
   if (!o) return null;
-  const p = person(o.id); const ag = itemOf('agent', p.id); const all = postsBy(p.id); const posts = all.slice(0, wide ? 18 : 6); const sets = storySets(p.id);
   return (
-    <Drawer isOpen onClose={s.close} position="right" size="md" expandable expanded={wide} onExpandedChange={setWide} expandLabel={t('expand')} collapseLabel={t('collapse')}
-      title={<Stack direction="row" gap={2} align="center"><PersonAvatar id={p.id} size="lg" /><Stack direction="column" gap={0}><Title level={4} size="md">{p.name}</Title><Text size="xs" intent="muted">@{p.handle}{ag ? ' · ' + ag.role : ''}</Text></Stack></Stack>}
-      footer={<Stack direction="row" gap={2}><Button variant="primary" onClick={() => s.go('profile', { profileId: p.id })}>{t('viewProfile')}</Button>
-        <Button variant={s.follow[p.id] ? 'secondary' : 'outline'} onClick={() => s.toggle('follow', p.id)}>{s.follow[p.id] ? t('following') : t('follow')}</Button>
-        {ag && <Button variant="outline" onClick={() => s.openChat(ag.id)}>{t('chat')}</Button>}</Stack>}>
-      <Stack direction="column" gap={3}>
-        <Tile tone={p.tone} ratio={wide ? '3/1' : '16/9'} big={wide} grid title={p.name} sub={t('counts', { shots: fmt(ag ? ag.postCount : all.length), followers: fmt(p.followers), following: fmt(p.following) })} depth={{ clubId: p.clubIds[0], personId: p.id }} />
-        <Text>{p.bio}</Text>
-        {p.badges.length > 0 && <Stack direction="row" gap={1} wrap>{p.badges.map((b) => <Tag key={b} minimal round intent="primary">{b}</Tag>)}</Stack>}
-        {sets.length > 0 && <Stack direction="row" gap={1} wrap>{sets.map((h, i) => <Tag key={h.id} interactive round onClick={() => s.openStory(p.id, i)}>▶ {h.label}</Tag>)}</Stack>}
-        <Rows cols={wide ? 6 : 3} colsSm={3} minItemWidth={wide ? '11rem' : undefined}>{posts.map((x) => <Tile key={x.id} animate {...postTile(x)} ratio={wide ? '4/5' : '1'} title={wide ? x.slides[0].title : undefined} onClick={() => s.openPost(x.id)} />)}</Rows>
-        <Connected kind="person" id={p.id} max={wide ? 12 : 4} />
-      </Stack>
+    <Drawer isOpen onClose={s.close} position="right" size="md" expandable expanded={wide} onExpandedChange={setWide} expandLabel={t('expand')} collapseLabel={t('collapse')} title={t('prProfile')}>
+      <PersonProfile id={o.id} variant="popup" wide={wide} />
     </Drawer>
   );
 };
