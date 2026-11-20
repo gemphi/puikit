@@ -83,18 +83,25 @@
    of the theme's maximum, never more; everything inside it rounds one step down (sm, then xs). */
 .nav { display: flex; flex: none; min-height: 0; margin: 0 0 var(--pui-shell-gap) var(--pui-shell-gap);
   overflow: hidden;
-  /* The sidebar is light at the rail fading to nothing across the panel, so the column disappears on its right; no
-     ground and no blur of its own (only the page lies behind it), and no colour but the page's one light. */
-  background: var(--phi-label);
+  /* A sidebar disappears toward the edge of the window it stands at and is lit toward the page: the left one runs
+     from nothing at its left to light at its right, the right one (.navEnd) the other way. What you press inside it
+     (rail icons, menu rows) runs against it, lit at the window's edge and gone toward the page, so the two lights
+     cross and only meet in the middle. No ground and no blur of its own, and no colour but the page's one light. */
+  --pui-nav-ground: var(--phi-label-end);
+  --pui-nav-item-soft: var(--phi-label-soft); --pui-nav-item: var(--phi-label); --pui-nav-item-strong: var(--phi-label-strong);
+  background: var(--pui-nav-ground);
   backdrop-filter: none; -webkit-backdrop-filter: none; }
 
 .rail { display: grid; grid-template-rows: minmax(min-content, 1fr) auto minmax(min-content, 1fr); justify-items: center; gap: var(--phi-space-2); flex: none; inline-size: var(--pui-shell-rail); padding-block: var(--phi-space-3); }
 .railGroup { width: 100%; }
 .railBtn { display: inline-flex; align-items: center; justify-content: center; inline-size: var(--pui-shell-control); block-size: var(--pui-shell-control);
-  border-radius: var(--phi-radius-sm); border: 1px solid transparent; color: var(--phi-color-text-secondary); background: transparent; cursor: pointer;
+  border-radius: var(--phi-radius-sm); border: 1px solid transparent; color: var(--phi-color-text-secondary); cursor: pointer;
+  /* Every rail icon stands on its own light, running against the sidebar's: soft at rest, fuller under the pointer,
+     fullest for the one that is on. */
+  background-color: transparent; background-image: var(--pui-nav-item-soft, var(--phi-label-soft));
   transition: background var(--phi-transition-fast), color var(--phi-transition-fast), border-color var(--phi-transition-fast); }
-.railBtn:hover { background-image: var(--phi-label-soft); color: var(--phi-color-text-primary); }
-.railOn, .railOn:hover { background-image: var(--phi-label); border-color: transparent; color: var(--phi-color-text-primary); }
+.railBtn:hover { background-image: var(--pui-nav-item, var(--phi-label)); color: var(--phi-color-text-primary); }
+.railOn, .railOn:hover { background-image: var(--pui-nav-item-strong, var(--phi-label-strong)); border-color: transparent; color: var(--phi-color-text-primary); }
 .railGlyph { font-weight: var(--phi-font-weight-medium); font-size: var(--phi-font-size-sm); }
 
 /* The secondary column has no ground of its own: the sidebar's light fades across it to nothing (.nav). */
@@ -144,10 +151,10 @@
 .caret svg { transition: transform var(--phi-transition-normal); }
 .caret[aria-expanded='false'] svg { transform: rotate(-90deg); }
 /* Menu rows run the full width of the menu, in the page's shades, no borders: a shade under the pointer, a deeper
-   one for the page you are on, both running left to right like every surface. */
+   one for the page you are on, both running against the sidebar they are in (.nav). */
 .navRow, .pullRow { flex: 1 1 auto; width: 100%; min-width: 0; min-height: var(--pui-shell-control); border-radius: var(--phi-radius-sm); border: 0; background: transparent; }
-.navRow:hover, .pullRow:hover { background-image: var(--phi-label-soft); color: var(--phi-color-text-primary); }
-.navRow[aria-current='page'] { background-image: var(--phi-label); color: var(--phi-color-text-primary); }
+.navRow:hover, .pullRow:hover { background-image: var(--pui-nav-item-soft, var(--phi-label-soft)); color: var(--phi-color-text-primary); }
+.navRow[aria-current='page'] { background-image: var(--pui-nav-item, var(--phi-label)); color: var(--phi-color-text-primary); }
 
 /* The app switcher: each row glass from its left edge to nothing, each glyph black and white on a pane of glass. */
 .appRow { display: flex; align-items: center; gap: var(--phi-space-2); padding: var(--phi-space-2) var(--phi-space-3); border-radius: var(--phi-radius-sm);
@@ -208,8 +215,10 @@
 .tab { flex: 1 1 0; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: var(--phi-space-1); border-radius: var(--phi-radius-xs); color: var(--phi-color-text-secondary); cursor: pointer; }
 .tabOn { color: var(--phi-color-text-primary); background-image: var(--phi-label); }
 
-/* The right sidebar: the same holder mirrored, its light at the rail (the right edge) fading to nothing leftwards. */
-.navEnd { margin: 0 var(--pui-shell-gap) var(--pui-shell-gap) 0; background: var(--phi-label-end); }
+/* The right sidebar: the same holder mirrored. It is lit at its left, toward the page, and disappears to the right;
+   its icons and rows are lit at the right and gone to the left. */
+.navEnd { margin: 0 var(--pui-shell-gap) var(--pui-shell-gap) 0; --pui-nav-ground: var(--phi-label);
+  --pui-nav-item-soft: var(--phi-label-end-soft); --pui-nav-item: var(--phi-label-end); --pui-nav-item-strong: var(--phi-label-end-strong); }
 
 /* Phone: no sidebar; the header shows the menu button and the glyph, the drawer carries the whole menu. */
 @media (max-width: 900px) {
