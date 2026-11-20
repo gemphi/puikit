@@ -233,9 +233,18 @@
 /* The rail as the phone's bar: an icon alone, on the ground every control stands on; lit when its menu is open. */
 /* The same bar at the foot of an open menu (the drawer covers the page's own), so another icon swaps the menu and the
    same one shuts it. */
-.tabsIn { display: flex; gap: var(--phi-space-1); width: 100%; }
-.tabIcon { justify-content: center; min-height: 2.75rem; border-radius: var(--phi-radius-md); background-image: var(--phi-control-ground); }
-.tabIcon.tabOn { background-image: var(--phi-control-ground-strong), var(--phi-control-ground); }
+.tabsIn { display: flex; gap: var(--phi-space-3); width: 100%; }
+.tabIcon { justify-content: center; min-height: 3rem; border-radius: var(--phi-radius-md); background-image: var(--phi-surface-strong); }
+.tabIcon.tabOn { background-image: var(--phi-surface-strong), var(--phi-surface-strong), var(--phi-surface); }
+/* A menu opened from the bar: every row on a ground lit from top to bottom, with room between the rows. */
+/* The drawer is drawn outside the shell, so the shell's own sizes are said again here (a finger's height for a row). */
+.phoneMenu, .tabsIn { --pui-shell-control: 2.75rem; --pui-shell-icon: 1.25rem; --pui-shell-stroke: 1.75; }
+.phoneMenu { display: flex; flex-direction: column; gap: var(--phi-space-3); }
+.phoneMenu > * { align-self: stretch; }
+.phoneMenu .panelGroup { gap: var(--phi-space-2); flex: 1 1 auto; width: 100%; box-sizing: border-box; }
+.phoneMenu :is(.navRow, .pullRow) { background-image: var(--phi-surface); }
+.phoneMenu :is(.navRow, .pullRow):hover { background-image: var(--phi-surface-strong); }
+.phoneMenu .navRow[aria-current='page'] { background-image: var(--phi-surface-strong), var(--phi-surface); }
 .tabIcon svg { width: var(--pui-shell-icon) !important; height: var(--pui-shell-icon) !important; stroke-width: var(--pui-shell-stroke); }
 
 /* The right sidebar: the same holder mirrored. It is lit at its left, toward the page, and disappears to the right;
@@ -254,9 +263,10 @@
   .lane { padding-inline: var(--phi-space-4); }
   .inner { padding: var(--phi-space-3); }
   .inner :global(.pui-sections[data-expanded]), .inner :global(.pui-columns[data-expanded]) { left: var(--pui-shell-gap); }
-  .withTabs .tabs { display: flex; flex: none; gap: var(--phi-space-1); margin: 0 var(--pui-shell-gap) var(--pui-shell-gap); padding: var(--phi-space-1);
-    border: 0; border-radius: var(--phi-radius-md); background: var(--phi-label-soft); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur); }
-  .withTabs .brandCell { padding-left: var(--pui-shell-gap); }
+  .withTabs .tabs { display: flex; flex: none; gap: var(--phi-space-3); margin: 0 var(--pui-shell-gap) var(--pui-shell-gap); padding: var(--phi-space-2);
+    border: 0; border-radius: var(--phi-radius-md); background: var(--phi-surface); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur); }
+  /* A phone with the bar has no logo in its header: Home is in the bar, and the row is for the page's tools. */
+  .withTabs .brandCell { display: none; }
 }
 
 /* An item full screen (overlays/FullScreen) has the whole window: the header and the sidebar are not shown at all. */

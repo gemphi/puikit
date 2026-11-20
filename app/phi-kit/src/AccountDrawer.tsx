@@ -37,7 +37,7 @@ export const AccountDrawer: React.FC<{ onProfile?: () => void; onLook?: (id: str
   return (
     <>
       <Pressable rounded="full" aria-label={W.open} aria-expanded={open} onClick={() => setOpen(true)}
-        style={{ width: 'var(--pui-shell-control, 2.25rem)', height: 'var(--pui-shell-control, 2.25rem)', padding: 0, display: 'grid', placeItems: 'center' }}>
+        style={{ width: 'var(--pui-shell-control, 2.25rem)', height: 'var(--pui-shell-control, 2.25rem)', padding: 0, display: 'grid', placeItems: 'center', flex: 'none', minWidth: 'var(--pui-shell-control, 2.25rem)' }}>
         <Avatar initials={initials} size="md" className={kit.fill} /></Pressable>
       <Drawer isOpen={open} onClose={() => setOpen(false)} position="right" size="md" title={W.title}>
         <Stack direction="column" gap={3}>

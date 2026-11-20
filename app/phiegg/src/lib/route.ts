@@ -6,7 +6,7 @@ import { dataAt, fmt, itemsOf, valueAt, valuesAt, type ItemRow } from './data';
 type Rule = Record<string, string>;
 /** A tab: a kind, and which rows of it belong to the path's record (see data/route.json). */
 export type RouteTab = { id: string; label: string; kind: string; where?: Rule; not?: Rule; menu?: boolean };
-export type Route = { kind?: string | string[]; param?: string; menu?: string; header: string[]; title?: string; sub?: string; tab?: RouteTab[];
+export type Route = { kind?: string | string[]; param?: string; menu?: string; header: string[]; /** The header's tools on a phone, where there is room for one beside the account. */ headerPhone?: string[]; title?: string; sub?: string; tab?: RouteTab[];
   /** The tab that is on when the path opens (else the first), and the path this one is like (it has what that has, then its own). */
   on?: string; like?: string;
   /** What the path is called in the trail and in menus (words or a copy key); the kind of record it names when that is

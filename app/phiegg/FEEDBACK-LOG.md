@@ -606,3 +606,9 @@ To give those three pools their records I ran `node scripts/pools.mjs`. It rewri
 
 ## 49. A figure's bar on its own ground (2026-11-20)
 - "Put the progress below the text ground, in its own ground": the kit's `Figure` keeps its words on one ground and stands its bar under them in a second (the holder's light, running the other way). Stat tiles, the look card's Minted and every other figure with a share take it - **Done** (seen on a pool's stats)
+
+## 50. The phone header and the phone menu's grounds (2026-11-20)
+- "Gradients on the menu on mobile, top to bottom, and bigger gaps": the bar and each of its icons are lit from top to bottom with more room between them; a menu opened from the bar has every row on a top-to-bottom ground at a finger's height (the rows had been 14px high there), with room between rows and groups - **Done** (seen at 375px)
+- "On mobile don't show the logo": a phone with the bar has no logo in its header (Home is in the bar) - **Done** (seen). Every app that uses the shell's phone bar takes it
+- "Keep only one icon next to the user": `headerPhone` in `data/route.json` names the tools a phone shows: search and the account everywhere, the cart and the account in a shop - **Done** (home seen; the shop's cart not seen)
+- "Don't squash the user icon": the account button keeps its width when the row is short of room - **Done** (seen, 41 by 41)

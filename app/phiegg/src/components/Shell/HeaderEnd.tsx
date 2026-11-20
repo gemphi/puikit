@@ -32,7 +32,7 @@ export const HeaderEnd: React.FC = () => {
   };
   return (
     <Box className={styles.end}>
-      {routeOf(s.tab).header.map((id) => <React.Fragment key={id}>{tool[id]?.()}</React.Fragment>)}
+      {((mobile && routeOf(s.tab).headerPhone) || routeOf(s.tab).header).map((id) => <React.Fragment key={id}>{tool[id]?.()}</React.Fragment>)}
       {mobile && searching && <Box className={styles.searchRow}><SearchBox autoFocus onPick={() => setSearching(false)} /></Box>}
     </Box>
   );

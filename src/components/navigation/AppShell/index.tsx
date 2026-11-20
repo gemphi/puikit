@@ -186,7 +186,7 @@ export const AppShell: React.FC<AppShellProps> = ({
 
         <Drawer isOpen={drawer} onClose={() => setDrawer(false)} position="left" size="md" title={phoneGroup?.label ?? brand.name}
           footer={phoneGroup ? <PhoneRail inDrawer label={L.menu} groups={phoneGroups} on={phoneId} current={groupOfView} pick={pickPhone} /> : undefined}>
-          {phoneGroup ? <GroupMenu key={phoneGroup.id} group={phoneGroup} {...menu} /> : <Stack direction="column" gap={3}>
+          {phoneGroup ? <Box className={styles.phoneMenu}><GroupMenu key={phoneGroup.id} group={phoneGroup} {...menu} /></Box> : <Stack direction="column" gap={3}>
             {pages.length > 0 && <PageMenu pages={pages} {...menu} />}
             {allGroups.filter((g) => !leafOf(g)).map((g) => <GroupMenu key={g.id} group={g} {...menu} />)}
             {apps && apps.length > 0 && <Box className={styles.panelGroup}><Text size="sm" weight="semibold">{appsLabel}</Text><AppsList apps={apps} moreLabel={L.moreApps} /></Box>}
