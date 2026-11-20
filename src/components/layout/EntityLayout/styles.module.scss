@@ -2,6 +2,7 @@
 // Nothing here scrolls on its own; the content area is the one scroll. Tokens only.
 .page { display: flex; flex-direction: column; gap: var(--phi-gap); padding-bottom: 1rem; container-type: inline-size; }
 .head { min-width: 0; }
+.headAction { margin-left: auto; flex: none; }
 .title.title { margin: 0; font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.1; }
 .sub.sub { padding-bottom: 0.3rem; }
 
@@ -11,14 +12,17 @@
 .hero { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 0.5rem; text-align: center;
   /* The first screen, less the shell's header, the row of tabs and the page's own breath above and below. */
   min-height: calc(100dvh - var(--pui-shell-head, 3.5rem) - var(--phi-control-height-md, 2.75rem) - 5rem);
-  /* The heading is lit from its foot, where the name stands, to nothing at its head. */
-  padding: 0 var(--phi-space-4) var(--phi-space-4); border-radius: var(--phi-radius-lg); background-image: var(--phi-surface); }
+  /* A heading has no ground: the name stands on the page's picture, bare. */
+  padding: 0 var(--phi-space-4) var(--phi-space-4); }
 .hero .title.title { font-size: clamp(2.25rem, 6vw, 4.5rem); }
 .hero .sub.sub { padding-bottom: 0; max-width: 44rem; }
-.heroTabs { position: sticky; top: 0; z-index: 3; display: flex; justify-content: center; min-width: 0; }
-/* Held over the page as it scrolls, the tabs keep the page's colour under their glass and wash out what passes
-   behind, so a picture never reads through the words of a tab. */
-.heroTabs > * { background-color: var(--phi-glass-ground); backdrop-filter: var(--phi-glass-blur-deep); -webkit-backdrop-filter: var(--phi-glass-blur-deep); border-radius: var(--phi-radius-md); }
+.heroTabs { position: sticky; top: 0; z-index: 3; display: flex; justify-content: center; align-items: center; gap: var(--phi-space-3); min-width: 0; }
+/* The record's one action, at the right end of the tabs' row. */
+.heroAction { flex: none; margin-left: auto; }
+.heroTabs:has(.heroAction) > :first-child:not(.heroAction) { margin-left: auto; }
+/* Held over the page as it scrolls, the tabs wash out what passes behind them with a blur alone: no colour of their
+   own is laid under them. */
+.heroTabs > :not(.heroAction) { backdrop-filter: var(--phi-glass-blur-deep); -webkit-backdrop-filter: var(--phi-glass-blur-deep); border-radius: var(--phi-radius-md); }
 .heroCard { align-self: center; display: block; width: min(100%, 30rem); aspect-ratio: 1; padding: 0; border: 0; background: none;
   border-radius: var(--phi-radius-lg); overflow: hidden; }
 .heroCard > * { width: 100%; height: 100%; }

@@ -55,12 +55,14 @@
   font-weight: var(--phi-font-weight-medium);
   line-height: 1.2;
   cursor: pointer;
-  transition: color var(--phi-transition-normal), border-color var(--phi-transition-normal), background-color var(--phi-transition-normal),
+  /* A tab you are not on is a little see-through; under the pointer, or on, it is whole. Opacity, never another colour. */
+  opacity: 0.72;
+  transition: opacity var(--phi-transition-normal), color var(--phi-transition-normal), border-color var(--phi-transition-normal), background-color var(--phi-transition-normal),
     transform var(--phi-duration-fast) var(--phi-ease-spring);
 
-  &:hover:not([aria-disabled='true']) { color: var(--phi-color-text-primary); }
-  /* The tint is for a tab you could pick; the one that is on keeps its own fill and underline under the pointer. */
-  &:hover:not([aria-disabled='true']):not([aria-selected='true']) { background-color: var(--phi-tint); }
+  &:hover:not([aria-disabled='true']), &[aria-selected='true'] { color: var(--phi-color-text-primary); opacity: 1; }
+  /* Under the pointer a tab you could pick takes a little more of the same light, not the theme's colour. */
+  &:hover:not([aria-disabled='true']):not([aria-selected='true']) { background-image: var(--phi-surface-down); }
   &:active:not([aria-disabled='true']) { transform: scale(0.96); }
   &:focus-visible { outline: 2px solid var(--phi-color-primary); color: var(--phi-color-text-primary); }
   /* The ring sits inside the tab, so the row (which clips what scrolls past it) never cuts it; said twice to stand

@@ -66,7 +66,10 @@
   /* No blur of its own: a button is only a light, never a filled slab over what lies behind. */
   color: var(--phi-color-text-primary);
   border-color: transparent;
-  &:hover:not(:disabled):not(.disabled), &[aria-pressed='true'] { background-image: var(--phi-control-ground-strong); }
+  /* Under the pointer, and when it is on, a button is a little bolder: the same light, with a faint even layer of
+     it under the gradient so it reads as solid; on is a step bolder than under the pointer. */
+  &:hover:not(:disabled):not(.disabled) { background-color: var(--phi-shade-3); background-image: var(--phi-control-ground-strong); }
+  &[aria-pressed='true'] { background-color: var(--phi-shade-2); background-image: var(--phi-control-ground-strong); }
 }
 
 .ghost {
@@ -121,7 +124,7 @@
 /* A pressed toggle (a view switch, a filter that is on) is the page's deeper shade, never a fill of its own: one colour
    per page, on a surface or off it. */
 .button[aria-pressed='true'] {
-  background-color: transparent;
+  background-color: var(--phi-shade-2);
   background-image: var(--phi-control-ground-strong);
   border-color: transparent;
   color: var(--phi-color-text-primary);

@@ -75,11 +75,7 @@ const LAYOUT: Record<string, React.FC<CardProps>> = {
     const l = as<ShopLook>(row); const mine = useOwned(); const now = useContext(Now);
     return (
       <Card onClick={open}><CardBody><Stack direction="column" gap={2}>
-        <LookImage look={l} />
-        <Stack direction="column" gap={1} surface="region">
-          <Text weight="bold" truncate>{l.name}</Text>
-          <Stack direction="row" gap={1} wrap><Tag minimal round size="sm">{l.rarity}</Tag>{mine[l.id] ? <Tag intent="success" minimal round size="sm">{t('shOwned')}</Tag> : null}</Stack>
-        </Stack>
+        <LookImage look={l} title={l.name} badges={<><Tag round size="sm">{l.rarity}</Tag>{mine[l.id] ? <Tag intent="success" round size="sm">{t('shOwned')}</Tag> : null}</>} />
         <FigureRow><Figure label={t('lsColLive')} value={usd(lookLive(l, now).total)} /><Figure label={t('lsColMinted')} value={l.minted + ' / ' + l.edition} share={l.edition ? l.minted / l.edition : 0} /></FigureRow>
       </Stack></CardBody></Card>);
   },

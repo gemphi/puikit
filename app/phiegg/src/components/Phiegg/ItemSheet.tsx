@@ -3,7 +3,7 @@ import { Button, Card, CardBody, FullScreen, Image, MediaStage, Input, Rows, Sta
 import { Bookmark, Heart, Maximize2, Share2, ShoppingBag } from 'lucide-react';
 import { useStore } from '@pui/store';
 import { useWallet } from '@phi-kit/wallet';
-import { D, itemImage, lookStore, lotsOfPool, t, usd, itemOf } from '../../lib/data';
+import { D, itemImage, lookStore, lotsOfPool, t, usd, itemOf, type SiteCopyKey } from '../../lib/data';
 import { buy, makeOffer, toggleCart, useCart, useOwned, withdrawOffer } from '../../lib/cart';
 import { itemStats, lookLive, quote, useNow } from '../../lib/market';
 import { phieggStore } from '../../state/phieggStore';
@@ -25,6 +25,9 @@ import type { ShopLook } from '../../types/phiegg';
  * with the store's agent on the right. Every column expands or closes, every row expands, folds or closes, with the
  * controls on the right of its header.
  */
+/** The look page's tabs: its sections, in order, and the word for each (data/site.json). */
+const PARTS: [string, SiteCopyKey][] = [['look', 'isItem'], ['buy', 'isBuy'], ['specs', 'isSpecs'], ['activity', 'isActivity'], ['price', 'isPrice2'], ['appears', 'isAppears'], ['stats', 'plItemStats']];
+
 export const ItemSheet: React.FC<{ id: string }> = ({ id }) => {
   const s = useStore(phieggStore); const l = itemOf('look', id); const w = useWallet(); const mine = useOwned(); const { cart, offers } = useCart(); const now = useNow(1000);
   const [angle, setAngle] = useState('FRONT'); const [full, setFull] = useState(false); const [opaque, setOpaque] = useState(false); const [bid, setBid] = useState(''); const [msg, setMsg] = useState('');
@@ -77,6 +80,9 @@ export const ItemSheet: React.FC<{ id: string }> = ({ id }) => {
     { id: 'full', label: t('isFull'), icon: icon(Maximize2), onClick: () => setFull(true) },
   ];
   const keys = Object.keys(views); const at = keys.indexOf(angle);
+  // The page's tabs are its own sections; a tab brings its section into view under the held tabs.
+  const [part, setPart] = useState('look');
+  const goPart = (id: string) => { setPart(id); document.querySelector(`[data-section="${id}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
 
   // ── centre: the item as content, in three rows ──
   const centre = (
@@ -124,7 +130,12 @@ export const ItemSheet: React.FC<{ id: string }> = ({ id }) => {
       onPrev={at > 0 ? () => setAngle(keys[at - 1]) : undefined} onNext={at < keys.length - 1 ? () => setAngle(keys[at + 1]) : undefined} prevLabel={t('prev')} nextLabel={t('next')}
       actions={actions.filter((x) => x.id !== 'full').map((x) => ({ ...x }))} />}
     <EntityPage stickLast picture={<Image src={itemImage(src)} alt="" fit="cover" fill />}
-      title={l.name} sub={<>{store.name} · {l.rarity}</>} columns={[
+      title={l.name} sub={<>{store.name} · {l.rarity}</>}
+      /* The look opens like every profile: its name over its picture, then its tabs (the sections of the page, each
+         brought into view), and the one action at their right. */
+      hero={{ tabs: <TabList size="sm" variant="pills" aria-label={l.name} activeId={part} onChange={goPart} items={PARTS.map(([id, key]) => ({ id, label: t(key) }))} /> }}
+      action={<Button variant="glass" disabled={w.usd < l.usd} onClick={doBuy}>{w.usd < l.usd ? t('shNoFunds') : t('shBuy', { price: usd(l.usd) })}</Button>}
+      columns={[
         { id: 'variants', title: t('isVariantsTitle'), content: left, width: '19rem' },
         { id: 'item', title: l.name, label: t('isItem'), content: centre, minWidth: '20rem' },
         { id: 'chat', title: <Stack direction="row" gap={2} align="center"><PersonAvatar id={agent.id} size="xs" /><Text size="sm" weight="semibold">{agent.name}</Text></Stack>, label: t('chat'), content: chat, width: '22rem', folded: true },

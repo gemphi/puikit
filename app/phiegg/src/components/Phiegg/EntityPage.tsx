@@ -10,7 +10,7 @@ export type { EntityColumn };
  * colour, and the colour the page wears (`wear`, for an entity with no theme of its own). A profile (a club, a world,
  * a shop) gives `hero`: its first screen is the picture and its name, its tabs under it (the kit's EntityLayout).
  */
-export const EntityPage: React.FC<{ title: React.ReactNode; sub?: React.ReactNode; picture?: React.ReactNode; columns: EntityColumn[]; stickLast?: boolean; wear?: string; hero?: EntityHero }> = ({ picture, wear, ...layout }) => {
+export const EntityPage: React.FC<{ title: React.ReactNode; sub?: React.ReactNode; action?: React.ReactNode; picture?: React.ReactNode; columns: EntityColumn[]; stickLast?: boolean; wear?: string; hero?: EntityHero }> = ({ picture, wear, ...layout }) => {
   usePageTheme(wear, undefined, 'vivid', 'entity');
   return <EntityLayout {...layout} backdrop={picture ? <Backdrop soft={!!layout.hero}>{picture}</Backdrop> : undefined} />;
 };

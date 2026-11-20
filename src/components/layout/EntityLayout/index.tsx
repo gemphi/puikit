@@ -21,6 +21,9 @@ export interface EntityColumn { id: string; title: React.ReactNode; content: Rea
 export type EntityLayoutProps = {
   title: React.ReactNode;
   sub?: React.ReactNode;
+  /** The one thing to do with the record (buy it, join it, follow it): at the right of its heading, or of its row of
+   *  tabs when the page opens as a profile. */
+  action?: React.ReactNode;
   columns: EntityColumn[];
   /** The last column (a chat) stays in view beside the others, its own overflow hidden. */
   stickLast?: boolean;
@@ -62,7 +65,7 @@ const ColumnHead: React.FC<{ title: React.ReactNode; fold?: { side: 'left' | 'ri
  * pointer is over the column) and leaves no strip: it is listed in columnStore, and a menu (the shell's right sidebar)
  * brings it back (a column can start `folded`). A side column's inner edge drags, so it is as wide as it is pulled.
  */
-export const EntityLayout: React.FC<EntityLayoutProps> = ({ title, sub, columns, stickLast, backdrop, hero }) => {
+export const EntityLayout: React.FC<EntityLayoutProps> = ({ title, sub, action, columns, stickLast, backdrop, hero }) => {
   // The columns share the page's width in proportion to their widths (a side column's rem as its weight, the middle
   // half again the widest side), never under 12rem, so a docked sidebar narrows them instead of pushing them sideways.
   const weight = (w?: string) => parseFloat(w ?? '') || 0;
@@ -91,14 +94,16 @@ export const EntityLayout: React.FC<EntityLayoutProps> = ({ title, sub, columns,
           <Title level={1} className={styles.title}>{title}</Title>
           {sub && <Text intent="secondary" className={styles.sub}>{sub}</Text>}
         </Box>
-        {hero.tabs && <Box className={styles.heroTabs}>{hero.tabs}</Box>}
+        {(hero.tabs || action) && <Box className={styles.heroTabs}>{hero.tabs}{action && <Box className={styles.heroAction}>{action}</Box>}</Box>}
         {hero.card && (hero.onCard
           ? <Pressable className={styles.heroCard} aria-label={hero.cardLabel} title={hero.cardLabel} onClick={hero.onCard}>{hero.card}</Pressable>
           : <Box className={styles.heroCard}>{hero.card}</Box>)}
       </>) : (
-      <Stack direction="row" gap={3} align="end" wrap className={styles.head} surface="region">
+      /* A heading has no ground: the record's name and line stand bare, its action at the right. */
+      <Stack direction="row" gap={3} align="end" wrap className={styles.head}>
         <Title level={1} className={styles.title}>{title}</Title>
         {sub && <Text intent="secondary" className={styles.sub}>{sub}</Text>}
+        {action && <Box className={styles.headAction}>{action}</Box>}
       </Stack>)}
       <ShownTitle title={title}>
         <Box className={styles.grid} style={{ '--pui-entity-cols': template } as React.CSSProperties}>
