@@ -53,10 +53,11 @@ export function assetUrl(ref?: string): string | undefined {
  *  records) or, with no API, from public/data/<key>.json, the file that seeds them. Linked blocks resolve here. */
 export const loadApp = async (key: string): Promise<AppData> => {
   const api = import.meta.env.VITE_PHI_API as string | undefined;
-  const url = api ? api.replace(/\/$/, '') + '/app/' + key : appBase() + 'data/' + key + '.json';
-  let r = await fetch(url);
-  // An app the API has not been told about yet still has its own file.
-  if (!r.ok && api) r = await fetch(appBase() + 'data/' + key + '.json');
+  const file = appBase() + 'data/' + key + '.json';
+  // An API that cannot be reached is no answer, like one that has not been told about the app yet: the app still has
+  // its own file, so the site opens either way.
+  let r = api ? await fetch(api.replace(/\/$/, '') + '/app/' + key).catch(() => null) : null;
+  if (!r?.ok) r = await fetch(file);
   if (!r.ok) throw new Error('Could not load ' + key + ' (' + r.status + ')');
   return resolveLinks(await r.json());
 };

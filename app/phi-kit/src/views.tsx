@@ -10,7 +10,8 @@ import type { GridItem } from './blocks';
 import s from './kit.module.scss';
 import { Profile, type ProfileSpec } from './Profile';
 
-const Head: React.FC<{ title: string; sub?: string }> = ({ title, sub }) => (
+/** A page's head, the same on every page of every app: its title and one line under it. */
+export const Head: React.FC<{ title: string; sub?: string }> = ({ title, sub }) => (
   <Box as="header"><Title level={1} size="2xl" lineHeight={1.1}>{title}</Title>{sub ? <Text intent="secondary" maxWidth="60ch" marginTop={2}>{sub}</Text> : null}</Box>
 );
 

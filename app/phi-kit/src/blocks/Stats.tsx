@@ -1,7 +1,6 @@
 import { Stack, Text } from '@pui/components';
 import React from 'react';
 import type { Block } from '../data';
-import s from '../kit.module.scss';
 
 export const Stats: React.FC<{ b: Block }> = ({ b }) => (
   <Stack autoFill="220px" gap={3}>

@@ -2,12 +2,11 @@
 import React from 'react';
 import { Box, Button, Divider, Frame, Grid, Input, Pressable, ProgressBar, Select, Stack, Table, Tag, Tbody, Td, Text, Th, Thead, Title, Tr } from '@pui/components';
 import { useWallet, quote, swap, fmt, LABEL, type Coin } from '@phi-kit/wallet';
-import k from '@phi-kit/kit.module.scss';
+import { Head } from '@phi-kit/views';
 import s from './app.module.scss';
 import { num, pctOf, met, STATUS, votes, castVote, tone, initials, type DB, type Proposal } from './data';
 
 export type Open = { kind: 'proposal' | 'delegate' | 'news'; id: string };
-const Head: React.FC<{ title: string; sub?: string }> = ({ title, sub }) => (<Stack as="header" direction="column" gap={2}><Title level={1} size="2xl">{title}</Title>{sub ? <Text intent="secondary" maxWidth="60ch">{sub}</Text> : null}</Stack>);
 
 const VoteBar: React.FC<{ p: Proposal }> = ({ p }) => {
   const pf = pctOf(p);

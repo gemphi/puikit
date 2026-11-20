@@ -2,12 +2,11 @@
 import React from 'react';
 import { Box, Button, Frame, Input, Pressable, ProgressBar, Rows, Select, Stack, StepForm, type StepFormStep, Tag, Text, Textarea, Title } from '@pui/components';
 import { Users, Coins, Globe, ClipboardCheck } from 'lucide-react';
-import k from '@phi-kit/kit.module.scss';
+import { Head } from '@phi-kit/views';
 import s from './app.module.scss';
 import { byId, usd, num, tone, initials, type DB, type FullApp, type Launch } from './data';
 
 export type Open = { kind: 'application' | 'news'; id: string };
-const Head: React.FC<{ title: string; sub?: string }> = ({ title, sub }) => (<Box as="header"><Title level={1} size="2xl">{title}</Title>{sub ? <Text intent="secondary" maxWidth="60ch" marginTop={2}>{sub}</Text> : null}</Box>);
 const stageLabel = (db: DB, id: string) => byId(db.phipad.stages, id)?.label || id;
 
 const AppCard: React.FC<{ db: DB; a: FullApp; onOpen: (o: Open) => void }> = ({ db, a, onOpen }) => {

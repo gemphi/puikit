@@ -4,7 +4,6 @@ import { Spinner, Text, Tag } from '@pui/components';
 import { PhiShell } from '@phi-kit/PhiShell';
 import { appMeta } from '@phi-kit/data';
 import { SettingsView } from '@phi-kit/views';
-import k from '@phi-kit/kit.module.scss';
 import { useDB } from './data';
 import { Home, Proposals, Treasury, SwapPage, Delegates, NewsPage, About, Docs, Panel, type Open } from './pages';
 

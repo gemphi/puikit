@@ -2,7 +2,6 @@ import React from 'react';
 import { Box, Button, Input, Select, Stack, Text } from '@pui/components';
 import type { Block } from '../data';
 import { useWallet, quote, swap, fmt, LABEL, type Coin } from '../wallet';
-import s from '../kit.module.scss';
 
 export const Swap: React.FC<{ b: Block }> = ({ b }) => {
   const w = useWallet();
