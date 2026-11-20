@@ -77,8 +77,24 @@ export const StageSlider = ({ items, index, defaultIndex = 0, onIndexChange, sid
   const outerOf = (r: number) => outerOverlap ?? (r > 1 ? 0.8 : overlap);
   // As many a side as leave the centre at least `minCentre` wide (measured; unmeasured, as many as asked).
   let reach = most; while (reach > 0 && fit.free > 0 && fit.free / rowOf(sideScale, reach, overlap, outerOf(reach)).span < minCentre) reach--;
-  const outer = outerOf(reach);
-  const base = rowOf(sideScale, reach, overlap, outer);
+  // FILL THE ROW. A centre kept small by the page's height (a picture, which keeps its shape) leaves the row wider
+  // than its slides: then more slides show a side (up to three), and each tucks less under the one in front, until
+  // the row reaches both ends. `room` is the row's width in centre widths (measured).
+  let tuck = overlap; let outer = outerOf(reach);
+  if (fill && !phone && fit.room > 0 && n > 1) {
+    const cap = Math.max(0, Math.min(3, sides === 'auto' ? 3 : want, Math.floor((n - 1) / 2) || 1));
+    while (reach < cap && rowOf(sideScale, reach + 1, overlap, overlap).span <= fit.room) reach++;
+    outer = outerOf(reach);
+    if (reach > 0 && rowOf(sideScale, reach, tuck, outer).span < fit.room) {
+      let lo = -0.08, hi = tuck;                       // lo: slides apart by a little; hi: as tucked as asked
+      if (rowOf(sideScale, reach, lo, lo).span > fit.room) { for (let i = 0; i < 18; i++) { const mid = (lo + hi) / 2; if (rowOf(sideScale, reach, mid, mid).span > fit.room) lo = mid; else hi = mid; } tuck = hi; } else tuck = lo;
+      outer = tuck;
+    }
+  }
+  const base = rowOf(sideScale, reach, tuck, outer);
+  // What lies under the slide in front is not drawn at all, so a slide needs no colour of its own to hide it: each
+  // side slide is cut at the edge of the one in front (less a little, for that one's rounded corners).
+  const hidden = (k: number) => Math.max(0, ((k === reach ? outer : tuck) - 0.04) * 100);
   const arrows = n > 1 && <>
     <Button variant="icon" className={cn(styles.arrow, styles.prev)} onClick={() => go(-1)} aria-label={prevLabel}><ChevronLeft size={20} /></Button>
     <Button variant="icon" className={cn(styles.arrow, styles.next)} onClick={() => go(1)} aria-label={nextLabel}><ChevronRight size={20} /></Button>
@@ -94,7 +110,8 @@ export const StageSlider = ({ items, index, defaultIndex = 0, onIndexChange, sid
           const it = items[wrap(at + d, n)]; const k = Math.abs(d);
           return (
             <Box key={dup ? `${it.id}:${d}` : it.id} className={cn(styles.slide, d === 0 && styles.centre)} data-offset={d} aria-hidden={d !== 0 || undefined}
-              style={{ transform: `translateX(${Math.sign(d) * off[k] * 100}%) scale(${scale(k)})`, zIndex: 10 - k } as React.CSSProperties}
+              style={{ transform: `translateX(${Math.sign(d) * off[k] * 100}%) scale(${scale(k)})`, zIndex: 10 - k,
+                clipPath: d > 0 ? `inset(0 0 0 ${hidden(k)}%)` : d < 0 ? `inset(0 ${hidden(k)}% 0 0)` : undefined } as React.CSSProperties}
               onClickCapture={d !== 0 ? (e: React.MouseEvent) => { e.preventDefault(); e.stopPropagation(); go(d); } : undefined}>
               {it.node}
             </Box>
