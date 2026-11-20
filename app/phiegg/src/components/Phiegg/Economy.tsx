@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Card, CardBody, Input, ItemCard, Popover, ProgressBar, Stack, Tag, Text } from '@pui/components';
+import { Button, Card, CardBody, Figure, FigureRow, Input, ItemCard, Popover, ProgressBar, Stack, Tag, Text } from '@pui/components';
 import { useStore } from '@pui/store';
 import { phieggStore } from '../../state/phieggStore';
 import { fmt, itemOf, t, usd } from '../../lib/data';
@@ -31,10 +31,13 @@ export const QuestCard: React.FC<{ q: Quest }> = ({ q }) => {
   return (
     <Card depth={2}><CardBody><Stack direction="column" gap={2}>
       <Tile animate tone={q.tone} ratio="16/8" depth={{ worldId: q.worldId, clubId: q.sponsorClubId }} title={q.title} sub={itemOf('world', q.worldId)?.name} badges={<Tag round size="sm">{t('reward', { n: q.reward, coin: q.rewardCoin })}</Tag>} />
-      <Text size="xs" intent="muted">{t('sponsoredBy', { name: itemOf('club', q.sponsorClubId)?.name ?? '' })} · {t('entrants', { n: fmt(q.entrants + (inQ ? 1 : 0)) })} · {t('endsAt', { date: q.endsAt.slice(5, 10) })}</Text>
-      <ProgressBar value={q.progress} size="sm" animate={false} />
+      <Stack direction="column" gap={2} surface="region" role="status">
+        <Stack direction="row" justify="between" align="center" gap={2}><Text size="xs" intent="muted" truncate>{t('sponsoredBy', { name: itemOf('club', q.sponsorClubId)?.name ?? '' })}</Text><Text size="xs" weight="bold" numeric>{Math.round(q.progress * 100)}%</Text></Stack>
+        <ProgressBar value={q.progress} size="md" animate={false} />
+      </Stack>
+      <FigureRow><Figure label={t('lsColReward')} value={t('reward', { n: q.reward, coin: q.rewardCoin })} /><Figure label={t('lsColEntrants')} value={fmt(q.entrants + (inQ ? 1 : 0))} /><Figure label={t('lsColEnds')} value={q.endsAt.slice(5, 10)} /></FigureRow>
       {inQ
-        ? <Stack direction="row" gap={1} align="center"><Tag round intent="success" size="sm">{t('qEntered')}</Tag>
+        ? <Stack direction="row" gap={1} align="center" wrap surface="region"><Tag round intent="success" size="sm">{t('qEntered')}</Tag>
             <Button variant="glass" onClick={() => s.go('world', { worldId: q.worldId })}>{itemOf('world', q.worldId)?.name ?? t('playQuest')}</Button>
             <Button variant="glass" onClick={() => { leaveQuest(q.id); s.flash(t('qLeft', { name: q.title })); }}>{t('qLeave')}</Button></Stack>
         : <Button variant="glass" onClick={() => { enterQuest(q.id); s.flash(t('joined_', { name: q.title })); }}>{t('playQuest')}</Button>}
@@ -50,10 +53,11 @@ export const CoinCard: React.FC<{ x: Coin }> = ({ x }) => {
       aside={<Stack direction="column" gap={0} align="end"><Text weight="bold" numeric>{'$' + x.price}</Text><Text size="xs" numeric intent={x.change24h >= 0 ? 'success' : 'danger'}>{pct(x.change24h)}</Text></Stack>}
       actions={<><Amount label={t('buy')} variant="primary" onConfirm={(n) => { const ok = buyCoin(x.id, n); s.flash(ok ? t('bought', { n: (n / x.price).toFixed(2), coin: x.symbol }) : t('noFunds')); return ok; }} />
         {held > 0 && <Button variant="glass" onClick={() => { const got = sellCoin(x.id); s.flash(t('sold', { coin: x.symbol, usd: usd(got) })); }}>{t('sell')}</Button>}</>}>
-      <Stack direction="column" gap={1}>
-        <Text size="xs" intent="muted">{fmt(x.holders + (held ? 1 : 0))} {t('holders')}</Text>
-        {held > 0 && <Tag round minimal intent="primary">{t('youHold', { n: held.toFixed(2) + ' ' + x.symbol })} · {usd(held * x.price)}</Tag>}
-      </Stack>
+      <FigureRow>
+        <Figure label={t('lsColHolders')} value={fmt(x.holders + (held ? 1 : 0))} />
+        {held > 0 && <Figure label={t('lsHeld')} value={held.toFixed(2) + ' ' + x.symbol} intent="primary" />}
+        {held > 0 && <Figure label={t('lsColValue')} value={usd(held * x.price)} />}
+      </FigureRow>
     </ItemCard>
   );
 };

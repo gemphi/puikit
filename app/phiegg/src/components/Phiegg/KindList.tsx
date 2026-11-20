@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import { Button, Card, CardBody, ItemCard, Stack, StageSlider, TabList, Tag, Text, type DataTableColumn } from '@pui/components';
+import { Button, Card, CardBody, Figure, FigureRow, ItemCard, Stack, StageSlider, TabList, Tag, Text, type DataTableColumn } from '@pui/components';
 import * as Glyph from 'lucide-react';
 import { useStore } from '@pui/store';
 import cardJson from '../../data/card.json';
@@ -76,9 +76,11 @@ const LAYOUT: Record<string, React.FC<CardProps>> = {
     return (
       <Card onClick={open}><CardBody><Stack direction="column" gap={2}>
         <LookImage look={l} />
-        <Stack direction="row" gap={1}><Tag minimal round size="sm">{l.rarity}</Tag>{mine[l.id] ? <Tag intent="success" minimal round size="sm">{t('shOwned')}</Tag> : null}</Stack>
-        <Text weight="bold">{l.name}</Text>
-        <Text size="xs" intent="muted" numeric>{t('plLive', { v: usd(lookLive(l, now).total) })} · {t('shMinted', { minted: l.minted, edition: l.edition })}</Text>
+        <Stack direction="column" gap={1} surface="region">
+          <Text weight="bold" truncate>{l.name}</Text>
+          <Stack direction="row" gap={1} wrap><Tag minimal round size="sm">{l.rarity}</Tag>{mine[l.id] ? <Tag intent="success" minimal round size="sm">{t('shOwned')}</Tag> : null}</Stack>
+        </Stack>
+        <FigureRow><Figure label={t('lsColLive')} value={usd(lookLive(l, now).total)} /><Figure label={t('lsColMinted')} value={l.minted + ' / ' + l.edition} share={l.edition ? l.minted / l.edition : 0} /></FigureRow>
       </Stack></CardBody></Card>);
   },
   /** A lot (a pack or a drop): its units, price and buying. */

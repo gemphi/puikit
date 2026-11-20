@@ -16,3 +16,4 @@ export * from './CommentThread';
 export * from './ItemCard';
 export * from './Swatch';
 export * from './Ladder';
+export * from './Figure';

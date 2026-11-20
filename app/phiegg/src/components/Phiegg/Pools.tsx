@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Button, Card, CardBody, Drawer, Grid, Input, Ladder, ProgressBar, Stack, TabList, Tag, Text, Title } from '@pui/components';
+import { Button, Card, CardBody, Drawer, Figure, FigureRow, Grid, Input, Ladder, ProgressBar, Stack, TabList, Tag, Text, Title } from '@pui/components';
 import { useStore } from '@pui/store';
 import { useWallet } from '@phi-kit/wallet';
 import { ArrowRightLeft } from 'lucide-react';
@@ -25,17 +25,14 @@ export const PoolCard: React.FC<{ pool: Pool; now: number }> = ({ pool, now }) =
     <Card depth={2} onClick={() => s.go('pool', { poolId: pool.id })}><CardBody><Stack direction="column" gap={2}>
       <Tile tone={club?.tone ?? 'accent'} color={pool.colors?.[0]} ratio="16/9" depth={{ worldId: pool.worldId, clubId: pool.clubId, entityId: pool.id, entityName: pool.name }}
         title={pool.name} sub={club?.name} badges={<><Tag round size="sm">{kindLabel(pool)}</Tag>{pool.kind === 'show' && <Tag round size="sm" intent="primary">{t('plShowDrop')}</Tag>}</>} />
-      <Stack direction="row" justify="between" align="center"><Text size="xs" weight="bold">{t('plSold', { sold: fmt(N.sold), supply: fmt(N.supply) })}</Text><Text size="xs" intent="muted">{t('plFloor', { v: usd(N.floor) })}</Text></Stack>
-      <ProgressBar value={N.supply ? N.sold / N.supply : 0} size="sm" animate={false} />
-      <Stack direction="row" justify="between"><Text size="xs" intent="muted">{t('plVol', { v: vol?.text ?? '' })}</Text><Text size="xs" intent="muted">{t('plValue', { v: '$' + fmt(N.total) })}</Text></Stack>
+      <Stack direction="column" gap={2} surface="region" role="status">
+        <Stack direction="row" justify="between" align="center" gap={2}><Text size="xs" weight="bold">{t('plSold', { sold: fmt(N.sold), supply: fmt(N.supply) })}</Text><Text size="xs" intent="muted" numeric>{Math.round((N.supply ? N.sold / N.supply : 0) * 100)}%</Text></Stack>
+        <ProgressBar value={N.supply ? N.sold / N.supply : 0} size="md" animate={false} />
+      </Stack>
+      <FigureRow><Figure label={t('lsColFloor')} value={usd(N.floor)} /><Figure label={t('lsColVol')} value={vol?.text ?? ''} /><Figure label={t('lsColValue')} value={'$' + fmt(N.total)} /></FigureRow>
     </Stack></CardBody></Card>
   );
 };
-
-/** One figure of a lot on a ground of its own: what it is, then the figure. */
-const Figure: React.FC<{ label: string; value: React.ReactNode; intent?: 'success' | 'danger' }> = ({ label, value, intent }) => (
-  <Stack direction="column" gap={0} surface="region" flex="1 1 4rem" minWidth="0"><Text size="xs" intent="muted">{label}</Text><Text size="sm" weight="bold" numeric intent={intent} truncate>{value}</Text></Stack>
-);
 
 /** One lot: pack (4–7 looks) or drop (up to 64 units). Its name and moving total, how it stands (sold, left, high and
  *  low), then its price ladder high → low as the kit's Ladder. Every part stands on a ground of its own. */
@@ -57,10 +54,10 @@ export const LotCard: React.FC<{ lot: PoolLot; now: number }> = ({ lot, now }) =
         <ProgressBar value={q.soldPct} size="md" animate={false} />
         <Text size="xs" intent="muted">{t('plTotalNote')}</Text>
       </Stack>
-      <Stack direction="row" gap={2} wrap>
+      <FigureRow>
         <Figure label={t('plHigh')} value={usd(q.high)} /><Figure label={t('plLow')} value={usd(q.low)} />
         <Figure label={t('plLeft')} value={fmt(Math.max(0, q.remaining))} intent={out ? 'danger' : undefined} /><Figure label={t('plCount')} value={q.units.length} />
-      </Stack>
+      </FigureRow>
       <Stack direction="column" gap={2} surface="region">
         <Text size="xs" intent="muted" weight="bold">{t('plLadder')}</Text>
         <Ladder aria-label={t('plLadder')} rows={shown.map((u) => ({
@@ -91,9 +88,7 @@ export const StatGrid: React.FC<{ pool: Pool; now: number; groups?: string[] }> 
         { id: 'progress', header: t('lsColProgress'), cell: (r) => Math.round(r.progress * 100) + '%', sortValue: (r) => r.progress, align: 'right' }]}
       render={(r) => (
         <Card depth={1} variant="flat" onClick={() => s.openStat(pool.id, r.metric.id)} padding="sm"><CardBody>
-          <Text size="xs" intent="muted">{r.metric.label}</Text>
-          <Text weight="bold" numeric intent={tone(r)}>{r.text}</Text>
-          <ProgressBar value={r.progress} size="sm" animate={false} />
+          <Figure label={r.metric.label} value={r.text} intent={tone(r)} share={r.progress} />
         </CardBody></Card>)} />
   );
 };
@@ -108,11 +103,12 @@ const StatDrawer: React.FC<{ poolId: string; metricId: string }> = ({ poolId, me
       footer={inQ ? <Stack direction="row" gap={2} align="center"><Tag round intent="success">{t('plJoined')}</Tag><Button variant="glass" onClick={() => leaveQuest(q.id)}>{t('qLeave')}</Button></Stack>
         : <Button variant="glass" onClick={() => { enterQuest(q.id); s.flash(t('joined_', { name: q.title })); }}>{t('plEnter')}</Button>}>
       <Stack direction="column" gap={3}>
-        <Title level={2} size="xl">{row.text}</Title>
-        <Text intent="secondary">{m.hint}</Text>
-        <Text weight="bold">{q.title}</Text>
-        <ProgressBar value={row.progress} />
-        <Stack direction="row" gap={1} wrap><Tag round minimal>{t('reward', { n: q.reward, coin: q.rewardCoin })}</Tag>{q.endsAt && <Tag round minimal>{t('plEnds', { date: q.endsAt.slice(5, 10) })}</Tag>}</Stack>
+        <Stack direction="column" gap={1} surface="region"><Title level={2} size="xl">{row.text}</Title><Text intent="secondary">{m.hint}</Text></Stack>
+        <Stack direction="column" gap={2} surface="region" role="status">
+          <Stack direction="row" justify="between" align="center" gap={2}><Text weight="bold">{q.title}</Text><Text size="xs" intent="muted" numeric>{Math.round(row.progress * 100)}%</Text></Stack>
+          <ProgressBar value={row.progress} />
+        </Stack>
+        <FigureRow><Figure label={t('lsColTarget')} value={fmtStat(m, row.target)} /><Figure label={t('lsColReward')} value={t('reward', { n: q.reward, coin: q.rewardCoin })} />{q.endsAt && <Figure label={t('lsColEnds')} value={q.endsAt.slice(5, 10)} />}</FigureRow>
         <Button variant="glass" onClick={() => s.go('pool', { poolId: pool.id })}>{t('plOpen')}</Button>
       </Stack>
     </Drawer>
@@ -162,10 +158,11 @@ export const PoolQuestCard: React.FC<{ pool: Pool }> = ({ pool }) => {
   const inQ = !!eco.quests[pq.id];
   return (
     <Card depth={2}><CardBody><Stack direction="column" gap={2}>
-      <Stack direction="row" justify="between" align="center" gap={2}><Stack direction="column" gap={0}><Text size="xs" intent="muted" weight="bold">{t('plQuest')}</Text><Title level={4} size="md">{pq.title}</Title></Stack>
+      <Stack direction="row" justify="between" align="center" gap={2} surface="region"><Stack direction="column" gap={0}><Text size="xs" intent="muted" weight="bold">{t('plQuest')}</Text><Title level={4} size="md">{pq.title}</Title></Stack>
         {inQ ? <Tag round intent="success">{t('plJoined')}</Tag> : <Button variant="glass" onClick={() => { enterQuest(pq.id); s.flash(t('joined_', { name: pq.title })); }}>{t('plEnter')}</Button>}</Stack>
-      <Text size="sm" intent="secondary">{t('plQuestHas', { m: pq.metricIds.length, q: pq.metricIds.length + pq.questIds.length, c: pq.coinIds.length })} · {t('reward', { n: pq.reward, coin: pq.rewardCoin })} · {t('entrants', { n: fmt(pq.entrants + (inQ ? 1 : 0)) })}</Text>
-      <Stack direction="row" gap={1} wrap>{pq.coinIds.map((id) => { const c = itemOf('coin', id); return c ? <Tag key={id} round minimal intent="primary">{c.symbol} · ${c.price}</Tag> : null; })}</Stack>
+      <Stack surface="region"><Text size="sm" intent="secondary">{t('plQuestHas', { m: pq.metricIds.length, q: pq.metricIds.length + pq.questIds.length, c: pq.coinIds.length })}</Text></Stack>
+      <FigureRow><Figure label={t('lsColReward')} value={t('reward', { n: pq.reward, coin: pq.rewardCoin })} /><Figure label={t('lsColEntrants')} value={fmt(pq.entrants + (inQ ? 1 : 0))} /></FigureRow>
+      <Stack direction="row" gap={1} wrap surface="region">{pq.coinIds.map((id) => { const c = itemOf('coin', id); return c ? <Tag key={id} round minimal intent="primary">{c.symbol} · ${c.price}</Tag> : null; })}</Stack>
     </Stack></CardBody></Card>
   );
 };
