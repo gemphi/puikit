@@ -29,3 +29,9 @@ media/
 
 # Club and look art (3.3 GB): kept on disk and in the media store, too large for git
 app/phiegg/art/
+
+# Phiegg pictures written by the generators (bold-cities.py, city-life.py, look-files.py, home-pictures.py):
+# kept on disk, never in git
+app/phiegg/public/home/
+app/phiegg/public/look/
+app/phiegg/public/world/
