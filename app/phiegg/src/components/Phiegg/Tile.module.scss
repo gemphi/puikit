@@ -4,6 +4,8 @@
 .title, .sub { position: relative; margin: 0; }
 .title { line-height: 1.1; }
 .sub { opacity: 0.85; }
+/* A page head's sentence: under the title's line, a readable measure, never wider than the words' side of the tile. */
+.about { position: relative; margin: var(--phi-space-2) 0 0; max-width: 36rem; line-height: 1.4; opacity: 0.9; }
 .ink { color: var(--phi-color-gray-50); }
 .neutral { color: var(--phi-color-text-primary); }
 .glyph { width: 100%; height: 100%; display: grid; place-items: center; color: var(--phi-color-primary); }

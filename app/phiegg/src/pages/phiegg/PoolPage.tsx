@@ -48,9 +48,8 @@ export const PoolPage: React.FC = () => {
   return (
     <Page><Stack direction="column" gap={4}>
       <Tile tone={club?.tone ?? 'accent'} color={pool.colors?.[0]} ratio="21/7" big grid depth={{ worldId: pool.worldId, clubId: pool.clubId, personId: club?.founderId, entityId: pool.id, entityName: pool.name }}
-        title={pool.name} sub={[club?.name, world?.name, pool.season].filter(Boolean).join(' · ')}
+        title={pool.name} sub={[club?.name, world?.name, pool.season].filter(Boolean).join(' · ')} about={pool.desc}
         badges={<><Tag round size="sm">{t(('plKind_' + pool.kind) as 'plKind_show')}</Tag>{pool.kind === 'show' && <Tag round size="sm" intent="primary">{t('plShowDrop')}</Tag>}<Tag round size="sm">{t('plSold', { sold: N.sold.toLocaleString('en-US'), supply: N.supply.toLocaleString('en-US') })}</Tag></>} />
-      <Text intent="secondary">{pool.desc}</Text>
       <Stack direction="row" gap={2} wrap>
         <Button variant="glass" onClick={() => s.openCreate('pft', { poolId: pool.id })}>Mint an item</Button>
         {club && <Button variant="glass" onClick={() => s.go('club', { clubId: club.id })}>{club.name}</Button>}

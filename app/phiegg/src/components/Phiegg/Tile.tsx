@@ -17,7 +17,7 @@ export type TileDepth = { worldId?: string | null; clubId?: string | null; perso
   entityId?: string; entityName?: string };
 
 type TileProps = {
-  tone: string; title?: string; sub?: string; ratio?: string; big?: boolean; badges?: React.ReactNode;
+  tone: string; title?: string; sub?: string; /** What the thing is, in a sentence: under the title's line, inside the tile (a page's head). */ about?: string; ratio?: string; big?: boolean; badges?: React.ReactNode;
   onClick?: () => void; animate?: boolean;
   /** Parent-layer picture; defaults to the world's own scene image. */
   image?: string;
@@ -59,7 +59,7 @@ export function tileColour({ tone, title, sub, depth = {}, color }: Pick<TilePro
   return { seed, club, world, render, hex: render?.hex ?? want };
 }
 
-export const Tile: React.FC<TileProps> = ({ tone, title, sub, ratio = '4/5', big, badges, onClick, animate, image, drawn, depth = {}, grid, deck = 3, deckDirection = 'up', color, solo, owner, actions }) => {
+export const Tile: React.FC<TileProps> = ({ tone, title, sub, about, ratio = '4/5', big, badges, onClick, animate, image, drawn, depth = {}, grid, deck = 3, deckDirection = 'up', color, solo, owner, actions }) => {
   const { seed, club, world, render, hex } = tileColour({ tone, title, sub, depth, color });
   // The parent layer: the card's own picture when it has one (a world's scene), else the SVG scene drawn in the card's
   // colour, so the dress, the scene and the card around it are one colour.
@@ -98,6 +98,7 @@ export const Tile: React.FC<TileProps> = ({ tone, title, sub, ratio = '4/5', big
     >
       {title && <Title level={big ? 2 : 4} size={big ? '2xl' : 'md'} className={styles.title}>{title}</Title>}
       {sub && <Text size="xs" className={styles.sub}>{sub}</Text>}
+      {about && <Text size="sm" className={styles.about}>{about}</Text>}
     </DepthMedia>
   );
 };

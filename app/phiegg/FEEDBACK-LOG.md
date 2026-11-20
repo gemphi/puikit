@@ -651,3 +651,8 @@ To give those three pools their records I ran `node scripts/pools.mjs`. It rewri
 
 ## 55. Gradients less light (2026-11-20)
 - "Gradients must be less light and subtle": every ground's light is a share of one number, `--phi-glass-pct` (`src/tokens/_glass.scss`). It goes from 12% to 8% in the dark and from 58% to 38% in the light, so every gradient in every app is a third fainter; directions are untouched - **Done** (dark measured on a pool page: a region's light went from 8.6% to 5.8% white; not seen, the browser pane was hidden; light mode not looked at)
+
+## 56. The pool's sentence in its header; content side-lit and fainter (2026-11-20)
+- "'Sculpted heels and boots made to finish every look' must be inside the header, not out at the bottom": a tile takes an `about` sentence under its title's line; the pool page hands it its description and the loose line under the header is gone - **Done** (seen)
+- "Wrong gradients direction and lightness" (the pool quest card: its bands lit from their foot read as flat fills), "fix all now": what a card or region holds three and five levels in is lit from a side, like the levels two and four in; a section on the page keeps its own light. This is the content-only rule of section 54, put back - **Done** (pool page: 9 sections top to bottom, 103 content grounds side-lit; lot cards seen)
+- The dark theme's light goes a step further down, 8% to 6% (half of this morning's 12%) - **Done** (seen)
