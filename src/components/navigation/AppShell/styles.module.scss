@@ -47,11 +47,7 @@
 .head { display: flex; align-items: center; flex: none; min-height: var(--pui-shell-head);
   --phi-control-height-sm: var(--pui-shell-control); --phi-control-height-md: var(--pui-shell-control); --phi-control-height-lg: var(--pui-shell-control); }
 .head .menuBtn { display: none; }
-/* The header's ground is the lane's alone, never the brand cell's, so it does not reach the sidebar: a gap is kept at
-   both ends. It is light only: the faintest shade at its foot, fading to nothing at its top. No fill. */
-.lane { flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: var(--phi-space-3); padding-inline: var(--pui-shell-pad);
-  align-self: stretch; margin: 0 var(--pui-shell-gap) var(--phi-space-1) var(--pui-shell-gap); border-radius: var(--phi-radius-md);
-  background-image: linear-gradient(to top, var(--phi-shade-3), transparent); }
+.lane { flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: var(--phi-space-3); padding-inline: var(--pui-shell-pad); }
 .crumbs { min-width: 0; }
 /* Every control in the header row is one height: the crumbs, the brand, the app's tools, the account. */
 .lane button, .lane a, .brand { min-height: var(--pui-shell-control); box-sizing: border-box; }

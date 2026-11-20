@@ -640,3 +640,4 @@ To give those three pools their records I ran `node scripts/pools.mjs`. It rewri
 - Search box: 6 places; no kit search input - **Open**
 - Hand-built where the kit has it: uaia tables (home, certification), uaia `Glass` card (58 uses), `Note`, `AutoGrid`, its own nav bar and footer; phlick tabs (`topic-tabs.tsx`); chanel colour swatches; hand chips in uaia, phlick, phiegg Search; a hand dropdown in phiegg Search - **Open**
 - Hard-coded look: uaia 159 inline styles, 52 hex or rgba colours, 7 hand gradients and its own palette; phlick 1 inline colour; phiegg overrides kit cards through `[class*='card']` in `styles/phiegg.scss:33,38`; phione, phidao, phipad none - **Open**
+- "I don't think we need the header ground, it's a mess": removed; the header has no ground again, as before section 51 - **Done**
