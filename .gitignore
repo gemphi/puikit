@@ -35,3 +35,11 @@ app/phiegg/art/
 app/phiegg/public/home/
 app/phiegg/public/look/
 app/phiegg/public/world/
+
+# Pictures in any app's public folder: kept on disk and sent to the server, never in git
+app/*/public/**/*.webp
+app/*/public/**/*.png
+app/*/public/**/*.jpg
+app/*/public/**/*.jpeg
+app/*/public/**/*.gif
+app/*/public/**/*.avif
