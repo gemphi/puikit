@@ -1,24 +1,44 @@
-// ChatBubble: one band round the whole message, lit from the left in every place it is used. Tokens only.
+// ChatBubble: one band round the whole message, lit from a side in every place it is used. Tokens only.
 .row {
   display: flex; gap: var(--phi-space-2); align-items: flex-start; width: 100%; min-width: 0;
   padding: var(--phi-space-2); border-radius: var(--phi-radius-md);
-  /* Always from the left to nothing: a message is never lit from its top or its foot, whatever holds it. */
+  /* Theirs: from the left to nothing. A message is never lit from its top or its foot, whatever holds it. */
   background: var(--phi-label);
   animation: puiBubbleIn 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-/* Mine: the same direction, the stronger light. */
-.me { background: var(--phi-label-strong); }
-/* The sender's picture always stands in a holder, lit from the other side. */
+/* Mine: the same band turned round. The picture is at the right, the words are set to the right, the light comes
+   from the right, and the time and actions go to the left end. */
+.me { flex-direction: row-reverse; background: var(--phi-label-end); }
+.me .col { align-items: flex-end; text-align: right; }
+.me .meta { justify-content: flex-end; }
+.me .end { flex-direction: row-reverse; margin-left: 0; margin-right: auto; }
+/* The sender's picture always stands in a holder, lit from the other side to the band. */
 .avatar { flex: none; display: grid; place-items: center; padding: var(--phi-space-1); border-radius: var(--phi-radius-md); background-image: var(--phi-label-end); }
+.me .avatar { background-image: var(--phi-label); }
 .col { display: flex; flex-direction: column; gap: 0.125rem; flex: 1 1 auto; min-width: 0; padding-block: var(--phi-space-1); }
 .meta { display: flex; align-items: baseline; gap: var(--phi-space-2); min-width: 0; }
 .bubble { line-height: 1.4; overflow-wrap: anywhere; font-size: var(--phi-font-size-sm, 0.875rem); color: var(--phi-color-text-primary); }
-/* The right end: the time on a ground of its own lit from the right, then the actions as icons. */
+/* The far end: the time on a ground of its own lit from that end, the actions as icons on grounds, then three dots. */
 .end { display: flex; align-items: center; gap: var(--phi-space-1); flex: none; margin-left: auto; }
 .time { padding: var(--phi-space-1) var(--phi-space-2); border-radius: var(--phi-radius-md); background-image: var(--phi-label-end); white-space: nowrap; }
-.actions { display: flex; align-items: center; gap: 0.125rem; flex: none; }
+.me .time { background-image: var(--phi-label); }
+.actions { display: flex; align-items: center; gap: var(--phi-space-1); flex: none; }
+.dots { min-height: 0; padding: var(--phi-space-1); }
+/* What the three dots open: a short column of rows. */
+.menu { display: flex; flex-direction: column; gap: var(--phi-space-1); min-width: 11rem; }
+.menu > :is(button, a) { display: flex; width: 100%; justify-content: flex-start; text-align: start; }
 /* Where a message is written: the box and its button on the one surface, lit from its foot like the thread above. */
 .composer { display: flex; align-items: center; gap: var(--phi-space-2); width: 100%; min-width: 0; padding: var(--phi-space-2); border-radius: var(--phi-radius-md); }
 .composer > :first-child { flex: 1 1 auto; min-width: 0; }
+/* A whole chat: head, the messages' own ground (the only part that scrolls), prompts, and the box outside it. */
+.area { display: flex; flex-direction: column; gap: var(--phi-space-2); min-width: 0; min-height: 0; height: 100%; }
+.head { display: flex; align-items: center; gap: var(--phi-space-2); flex: none; min-width: 0; }
+.list {
+  flex: 1 1 auto; min-height: 0; overflow-y: auto; scrollbar-width: none; display: flex; flex-direction: column; gap: var(--phi-space-2);
+  padding: var(--phi-space-2); border-radius: var(--phi-radius-md); background-image: var(--phi-label-soft);
+  &::-webkit-scrollbar { display: none; }
+}
+.prompts { display: flex; flex-wrap: wrap; gap: var(--phi-space-1); flex: none; }
+.area > .composer { flex: none; }
 @keyframes puiBubbleIn { from { opacity: 0; transform: translateY(6px) scale(0.98); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .row { animation: none; } }

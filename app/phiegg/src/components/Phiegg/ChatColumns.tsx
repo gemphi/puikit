@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Box, ChatComposer, Columns, CommentThread, Icon, Input, ItemCard, Stack, Tag, Text } from '@pui/components';
+import React, { useState } from 'react';
+import { Box, ChatArea, Columns, CommentThread, Icon, Input, ItemCard, Stack, Tag, Text } from '@pui/components';
 import { Search } from 'lucide-react';
 import { t } from '../../lib/data';
 
@@ -12,8 +12,8 @@ export type ChatLine = { id: string; mine: boolean; avatar: React.ReactNode; tex
  * Every chat in the app, one way: the conversations (searchable) on the left, the thread in the middle with its
  * composer held at the foot, the people in it on the right. Each column expands over the others or closes into the
  * strip (the kit's Columns). Messages, the agent sheet and the hosts' nests all hand it their rows and lines.
- * A conversation is a full-width row on the kit's surface (ItemCard); the thread is the kit's CommentThread (each
- * message one band, its actions icons at the right) and its foot the kit's ChatComposer, both on the one surface.
+ * A conversation is a full-width row on the kit's surface (ItemCard); the thread is the kit's ChatArea holding a
+ * CommentThread (each message one band, its actions icons at its far end), the box it is written in outside it.
  */
 export const ChatColumns: React.FC<{
   rows: ChatRow[]; selected: string; onSelect: (id: string) => void;
@@ -26,9 +26,6 @@ export const ChatColumns: React.FC<{
   labels: { list: string; search: string; people: string };
 }> = ({ rows, selected, onSelect, head, lines, onSend, placeholder, intro, people, prompts = [], height, peopleNav, labels }) => {
   const [q, setQ] = useState('');
-  const list = useRef<HTMLElement | null>(null);
-  // The newest line comes into view inside the thread, never by scrolling the page.
-  useEffect(() => { const el = list.current; if (el) el.scrollTop = el.scrollHeight; }, [lines.length, selected]);
   const ql = q.trim().toLowerCase();
   const shown = rows.filter((r) => !ql || r.title.toLowerCase().includes(ql) || (r.sub ?? '').toLowerCase().includes(ql));
 
@@ -54,18 +51,13 @@ export const ChatColumns: React.FC<{
     </Stack>
   );
 
+  // The thread is the kit's whole chat (ChatArea): what it is about, the messages in their own ground, the quick
+  // prompts, and the box outside it.
   const thread = (
-    <Stack direction="column" gap={3} height="100%" minHeight="0">
-      {/* Each part of the thread is a region too: what it is about, the messages, the quick prompts, the composer. */}
-      {intro && <Box surface="region">{intro}</Box>}
-      {/* The messages have no ground round them: each is its own band, lit from the left. */}
-      <Box ref={list} className="ph-chat-list">
-        <CommentThread aria-label={labels.list} comments={lines.map((m) => ({ id: m.id, parentId: null, author: m.who, avatar: m.avatar, meta: m.at, mine: m.mine, actions: m.actions,
-          text: <Stack direction="column" gap={1}>{m.text && <Text size="sm">{m.text}</Text>}{m.attachment}</Stack> }))} />
-      </Box>
-      {prompts.length > 0 && <Stack direction="row" gap={1} wrap surface="region">{prompts.map((p) => <Tag key={p} interactive round onClick={() => onSend(p)}>{p}</Tag>)}</Stack>}
-      <Box surface="region"><ChatComposer placeholder={placeholder} sendLabel={t('send')} onSend={onSend} /></Box>
-    </Stack>
+    <ChatArea aria-label={labels.list} follow={lines.length + ':' + selected} head={intro} prompts={prompts} onSend={onSend} placeholder={placeholder} sendLabel={t('send')}>
+      <CommentThread aria-label={labels.list} comments={lines.map((m) => ({ id: m.id, parentId: null, author: m.who, avatar: m.avatar, meta: m.at, mine: m.mine, actions: m.actions,
+        text: <Stack direction="column" gap={1}>{m.text && <Text size="sm">{m.text}</Text>}{m.attachment}</Stack> }))} />
+    </ChatArea>
   );
 
   return (

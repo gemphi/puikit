@@ -621,3 +621,22 @@ To give those three pools their records I ran `node scripts/pools.mjs`. It rewri
 - "Clean all these panels touching on the left" (three left edges 12px apart, and the pane cut at the right): the two extra grounds are gone, and an expanded column kept a width of 100% of the window from its left edge, so it ran 331px past the right; it now takes what its left and right leave - **Done** (seen: 319 to 1848 of 1860)
 - "A header ground, bottom to top, for the main site": the shell's header has the page's light from its foot - **Done** (seen); every app on the shell takes it
 - "Tell me what else is implemented in different places": an audit of every app is written up in section 52 when it returns - **Waiting**
+
+## 52. One whole chat, own messages turned round, three dots, and the header's light (2026-11-20)
+- "The input must be outside the inner ground that contains all the messages, and each message has its own gradient": the kit has one whole chat, `ChatArea`: head, the messages in a ground of their own (the only part that scrolls), prompts, and the box on a ground outside it. The agent chat (seven places) and the chat columns (hosts, Messages, the agent sheet) are it - **Done** (host chat seen; the landing page's agent chat type-checked, not seen)
+- "Swap the grounds for each user message: the person on the right, the text right-aligned": the viewer's own message is the band turned round (section 51 had made it the same direction; that is undone) - **Done** (seen)
+- "Each reply or action on the right with three vertical dots for more, with sorting, time and likes, with gradient icons": like and a comment's replies are icons on grounds; three dots hold the time, the likes, Reply and the thread's order (oldest, newest, most liked) - **Done** (menu and Newest first seen working). A plain chat bubble outside a thread (the agent chat) has no dots yet - **Open**
+- "The first message must have a ...", "header corners", "the ability to money": the sentence was cut; not understood - **Waiting**
+- "No filled grounds on the header; bottom to top with the top transparent; the sidebar left to right with the left transparent; they must not touch": the header's ground is the lane's alone (not the cell over the sidebar), the faintest shade at its foot to nothing at its top, with a gap at both ends; the sidebar already ran from nothing at its left - **Done** (measured: header ends at 59px, sidebar starts at 63px; seen)
+
+## 53. What is still built more than once (audit, 2026-11-20)
+- Chat: `phi-kit/src/RecordSheet.tsx:38-66` draws its own composer and message rows (the kit's `CommentThread` does this job); `phiegg/pages/phiegg/RecentPage.tsx:69-75` and `phlick/components/layout/shell.tsx:176-194` build conversation rows by hand; `phi-kit/src/kit.module.scss:35-39` has dead chat styles - **Open**
+- Initials helper: 9 copies (phi-kit AccountDialog, AccountDrawer, Profile, RecordSheet; phidao, phipad, phiegg, phione data files; phlick uses `name.slice(0,2)` in 5 places). The kit's Avatar takes ready initials only - **Open**
+- Person row (picture, name, a line): 8 places across phiegg, phione, phlick and phi-kit; should be `ItemCard` or `ProfileView` line - **Open**
+- Stat tiles: 5 copies in phi-kit (views.tsx:30 and Profile.tsx:94 are the same tiles twice; blocks Stats, GridExtra, Swap), none on the kit's `Figure` - **Open**
+- Record sheet: two generic ones, `phi-kit/src/RecordSheet.tsx` and `phiegg/components/Phiegg/RecordSheet.tsx` - **Open**
+- Icon button with a `title=` tip: 7 copies (the same `act()` in ClubPage and WorldPage; PostPage, ChatSheet, FeedPage, phi-kit ProfileView and Room); should be the kit's Tooltip - **Open**
+- Hero / page head: 5 places (uaia, phi-kit Content and Showcase and views, chanel); no kit Hero - **Open**
+- Search box: 6 places; no kit search input - **Open**
+- Hand-built where the kit has it: uaia tables (home, certification), uaia `Glass` card (58 uses), `Note`, `AutoGrid`, its own nav bar and footer; phlick tabs (`topic-tabs.tsx`); chanel colour swatches; hand chips in uaia, phlick, phiegg Search; a hand dropdown in phiegg Search - **Open**
+- Hard-coded look: uaia 159 inline styles, 52 hex or rgba colours, 7 hand gradients and its own palette; phlick 1 inline colour; phiegg overrides kit cards through `[class*='card']` in `styles/phiegg.scss:33,38`; phione, phidao, phipad none - **Open**

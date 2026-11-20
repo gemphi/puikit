@@ -10,7 +10,8 @@
 // A comment holds its band and, under it, its replies. It has no ground or room of its own: the band is the ground.
 .comment { display: flex; flex-direction: column; gap: var(--phi-space-1, 0.25rem); min-width: 0; border-radius: var(--phi-radius-md); }
 // Its actions are icon buttons at the right of the comment's own band (ChatBubble actions).
-.action { min-height: 0; padding: 0.15rem var(--phi-space-1, 0.25rem); font-size: var(--phi-font-size-xs, 0.75rem); background: none; }
+.action { min-height: 0; padding: var(--phi-space-1, 0.25rem); font-size: var(--phi-font-size-xs, 0.75rem); }
+.fact { padding: var(--phi-space-1) var(--phi-space-2); }
 .action:hover { background-image: var(--phi-control-ground-strong); }
 .reply { padding: 0 0 0 var(--pui-thread-indent, var(--phi-space-4, 1rem)); }
 // Replies step in by one space a level, inside their comment's box.
