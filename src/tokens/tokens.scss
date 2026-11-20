@@ -120,7 +120,7 @@ a.button,
   position: relative;
   border: 0;
   border-radius: var(--phi-radius-shape);
-  background: var(--phi-label-end);
+  background: var(--phi-surface);
   backdrop-filter: var(--phi-glass-blur);
   -webkit-backdrop-filter: var(--phi-glass-blur);
   box-shadow: none;
@@ -141,18 +141,13 @@ a.button,
 :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) { --phi-radius-shape: var(--phi-radius-md); --phi-card-pad-b: calc(max(var(--phi-radius-card), 1.5rem) / 16); }
 :where(.phi-layers) :where(.phi-layers) { padding: 0; }
 
-/* SIDE TO SIDE, NOT TOP TO BOTTOM. Every ground these rules hand out (a card, a region, a loose block of a page, a
-   control) is lit from a side: from the right at one depth, from the left at the next, and so on inward, so what is
-   held always runs against what holds it. None is lit from its top or its foot; the words below that say "from its
-   foot" are from before this rule. The top-to-bottom light (--phi-surface) is kept for the few places that ask for
-   it by name (a phone's bar and its menus, a stage's foot). */
 /* GROUPED THINGS RUN AGAINST WHAT HOLDS THEM. A region (surface="region", or .phi-region) is any group of things that
    belong together inside a surface: a profile's actions, its numbers, its words, a menu's group. It has no blur and
    no depth of its own, only a light. Every surface and region takes its light by how deep it sits: on the page it is
    lit from its foot; inside a surface, from its left; inside that, from its foot again, and so on, quieter as it goes
    in. So a group always shows against its parent, no two neighbours in depth run the same way, and no ground is ever
    filled from edge to edge. This is the one place that decides it: no component alternates its own grounds. */
-:where([data-surface='region'], .phi-region) { min-width: 0; padding: var(--phi-space-3); border-radius: var(--phi-radius-md); background: var(--phi-label-end); }
+:where([data-surface='region'], .phi-region) { min-width: 0; padding: var(--phi-space-3); border-radius: var(--phi-radius-md); background: var(--phi-surface); }
 /* A region that stacks its things in a column is a list of rows: each thing you press in it is a row as wide as the
    region, its picture and words starting at the left, never a small button floating at one side. A region that lays
    its things in a line shares the line between the named ones (an icon keeps its own size). */
@@ -170,20 +165,23 @@ a.button,
    runs against it. A block that holds cards is left alone: its cards are its grounds. So a page cannot place words
    or controls bare, and no page has to remember to ask. */
 .pui-page-content > main > [data-dir='column'] > :where(:not(.pui-card, [data-surface], .phi-layers, .phi-region, [role='tablist'], [hidden], :empty)):not(:has(.pui-card, [data-surface], .phi-layers, .phi-region)) {
-  min-width: 0; padding: var(--phi-space-3); border-radius: var(--phi-radius-md); background: var(--phi-label-end);
+  min-width: 0; padding: var(--phi-space-3); border-radius: var(--phi-radius-md); background: var(--phi-surface);
   --phi-control-ground: var(--phi-label); --phi-control-ground-strong: var(--phi-label-strong);
   --phi-row-ground: var(--phi-label); --phi-row-ground-strong: var(--phi-label-strong); --phi-row-holder: var(--phi-label-end);
 }
 /* The two classes that say it, so no component writes it again: .phi-row is a row's ground, .phi-holder the holder a
    picture or thumbnail stands in (a person in a row, a ring of faces). A thumbnail is never ringed with a border:
    it stands in a holder of light. */
-:where(.phi-row) { background-image: var(--phi-row-ground); --phi-control-ground: var(--phi-label-end); --phi-control-ground-strong: var(--phi-label-end-strong); }
+:where(.phi-row) { background-image: var(--phi-row-ground); --phi-control-ground: var(--phi-surface); --phi-control-ground-strong: var(--phi-surface-strong); }
 :where(.phi-holder) { flex: none; padding: var(--phi-space-1); border: 0; border-radius: var(--phi-radius-md); background-image: var(--phi-row-holder); }
-:root { --phi-control-ground: var(--phi-label-end); --phi-control-ground-strong: var(--phi-label-end-strong); --phi-row-ground: var(--phi-label-end); --phi-row-ground-strong: var(--phi-label-end-strong); --phi-row-holder: var(--phi-label); }
-:where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) { --phi-self-row: var(--phi-label-end); --phi-self-row-strong: var(--phi-label-end-strong); --phi-self-holder: var(--phi-label); --phi-depth-ground: var(--phi-label-end); --phi-control-ground: var(--phi-label); --phi-control-ground-strong: var(--phi-label-strong); --phi-row-ground: var(--phi-label); --phi-row-ground-strong: var(--phi-label-strong); --phi-row-holder: var(--phi-label-end); }
-:where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) { background: var(--phi-label); --phi-self-row: var(--phi-label); --phi-self-row-strong: var(--phi-label-strong); --phi-self-holder: var(--phi-label-end); --phi-depth-ground: var(--phi-label); --phi-control-ground: var(--phi-label-end); --phi-control-ground-strong: var(--phi-label-end-strong); --phi-row-ground: var(--phi-label-end); --phi-row-ground-strong: var(--phi-label-end-strong); --phi-row-holder: var(--phi-label); }
+:root { --phi-control-ground: var(--phi-surface); --phi-control-ground-strong: var(--phi-surface-strong); --phi-row-ground: var(--phi-label-end); --phi-row-ground-strong: var(--phi-label-end-strong); --phi-row-holder: var(--phi-label); }
+:where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) { --phi-self-row: var(--phi-label-end); --phi-self-row-strong: var(--phi-label-end-strong); --phi-self-holder: var(--phi-label); --phi-depth-ground: var(--phi-surface); --phi-control-ground: var(--phi-label); --phi-control-ground-strong: var(--phi-label-strong); --phi-row-ground: var(--phi-label); --phi-row-ground-strong: var(--phi-label-strong); --phi-row-holder: var(--phi-label-end); }
+/* CONTENT RUNS SIDE TO SIDE. A section (a ground on the page) keeps the light from its foot. What it holds, and what
+   that holds in turn, is lit from a side only: from the left one level in, from the right the next, and so on. So a
+   card or a row inside a section is never lit from its top or its foot. */
+:where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) { background: var(--phi-label); --phi-self-row: var(--phi-label); --phi-self-row-strong: var(--phi-label-strong); --phi-self-holder: var(--phi-label-end); --phi-depth-ground: var(--phi-label); --phi-control-ground: var(--phi-surface); --phi-control-ground-strong: var(--phi-surface-strong); --phi-row-ground: var(--phi-label-end); --phi-row-ground-strong: var(--phi-label-end-strong); --phi-row-holder: var(--phi-label); }
 :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) { background: var(--phi-label-end); --phi-self-row: var(--phi-label-end); --phi-self-row-strong: var(--phi-label-end-strong); --phi-self-holder: var(--phi-label); --phi-depth-ground: var(--phi-label-end); --phi-control-ground: var(--phi-label); --phi-control-ground-strong: var(--phi-label-strong); --phi-row-ground: var(--phi-label); --phi-row-ground-strong: var(--phi-label-strong); --phi-row-holder: var(--phi-label-end); }
-:where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) { background: var(--phi-label); --phi-self-row: var(--phi-label); --phi-self-row-strong: var(--phi-label-strong); --phi-self-holder: var(--phi-label-end); --phi-depth-ground: var(--phi-label); --phi-control-ground: var(--phi-label-end); --phi-control-ground-strong: var(--phi-label-end-strong); --phi-row-ground: var(--phi-label-end); --phi-row-ground-strong: var(--phi-label-end-strong); --phi-row-holder: var(--phi-label); }
+:where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) { background: var(--phi-label); --phi-self-row: var(--phi-label); --phi-self-row-strong: var(--phi-label-strong); --phi-self-holder: var(--phi-label-end); --phi-depth-ground: var(--phi-label); --phi-control-ground: var(--phi-surface); --phi-control-ground-strong: var(--phi-surface-strong); --phi-row-ground: var(--phi-label-end); --phi-row-ground-strong: var(--phi-label-end-strong); --phi-row-holder: var(--phi-label); }
 :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) { background: var(--phi-label-end); --phi-self-row: var(--phi-label-end); --phi-self-row-strong: var(--phi-label-end-strong); --phi-self-holder: var(--phi-label); --phi-depth-ground: var(--phi-label-end); --phi-control-ground: var(--phi-label); --phi-control-ground-strong: var(--phi-label-strong); --phi-row-ground: var(--phi-label); --phi-row-ground-strong: var(--phi-label-strong); --phi-row-holder: var(--phi-label-end); }
 
 :root {
