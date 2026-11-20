@@ -94,9 +94,9 @@
     height: var(--pui-tab-h, 0px);
     transform: translate3d(var(--pui-tab-x, 0px), var(--pui-tab-y, 0px), 0);
     border-radius: var(--phi-control-radius, var(--phi-radius-md));
-    /* The page's deeper shade, like a pressed button: no fill of its own. */
+    /* Lit from its foot, where the underline is, to nothing at its head: never a ground filled edge to edge. */
     background-color: transparent;
-    background-image: var(--phi-label);
+    background-image: var(--phi-surface);
     pointer-events: none;
     /* The underline of the tab that is on, in the page's ink; it slides with the pill. */
     color: var(--phi-color-text-primary);
@@ -114,13 +114,13 @@
     color: var(--phi-color-text-primary);
   }
   /* Before measuring (first paint, tests) the active tab paints its own pill. */
-  &:not([data-ready='true']) .active { background-color: transparent; background-image: var(--phi-label); }
+  &:not([data-ready='true']) .active { background-color: transparent; background-image: var(--phi-surface); }
 }
 
-/* On a surface (tokens.scss) the active pill is a shade of the page's one colour, not a solid fill. */
-:global(:is(.pui-card, [data-surface='card'], .phi-layers)) .pills .indicator { background-color: transparent; background-image: var(--phi-label-soft); border-color: transparent; color: var(--phi-color-text-primary); box-shadow: none; }
+/* On a surface (tokens.scss) the active pill is the same light from its foot, never a solid fill. */
+:global(:is(.pui-card, [data-surface='card'], .phi-layers)) .pills .indicator { background-color: transparent; background-image: var(--phi-surface); border-color: transparent; color: var(--phi-color-text-primary); box-shadow: none; }
 :global(:is(.pui-card, [data-surface='card'], .phi-layers)) .pills .active { color: var(--phi-color-text-primary); }
-:global(:is(.pui-card, [data-surface='card'], .phi-layers)) .pills:not([data-ready='true']) .active { background-color: transparent; background-image: var(--phi-label-soft); }
+:global(:is(.pui-card, [data-surface='card'], .phi-layers)) .pills:not([data-ready='true']) .active { background-color: transparent; background-image: var(--phi-surface); }
 
 /* A page's row of tabs: centred at no more than half the content's width, more tabs scroll sideways in place, and the
    row stays under the header while the page scrolls, on the page's own glass. */
@@ -128,7 +128,8 @@
   align-self: center; margin-inline: auto; width: fit-content; max-width: min(100%, max(50%, 40rem));
   overflow-x: auto; scrollbar-width: none; &::-webkit-scrollbar { display: none; }
   position: sticky; top: 0; z-index: 3;
-  /* The page's glass, never a painted colour: light across over a blur of what lies under it. */
-  background-color: transparent; background-image: var(--phi-surface); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur);
+  /* The row has no light of its own (it heads what is under it, and the tab that is on carries the light, from its
+     foot); only the blur of what scrolls beneath, so the labels stay readable. */
+  background-color: transparent; background-image: none; backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur);
   border-radius: var(--phi-radius-md); padding: var(--phi-space-1, 0.25rem);
 }

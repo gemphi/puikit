@@ -89,6 +89,9 @@
      cross and only meet in the middle. No ground and no blur of its own, and no colour but the page's one light. */
   --pui-nav-ground: var(--phi-label-end);
   --pui-nav-item-soft: var(--phi-label-soft); --pui-nav-item: var(--phi-label); --pui-nav-item-strong: var(--phi-label-strong);
+  /* ...and what sits inside one of those (a row in a folding group) runs against it in turn, the sidebar's own way:
+     every layer runs against the one round it, so no ground is ever filled from edge to edge. */
+  --pui-nav-card: var(--phi-label-soft); --pui-nav-with-soft: var(--phi-label-end-soft); --pui-nav-with: var(--phi-label-end);
   background: var(--pui-nav-ground);
   backdrop-filter: none; -webkit-backdrop-filter: none; }
 
@@ -130,10 +133,12 @@
 .placeTop { grid-row: 1; align-self: start; min-height: 0; display: flex; flex-direction: column; gap: var(--phi-space-2); }
 .placeCenter { grid-row: 2; display: flex; flex-direction: column; gap: var(--phi-space-2); }
 .placeBottom { grid-row: 3; align-self: end; min-height: 0; display: flex; flex-direction: column; gap: var(--phi-space-2); }
-/* Lights: an open fold wears the page's shades like an open accordion (display/Accordion), so what is open shows. */
-.groupOpen { border-radius: var(--phi-radius-sm); background-image: var(--phi-surface); }
-/* An entry that folds is a container like a drawer's filter group, open or folded: the same corner and shade. */
-.navEntry:has(> :first-child > .caret) { border-radius: var(--phi-radius-md); background: var(--phi-surface); /* the folding group is lit from its foot, its head free: same in the drawer and the sidebar */ padding-bottom: var(--phi-space-1); }
+/* A group's heading has no ground of its own: it is part of the sidebar it heads, whose light is already under it. */
+.groupOpen { border-radius: var(--phi-radius-sm); }
+/* An entry that folds is a card in the sidebar: a faint light running against the sidebar's, and its own heading row
+   bare. Its rows run against it in turn (the sidebar's way). */
+.navEntry:has(> :first-child > .caret) { border-radius: var(--phi-radius-md); background: var(--pui-nav-card, var(--phi-label-soft)); padding-bottom: var(--phi-space-1);
+  --pui-nav-item-soft: var(--pui-nav-with-soft, var(--phi-label-end-soft)); --pui-nav-item: var(--pui-nav-with, var(--phi-label-end)); }
 .entryPanel { padding: var(--phi-space-2) 0 var(--phi-space-2) 1.5rem; }
 /* A sub-menu steps in under its entry, past the fold arrow; no line, only the folding group's light. */
 .subMenu { display: flex; flex-direction: column; padding: 0 0 var(--phi-space-1) var(--phi-space-4); }
@@ -218,7 +223,8 @@
 /* The right sidebar: the same holder mirrored. It is lit at its left, toward the page, and disappears to the right;
    its icons and rows are lit at the right and gone to the left. */
 .navEnd { margin: 0 var(--pui-shell-gap) var(--pui-shell-gap) 0; --pui-nav-ground: var(--phi-label);
-  --pui-nav-item-soft: var(--phi-label-end-soft); --pui-nav-item: var(--phi-label-end); --pui-nav-item-strong: var(--phi-label-end-strong); }
+  --pui-nav-item-soft: var(--phi-label-end-soft); --pui-nav-item: var(--phi-label-end); --pui-nav-item-strong: var(--phi-label-end-strong);
+  --pui-nav-card: var(--phi-label-end-soft); --pui-nav-with-soft: var(--phi-label-soft); --pui-nav-with: var(--phi-label); }
 
 /* Phone: no sidebar; the header shows the menu button and the glyph, the drawer carries the whole menu. */
 @media (max-width: 900px) {
