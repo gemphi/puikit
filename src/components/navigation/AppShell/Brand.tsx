@@ -46,7 +46,7 @@ export const ShellBrand: React.FC<ShellBrandProps> = ({ brand, open, onHome, onT
   <Box className={cn(styles.brandCell, open ? styles.brandOpen : styles.brandClosed, brand.glyph && brand.wordmark && styles.brandLead)}>
     <Pressable className={styles.brand} onClick={onHome} aria-label={brand.name}>
       {brand.glyph && !(open && brand.wordmark) && <Box className={styles.brandGlyph}>{brand.glyph}</Box>}
-      {open && (brand.wordmark ?? <Text as="span" weight="bold" className={styles.brandName}>{brand.name}</Text>)}
+      {open && (brand.wordmark ?? <Text as="span" className={styles.brandName}>{brand.name}</Text>)}
     </Pressable>
     <Pressable className={styles.pin} onClick={onToggle} aria-expanded={open} aria-label={open ? closeLabel : openLabel} title={open ? closeLabel : openLabel}>
       <ShellPin open={open} />
