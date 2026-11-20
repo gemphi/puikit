@@ -656,3 +656,7 @@ To give those three pools their records I ran `node scripts/pools.mjs`. It rewri
 - "'Sculpted heels and boots made to finish every look' must be inside the header, not out at the bottom": a tile takes an `about` sentence under its title's line; the pool page hands it its description and the loose line under the header is gone - **Done** (seen)
 - "Wrong gradients direction and lightness" (the pool quest card: its bands lit from their foot read as flat fills), "fix all now": what a card or region holds three and five levels in is lit from a side, like the levels two and four in; a section on the page keeps its own light. This is the content-only rule of section 54, put back - **Done** (pool page: 9 sections top to bottom, 103 content grounds side-lit; lot cards seen)
 - The dark theme's light goes a step further down, 8% to 6% (half of this morning's 12%) - **Done** (seen)
+
+## 57. A heading has no ground (2026-11-20)
+- "Don't put grounds on headers" (the "Clubs" heading on Explore stood on a band): the page rule that makes every loose block a region (section 41) no longer takes a heading, or a block that is a heading with its line and nothing to press. The list pages' title block and Studio's heading lose the region they were given by hand (sections 43, 44) - **Done** (measured on Explore and Pools: no ground behind "Clubs" or "Pools"; not seen, the browser pane was hidden)
+- Left as they are: a record page's head with its picture and buttons (EntityLayout), and headings inside a card - **Open** if wanted

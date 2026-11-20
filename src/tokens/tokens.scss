@@ -164,7 +164,9 @@ a.button,
    region without being told: the same light from its foot, the same corner and room, and what is pressed inside it
    runs against it. A block that holds cards is left alone: its cards are its grounds. So a page cannot place words
    or controls bare, and no page has to remember to ask. */
-.pui-page-content > main > [data-dir='column'] > :where(:not(.pui-card, [data-surface], .phi-layers, .phi-region, [role='tablist'], [hidden], :empty)):not(:has(.pui-card, [data-surface], .phi-layers, .phi-region)) {
+/* A HEADING HAS NO GROUND. A heading on its own, or a block that is a heading with its line under it and nothing to
+   press, names what follows; it is not a thing among the things. It stands on the page bare. */
+.pui-page-content > main > [data-dir='column'] > :where(:not(.pui-card, [data-surface], .phi-layers, .phi-region, [role='tablist'], [hidden], :empty, h1, h2, h3, h4, h5, h6)):not(:has(.pui-card, [data-surface], .phi-layers, .phi-region)):not(:has(> :is(h1, h2, h3, h4, h5, h6):first-child):not(:has(button, a, input, select, [role='button'], [role='tab']))) {
   min-width: 0; padding: var(--phi-space-3); border-radius: var(--phi-radius-md); background: var(--phi-surface);
   --phi-control-ground: var(--phi-label); --phi-control-ground-strong: var(--phi-label-strong);
   --phi-row-ground: var(--phi-label); --phi-row-ground-strong: var(--phi-label-strong); --phi-row-holder: var(--phi-label-end);

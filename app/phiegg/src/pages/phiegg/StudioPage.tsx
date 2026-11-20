@@ -102,7 +102,7 @@ export const StudioPage: React.FC = () => {
               {msg && <Text size="sm" role="status">{msg}</Text>}
             </Stack>
           </Stack></CardBody></Card>
-          <Box surface="region"><Title level={4} size="md">{t('stFlows')}</Title></Box>
+          <Title level={4} size="md">{t('stFlows')}</Title>
           <ListView rows={flows} keyOf={(f) => f.id} text={(f) => f.greeting} empty={t('stNoFlows')} cols={2}
             facets={[{ id: 'sc', label: t('stTemplates'), get: (f) => SC.scenarios.find((x) => x.id === f.scenarioId)?.title }, { id: 'voice', label: t('stVoice'), get: (f) => f.voice }]}
             sorts={[{ id: 'new', label: t('lsSortRecent'), by: (a, b) => b.at - a.at }]}
