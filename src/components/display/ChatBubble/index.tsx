@@ -8,9 +8,9 @@ import { Input } from '../../forms/Input';
 import styles from './styles.module.scss';
 
 export type ChatBubbleProps = {
-  /** "me" is the viewer's own message (its light runs from the right); "them" anyone else's (from the left). */
+  /** "me" is the viewer's own message; "them" anyone else's. Both are lit from the left; the viewer's own is the stronger. */
   side?: 'me' | 'them';
-  /** The sender's picture, inside the message's band. */
+  /** The sender's picture, inside the message's band, always in a holder of its own light. */
   avatar?: React.ReactNode;
   name?: React.ReactNode;
   time?: React.ReactNode;
@@ -21,23 +21,28 @@ export type ChatBubbleProps = {
 };
 
 /**
- * One message, the same in every chat and comment thread: a single band of light holds the whole item (the sender's
- * picture, their name, the words, the time), full width, and its actions sit at the right as icons. Their messages
- * are lit from the left, the viewer's own from the right; the band is the kit's label light, never a painted colour.
+ * One message, the same in every chat and comment thread: a single band of light holds the whole item, full width,
+ * always lit from the left and never from its top or foot, whatever it lies in. The sender's picture stands in a
+ * holder; their name is over the words; the time is at the right end on a ground of its own lit from the right, so
+ * the two lights meet across the band; its actions are icons after it. The grounds are the kit's label lights.
  */
 export const ChatBubble = ({ side = 'them', avatar, name, time, actions, children, className }: ChatBubbleProps) => (
   <Box className={cn(styles.row, styles[side], className)} data-side={side}>
     {avatar && <Box className={styles.avatar}>{avatar}</Box>}
     <Box className={styles.col}>
-      {(name || time) && (
+      {name && (
         <Box className={styles.meta}>
           {name && <Text as="span" size="xs" weight="semibold">{name}</Text>}
-          {time && <Text as="span" size="xs" variant="muted">{time}</Text>}
         </Box>
       )}
       <Box className={styles.bubble}>{children}</Box>
     </Box>
-    {actions && <Box className={styles.actions}>{actions}</Box>}
+    {(time || actions) && (
+      <Box className={styles.end}>
+        {time && <Text as="span" size="xs" variant="muted" numeric className={styles.time}>{time}</Text>}
+        {actions && <Box className={styles.actions}>{actions}</Box>}
+      </Box>
+    )}
   </Box>
 );
 

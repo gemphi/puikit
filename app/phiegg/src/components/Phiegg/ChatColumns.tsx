@@ -58,7 +58,8 @@ export const ChatColumns: React.FC<{
     <Stack direction="column" gap={3} height="100%" minHeight="0">
       {/* Each part of the thread is a region too: what it is about, the messages, the quick prompts, the composer. */}
       {intro && <Box surface="region">{intro}</Box>}
-      <Box ref={list} className="ph-chat-list" surface="region">
+      {/* The messages have no ground round them: each is its own band, lit from the left. */}
+      <Box ref={list} className="ph-chat-list">
         <CommentThread aria-label={labels.list} comments={lines.map((m) => ({ id: m.id, parentId: null, author: m.who, avatar: m.avatar, meta: m.at, mine: m.mine, actions: m.actions,
           text: <Stack direction="column" gap={1}>{m.text && <Text size="sm">{m.text}</Text>}{m.attachment}</Stack> }))} />
       </Box>

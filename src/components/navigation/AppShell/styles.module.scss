@@ -45,6 +45,8 @@
 
 /* Header: the brand cell over the sidebar, then a lane whose content lines up with the page's own edge. */
 .head { display: flex; align-items: center; flex: none; min-height: var(--pui-shell-head);
+  /* The header's own ground: the page's light from its foot, fading upward. */
+  background: var(--phi-surface);
   --phi-control-height-sm: var(--pui-shell-control); --phi-control-height-md: var(--pui-shell-control); --phi-control-height-lg: var(--pui-shell-control); }
 .head .menuBtn { display: none; }
 .lane { flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: var(--phi-space-3); padding-inline: var(--pui-shell-pad); }
@@ -214,7 +216,8 @@
 .inner :has(:global(.pui-sections[data-expanded]), :global(.pui-columns[data-expanded])) { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; transform: none !important; filter: none !important; animation: none !important; }
 .inner :global(.pui-sections[data-expanded]), .inner :global(.pui-columns[data-expanded]) {
   position: fixed; z-index: 20; top: var(--pui-shell-head); bottom: var(--pui-shell-gap); right: var(--pui-shell-gap); left: calc(var(--pui-shell-side) + 2px + var(--pui-shell-gap) * 2);
-  max-width: none; height: auto; overflow-y: auto; padding: var(--phi-space-4); border: 0; border-radius: var(--phi-radius-md);
+  /* Its width is what left and right leave: a width of its own (a row is 100% wide) would run it past the right edge. */
+  width: auto; max-width: none; height: auto; overflow-y: auto; padding: var(--phi-space-4); border: 0; border-radius: var(--phi-radius-md);
   background-color: var(--phi-shade-3); background-image: var(--phi-label-soft); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur); }
 
 /* The right aside: the opposite of the sidebar, glass at its left edge to nothing. A set width, its own padding and

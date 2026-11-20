@@ -612,3 +612,12 @@ To give those three pools their records I ran `node scripts/pools.mjs`. It rewri
 - "On mobile don't show the logo": a phone with the bar has no logo in its header (Home is in the bar) - **Done** (seen). Every app that uses the shell's phone bar takes it
 - "Keep only one icon next to the user": `headerPhone` in `data/route.json` names the tools a phone shows: search and the account everywhere, the cart and the account in a shop - **Done** (home seen; the shop's cart not seen)
 - "Don't squash the user icon": the account button keeps its width when the row is short of room - **Done** (seen, 41 by 41)
+
+## 51. Chats lit from the left, one message everywhere, the header's ground (2026-11-20)
+- "Avoid top to bottom on the chats; left to right grounds": the kit's one message (`ChatBubble`) is always lit from the left, whatever it lies in; the viewer's own is the stronger light, same direction - **Done** (seen on a host's chat)
+- "The time on the right with a right-to-left gradient": the time left the name's line for the band's right end, on a ground of its own lit from the right - **Done** (seen)
+- "The profiles must always have a ground": a message's picture always stands in a holder - **Done** (seen)
+- "Reuse the same chat component everywhere": every chat already drew the kit's message (host chats and Messages through `CommentThread`, agent chat, cast chat, Studio, the shared Chat and Room blocks directly); what differed was the grounds round it. A comment no longer has a region round its band, and the message list no longer has one round the comments, so there is one ground a message - **Done**
+- "Clean all these panels touching on the left" (three left edges 12px apart, and the pane cut at the right): the two extra grounds are gone, and an expanded column kept a width of 100% of the window from its left edge, so it ran 331px past the right; it now takes what its left and right leave - **Done** (seen: 319 to 1848 of 1860)
+- "A header ground, bottom to top, for the main site": the shell's header has the page's light from its foot - **Done** (seen); every app on the shell takes it
+- "Tell me what else is implemented in different places": an audit of every app is written up in section 52 when it returns - **Waiting**

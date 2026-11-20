@@ -1,19 +1,22 @@
-// ChatBubble: one band round the whole message. Tokens only.
+// ChatBubble: one band round the whole message, lit from the left in every place it is used. Tokens only.
 .row {
   display: flex; gap: var(--phi-space-2); align-items: flex-start; width: 100%; min-width: 0;
-  padding: var(--phi-space-2) var(--phi-space-3); border-radius: var(--phi-radius-md);
-  /* Their message: the row's light (tokens.scss, A ROW), from one side to nothing. */
-  background: var(--phi-row-ground);
+  padding: var(--phi-space-2); border-radius: var(--phi-radius-md);
+  /* Always from the left to nothing: a message is never lit from its top or its foot, whatever holds it. */
+  background: var(--phi-label);
   animation: puiBubbleIn 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-/* Mine: the same light from the right, so the two sides mirror; the picture and words keep their order. */
-.me { background: var(--phi-row-holder); }
-.avatar { flex: none; }
-.col { display: flex; flex-direction: column; gap: 0.125rem; flex: 1 1 auto; min-width: 0; }
+/* Mine: the same direction, the stronger light. */
+.me { background: var(--phi-label-strong); }
+/* The sender's picture always stands in a holder, lit from the other side. */
+.avatar { flex: none; display: grid; place-items: center; padding: var(--phi-space-1); border-radius: var(--phi-radius-md); background-image: var(--phi-label-end); }
+.col { display: flex; flex-direction: column; gap: 0.125rem; flex: 1 1 auto; min-width: 0; padding-block: var(--phi-space-1); }
 .meta { display: flex; align-items: baseline; gap: var(--phi-space-2); min-width: 0; }
 .bubble { line-height: 1.4; overflow-wrap: anywhere; font-size: var(--phi-font-size-sm, 0.875rem); color: var(--phi-color-text-primary); }
-/* Its actions: icons only, at the right end, level with the first line. */
-.actions { display: flex; align-items: center; gap: 0.125rem; flex: none; margin-left: auto; }
+/* The right end: the time on a ground of its own lit from the right, then the actions as icons. */
+.end { display: flex; align-items: center; gap: var(--phi-space-1); flex: none; margin-left: auto; }
+.time { padding: var(--phi-space-1) var(--phi-space-2); border-radius: var(--phi-radius-md); background-image: var(--phi-label-end); white-space: nowrap; }
+.actions { display: flex; align-items: center; gap: 0.125rem; flex: none; }
 /* Where a message is written: the box and its button on the one surface, lit from its foot like the thread above. */
 .composer { display: flex; align-items: center; gap: var(--phi-space-2); width: 100%; min-width: 0; padding: var(--phi-space-2); border-radius: var(--phi-radius-md); }
 .composer > :first-child { flex: 1 1 auto; min-width: 0; }

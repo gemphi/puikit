@@ -62,9 +62,9 @@ const DEFAULTS: Required<CommentThreadLabels> = {
 };
 
 /**
- * CommentThread: comments, replies and chat lines, on the same ChatBubble as every chat. The thread sits on the kit's
- * one surface; each comment is a surface that encloses its own replies, and each level of replies steps in by one
- * space (16px), so depth reads as boxes inside boxes with no line. Its actions are icons at the right of the band:
+ * CommentThread: comments, replies and chat lines, on the same ChatBubble as every chat. A comment has no ground but
+ * its own band (lit from the left, like every message); its replies sit under it, each level stepping in by one
+ * space (16px), so depth reads from the step alone, with no box round a box and no line. Its actions are icons at the right of the band:
  * Like toggles through onLike, Reply opens the composer under the comment and sends through onReply, a count folds or
  * shows its replies. With onSend the thread ends in the same composer, on the same surface.
  */
@@ -88,7 +88,7 @@ export const CommentThread = ({ comments, maxDepth = 6, openDepth = Infinity, on
     const children = kids.get(c.id) ?? []; const total = count(c.id);
     const open = toggled[c.id] ?? level + 1 < openDepth;
     return (
-      <Box key={c.id} role="listitem" className={styles.comment + ' phi-region'} data-depth={Math.min(level, maxDepth)}>
+      <Box key={c.id} role="listitem" className={styles.comment} data-depth={Math.min(level, maxDepth)}>
         {/* The comment's actions are icons at the right of its own band: like, reply, and its replies folded or shown. */}
         <ChatBubble side={c.mine ? 'me' : 'them'} avatar={c.avatar} name={c.author} time={c.meta}
           actions={(onReply || onLike || total > 0 || c.actions) ? <>
