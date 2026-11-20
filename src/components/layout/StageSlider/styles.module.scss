@@ -26,8 +26,6 @@
 /* What plays the stage (where you are, and what to do with the slide in front) stands on a ground of its own, lit
    from top to bottom. */
 .foot { display: flex; align-items: center; gap: var(--phi-space-3, 0.75rem); width: min(100%, var(--pui-stage-w, 35rem)); margin: 0 auto; }
-/* The foot keeps the top-to-bottom light it was asked to have. */
-.foot.foot { background: var(--phi-surface); }
 .position { flex: none; padding: var(--phi-space-1) var(--phi-space-2); border-radius: var(--phi-radius-md); background-image: var(--phi-row-holder); }
 .meter { flex: 1; min-width: 0; }
 // Fill: the slider is a container; the centre is the least of the row's share of its width (less the arrows' room,
