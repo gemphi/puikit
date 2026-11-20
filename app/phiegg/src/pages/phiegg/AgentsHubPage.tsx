@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, CardBody, Icon, Page, Stack, Tag, Text, Title } from '@pui/components';
+import { Box, Button, Card, CardBody, Icon, Page, Stack, Tag, Text, Title } from '@pui/components';
 import { useStore } from '@pui/store';
 import { phieggStore } from '../../state/phieggStore';
 import { facetsFor, sortsFor, tableFor } from '../../lib/fields';
@@ -21,11 +21,11 @@ export const AgentsHubPage: React.FC = () => {
           <Tag intent="success" minimal round icon={<Icon icon={Sparkles} size="xs" />}>{t('aiAgent')}</Tag>
           <Title level={1} size="3xl">{t('meetAgents')}</Title><Text intent="secondary">{t('agentsSub')}</Text>
           <Stack direction="row" gap={2} align="center">
-            <div className={tile.ringRow}>{D.agents.agents.map((a) => <Ring key={a.id} label={a.name} onClick={() => s.openStory(a.id)}><PersonAvatar id={a.id} size="lg" /></Ring>)}</div>
+            <Box className={tile.ringRow}>{D.agents.agents.map((a) => <Ring key={a.id} label={a.name} onClick={() => s.openStory(a.id)}><PersonAvatar id={a.id} size="lg" /></Ring>)}</Box>
             <Button variant="glass" size="sm" onClick={() => list.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>{t('allAgents')} {D.agents.agents.length}</Button>
           </Stack>
         </Stack></CardBody></Card>
-        <div ref={list}><ListView<Agent> rows={D.agents.agents} keyOf={(a) => a.id} text={(a) => a.name + ' ' + a.role + ' ' + a.house + ' ' + a.style} onRow={(a) => s.go('profile', { profileId: a.id })}
+        <Box ref={list}><ListView<Agent> rows={D.agents.agents} keyOf={(a) => a.id} text={(a) => a.name + ' ' + a.role + ' ' + a.house + ' ' + a.style} onRow={(a) => s.go('profile', { profileId: a.id })}
           facets={facetsFor<Agent>('agent')}
           sorts={sortsFor<Agent>('agent')}
           table={tableFor<Agent>('agent')}
@@ -39,7 +39,7 @@ export const AgentsHubPage: React.FC = () => {
                 <Button variant="outline" size="sm" onClick={() => s.go('profile', { profileId: a.id })}>{t('profile')}</Button>
                 <Text size="xs" intent="muted" pushEnd>{fmt(a.followers)} {t('followers')}</Text>
               </Stack>
-            </Stack></CardBody></Card>)} /></div>
+            </Stack></CardBody></Card>)} /></Box>
       </Stack>
     </Page>
   );

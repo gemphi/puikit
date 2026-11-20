@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Box, Button, Card, Cascade, ChatBubble, ChatComposer, Frame, Grid, Image, Input, ItemCard as RowCard, Pressable, Stack, TabList, Tag, Text, Title } from '@pui/components';
+import { Box, Button, ChatBubble, ChatComposer, Grid, Input, ItemCard as RowCard, Stack, TabList, Tag, Text, Title } from '@pui/components';
 import { useStore } from '@pui/store';
+import { StatGrid } from '@phi-kit/blocks/Stats';
 import { D, STORES, castsOfHost, fmt, itemImage, person, salesOfItem, usd, itemOf, t } from '../../lib/data';
 import type { SaleEvent } from '../../types/phiegg';
 import { phieggStore, type DetailRef } from '../../state/phieggStore';
@@ -11,19 +12,13 @@ import { EntityAvatar } from './EntityAvatar';
 import { Connected } from './Connected';
 import { Tile } from './Tile';
 import { LookAttachment } from './LookAttachment';
+import { LookImage } from './LookImage';
 
 type S = ReturnType<typeof phieggStore.getState>;
 type Tab = { id: string; label: string; n?: number; body: () => React.ReactNode };
 
-const Stat: React.FC<{ label: string; value: React.ReactNode }> = ({ label, value }) => (
-  <Card variant="flat" padding="sm" hoverable={false}>
-    <Text size="xs" intent="muted">{label}</Text><Title level={5} size="md">{value}</Title>
-  </Card>
-);
-/** Facts side by side, each as tall as its two lines (a plain grid: Rows keeps card-shaped cells, which facts are not). */
-export const Stats: React.FC<{ rows: [string, React.ReactNode][] }> = ({ rows }) => (
-  <Grid gap={2} xs={2} sm={3} lg={6}>{rows.map(([l, v]) => <Stat key={l} label={l} value={v} />)}</Grid>
-);
+/** Label and value pairs as the shared stat grid's items. */
+const facts = (rows: [string, React.ReactNode][]) => rows.map(([label, value]) => ({ label, value }));
 /** A record in a details list: a full-width row on the kit's surface (the same ItemCard as every list row), its picture,
  *  its name with one tight line under it, and what sits at its end. */
 const Row: React.FC<{ media?: React.ReactNode; title: React.ReactNode; sub?: React.ReactNode; end?: React.ReactNode; onClick?: () => void }> = ({ media, title, sub, end, onClick }) => (
@@ -32,21 +27,16 @@ const Row: React.FC<{ media?: React.ReactNode; title: React.ReactNode; sub?: Rea
 );
 const Empty: React.FC<{ text: string }> = ({ text }) => <Text size="sm" intent="muted">{text}</Text>;
 
-/** Item thumbnail (piece or look) that opens the item's own details. */
-const ItemCard: React.FC<{ kind: 'piece' | 'look'; id: string; s: S }> = ({ kind, id, s }) => {
+/** Item thumbnail (piece or look) that opens the item's own details: a look is the kit's ItemCard as a product card,
+ *  a piece its tile. */
+const itemThumb = (kind: 'piece' | 'look', id: string, s: S) => {
   if (kind === 'look') {
-    const l = itemOf('look', id); if (!l) return null; const v = l.views.FRONT ?? Object.values(l.views)[0];
-    return (
-      <Pressable onClick={() => s.openDetails({ kind: 'look', id })}>
-        <Cascade depth={0} pocket={3} cap={3}><Frame ratio="3/4" rounded="md">
-          {v ? <Image src={itemImage(v)} alt={l.name} loading="lazy" fit="contain" fill /> : <Text size="xs" weight="bold">{l.name}</Text>}
-        </Frame></Cascade>
-        <Text size="xs" weight="medium">{l.name}</Text><Text size="xs" intent="muted">{usd(l.usd)}</Text>
-      </Pressable>
-    );
+    const l = itemOf('look', id);
+    return l ? <RowCard key={id} variant="flat" padding="sm" layout="vertical" onClick={() => s.openDetails({ kind: 'look', id })} media={<LookImage look={l} cascade={3} />}
+      title={<Text size="xs" weight="medium">{l.name}</Text>} meta={usd(l.usd)} /> : null;
   }
-  const p = itemOf('piece', id); if (!p) return null;
-  return <Box><Tile tone={p.tone} ratio="1" deck={1} title={p.name} sub={p.tokenId} depth={{ clubId: p.clubId, personId: p.creatorId }} onClick={() => s.openDetails({ kind: 'piece', id })} /></Box>;
+  const p = itemOf('piece', id);
+  return p ? <Tile key={id} tone={p.tone} ratio="1" deck={1} title={p.name} sub={p.tokenId} depth={{ clubId: p.clubId, personId: p.creatorId }} onClick={() => s.openDetails({ kind: 'piece', id })} /> : null;
 };
 
 const EVENT_INTENT: Record<string, 'success' | 'primary' | 'warning' | undefined> = { sale: 'success', mint: 'primary', offer: 'warning', list: undefined, transfer: undefined };
@@ -107,7 +97,7 @@ export const Details: React.FC<{ at: DetailRef }> = ({ at }) => {
         { id: 'role', label: 'Role', body: () => <Stack direction="column" gap={2}><Text size="sm">{r ? `${r.name}, one of 64 host roles in ${cat?.name}. Genres: ${r.genres.join(', ')}.` : 'No role yet.'}</Text><Text size="xs" weight="bold">BEHAVIOURS</Text>{(h.behaviours ?? []).map((b) => <Text key={b} size="sm">• {b}</Text>)}{h.clubId && itemOf('club', h.clubId) && <Row media={<EntityAvatar id={h.clubId} name={itemOf('club', h.clubId)!.name} />} title={itemOf('club', h.clubId)!.name} sub="Club" onClick={() => s.openDetails({ kind: 'club', id: h.clubId! })} />}</Stack> },
         { id: 'casts', label: 'Casts', n: casts.length, body: () => casts.length ? <Stack direction="column" gap={0}>{casts.map((c) => <CastRow key={c.id} id={c.id} s={s} />)}</Stack> : <Empty text="Not cast yet." /> },
         { id: 'members', label: 'Members', n: members.length, body: () => <Stack direction="column" gap={0}>{members.slice(0, 40).map((u) => <Row key={u.id} media={<PersonAvatar id={u.id} size="sm" />} title={u.name} sub={'@' + u.handle} onClick={() => s.openDetails({ kind: 'person', id: u.id })} />)}</Stack> },
-        { id: 'stats', label: 'Stats', body: () => <Stats rows={[['Members', fmt(h.members)], ['Online', fmt(h.online)], ['Casts', fmt(casts.length)], ['Plays', fmt(casts.reduce((n, c) => n + c.plays, 0))], ['Views', fmt(casts.reduce((n, c) => n + c.stats.views, 0))], ['Tips', usd(casts.reduce((n, c) => n + c.stats.tipsUsd, 0))]]} /> },
+        { id: 'stats', label: 'Stats', body: () => <StatGrid size="sm" items={facts([['Members', fmt(h.members)], ['Online', fmt(h.online)], ['Casts', fmt(casts.length)], ['Plays', fmt(casts.reduce((n, c) => n + c.plays, 0))], ['Views', fmt(casts.reduce((n, c) => n + c.stats.views, 0))], ['Tips', usd(casts.reduce((n, c) => n + c.stats.tipsUsd, 0))]])} /> },
         { id: 'links', label: 'Connected', body: () => <Connected kind="host" id={id} max={8} inPanel /> },
       ]} />;
   }
@@ -124,20 +114,20 @@ export const Details: React.FC<{ at: DetailRef }> = ({ at }) => {
             {chat.map((m) => <ChatBubble key={m.id} side={m.authorId === D.core.currentUserId ? 'me' : 'them'} avatar={<PersonAvatar id={m.authorId} size="sm" />} name={person(m.authorId).name} time={m.at}>{m.text}{'lookId' in m && <LookAttachment id={(m as { lookId?: string }).lookId} />}</ChatBubble>)}
             <ChatComposer placeholder={t('commentPh')} sendLabel={t('send')} onSend={(v) => s.comment('cast:' + id, v)} />
           </Stack>) },
-        { id: 'looks', label: 'Looks', n: c.lookIds.length, body: () => <Grid gap={2} xs={2} sm={3}>{c.lookIds.map((l) => <ItemCard key={l} kind="look" id={l} s={s} />)}</Grid> },
+        { id: 'looks', label: 'Looks', n: c.lookIds.length, body: () => <Grid gap={2} xs={2} sm={3}>{c.lookIds.map((l) => itemThumb('look', l, s))}</Grid> },
         { id: 'quests', label: 'Quests', n: c.questIds.length, body: () => c.questIds.length ? <Stack direction="column" gap={0}>{c.questIds.map((q) => { const x = D.economy.quests.find((y) => y.id === q)!; return <Row key={q} media={<EntityAvatar id={q} name={x.title} />} title={x.title} sub={`${fmt(x.reward)} ${x.rewardCoin} · ${fmt(x.entrants)} entrants`} onClick={() => s.go('quests')} />; })}</Stack> : <Empty text="No quests in this cast." /> },
-        { id: 'stats', label: 'Stats', body: () => <Stats rows={[['Plays', fmt(c.plays)], ['Views', fmt(c.stats.views)], ['Likes', fmt(c.stats.likes)], ['Chats', fmt(c.stats.chats)], ['Tips', usd(c.stats.tipsUsd)]]} /> },
+        { id: 'stats', label: 'Stats', body: () => <StatGrid size="sm" items={facts([['Plays', fmt(c.plays)], ['Views', fmt(c.stats.views)], ['Likes', fmt(c.stats.likes)], ['Chats', fmt(c.stats.chats)], ['Tips', usd(c.stats.tipsUsd)]])} /> },
         { id: 'links', label: 'Connected', body: () => <Connected kind="cast" id={id} max={8} inPanel /> },
       ]} />;
   }
   if (k === 'look' || k === 'piece') {
     const name = k === 'look' ? itemOf('look', id)?.name : itemOf('piece', id)?.name; const rows = salesOfItem(id);
     const last = rows.find((x) => x.event === 'sale'); const owner = rows.find((x) => x.event !== 'list' && x.event !== 'offer')?.toId;
-    return <Panel key={k + id} media={<Box width="5rem"><ItemCard kind={k} id={id} s={s} /></Box>} title={name ?? id} sub={owner ? <>Owned by {person(owner).name}</> : undefined}
+    return <Panel key={k + id} media={<Box width="5rem">{itemThumb(k, id, s)}</Box>} title={name ?? id} sub={owner ? <>Owned by {person(owner).name}</> : undefined}
       actions={<>{k === 'look' && <Button size="sm" variant="primary" onClick={() => s.openLook(id)}>Buy / offer</Button>}{owner && <Button size="sm" variant="outline" onClick={() => s.openDetails({ kind: 'person', id: owner })}>Owner</Button>}</>}
       tabs={[
         { id: 'activity', label: 'Activity', n: rows.length, body: () => <Activity rows={rows} s={s} hideItem /> },
-        { id: 'stats', label: 'Stats', body: () => <Stats rows={[['Last sale', last ? usd(last.priceUsd) : '·'], ['Sales', fmt(rows.filter((x) => x.event === 'sale').length)], ['Offers', fmt(rows.filter((x) => x.event === 'offer').length)], ['Listed', rows.some((x) => x.event === 'list') ? 'Yes' : 'No']]} /> },
+        { id: 'stats', label: 'Stats', body: () => <StatGrid size="sm" items={facts([['Last sale', last ? usd(last.priceUsd) : '·'], ['Sales', fmt(rows.filter((x) => x.event === 'sale').length)], ['Offers', fmt(rows.filter((x) => x.event === 'offer').length)], ['Listed', rows.some((x) => x.event === 'list') ? 'Yes' : 'No']])} /> },
         { id: 'links', label: 'Connected', body: () => <Connected kind={k} id={id} max={8} inPanel /> },
       ]} />;
   }

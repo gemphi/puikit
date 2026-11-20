@@ -1,0 +1,433 @@
+{
+  "me": "you",
+  "sheet": {
+    "src": "phiegg:portraits/sheet-00.webp",
+    "cols": 8
+  },
+  "member": [
+    {
+      "id": "you",
+      "name": "You",
+      "handle": "you",
+      "role": "Member",
+      "state": "Here now",
+      "face": 5,
+      "banner": "phiegg:worlds/w_aria.png",
+      "since": "Nov 2026",
+      "tag": [
+        "New here"
+      ]
+    },
+    {
+      "id": "lora",
+      "name": "Lora Vale",
+      "handle": "lora",
+      "role": "Host of Lora Land",
+      "bio": "I run Lora Land and the Spark show. Ask me about looks, sets and who is on next.",
+      "state": "Here now",
+      "face": 1,
+      "banner": "phiegg:worlds/w_atelier_nine.png",
+      "since": "Mar 2026",
+      "tag": [
+        "Host",
+        "Shows",
+        "Looks"
+      ]
+    },
+    {
+      "id": "kairo",
+      "name": "Kairo Finch",
+      "handle": "kairo",
+      "role": "World builder",
+      "bio": "Builds cities block by block. Usually found in the build room with a half-finished skyline.",
+      "state": "Away",
+      "face": 9,
+      "banner": "phiegg:worlds/w_cobalt_cove.png",
+      "since": "Jan 2026",
+      "tag": [
+        "Builder",
+        "Maps"
+      ]
+    },
+    {
+      "id": "mina",
+      "name": "Mina Okoro",
+      "handle": "mina",
+      "role": "Club lead, Bold Pups",
+      "bio": "Looking after the Bold Pups and their quests. Reactions welcome, spoilers not.",
+      "state": "Here now",
+      "face": 18,
+      "banner": "phiegg:worlds/w_carousel.png",
+      "since": "Feb 2026",
+      "tag": [
+        "Club lead",
+        "Quests"
+      ]
+    },
+    {
+      "id": "tavi",
+      "name": "Tavi Rune",
+      "handle": "tavi",
+      "role": "Designer",
+      "bio": "Type, marks and colour. I draw on the font, never freehand.",
+      "state": "Here now",
+      "face": 27,
+      "banner": "phiegg:worlds/w_brocade.png",
+      "since": "Apr 2026",
+      "tag": [
+        "Design",
+        "Type"
+      ]
+    },
+    {
+      "id": "sol",
+      "name": "Sol Adeyemi",
+      "handle": "sol",
+      "role": "Engineer",
+      "bio": "Keeps Phiora answering. If a record is missing, it was probably me.",
+      "state": "Do not disturb",
+      "face": 36,
+      "banner": "phiegg:worlds/w_aurum.png",
+      "since": "Dec 2025",
+      "tag": [
+        "Phiora",
+        "Data"
+      ]
+    },
+    {
+      "id": "wren",
+      "name": "Wren Calloway",
+      "handle": "wren",
+      "role": "Member",
+      "bio": "Here for the shows and the pups.",
+      "state": "Offline",
+      "face": 44,
+      "banner": "phiegg:worlds/w_bijou.png",
+      "since": "Jun 2026",
+      "tag": [
+        "Shows"
+      ]
+    }
+  ],
+  "room": {
+    "lora": {
+      "label": "Lora Vale",
+      "with": "lora",
+      "message": [
+        {
+          "id": "a1",
+          "by": "lora",
+          "at": "Today 09:12",
+          "text": "Morning! The set for Saturday is in. Two versions, tell me which one reads better on a phone.",
+          "image": [
+            "phiegg:worlds/w_atelier_nine.png",
+            "phiegg:worlds/w_brocade.png"
+          ]
+        },
+        {
+          "id": "a2",
+          "by": "you",
+          "at": "Today 09:15",
+          "text": "The first one. The arch frames the runway and the light falls where the looks walk.",
+          "mark": [
+            {
+              "icon": "spark",
+              "n": 1
+            }
+          ]
+        },
+        {
+          "id": "a3",
+          "by": "lora",
+          "at": "Today 09:16",
+          "text": "Agreed. I will keep the second for the after show."
+        },
+        {
+          "id": "a4",
+          "by": "lora",
+          "at": "Today 09:20",
+          "text": "Can you post it in show and tell so the club can see it?",
+          "mark": [
+            {
+              "icon": "thumb",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    },
+    "kairo": {
+      "label": "Kairo Finch",
+      "with": "kairo",
+      "message": [
+        {
+          "id": "b1",
+          "by": "kairo",
+          "at": "Yesterday 18:40",
+          "text": "The cove is walkable end to end now. Took the long way round to check every bridge.",
+          "image": [
+            "phiegg:worlds/w_cobalt_cove.png"
+          ]
+        },
+        {
+          "id": "b2",
+          "by": "you",
+          "at": "Yesterday 18:52",
+          "text": "It looks great. Is the market square open yet?"
+        },
+        {
+          "id": "b3",
+          "by": "kairo",
+          "at": "Yesterday 19:03",
+          "text": "Opens with the next zone. I will send the map when the stalls are placed.",
+          "mark": [
+            {
+              "icon": "flame",
+              "n": 2
+            }
+          ]
+        }
+      ]
+    },
+    "mina": {
+      "label": "Mina Okoro",
+      "with": "mina",
+      "message": [
+        {
+          "id": "c1",
+          "by": "mina",
+          "at": "Mon 14:02",
+          "text": "Quest three is live for the Bold Pups. First ten to finish get the badge."
+        },
+        {
+          "id": "c2",
+          "by": "you",
+          "at": "Mon 14:10",
+          "text": "On it. Does it count if I already hold a pup?",
+          "mark": [
+            {
+              "icon": "heart",
+              "n": 1
+            }
+          ]
+        },
+        {
+          "id": "c3",
+          "by": "mina",
+          "at": "Mon 14:11",
+          "text": "It does. Holders start one step ahead."
+        }
+      ]
+    },
+    "lobby": {
+      "label": "lobby",
+      "space": "Phiace",
+      "topic": "Say hello, tell us what you are building.",
+      "member": [
+        "you",
+        "lora",
+        "kairo",
+        "mina",
+        "tavi",
+        "sol",
+        "wren"
+      ],
+      "message": [
+        {
+          "id": "d1",
+          "by": "sol",
+          "at": "Today 08:01",
+          "text": "Phiora is back to full speed after last night. Every app reads from the one database again.",
+          "mark": [
+            {
+              "icon": "thumb",
+              "n": 4
+            },
+            {
+              "icon": "heart",
+              "n": 2
+            }
+          ]
+        },
+        {
+          "id": "d2",
+          "by": "tavi",
+          "at": "Today 08:20",
+          "text": "New here? Pick a space on the left, each one has its own rooms. Profiles open when you tap a face."
+        },
+        {
+          "id": "d3",
+          "by": "wren",
+          "at": "Today 08:44",
+          "text": "Hello all. Came for the Spark show, staying for the worlds.",
+          "mark": [
+            {
+              "icon": "spark",
+              "n": 3
+            }
+          ]
+        },
+        {
+          "id": "d4",
+          "by": "mina",
+          "at": "Today 09:02",
+          "text": "Welcome Wren! The pups say hi.",
+          "image": [
+            "phiegg:worlds/w_carousel.png"
+          ]
+        }
+      ]
+    },
+    "show": {
+      "label": "show and tell",
+      "space": "Phiace",
+      "topic": "Post what you made. Pictures first.",
+      "member": [
+        "you",
+        "lora",
+        "kairo",
+        "tavi",
+        "mina"
+      ],
+      "message": [
+        {
+          "id": "e1",
+          "by": "tavi",
+          "at": "Today 07:30",
+          "text": "Two colourways for the club mark. Same drawing, the gradient does the rest.",
+          "image": [
+            "phiegg:worlds/w_aurum.png",
+            "phiegg:worlds/w_bijou.png"
+          ],
+          "mark": [
+            {
+              "icon": "flame",
+              "n": 5
+            },
+            {
+              "icon": "heart",
+              "n": 3
+            }
+          ]
+        },
+        {
+          "id": "e2",
+          "by": "kairo",
+          "at": "Today 07:48",
+          "text": "The left one. It holds at small sizes.",
+          "mark": [
+            {
+              "icon": "thumb",
+              "n": 2
+            }
+          ]
+        },
+        {
+          "id": "e3",
+          "by": "lora",
+          "at": "Today 08:05",
+          "text": "Taking the left one for the show banner then."
+        }
+      ]
+    },
+    "help": {
+      "label": "help",
+      "space": "Phiace",
+      "topic": "Questions about any Phi app.",
+      "member": [
+        "you",
+        "sol",
+        "tavi",
+        "wren"
+      ],
+      "message": [
+        {
+          "id": "f1",
+          "by": "wren",
+          "at": "Today 10:11",
+          "text": "Where do I see the clubs I joined?"
+        },
+        {
+          "id": "f2",
+          "by": "sol",
+          "at": "Today 10:13",
+          "text": "Open your profile, the tab named Clubs. Each relation has its own tab with a count.",
+          "mark": [
+            {
+              "icon": "thumb",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    },
+    "studio": {
+      "label": "studio",
+      "space": "Makers",
+      "topic": "Design in progress: type, marks, colour.",
+      "member": [
+        "you",
+        "tavi",
+        "lora",
+        "mina"
+      ],
+      "message": [
+        {
+          "id": "g1",
+          "by": "tavi",
+          "at": "Yesterday 16:00",
+          "text": "Rule of the room: draw on the font. The bowl of the o is our circle, the stem is our line.",
+          "mark": [
+            {
+              "icon": "spark",
+              "n": 2
+            }
+          ]
+        },
+        {
+          "id": "g2",
+          "by": "lora",
+          "at": "Yesterday 16:20",
+          "text": "Then the show titles should sit on the same line. Trying it now.",
+          "image": [
+            "phiegg:worlds/w_brocade.png"
+          ]
+        }
+      ]
+    },
+    "build": {
+      "label": "build",
+      "space": "Makers",
+      "topic": "Worlds, zones and what ships next.",
+      "member": [
+        "you",
+        "kairo",
+        "sol"
+      ],
+      "message": [
+        {
+          "id": "h1",
+          "by": "kairo",
+          "at": "Today 06:50",
+          "text": "Zone four is placed. Sixteen plots, each its own city.",
+          "image": [
+            "phiegg:worlds/w_cobalt_cove.png",
+            "phiegg:worlds/w_aria.png"
+          ],
+          "mark": [
+            {
+              "icon": "flame",
+              "n": 3
+            }
+          ]
+        },
+        {
+          "id": "h2",
+          "by": "sol",
+          "at": "Today 07:05",
+          "text": "Records for all sixteen are in. Pull them by kind and they show up in every app."
+        }
+      ]
+    }
+  }
+}

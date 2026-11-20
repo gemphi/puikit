@@ -11,7 +11,7 @@ import { Tile } from './Tile';
 import { postTile } from './ShotCard';
 import { Connected } from './Connected';
 import { EntityAvatar } from './EntityAvatar';
-import { Stats } from './Details';
+import { StatGrid } from '@phi-kit/blocks/Stats';
 import { ListView } from './Views';
 import type { City, Club, World } from '../../types/phiegg';
 
@@ -43,7 +43,7 @@ export const useCityParts = (w: World): SectionDef[] => {
       { id: 'about', title: t('wdAbout'), expandable: true, content: (
         <Stack direction="column" gap={3}>
           <Text size="md">{w.description}</Text>
-          <Stats rows={facts} />
+          <StatGrid size="sm" items={facts.map(([label, value]) => ({ label, value }))} />
           {w.tags?.length ? <Stack direction="row" gap={1} wrap>{w.tags.map((x) => <Tag key={x} minimal round size="sm">{x}</Tag>)}</Stack> : null}
         </Stack>) },
       { id: 'zones', title: t('wdCities'), hint: String(w.cities.length), expandable: true, actions: <Button size="sm" variant="ghost" iconLeft={Plus} onClick={() => s.openNest(hostId, nest?.id ?? null, 'city')}>{t('nestCity')}</Button>, content: (

@@ -10,10 +10,12 @@ import type { GridItem } from './blocks';
 import s from './kit.module.scss';
 import { Profile, type ProfileSpec } from './Profile';
 
-/** A page's head, the same on every page of every app: its title and one line under it. */
-export const Head: React.FC<{ title: string; sub?: string }> = ({ title, sub }) => (
-  <Box as="header"><Title level={1} size="2xl" lineHeight={1.1}>{title}</Title>{sub ? <Text intent="secondary" maxWidth="60ch" marginTop={2}>{sub}</Text> : null}</Box>
-);
+/** A page's head, the same on every page of every app: its title and one line under it. `action` puts the page's own
+ *  controls (a status tag, a refresh, a primary button) at the end of the head's row. */
+export const Head: React.FC<{ title: string; sub?: string; action?: React.ReactNode }> = ({ title, sub, action }) => {
+  const head = <Box as="header"><Title level={1} size="2xl" lineHeight={1.1}>{title}</Title>{sub ? <Text intent="secondary" maxWidth="60ch" marginTop={2}>{sub}</Text> : null}</Box>;
+  return action ? <Stack direction="row" justify="between" align="center" wrap gap={3}>{head}<Stack direction="row" gap={2} align="center" wrap>{action}</Stack></Stack> : head;
+};
 
 export const YouView: React.FC<{ profile?: ProfileSpec }> = ({ profile }) => {
   const w = useWallet();

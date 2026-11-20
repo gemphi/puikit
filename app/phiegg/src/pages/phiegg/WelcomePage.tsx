@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Backdrop, Bands, Box, Button, Card, DataTable, Icon, Label, Pressable, Showcase, SpriteImage, StageSlider, Text, Title, type ShowcaseSlide, type StageSlide } from '@pui/components';
+import { Backdrop, Bands, Box, Button, Card, DataTable, Icon, Image, Label, Picture, Pressable, Showcase, SpriteImage, StageSlider, Text, Title, type ShowcaseSlide, type StageSlide } from '@pui/components';
 import { Tile } from '../../components/Phiegg/Tile';
 import { PersonAvatar } from '../../components/Phiegg/PersonAvatar';
 import { PageSections } from '../../components/Phiegg/PageSections';
@@ -70,7 +70,7 @@ export const WelcomePage: React.FC = () => {
   return (
     <Box className={styles.page}>
       {/* The slide shown is the whole page's ground, blurred, and changes with it; the picture stays where it is. */}
-      {bg && <Backdrop><img key={bg} className={styles.ground} src={bg} alt="" /></Backdrop>}
+      {bg && <Backdrop><Image key={bg} className={styles.ground} src={bg} alt="" /></Backdrop>}
       <Showcase slides={slides} auto={L.stage.auto} picker={false} onChange={(x) => setBg(x.src)} labels={{ prev: t('slPrev'), next: t('slNext'), picker: L.rows.worlds }}
         actions={(x) => <>
           {cities.some((w) => w.id === x.id) && <Button variant="primary" onClick={() => s.go('world', { worldId: x.id })}>{fill(L.stage.enter, { name: String(x.title) })}</Button>}
@@ -85,9 +85,9 @@ export const WelcomePage: React.FC = () => {
           <Text as="p" className={styles.lede}>{L.ask.body}</Text>
         </Box>
         <Box className={styles.fan}>
-          {fan.slice(0, half).map((src, i) => <Bands key={src} className={styles.fanCard} style={{ '--k': i - half } as React.CSSProperties}><img src={src} alt="" loading="lazy" /></Bands>)}
+          {fan.slice(0, half).map((src, i) => <Bands key={src} className={styles.fanCard} style={{ '--k': i - half } as React.CSSProperties}><Box className={styles.fanPicture}><Picture src={src} /></Box></Bands>)}
           <Bands className={styles.phone}><AgentChat agentId={L.ask.agentId} context={L.ask.context} prompts={L.ask.prompts} /></Bands>
-          {fan.slice(half).map((src, i) => <Bands key={src} className={styles.fanCard} style={{ '--k': i + 1 } as React.CSSProperties}><img src={src} alt="" loading="lazy" /></Bands>)}
+          {fan.slice(half).map((src, i) => <Bands key={src} className={styles.fanCard} style={{ '--k': i + 1 } as React.CSSProperties}><Box className={styles.fanPicture}><Picture src={src} /></Box></Bands>)}
         </Box>
       </Box>
 
@@ -96,7 +96,7 @@ export const WelcomePage: React.FC = () => {
         <Title level={2} className={styles.before}>{L.step.before}</Title>
         {pics.slice(6, 12).map((src, i) => (
           <Pressable key={src} className={styles.capsule} style={{ '--i': i } as React.CSSProperties} onClick={() => s.openPost(posts[i + 6].id)} aria-label={itemOf('world', posts[i + 6].worldId)?.name}>
-            <span className={styles.pill}><img src={src} alt="" loading="lazy" /></span></Pressable>))}
+            <Box as="span" className={styles.pill}><Image src={src} alt="" fit="cover" fill loading="lazy" /></Box></Pressable>))}
         <Title level={2} className={styles.after}>{L.step.after}</Title>
         <Box className={styles.stepFoot}>
           <Text as="p" className={styles.lede}>{L.step.body}</Text>

@@ -34,6 +34,7 @@ Apps with their own code (`phiegg`, `phione`, `phipad`, `phidao`) still run on t
 | [`phidao`](./phidao) | `3112` | **Phidao**: The members platform. Organic theme, phi-kit shell. |
 | [`phisum`](./phisum) | `3113` | **Phisum**: The fund and the $UM token. Organic theme, phi-kit shell. |
 | [`phiapp`](./phiapp) | `3114` | **Phiapp**: the shared app every Phi app is configured on; the landing and demo (the site's root opens it) and the home of the shared tests (`app/phiapp/test`). |
+| [`phiogy`](./phiogy) | `3118` | **Phiogy**: talk and community - direct messages, spaces with channels, pictures and reactions, the member profile beside the stream. A config app on the host (`/phiogy/`), the chat block's `room` variant; Gradient look, Phi-Soft face. |
 | [`phione`](./phione) | `3115` | **Phione** (formerly the Phiegg cockpit): console of the Phient platform — core ontology, platform agents and their verbs, workforce, API docs. Reads the Python Phient API (`VITE_PHIADK_API`, gemphi/phient `phiadk.phiapi`, port 8000); sample data without it. |
 | [`phiora-server`](./phiora-server) | `4300` | **Phiora API**: app content, per-user state, server-owned wallet, shop orders priced from data, persona chat via a model. Zero dependencies — `npm start`. |
 | [`phi-kit`](./phi-kit) | — | **Shared Phiace shell** (rail, section menu, right-bar, content blocks, wallet). Imported via `@phi-kit`; not run on its own. |

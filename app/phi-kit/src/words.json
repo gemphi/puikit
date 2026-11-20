@@ -12,6 +12,21 @@
     "guest": "Not signed in",
     "manage": "Manage in Phione"
   },
+  "room": {
+    "write": "Message {room}",
+    "member": "Members",
+    "profile": "Profile",
+    "message": "Message",
+    "follow": "Follow",
+    "following": "Following",
+    "like": "Like",
+    "since": "Member since",
+    "space": "Spaces",
+    "media": "Pictures",
+    "open": "Open {name}",
+    "none": "Nothing here yet",
+    "you": "You"
+  },
   "account": {
     "title": "You",
     "guest": "Guest",

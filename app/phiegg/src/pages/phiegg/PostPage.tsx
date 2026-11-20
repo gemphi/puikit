@@ -92,7 +92,7 @@ export const PostPage: React.FC = () => {
   ];
   const views: SectionDef = { id: 'views', title: t('ctViews'), hint: String(n), hidden: n < 2, content: (
     <TabList size="sm" variant="pills" aria-label={t('slideOf', { i: slide + 1, n })} activeId={String(slide)} onChange={(id) => setSlide(Number(id))}
-      items={post.slides.map((x, i) => ({ id: String(i), label: x.caption ?? t('poCover'), icon: x.src ? <span className={styles.thumb}><img src={itemImage(x.src)} alt="" /></span> : undefined }))} />) };
+      items={post.slides.map((x, i) => ({ id: String(i), label: x.caption ?? t('poCover'), icon: x.src ? <Box as="span" className={styles.thumb}><Image src={itemImage(x.src)} alt="" fit="cover" fill /></Box> : undefined }))} />) };
   const bottom: SectionDef[] = [views, ...(world
     ? cityParts.filter((x) => x.id !== 'about' && x.id !== 'related')
     : [{ id: 'posts', title: t('wdPosts'), hint: String(more.length), content: (

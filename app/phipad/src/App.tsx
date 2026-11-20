@@ -3,9 +3,10 @@ import React from 'react';
 import { Spinner, Tag, Text } from '@pui/components';
 import { PhiShell } from '@phi-kit/PhiShell';
 import { appMeta } from '@phi-kit/data';
-import { SettingsView } from '@phi-kit/views';
+import { Block, type GridItem } from '@phi-kit/blocks';
+import { Head, ItemPanel, SettingsView, YouView } from '@phi-kit/views';
 import { useDB } from './data';
-import { Home, Tracks, Pipeline, Portfolio, Apply, NewsPage, About, Faq, Launchpad, Panel, type Open } from './pages';
+import { PAGE, detail } from './pages';
 
 const NAV = [
   { id: 'home', label: 'Home', icon: 'home' },
@@ -24,30 +25,29 @@ const NAV = [
 ];
 const readHash = () => (window.location.hash.match(/^#\/?([\w-]+)/) || [])[1] || 'home';
 
+/** Phipad: the shared shell, and each view a list of shared blocks built from the db (pages.tsx). */
 export const App: React.FC = () => {
   const { db, err, live } = useDB();
   const [view, setView] = React.useState(readHash);
-  const [open, setOpen] = React.useState<Open | null>(null);
+  const [open, setOpen] = React.useState<GridItem | null>(null);
   React.useEffect(() => { const f = () => setView(readHash()); window.addEventListener('hashchange', f); return () => window.removeEventListener('hashchange', f); }, []);
   const go = (id: string) => { window.location.hash = '/' + id; setOpen(null); };
+  const openItem = (it: GridItem) => { if (it.route) go(it.route); else setOpen(it); };
 
   let page: React.ReactNode;
   if (view === '_settings') page = <SettingsView />;
+  else if (view === '_you') page = <YouView />;
   else if (err) page = <Text intent="secondary" maxWidth="60ch">{err}</Text>;
   else if (!db) page = <Spinner />;
-  else if (view === 'launchpad') page = <Launchpad db={db} />;
-  else if (view === 'tracks') page = <Tracks db={db} go={go} />;
-  else if (view === 'pipeline') page = <Pipeline db={db} onOpen={setOpen} />;
-  else if (view === 'portfolio') page = <Portfolio db={db} onOpen={setOpen} />;
-  else if (view === 'apply') page = <Apply db={db} />;
-  else if (view === 'news') page = <NewsPage db={db} onOpen={setOpen} />;
-  else if (view === 'about') page = <About db={db} />;
-  else if (view === 'faq') page = <Faq db={db} />;
-  else page = <Home db={db} go={go} onOpen={setOpen} />;
+  else {
+    const p = (PAGE[view] ?? PAGE.home)(db);
+    page = <>{p.title ? <Head title={p.title} sub={p.sub} /> : null}{p.blocks.map((b, i) => <Block key={view + i} b={b} onOpen={openItem} />)}</>;
+  }
+  const side = open && db ? detail(db, open) : null;
 
   return (
     <PhiShell app={appMeta('phipad')} nav={NAV} view={view} onView={go}
-      right={open && db ? <Panel db={db} open={open} onClose={() => setOpen(null)} /> : null}>
+      right={side ? <><ItemPanel it={side.it} onClose={() => setOpen(null)} />{side.blocks.map((b, i) => <Block key={i} b={b} onOpen={() => undefined} />)}</> : null}>
       {live ? <Tag minimal round size="sm" intent="success">Live from Phiora</Tag> : null}
       {page}
     </PhiShell>

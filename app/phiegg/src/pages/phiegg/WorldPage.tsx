@@ -17,7 +17,6 @@ import { EntityPage } from '../../components/Phiegg/EntityPage';
 import { PageSections } from '../../components/Phiegg/PageSections';
 import { AgentChat } from '../../components/Phiegg/AgentChat';
 import { PersonAvatar } from '../../components/Phiegg/PersonAvatar';
-import { Stats } from '../../components/Phiegg/Details';
 import { ListView } from '../../components/Phiegg/Views';
 import type { City, Club, World } from '../../types/phiegg';
 

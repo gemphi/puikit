@@ -27,5 +27,5 @@ export const mountWith = (node: React.ReactNode, lookId?: string, mode: 'light' 
 /** Data-driven app (nav + views + blocks from public/data/<key>.json). */
 export const mountPhiApp = (appKey: string) => {
   const app = appMeta(appKey);
-  mountWith(<PhiApp appKey={appKey} />, app?.look, app?.mode);
+  mountWith(<PhiApp appKey={appKey} />, app?.look, app?.mode, app?.font);
 };

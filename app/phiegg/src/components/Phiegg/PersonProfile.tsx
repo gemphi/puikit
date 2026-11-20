@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Icon, RelationList, Stack, Tag, Text, WorldScene } from '@pui/components';
+import { Button, Icon, Image, RelationList, Stack, Tag, Text, WorldScene } from '@pui/components';
 import { useStore } from '@pui/store';
 import * as L from 'lucide-react';
 import { BadgeCheck, ExternalLink, Layers, Pencil, Receipt, Share2, Sparkles, UserCheck, UserPlus, Wand2 } from 'lucide-react';
@@ -81,7 +81,7 @@ function recordOf(id: string, s: S, page: boolean, own: boolean): ProfileRecord 
     rail: [
       ...sets.map((h, i) => ({ id: h.id, label: h.label, sub: h.frames.length + ' moments', thumb: <WorldScene seed={h.id} />, onClick: () => s.openStory(p.id, i) })),
       ...(page ? posts.filter((x) => x.slides[0]?.src).slice(0, Math.max(SITE.profileRail.min - sets.length, 0)).map((x) => ({ id: x.id, label: itemOf('world', x.worldId)?.name ?? x.slides[0].title, sub: fmt(x.likes),
-        thumb: <img src={itemImage(x.slides[0].src!)} alt="" />, onClick: () => s.openPost(x.id) })) : []),
+        thumb: <Image src={itemImage(x.slides[0].src!)} alt="" fit="cover" fill />, onClick: () => s.openPost(x.id) })) : []),
     ],
     panes,
   };

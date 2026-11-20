@@ -3,7 +3,7 @@
 .page { display: flex; flex-direction: column; gap: calc(var(--phi-gap) * 5); width: 100%; padding-bottom: calc(var(--phi-gap) * 4); }
 .heading.heading { margin: 0; display: inline-flex; align-items: center; gap: var(--phi-space-2); font-size: var(--phi-font-size-xl); line-height: 1.2; }
 /* The page's ground: the slide shown, blurred by the shell's backdrop, fading in when the slide changes. */
-.ground { width: 100%; height: 100%; object-fit: cover; animation: groundIn var(--phi-duration-slow) var(--phi-ease); }
+.ground.ground { width: 100%; height: 100%; max-width: none; border-radius: 0; object-fit: cover; animation: groundIn var(--phi-duration-slow) var(--phi-ease); }
 @keyframes groundIn { from { opacity: 0; } to { opacity: 1; } }
 .lede.lede { margin: 0; max-width: 40rem; font-size: 1.125rem; color: var(--phi-color-text-secondary); }
 
@@ -16,10 +16,10 @@
   transform: rotate(calc(var(--k) * 4deg)) translateY(calc(var(--k) * var(--k) * var(--phi-space-2)));
   animation: float calc(var(--phi-duration-slow) * 12) var(--phi-ease) infinite alternate; animation-delay: calc(var(--k) * var(--phi-duration) * -2);
   transition: transform var(--phi-duration) var(--phi-ease-spring);
-  img { width: 100%; height: 100%; object-fit: cover; object-position: center; border-radius: var(--phi-radius-md); transition: transform var(--phi-duration-slow) var(--phi-ease); }
   &:hover { z-index: 3; transform: rotate(0deg) translateY(calc(var(--phi-space-4) * -1)) scale(1.08); animation-play-state: paused; }
-  &:hover img { transform: scale(1.04); }
 }
+/* A fanned card's picture is the kit's Picture, which fills the positioned box it is put in. */
+.fanPicture { position: relative; }
 .phone {
   position: relative; z-index: 2; flex: none; display: flex; flex-direction: column; width: min(24rem, 92vw); height: 36rem; margin-inline: var(--phi-space-6);
   overflow: hidden; text-align: left;

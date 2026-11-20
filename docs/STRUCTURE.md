@@ -32,6 +32,7 @@ No folder is called `puiapp`. The layer is `app/phi-kit`; `app/phiapp` is the ru
 | Phipad | `localhost:3102` | launch entry `phipad` |
 | Phidao | `localhost:3112` | launch entry `phidao` |
 | Phione | `localhost:3115` | launch entry `phione` |
+| Phiogy | `localhost:3100/phiogy/` | the host (launch entry `phi`), or alone as launch entry `phiogy` on `localhost:3118/phiogy/` |
 
 The launch entries are in `gemphi/.claude/launch.json`; `node app/dev-all.mjs` starts them all from a terminal.
 The host entry `phi` points at the Python API on port 8000. When that is not running, use the entry `phi-phiora` (the same host on `localhost:3120` against Phiora on 4300); the pages below were recorded there, so lists that pull records have their rows.
@@ -61,12 +62,13 @@ In the tables, `*every page*` is what the shell mounts on all of a site's pages;
 | phisum | 20 | 51 | 28 | 0 |
 | phipal | 12 | 44 | 27 | 0 |
 | spark | 4 | 20 | 11 | 0 |
-| phione | 12 | 43 | 16 | 12 |
-| phipad | 10 | 27 | 8 | 7 |
-| phidao | 9 | 35 | 9 | 9 |
-| phiegg | 40 | 76 | 8 | 107 |
+| phiogy | 8 | 13 | 3 | 0 |
+| phione | 12 | - | - | 1 |
+| phipad | 10 | - | - | 0 |
+| phidao | 9 | - | - | 1 |
+| phiegg | 40 | 76 | 8 | 103 |
 
-The thirteen config apps have no component of their own: every one of their 163 pages is puiapp modules on puikit components, chosen by data. Phione, Phipad and Phidao wear the shared shell and bring a few page components each. Phiegg is the exception: 107 components of its own against 8 from puiapp.
+The config apps have no component of their own: every page is puiapp modules on puikit components, chosen by data. Phiogy, added on 2026-11-20, is the fourteenth. After the second round that day Phipad has no component of its own, Phidao one (`Vote`) and Phione one (`Screen`): their pages are lists of blocks built from their data and drawn by the shared `Block`. Phiegg is still the exception. For the four apps reworked in that round the puikit and puiapp columns were not measured again (`-`), and Phiegg's 103 is the first count less the four components removed, not a new measure.
 
 ## What breaks the rule
 
@@ -83,18 +85,29 @@ The thirteen config apps have no component of their own: every one of their 163 
 | Unused imports of the shared stylesheet. | `blocks/Stats.tsx`, `blocks/Swap.tsx`, Phipad, Phidao | Removed. |
 | Phione kept its own header, sidebar, agent chat and two stylesheets (with their own colours and tracking) that nothing imported. | `app/phione/src/components/Shell`, `AgentChat`, `AgentCard.module.scss` | Moved to `gemphi/_temp/puikit-phione-old-shell` (listed in `_temp/INVENTORY.md`). |
 
+### Fixed on 2026-11-20, second round
+
+| What | Where | Fix |
+|:---|:---|:---|
+| Phipad carried eleven page components. | `app/phipad/src/pages.tsx` | The file holds only functions from the data to block lists; the pages are the shared hero, stats, grid, form, news, prose and faq blocks and the shared `ItemPanel`. |
+| Phidao carried nine. | `app/phidao/src/pages.tsx` | The same; one remains, `Vote` (`app/phidao/src/vote.tsx`), added with `registerModule` because it writes Phidao's own votes. |
+| Phione carried ten pages and seven components. | `app/phione/src/view` | Each view is a hook that returns block data; `Screen` in `App.tsx` draws the shared `Head` and `Block`. |
+| The grid, stats, form and table blocks lacked what those pages needed. | `app/phi-kit/src/blocks` | Added as optional data, defaults unchanged: grid cards take a mark, tag, figure, meter, point list, lanes, a facet row and a link to more (`GridExtra.tsx`); stats take a meter; the form takes grouped and locked fields and an inline variant; the table takes typed columns, filter tabs and search; `Head` takes an action. |
+| A grid of cards with no picture stood half empty. | `app/phi-kit/src/blocks/Grid.tsx` | Cards of words alone keep their own height. |
+| The hard-coded ink colour in two tone tables. | `app/phipad/src/data.ts`, `app/phidao/src/data.ts` | Gone; the tones are theme tokens in the grid. |
+| Phiegg's own `Stats`, `ItemCard` and list. | `app/phiegg/src/components/Phiegg` | `StatGrid` in puiapp (`blocks/Stats.tsx`), the kit `ItemCard`, and puiapp's `ListView`, which Phiegg's `ListView` now only binds to its store. |
+| The chat block could only talk to a persona. | `app/phi-kit/src/blocks/Chat.tsx`, `Room.tsx` | A `room` variant: a direct message or a channel between people, with pictures, reactions, the composer and the one profile beside it. Phiogy is built on it. |
+
+
 ### Open, with the reason
 
 | What | Where | Why it is not fixed here |
 |:---|:---|:---|
-| Phiegg has its own list (`ListView`), record sheet (`RecordSheet`), item card (`ItemCard`), cart drawer (`CartDrawer`), stats (`Stats`) and agent chat (`AgentChat`), each beside a component of the same name in puiapp or puikit. | `app/phiegg/src/components/Phiegg` (`Views.tsx`, `RecordSheet.tsx`, `Details.tsx`, `Commerce.tsx`, `AgentChat.tsx`) | Another session is rebuilding Phiegg's profile and data files on this branch today; these are the next ones to fold into the shared layer, one at a time, as variants. |
-| puiapp's `ListView` is imported by nothing; Phiegg's list does the same job. | `app/phi-kit/src/ListView.tsx` | It is the one to keep: Phiegg's `ListView` should become it (same reason as above). |
+| Phiegg has its own record sheet (`RecordSheet`) and cart drawer (`CartDrawer`) beside the shared ones. | `app/phiegg/src/components/Phiegg` (`RecordSheet.tsx`, `Commerce.tsx`) | The record sheet reads local data through `src/lib`, the shared one reads Phiora: merging needs a data-source layer in files another session is editing. The cart is one-of-one looks with a wallet balance and a second checkout stage; the kit cart is quantity lines, and would need about six new props. |
 | Phiegg's feed is its own page, not the puiapp feed module. | `app/phiegg/src/pages/phiegg/FeedPage.tsx` | The puiapp feed has the `card` variant only; Phiegg's needs stories, tabs and a composer as variants first. |
 | Plain HTML in Phiegg pages: 12 `<img>` and 6 `<span>` on the welcome page, 2 `<div>` on the agents hub, 1 `<img>` in the relation tabs. | `WelcomePage.tsx`, `AgentsHubPage.tsx`, `Connected.tsx` | Phiegg is being edited by another session; puikit's `Picture` and `Box` replace them. |
 | App-level features sit in puikit: `social` (feed, home, mail, post, profile, show, comment) and `shop` (cart, order, payment, address, wishlist, product, category, editorial). By the rule the general parts (post card, product card, comment row) stay and the features move to puiapp. | `src/components/social`, `src/components/shop` | The social stylesheet is being split by another session right now (staged, not committed); a move would collide with it. |
 | App marks inside puikit. | `src/components/brand/marks.tsx` (phiegg, phipad) | Marks are data; they belong in the registry with the other app glyphs. Small, not done to keep this change to the app layer. |
-| Phipad and Phidao each carry `Home`, `About`, `NewsPage` and `Panel`, the same shapes the config apps get from the hero, prose, news and grid blocks. | `app/phipad/src/pages.tsx`, `app/phidao/src/pages.tsx` | Moving them onto config is the README's stated direction ("until they move onto the host"); it is a move of the whole app, not a fix. |
-| One hard-coded ink colour in two tone tables. | `app/phipad/src/data.ts`, `app/phidao/src/data.ts` (`TONE.ink`) | Needs an ink-on-fill token in puikit; no token gives a readable ink on that fill in every theme today. |
 | Two components, one name: puiapp's `Table`, `Form` and `Grid` blocks wrap puikit's `Table`, `Form` and `Grid`. | `app/phi-kit/src/blocks` | They follow the rule (a block over the kit component); only the names collide. Renaming touches every config, so it is listed, not done. |
 | The shared stylesheet still carries about thirty classes of the shell from before `AppShell`. | `app/phi-kit/src/kit.module.scss` | Only `app/phiegg-v1` names them. They go when that app does. |
 | Per-user state that was never saved answers 404, which the browser logs as an error on every page. | `GET /state/<name>` in `app/phiora-server` | Not a component matter; noted so the console noise is not mistaken for a fault. |
@@ -368,60 +381,33 @@ config app on the host, `localhost:3100/spark/` · 4 pages
 | `_settings` | GradientLevelPicker, PalettePicker, RadiusPicker, TabList, Title | Head, SettingsView |
 | `show (one look)` | Button, Frame, Image, Span, Swatch, Title | Block, LookPage, Runway |
 
+### phiogy
+
+config app on the host, `localhost:3100/phiogy/` · 8 pages (three direct messages, five channels in two spaces)
+
+| Page | puikit | puiapp (`phi-kit`) |
+|:---|:---|:---|
+| *every page* | AppShell, Avatar, Button, ChatBubble, ChatComposer, Columns, Frame, Label, Picture, Pressable, Stack, TabList, Text | Chat (variant `room`), PhiShell, ProfileView |
+
+Its look is the `gradient` theme style with the `phiogy` brand (`src/providers/themes.ts`): the one surface and the one label take the brand's two colours in `src/tokens/_theme-styles.scss`, so nothing in the app writes a gradient. Its face is Phi-Soft Light, named on its registry entry (`font`). Its mark is drawn from the font by `app/phiogy/mark.py`.
+
 ### phione
 
 own server, `localhost:3115` · 12 pages
 
-| Page | puikit | puiapp (`phi-kit`) | Its own (`app/phione`) |
-|:---|:---|:---|:---|
-| *every page* | AppShell, Avatar, Box, Button, Drawer, Menu, Modal, Rail, ServiceProvider, ShellBrand, ShellPin, Span, Stack, TabList, Text | AccountDialog, AccountDrawer, AppGlyph, LookSwitch, NavIcon, PhiShell | - |
-| `identity` | Card, CardBody, CardHeader, Caret, Entry, GroupMenu, Icon, Page, Run, Section, Title | - | EnrollFlow, IdentityPage |
-| `agents` | Card, CardBody, CardHeader, Caret, Col, Entry, GroupMenu, Icon, Page, Run, Section, Sticky, Tag, Textarea, Title | Agent, Grid, Terminal | AgentCard, AgentsPage, Stat |
-| `ontology` | Badge, Card, CardBody, CardHeader, Caret, Col, Entry, GroupMenu, Icon, Page, Run, Section, Tag, Tbody, Td, Th, Thead, Title, Tr | Grid, Table | OntologyDrawer, OntologyPage, OntologyTable |
-| `streams` | Caret, Entry, GroupMenu, Run | - | - |
-| `spatial` | Badge, Card, CardBody, CardHeader, Caret, Col, Entry, GroupMenu, Icon, Page, ProgressBar, Run, Section, Tag, Tbody, Td, Th, Thead, Title, Tr | Grid, Table | SpatialPage |
-| `logs` | Badge, Card, CardBody, CardHeader, Caret, DataTable, Entry, GroupMenu, Icon, Input, Page, Run, Section, Tag, Tbody, Td, Th, Thead, Title, Tr | Table | LogsPage |
-| `security` | Caret, Entry, GroupMenu, Run | - | - |
-| `orchestration` | Badge, Callout, Card, CardBody, CardHeader, Icon, Page, ProgressBar, Section, Tag, Title | - | OrchestrationPage |
-| `governance` | Badge, Card, CardBody, CardHeader, Caret, DataTable, Entry, GroupMenu, Icon, Page, Run, Section, Tag, Tbody, Td, Th, Thead, Title, Tr | Table | GovernancePage |
-| `docs` | Caret, Entry, GroupMenu, Run | - | - |
-| `_you` | Caret, Entry, GroupMenu, Run, Tag, Title | AccountPanel, Head, Identity, Profile, YouView | - |
-| `_settings` | Caret, Entry, GradientLevelPicker, GroupMenu, PalettePicker, RadiusPicker, Run, Title | Head, SettingsView | - |
+Every page is the shared `Head` and a list of blocks (`stats`, `grid`, `table`, `form`, `agent`) built by a hook in `app/phione/src/view`; `Screen` in `App.tsx` draws them. The inspect panel is the shared `ItemPanel`, enrolment the shared form in the kit `Drawer`.
 
 ### phipad
 
 own server, `localhost:3102` · 10 pages
 
-| Page | puikit | puiapp (`phi-kit`) | Its own (`app/phipad`) |
-|:---|:---|:---|:---|
-| *every page* | AppShell, Avatar, Box, Button, Drawer, Menu, Modal, Rail, ServiceProvider, ShellBrand, ShellPin, Span, Stack, TabList, Text | AccountDialog, AccountDrawer, AppGlyph, LookSwitch, NavIcon, PhiShell | - |
-| `home` | Entry, Frame, PageMenu, ProgressBar, Run, Tag, Title | - | AppCard, Home |
-| `launchpad` | Tag, Title | Head | Launchpad |
-| `tracks` | Caret, Entry, Frame, GroupMenu, Run, Tag, Title | Head | Tracks |
-| `pipeline` | Caret, Entry, GroupMenu, Run | - | - |
-| `portfolio` | Caret, Entry, Frame, GroupMenu, Run, Tag, Title | Head | Portfolio |
-| `apply` | Caret, Entry, GroupMenu, Run | - | - |
-| `news` | Tag, Title | Head | NewsPage |
-| `about` | Caret, Entry, GroupMenu, Run, Tag, Title | Head | About |
-| `faq` | Caret, Entry, GroupMenu, Run | - | - |
-| `_settings` | Caret, Entry, GradientLevelPicker, GroupMenu, PalettePicker, RadiusPicker, Run, Tag, Title | Head, SettingsView | - |
+Every page is a list of blocks from `app/phipad/src/pages.tsx`: home (`hero`, `stats`, `grid`), tracks, pipeline (a `grid` in lanes), portfolio and launchpad (`grid`), apply (`grid`, `form`), news, about (`prose`) and FAQ (`faq`). The side panel is the shared `ItemPanel` with a `stats` and a `grid` block.
 
 ### phidao
 
 own server, `localhost:3112` · 9 pages
 
-| Page | puikit | puiapp (`phi-kit`) | Its own (`app/phidao`) |
-|:---|:---|:---|:---|
-| *every page* | AppShell, Avatar, Box, Button, Drawer, Entry, Menu, Modal, Rail, Run, ServiceProvider, ShellBrand, ShellPin, Span, Stack, TabList, Tag, Text, Title | AccountDialog, AccountDrawer, AppGlyph, LookSwitch, NavIcon, PhiShell | - |
-| `home` | PageMenu, ProgressBar | - | Home, VoteBar |
-| `proposals` | Caret, GroupMenu, ProgressBar | Head | Proposals, VoteBar |
-| `treasury` | Caret, GroupMenu, Tbody, Td, Th, Thead, Tr | Head, Table | Treasury |
-| `swap` | Caret, GroupMenu, Input, Select | Head | SwapPage |
-| `delegates` | Caret, Frame, GroupMenu | Head | Delegates |
-| `news` | Caret, Divider, GroupMenu | Head | NewsPage |
-| `about` | Caret, GroupMenu, Tbody, Td, Tr | Head, Table | About |
-| `docs` | Caret, GroupMenu | Head | Docs* |
-| `_settings` | Caret, GradientLevelPicker, GroupMenu, PalettePicker, RadiusPicker | Head, SettingsView | - |
+Every page is a list of blocks from `app/phidao/src/pages.tsx`: home (`hero`, `stats`, `grid`), proposals (a `grid` with a facet row and a two-colour meter), treasury (`table`), swap (`swap`), delegates (`grid`), news, about (`prose`, `table`) and docs (`grid`, `faq`). Its one own component is `Vote`, a module it registers.
 
 ### phiegg
 

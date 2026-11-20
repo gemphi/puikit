@@ -2,7 +2,7 @@ import registry from './registry.json';
 import { resolveLinks } from './links';
 
 export type IconPath = { d: string; tf?: string; fill: string; stroke: string; sw: number };
-export type AppMeta = { look?: string; mode?: 'light' | 'dark'; key: string; name: string; tagline: string; desc: string; color: string; port: number; built: boolean; config?: boolean; icon: IconPath[] };
+export type AppMeta = { look?: string; mode?: 'light' | 'dark'; /** The face the app reads in until a person picks one (an id from fonts.ts). */ font?: string; key: string; name: string; tagline: string; desc: string; color: string; port: number; built: boolean; config?: boolean; icon: IconPath[] };
 export type NavItem = { id: string; label: string; icon: string; items?: NavItem[]; image?: string; pull?: Record<string, unknown>; previews?: import('./blocks/Grid').GridItem[] };
 export type Block = { kind: string; title?: string; [k: string]: any };
 export type View = { title: string; sub?: string; blocks: Block[] };

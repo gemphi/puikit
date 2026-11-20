@@ -12,7 +12,7 @@ import { RelationTabs } from '../../components/Phiegg/Connected';
 import { EntityAvatar } from '../../components/Phiegg/EntityAvatar';
 import { EntityPage } from '../../components/Phiegg/EntityPage';
 import { PageSections } from '../../components/Phiegg/PageSections';
-import { Stats } from '../../components/Phiegg/Details';
+import { StatGrid } from '@phi-kit/blocks/Stats';
 
 const KIND = (site as unknown as { placeKinds: Record<string, string> }).placeKinds;
 /** The relations a club's tabs open on first: its own items, then where it lives and what it posts. */
@@ -58,7 +58,7 @@ export const ClubPage: React.FC = () => {
       { id: 'about', title: t('wdAbout'), content: (
         <Stack direction="column" gap={3}>
           <Label wrap as="p" icon={<ClubIcon icon={(c as { icon?: string }).icon} size="1.75rem" />}><Text as="span" size="md">{c.description}</Text></Label>
-          <Stats rows={facts} />
+          <StatGrid size="sm" items={facts.map(([label, value]) => ({ label, value }))} />
           {c.tags?.length ? <Stack direction="row" gap={1} wrap>{c.tags.map((x) => <Tag key={x} minimal round size="sm">{x}</Tag>)}</Stack> : null}
         </Stack>) },
       { id: 'places', title: t('wdPlaceCount'), hint: String(spots.length), hidden: !spots.length, content: (

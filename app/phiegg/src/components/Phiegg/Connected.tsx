@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Icon, RelationList, SpriteImage, Stack, TabList } from '@pui/components';
+import { Box, Icon, Image, RelationList, SpriteImage, Stack, TabList } from '@pui/components';
 import type { RelationGroup, RelationItem } from '@pui/components';
 import { useStore } from '@pui/store';
 import * as L from 'lucide-react';
@@ -102,7 +102,7 @@ export const RelationTabs: React.FC<{ kind: Kind; id: string; first?: string[] }
   if (!on) return null;
   const thumb = (g: RelationGroup) => {
     const one = g.items.length === 1 ? g.items[0] : undefined;
-    return typeof one?.image === 'string' ? <Box as="span" className="ph-tab-thumb"><img src={one.image} alt="" /></Box> : one?.media && g.items.length === 1 ? <Box as="span" className="ph-tab-thumb">{one.media}</Box> : g.icon;
+    return typeof one?.image === 'string' ? <Box as="span" className="ph-tab-thumb"><Image src={one.image} alt="" fit="cover" fill /></Box> : one?.media && g.items.length === 1 ? <Box as="span" className="ph-tab-thumb">{one.media}</Box> : g.icon;
   };
   return (
     <Stack direction="column" gap={3}>
