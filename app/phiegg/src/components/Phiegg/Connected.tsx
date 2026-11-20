@@ -90,7 +90,14 @@ export const Connected: React.FC<{ kind: Kind; id: string; max?: number; inPanel
  * (a founder, a host) and its kind's glyph otherwise, and its count. The chosen relation's records are picture cards
  * three across, grid or slider.
  */
-export const RelationTabs: React.FC<{ kind: Kind; id: string; first?: string[] }> = ({ kind, id, first = [] }) => {
+export const RelationTabs: React.FC<{ kind: Kind; id: string; first?: string[] }> = ({ kind, id, first }) => {
+  const { bar, body } = useRelationTabs(kind, id, first);
+  return bar ? <Stack direction="column" gap={3}>{bar}{body}</Stack> : null;
+};
+
+/** The same tabs in two parts, for a page that holds the row of tabs in one place (a profile's opening) and what the
+ *  tab shows in another. */
+export function useRelationTabs(kind: Kind, id: string, first: string[] = []): { bar: React.ReactNode; body: React.ReactNode } {
   const s = useStore(phieggStore);
   const groups = relationGroups(kind, id, s);
   // The record's own items lead (its PFTs, pieces, looks), then the rest biggest first; single links last.
@@ -99,16 +106,14 @@ export const RelationTabs: React.FC<{ kind: Kind; id: string; first?: string[] }
   const [tab, setTab] = useState(order[0]?.id);
   useEffect(() => setTab(order[0]?.id), [kind, id]);
   const on = order.find((g) => g.id === tab) ?? order[0];
-  if (!on) return null;
+  if (!on) return { bar: null, body: null };
   const thumb = (g: RelationGroup) => {
     const one = g.items.length === 1 ? g.items[0] : undefined;
     return typeof one?.image === 'string' ? <Box as="span" className="ph-tab-thumb"><Image src={one.image} alt="" fit="cover" fill /></Box> : one?.media && g.items.length === 1 ? <Box as="span" className="ph-tab-thumb">{one.media}</Box> : g.icon;
   };
-  return (
-    <Stack direction="column" gap={3}>
-      <TabList size="sm" variant="pills" place="center" aria-label={t('connected')} activeId={on.id} onChange={setTab}
-        items={order.map((g) => ({ id: g.id, label: g.label, icon: thumb(g), count: g.items.length > 1 ? fmt(g.items.length) : undefined }))} />
-      <RelationList key={on.id} groups={[on]} max={12} {...listLabels()} />
-    </Stack>
-  );
-};
+  return {
+    bar: <TabList size="sm" variant="pills" place="center" aria-label={t('connected')} activeId={on.id} onChange={setTab}
+      items={order.map((g) => ({ id: g.id, label: g.label, icon: thumb(g), count: g.items.length > 1 ? fmt(g.items.length) : undefined }))} />,
+    body: <RelationList key={on.id} groups={[on]} max={12} {...listLabels()} />,
+  };
+}

@@ -84,6 +84,10 @@ a.button,
      top of a surface stands free on the page, and a card in a card brightens on its own. Never a theme colour, so no two surfaces on a page can
      differ. A look changes every surface at once by changing this line (the glass tokens in _glass.scss are it). */
   --phi-surface: linear-gradient(0deg, var(--phi-shade-2) 0%, transparent 100%);
+  /* Its two other strengths, as the label has: a quiet rest and the light a choice brings up (a tab at rest, the tab
+     that is on). Lit from the foot to nothing at the head, like the surface itself. */
+  --phi-surface-soft: linear-gradient(0deg, var(--phi-shade-3) 0%, transparent 100%);
+  --phi-surface-strong: linear-gradient(0deg, var(--phi-shade-1) 0%, var(--phi-shade-3) 60%, transparent 100%);
   /* THE label: an icon never sits bare on a page: it sits in a chip of this light, which runs from the icon's left
      towards its words and is gone before them. The same light fills controls and rows. Change it here, once. */
   --phi-label: linear-gradient(90deg, var(--phi-shade-2), transparent);

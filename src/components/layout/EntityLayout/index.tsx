@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '../../primitives/Button';
+import { Pressable } from '../../primitives/Pressable';
 import { Box } from '../Box';
 import { Stack } from '../Stack';
 import { Text } from '../../primitives/Text';
@@ -25,6 +26,20 @@ export type EntityLayoutProps = {
   stickLast?: boolean;
   /** What lies under the whole page (a blurred picture). */
   backdrop?: React.ReactNode;
+  /** A profile's opening (a club, a world, a shop): the first screen is the backdrop alone with the name at its foot
+   *  and the page's tabs centred under it; scrolling brings the record's own square card to the centre and the rest
+   *  after it, the tabs held at the top. */
+  hero?: EntityHero;
+};
+
+/** The parts of a profile's opening. */
+export type EntityHero = {
+  /** The page's row of tabs (a TabList): at the foot of the first screen, then held at the top as the page scrolls. */
+  tabs?: React.ReactNode;
+  /** The record's own picture, a square in the centre under the first screen. */
+  card?: React.ReactNode;
+  /** Pressing the card (it opens the record full screen), and what that is called. */
+  onCard?: () => void; cardLabel?: string;
 };
 
 const ColumnHead: React.FC<{ title: React.ReactNode; fold?: { side: 'left' | 'right'; label: string; onFold: () => void } }> = ({ title, fold }) => {
@@ -47,7 +62,7 @@ const ColumnHead: React.FC<{ title: React.ReactNode; fold?: { side: 'left' | 'ri
  * pointer is over the column) and leaves no strip: it is listed in columnStore, and a menu (the shell's right sidebar)
  * brings it back (a column can start `folded`). A side column's inner edge drags, so it is as wide as it is pulled.
  */
-export const EntityLayout: React.FC<EntityLayoutProps> = ({ title, sub, columns, stickLast, backdrop }) => {
+export const EntityLayout: React.FC<EntityLayoutProps> = ({ title, sub, columns, stickLast, backdrop, hero }) => {
   // The columns share the page's width in proportion to their widths (a side column's rem as its weight, the middle
   // half again the widest side), never under 12rem, so a docked sidebar narrows them instead of pushing them sideways.
   const weight = (w?: string) => parseFloat(w ?? '') || 0;
@@ -66,12 +81,22 @@ export const EntityLayout: React.FC<EntityLayoutProps> = ({ title, sub, columns,
   // The middle column (no width) comes first on a narrow page (styles).
   const side = (c: EntityColumn) => (!c.width ? styles.middle : '');
   return (
-    <Box className={styles.page}>
+    <Box className={[styles.page, hero ? styles.withHero : ''].join(' ')}>
       {backdrop}
+      {hero ? (<>
+        <Box as="header" className={styles.hero}>
+          <Title level={1} className={styles.title}>{title}</Title>
+          {sub && <Text intent="secondary" className={styles.sub}>{sub}</Text>}
+        </Box>
+        {hero.tabs && <Box className={styles.heroTabs}>{hero.tabs}</Box>}
+        {hero.card && (hero.onCard
+          ? <Pressable className={styles.heroCard} aria-label={hero.cardLabel} title={hero.cardLabel} onClick={hero.onCard}>{hero.card}</Pressable>
+          : <Box className={styles.heroCard}>{hero.card}</Box>)}
+      </>) : (
       <Stack direction="row" gap={3} align="end" wrap className={styles.head}>
         <Title level={1} className={styles.title}>{title}</Title>
         {sub && <Text intent="secondary" className={styles.sub}>{sub}</Text>}
-      </Stack>
+      </Stack>)}
       <ShownTitle title={title}>
         <Box className={styles.grid} style={{ '--pui-entity-cols': template } as React.CSSProperties}>
           {columns.map((c, i) => {

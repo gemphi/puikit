@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as L from 'lucide-react';
-import { Avatar, Button, Card, CardBody, Frame, FullScreen, Image, ItemCard, Rows, Showcase, Stack, Tag, Text, Title, type SectionDef } from '@pui/components';
+import { Avatar, Button, Card, CardBody, Frame, FullScreen, Image, ItemCard, Rows, Showcase, Stack, TabList, Tag, Text, Title, type SectionDef } from '@pui/components';
 import { useStore } from '@pui/store';
 import { Bookmark, Clapperboard, Heart, LogIn, MapPin, Maximize2, Plus, Share2, Shield, type LucideIcon } from 'lucide-react';
 import { phieggStore } from '../../state/phieggStore';
@@ -86,6 +86,16 @@ export const WorldPage: React.FC = () => {
     ]} />
   );
 
+  // It opens as a profile does: the city's picture and name first, its sections as tabs under the name (a tab brings its
+  // section into view), then the city's own square card in the centre; the card opens the city full screen.
+  const shownParts = parts.filter((x) => !x.hidden);
+  const [part, setPart] = useState<string>();
+  const toPart = (id: string) => { setPart(id); document.querySelector(`#world-item [data-section="${id}"], [data-section="${id}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+  const card = big ? <Image src={big} alt={w.name} fit="cover" fill />
+    : <Tile image={worldImage(w)} tone={w.tone} ratio="1" big grid depth={{ worldId: w.id, clubId: w.clubId, personId: w.creatorId }} />;
+  const hero = { card, onCard: big ? () => setFull(true) : undefined, cardLabel: t('isFull'),
+    tabs: shownParts.length > 1 ? <TabList size="sm" variant="pills" aria-label={w.name} activeId={part ?? shownParts[0].id} onChange={toPart}
+      items={shownParts.map((x) => ({ id: x.id, label: typeof x.title === 'string' ? x.title : x.id, count: typeof x.hint === 'string' || typeof x.hint === 'number' ? x.hint : undefined }))} /> : undefined };
   const columns = [
     { id: 'world', title: w.name, label: t('wdWorld'), content: centre, minWidth: '20rem' },
     ...(agent ? [{ id: 'chat', title: <Stack direction="row" gap={2} align="center"><PersonAvatar id={agent.id} size="xs" /><Text size="sm" weight="semibold">{agent.name}</Text></Stack>,
@@ -98,7 +108,7 @@ export const WorldPage: React.FC = () => {
         section: m.id }))}>
       <PageSections id="world-full" size="sm" sections={parts} />
     </FullScreen>}
-    <EntityPage stickLast={!!agent} picture={big ? <Image src={big} alt="" fit="cover" fill /> : undefined}
+    <EntityPage hero={hero} stickLast={!!agent} picture={big ? <Image src={big} alt="" fit="cover" fill /> : undefined}
       title={w.name} sub={<>{w.landGroup ?? (site.worldKinds as Record<string, string>)[w.kind]} · {t('insideNow', { n: fmt(w.visitorsNow) })}</>} columns={columns} />
   </>);
 };

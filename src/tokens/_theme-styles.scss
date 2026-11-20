@@ -84,6 +84,8 @@
   --phi-tint-3: color-mix(in srgb, var(--phi-color-primary) calc(var(--phi-tint-pct, 26%) * 0.5), transparent);
   --phi-tint-4: color-mix(in srgb, var(--phi-color-primary) calc(var(--phi-tint-pct, 26%) * 1.5), transparent);
   --phi-surface: linear-gradient(20deg, var(--phi-tint-1) 0%, var(--phi-tint-2) 55%, transparent 100%);
+  --phi-surface-soft: linear-gradient(20deg, var(--phi-tint-3) 0%, transparent 100%);
+  --phi-surface-strong: linear-gradient(20deg, var(--phi-tint-4) 0%, var(--phi-tint-1) 55%, transparent 100%);
   --phi-label: linear-gradient(90deg, var(--phi-tint-1), var(--phi-tint-2) 55%, transparent);
   --phi-label-soft: linear-gradient(90deg, var(--phi-tint-3), transparent);
   --phi-label-strong: linear-gradient(90deg, var(--phi-tint-4), var(--phi-tint-1) 55%, transparent);
