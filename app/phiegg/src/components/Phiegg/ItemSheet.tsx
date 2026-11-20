@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card, CardBody, FullScreen, Image, MediaStage, Input, Rows, Stack, TabList, Tag, Text, Title } from '@pui/components';
+import { Button, Card, CardBody, FullScreen, Image, ItemCard, MediaStage, Input, Rows, Stack, TabList, Tag, Text, Title } from '@pui/components';
 import { Bookmark, Heart, Maximize2, Share2, ShoppingBag } from 'lucide-react';
 import { useStore } from '@pui/store';
 import { useWallet } from '@phi-kit/wallet';
-import { D, itemImage, lookStore, lotsOfPool, t, usd, itemOf, type SiteCopyKey } from '../../lib/data';
+import { D, itemImage, lookStore, lotsOfPool, person, salesOfItem, t, usd, itemOf, type SiteCopyKey } from '../../lib/data';
 import { buy, makeOffer, toggleCart, useCart, useOwned, withdrawOffer } from '../../lib/cart';
 import { itemStats, lookLive, quote, useNow } from '../../lib/market';
 import { phieggStore } from '../../state/phieggStore';
@@ -25,9 +25,9 @@ import type { ShopLook } from '../../types/phiegg';
  * with the store's agent on the right. Every column expands or closes, every row expands, folds or closes, with the
  * controls on the right of its header.
  */
-/** The look page's tabs: few, one short word each (data/site.json), and the parts of the page each one shows. Info,
- *  what the item is, comes first. */
-const PARTS: [string, SiteCopyKey, string[]][] = [['info', 'isTabInfo', ['specs']], ['buy', 'isTabBuy', ['buy']], ['activity', 'isTabActivity', ['activity']], ['stats', 'isTabStats', ['price', 'stats']], ['related', 'isTabRelated', ['appears']]];
+/** An item's tabs, the same set wherever an item is shown: Info, Stats, Trail, Owner, then what it is related to.
+ *  One short word each (data/site.json), and the parts of the page each one shows. */
+const PARTS: [string, SiteCopyKey, string[]][] = [['info', 'isTabInfo', ['buy', 'specs']], ['stats', 'isTabStats', ['price', 'stats']], ['trail', 'isTabTrail', ['activity']], ['owner', 'isTabOwner', ['owner']], ['related', 'isTabRelated', ['appears']]];
 
 export const ItemSheet: React.FC<{ id: string }> = ({ id }) => {
   const s = useStore(phieggStore); const l = itemOf('look', id); const w = useWallet(); const mine = useOwned(); const { cart, offers } = useCart(); const now = useNow(1000);
@@ -85,6 +85,9 @@ export const ItemSheet: React.FC<{ id: string }> = ({ id }) => {
   const [part, setPart] = useState('info');
 
   // ── centre: the item as content, in three rows ──
+  // Who holds it: everyone its ledger hands it to (a mint, a sale, a transfer), the newest first, each once.
+  const holders = salesOfItem(l.id).filter((x) => x.toId).sort((a, b) => b.at.localeCompare(a.at))
+    .filter((x, i, all) => all.findIndex((y) => y.toId === x.toId) === i).map((x) => ({ id: x.toId as string, at: x.at, usd: x.priceUsd || 0 }));
   const parts = [
       { id: 'buy', title: t('isBuy'), expandable: true, collapsible: true, closable: true, content: (
         <Stack direction="column" gap={2}>
@@ -117,6 +120,11 @@ export const ItemSheet: React.FC<{ id: string }> = ({ id }) => {
       { id: 'price', title: t('isPrice2'), expandable: true, collapsible: true, closable: true, content: <ItemPrice look={l} live={live.total} /> },
       { id: 'stats', title: t('plItemStats'), expandable: true, collapsible: true, closable: true, content: <ItemStatsTable stats={itemStats(l, now)} /> },
       { id: 'appears', title: t('isAppears'), expandable: true, collapsible: true, closable: true, content: <ItemAppears look={l} /> },
+      { id: 'owner', title: t('isTabOwner'), expandable: true, collapsible: true, content: holders.length
+        ? <Stack direction="column" gap={1}>{holders.map((h) => (
+            <ItemCard key={h.id} variant="flat" stackBelow="never" onClick={() => s.go('profile', { profileId: h.id })} media={<PersonAvatar id={h.id} size="md" />}
+              title={person(h.id).name} meta={t('isHeldSince', { date: h.at.slice(0, 10) })} aside={h.usd ? <Tag minimal round size="sm">{usd(h.usd)}</Tag> : undefined} />))}</Stack>
+        : <Text size="sm" intent="muted">{t('isNoOwner')}</Text> },
       { id: 'specs', title: t('isSpecs'), expandable: true, collapsible: true, closable: true, content: <ItemSpecs look={l} /> },
   ];
 
