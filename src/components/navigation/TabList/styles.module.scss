@@ -44,8 +44,10 @@
   border-bottom: 2px solid transparent;
   /* Every tab is lit from its foot to nothing at its head, never filled edge to edge: quietly at rest, fully for the
      one that is on (which also carries the underline and the page's ink), so it cannot be mistaken. */
+  /* CHILD AND PARENT MERGE. The bar is lit from its foot (bright at the bottom, nothing at the top); a tab is the
+     opposite, bright at its top and gone at its foot, so a tab melts into the bar where the bar is brightest. */
   background-color: transparent;
-  background-image: var(--phi-surface-soft);
+  background-image: var(--phi-surface-down-soft);
   border-radius: var(--phi-radius-md) var(--phi-radius-md) 0 0;
   color: var(--phi-color-text-muted, var(--phi-color-text-secondary));
   font: inherit;
@@ -99,7 +101,7 @@
     border-radius: var(--phi-control-radius, var(--phi-radius-md));
     /* Lit from its foot, where the underline is, to nothing at its head: never a ground filled edge to edge. */
     background-color: transparent;
-    background-image: var(--phi-surface-strong), var(--phi-surface);
+    background-image: var(--phi-surface-down-strong), var(--phi-surface-down-soft);
     pointer-events: none;
     /* The underline of the tab that is on, in the page's ink; it slides with the pill. */
     color: var(--phi-color-text-primary);
@@ -117,13 +119,13 @@
     color: var(--phi-color-text-primary);
   }
   /* Before measuring (first paint, tests) the active tab paints its own pill. */
-  &:not([data-ready='true']) .active { background-color: transparent; background-image: var(--phi-surface-strong); }
+  &:not([data-ready='true']) .active { background-color: transparent; background-image: var(--phi-surface-down-strong); }
 }
 
 /* On a surface (tokens.scss) the active pill is the same light from its foot, never a solid fill. */
-:global(:is(.pui-card, [data-surface='card'], .phi-layers)) .pills .indicator { background-color: transparent; background-image: var(--phi-surface-strong); border-color: transparent; color: var(--phi-color-text-primary); box-shadow: none; }
+:global(:is(.pui-card, [data-surface='card'], .phi-layers)) .pills .indicator { background-color: transparent; background-image: var(--phi-surface-down-strong); border-color: transparent; color: var(--phi-color-text-primary); box-shadow: none; }
 :global(:is(.pui-card, [data-surface='card'], .phi-layers)) .pills .active { color: var(--phi-color-text-primary); }
-:global(:is(.pui-card, [data-surface='card'], .phi-layers)) .pills:not([data-ready='true']) .active { background-color: transparent; background-image: var(--phi-surface-strong); }
+:global(:is(.pui-card, [data-surface='card'], .phi-layers)) .pills:not([data-ready='true']) .active { background-color: transparent; background-image: var(--phi-surface-down-strong); }
 
 /* A page's row of tabs: centred at no more than half the content's width, more tabs scroll sideways in place, and the
    row stays under the header while the page scrolls, on the page's own glass. */

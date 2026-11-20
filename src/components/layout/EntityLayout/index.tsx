@@ -73,11 +73,14 @@ export const EntityLayout: React.FC<EntityLayoutProps> = ({ title, sub, columns,
   useEffect(() => { sides.forEach((c) => columnStore.add(c.id, c.label ?? (typeof c.title === 'string' ? c.title : c.id), !c.folded)); return () => columnStore.remove(ids.split('|')); }, [ids]); // eslint-disable-line react-hooks/exhaustive-deps
   const isFolded = (c: EntityColumn) => { const e = known.find((x) => x.id === c.id); return !!c.width && (e ? !e.open : !!c.folded); };
   const anyFolded = columns.some(isFolded);
+  // A page whose only column in view is the middle one gives it the whole width: kept square it stood as a narrow
+  // strip at the left with the rest of the page empty.
+  const alone = columns.filter((c) => !isFolded(c)).length === 1;
   const nameOf = (c: EntityColumn) => c.label ?? (typeof c.title === 'string' ? c.title : c.id);
   // On a desktop the middle takes --pui-entity-middle (styles): as wide as the screen is tall, so it is square.
   // A folded side column is a strip; with one folded, the middle takes all the room it leaves (no longer kept square).
   const template = columns.filter((c) => !isFolded(c)).map((c) => px[c.id] ? `${px[c.id]}px` : c.width ? `minmax(12rem, ${weight(c.width)}fr)`
-    : anyFolded ? `minmax(${c.minWidth ?? '16rem'}, ${middle * 2}fr)` : `var(--pui-entity-middle, minmax(${c.minWidth ?? '16rem'}, ${middle}fr))`).join(' ');
+    : alone ? 'minmax(0, 1fr)' : anyFolded ? `minmax(${c.minWidth ?? '16rem'}, ${middle * 2}fr)` : `var(--pui-entity-middle, minmax(${c.minWidth ?? '16rem'}, ${middle}fr))`).join(' ');
   // The middle column (no width) comes first on a narrow page (styles).
   const side = (c: EntityColumn) => (!c.width ? styles.middle : '');
   return (

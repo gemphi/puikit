@@ -88,6 +88,11 @@ a.button,
      that is on). Lit from the foot to nothing at the head, like the surface itself. */
   --phi-surface-soft: linear-gradient(0deg, var(--phi-shade-3) 0%, transparent 100%);
   --phi-surface-strong: linear-gradient(0deg, var(--phi-shade-1) 0%, var(--phi-shade-3) 60%, transparent 100%);
+  /* The same light turned over: from the top to nothing at the foot. A child lit this way on a parent lit from its
+     foot fades out exactly where the parent is brightest, so the two read as one piece with no edge between them. */
+  --phi-surface-down: linear-gradient(180deg, var(--phi-shade-2) 0%, transparent 100%);
+  --phi-surface-down-soft: linear-gradient(180deg, var(--phi-shade-3) 0%, transparent 100%);
+  --phi-surface-down-strong: linear-gradient(180deg, var(--phi-shade-1) 0%, var(--phi-shade-3) 60%, transparent 100%);
   /* THE label: an icon never sits bare on a page: it sits in a chip of this light, which runs from the icon's left
      towards its words and is gone before them. The same light fills controls and rows. Change it here, once. */
   --phi-label: linear-gradient(90deg, var(--phi-shade-2), transparent);
