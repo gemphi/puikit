@@ -18,6 +18,8 @@
    "slider": { "action": "watchShow", "icon": "Play", "card": { "ratio": "1/1", "big": true, "animate": true } } },
   "event": { "layout": "event", "cols": 2 },
   "host": { "layout": "tile", "ratio": "5/4", "grid": true, "title": "{name}", "sub": "{members} members · {online} online", "badge": ["{gated}"], "tone": "tone", "club": "clubId", "world": "worldId", "person": "ownerId", "path": "host" },
+  "agent": {"layout":"tile","ratio":"5/4","grid":true,"title":"{name}","sub":"{role} · {house}","badge":["{status}"],"tone":"tone","person":"id","path":"profile"},
+  "person": {"layout":"tile","ratio":"5/4","grid":true,"title":"{name}","sub":"@{handle}","tone":"tone","person":"id","path":"profile"},
   "nest": { "layout": "row", "title": "#{name}", "sub": "{topic}", "path": "collection" }
  }
 }

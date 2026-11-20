@@ -77,7 +77,7 @@ const Identity: React.FC<{ r: ProfileRecord; heading: 1 | 2; line?: boolean; chi
     </Stack>
   );
   const name = (
-    <Stack direction="column" gap={1} minWidth="0" flex="1">
+    <Stack direction="column" gap={1} minWidth="0" flex="1" surface="region">
       <Title level={heading} size={line ? 'md' : 'xl'} lineHeight={1.15} className={css.name}>{r.name}</Title>
       {(r.handle || r.role) && <Text size="sm" intent="muted" className={css.name}>{[r.handle && '@' + r.handle, r.role].filter(Boolean).join(' · ')}</Text>}
     </Stack>
@@ -95,12 +95,12 @@ const Identity: React.FC<{ r: ProfileRecord; heading: 1 | 2; line?: boolean; chi
           <Box className={r.banner ? css.face : undefined}>{r.avatar}</Box>
         </Box>
         {name}
-        {r.status && <Label icon={r.status.icon}>{r.status.label}</Label>}
+        {r.status && <Box surface="region"><Label icon={r.status.icon}>{r.status.label}</Label></Box>}
       </Stack>
       {actions}
       {r.counts?.length ? (
-        <Stack direction="row" gap={4} wrap surface="region">
-          {r.counts.map(([l, v]) => <Stack key={l} direction="column" gap={0}><Text as="span" font="heading" size="lg" lineHeight={1.1}>{v}</Text><Text as="span" size="xs" intent="muted">{l}</Text></Stack>)}
+        <Stack direction="row" gap={2} wrap surface="region">
+          {r.counts.map(([l, v]) => <Stack key={l} direction="column" gap={0} flex="1" surface="region"><Text as="span" font="heading" size="lg" lineHeight={1.1}>{v}</Text><Text as="span" size="xs" intent="muted">{l}</Text></Stack>)}
         </Stack>) : null}
       {(r.bio || r.more || r.about) && (
         <Stack direction="column" gap={2} surface="region">
