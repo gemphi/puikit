@@ -157,6 +157,16 @@ a.button,
 /* A ROW (a picture, then its words: a person in a list, a chat, a record) is never lit from its foot. It is lit from
    one side and its picture stands in a holder lit from the other, so the two meet in the middle. Which side is decided
    here by what holds the row (--phi-row-ground, --phi-row-holder), turning over at every depth like everything else. */
+/* NOTHING SITS ON A PAGE FOR FREE. Every block a page lays out (the kit's Page, in every app) that is loose content,
+   with no surface of its own inside it (a title and its line, a row of buttons, a line of tags, a toolbar), is a
+   region without being told: the same light from its foot, the same corner and room, and what is pressed inside it
+   runs against it. A block that holds cards is left alone: its cards are its grounds. So a page cannot place words
+   or controls bare, and no page has to remember to ask. */
+.pui-page-content > main > [data-dir='column'] > :where(:not(.pui-card, [data-surface], .phi-layers, .phi-region, [role='tablist'], [hidden], :empty)):not(:has(.pui-card, [data-surface], .phi-layers, .phi-region)) {
+  min-width: 0; padding: var(--phi-space-3); border-radius: var(--phi-radius-md); background: var(--phi-surface);
+  --phi-control-ground: var(--phi-label); --phi-control-ground-strong: var(--phi-label-strong);
+  --phi-row-ground: var(--phi-label); --phi-row-ground-strong: var(--phi-label-strong); --phi-row-holder: var(--phi-label-end);
+}
 /* The two classes that say it, so no component writes it again: .phi-row is a row's ground, .phi-holder the holder a
    picture or thumbnail stands in (a person in a row, a ring of faces). A thumbnail is never ringed with a border:
    it stands in a holder of light. */
