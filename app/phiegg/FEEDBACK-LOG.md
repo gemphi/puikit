@@ -641,3 +641,8 @@ To give those three pools their records I ran `node scripts/pools.mjs`. It rewri
 - Hand-built where the kit has it: uaia tables (home, certification), uaia `Glass` card (58 uses), `Note`, `AutoGrid`, its own nav bar and footer; phlick tabs (`topic-tabs.tsx`); chanel colour swatches; hand chips in uaia, phlick, phiegg Search; a hand dropdown in phiegg Search - **Open**
 - Hard-coded look: uaia 159 inline styles, 52 hex or rgba colours, 7 hand gradients and its own palette; phlick 1 inline colour; phiegg overrides kit cards through `[class*='card']` in `styles/phiegg.scss:33,38`; phione, phidao, phipad none - **Open**
 - "I don't think we need the header ground, it's a mess": removed; the header has no ground again, as before section 51 - **Done**
+
+## 54. Grounds run side to side (2026-11-20)
+- "In most cases like these avoid top-down or bottom-up grounds in favour of left to right and right to left": the one place that hands grounds out by depth (`src/tokens/tokens.scss`) now lights every card, region, loose page block and control from a side, from the right at one depth and the left at the next. Every app on the kit takes it - **Done** (host page: 29 of 29 grounds side-lit, seen; pools: 127 side-lit, measured, not seen)
+- Kept top to bottom because they were asked for by name: the phone bar and its menus, the stage slider's foot
+- Still top to bottom by their own styles - **Open** if wanted: the tab bar's tabs, picture frames and holders (Avatar, Frame, Picture, DepthMedia, Showcase, Cascade), the full-screen menu
