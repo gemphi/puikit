@@ -1,0 +1,186 @@
+/* ------------------------------------------------------------- the rail */
+
+.rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--phi-space-4);
+  align-self: flex-end;
+  padding-block-end: var(--phi-space-2);
+}
+
+.railGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--phi-space-1) / 2);
+}
+
+.railButton {
+  width: calc(var(--phi-control-height-md) + 8px);
+  height: calc(var(--phi-control-height-md) + 8px);
+  border-radius: var(--phi-radius-full);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Glass is an OPACITY gradient of the theme's own lightness — top a touch
+     brighter than the foot — never a colored fill. */
+  background-color: transparent;
+  background-image: var(--phi-social-glass-gradient, var(--phi-label));
+  color: var(--phi-color-text-primary);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform var(--phi-transition-fast), background-image var(--phi-transition-fast), color var(--phi-transition-fast);
+
+  &:hover {
+    transform: scale(1.06);
+    background-image: var(--phi-social-glass-gradient-hover, var(--phi-label-strong));
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--phi-color-background), 0 0 0 4px var(--phi-color-primary);
+  }
+}
+
+.railButton[data-active='true'] {
+  color: var(--phi-color-primary);
+}
+
+.railAvatar {
+  position: relative;
+}
+
+/* The follow affordance riding the avatar's chin, as on the reference. */
+.followBadge {
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: var(--phi-radius-full);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--phi-color-primary);
+  color: var(--phi-color-text-inverse);
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--phi-color-background), 0 0 0 4px var(--phi-color-primary);
+  }
+}
+
+.followBadge[data-following='true'] {
+  background-color: var(--phi-color-background-secondary);
+  color: var(--phi-color-primary);
+}
+
+/* ------------------------------------------------------------ grid tile */
+
+.tile {
+  position: relative;
+  display: block;
+  border: none;
+  padding: 0;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: var(--phi-radius-md);
+  overflow: hidden;
+  background-color: #000;
+  isolation: isolate;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--phi-color-background), 0 0 0 4px var(--phi-color-primary);
+  }
+}
+
+.tileScrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(90deg, color-mix(in srgb, var(--phi-color-background) 62%, transparent) 0%, transparent 60%);
+}
+
+.tileMeta {
+  position: absolute;
+  inset-inline: var(--phi-space-2);
+  bottom: var(--phi-space-2);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--phi-space-1) / 2);
+  color: #fff;
+  --phi-color-text-primary: #fff;
+  --phi-color-text-secondary: rgba(255, 255, 255, 0.85);
+  --phi-color-text-muted: rgba(255, 255, 255, 0.72);
+}
+
+.tileCaption {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.views {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--phi-space-1) / 2);
+}
+
+/* A catalogue declares its tiles' shape; portrait stays the default. */
+.tile[data-ratio='square'] { aspect-ratio: 1 / 1; }
+.tile[data-ratio='wide'] { aspect-ratio: 16 / 9; }
+
+.tileBadge {
+  position: absolute;
+  top: var(--phi-space-2);
+  inset-inline-end: var(--phi-space-2);
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--phi-space-1) / 2);
+  padding: calc(var(--phi-space-1) / 2) var(--phi-space-1);
+  border-radius: var(--phi-radius-full);
+  background-color: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: var(--phi-font-size-xs, 0.75rem);
+  backdrop-filter: blur(4px);
+}
+
+/* Reply threads hang off a vertical rule that runs down from the CENTER of
+   the parent's avatar — the thread visibly belongs to its author, and the
+   same 2px rule repeats at every depth. The negative inline margin walks the
+   rule back from the text column to the avatar's midline. */
+.replies {
+  margin-block-start: var(--phi-space-2);
+  margin-inline-start: calc(-1 * (var(--phi-avatar-size-sm, 1.5rem) / 2 + var(--phi-space-2, 8px)));
+  padding-inline-start: calc(var(--phi-avatar-size-sm, 1.5rem) / 2 + var(--phi-space-2, 8px) + var(--phi-space-3, 12px));
+  border-inline-start: 2px solid var(--phi-color-border, rgba(128, 128, 128, 0.35));
+  display: flex;
+  flex-direction: column;
+  gap: var(--phi-space-3);
+
+  /* Rows run the full width, so every depth's actions align at the same
+     right edge — only the left padding differs. */
+  > * {
+    width: 100%;
+  }
+}
+
+.replyToggle {
+  align-self: flex-start;
+}

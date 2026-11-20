@@ -1,0 +1,211 @@
+/* ------------------------------------------------------------- snap feed */
+
+.snapFeed {
+  position: relative;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  gap: var(--phi-space-4);
+}
+
+.snapTrack {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar { display: none; }
+}
+
+.snapSlide {
+  height: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: var(--phi-space-4);
+}
+
+/* The slide's one child is the immersive post row; it takes the slide's whole
+   height, or the frame's `height: 100%` resolves against nothing and the
+   video collapses to a zero-height strip beside its own rail. */
+.snapSlide > * {
+  height: 100%;
+  min-height: 0;
+}
+
+/* The up/down pager, docked to the feed's right edge like the reference. */
+.pager {
+  position: absolute;
+  inset-inline-end: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--phi-space-2);
+  z-index: 2;
+}
+
+/* ------------------------------------------------------------- the frame */
+
+.frame {
+  position: relative;
+  cursor: pointer;
+  height: 100%;
+  aspect-ratio: 9 / 16;
+  max-width: 100%;
+  border-radius: var(--phi-radius-lg);
+  overflow: hidden;
+  background-color: #000;
+  isolation: isolate;
+}
+
+.poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* The still breathes like a paused video rather than sitting like a photo. */
+  animation: kenburns 16s ease-in-out infinite alternate;
+}
+
+/* Photo-mode: the slides stack in the frame and crossfade as the deck plays
+   left to right. `object-fit: cover` keeps every still full-bleed — no bands,
+   no letterboxing, whatever the source ratio. */
+.slideImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.slideImg[data-current='true'] {
+  opacity: 1;
+  animation: kenburns 16s ease-in-out infinite alternate;
+}
+
+/* The small horizontal bar: one segment per slide, the played ones filled,
+   the current one filling — the reference's photo-post indicator. */
+.slideBar {
+  position: absolute;
+  top: var(--phi-space-2);
+  inset-inline: var(--phi-space-4);
+  z-index: 3;
+  display: flex;
+  gap: calc(var(--phi-space-1) / 2);
+}
+
+.slideSegment {
+  flex: 1 1 0;
+  height: 3px;
+  border: none;
+  padding: 0;
+  border-radius: var(--phi-radius-full);
+  background-color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  &[data-played='true']::after { transform: scaleX(1); }
+
+  &[data-current='true']::after {
+    animation: slideFill var(--slide-ms, 3500ms) linear forwards;
+  }
+}
+
+@keyframes slideFill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes kenburns {
+  from { transform: scale(1) translateY(0); }
+  to { transform: scale(1.08) translateY(-1.5%); }
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.72) 0%,
+    rgba(0, 0, 0, 0.3) 22%,
+    transparent 45%
+  );
+}
+
+.frameTop {
+  position: absolute;
+  top: var(--phi-space-3);
+  inset-inline: var(--phi-space-3);
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Caption block, pinned to the frame's foot over the scrim. */
+.caption {
+  position: absolute;
+  inset-inline: var(--phi-space-4);
+  bottom: var(--phi-space-4);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--phi-space-1);
+  color: #fff;
+  --phi-color-text-primary: #fff;
+  --phi-color-text-secondary: rgba(255, 255, 255, 0.85);
+  --phi-color-text-muted: rgba(255, 255, 255, 0.7);
+}
+
+.captionBody {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.hashtag {
+  font-weight: var(--phi-font-weight-semibold, 600);
+}
+
+/* The sound row: a marquee when the title overflows, exactly one line tall. */
+.sound {
+  display: flex;
+  align-items: center;
+  gap: var(--phi-space-1);
+  max-width: 85%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.soundText {
+  display: inline-block;
+  animation: marquee 9s linear infinite;
+  padding-inline-end: var(--phi-space-6);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}

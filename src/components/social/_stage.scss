@@ -1,0 +1,154 @@
+/* --------------------------------------------------------- the post stage */
+
+/* A post with the stage to itself: close top-left, prev/next on the right. */
+.stageBox {
+  position: relative;
+  height: 100%;
+}
+/* An opened post shows as a SQUARE: the frame trades its 9/16 for 1/1. */
+.stageBox[data-shape='square'] [class*='frame'],
+.stageBox[data-shape='square'] .frame {
+  aspect-ratio: 1 / 1;
+  height: auto;
+  width: 100%;
+  max-height: 100%;
+}
+
+.stageBox > [data-variant='immersive'] {
+  height: 100%;
+  min-height: 0;
+}
+.stageClose {
+  position: absolute;
+  top: var(--phi-space-3);
+  inset-inline-start: var(--phi-space-3);
+  z-index: 2;
+}
+.stageNav {
+  position: absolute;
+  /* Top right, clear of both the engagement rail and a spotlight's own
+     arrows, which hold the row's vertical middle. */
+  top: var(--phi-space-4);
+  inset-inline-end: calc(var(--phi-control-height-md, 40px) + 8px + var(--phi-space-3) * 2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--phi-space-2);
+  z-index: 4;
+}
+.railButton:disabled {
+  opacity: 0.4;
+  cursor: default;
+
+  &:hover {
+    transform: none;
+    background-image: var(--phi-social-glass-gradient, var(--phi-label));
+  }
+}
+
+/* --------------------------------------------------- the spotlight reel */
+
+/* A photo reel of 4..7 stills shows three at once: the middle a square on
+   2/3 of the row, the neighbours on 1/6 each. Advancing hands the middle to
+   the next image, which EXPANDS into place — the cells are keyed by image,
+   so the flex-basis transition is the animation. Glass arrows, rounded
+   corners, all from the theme's own tokens. */
+.spotlightFrame {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--phi-space-3);
+  cursor: pointer;
+}
+
+/* A spotlight slide runs the whole stage — full width minus the rail. */
+.spotlightSlide {
+  width: 100%;
+}
+
+.spotlightRow {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* No gap: the neighbours slide half of themselves UNDER the active square. */
+  gap: 0;
+}
+
+.spotCell {
+  position: relative;
+  border: none;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: var(--phi-radius-lg);
+  min-width: 0;
+  transition:
+    flex-basis var(--phi-animation-speed, 0.35s) cubic-bezier(0.4, 0, 0.2, 1),
+    opacity var(--phi-transition-fast);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+/* Every view is a SQUARE — the active one on 1/2 of the cells, each
+   neighbour on 1/4, so the active edge is twice a side's. Only the ACTIVE
+   image shows in full: each neighbour slides half of itself underneath it,
+   cut off by the active square riding on top. `aspect-ratio` carries the
+   heights; the max-height transfer keeps everything inside any stage. */
+.spotCell {
+  aspect-ratio: 1 / 1;
+}
+
+.spotCell[data-role='mid'] {
+  flex: 1 1 50%;
+  max-height: 100%;
+  position: relative;
+  z-index: 2;
+  box-shadow: var(--phi-shadow-lg, 0 12px 32px rgba(0, 0, 0, 0.35));
+}
+
+.spotCell[data-role='side'] {
+  flex: 1 1 25%;
+  max-height: 50%;
+  position: relative;
+  z-index: 1;
+  opacity: 0.55;
+
+  &:hover { opacity: 0.85; }
+}
+
+/* Half of each neighbour disappears beneath the active square. */
+.spotCell[data-role='side']:first-of-type { margin-inline-end: -12.5%; }
+.spotCell[data-role='side']:last-of-type { margin-inline-start: -12.5%; }
+
+/* Both arrows ride together at the RIGHT of the slider — beside the images,
+   never on top of them — with a clear gap from the end. */
+.spotNavCol {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--phi-space-2);
+  margin-inline-start: var(--phi-space-4);
+  margin-inline-end: var(--phi-space-4);
+  z-index: 3;
+}
+
+.spotMeta {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--phi-space-1) / 2);
+}

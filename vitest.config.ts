@@ -8,7 +8,8 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: 'jsdom',
-    include: ['src/**/*.test.{ts,tsx}', 'app/phi-kit/src/**/*.test.{ts,tsx}'],
+    // The kit's tests sit beside each component; the shared app's tests live in app/phiapp/test.
+    include: ['src/**/*.test.{ts,tsx}', 'app/phiapp/test/**/*.test.{ts,tsx}'],
     exclude: ['dist/**', 'node_modules/**'],
     setupFiles: ['src/test/setup.ts'],
     globals: true,

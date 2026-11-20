@@ -1,0 +1,50 @@
+# Every pull request: the same gate as the pre-commit hook (scripts/check-commit.mjs) over what the branch adds or
+# changes, then the kit's type-check and tests, and the Phiegg app's type-check.
+name: PR check
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  files:
+    name: Files (no pictures, binaries, secrets, oversized files, broken JSON)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check the files the branch adds or changes
+        run: node scripts/check-commit.mjs --base "origin/${{ github.base_ref || 'main' }}"
+
+  kit:
+    name: Kit type-check and tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+
+  phiegg:
+    name: Phiegg type-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm ci
+        working-directory: app/phiegg
+      - run: npx tsc --noEmit -p .
+        working-directory: app/phiegg
