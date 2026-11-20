@@ -119,11 +119,8 @@ export function tableFor<T>(kind: string, over: Over<T> = {}): DataTableColumn<T
 }
 /** A record as people read it, from its kind's declaration: each declared field's label and shown value (links become
     the linked records' names, formats and resolvers applied), in declared order, empty fields left out. */
+/** What a kind declares about a record, said for people. What it holds beyond that is lib/record.tsx. */
 export function describe(kind: string, row: Record<string, unknown>): { id: string; label: string; value: React.ReactNode; group?: string }[] {
-  // A kind with nothing declared still shows: its own plain fields (text, numbers, yes/no), named from their keys.
-  if (!fieldsOf(kind).length) return Object.entries(row)
-    .filter(([k, v]) => k !== 'id' && !/(Id|Ids)$/.test(k) && v !== '' && v != null && ['string', 'number', 'boolean'].includes(typeof v))
-    .map(([k, v]) => ({ id: k, label: k.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/^./, (c) => c.toUpperCase()), value: String(v) }));
   return fieldsOf(kind).map((f) => {
     const raw = dig(row, f.path ?? f.id);
     if (raw == null || raw === '' || (Array.isArray(raw) && !raw.length)) return null;

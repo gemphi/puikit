@@ -1,4 +1,6 @@
 {
+ "recordHide": ["seed", "anchors", "spread", "shelf", "base", "slug", "hex", "tone", "image", "glyph", "sprite", "sheet", "index", "mid", "code", "sellRate"],
+ "recordName": { "sold0": "Sold at opening", "opensAt": "Opens", "createdAt": "Created", "visitorsNow": "Inside now" },
  "brand": {
   "name": "phiegg",
   "tagline": "The Phiace community platform",

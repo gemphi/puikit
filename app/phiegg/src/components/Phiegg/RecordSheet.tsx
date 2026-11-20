@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { apiSend, hasApi } from '@phi-kit/api';
 import { phieggStore } from '../../state/phieggStore';
 import { KindForm, actionsOf, describe, fieldLabel, kindLabel, optionsOf, relationsOf, siblingsKeyOf, titleOf, type Relation } from '../../lib/fields';
+import { linksOf, undeclared } from '../../lib/record';
 import { liveEdit, liveRemove } from '../../lib/live';
 import { itemOf, itemsOf } from '../../lib/data';
 import type { ID } from '../../types/phiegg';
@@ -50,7 +51,8 @@ export const RecordView: React.FC<{ kind: string; id: ID; page?: boolean }> = ({
   const siblings = (sibKey && parentId ? (itemsOf(kind) as Rec[]).filter((r) => String(r[sibKey] ?? '') === parentId) : row ? [row] : [])
     .slice().sort((a, b) => nameOf(a).localeCompare(nameOf(b)));
   const at = Math.max(0, siblings.findIndex((r) => r.id === id));
-  const rels = relationsOf(kind);
+  // Its relations: the ones its kind declares, then every other link the record itself holds.
+  const rels = [...relationsOf(kind), ...(row ? linksOf(kind, row) : [])];
   const parentRel = rels.find((r) => r.dir === 'out' && r.field === sibKey);
   const parent = parentRel && parentId ? (itemOf(parentRel.kind, parentId) as Rec | undefined) : undefined;
   // Siblings usually share their parent's name ("Bold Pup …"): the strip shows what tells them apart.
@@ -107,7 +109,8 @@ export const RecordView: React.FC<{ kind: string; id: ID; page?: boolean }> = ({
     { id: 'trail', label: 'Trail' },
   ];
   const current = tabs.some((t) => t.id === tab) ? tab : 'info';
-  const info = row ? describe(kind, row) : [];
+  // What its kind declares about it, then everything else it holds.
+  const info = row ? [...describe(kind, row), ...undeclared(kind, row)] : [];
   const groups = [...new Set(info.map((r) => r.group ?? ''))];
 
   const card = (k: string, r: Rec) => (
