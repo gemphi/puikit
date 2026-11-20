@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Button, Card, CardBody, Drawer, Grid, Input, ProgressBar, Stack, TabList, Tag, Text, Title } from '@pui/components';
+import { Button, Card, CardBody, Drawer, Grid, Input, Ladder, ProgressBar, Stack, TabList, Tag, Text, Title } from '@pui/components';
 import { useStore } from '@pui/store';
 import { useWallet } from '@phi-kit/wallet';
 import { ArrowRightLeft } from 'lucide-react';
@@ -32,34 +32,45 @@ export const PoolCard: React.FC<{ pool: Pool; now: number }> = ({ pool, now }) =
   );
 };
 
-/** One lot: pack (4–7 looks) or drop (up to 64 units), its price ladder high → low, the moving total and the sold counter. */
+/** One figure of a lot on a ground of its own: what it is, then the figure. */
+const Figure: React.FC<{ label: string; value: React.ReactNode; intent?: 'success' | 'danger' }> = ({ label, value, intent }) => (
+  <Stack direction="column" gap={0} surface="region" flex="1 1 4rem" minWidth="0"><Text size="xs" intent="muted">{label}</Text><Text size="sm" weight="bold" numeric intent={intent} truncate>{value}</Text></Stack>
+);
+
+/** One lot: pack (4–7 looks) or drop (up to 64 units). Its name and moving total, how it stands (sold, left, high and
+ *  low), then its price ladder high → low as the kit's Ladder. Every part stands on a ground of its own. */
 export const LotCard: React.FC<{ lot: PoolLot; now: number }> = ({ lot, now }) => {
   const s = useStore(phieggStore); const w = useWallet(); const [all, setAll] = useState(false);
-  const q = quote(lot, now); const shown = all ? q.units : q.units.slice(0, lot.kind === 'pack' ? 7 : 8);
+  const q = quote(lot, now); const shown = all ? q.units : q.units.slice(0, lot.kind === 'pack' ? 7 : 8); const out = q.remaining <= 0;
   const buy = (i: number | null) => { const price = i == null ? q.total : q.units[i].usd; s.flash(buyLot(lot, i, now) ? t('plBought', { name: i == null ? lot.title : itemName(q.units[i].itemId), v: usd(price) }) : t('noFunds')); };
   return (
     <Card depth={2}><CardBody><Stack direction="column" gap={2}>
-      <Stack direction="row" justify="between" align="start" gap={2}>
-        <Stack direction="column" gap={0}><Text weight="bold">{lot.title}</Text>
-          <Text size="xs" intent="muted">{lot.kind === 'pack' ? t('plPack', { n: lot.itemIds.length }) : t('plDrop', { n: lot.itemIds.length })}</Text></Stack>
+      <Stack direction="row" justify="between" align="start" gap={2} surface="region">
+        <Stack direction="column" gap={1} minWidth="0"><Text weight="bold" truncate>{lot.title}</Text>
+          <Stack direction="row" gap={1} wrap><Tag round size="sm">{lot.kind === 'pack' ? t('plPack', { n: lot.itemIds.length }) : t('plDrop', { n: lot.itemIds.length })}</Tag>
+            <Tag round size="sm" minimal intent={out ? 'error' : 'success'}>{out ? t('plSoldOut') : t('plOnSale')}</Tag></Stack></Stack>
         <Stack direction="column" gap={0} align="end"><Title level={4} size="md">{t('plTotal', { v: usd(q.total) })}</Title>
-          <Text size="xs" intent={q.change >= 0 ? 'success' : 'danger'}>{pct(q.change)}</Text></Stack>
+          <Tag round size="sm" minimal intent={q.change >= 0 ? 'success' : 'error'}>{pct(q.change)}</Tag></Stack>
       </Stack>
-      <Stack direction="row" justify="between"><Text size="xs" weight="bold">{t('plSold', { sold: fmt(q.sold), supply: fmt(q.supply) })}</Text><Text size="xs" intent="muted">{t('plTotalNote')}</Text></Stack>
-      <ProgressBar value={q.soldPct} size="sm" animate={false} />
-      <Text size="xs" intent="muted" weight="bold">{t('plLadder')}</Text>
-      <Stack direction="column" gap={1}>
-        {shown.map((u, k) => (
-          <Stack key={u.index} direction="row" gap={2} align="center">
-            <Text size="xs" intent="muted" numeric width="1.6rem">{k + 1}</Text>
-            <Stack flex="1" minWidth="0"><ProgressBar value={q.high ? u.usd / q.high : 0} color={itemOf('shade', u.itemId)?.hex ?? showLookOf(u.itemId)?.look.hex} animate={false} /></Stack>
-            <Text size="xs" truncate flex="0 1 9rem" minWidth="0">{itemName(u.itemId)}</Text>
-            <Text size="xs" weight="bold" numeric align="right" width="5rem">{usd(u.usd)}</Text>
-            {lot.kind === 'drop' && <Button variant="glass" disabled={w.usd < u.usd || q.remaining <= 0} onClick={() => buy(q.units.indexOf(u))}>{t('plBuyUnit')}</Button>}
-          </Stack>))}
+      <Stack direction="column" gap={2} surface="region" role="status">
+        <Stack direction="row" justify="between" align="center" gap={2}><Text size="xs" weight="bold">{t('plSold', { sold: fmt(q.sold), supply: fmt(q.supply) })}</Text><Text size="xs" intent="muted" numeric>{Math.round(q.soldPct * 100)}%</Text></Stack>
+        <ProgressBar value={q.soldPct} size="md" animate={false} />
+        <Text size="xs" intent="muted">{t('plTotalNote')}</Text>
+      </Stack>
+      <Stack direction="row" gap={2} wrap>
+        <Figure label={t('plHigh')} value={usd(q.high)} /><Figure label={t('plLow')} value={usd(q.low)} />
+        <Figure label={t('plLeft')} value={fmt(Math.max(0, q.remaining))} intent={out ? 'danger' : undefined} /><Figure label={t('plCount')} value={q.units.length} />
+      </Stack>
+      <Stack direction="column" gap={2} surface="region">
+        <Text size="xs" intent="muted" weight="bold">{t('plLadder')}</Text>
+        <Ladder aria-label={t('plLadder')} rows={shown.map((u) => ({
+          id: String(u.index), label: itemName(u.itemId), share: q.high ? u.usd / q.high : 0, amount: usd(u.usd),
+          color: itemOf('shade', u.itemId)?.hex ?? showLookOf(u.itemId)?.look.hex,
+          action: lot.kind === 'drop' ? <Button variant="glass" disabled={w.usd < u.usd || out} onClick={() => buy(q.units.indexOf(u))}>{t('plBuyUnit')}</Button> : undefined,
+        }))} />
         {q.units.length > shown.length && <Button variant="glass" onClick={() => setAll(true)}>{t('plMore', { n: q.units.length - shown.length })}</Button>}
       </Stack>
-      {lot.kind === 'pack' && <Button variant="glass" disabled={w.usd < q.total || q.remaining <= 0} onClick={() => buy(null)}>{w.usd < q.total ? t('shNoFunds') : t('plBuyPack', { v: usd(q.total) })}</Button>}
+      {lot.kind === 'pack' && <Button variant="glass" disabled={w.usd < q.total || out} onClick={() => buy(null)}>{w.usd < q.total ? t('shNoFunds') : t('plBuyPack', { v: usd(q.total) })}</Button>}
     </Stack></CardBody></Card>
   );
 };

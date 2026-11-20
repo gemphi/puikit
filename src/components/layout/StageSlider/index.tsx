@@ -19,16 +19,16 @@ export type StageSliderProps = {
   /** Slides shown on each side of the centre (0–3). `auto` (the default): two, so five in view, while the shell's menu
       panel is closed; one, so three, while it is open or the stage is phone-narrow. */
   sides?: number | 'auto';
-  /** Each side level is this fraction of the one before it (0.5: a side slide is half the centre's height). */
+  /** Each side level is this fraction of the one before it (0.75, the default: a side slide is three quarters of the centre). */
   sideScale?: number;
   /** How much of each side slide tucks under the one in front of it (0.5: half of it). */
   overlap?: number;
-  /** How much of the outermost slides tucks under (0.8: a thin edge shows), so three read as in view and the next peek. */
+  /** How much of the outermost slides tucks under when two show a side (0.8 by default: a thin edge shows), so three read as in view and the next peek. */
   outerOverlap?: number;
   /** Width of the centre slide (any CSS length); with `fill`, only the most it may take (no limit by default). */
   stageWidth?: string;
-  /** On by default: the centre is as large as the row and the page's visible height allow, and the sides grow into
-      whatever width is left, so the stage uses its whole space. Off: the centre is `stageWidth`. */
+  /** On by default: the centre is as large as the row and the page's visible height allow. Off: the centre is
+      `stageWidth`. The sides keep `sideScale` either way. */
   fill?: boolean;
   /** Progress bar and position under the stage (default on). */
   progress?: boolean;
@@ -49,20 +49,14 @@ const rowOf = (s: number, reach: number, overlap: number, outer = overlap) => {
   const off: number[] = [0]; for (let k = 1; k <= reach; k++) off[k] = off[k - 1] + Math.pow(s, k - 1) / 2 + Math.pow(s, k) / 2 - ov(k) * Math.pow(s, k);
   return { off, span: 2 * (off[reach] + Math.pow(s, reach) / 2) };
 };
-/** The largest side scale, from `s` up to 0.8, whose row still fits `room` centre widths (halving the gap each step). */
-const growTo = (s: number, reach: number, overlap: number, room: number, outer = overlap) => {
-  if (!reach || rowOf(s, reach, overlap, outer).span >= room) return s;
-  let lo = s, hi = 0.8; for (let i = 0; i < 16; i++) { const mid = (lo + hi) / 2; if (rowOf(mid, reach, overlap, outer).span <= room) lo = mid; else hi = mid; }
-  return lo;
-};
 
 /**
  * StageSlider: one slide in the centre and its neighbours either side, each side level `sideScale` of the one in front
- * (half its height by default) with `overlap` of it tucked underneath, so the row reads as a deck seen from the front.
- * Arrows sit on the sides, the keyboard arrows step, a side slide steps when clicked, and a progress bar in the
- * theme's primary (one colour, track and meter) shows where you are. Tokens only.
+ * (three quarters by default) with `overlap` of it tucked underneath, so the row reads as a deck seen from the front.
+ * The arrows stand in the gap at either end, outside the slides; the keyboard arrows step, a side slide steps when
+ * clicked, and under the stage, on a ground of their own, a progress bar and the position show where you are. Tokens only.
  */
-export const StageSlider = ({ items, index, defaultIndex = 0, onIndexChange, sides = 'auto', sideScale = 0.5, overlap = 0.5, outerOverlap, stageWidth, fill = true, progress = true, footer,
+export const StageSlider = ({ items, index, defaultIndex = 0, onIndexChange, sides = 'auto', sideScale = 0.75, overlap = 0.5, outerOverlap, stageWidth, fill = true, progress = true, footer,
   prevLabel = 'Previous', nextLabel = 'Next', positionLabel = (i, n) => `${i} / ${n}`, className, ...rest }: StageSliderProps) => {
   const [own, setOwn] = useState(defaultIndex);
   const n = items.length; const at = wrap(index ?? own, Math.max(1, n));
@@ -75,10 +69,9 @@ export const StageSlider = ({ items, index, defaultIndex = 0, onIndexChange, sid
   if (!n) return null;
   const want = sides === 'auto' ? (navOpen || narrow ? 1 : 2) : sides;
   const reach = Math.max(0, Math.min(3, want, Math.floor((n - 1) / 2) || (n > 1 ? 1 : 0)));
-  const outer = outerOverlap ?? overlap;
+  const outer = outerOverlap ?? (reach > 1 ? 0.8 : overlap);
   const base = rowOf(sideScale, reach, overlap, outer);
-  const grown = fill && fit.room && !narrow ? growTo(sideScale, reach, overlap, fit.room, outer) : sideScale;
-  const scale = (k: number) => Math.pow(grown, Math.abs(k)); const { off } = rowOf(grown, reach, overlap, outer);
+  const scale = (k: number) => Math.pow(sideScale, Math.abs(k)); const { off } = base;
   const shown = Array.from({ length: reach * 2 + 1 }, (_, j) => j - reach).filter((d) => n > 1 || d === 0);
   const dup = n < reach * 2 + 1;
   return (
@@ -101,9 +94,9 @@ export const StageSlider = ({ items, index, defaultIndex = 0, onIndexChange, sid
         </>}
       </Box>
       {(progress || footer) && (
-        <Box className={styles.foot}>
-          {progress && <Box className={styles.meter}><ProgressBar value={(at + 1) / n} size="sm" animate={false} intent="primary" /></Box>}
-          {progress && <Text as="span" size="xs" intent="muted" numeric>{positionLabel(at + 1, n)}</Text>}
+        <Box className={cn(styles.foot, 'phi-region')}>
+          {progress && <Box className={styles.meter}><ProgressBar value={(at + 1) / n} size="md" animate={false} intent="primary" /></Box>}
+          {progress && <Text as="span" size="xs" weight="bold" numeric className={styles.position}>{positionLabel(at + 1, n)}</Text>}
           {footer}
         </Box>
       )}

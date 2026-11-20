@@ -9,7 +9,7 @@ export type ListViewState = { mode: ViewMode; cols: number };
 /** The list's words, for an app that has its own (a translation); each falls back to the English default. */
 export type ListViewLabels = {
   tile?: string; list?: string; grid?: string; filters?: string; close?: string;
-  search?: string; sort?: string; all?: string; clear?: string;
+  search?: string; sort?: string; all?: string; clear?: string; order?: string; forward?: string; backward?: string;
   prev?: string; next?: string; position?: (k: number, n: number) => string;
 };
 
@@ -52,9 +52,10 @@ export type ListViewProps<T> = {
 const CONTROL = 'button, a, input, select, textarea, label, [role="button"], [role="radio"], [role="checkbox"], [role="tab"]';
 
 /**
- * Every list in a phi-kit app: the view toolbar (tile, list, grid), Filter & sort as a drawer from the right built
- * from the rows' own fields (facets), search and sorts, then the cards or a sortable table. The same as Phiegg's
- * lists, without a store, so any app can use it.
+ * Every list in a phi-kit app: the view toolbar (tile, list, grid), then Filter and Sort, two icons and two drawers
+ * from the right: Filter is the search and the rows' own fields (facets), Sort the sorts and their order (any sort
+ * can be turned round). Then the cards or a sortable table. The same as Phiegg's lists, without a store, so any app
+ * can use it.
  */
 export function ListView<T>({ rows, keyOf, text, facets = [], sorts = [], render, table, onRow, mode: start, cols = 4, minItemWidth = '15rem', pageSize, empty = 'Nothing matches.', noun = 'items',
   count, view, onView, labels = {}, tile = 'row', slider, openCard = false, cardClassName, tableOptions }: ListViewProps<T>) {
@@ -67,21 +68,24 @@ export function ListView<T>({ rows, keyOf, text, facets = [], sorts = [], render
   const perView = view ? Math.min(3, Math.max(1, view.cols)) : ownPerView;
   const setMode = (m: ViewMode) => (view ? onView?.({ ...view, mode: m }) : setOwnMode(m));
   const setPerView = (n: number) => (view ? onView?.({ ...view, cols: n }) : setOwnPerView(n));
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState<'filter' | 'sort' | null>(null);
+  const [reverse, setReverse] = React.useState(false);
   const [q, setQ] = React.useState('');
   const [sel, setSel] = React.useState<Record<string, string>>({});
   const [sort, setSort] = React.useState(sorts[0]?.id ?? '');
   const [page, setPage] = React.useState(0);
-  React.useEffect(() => { setPage(0); }, [rows, q, sel, sort]);
+  React.useEffect(() => { setPage(0); }, [rows, q, sel, sort, reverse]);
   const ql = q.trim().toLowerCase();
   const by = sorts.find((x) => x.id === sort)?.by;
   const shown = rows.filter((r) => (!ql || !text || text(r).toLowerCase().includes(ql)) && matchFacets(r, facets, sel));
   if (by) shown.sort(by);
+  if (reverse) shown.reverse();
   const pages = pageSize ? Math.max(1, Math.ceil(shown.length / pageSize)) : 1;
   const cur = Math.min(page, pages - 1);
   const slice = pageSize ? shown.slice(cur * pageSize, cur * pageSize + pageSize) : shown;
   const active = Object.values(sel).filter(Boolean).length + (ql ? 1 : 0);
   const rowClick = onRow ? (r: T) => onRow(r) : undefined;
+  const words = { filters: labels.filters ?? 'Filter', search: labels.search ?? 'Search', sort: labels.sort ?? 'Sort', all: labels.all ?? 'All', clear: labels.clear ?? 'Clear', order: labels.order, forward: labels.forward, backward: labels.backward };
   // A sticky table scrolls inside its own height; a plain one scrolls sideways in a box.
   const tableOf = () => (tableOptions?.sticky
     ? <DataTable rows={slice} getKey={(r) => keyOf(r)} columns={table!} onRowClick={rowClick} stickyHeader stickyFirst maxHeight={tableOptions.maxHeight} limit={tableOptions.limit} groupBy={tableOptions.groupBy} />
@@ -99,11 +103,14 @@ export function ListView<T>({ rows, keyOf, text, facets = [], sorts = [], render
     <Stack direction="column" gap={3}>
       <ViewToolbar mode={mode} onMode={setMode} perView={slider ? undefined : perView} onPerView={slider ? undefined : setPerView}
         count={count ? count(shown.length) : `${shown.length.toLocaleString('en-US')} ${noun}`}
-        onFilters={() => setOpen(!open)} filtersOpen={open} activeFilters={active} labels={{ tile: labels.tile, list: labels.list, grid: labels.grid, filters: labels.filters }} />
-      <FilterLayout open={open} onClose={() => setOpen(false)} title={labels.filters} closeLabel={labels.close}
-        filters={<FacetFilters facets={facetsOf(rows, facets)} selected={sel} onSelect={(f, o) => setSel((x) => ({ ...x, [f]: o ?? '' }))}
-          search={text ? q : undefined} onSearch={text ? setQ : undefined} sorts={sorts.map((x) => ({ id: x.id, label: x.label }))} sort={sort} onSort={setSort}
-          labels={{ search: labels.search ?? 'Search', sort: labels.sort ?? 'Sort', all: labels.all ?? 'All', clear: labels.clear ?? 'Clear' }} />}>
+        onFilters={facets.length || text ? () => setOpen(open === 'filter' ? null : 'filter') : undefined} filtersOpen={open === 'filter'} activeFilters={active}
+        onSort={sorts.length ? () => setOpen(open === 'sort' ? null : 'sort') : undefined} sortOpen={open === 'sort'} sortLabel={sorts.find((x) => x.id === sort)?.label}
+        labels={{ tile: labels.tile, list: labels.list, grid: labels.grid, filters: words.filters, sort: words.sort }} />
+      <FilterLayout open={open !== null} onClose={() => setOpen(null)} title={open === 'sort' ? words.sort : words.filters} closeLabel={labels.close}
+        filters={open === 'sort'
+          ? <FacetFilters sorts={sorts.map((x) => ({ id: x.id, label: x.label }))} sort={sort} onSort={setSort} reverse={reverse} onReverse={setReverse} labels={words} />
+          : <FacetFilters facets={facetsOf(rows, facets)} selected={sel} onSelect={(f, o) => setSel((x) => ({ ...x, [f]: o ?? '' }))}
+            search={text ? q : undefined} onSearch={text ? setQ : undefined} openGroups={4} labels={words} />}>
         {shown.length === 0 ? <Box surface="region"><Text intent="muted">{empty}</Text></Box>
           : mode === 'list' && table ? tableOf()
           : !render ? (table ? tableOf() : null)

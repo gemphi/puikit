@@ -1,26 +1,32 @@
 // StageSlider: every slide shares one grid cell; offsets and scales come from the component, motion from the theme.
-.root { --pui-stage-pad: 0rem; display: flex; flex-direction: column; gap: var(--phi-space-3, 0.75rem); min-width: 0; outline: none; }
-/* The slides run to the stage's edges (no room kept for the arrows): the arrows are doors over the ends. */
-.stage { position: relative; display: grid; justify-items: center; align-items: center; overflow-x: clip; padding: 0; }
+.root { --pui-stage-pad: calc(2.5rem + var(--phi-space-2)); display: flex; flex-direction: column; gap: var(--phi-space-3, 0.75rem); min-width: 0; outline: none; }
+/* The stage keeps a gap at either end (--pui-stage-pad) and the arrows stand in it, outside the slides, never over
+   one. */
+.stage { position: relative; display: grid; justify-items: center; align-items: center; overflow-x: clip; padding: 0 var(--pui-stage-pad); }
 .slide {
   grid-area: 1 / 1; width: var(--pui-stage-w); max-width: 100%; transform-origin: center center;
   transition: transform var(--phi-transition-slow, 0.35s ease), filter var(--phi-transition-normal, 0.2s ease);
   filter: brightness(0.92) saturate(0.9); cursor: pointer;
+  /* A slide stands in front of the ones behind it: it keeps the page's colour under its glass and washes out what
+     it covers, so the words of the slide behind never read through the one in front. */
+  border-radius: var(--phi-radius-shape, var(--phi-radius-card)); background: var(--phi-glass-ground);
+  backdrop-filter: var(--phi-glass-blur-deep); -webkit-backdrop-filter: var(--phi-glass-blur-deep);
   &:hover { filter: brightness(1); }
 }
 .centre { filter: none; cursor: auto; }
 .arrow.arrow {
-  /* Two doors that close the row from either end, square on the outside and rounded only on the side facing the
-     slides; glass, its light running from the edge inward. */
-  /* Two thirds of the old door's width, half again the old square's height, centred, 8px in from the row's edge. */
-  position: absolute; top: 50%; z-index: 20; width: calc(2.75rem * 2 / 3); height: calc(3.5rem * 1.5); transform: translateY(-50%);
-  backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur); box-shadow: none;
+  /* A button in the gap at each end of the row, outside the slides: every corner rounded, as wide as the gap
+     leaves, on the ground every control stands on. */
+  position: absolute; top: 50%; z-index: 20; width: calc(var(--pui-stage-pad) - var(--phi-space-2)); height: calc(3.5rem * 1.5); transform: translateY(-50%);
+  border-radius: var(--phi-radius-md) !important; background-image: var(--phi-control-ground); box-shadow: none;
 }
-.prev.prev { left: var(--phi-space-2); border-radius: 0 var(--phi-radius-lg) var(--phi-radius-lg) 0 !important; background-image: var(--phi-label-strong); }
-.next.next { right: var(--phi-space-2); border-radius: var(--phi-radius-lg) 0 0 var(--phi-radius-lg) !important; background-image: var(--phi-label-end-strong); }
-.prev.prev:hover { background-image: var(--phi-label-strong), var(--phi-label); }
-.next.next:hover { background-image: var(--phi-label-end-strong), var(--phi-label-end); }
+.prev.prev { left: 0; }
+.next.next { right: 0; }
+.arrow.arrow:hover { background-image: var(--phi-control-ground-strong), var(--phi-control-ground); }
+/* What plays the stage (where you are, and what to do with the slide in front) stands on a ground of its own, lit
+   from top to bottom. */
 .foot { display: flex; align-items: center; gap: var(--phi-space-3, 0.75rem); width: min(100%, var(--pui-stage-w, 35rem)); margin: 0 auto; }
+.position { flex: none; padding: var(--phi-space-1) var(--phi-space-2); border-radius: var(--phi-radius-md); background-image: var(--phi-row-holder); }
 .meter { flex: 1; min-width: 0; }
 // Fill: the slider is a container; the centre is the least of the row's share of its width (less the arrows' room,
 // over the row's span), the height its page shows (--pui-stage-hcap, measured) and any `stageWidth` the page set.

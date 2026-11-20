@@ -31,6 +31,8 @@
   --phi-glass-rim-soft: transparent;
   /* Blur only: a saturation boost recoloured whatever lay under a surface, so two cards read as two colours. */
   --phi-glass-blur: blur(22px);
+  /* A surface that stands in front of other content (the slide in front of a stage): what is behind is a wash. */
+  --phi-glass-blur-deep: blur(56px);
   /* The theme's colour, laid the same ways, only under the pointer. */
   --phi-tint-pct: 26%;
   --phi-tint: color-mix(in srgb, var(--phi-color-primary) var(--phi-tint-pct), transparent);

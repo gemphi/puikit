@@ -136,13 +136,28 @@ const LIVE: Record<string, (now: number) => ListParts> = {
         { id: 'minted', header: t('lsColMinted'), cell: (r) => look(r).minted + ' / ' + look(r).edition, sortValue: (r) => look(r).minted / (look(r).edition || 1), align: 'right' }],
     };
   },
-  lot: (now) => { const lot = as<PoolLot>; return {
-    sorts: [{ id: 'value', label: t('lsSortValue'), by: (a, b) => quote(lot(b), now).total - quote(lot(a), now).total },
-      { id: 'sold', label: t('lsSortSold'), by: (a, b) => quote(lot(b), now).sold / lot(b).supply - quote(lot(a), now).sold / lot(a).supply },
-      { id: 'new', label: t('lsSortNew'), by: (a, b) => lot(a).opensAt.localeCompare(lot(b).opensAt) }],
-    table: [{ id: 'total', header: t('lsColValue'), cell: (r) => usd(quote(lot(r), now).total), sortValue: (r) => quote(lot(r), now).total, align: 'right' },
-      { id: 'sold', header: t('lsColSold'), cell: (r) => fmt(quote(lot(r), now).sold) + ' / ' + fmt(lot(r).supply), sortValue: (r) => quote(lot(r), now).sold / lot(r).supply, align: 'right' }],
-  }; },
+  lot: (now) => {
+    // A lot's quote is worked out once a tick, then read by every filter, sort and column.
+    const lot = as<PoolLot>; const seen = new Map<string, ReturnType<typeof quote>>();
+    const of = (r: ItemRow) => { let q = seen.get(r.id); if (!q) { q = quote(lot(r), now); seen.set(r.id, q); } return q; };
+    const move = (n: number) => (n > 0 ? '+' : '') + (n * 100).toFixed(1) + '%';
+    return {
+      facets: [...facetsFor<ItemRow>('lot'),
+        { id: 'stock', label: t('lsStock'), get: (r) => (of(r).remaining <= 0 ? t('lsSoldOut') : t('lsOnSale')) },
+        { id: 'move', label: t('lsMove'), get: (r) => (of(r).change >= 0 ? t('lsRising') : t('lsFalling')) },
+        { id: 'size', label: t('lsSize'), get: (r) => t('lsSizeOf', { n: lot(r).itemIds.length }) }],
+      sorts: [{ id: 'value', label: t('lsSortValue'), by: (a, b) => of(b).total - of(a).total }, { id: 'valueLow', label: t('lsSortValueLow'), by: (a, b) => of(a).total - of(b).total },
+        { id: 'top', label: t('lsSortTop'), by: (a, b) => of(b).high - of(a).high }, { id: 'move', label: t('lsSortMove'), by: (a, b) => Math.abs(of(b).change) - Math.abs(of(a).change) },
+        { id: 'sold', label: t('lsSortSold'), by: (a, b) => of(b).soldPct - of(a).soldPct }, { id: 'soldLeast', label: t('lsSortSoldLeast'), by: (a, b) => of(a).soldPct - of(b).soldPct },
+        { id: 'units', label: t('lsSortUnits'), by: (a, b) => lot(b).itemIds.length - lot(a).itemIds.length },
+        { id: 'new', label: t('lsSortNew'), by: (a, b) => lot(a).opensAt.localeCompare(lot(b).opensAt) }, { id: 'az', label: t('lsSortAz'), by: (a, b) => lot(a).title.localeCompare(lot(b).title, undefined, { numeric: true }) }],
+      table: [{ id: 'total', header: t('lsColValue'), cell: (r) => usd(of(r).total), sortValue: (r) => of(r).total, align: 'right' },
+        { id: 'move', header: t('lsColMove'), cell: (r) => <Text as="span" size="sm" numeric intent={of(r).change >= 0 ? 'success' : 'danger'}>{move(of(r).change)}</Text>, sortValue: (r) => of(r).change, align: 'right' },
+        { id: 'high', header: t('lsColHigh'), cell: (r) => usd(of(r).high), sortValue: (r) => of(r).high, align: 'right' },
+        { id: 'sold', header: t('lsColSold'), cell: (r) => fmt(of(r).sold) + ' / ' + fmt(lot(r).supply), sortValue: (r) => of(r).soldPct, align: 'right' },
+        { id: 'left', header: t('lsColLeft'), cell: (r) => fmt(Math.max(0, of(r).remaining)), sortValue: (r) => of(r).remaining, align: 'right' }],
+    };
+  },
   quest: function useQuestList() {
     const eco = useEconomy();
     return { facets: [...facetsFor<ItemRow>('quest'), { id: 'status', label: t('lsStatus'), get: (r) => (eco.quests[r.id] ? t('lsEntered') : t('lsOpen')) }] };

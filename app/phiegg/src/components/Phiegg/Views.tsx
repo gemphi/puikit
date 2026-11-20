@@ -41,6 +41,6 @@ export function ListView<T>({ groupBy, onRow, cols, empty, ...rest }: Omit<ListV
     // Every record opens: the page's own action, else its record by id (state openId: its page, or its record page).
     onRow={onRow ?? ((r) => openId(rest.keyOf(r)))} cols={mobile ? Math.min(cols ?? 4, 2) : cols} empty={empty ?? t('lsNone')}
     count={(n) => `${n} items`} tableOptions={{ sticky: true, maxHeight: '34rem', limit: groupBy ? undefined : 25, groupBy }}
-    labels={{ tile: 'Tile', list: 'List', grid: 'Grid', filters: t('lsFilterSort'), close: t('lsClose'), search: t('searchPh'), sort: t('lsSort'), all: t('seAll'), clear: t('lsClear'),
+    labels={{ tile: 'Tile', list: 'List', grid: 'Grid', filters: t('lsFilters'), close: t('lsClose'), search: t('searchPh'), sort: t('lsSort'), all: t('seAll'), clear: t('lsClear'), order: t('lsOrder'), forward: t('lsForward'), backward: t('lsBackward'),
       prev: t('slPrev'), next: t('slNext'), position: (k, n) => t('slPos', { i: k, n }) }} />;
 }

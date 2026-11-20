@@ -15,3 +15,4 @@ export * from './StatusRail';
 export * from './CommentThread';
 export * from './ItemCard';
 export * from './Swatch';
+export * from './Ladder';
