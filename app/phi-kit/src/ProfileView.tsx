@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Box, Button, Label, Pressable, Stack, StatusRail, TabList, Tag, Text, Textarea, Title } from '@pui/components';
+import { Box, Button, Label, Stack, StatusRail, TabList, Tag, Text, Textarea, Title } from '@pui/components';
 import type { LucideIcon } from 'lucide-react';
 import { persisted } from './api';
 import words from './words.json';
@@ -52,13 +52,13 @@ const Note: React.FC<{ id: string }> = ({ id }) => {
 const Facts: React.FC<{ r: ProfileRecord }> = ({ r }) => (
   <>
     {r.facts?.length ? (
-      <Stack direction="column" gap={0}>
+      <Stack direction="column" gap={0} surface="region">
         {r.facts.map(([l, v]) => (
           <Stack key={l} direction="row" justify="between" gap={3} paddingY={1} className={css.fact}>
             <Text as="span" size="sm" intent="muted">{l}</Text><Text as="span" size="sm" align="right">{v}</Text>
           </Stack>))}
       </Stack>) : null}
-    {r.note && <Note id={r.id} />}
+    {r.note && <Box surface="region"><Note id={r.id} /></Box>}
   </>
 );
 
@@ -66,9 +66,10 @@ const Facts: React.FC<{ r: ProfileRecord }> = ({ r }) => (
 const Identity: React.FC<{ r: ProfileRecord; heading: 1 | 2; line?: boolean; children?: React.ReactNode }> = ({ r, heading, line, children }) => {
   const main = (r.actions ?? []).filter((a) => a.primary); const rest = (r.actions ?? []).filter((a) => !a.primary);
   const actions = (main.length > 0 || rest.length > 0) && (
-    <Stack direction="row" gap={2} wrap align="center">
-      {main.map((a, i) => <Button key={a.id} size="sm" variant={a.on ? 'secondary' : i === 0 ? 'primary' : 'outline'} iconLeft={a.icon} aria-pressed={a.on} onClick={a.onClick}>{a.label}</Button>)}
-      {rest.map((a) => <Button key={a.id} size="sm" variant="glass" icon={<a.icon size={16} />} aria-label={a.label} title={a.label} aria-pressed={a.on} onClick={a.onClick} />)}
+    <Stack direction="row" gap={2} wrap align="center" surface="region">
+      {/* Every action is the one button, lit from its foot and never filled; the one that is on is only pressed. */}
+      {main.map((a) => <Button key={a.id} variant="glass" iconLeft={a.icon} aria-pressed={a.on} onClick={a.onClick}>{a.label}</Button>)}
+      {rest.map((a) => <Button key={a.id} variant="glass" icon={<a.icon size={16} />} aria-label={a.label} title={a.label} aria-pressed={a.on} onClick={a.onClick} />)}
     </Stack>
   );
   const name = (
@@ -78,27 +79,35 @@ const Identity: React.FC<{ r: ProfileRecord; heading: 1 | 2; line?: boolean; chi
     </Stack>
   );
   // The line: a profile said in one row (the account's own head, a row in a list).
-  if (line) return <Stack direction="row" gap={3} align="center" wrap surface="card">{r.avatar}<Stack direction="column" gap={1} minWidth="12rem" flex="1">{name}{r.bio && <Text size="sm" intent="secondary">{r.bio}</Text>}</Stack>{r.status && <Label icon={r.status.icon}>{r.status.label}</Label>}{actions}</Stack>;
+  if (line) return <Stack direction="row" gap={3} align="center" wrap surface="card" className={css.line}><Box className={css.photo}>{r.avatar}</Box><Stack direction="column" gap={1} minWidth="12rem" flex="1">{name}{r.bio && <Text size="sm" intent="secondary">{r.bio}</Text>}</Stack>{r.status && <Label icon={r.status.icon}>{r.status.label}</Label>}{actions}</Stack>;
   return (
-    <Stack as="section" direction="column" gap={3} surface="card" aria-label={r.name} className={css.card}>
-      <Box className={css.top}>
-        {r.banner && <Box className={css.banner}>{r.banner}</Box>}
-        <Box className={r.banner ? css.face : undefined}>{r.avatar}</Box>
-      </Box>
-      {name}
-      {r.status && <Label icon={r.status.icon}>{r.status.label}</Label>}
+    // Every part of the card is a region of its own (who it is, what to do, its numbers, its words, where it belongs,
+    // its tags, its facts, the note), so each runs against the card and what you press runs against its region (tokens.scss).
+    <Stack as="section" direction="column" gap={2} surface="card" aria-label={r.name} className={css.card}>
+      {/* The picture stands over the name, with no column beside it, so this part is lit from its foot. */}
+      <Stack direction="column" gap={3} surface="region" className={css.stacked}>
+        <Box className={css.top}>
+          {r.banner && <Box className={css.banner}>{r.banner}</Box>}
+          <Box className={r.banner ? css.face : undefined}>{r.avatar}</Box>
+        </Box>
+        {name}
+        {r.status && <Label icon={r.status.icon}>{r.status.label}</Label>}
+      </Stack>
       {actions}
       {r.counts?.length ? (
-        <Stack direction="row" gap={4} wrap>
+        <Stack direction="row" gap={4} wrap surface="region">
           {r.counts.map(([l, v]) => <Stack key={l} direction="column" gap={0}><Text as="span" font="heading" size="lg" lineHeight={1.1}>{v}</Text><Text as="span" size="xs" intent="muted">{l}</Text></Stack>)}
         </Stack>) : null}
-      {r.bio && <Text size="sm">{r.bio}</Text>}
-      {r.more && <Text size="sm" intent="muted">{r.more}</Text>}
+      {(r.bio || r.more) && (
+        <Stack direction="column" gap={2} surface="region">
+          {r.bio && <Text size="sm">{r.bio}</Text>}
+          {r.more && <Text size="sm" intent="muted">{r.more}</Text>}
+        </Stack>)}
       {r.marks?.length ? (
-        <Stack direction="row" gap={2} wrap>
-          {r.marks.map((m) => <Pressable key={m.id} row gap={2} hover pad="sm" onClick={m.onClick}>{m.media}<Text as="span" size="sm">{m.label}</Text></Pressable>)}
+        <Stack direction="row" gap={2} wrap surface="region">
+          {r.marks.map((m) => <Button key={m.id} variant="glass" icon={m.media} onClick={m.onClick}>{m.label}</Button>)}
         </Stack>) : null}
-      {r.tags?.length ? <Stack direction="row" gap={1} wrap>{r.tags.map((x) => <Tag key={x} minimal round size="sm">{x}</Tag>)}</Stack> : null}
+      {r.tags?.length ? <Stack direction="row" gap={1} wrap surface="region">{r.tags.map((x) => <Tag key={x} minimal round size="sm">{x}</Tag>)}</Stack> : null}
       {children}
     </Stack>
   );
@@ -143,7 +152,7 @@ export const ProfileView: React.FC<{ record: ProfileRecord; variant?: 'page' | '
       <Box className={[css.grid, two ? css.two : ''].join(' ')}>
         <Box className={css.side}><Identity r={r} heading={variant === 'page' ? 1 : 2}>{two && <Facts r={r} />}</Identity></Box>
         <Relations r={r} />
-        {!two && (r.facts?.length || r.note) ? <Stack direction="column" gap={3} surface="card"><Facts r={r} /></Stack> : null}
+        {!two && (r.facts?.length || r.note) ? <Stack direction="column" gap={2} surface="card"><Facts r={r} /></Stack> : null}
       </Box>
     </Box>
   );

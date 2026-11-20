@@ -7,7 +7,12 @@
 .pressable:focus-visible { outline: 2px solid var(--phi-color-primary); outline-offset: 2px; }
 .pressable:disabled { cursor: default; opacity: 0.55; }
 .inline { display: inline-flex; vertical-align: middle; }
-.row { display: flex; flex-direction: row; align-items: center; }
+.row { display: flex; flex-direction: row; align-items: center;
+  /* A row is a card: its picture at the left, its words at the right. The row is lit at its right, under the words,
+     and gone toward the picture; the picture's holder is lit at its left and gone toward the words. The two lights
+     run against each other and meet in the middle, so a row is never bare on the page. */
+  background-image: var(--phi-label-end-soft); }
+.row > :is(div, picture, figure):first-child:not(:only-child) { flex: none; padding: 0.2rem; border-radius: var(--phi-radius-md); background-image: var(--phi-label); }
 .inline.row { display: inline-flex; }
 .gap0 { gap: 0; } .gap1 { gap: 0.25rem; } .gap2 { gap: 0.5rem; } .gap3 { gap: 0.75rem; } .gap4 { gap: 1rem; }
 .fill { width: 100%; }
@@ -15,10 +20,13 @@
 .pad-md { padding: 0.6rem 0.75rem; }
 .hover:hover, .hover:focus-visible { background-image: var(--phi-label-soft); }
 .selected { background-image: var(--phi-label-strong); }
+.row.hover:hover, .row.hover:focus-visible { background-image: var(--phi-label-end); }
+.row.selected { background-image: var(--phi-label-end-strong); }
 .divider { border-bottom: 1px solid var(--phi-color-border-subtle, var(--phi-color-border)); border-radius: 0; }
 .column { display: flex; flex-direction: column; align-items: stretch; }
 .card { background: var(--phi-surface); border-radius: var(--phi-radius-md); padding: 1rem; height: 100%;
   transition: box-shadow var(--phi-transition-fast, 0.15s) ease, background-color var(--phi-duration, 0.2s) ease; }
 .card:hover, .card:focus-visible { box-shadow: var(--phi-shadow-2, 0 6px 18px color-mix(in srgb, var(--phi-color-text-primary) 12%, transparent)); }
 .current { background-image: var(--phi-label); }
+.row.current { background-image: var(--phi-label-end); }
 .accent.selected, .accent.current { background-image: var(--phi-label-strong); }

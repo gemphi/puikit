@@ -134,7 +134,7 @@ export interface StyleProps {
    * A theme surface: `card` (the card gradient, theme radius, 1rem padding), `panel` (the solid card colour), `sunken`
    * (the secondary background) or `hero` (the sidebar gradient, roomy padding). Padding props still win.
    */
-  surface?: 'card' | 'panel' | 'sunken' | 'hero';
+  surface?: 'card' | 'panel' | 'sunken' | 'hero' | 'region';
   /** A hairline rule on one side (rows in a list, a header). */
   rule?: 'top' | 'bottom';
   /** Lay the children out as a grid that fits as many columns as stay at least this wide, sharing the row ('220px', '14rem'). */
@@ -186,7 +186,8 @@ export function stylePropsToCSS(props: StyleProps): React.CSSProperties {
   if (props.textTransform) css.textTransform = props.textTransform;
   if (props.letterSpacing) css.letterSpacing = props.letterSpacing;
   if (props.lineHeight !== undefined) { css.lineHeight = props.lineHeight; (css as Record<string, unknown>)['--pui-text-lh'] = props.lineHeight; }
-  if (props.surface) {
+  // A region (a group inside a surface) takes its light, corner and padding from tokens.scss by how deep it sits.
+  if (props.surface && props.surface !== 'region') {
     const bg = { card: 'var(--phi-gradient-card)', panel: 'var(--phi-color-background-card)', sunken: 'var(--phi-color-background-secondary)', hero: 'var(--phi-gradient-sidebar)' }[props.surface];
     // A card surface is three layers (tokens.scss): its colour goes on the face layer, the box itself is the dark edge.
     if (props.surface === 'card') (css as Record<string, unknown>)['--card-face'] = css.background ?? bg;

@@ -93,7 +93,7 @@ export const EntityLayout: React.FC<EntityLayoutProps> = ({ title, sub, columns,
           ? <Pressable className={styles.heroCard} aria-label={hero.cardLabel} title={hero.cardLabel} onClick={hero.onCard}>{hero.card}</Pressable>
           : <Box className={styles.heroCard}>{hero.card}</Box>)}
       </>) : (
-      <Stack direction="row" gap={3} align="end" wrap className={styles.head}>
+      <Stack direction="row" gap={3} align="end" wrap className={styles.head} surface="region">
         <Title level={1} className={styles.title}>{title}</Title>
         {sub && <Text intent="secondary" className={styles.sub}>{sub}</Text>}
       </Stack>)}

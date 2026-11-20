@@ -13,7 +13,7 @@ export const ListPage: React.FC<{ path: string }> = ({ path }) => {
   const count = tabs[0]?.rows.length ?? 0; const title = worded(route.title, count);
   return (
     <Page><Stack direction="column" gap={4}>
-      <Stack direction="column" gap={1}><Title level={2} size="xl">{title}</Title>{route.sub ? <Text intent="secondary">{worded(route.sub, count)}</Text> : null}</Stack>
+      <Stack direction="column" gap={1} surface="region"><Title level={2} size="xl">{title}</Title>{route.sub ? <Text intent="secondary">{worded(route.sub, count)}</Text> : null}</Stack>
       <TabLists tabs={tabs} on={on} onTab={setOn} label={title} />
     </Stack></Page>
   );

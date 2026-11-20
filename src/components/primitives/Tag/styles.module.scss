@@ -46,7 +46,8 @@
   /* An intent is a stronger light, never a colour of its own. */
   &.intent-primary, &.intent-success, &.intent-warning, &.intent-error, &.intent-info { background: var(--phi-label-strong); }
 
-  &.minimal { background: none; }
+  /* Nothing sits on a page for free: the quietest tag still stands on a faint light, from its foot. */
+  &.minimal { background: var(--phi-surface-soft); }
   /* With no ground of its own, a minimal tag's icon takes the label's chip, so it never sits bare. */
   &.minimal .icon { padding: var(--phi-space-1); border-radius: var(--phi-chip-radius, var(--phi-radius-sm)); background: var(--phi-label); }
 

@@ -127,8 +127,7 @@ a.button,
 }
 :where(.phi-layers) { padding: var(--phi-card-layer-top) var(--phi-card-layer-right) var(--phi-card-layer-bottom) var(--phi-card-layer-top); }
 /* No ::before/::after. A LAYER IS A REAL ELEMENT: a surface inside a surface is the next layer. It steps its corner
-   down the ladder (lg, then sm, and no further: a card deeper in still keeps an eighth of the option, so no card reads sharp) and halves its bottom padding, keeps its own gradient so the real layers stack and brighten
-   inward, and lays no second blur over the first. Each layer obeys these rules on its own. Explicit depth levels,
+   down the ladder (lg, then sm, and no further: a card deeper in still keeps an eighth of the option, so no card reads sharp) and halves its bottom padding, takes its light by its depth (below, GROUPED THINGS), and lays no second blur over the first. Each layer obeys these rules on its own. Explicit depth levels,
    since a custom property cannot read its own inherited value. */
 :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) {
   --phi-radius-shape: var(--phi-radius-md);
@@ -139,6 +138,18 @@ a.button,
 :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) { --phi-radius-shape: var(--phi-radius-md); --phi-card-pad-b: calc(max(var(--phi-radius-card), 1.5rem) / 8); }
 :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) { --phi-radius-shape: var(--phi-radius-md); --phi-card-pad-b: calc(max(var(--phi-radius-card), 1.5rem) / 16); }
 :where(.phi-layers) :where(.phi-layers) { padding: 0; }
+
+/* GROUPED THINGS RUN AGAINST WHAT HOLDS THEM. A region (surface="region", or .phi-region) is any group of things that
+   belong together inside a surface: a profile's actions, its numbers, its words, a menu's group. It has no blur and
+   no depth of its own, only a light. Every surface and region takes its light by how deep it sits: on the page it is
+   lit from its foot; inside a surface, from its left; inside that, from its foot again, and so on, quieter as it goes
+   in. So a group always shows against its parent, no two neighbours in depth run the same way, and no ground is ever
+   filled from edge to edge. This is the one place that decides it: no component alternates its own grounds. */
+:where([data-surface='region'], .phi-region) { min-width: 0; padding: var(--phi-space-3); border-radius: var(--phi-radius-md); background: var(--phi-surface-soft); }
+:where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) { background: var(--phi-label-soft); }
+:where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) { background: var(--phi-surface-soft); }
+:where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) { background: var(--phi-label-soft); }
+:where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) { background: var(--phi-surface-soft); }
 
 :root {
   /* Nested layers sit close to their child, like a tight grid: the middle layer 24px from the child and the outer 32px
