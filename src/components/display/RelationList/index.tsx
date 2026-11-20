@@ -80,7 +80,7 @@ export const RelationList = ({ title, groups, max = 3, layout = 'grid', showAllL
   const ones = groups.filter((g) => g.items.length === 1);
   return (
     <Box as="section" className={cn(styles.root, className)}>
-      {title && <Title level={4} size="md" className={styles.title}>{title}</Title>}
+      {title && <Box className="phi-region"><Title level={4} size="md" className={styles.title}>{title}</Title></Box>}
       {visible.length === 0 && ones.length === 0 && emptyLabel && <Text size="sm" variant="muted">{emptyLabel}</Text>}
       {ones.length > 0 && (
         <Box className={styles.strip}>{ones.map((g) => { const it = g.items[0]; return (

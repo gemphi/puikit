@@ -97,7 +97,7 @@ export const Sections = ({ sections, className, reorderable = false, storageKey,
       {shown.map((x) => {
         const isExp = expanded === x.id; const isFold = !!folded[x.id] && !isExp; const at = open.indexOf(x);
         return (
-          <Box key={x.id} as="section" className={cn(styles.section, variant === 'card' && 'phi-layers', isExp && styles.exp, isFold && styles.folded)} aria-label={name(x)} data-section={x.id}>
+          <Box key={x.id} as="section" className={cn(styles.section, variant === 'card' ? 'phi-layers' : 'phi-region', isExp && styles.exp, isFold && styles.folded)} aria-label={name(x)} data-section={x.id}>
             <Box className={styles.head}>
               <Box className={styles.title}>
                 <SectionTitle title={x.title} size={size} icon={x.icon} />

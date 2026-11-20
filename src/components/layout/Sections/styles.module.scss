@@ -60,16 +60,15 @@
 .lg .title { flex-wrap: wrap; align-items: center; gap: 0.125rem 0.5rem; }
 .lg .title > :not(.icon) { flex-basis: auto; }
 .sm .title { flex-wrap: wrap; }
-.plain .section { background: none; box-shadow: none; border-radius: 0; }
-.plain .head { padding-left: 0; padding-right: 0; border-bottom: 1px solid var(--phi-color-border-subtle, var(--phi-color-border)); margin-bottom: var(--phi-space-2, 0.5rem); }
+/* A plain section is a region: its ground comes from tokens.scss by its depth, like every group. */
+.plain .section { box-shadow: none; }
+.plain .head { padding-left: 0; padding-right: 0; border-bottom: 0; margin-bottom: var(--phi-space-2, 0.5rem); }
 .plain .body { padding-left: 0; padding-right: 0; overflow: visible; }
 
-/* Glass (tokens/_glass.scss): a section is a child of the pane it sits in, laid from nothing down to glass. */
-.plain .section { background: none; box-shadow: none; }
 
 /* Band: no surface of its own, only the page's light from its top fading to nothing at its foot (no blur, no colour),
    as on a shop's columns; its content as close as the inner layer gap (tokens.scss --phi-layer-in). */
-.band .section { background: var(--phi-surface); box-shadow: none; border-radius: var(--phi-radius-md); }
+.band .section { box-shadow: none; border-radius: var(--phi-radius-md); }
 .band .head { background: none; backdrop-filter: none; -webkit-backdrop-filter: none; padding: var(--phi-layer-in) var(--phi-layer-in) 0 calc(var(--phi-layer-in) / 2); }
 .band .body { overflow: visible; padding: calc(var(--phi-layer-in) / 2) var(--phi-layer-in) calc(var(--phi-layer-in) / 2) calc(var(--phi-layer-in) / 2); }
 
