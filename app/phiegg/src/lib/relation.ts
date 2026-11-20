@@ -56,6 +56,8 @@ export const castsOfHost = (hostId: ID) => D.casts.casts.filter((c) => c.hostIds
 export const castsOfPerson = (personId: ID) => { const hs = new Set(hostsOwnedBy(personId).map((h) => h.id)); return D.casts.casts.filter((c) => c.hostAgentId === personId || c.hostIds.some((h) => hs.has(h))); };
 export const salesOfPerson = (personId: ID) => D.sales.sales.filter((x) => x.fromId === personId || x.toId === personId);
 export const salesOfItem = (itemId: ID) => D.sales.sales.filter((x) => x.itemId === itemId);
+/** An asset's ledger (an EGG item, a SUM, a profile PFT, a ride, a jewel): data/trail.json. */
+export const trailOfItem = (itemId: ID) => D.trail.sales.filter((x) => x.itemId === itemId);
 /** Items a person holds now: the last owner of each item in the sales ledger, plus pieces marked as theirs. */
 export function itemsOfPerson(personId: ID): { kind: 'piece' | 'look'; id: ID }[] {
   const last = new Map<string, { kind: 'piece' | 'look'; owner: string }>();

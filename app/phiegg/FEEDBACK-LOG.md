@@ -694,3 +694,9 @@ To give those three pools their records I ran `node scripts/pools.mjs`. It rewri
 - "Carry the item tabs to the other item pages": the asset page (EGG items, SUMs, rides, jewels, profile PFTs) is the look page's layout: picture left, held; at its right Info, Stats, Owner, Related; the price in the heading's line and the buy action at its right. One component for both, `ItemParts` (seen on Gate pass · Opal Atelier) - **Done**
 - An asset has no Trail tab: these kinds have no ledger in the data (the ledger is looks and pieces), and its Owner tab is the one holder its record names - **Open** (data)
 - Title, place and pool pages do not carry the set: they are not owned items (a title has a cast and episodes, a pool has lots) - **Waiting** on which tabs they should have
+
+## 63. A ledger for assets (2026-11-21)
+- "Yes, seed assets": `scripts/ledger.mjs` also writes `src/data/trail.json`, a ledger for the 1,781 EGG items, SUMs, profile PFTs, rides and jewels (16,547 events), in its own file so nothing that reads `sales.json` moves. An asset its record says is held ends its story with that holder; one nobody holds is listed and bid on, and its Owner tab says no one holds it - **Done**
+- The asset page has all five tabs: Trail 8 rows or more, Owner 8 where it is held (seen on Gate pass · Opal Atelier, Style 08 SUM, Bold Pup #7007) - **Done**
+- A SUM's trail reads as sales between holders; a SUM is deposited into, so "Deposit" events would say it better - **Open**
+- `trail.json` is not in `tree.json`, so Phiora's seed does not carry it yet - **Open**

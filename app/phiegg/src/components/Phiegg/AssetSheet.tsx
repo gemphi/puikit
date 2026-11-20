@@ -3,7 +3,7 @@ import { Button, DataTable, Input, ItemCard, SpriteImage, Stack, Swatch, Tag, Te
 import { EntityPage } from './EntityPage';
 import { useStore } from '@pui/store';
 import { useWallet } from '@phi-kit/wallet';
-import { D, cityOf, jewelSprite, ridePrice, rideSprite, eggUsd, fmt, person, t, usd, rideKind, rideMode, itemOf } from '../../lib/data';
+import { D, cityOf, jewelSprite, ridePrice, rideSprite, eggUsd, fmt, person, t, usd, rideKind, rideMode, itemOf, trailOfItem } from '../../lib/data';
 import { buyAsset, deposit, sumYield, useHoldings } from '../../lib/holdings';
 import { useNow } from '../../lib/market';
 import { spriteOfCell } from '../../lib/portraits';
@@ -14,6 +14,7 @@ import { PersonAvatar } from './PersonAvatar';
 import { Tile } from './Tile';
 import { PageSections } from './PageSections';
 import { ItemOwners, ItemParts } from './ItemParts';
+import { ItemActivity } from './ItemFacts';
 import { usePageTheme } from '../../lib/pageTheme';
 
 type Row = { id: string; k: string; v: React.ReactNode };
@@ -94,6 +95,11 @@ export const AssetSheet: React.FC<{ id: string }> = ({ id }) => {
       {msg && <Text size="sm" role="status">{msg}</Text>}
     </Stack>);
   const ownerId = e?.ownerId ?? p?.holderId ?? c?.holderId ?? j?.holderId;
+  // Its ledger (data/trail.json), and from it who has held it, the newest first, each once.
+  const trail = trailOfItem(id);
+  const hands = trail.filter((x) => x.toId && x.event !== 'offer').sort((a, b) => b.at.localeCompare(a.at))
+    .filter((x, i, all) => all.findIndex((y) => y.toId === x.toId) === i).map((x) => ({ id: x.toId as string, at: x.at, usd: x.priceUsd || 0 }));
+  const holders = hands.length ? hands : ownerId ? [{ id: ownerId }] : [];
   const titles = (e?.seriesIds ?? m?.seriesIds ?? []).map(((id) => itemOf('series', id))).filter((x): x is NonNullable<typeof x> => !!x);
   const inputs = (m?.inputs ?? []).map(((id) => itemOf('egg', id))).filter((x): x is NonNullable<typeof x> => !!x);
   const left = (
@@ -123,7 +129,8 @@ export const AssetSheet: React.FC<{ id: string }> = ({ id }) => {
               { id: 'buy', title: t('asBuy'), content: <Stack direction="column" gap={2}>{story && <Text>{story}</Text>}{buyPanel}</Stack> },
               { id: 'details', title: t('asFacts'), expandable: true, content: <Facts rows={rows.filter((r) => !STAT.has(r.id))} /> }]} /> },
             { id: 'stats', hidden: !rows.some((r) => STAT.has(r.id)), content: <PageSections id="asset-stats" size="sm" sections={[{ id: 'stats', title: t('isTabStats'), expandable: true, content: <Facts rows={rows.filter((r) => STAT.has(r.id))} /> }]} /> },
-            { id: 'owner', hidden: !ownerId, content: <PageSections id="asset-owner" size="sm" sections={[{ id: 'owner', title: t('isTabOwner'), content: <ItemOwners rows={ownerId ? [{ id: ownerId }] : []} /> }]} /> },
+            { id: 'trail', hidden: !trail.length, content: <PageSections id="asset-trail" size="sm" sections={[{ id: 'trail', title: t('isTabTrail'), expandable: true, content: <ItemActivity look={it} events={trail} /> }]} /> },
+            { id: 'owner', content: <PageSections id="asset-owner" size="sm" sections={[{ id: 'owner', title: t('isTabOwner'), content: <ItemOwners rows={holders} /> }]} /> },
             { id: 'related', content: left },
           ]} />) },
         { id: 'chat', title: agent.name, label: t('chat'), content: <AgentChat agentId={agent.id} context={it.name} prompts={[e ? t('asAskHost') : m ? t('asAskSum') : c ? t('asAskRide') : j ? t('asAskJewel') : t('asAskPft')]} />, width: '22rem', folded: true },

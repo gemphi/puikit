@@ -13,7 +13,7 @@ import sourceJson from '../data/source.json';
 import threadCounts from '../data/threadCounts.json';
 import type {
   Agent, AgentsData, ClubPage, CoreData, EventsPage, ExplorePage, FeedPage, Highlight, HostsPage, ID,
-  LandingPage, MessagesPage, RolesData, CastsData, SalesData, ShowsData, Show, EconomyData, SeriesData, LeagueData, LsData, StoresData, Store, ShopLook, PoolsData, Pool, PoolLot, PoolQuest, AssetsData, RideItem, RideData, JewelItem, JewelData, EggItem, SumItem, ItemType, ProfileItem, City, World, District, Place, PhipadPage, Post, ProfilePage, SettingsPage, Shot, Tone, User,
+  LandingPage, MessagesPage, RolesData, CastsData, SalesData, TrailData, ShowsData, Show, EconomyData, SeriesData, LeagueData, LsData, StoresData, Store, ShopLook, PoolsData, Pool, PoolLot, PoolQuest, AssetsData, RideItem, RideData, JewelItem, JewelData, EggItem, SumItem, ItemType, ProfileItem, City, World, District, Place, PhipadPage, Post, ProfilePage, SettingsPage, Shot, Tone, User,
 } from "../types/phiegg";
 
 export const D = {
@@ -38,6 +38,7 @@ export const D = {
   roles: rolesJson as unknown as RolesData,
   casts: castsJson as unknown as CastsData,
   sales: { sales: [] } as unknown as SalesData, // filled by lib/heavy.ts
+  trail: { sales: [] } as unknown as TrailData, // the assets' ledger, filled by lib/heavy.ts
   pools: poolsJson as unknown as PoolsData,
   assets: assetsJson as unknown as AssetsData,
   ride: rideJson as unknown as RideData,

@@ -6,7 +6,7 @@
 import { remapDeep } from '@phi-kit/normalize';
 import { MAP } from './ids';
 import { D, refreshIndexes, STORES } from './data';
-import type { SalesData, ShowsData, StoresData } from '../types/phiegg';
+import type { SalesData, ShowsData, StoresData, TrailData } from '../types/phiegg';
 
 let DONE: Promise<void> | null = null;
 
@@ -16,17 +16,20 @@ export function loadHeavy(): Promise<void> {
     import('../data/stores.json'),
     import('../data/shows.json'),
     import('../data/sales.json'),
-  ]).then(([storesMod, showsMod, salesMod]) => {
+    import('../data/trail.json'),
+  ]).then(([storesMod, showsMod, salesMod, trailMod]) => {
     const stores = storesMod.default as unknown as StoresData;
     const shows = showsMod.default as unknown as ShowsData;
     const sales = salesMod.default as unknown as SalesData;
-    for (const f of [stores, shows, sales]) remapDeep(f, MAP);
+    const trail = trailMod.default as unknown as TrailData;
+    for (const f of [stores, shows, sales, trail]) remapDeep(f, MAP);
     D.stores.stores.push(...stores.stores);
     STORES.push(...stores.stores);
     D.shows.shows.push(...shows.shows);
     D.shows.poses.push(...shows.poses);
     D.shows.season = shows.season; // the season the shows' own title and line name
     D.sales.sales.push(...sales.sales);
+    D.trail.sales.push(...trail.sales);
     refreshIndexes();
   });
   return DONE;

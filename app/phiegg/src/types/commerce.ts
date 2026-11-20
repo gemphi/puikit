@@ -64,6 +64,9 @@ export interface CastsData { casts: Cast[] }
 // ── Sales (data/sales.json): OpenSea-style activity on pieces and looks ──
 export interface SaleEvent { id: ID; event: 'mint' | 'list' | 'offer' | 'sale' | 'transfer'; itemKind: 'piece' | 'look'; itemId: ID; fromId?: ID; toId?: ID; priceUsd: number; at: string }
 export interface SalesData { sales: SaleEvent[] }
+/** The same ledger for the kinds the sales ledger does not cover (data/trail.json): EGG items, SUMs, profile PFTs, rides, jewels. */
+export interface TrailEvent extends Omit<SaleEvent, 'itemKind'> { itemKind: string }
+export interface TrailData { sales: TrailEvent[] }
 
 // ── Pools (data/pools.json, scripts/pools.mjs): the centre of PFTs (profile fungible tokens) ──
 // A pool is a store line, a club drop or a fashion show. It sells lots (solo looks, 4–7-look packs, drops of up to 64

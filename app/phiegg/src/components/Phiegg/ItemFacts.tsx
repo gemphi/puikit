@@ -7,7 +7,7 @@ import { useStore } from '@pui/store';
 import { person, salesOfItem, site, t, usd, itemOf } from '../../lib/data';
 import { useActivity } from '../../lib/activity';
 import { phieggStore } from '../../state/phieggStore';
-import type { ShopLook } from '../../types/phiegg';
+import type { ShopLook, TrailEvent } from '../../types/phiegg';
 
 const swatch = (hex: string) => <Swatch color={hex} size="xs" label={hex} />;
 const evLabel = (k: string) => t(('ev_' + k.replace('.', '_')) as 'ev_buy');
@@ -50,10 +50,10 @@ export const ItemSpecs: React.FC<{ look: ShopLook }> = ({ look }) => {
 
 type Row = { id: string; at: number; kind: string; who: string; usd?: number; mine: boolean };
 /** Everything that happened to an item: its ledger (mint, list, offers, sales, transfers) and what you did with it. */
-export const ItemActivity: React.FC<{ look: ShopLook }> = ({ look }) => {
+export const ItemActivity: React.FC<{ look: { id: string }; events?: TrailEvent[] }> = ({ look, events }) => {
   const mine = useActivity().events.filter((e) => e.ref === look.id || e.with === look.id); useStore(phieggStore);
   const rows: Row[] = [
-    ...salesOfItem(look.id).map((x) => ({ id: x.id, at: Date.parse(x.at), kind: x.event, who: person(x.toId ?? x.fromId ?? '').name ?? '', usd: x.priceUsd || undefined, mine: false })),
+    ...(events ?? salesOfItem(look.id)).map((x) => ({ id: x.id, at: Date.parse(x.at), kind: x.event, who: person(x.toId ?? x.fromId ?? '').name ?? '', usd: x.priceUsd || undefined, mine: false })),
     ...mine.map((e) => ({ id: e.id, at: e.at, kind: e.kind, who: t('isYou'), usd: e.usd, mine: true })),
   ];
   if (!rows.length) return <Text size="sm" intent="muted">{t('isNoActivity')}</Text>;
