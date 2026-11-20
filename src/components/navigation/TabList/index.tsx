@@ -29,9 +29,10 @@ type TabListProps = {
 
 /**
  * One row of tabs. Labels never wrap; when the row is wider than its container it scrolls sideways (edges fade),
- * and the active indicator slides smoothly to the chosen tab, which scrolls into view. Backgrounds, the active
- * pill, radius and motion all come from theme tokens (--phi-control-*, --phi-gradient-control, --phi-radius-*,
- * --phi-transition-*).
+ * and the active indicator slides smoothly to the chosen tab, which scrolls into view. Only the tab that is on is
+ * filled and underlined; the others are plain labels. The row is one stop for the Tab key: the arrows, Home and End
+ * move between tabs, Enter or Space picks. Backgrounds, the active pill, radius and motion all come from theme
+ * tokens (--phi-label, --phi-surface, --phi-radius-*, --phi-transition-*).
  */
 export const TabList = ({ items, activeId, onChange, size = 'md', variant = 'default', place = 'center', className = '', ...rest }: TabListProps) => {
   const row = useRef<HTMLElement | null>(null);
@@ -60,19 +61,33 @@ export const TabList = ({ items, activeId, onChange, size = 'md', variant = 'def
     el.addEventListener('scroll', edges, { passive: true });
     return () => { ro?.disconnect(); el.removeEventListener('scroll', edges); };
   }, [activeId, items.length]);
+  // One stop for the Tab key (the tab that is on, else the first that can be picked); the arrows move between tabs.
+  const stop = items.find((x) => x.id === activeId && !x.disabled)?.id ?? items.find((x) => !x.disabled)?.id;
+  const onKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+    const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1, Home: 0, End: 0 }[e.key];
+    if (step == null) return;
+    const tabs = Array.from(row.current?.querySelectorAll<HTMLElement>('[role="tab"]:not([aria-disabled="true"])') ?? []);
+    if (!tabs.length) return;
+    const at = tabs.indexOf(document.activeElement as HTMLElement);
+    const to = e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length - 1 : (Math.max(at, 0) + step + tabs.length) % tabs.length;
+    e.preventDefault();
+    tabs[to].focus();
+    tabs[to].scrollIntoView?.({ block: 'nearest', inline: 'nearest' });
+  };
   return (
-    <Box ref={row} className={cn(styles.tabList, styles[size], styles[variant], place === 'center' && styles.center, className)} role="tablist" aria-label={rest['aria-label']}>
+    <Box ref={row} className={cn(styles.tabList, styles[size], styles[variant], place === 'center' && styles.center, className)} role="tablist" aria-label={rest['aria-label']} onKeyDown={onKeyDown}>
       <Box as="span" className={styles.indicator} aria-hidden="true" />
       {items.map((item) => {
         const isActive = activeId === item.id;
         return (
           <Box
             as="button"
+            {...{ type: 'button' } /* a tab inside a form picks, it never submits the form */}
             key={item.id}
             role="tab"
             aria-selected={isActive}
             aria-disabled={item.disabled || undefined}
-            tabIndex={item.disabled ? -1 : undefined}
+            tabIndex={item.id === stop ? 0 : -1}
             className={cn(styles.tab, isActive && styles.active)}
             onClick={() => { if (!item.disabled) onChange?.(item.id); }}
           >
