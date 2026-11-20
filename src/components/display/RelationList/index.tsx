@@ -101,7 +101,7 @@ export const RelationList = ({ title, groups, max = 3, layout = 'grid', showAllL
           <Button variant="icon" aria-label={label} title={label} aria-pressed={how === to} onClick={() => setShape({ ...shape, [g.id]: to })}><I size={16} /></Button>
         );
         return (
-          <Box key={g.id} className={styles.group}>
+          <Box key={g.id} className={styles.group + ' phi-region'}>
             <Box className={styles.head}>
               <Box as="span" className={styles.name}>
                 {g.icon != null && <span className="pui-label-icon" aria-hidden="true">{g.icon}</span>}

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Button, Card, CardBody, ChatBubble, Col, DataTable, Grid, ItemCard, Page, ChoiceRow, Stack, TabList, Tag, Text, Textarea, Title } from '@pui/components';
+import { Box, Button, Card, CardBody, ChatBubble, Col, DataTable, Grid, ItemCard, Page, ChoiceRow, Stack, TabList, Tag, Text, Textarea, Title } from '@pui/components';
 import { useStore } from '@pui/store';
 import { D, eggsOfHost, fmt, person, profileItemOfHolder, storeOfClub, t, typeName, usd, itemOf } from '../../lib/data';
 import { useOwned } from '../../lib/cart';
@@ -70,7 +70,7 @@ export const StudioPage: React.FC = () => {
     <Page><Stack direction="column" gap={4}>
       <Stack direction="column" gap={1}><Title level={2} size="xl">{t('stTitle')}</Title><Text intent="secondary">{t('stSub')}</Text></Stack>
       <Grid gap={4} xs={1} lg={12}>
-        <Col span={4} xs={12} lg={4}><Stack direction="column" gap={2}>
+        <Col span={4} xs={12} lg={4}><Stack direction="column" gap={2} surface="region">
           <Title level={4} size="md">{t('stTemplates')}</Title>
           {SC.scenarios.map((x) => (
             <ItemCard key={x.id} depth={x.id === sid ? 2 : 0} variant="flat" selected={x.id === sid} onClick={() => { setSid(x.id); setPicks({}); setMsg(''); }}
@@ -102,7 +102,7 @@ export const StudioPage: React.FC = () => {
               {msg && <Text size="sm" role="status">{msg}</Text>}
             </Stack>
           </Stack></CardBody></Card>
-          <Title level={4} size="md">{t('stFlows')}</Title>
+          <Box surface="region"><Title level={4} size="md">{t('stFlows')}</Title></Box>
           <ListView rows={flows} keyOf={(f) => f.id} text={(f) => f.greeting} empty={t('stNoFlows')} cols={2}
             facets={[{ id: 'sc', label: t('stTemplates'), get: (f) => SC.scenarios.find((x) => x.id === f.scenarioId)?.title }, { id: 'voice', label: t('stVoice'), get: (f) => f.voice }]}
             sorts={[{ id: 'new', label: t('lsSortRecent'), by: (a, b) => b.at - a.at }]}

@@ -104,7 +104,7 @@ export function ListView<T>({ rows, keyOf, text, facets = [], sorts = [], render
         filters={<FacetFilters facets={facetsOf(rows, facets)} selected={sel} onSelect={(f, o) => setSel((x) => ({ ...x, [f]: o ?? '' }))}
           search={text ? q : undefined} onSearch={text ? setQ : undefined} sorts={sorts.map((x) => ({ id: x.id, label: x.label }))} sort={sort} onSort={setSort}
           labels={{ search: labels.search ?? 'Search', sort: labels.sort ?? 'Sort', all: labels.all ?? 'All', clear: labels.clear ?? 'Clear' }} />}>
-        {shown.length === 0 ? <Text intent="muted">{empty}</Text>
+        {shown.length === 0 ? <Box surface="region"><Text intent="muted">{empty}</Text></Box>
           : mode === 'list' && table ? tableOf()
           : !render ? (table ? tableOf() : null)
           : mode === 'tile' ? (slider ? slider(slice) : tile === 'stage' ? stage() : cards(perView))

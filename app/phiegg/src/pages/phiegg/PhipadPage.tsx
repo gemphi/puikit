@@ -30,7 +30,7 @@ export const PhipadPage: React.FC = () => {
         <Grid gap={3} xs={1} sm={2} md={4}>{P.tracks.map((x) => <Tile key={x.id} tone={x.tone} ratio="4/3" title={'$' + fmt(x.pool)} sub={x.name + ' · ' + x.body} />)}</Grid>
         <Title level={3} size="lg">{t('pipeline')}</Title>
         <Grid gap={3} xs={1} sm={2} md={5}>{P.stages.map((st) => { const list = apps.filter((a) => a.stage === st.id); return (
-          <Stack key={st.id} direction="column" gap={2}><Stack direction="row" justify="between"><Text weight="bold">{st.label}</Text><Tag minimal round size="sm">{list.length}</Tag></Stack>
+          <Stack key={st.id} direction="column" gap={2} surface="region"><Stack direction="row" justify="between"><Text weight="bold">{st.label}</Text><Tag minimal round size="sm">{list.length}</Tag></Stack>
             {list.map((a) => <Card depth={2} key={a.id} variant="flat"><CardBody><Text size="sm" weight="bold">{itemOf('club', a.clubId)?.name ?? names[a.clubId]}</Text>
               <Text size="xs" intent="muted">{t('raised', { ask: '$' + fmt(a.ask), raised: '$' + fmt(a.raised) })}</Text><ProgressBar value={a.ask ? a.raised / a.ask : 0} size="sm" animate={false} /></CardBody></Card>)}</Stack>); })}</Grid>
       </Stack>
