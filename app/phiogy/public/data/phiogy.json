@@ -1,0 +1,165 @@
+{
+  "app": "phiogy",
+  "start": "lora",
+  "nav": [
+    {
+      "id": "direct",
+      "label": "Direct",
+      "icon": "chat",
+      "items": [
+        {
+          "id": "lora",
+          "label": "Lora Vale",
+          "icon": "user"
+        },
+        {
+          "id": "kairo",
+          "label": "Kairo Finch",
+          "icon": "user"
+        },
+        {
+          "id": "mina",
+          "label": "Mina Okoro",
+          "icon": "user"
+        }
+      ]
+    },
+    {
+      "id": "phiace",
+      "label": "Phiace",
+      "icon": "network",
+      "items": [
+        {
+          "id": "lobby",
+          "label": "lobby",
+          "icon": "hash"
+        },
+        {
+          "id": "show",
+          "label": "show and tell",
+          "icon": "hash"
+        },
+        {
+          "id": "help",
+          "label": "help",
+          "icon": "hash"
+        }
+      ]
+    },
+    {
+      "id": "makers",
+      "label": "Makers",
+      "icon": "cube",
+      "items": [
+        {
+          "id": "studio",
+          "label": "studio",
+          "icon": "hash"
+        },
+        {
+          "id": "build",
+          "label": "build",
+          "icon": "hash"
+        }
+      ]
+    }
+  ],
+  "views": {
+    "lora": {
+      "title": "",
+      "blocks": [
+        {
+          "kind": "chat",
+          "variant": "room",
+          "app": "phiogy",
+          "source": "data/room.json",
+          "room": "lora"
+        }
+      ]
+    },
+    "kairo": {
+      "title": "",
+      "blocks": [
+        {
+          "kind": "chat",
+          "variant": "room",
+          "app": "phiogy",
+          "source": "data/room.json",
+          "room": "kairo"
+        }
+      ]
+    },
+    "mina": {
+      "title": "",
+      "blocks": [
+        {
+          "kind": "chat",
+          "variant": "room",
+          "app": "phiogy",
+          "source": "data/room.json",
+          "room": "mina"
+        }
+      ]
+    },
+    "lobby": {
+      "title": "",
+      "blocks": [
+        {
+          "kind": "chat",
+          "variant": "room",
+          "app": "phiogy",
+          "source": "data/room.json",
+          "room": "lobby"
+        }
+      ]
+    },
+    "show": {
+      "title": "",
+      "blocks": [
+        {
+          "kind": "chat",
+          "variant": "room",
+          "app": "phiogy",
+          "source": "data/room.json",
+          "room": "show"
+        }
+      ]
+    },
+    "help": {
+      "title": "",
+      "blocks": [
+        {
+          "kind": "chat",
+          "variant": "room",
+          "app": "phiogy",
+          "source": "data/room.json",
+          "room": "help"
+        }
+      ]
+    },
+    "studio": {
+      "title": "",
+      "blocks": [
+        {
+          "kind": "chat",
+          "variant": "room",
+          "app": "phiogy",
+          "source": "data/room.json",
+          "room": "studio"
+        }
+      ]
+    },
+    "build": {
+      "title": "",
+      "blocks": [
+        {
+          "kind": "chat",
+          "variant": "room",
+          "app": "phiogy",
+          "source": "data/room.json",
+          "room": "build"
+        }
+      ]
+    }
+  }
+}

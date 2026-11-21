@@ -26,6 +26,24 @@ describe('AppShell', () => {
     fireEvent.click(screen.getAllByLabelText('Fold Home')[0]);
     expect(screen.queryByText('First post')).toBeNull();
   });
+  it('folds sub-menus as deep as a storefront: department > category > item, open when the page is inside', () => {
+    const shop = [{ id: 'shop', label: 'Shop', items: [{ id: 'women', label: 'Women', items: [
+      { id: 'women/rtw', label: 'Ready-to-wear', items: [{ id: 'women/rtw/dresses', label: 'Dresses' }, { id: 'women/rtw/tops', label: 'Tops' }] },
+      { id: 'women/shoes', label: 'Shoes', items: [{ id: 'women/shoes/boots', label: 'Boots' }] },
+    ] }] }];
+    const seen: string[] = [];
+    const { rerender } = render(<AppShell brand={{ name: 'Phitest' }} groups={shop} view="shop" onView={(id) => seen.push(id)}>page</AppShell>);
+    expect(screen.queryByText('Ready-to-wear')).toBeNull();
+    fireEvent.click(screen.getByText('Women'));
+    expect(seen).toEqual(['women']);
+    expect(screen.getByText('Ready-to-wear')).toBeTruthy();
+    expect(screen.queryByText('Dresses')).toBeNull();
+    fireEvent.click(screen.getByLabelText('Open Ready-to-wear'));
+    expect(screen.getByText('Dresses')).toBeTruthy();
+    // A page inside a sub-menu opens every fold above it.
+    rerender(<AppShell brand={{ name: 'Phitest' }} groups={shop} view="women/shoes/boots" onView={() => {}}>page</AppShell>);
+    expect(screen.getByText('Boots')).toBeTruthy();
+  });
   it('lists one-page groups as one menu with no heading over itself', () => {
     const pages = [{ id: 'home', label: 'Home', items: [{ id: 'home', label: 'Home' }] }, { id: 'docs', label: 'Docs', items: [{ id: 'docs', label: 'Docs' }] }];
     render(<AppShell brand={{ name: 'Phitest' }} groups={pages} view="home" onView={() => {}}>page</AppShell>);

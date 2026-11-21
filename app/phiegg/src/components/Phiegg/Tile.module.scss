@@ -4,10 +4,13 @@
 .title, .sub { position: relative; margin: 0; }
 .title { line-height: 1.1; }
 .sub { opacity: 0.85; }
+/* A page head's sentence: under the title's line, a readable measure, never wider than the words' side of the tile. */
+.about { position: relative; margin: var(--phi-space-2) 0 0; max-width: 36rem; line-height: 1.4; opacity: 0.9; }
 .ink { color: var(--phi-color-gray-50); }
 .neutral { color: var(--phi-color-text-primary); }
 .glyph { width: 100%; height: 100%; display: grid; place-items: center; color: var(--phi-color-primary); }
-.avatarRing { flex: none; padding: 2px; border: 2px solid var(--phi-shade-1); }
+/* A face in a row of faces stands in a holder of light (.phi-holder, tokens.scss), never in a ring. */
+.avatarRing { flex: none; }
 /* A row of rings: one line, each ring its own size; the rings that would wrap are hidden, so none is squeezed or cut. */
 .ringRow { flex: 1 1 auto; min-width: 0; display: flex; flex-wrap: wrap; gap: var(--phi-space-2); overflow: hidden;
   height: calc(var(--pui-ring, 3.5rem) + 8px); }

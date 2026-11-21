@@ -43,7 +43,7 @@ const CommentsPanel: React.FC<{ kind: string; id: string; title: string; open: b
             <Avatar size="sm" initials={initials(me?.name ?? 'You')} seed={me?.id} alt="" />
             <Stack direction="column" gap={2} flex="1" minWidth="0">
               <Textarea value={draft} onChange={(e) => setDraft((e.target as HTMLTextAreaElement).value)} placeholder="Add a comment…" rows={2} />
-              <Box><Button variant="primary" size="sm" iconLeft={Send} onClick={post} disabled={busy || !draft.trim()}>Post</Button></Box>
+              <Box><Button variant="glass" iconLeft={Send} onClick={post} disabled={busy || !draft.trim()}>Post</Button></Box>
               {note ? <Text size="xs" intent="muted">{note}</Text> : null}
             </Stack>
           </Stack>
@@ -148,16 +148,16 @@ export const RecordSheet: React.FC<{ kind: string; id: string; onClose: () => vo
   const commerceBar = (
     <Stack direction="row" gap={2} wrap align="center">
       {backAction
-        ? <Button variant="primary" size="sm" iconLeft={ShoppingBag} onClick={doBack} disabled={backing}>{backing ? 'Backing…' : backAction.label}</Button>
+        ? <Button variant="glass" iconLeft={ShoppingBag} onClick={doBack} disabled={backing}>{backing ? 'Backing…' : backAction.label}</Button>
         : specActions[0]
-          ? <Button variant="primary" size="sm" iconLeft={ShoppingBag} onClick={() => runAction(specActions[0])}>{specActions[0].label}</Button>
-          : <Button variant="primary" size="sm" iconLeft={ShoppingBag} disabled>Buy</Button>}
+          ? <Button variant="glass" iconLeft={ShoppingBag} onClick={() => runAction(specActions[0])}>{specActions[0].label}</Button>
+          : <Button variant="glass" iconLeft={ShoppingBag} disabled>Buy</Button>}
       {specActions.find((a) => a !== backAction)
-        ? <Button variant="outline" size="sm" iconLeft={Gavel} onClick={() => runAction(specActions.find((a) => a !== backAction)!)}>{specActions.find((a) => a !== backAction)!.label}</Button>
-        : <Button variant="outline" size="sm" iconLeft={Gavel} disabled>Offer</Button>}
-      <Button variant={liked ? 'primary' : 'outline'} size="sm" iconLeft={Heart} onClick={() => setLiked((v) => !v)}>{liked ? 'Liked' : 'Like'}</Button>
-      <Button variant="outline" size="sm" iconLeft={MessageCircle} onClick={() => setComments(true)}>Comment</Button>
-      <Button variant="outline" size="sm" iconLeft={Share2} onClick={() => { try { void navigator.clipboard?.writeText(location.href); } catch { /* no clipboard */ } }}>Share</Button>
+        ? <Button variant="glass" iconLeft={Gavel} onClick={() => runAction(specActions.find((a) => a !== backAction)!)}>{specActions.find((a) => a !== backAction)!.label}</Button>
+        : <Button variant="glass" iconLeft={Gavel} disabled>Offer</Button>}
+      <Button variant="glass" iconLeft={Heart} onClick={() => setLiked((v) => !v)}>{liked ? 'Liked' : 'Like'}</Button>
+      <Button variant="glass" iconLeft={MessageCircle} onClick={() => setComments(true)}>Comment</Button>
+      <Button variant="glass" iconLeft={Share2} onClick={() => { try { void navigator.clipboard?.writeText(location.href); } catch { /* no clipboard */ } }}>Share</Button>
     </Stack>
   );
 
@@ -188,7 +188,7 @@ export const RecordSheet: React.FC<{ kind: string; id: string; onClose: () => vo
         {img ? <Frame ratio="16/9" rounded="lg"><Image src={img} alt="" fit="cover" fill /></Frame> : null}
         <Stack direction="row" gap={3} justify="between" align="start" wrap>
           <Stack direction="column" gap={1}><Title level={2} size="xl">{titleOf(spec, rec!)}</Title><Box><Tag minimal round size="sm">{spec?.label ?? human(kind)}</Tag></Box></Stack>
-          <Button variant="ghost" size="sm" iconLeft={MessageCircle} onClick={() => setComments(true)}>Comments</Button>
+          <Button variant="glass" iconLeft={MessageCircle} onClick={() => setComments(true)}>Comments</Button>
         </Stack>
         {specRows.length ? <DataTable rows={specRows} getKey={(r) => r.id} columns={fieldCols} /> : null}
       </Stack>

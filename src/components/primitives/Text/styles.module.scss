@@ -40,6 +40,8 @@
 .mono { font-family: var(--phi-font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); }
 
 .numeric { font-variant-numeric: tabular-nums; }
-.truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; min-width: 0; }
+/* One line ending in an ellipsis clips across only. A label inside a control is trimmed to its capitals and baseline
+   (core.scss), so clipping down as well cut every tail below the baseline: g, y, p, j, in any face. */
+.truncate { overflow-x: clip; overflow-y: visible; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; min-width: 0; }
 
 .pre { white-space: pre-wrap; overflow-wrap: anywhere; }

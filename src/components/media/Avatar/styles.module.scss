@@ -5,9 +5,10 @@
   justify-content: center;
   flex-shrink: 0;
   overflow: hidden;
-  border-radius: 50%;
-  background-color: var(--phi-color-primary-light);
-  color: var(--phi-color-primary);
+  border-radius: var(--phi-radius-full);
+  /* A face, a mark or initials sit on the kit's surface, never on a theme colour. */
+  background: var(--phi-surface);
+  color: var(--phi-color-text-primary);
   font-weight: var(--phi-font-weight-semibold);
 }
 
@@ -19,15 +20,22 @@
 .xl { --av-u: 0.28rem; width: 5rem; height: 5rem; font-size: var(--phi-font-size-xxl); }
 
 .image { width: 100%; height: 100%; object-fit: cover; }
+/* A mark or logo: the whole square inside the circle (its corners on the rim: inset 1 - 1/sqrt 2 halved), on glass:
+   the record's own two colours when it has them (--av-a, --av-b), else the kit's one surface. Never the theme's ground,
+   which is dark in a dark look and swallows a logo. */
+.mark { background: var(--phi-surface); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur); }
+.tinted.mark { background: linear-gradient(0deg, color-mix(in srgb, var(--av-a) 62%, transparent), color-mix(in srgb, var(--av-b) 38%, transparent)); }
+.contain { object-fit: contain; padding: 14.6%; box-sizing: border-box; }
 .initials, .icon { position: relative; z-index: 1; line-height: 1; }
 .icon { display: grid; place-items: center; width: 56%; height: 56%; > * { width: 100%; height: 100%; } }
 
 /* ── Default profile icon: ring · top semicircle · bottom-left quarter · bottom-right quarter ───────────── */
 .split {
-  /* Two accents per tone; every shade is a mix of them with the card colour, so it follows the theme/palette. */
+  /* Two accents per tone; every shade is that colour let through as glass, so the page shows behind it and it is never
+     the theme's dark ground. */
   --av-a: var(--phi-color-primary);
   --av-b: var(--phi-color-accent-2, var(--phi-color-success));
-  background: color-mix(in srgb, var(--av-a) 16%, var(--phi-color-background-card, #fff));
+  background: color-mix(in srgb, var(--av-a) 22%, transparent); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur);
   color: var(--phi-color-text-primary);
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--av-a) 22%, transparent);
 }
@@ -38,12 +46,12 @@
 .split[data-tone='5'] { --av-a: var(--phi-color-warning); --av-b: var(--phi-color-accent-3, var(--phi-color-primary)); }
 
 /* The inner disc, inset so the outer ring shows as its own shade. */
-.disc { position: absolute; inset: 12%; border-radius: 50%; overflow: hidden; }
+.disc { position: absolute; inset: 12%; border-radius: var(--phi-radius-full); overflow: hidden; }
 /* Top semicircle: one shade. */
-.top { position: absolute; left: 0; right: 0; top: 0; height: 50%; background: color-mix(in srgb, var(--av-a) 34%, var(--phi-color-background-card, #fff)); }
+.top { position: absolute; left: 0; right: 0; top: 0; height: 50%; background: color-mix(in srgb, var(--av-a) 42%, transparent); }
 /* Bottom semicircle, cut in half vertically: two shades. */
-.left { position: absolute; left: 0; width: 50%; bottom: 0; height: 50%; background: color-mix(in srgb, var(--av-a) 58%, var(--phi-color-background-card, #fff)); }
-.right { position: absolute; right: 0; width: 50%; bottom: 0; height: 50%; background: color-mix(in srgb, var(--av-b) 52%, var(--phi-color-background-card, #fff)); }
+.left { position: absolute; left: 0; width: 50%; bottom: 0; height: 50%; background: color-mix(in srgb, var(--av-a) 66%, transparent); }
+.right { position: absolute; right: 0; width: 50%; bottom: 0; height: 50%; background: color-mix(in srgb, var(--av-b) 60%, transparent); }
 .split .initials, .split .icon { text-shadow: 0 1px 2px color-mix(in srgb, var(--phi-color-background-card, #fff) 70%, transparent); }
 
 /* Deck: smaller circles stacked behind the icon, each a level narrower and higher (box-shadows follow the circle). */

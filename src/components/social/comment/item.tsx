@@ -75,8 +75,7 @@ export const CommentItem: React.FC<CommentItemProps> = ({
       {replies && replies.length > 0 && (
         <>
           <Button
-            variant="ghost"
-            size="sm"
+            variant="glass"
             className={styles.replyToggle}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}

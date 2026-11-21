@@ -53,7 +53,6 @@ export const CartItem: React.FC<CartItemProps> = ({
             <Stack direction="row" align="center" gap={2}>
               <Button
                 variant="icon"
-                size="sm"
                 aria-label="Decrease quantity"
                 onClick={() => onUpdateQuantity(id, quantity - 1)}
               >
@@ -62,7 +61,6 @@ export const CartItem: React.FC<CartItemProps> = ({
               <Text as="span" weight="medium" data-quantity="true">{quantity}</Text>
               <Button
                 variant="icon"
-                size="sm"
                 aria-label="Increase quantity"
                 onClick={() => onUpdateQuantity(id, quantity + 1)}
               >
@@ -76,7 +74,6 @@ export const CartItem: React.FC<CartItemProps> = ({
           {!readonly && onRemove && (
             <Button
               variant="icon"
-              size="sm"
               aria-label="Remove item"
               onClick={() => onRemove(id)}
             >

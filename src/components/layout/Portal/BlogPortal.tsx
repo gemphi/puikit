@@ -109,13 +109,13 @@ export const BlogPortal: React.FC<BlogPortalProps> = ({
         </Card>
         <Stack direction="row" justify="between" align="center">
           {previousPost ? (
-            <Button variant="outline" onClick={() => selectPost(previousPost.id)}>
+            <Button variant="glass" onClick={() => selectPost(previousPost.id)}>
               <ArrowLeft size={16} />
               <span>{previousPost.title}</span>
             </Button>
           ) : <Text as="span" />}
           {nextPost && (
-            <Button variant="outline" onClick={() => selectPost(nextPost.id)}>
+            <Button variant="glass" onClick={() => selectPost(nextPost.id)}>
               <span>{nextPost.title}</span>
               <ArrowRight size={16} />
             </Button>

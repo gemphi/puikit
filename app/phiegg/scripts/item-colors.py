@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Measure the garment colour of every look render (public/items/**.webp) so cards, sheets and backgrounds use the
-colour the dress actually is. Writes src/data/itemColors.json: { "items/ls/sm/…webp": { hex, palette, share, light } }.
+colour the dress actually is. Writes src/data/itemColors.json: { "look/<look-id>/front.webp": { hex, palette, share, light } }.
 
 Pixels that are transparent, near-grey (the mannequin) or near-black/near-white shadow are ignored; the rest are
 clustered (k-means, k=4) and the largest cluster is the garment colour. Deterministic, safe to re-run.
@@ -39,7 +39,9 @@ def kmeans(px, k=4, rounds=12):
 
 hexof = lambda c: '#%02x%02x%02x' % c
 result = {}
-for base, _, files in os.walk(os.path.join(PUB, 'items')):
+# Look renders live under items/ (generated looks) and look/<look-id>/ (Lora's Spark, scripts/look-files.py).
+walk = [w for top in ('items', 'look') for w in os.walk(os.path.join(PUB, top))]
+for base, _, files in walk:
     for f in sorted(files):
         if not f.lower().endswith(('.webp', '.png', '.jpg')): continue
         full = os.path.join(base, f); rel = os.path.relpath(full, PUB).replace(os.sep, '/')

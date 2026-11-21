@@ -67,9 +67,6 @@ export const STATUS: Record<Proposal['status'], { label: string; intent: 'succes
 const VOTES = persisted<Record<string, 'for' | 'against'>>('dao.votes', {});
 export const votes = (): Record<string, 'for' | 'against'> => ({ ...VOTES.get() });
 export const castVote = (id: string, v: 'for' | 'against') => VOTES.set({ ...VOTES.get(), [id]: v });
-export const TONE: Record<string, [string, string]> = {
-  accent: ['var(--phi-organic-accent-300)', 'var(--phi-organic-accent-900)'], sage: ['var(--phi-organic-sage-300)', 'var(--phi-organic-sage-900)'],
-  ink: ['var(--phi-color-gray-800)', '#f5ead8'], sand: ['var(--phi-color-background-secondary)', 'var(--phi-color-text-primary)'],
-};
-export const tone = (t: string) => TONE[t] || TONE.sand;
+/** The votes as a hook: a page redraws when one is cast. */
+export const useVotes = () => VOTES.use();
 export const initials = (s: string) => s.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();

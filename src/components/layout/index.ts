@@ -20,6 +20,7 @@ export * from './Rows';
 export * from './Sections';
 export * from './FilterLayout';
 export * from './StageSlider';
+export * from './Bands';
 export * from './Fit';
 export * from './EntityLayout';
 export * from './ShownTitle';

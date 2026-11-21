@@ -5,7 +5,7 @@ import { persisted } from '@phi-kit/api';
 import { OWNED, balance, earn, spend } from '@phi-kit/wallet';
 import { purchase } from '@phi-kit/shop';
 import { DEFAULT_SWAP_RULES, quoteLot, quoteSwap, soldAt, soloLot, unitPrice, type Lot, type LotQuote, type SwapPayout, type SwapQuote, type SwapRules } from '@phi-kit/pricing';
-import { D, coinOf, fmt, liquidityOf, lookOf, lotsOfPool, poolOf, poolQuestOf, salesOfItem, showLookOf, site, unitName, usd } from './data';
+import { D, fmt, liquidityOf, lotsOfPool, salesOfItem, showLookOf, site, unitName, usd, itemOf } from './data';
 import type { ID, Pool, PoolLot, PoolMetric, ShopLook } from '../types/phiegg';
 import { record } from './activity';
 
@@ -24,7 +24,7 @@ export const lookLive = (l: ShopLook, now = Date.now()) => quoteLot(soloOf(l), n
 
 /** What any PFT is worth right now: a shop look at its solo price, a show look at its unit price in the show drop. */
 export function valueOf(itemId: ID, now = Date.now()): { usd: number; poolId: ID; name: string } | undefined {
-  const l = lookOf(itemId);
+  const l = itemOf('look', itemId);
   if (l) return { usd: lookLive(l, now).total, poolId: l.poolId, name: l.name };
   // a unit of a drop (show look or beauty shade): its moving unit price in that drop
   const lot = D.pools.lots.find((x) => x.kind === 'drop' && x.itemIds.includes(itemId)); if (!lot) return undefined;
@@ -39,7 +39,7 @@ export const fmtStat = (m: PoolMetric, v: number, of?: number) =>
   m.format === 'usd' ? (v >= 1e4 ? '$' + fmt(v) : usd(v)) : m.format === 'pct' ? (v > 0 && m.id.startsWith('change') ? '+' : '') + (v * 100).toFixed(1) + '%' : m.format === 'ratio' ? fmt(v) + ' / ' + fmt(of ?? 0) : fmt(Math.round(v));
 
 export function poolNumbers(p: Pool, now = Date.now()) {
-  const lots = lotsOfPool(p); const looks = (p.lookIds ?? []).map(lookOf).filter((l): l is ShopLook => !!l);
+  const lots = lotsOfPool(p); const looks = (p.lookIds ?? []).map(((id) => itemOf('look', id))).filter((l): l is ShopLook => !!l);
   const declared = p;
   const quotes: LotQuote[] = [...lots.map((l) => quote(l, now)), ...looks.map((l) => lookLive(l, now))];
   const units = quotes.flatMap((q) => q.units.map((u) => u.usd));
@@ -56,7 +56,7 @@ export function poolStats(p: Pool, now = Date.now()): StatRow[] {
   const since = (ms: number) => ledger.filter((x) => now - Date.parse(x.at) < ms);
   const soldIn = (ms: number) => N.lots.reduce((n, l) => n + soldAt(asLot(l), now) - soldAt(asLot(l), now - ms), 0);
   const vol = (ms: number) => since(ms).reduce((a, x) => a + x.priceUsd, 0) + soldIn(ms) * avgUnit;
-  const liq = liquidityOf(p); const pq = poolQuestOf(p.questId); const coin = p.coinIds?.[0] ? coinOf(p.coinIds[0]) : undefined;
+  const liq = liquidityOf(p); const pq = itemOf('poolQuest', p.questId); const coin = p.coinIds?.[0] ? itemOf('coin', p.coinIds[0]) : undefined;
   const sw = swapsOf(p.id, now);
   const owners = Math.round(N.looks.reduce((n, l) => n + l.owners, 0) + N.sold * (0.55 + 0.15 * h01(p.id + 'own')));
   const volAll = ledger.reduce((a, x) => a + x.priceUsd, 0) + N.sold * avgUnit;
@@ -88,7 +88,7 @@ export function poolStats(p: Pool, now = Date.now()): StatRow[] {
 
 /** The quest behind a stat: lift it to its target and the pool pays out in its coin. */
 export function statQuest(p: Pool, row: StatRow) {
-  const pq = poolQuestOf(p.questId);
+  const pq = itemOf('poolQuest', p.questId);
   return { id: row.questId, poolId: p.id, metricId: row.metric.id, title: `${row.metric.label}: reach ${fmtStat(row.metric, row.target, row.target)}`,
     reward: Math.round(50 + 950 * h01(row.questId)), rewardCoin: pq?.rewardCoin ?? 'EGG', progress: row.progress, endsAt: pq?.endsAt };
 }
@@ -105,7 +105,7 @@ export function reserveOf(p: Pool, now = Date.now()) { const liq = liquidityOf(p
 
 export function quoteSwapOf(giveId: ID, getId: ID, now = Date.now()): (SwapQuote & { give: NonNullable<ReturnType<typeof valueOf>>; get: NonNullable<ReturnType<typeof valueOf>> }) | undefined {
   const give = valueOf(giveId, now), get = valueOf(getId, now); if (!give || !get) return undefined;
-  const pool = poolOf(get.poolId);
+  const pool = itemOf('pool', get.poolId);
   const q = quoteSwap({ usd: give.usd }, { usd: get.usd, poolId: get.poolId }, SWAPS.get().payouts, balance('usd'), pool ? reserveOf(pool, now) : Infinity, swapRules(), now);
   return { ...q, give, get };
 }
@@ -115,7 +115,7 @@ export function doSwap(giveId: ID, getId: ID, now = Date.now()): SwapQuote | und
   const q = quoteSwapOf(giveId, getId, now); if (!q || !q.allowed) return q;
   const label = `Swap ${q.give.name} → ${q.get.name}`;
   if (q.direction === 'pay' && !spend('usd', -q.difference, label + ' (difference)')) return { ...q, allowed: false, reason: 'funds' };
-  if (q.direction === 'receive') earn('usd', q.difference, label + ', difference sponsored by ' + (poolOf(q.get.poolId)?.name ?? 'the pool'));
+  if (q.direction === 'receive') earn('usd', q.difference, label + ', difference sponsored by ' + (itemOf('pool', q.get.poolId)?.name ?? 'the pool'));
   const owned = { ...OWNED.get() }; delete owned[giveId]; owned[getId] = now; OWNED.replace(owned);
   record('swap', getId, { refKind: 'look', with: giveId, usd: q.difference, note: q.direction });
   const s = SWAPS.get();
@@ -141,9 +141,9 @@ import type { Highlight, Tone } from '../types/phiegg';
 const toneOf = (p: Pool): Tone => (D.core.clubs.find((c) => c.id === p.clubId)?.tone ?? 'accent') as Tone;
 /** A pool's story: sold counter, floor, the dearest unit, the moving total, its quest and its swaps, read live. */
 export function poolStory(p: Pool, now = Date.now()): Highlight[] {
-  const N = poolNumbers(p, now); const pq = poolQuestOf(p.questId); const tone = toneOf(p);
+  const N = poolNumbers(p, now); const pq = itemOf('poolQuest', p.questId); const tone = toneOf(p);
   const top = N.quotes.flatMap((q) => q.units).sort((a, b) => b.usd - a.usd)[0];
-  const topName = top ? (lookOf(top.itemId)?.name ?? showLookOf(top.itemId)?.look.title ?? '') : '';
+  const topName = top ? (itemOf('look', top.itemId)?.name ?? showLookOf(top.itemId)?.look.title ?? '') : '';
   return [{ id: 'story_' + p.id, label: p.kind === 'show' ? 'Show drop' : p.kind === 'drop' ? 'Club drop' : 'Pool', tone, frames: [
     { title: `${N.sold.toLocaleString('en-US')} / ${N.supply.toLocaleString('en-US')} sold`, tone, caption: p.name },
     { title: `Floor ${usd(N.floor)}`, tone, caption: `Top unit ${topName} · ${usd(N.high)}` },
@@ -164,7 +164,7 @@ export function livePools(now = Date.now(), n = 8) {
 export function itemStats(l: ShopLook, now = Date.now()): { label: string; text: string }[] {
   const q = lookLive(l, now); const day = lookLive(l, now - DAYms).total; const week = lookLive(l, now - 7 * DAYms).total;
   const sales = salesOfItem(l.id); const sold = sales.filter((x) => x.event === 'sale'); const offers = sales.filter((x) => x.event === 'offer');
-  const pool = poolOf(l.poolId); const N = pool ? poolNumbers(pool, now) : undefined;
+  const pool = itemOf('pool', l.poolId); const N = pool ? poolNumbers(pool, now) : undefined;
   const rank = N ? [...N.units].sort((a, b) => b - a).findIndex((u) => u <= q.total) + 1 : 0;
   const swaps = SWAPS.get().history.filter((x) => x.give === l.id || x.get === l.id).length + Math.round(20 * h01(l.id + 'sw'));
   const pc = (a: number, b: number) => (b ? ((a - b) / b * 100 > 0 ? '+' : '') + ((a - b) / b * 100).toFixed(1) + '%' : '·');

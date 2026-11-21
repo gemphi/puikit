@@ -102,20 +102,18 @@ export const PostList: React.FC<PostListProps> = ({
         {posts.length > 1 && pager && (
           <Box className={styles.pager}>
             <Button
-              variant="secondary"
-              size="sm"
+              variant="glass"
               className={styles.glassControl}
               aria-label={copy.previous}
-              disabled={atStart}
+              hidden={atStart}
               onClick={() => page(-1)}
               icon={<ChevronUp size={16} />}
             />
             <Button
-              variant="secondary"
-              size="sm"
+              variant="glass"
               className={styles.glassControl}
               aria-label={copy.next}
-              disabled={atEnd}
+              hidden={atEnd}
               onClick={() => page(1)}
               icon={<ChevronDown size={16} />}
             />

@@ -1,0 +1,3 @@
+/* A feed post is a region like any other group (its light comes from tokens.scss by its depth); here only the room
+   round its parts (the layer gaps). */
+.post { padding: var(--phi-layer-in) var(--phi-layer-in) calc(var(--phi-layer-in) / 2) calc(var(--phi-layer-in) / 2); border-radius: var(--phi-radius-lg); }

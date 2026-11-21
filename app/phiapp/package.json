@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Phisum \u2014 The fund and the $UM token. Built on puikit (Organic) + phi-kit.",
+  "description": "Phiapp: the shared app every Phi app is configured on, its landing and demo, and the home of its tests. Built on puikit + phi-kit.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "cd ../.. && vitest run app/phiapp"
   },
   "dependencies": {
     "puikit": "file:../..",

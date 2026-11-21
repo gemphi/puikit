@@ -1,0 +1,139 @@
+/* ---------------------------------------------------- the comments panel */
+
+/* One surface for comments everywhere, wearing the rail's own skin: the same
+   subtle tokens, mirrored for a panel docked right. Docked, not floated — in
+   a flex row it pushes the stage aside instead of covering it. */
+.commentsPanel {
+  width: min(23rem, 100%);
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  background-color: transparent;
+  background-image: var(--phi-gradient-rail-reverse, none);
+  /* The drawer floats like the rail: block margins, the theme's corners. */
+  border: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
+  border-radius: var(--phi-radius-lg, 16px);
+  margin: var(--phi-layout-rail-margin, var(--phi-space-3, 12px));
+  margin-inline-start: 0;
+  overflow: hidden;
+  animation: commentsPanelIn var(--phi-transition-medium, 0.25s) ease;
+}
+
+/* Enough room beside the rail: the panel floats there — over the row's empty
+   band, so the playing frame does not move at all. */
+.commentsPanelFloat {
+  position: absolute;
+  inset-block: var(--phi-layout-rail-margin, var(--phi-space-3, 12px));
+  inset-inline-end: var(--phi-layout-rail-margin, var(--phi-space-3, 12px));
+  margin: 0;
+  z-index: 3;
+}
+
+@keyframes commentsPanelIn {
+  from { transform: translateX(110%); }
+  to { transform: none; }
+}
+
+.commentsPanelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--phi-space-2);
+  min-height: var(--phi-sidebar-header-height, 64px);
+  padding: 0 var(--phi-space-4);
+  border-block-end: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
+  flex: 0 0 auto;
+}
+
+.commentsPanelTitle {
+  margin: 0;
+  font-size: var(--phi-font-size-base);
+}
+
+.commentsPanelBody {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--phi-sidebar-body-padding, var(--phi-space-4, 16px));
+  display: flex;
+  flex-direction: column;
+  gap: var(--phi-space-3);
+}
+
+.commentsPanelFooter {
+  flex: 0 0 auto;
+  padding: var(--phi-space-3) var(--phi-sidebar-body-padding, var(--phi-space-4, 16px));
+  border-block-start: 1px solid var(--phi-color-border-subtle, var(--phi-color-border));
+  display: flex;
+  flex-direction: column;
+  gap: var(--phi-space-2);
+}
+
+/* The composer always runs the panel's full width. */
+.commentsComposer {
+  display: flex;
+  align-items: center;
+  gap: var(--phi-space-2);
+  width: 100%;
+
+  > :first-child {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
+.commentMeta {
+  align-items: baseline;
+}
+
+.commentReply {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--phi-color-text-muted, inherit);
+  font-size: var(--phi-font-size-xs, 0.75rem);
+  font-weight: var(--phi-font-weight-medium, 500);
+
+  &:hover { color: var(--phi-color-text-primary); }
+}
+
+.commentBody {
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .poster { animation: none; }
+  .slideImg[data-current='true'] { animation: none; }
+  .slideSegment[data-current='true']::after { animation: none; transform: scaleX(1); }
+  .soundText { animation: none; }
+  .snapTrack { scroll-behavior: auto; }
+  .railButton:hover { transform: none; }
+  .postOverlayPanel { animation: none; }
+  .commentsPanel { animation: none; }
+  .spotCell { transition: none; }
+}
+
+/* On a phone the panel takes the screen — a full drawer, not a sliver —
+   and the up/down pager stands down: the thumb already scrolls the feed. */
+@media (max-width: 640px) {
+  .pager { display: none; }
+
+  .commentsPanel {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    z-index: 1100;
+    background-color: var(--phi-color-background);
+  }
+
+  .postOverlayPanel {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    z-index: 2;
+  }
+}

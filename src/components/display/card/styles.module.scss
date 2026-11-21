@@ -1,43 +1,12 @@
 .card {
   display: flex;
   flex-direction: column;
-  /* Three layers of card (tokens.scss): its own box is the dark edge; the face and inner card are layers over it,
-     and every face rule below sets the face (--card-face, --card-face-image), not the box. No border. */
   /* Fills the cell it is given, so sibling cards in a row match. */
   height: 100%;
-  --card-face: var(--phi-gradient-card, var(--phi-color-background-card));
   border-radius: var(--phi-radius-shape);
   overflow: hidden;
+  position: relative;
   transition: box-shadow var(--phi-transition-normal), transform var(--phi-transition-normal);
-}
-
-/* Every card carries the brand wash: colour at one edge, gone by the middle.
-   It runs bottom to top by default so the tint pools under the content rather
-   than behind it, and it is layered over the card colour rather than replacing
-   it. `data-gradient-direction="reverse"` puts the tint at the head instead. */
-.card {
-  /* The wash layers over the card gradient (when one is set) instead of replacing it. */
-  --card-face-image: var(--phi-gradient-card-wash, none), var(--phi-gradient-card, none);
-}
-
-/* Depth: a card inside a card is the child level, one inside that the grandchild — each lit from the
-   opposite corner at about half the strength (see providers/palette.ts). Without a palette or gradient
-   level these fall back to the plain card values, so nothing changes. */
-.card .card {
-  --card-face: var(--phi-gradient-card-child, var(--phi-gradient-card, var(--phi-color-background-card)));
-  --card-face-image: var(--phi-gradient-card-wash, none), var(--phi-gradient-card-child, var(--phi-gradient-card, none));
-}
-.card .card .card {
-  --card-face: var(--phi-gradient-card-grandchild, var(--phi-gradient-card, var(--phi-color-background-card)));
-  --card-face-image: var(--phi-gradient-card-grandchild, var(--phi-gradient-card, none));
-}
-
-.card[data-gradient-direction='reverse'] {
-  --card-face-image: var(--phi-gradient-card-wash-reverse, none);
-}
-
-.card[data-gradient-direction='none'] {
-  --card-face-image: none;
 }
 
 /**
@@ -73,10 +42,14 @@
 }
 .paddingSm > :last-child, .paddingMd > :last-child, .paddingLg > :last-child { padding-block-end: var(--phi-card-pad-bottom); }
 
-/* A flat card is one layer: the face only. */
-.flat { background: none; }
-.flat::before { inset: 0; }
-.flat::after { content: none; }
+/* A flat card drops the shadow and the lift, never the surface: a row, a fact, a stat is still a card. */
+/* It is a row or a fact, so its content sits close: one small inset all round, never the deep foot of a standing card
+   (which made a name with one line under it a hundred pixels tall). */
+.flat {
+  --phi-card-pad-top: var(--phi-space-2); --phi-card-pad-right: var(--phi-space-3); --phi-card-pad-bottom: var(--phi-space-2); --phi-card-pad-left: var(--phi-space-3);
+  --phi-card-padding: var(--phi-card-pad-top) var(--phi-card-pad-right) var(--phi-card-pad-bottom) var(--phi-card-pad-left);
+}
+.flat.padded:not(:has(> .header, > .body, > .footer)) > :last-child { padding-block-end: 0; }
 
 .hoverable:hover {
   box-shadow: var(--phi-shadow-md);
@@ -84,7 +57,8 @@
 }
 
 .selected {
-  box-shadow: 0 0 0 2px var(--phi-color-primary-light);
+  /* Chosen: the page's strongest light, from the left to nothing; no ring, no colour. */
+  --pui-card-face: var(--phi-control-ground-strong), var(--phi-depth-ground, var(--phi-surface));
 }
 
 .card .card { box-shadow: none; }
@@ -205,34 +179,21 @@
 
 /* A card whose content is a card of its own (a tile) has no surface: no fill, no border, no shadow, no inset. */
 .card[data-surface='none'] { background: none !important; box-shadow: none !important; padding: 0 !important; }
-.card[data-surface='none']::before, .card[data-surface='none']::after { content: none; }
 .card[data-surface='none'] > :global(*) { padding-left: 0; padding-right: 0; }
 
-/* Glass (tokens/_glass.scss): every card is light from its top fading to nothing, over a blur of what lies beneath; a
-   card in a card lays the opposite way, the next one the first way again. A card brings no colour of its own at rest,
-   not its tint and not the colour its content reports; under the pointer that colour (else the theme's) comes up the
-   same way. Its deck copies and its picture's frame follow: glass at rest, its colour under the pointer. */
-.card {
-  --card-face: transparent;
-  --card-face-image: var(--phi-glass-from-down);
-  backdrop-filter: var(--phi-glass-blur);
-  -webkit-backdrop-filter: var(--phi-glass-blur);
-}
-.card .card { --card-face-image: var(--phi-glass-to-down); backdrop-filter: none; -webkit-backdrop-filter: none; }
-.card .card .card { --card-face-image: var(--phi-glass-from-down); }
-.card[data-gradient-direction='reverse'] { --card-face-image: var(--phi-glass-to-down); }
-.card:hover {
-  --pui-card-own: color-mix(in srgb, var(--pui-card-tint, var(--phi-color-primary)) var(--phi-tint-pct), transparent);
-  --card-face-image: linear-gradient(180deg, var(--pui-card-own), transparent), var(--phi-glass-from-down);
-}
-.card .card:hover { --card-face-image: linear-gradient(180deg, var(--pui-card-own), transparent), var(--phi-glass-to-down); }
+/* The card's one paint: the kit's surface (tokens.scss --phi-surface) at rest, whatever the variant (elevated, flat,
+   nested); under the pointer, or chosen, the page's light comes up over it. A card never brings a colour of its own,
+   its tint's or the theme's. The blur is the layer rule's (tokens.scss), so only the outermost layer blurs. Its deck
+   copies and its picture's frame follow. */
+/* The ground its depth gives it (tokens.scss, GROUPED THINGS), unless a variant or a state says its own face. */
+.card { background: var(--pui-card-face, var(--phi-depth-ground, var(--phi-surface))); }
+.hoverable:hover, .clickable:hover { --pui-card-face: var(--phi-control-ground-strong), var(--phi-depth-ground, var(--phi-surface)); }
 .ghost {
   background: linear-gradient(var(--ghost-angle), color-mix(in srgb, var(--phi-glass-light) calc(var(--phi-glass-pct) + var(--pui-card-k) * 4%), transparent) 0%, transparent 100%);
   border-color: var(--phi-glass-rim-soft);
 }
 .deck:hover .ghost {
-  background: linear-gradient(var(--ghost-angle), color-mix(in srgb, var(--pui-card-tint, var(--phi-color-primary)) calc(var(--phi-tint-pct) + var(--pui-card-k) * 4%), transparent) 0%, transparent 100%);
+  background: linear-gradient(var(--ghost-angle), var(--phi-shade-2) 0%, transparent 100%);
 }
-.card:not(:hover) :global(.pui-frame)[data-tint] { background: var(--phi-glass-from-down); }
 .card:not(:hover) :global([data-cascade][data-tinted]) { --pui-cascade-tint: var(--phi-glass-light) !important; }
 .card[data-surface='none'] { backdrop-filter: none; -webkit-backdrop-filter: none; }

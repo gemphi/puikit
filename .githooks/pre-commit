@@ -1,0 +1,4 @@
+#!/bin/sh
+# Every commit in this repository passes scripts/check-commit.mjs first: no pictures or other binaries, no file over
+# the size limit, no secrets, no broken JSON. Turned on once per clone with:  git config core.hooksPath .githooks
+exec node "$(git rev-parse --show-toplevel)/scripts/check-commit.mjs"

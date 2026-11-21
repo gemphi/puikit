@@ -3,7 +3,7 @@ import { Button, Card, CardBody, DataTable, Page, ChoiceRow, Stack, Tag, Text, T
 import { useStore } from '@pui/store';
 import { Trophy } from 'lucide-react';
 import { phieggStore } from '../../state/phieggStore';
-import { D, clubOf, fmt, site, t } from '../../lib/data';
+import { D, fmt, site, t, itemOf } from '../../lib/data';
 import { Tile } from '../../components/Phiegg/Tile';
 
 type Conf = { title: string; sub: string };
@@ -12,14 +12,14 @@ type Conf = { title: string; sub: string };
 export const LeaguePage: React.FC = () => {
   const s = useStore(phieggStore); const L = D.league; const c = (site.lists as unknown as Record<string, Conf>).league;
   const [tab, setTab] = useState<'table' | 'rounds'>('table'); const [round, setRound] = useState(L.rounds[0].id);
-  const champ = clubOf(L.champion); const r = L.rounds.find((x) => x.id === round)!;
+  const champ = itemOf('club', L.champion); const r = L.rounds.find((x) => x.id === round)!;
   const metric = (id: string) => L.metrics.find((m) => m.id === id)?.label ?? id;
-  const name = (id: string) => clubOf(id)?.name ?? id;
+  const name = (id: string) => itemOf('club', id)?.name ?? id;
   type Row = (typeof L.table)[number] & { rank: number };
   const rows: Row[] = [...L.table].sort((a, b) => Number(b.score) - Number(a.score)).map((x, i) => ({ ...x, rank: i + 1 }));
   const cols: DataTableColumn<Row>[] = [
     { id: 'rank', header: '#', cell: (x) => x.rank, sortValue: (x) => x.rank, align: 'right' },
-    { id: 'club', header: t('lgClub'), cell: (x) => <Button size="sm" variant="ghost" onClick={() => s.go('club', { clubId: x.clubId })}>{name(x.clubId)}</Button>, sortValue: (x) => name(x.clubId) },
+    { id: 'club', header: t('lgClub'), cell: (x) => <Button variant="glass" onClick={() => s.go('club', { clubId: x.clubId })}>{name(x.clubId)}</Button>, sortValue: (x) => name(x.clubId) },
     { id: 'seed', header: t('lgSeed'), cell: (x) => x.seed, sortValue: (x) => Number(x.seed), align: 'right' },
     ...L.metrics.map((m): DataTableColumn<Row> => ({ id: m.id, header: m.label, cell: (x) => fmt(Number(x[m.id])), sortValue: (x) => Number(x[m.id]), align: 'right' })),
     { id: 'score', header: t('lgScore'), cell: (x) => <Text weight="bold">{fmt(Number(x.score))}</Text>, sortValue: (x) => Number(x.score), align: 'right' },
@@ -49,7 +49,7 @@ export const LeaguePage: React.FC = () => {
                 </Stack>
                 <Stack direction="row" gap={2} align="center">
                   <Tag intent="success" minimal round size="sm">{name(m.winner)} {t('lgWinner')}</Tag>
-                  <Button size="sm" variant="outline" onClick={() => s.go('quests')}>{t('lgPlayQuest')}</Button>
+                  <Button variant="glass" onClick={() => s.go('quests')}>{t('lgPlayQuest')}</Button>
                 </Stack>
               </Stack></CardBody></Card>))}
           </Stack>

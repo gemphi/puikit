@@ -3,6 +3,9 @@
   max-width: 100%;
   height: auto;
   object-fit: cover;
+  /* Whatever box a picture is fitted into (a card, a frame, a tile), it sits in the middle of it. */
+  object-position: center;
+  margin-inline: auto;
   border-radius: var(--phi-radius-md);
 }
 

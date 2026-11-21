@@ -8,6 +8,7 @@ import { appUrl } from './data';
 import { FONTS, useFont } from './fonts';
 import { LOOKS, useLook } from './looks';
 import { LABEL, USD, useWallet, type Coin } from './wallet';
+import { ProfileView } from './ProfileView';
 import words from './words.json';
 import kit from './kit.module.scss';
 
@@ -36,12 +37,12 @@ export const AccountDrawer: React.FC<{ onProfile?: () => void; onLook?: (id: str
   return (
     <>
       <Pressable rounded="full" aria-label={W.open} aria-expanded={open} onClick={() => setOpen(true)}
-        style={{ width: 'var(--pui-shell-control, 2.25rem)', height: 'var(--pui-shell-control, 2.25rem)', padding: 0, display: 'grid', placeItems: 'center' }}>
+        style={{ width: 'var(--pui-shell-control, 2.25rem)', height: 'var(--pui-shell-control, 2.25rem)', padding: 0, display: 'grid', placeItems: 'center', flex: 'none', minWidth: 'var(--pui-shell-control, 2.25rem)' }}>
         <Avatar initials={initials} size="md" className={kit.fill} /></Pressable>
       <Drawer isOpen={open} onClose={() => setOpen(false)} position="right" size="md" title={W.title}>
         <Stack direction="column" gap={3}>
-          <Stack direction="row" gap={2} align="center"><Avatar initials={initials} size="md" />
-            <Stack direction="column" gap={0}><Text weight="medium">{name}</Text>{me?.handle ? <Text size="xs" intent="muted">@{me.handle}</Text> : null}</Stack></Stack>
+          <ProfileView variant="line" record={{ id: me?.id ?? 'guest', name, handle: me?.handle ?? undefined, avatar: <Avatar initials={initials} seed={me?.id} size="md" />,
+            actions: onProfile ? [{ id: 'profile', label: W.profile, icon: User, onClick: go(onProfile) }] : [] }} />
 
           <Accordion>
             <AccordionItem open={!!shown.wallet} onToggle={() => fold('wallet')}
@@ -65,16 +66,16 @@ export const AccountDrawer: React.FC<{ onProfile?: () => void; onLook?: (id: str
 
             <AccordionItem title={W.account} open={!!shown.account} onToggle={() => fold('account')}>
               <Stack direction="column" gap={0}>
-                {onProfile ? <Button variant="ghost" iconLeft={User} onClick={go(onProfile)}>{W.profile}</Button> : null}
-                {accountsEnabled ? <Button variant="ghost" iconLeft={UserCog} onClick={go(() => setAccount(true))}>{W.account}</Button> : null}
+                {onProfile ? <Button variant="glass" iconLeft={User} onClick={go(onProfile)}>{W.profile}</Button> : null}
+                {accountsEnabled ? <Button variant="glass" iconLeft={UserCog} onClick={go(() => setAccount(true))}>{W.account}</Button> : null}
                 {canSignOut
-                  ? <Button variant="ghost" iconLeft={LogOut} onClick={go(() => { void signOut(); })}>{W.signOut}</Button>
-                  : accountsEnabled ? <Button variant="ghost" iconLeft={LogIn} onClick={go(() => setAccount(true))}>{W.signIn}</Button> : null}
+                  ? <Button variant="glass" iconLeft={LogOut} onClick={go(() => { void signOut(); })}>{W.signOut}</Button>
+                  : accountsEnabled ? <Button variant="glass" iconLeft={LogIn} onClick={go(() => setAccount(true))}>{W.signIn}</Button> : null}
               </Stack>
             </AccordionItem>
           </Accordion>
 
-          <Stack direction="row" justify="between" align="center"><Text size="xs" intent="muted">{W.phione}</Text><Button variant="outline" size="sm" href={appUrl('phione')}>{W.manage}</Button></Stack>
+          <Stack direction="row" justify="between" align="center"><Text size="xs" intent="muted">{W.phione}</Text><Button variant="glass" href={appUrl('phione')}>{W.manage}</Button></Stack>
         </Stack>
       </Drawer>
       {accountsEnabled ? <AccountDialog isOpen={account} onClose={() => setAccount(false)} /> : null}

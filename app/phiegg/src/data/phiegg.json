@@ -30,12 +30,6 @@
      "position": "top",
      "items": [
       {
-       "id": "welcome",
-       "label": "Welcome",
-       "tab": "welcome",
-       "icon": "Sparkles"
-      },
-      {
        "id": "explore",
        "label": "Explore",
        "tab": "explore",
@@ -429,41 +423,10 @@
     }
    ]
   },
-  {
-   "id": "tab-feed",
-   "label": "Shots",
-   "icon": "home",
-   "tab": "feed",
-   "slot": "mobile"
-  },
-  {
-   "id": "tab-explore",
-   "label": "Explore",
-   "icon": "compass",
-   "tab": "explore",
-   "slot": "mobile"
-  },
-  {
-   "id": "tab-hosts",
-   "label": "Hosts",
-   "icon": "server",
-   "tab": "hosts",
-   "slot": "mobile"
-  },
-  {
-   "id": "tab-agents",
-   "label": "Agents",
-   "icon": "sparkles",
-   "tab": "agents",
-   "slot": "mobile"
-  },
-  {
-   "id": "tab-profile",
-   "label": "Profile",
-   "icon": "user",
-   "tab": "profile",
-   "slot": "mobile"
-  }
+  {"id": "tab-home", "rail": "home", "slot": "mobile"},
+  {"id": "tab-chat", "rail": "chat", "slot": "mobile"},
+  {"id": "tab-menu", "rail": "menu", "slot": "mobile"},
+  {"id": "tab-user", "rail": "user", "slot": "mobile"}
  ],
  "views": {}
 }

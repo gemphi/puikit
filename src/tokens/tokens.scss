@@ -71,12 +71,47 @@ a.button,
   --phi-card-layer-bottom: calc(var(--phi-card-layer-right) * 2);
   --phi-card-layer-top: calc(var(--phi-card-layer-right) / 2);
   --phi-card-hue: var(--phi-color-text-accent, var(--phi-color-primary));
-  /* The glass light: the look's on-media light with a breath of its hue, so the page keeps one colour and no paint. */
-  --phi-card-light: color-mix(in srgb, var(--phi-card-hue) 12%, var(--phi-glass-light, #fff));
+  /* The glass light: the look's on-media light, clean. Its hue share is 0 (a breath of the theme's colour made every
+     shade on a page with no picture of its own read blue and dirty); a look may raise --phi-card-hue-pct. */
+  --phi-card-hue-pct: 0%;
+  --phi-card-light: color-mix(in srgb, var(--phi-card-hue) var(--phi-card-hue-pct), var(--phi-glass-light, #fff));
   /* Shades of glass: translucent light, 1 the most (the inner card, a control's pressed light), 3 the faintest. */
   --phi-shade-1: color-mix(in srgb, var(--phi-card-light) var(--phi-glass-pct, 58%), transparent);
   --phi-shade-2: color-mix(in srgb, var(--phi-card-light) calc(var(--phi-glass-pct, 58%) * 0.72), transparent);
   --phi-shade-3: color-mix(in srgb, var(--phi-card-light) calc(var(--phi-glass-pct, 58%) * 0.48), transparent);
+  /* THE surface: every card (whatever its variant), row, fact, region, tile, picture frame, avatar, tab bar, drawer,
+     column and field wears this one gradient: light at its foot fading to nothing at its head, so a heading at the
+     top of a surface stands free on the page, and a card in a card brightens on its own. Never a theme colour, so no two surfaces on a page can
+     differ. A look changes every surface at once by changing this line (the glass tokens in _glass.scss are it). */
+  --phi-surface: linear-gradient(0deg, var(--phi-shade-2) 0%, transparent 100%);
+  /* Its two other strengths, as the label has: a quiet rest and the light a choice brings up (a tab at rest, the tab
+     that is on). Lit from the foot to nothing at the head, like the surface itself. */
+  --phi-surface-soft: linear-gradient(0deg, var(--phi-shade-3) 0%, transparent 100%);
+  --phi-surface-strong: linear-gradient(0deg, var(--phi-shade-1) 0%, var(--phi-shade-3) 60%, transparent 100%);
+  /* The same light turned over: from the top to nothing at the foot. A child lit this way on a parent lit from its
+     foot fades out exactly where the parent is brightest, so the two read as one piece with no edge between them. */
+  --phi-surface-down: linear-gradient(180deg, var(--phi-shade-2) 0%, transparent 100%);
+  --phi-surface-down-soft: linear-gradient(180deg, var(--phi-shade-3) 0%, transparent 100%);
+  --phi-surface-down-strong: linear-gradient(180deg, var(--phi-shade-1) 0%, var(--phi-shade-3) 60%, transparent 100%);
+  /* THE label: an icon never sits bare on a page: it sits in a chip of this light, which runs from the icon's left
+     towards its words and is gone before them. The same light fills controls and rows. Change it here, once. */
+  --phi-label: linear-gradient(90deg, var(--phi-shade-2), transparent);
+  /* Its two other strengths (a quiet rest, and the light a pointer, a press or a choice brings up) and their mirrors,
+     for what sits at the right and runs the other way (my side of a chat, a right-hand rail). Every control fill,
+     hover and chosen state in the kit is one of these six or the surface: no component writes a gradient of its own. */
+  --phi-label-soft: linear-gradient(90deg, var(--phi-shade-3), transparent);
+  --phi-label-strong: linear-gradient(90deg, var(--phi-shade-1), transparent);
+  --phi-label-end: linear-gradient(90deg, transparent, var(--phi-shade-2));
+  --phi-label-end-soft: linear-gradient(90deg, transparent, var(--phi-shade-3));
+  --phi-label-end-strong: linear-gradient(90deg, transparent, var(--phi-shade-1));
+}
+/* An icon with its words (the kit's Label, a section's heading, a relation's): the icon sits in a chip of the label's
+   light, which fades from the icon's left towards the words; the words themselves sit on nothing. The chip is only
+   round the icon. */
+:where(.pui-label) { display: inline-flex; align-items: center; gap: var(--phi-space-2); min-width: 0; max-width: 100%; }
+:where(.pui-label-icon) {
+  display: inline-grid; place-items: center; flex: none; min-width: 1.75rem; min-height: 1.75rem; padding: var(--phi-space-1);
+  border-radius: var(--phi-radius-md); background: var(--phi-control-ground);
 }
 :where(.pui-card, [data-surface='card'], .phi-layers) {
   /* Bottom padding B halves at every nesting depth (below); right is B/3, left B/2, top B/4, so no two paddings
@@ -90,22 +125,80 @@ a.button,
   position: relative;
   border: 0;
   border-radius: var(--phi-radius-shape);
-  background: linear-gradient(90deg, transparent 0%, var(--phi-shade-3) 100%);
+  background: var(--phi-surface);
   backdrop-filter: var(--phi-glass-blur);
   -webkit-backdrop-filter: var(--phi-glass-blur);
   box-shadow: none;
 }
 :where(.phi-layers) { padding: var(--phi-card-layer-top) var(--phi-card-layer-right) var(--phi-card-layer-bottom) var(--phi-card-layer-top); }
 /* No ::before/::after. A LAYER IS A REAL ELEMENT: a surface inside a surface is the next layer. It steps its corner
-   down the ladder (lg, then sm, then xs) and halves its bottom padding, keeps its own gradient so the real layers stack and brighten
-   inward, and lays no second blur over the first. Each layer obeys these rules on its own. Explicit depth levels,
+   down the ladder (lg, then sm, and no further: a card deeper in still keeps an eighth of the option, so no card reads sharp) and halves its bottom padding, takes its light by its depth (below, GROUPED THINGS), and lays no second blur over the first. Each layer obeys these rules on its own. Explicit depth levels,
    since a custom property cannot read its own inherited value. */
 :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) {
-  --phi-radius-shape: var(--phi-radius-sm);
+  --phi-radius-shape: var(--phi-radius-md);
   --phi-card-pad-b: calc(max(var(--phi-radius-card), 1.5rem) / 2);
   backdrop-filter: none; -webkit-backdrop-filter: none;
 }
-:where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) { --phi-radius-shape: var(--phi-radius-xs); --phi-card-pad-b: calc(max(var(--phi-radius-card), 1.5rem) / 4); }
-:where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) { --phi-radius-shape: var(--phi-radius-xs); --phi-card-pad-b: calc(max(var(--phi-radius-card), 1.5rem) / 8); }
-:where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) { --phi-radius-shape: var(--phi-radius-xs); --phi-card-pad-b: calc(max(var(--phi-radius-card), 1.5rem) / 16); }
+:where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) { backdrop-filter: none; -webkit-backdrop-filter: none; }
+.pui-page-content > main > [data-dir='column'] > * :where(.pui-card) { backdrop-filter: none; -webkit-backdrop-filter: none; }
+:where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) { --phi-radius-shape: var(--phi-radius-md); --phi-card-pad-b: calc(max(var(--phi-radius-card), 1.5rem) / 4); }
+:where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) { --phi-radius-shape: var(--phi-radius-md); --phi-card-pad-b: calc(max(var(--phi-radius-card), 1.5rem) / 8); }
+:where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) :where(.pui-card, [data-surface='card'], .phi-layers) { --phi-radius-shape: var(--phi-radius-md); --phi-card-pad-b: calc(max(var(--phi-radius-card), 1.5rem) / 16); }
 :where(.phi-layers) :where(.phi-layers) { padding: 0; }
+
+/* GROUPED THINGS RUN AGAINST WHAT HOLDS THEM. A region (surface="region", or .phi-region) is any group of things that
+   belong together inside a surface: a profile's actions, its numbers, its words, a menu's group. It has no blur and
+   no depth of its own, only a light. Every surface and region takes its light by how deep it sits: on the page it is
+   lit from its foot; inside a surface, from its left; inside that, from its foot again, and so on, quieter as it goes
+   in. So a group always shows against its parent, no two neighbours in depth run the same way, and no ground is ever
+   filled from edge to edge. This is the one place that decides it: no component alternates its own grounds. */
+:where([data-surface='region'], .phi-region) { min-width: 0; padding: var(--phi-space-3); border-radius: var(--phi-radius-md); background: var(--phi-surface); }
+/* A region that stacks its things in a column is a list of rows: each thing you press in it is a row as wide as the
+   region, its picture and words starting at the left, never a small button floating at one side. A region that lays
+   its things in a line shares the line between the named ones (an icon keeps its own size). */
+:is([data-surface='region'], .phi-region)[data-dir='column'] > :is(button, a) { display: flex; width: 100%; justify-content: flex-start; text-align: start; }
+:is([data-surface='region'], .phi-region)[data-dir='row'] > :is(button, a):not([aria-label]) { flex: 1 1 8rem; }
+/* What you press (a button, a tag) runs against the ground it stands on in the same way: on the page it is lit from
+   its foot; on a surface lit from its foot it is lit from its left; on one lit from its left, from its foot. A control
+   reads --phi-control-ground (and -strong, under the pointer or when on) and never chooses a direction itself. */
+/* A ROW (a picture, then its words: a person in a list, a chat, a record) is never lit from its foot. It is lit from
+   one side and its picture stands in a holder lit from the other, so the two meet in the middle. Which side is decided
+   here by what holds the row (--phi-row-ground, --phi-row-holder), turning over at every depth like everything else. */
+/* NOTHING SITS ON A PAGE FOR FREE. Every block a page lays out (the kit's Page, in every app) that is loose content,
+   with no surface of its own inside it (a title and its line, a row of buttons, a line of tags, a toolbar), is a
+   region without being told: the same light from its foot, the same corner and room, and what is pressed inside it
+   runs against it. A block that holds cards is left alone: its cards are its grounds. So a page cannot place words
+   or controls bare, and no page has to remember to ask. */
+/* A HEADING HAS NO GROUND. A heading on its own, or a block that is a heading with its line under it and nothing to
+   press, names what follows; it is not a thing among the things. It stands on the page bare. */
+.pui-page-content > main > [data-dir='column'] > :where(:not(.pui-card, [data-surface], .phi-layers, .phi-region, [role='tablist'], [hidden], :empty, h1, h2, h3, h4, h5, h6)):not(:has(.pui-card, [data-surface], .phi-layers, .phi-region)):not(:has(> :is(h1, h2, h3, h4, h5, h6):first-child):not(:has(button, a, input, select, [role='button'], [role='tab']))) {
+  min-width: 0; padding: var(--phi-space-3); border-radius: var(--phi-radius-md); background: var(--phi-surface);
+  --phi-control-ground: var(--phi-label); --phi-control-ground-strong: var(--phi-label-strong);
+  --phi-row-ground: var(--phi-label); --phi-row-ground-strong: var(--phi-label-strong); --phi-row-holder: var(--phi-label-end);
+}
+/* The two classes that say it, so no component writes it again: .phi-row is a row's ground, .phi-holder the holder a
+   picture or thumbnail stands in (a person in a row, a ring of faces). A thumbnail is never ringed with a border:
+   it stands in a holder of light. */
+:where(.phi-row) { background-image: var(--phi-row-ground); --phi-control-ground: var(--phi-surface); --phi-control-ground-strong: var(--phi-surface-strong); }
+:where(.phi-holder) { flex: none; padding: var(--phi-space-1); border: 0; border-radius: var(--phi-radius-md); background-image: var(--phi-row-holder); }
+:root { --phi-control-ground: var(--phi-surface); --phi-control-ground-strong: var(--phi-surface-strong); --phi-row-ground: var(--phi-label-end); --phi-row-ground-strong: var(--phi-label-end-strong); --phi-row-holder: var(--phi-label); }
+:where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) { --phi-self-row: var(--phi-label-end); --phi-self-row-strong: var(--phi-label-end-strong); --phi-self-holder: var(--phi-label); --phi-depth-ground: var(--phi-surface); --phi-control-ground: var(--phi-label); --phi-control-ground-strong: var(--phi-label-strong); --phi-row-ground: var(--phi-label); --phi-row-ground-strong: var(--phi-label-strong); --phi-row-holder: var(--phi-label-end); }
+/* CONTENT RUNS SIDE TO SIDE. A section (a ground on the page) keeps the light from its foot. What it holds, and what
+   that holds in turn, is lit from a side only: from the left one level in, from the right the next, and so on. So a
+   card or a row inside a section is never lit from its top or its foot. */
+:where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) { background: var(--phi-label); --phi-self-row: var(--phi-label); --phi-self-row-strong: var(--phi-label-strong); --phi-self-holder: var(--phi-label-end); --phi-depth-ground: var(--phi-label); --phi-control-ground: var(--phi-surface); --phi-control-ground-strong: var(--phi-surface-strong); --phi-row-ground: var(--phi-label-end); --phi-row-ground-strong: var(--phi-label-end-strong); --phi-row-holder: var(--phi-label); }
+:where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) { background: var(--phi-label-end); --phi-self-row: var(--phi-label-end); --phi-self-row-strong: var(--phi-label-end-strong); --phi-self-holder: var(--phi-label); --phi-depth-ground: var(--phi-label-end); --phi-control-ground: var(--phi-label); --phi-control-ground-strong: var(--phi-label-strong); --phi-row-ground: var(--phi-label); --phi-row-ground-strong: var(--phi-label-strong); --phi-row-holder: var(--phi-label-end); }
+:where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) { background: var(--phi-label); --phi-self-row: var(--phi-label); --phi-self-row-strong: var(--phi-label-strong); --phi-self-holder: var(--phi-label-end); --phi-depth-ground: var(--phi-label); --phi-control-ground: var(--phi-surface); --phi-control-ground-strong: var(--phi-surface-strong); --phi-row-ground: var(--phi-label-end); --phi-row-ground-strong: var(--phi-label-end-strong); --phi-row-holder: var(--phi-label); }
+:where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) :where(.pui-card, [data-surface='card'], [data-surface='region'], .phi-layers, .phi-region) { background: var(--phi-label-end); --phi-self-row: var(--phi-label-end); --phi-self-row-strong: var(--phi-label-end-strong); --phi-self-holder: var(--phi-label); --phi-depth-ground: var(--phi-label-end); --phi-control-ground: var(--phi-label); --phi-control-ground-strong: var(--phi-label-strong); --phi-row-ground: var(--phi-label); --phi-row-ground-strong: var(--phi-label-strong); --phi-row-holder: var(--phi-label-end); }
+
+:root {
+  /* Nested layers sit close to their child, like a tight grid: the middle layer 24px from the child and the outer 32px
+     from the middle at the top and right; the left takes half the right and the bottom half the top. Each layer's light
+     runs the other way from the one round it, so the bands read as a grid. */
+  --phi-layer-in: 24px; --phi-layer-out: 32px;
+}
+
+
+/* What cannot act is not shown (an arrow at the end of its row, a step with nowhere to go): hidden always hides,
+   whatever display a component gives itself. */
+[hidden] { display: none !important; }

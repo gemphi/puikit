@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { Avatar, Button, Icon, Input, ItemCard, Page, Rows, SpriteImage, Stack, Tag, Text, Title } from '@pui/components';
 import { useStore } from '@pui/store';
 import { Search as SearchIcon } from 'lucide-react';
-import { D, rideKind, rideSprite, seriesOf, showLead, site, t, worldImage, worldOf } from '../../lib/data';
+import { D, rideKind, rideSprite, showLead, site, t, worldImage, itemOf } from '../../lib/data';
 import { Tile } from '../../components/Phiegg/Tile';
 import { PageSections } from '../../components/Phiegg/PageSections';
 import { phieggStore } from '../../state/phieggStore';
@@ -15,10 +15,10 @@ const POPULAR = (site as unknown as { searchPopular: string[] }).searchPopular;
 /** Before a query: what people look for, and a few worlds, rides, shows and stories to open. */
 const Suggestions: React.FC<{ onQuery: (q: string) => void }> = ({ onQuery }) => {
   const s = useStore(phieggStore);
-  const worlds = (L.featured?.worldIds ?? []).map(worldOf).filter((w): w is NonNullable<typeof w> => !!w).slice(0, 6);
+  const worlds = (L.featured?.worldIds ?? []).map(((id) => itemOf('world', id))).filter((w): w is NonNullable<typeof w> => !!w).slice(0, 6);
   const rides = (['car', 'cab', 'van', 'jetski', 'saucer', 'fun'] as const).map((k) => D.ride.list.find((r) => r.kind === k)).filter((r): r is NonNullable<typeof r> => !!r);
   const shows = [...D.shows.shows].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 4);
-  const stories = (L.featured?.seriesIds ?? []).map(seriesOf).filter((x): x is NonNullable<typeof x> => !!x).slice(0, 6);
+  const stories = (L.featured?.seriesIds ?? []).map(((id) => itemOf('series', id))).filter((x): x is NonNullable<typeof x> => !!x).slice(0, 6);
   return (
     <PageSections id="search" sections={[
       { id: 'popular', title: t('srPopular'), content: <Stack direction="row" gap={1} wrap>{POPULAR.map((p) => <Tag key={p} interactive round onClick={() => onQuery(p)}>{p}</Tag>)}</Stack> },
@@ -27,13 +27,13 @@ const Suggestions: React.FC<{ onQuery: (q: string) => void }> = ({ onQuery }) =>
           <Tile key={w.id} image={worldImage(w)} tone={w.tone} ratio="16/9" grid title={w.name} sub={w.description} depth={{ worldId: w.id, clubId: w.clubId }} onClick={() => s.go('world', { worldId: w.id })} />))}</Rows>) },
       { id: 'rides', title: t('srRides'), content: (
         <Rows cols={6} colsSm={2} minItemWidth="9rem">{rides.map((r) => (
-          <ItemCard key={r.id} depth={1} variant="flat" layout="vertical" tint={r.hex} onClick={() => s.openAsset(r.id)} media={<SpriteImage sprite={rideSprite(r)} alt={r.name} ratio="16 / 10" radius="lg" />} title={r.name} meta={rideKind(r.kind)} />))}</Rows>) },
+          <ItemCard key={r.id} depth={1} variant="flat" layout="vertical" onClick={() => s.openAsset(r.id)} media={<SpriteImage sprite={rideSprite(r)} alt={r.name} ratio="16 / 10" radius="lg" />} title={r.name} meta={rideKind(r.kind)} />))}</Rows>) },
       { id: 'shows', title: t('srShows'), content: (
         <Rows cols={4} colsSm={2} minItemWidth="12rem">{shows.map((x) => { const lead = showLead(x); return (
-          <Tile key={x.id} tone={x.tone} color={lead.hex} ratio="4/5" depth={{ worldId: x.worldId, clubId: x.clubId, personId: x.hostAgentId, mid: lead.mid }} title={x.title} sub={worldOf(x.worldId)?.name} onClick={() => s.go('show', { showId: x.id })} />); })}</Rows>) },
+          <Tile key={x.id} tone={x.tone} color={lead.hex} ratio="4/5" depth={{ worldId: x.worldId, clubId: x.clubId, personId: x.hostAgentId, mid: lead.mid }} title={x.title} sub={itemOf('world', x.worldId)?.name} onClick={() => s.go('show', { showId: x.id })} />); })}</Rows>) },
       { id: 'stories', title: t('srStories'), content: (
         <Rows cols={3} colsSm={1} minItemWidth="16rem">{stories.map((x) => (
-          <ItemCard key={x.id} depth={1} variant="flat" onClick={() => s.openSeries(x.id)} title={x.title} meta={[x.genre, worldOf(x.worldId)?.name].filter(Boolean).join(' · ')}>{x.synopsis}</ItemCard>))}</Rows>) },
+          <ItemCard key={x.id} depth={1} variant="flat" onClick={() => s.openSeries(x.id)} title={x.title} meta={[x.genre, itemOf('world', x.worldId)?.name].filter(Boolean).join(' · ')}>{x.synopsis}</ItemCard>))}</Rows>) },
     ]} />
   );
 };

@@ -1,7 +1,7 @@
 // The colour a record wears on its card: a person's profile PFT (portrait background), a host's portrait or club, a
 // club's or a world's first colour, a pool's colour. Lifted into a readable band so a dark portrait ground still tints.
 import { hexToHsl, hslToHex } from '@pui/providers';
-import { D, STORES, clubOf, hostOf, lookOf, poolOf, worldOf } from './data';
+import { D, STORES, itemOf } from './data';
 import { portrait } from './portraits';
 import type { ID } from '../types/phiegg';
 
@@ -10,11 +10,11 @@ const lift = (hex?: string | null) => { if (!hex) return undefined; const [h, s,
 export const personColour = (id: ID) => lift(portrait(id)?.bg);
 /** Any record's card colour by id: host, club, world, pool, else nothing (the card keeps the theme). */
 export function entityColour(id: ID): string | undefined {
-  const h = hostOf(id); if (h) return lift(portrait(id)?.bg ?? clubOf(h.clubId)?.colors?.[0]);
-  const c = clubOf(id); if (c) return lift(c.colors?.[0] ?? worldOf(c.worldIds?.[0])?.colors?.[0]);
-  const w = worldOf(id); if (w) return lift(w.colors?.[0] ?? clubOf(w.clubId)?.colors?.[0]);
-  const p = poolOf(id); if (p) return lift(p.colors?.[0] ?? clubOf(p.clubId)?.colors?.[0]);
-  const e = D.events.events.find((x) => x.id === id); if (e) return lift(clubOf(e.clubId)?.colors?.[0]);
+  const h = itemOf('host', id); if (h) return lift(portrait(id)?.bg ?? itemOf('club', h.clubId)?.colors?.[0]);
+  const c = itemOf('club', id); if (c) return lift(c.colors?.[0] ?? itemOf('world', c.worldIds?.[0])?.colors?.[0]);
+  const w = itemOf('world', id); if (w) return lift(w.colors?.[0] ?? itemOf('club', w.clubId)?.colors?.[0]);
+  const p = itemOf('pool', id); if (p) return lift(p.colors?.[0] ?? itemOf('club', p.clubId)?.colors?.[0]);
+  const e = D.events.events.find((x) => x.id === id); if (e) return lift(itemOf('club', e.clubId)?.colors?.[0]);
   return undefined;
 }
 
@@ -33,12 +33,12 @@ const ownColours = (r?: Rec): string[] => {
  */
 export function entityPalette(id: ID): string[] | undefined {
   const find = (rows: unknown[]) => (rows as Rec[]).find((x) => x.id === id);
-  const r = (lookOf(id) as unknown as Rec | undefined) ?? (clubOf(id) as unknown as Rec | undefined) ?? (worldOf(id) as unknown as Rec | undefined)
-    ?? (poolOf(id) as unknown as Rec | undefined) ?? find(D.economy.coins) ?? find(STORES) ?? find(D.club.pieces) ?? find(D.hosts.nests) ?? find(D.events.events);
-  const hostPic = hostOf(id) ? hexes(portrait(id)?.bg) : [];
+  const r = (itemOf('look', id) as unknown as Rec | undefined) ?? (itemOf('club', id) as unknown as Rec | undefined) ?? (itemOf('world', id) as unknown as Rec | undefined)
+    ?? (itemOf('pool', id) as unknown as Rec | undefined) ?? find(D.economy.coins) ?? find(STORES) ?? find(D.club.pieces) ?? find(D.hosts.nests) ?? find(D.events.events);
+  const hostPic = itemOf('host', id) ? hexes(portrait(id)?.bg) : [];
   const lead = (STORES.flatMap((s) => s.looks) as unknown as Rec[]).find((l) => l.nestId === id);
-  const club = r && typeof r.clubId === 'string' ? (clubOf(r.clubId) as unknown as Rec | undefined) : undefined;
-  const world = r && typeof r.worldId === 'string' ? (worldOf(r.worldId) as unknown as Rec | undefined) : undefined;
+  const club = r && typeof r.clubId === 'string' ? (itemOf('club', r.clubId) as unknown as Rec | undefined) : undefined;
+  const world = r && typeof r.worldId === 'string' ? (itemOf('world', r.worldId) as unknown as Rec | undefined) : undefined;
   const all = [...hostPic, ...ownColours(r), ...ownColours(lead), ...ownColours(club), ...ownColours(world)];
   if (!all.length) return undefined;
   const lifted = all.map((x) => lift(x)!).filter(Boolean);

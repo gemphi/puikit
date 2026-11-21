@@ -144,9 +144,9 @@
 
 /* A titled section: a bordered group that holds its own field grid. */
 .section {
-  border-radius: var(--phi-radius-xl);
+  border-radius: var(--phi-radius-lg);
   border: 1px solid var(--phi-color-border);
-  background: linear-gradient(180deg, var(--phi-color-background-secondary) 0%, color-mix(in srgb, var(--phi-color-background-secondary) 50%, transparent) 55%, transparent 100%);
+  background: linear-gradient(90deg, var(--phi-color-background-secondary) 0%, color-mix(in srgb, var(--phi-color-background-secondary) 50%, transparent) 55%, transparent 100%);
   padding: var(--phi-space-4);
 }
 .sectionHead {
@@ -163,7 +163,7 @@
 .review {
   border-radius: var(--phi-radius-lg);
   border: 1px solid var(--phi-color-border);
-  background: linear-gradient(180deg, var(--phi-color-background-secondary) 0%, color-mix(in srgb, var(--phi-color-background-secondary) 50%, transparent) 55%, transparent 100%);
+  background: linear-gradient(90deg, var(--phi-color-background-secondary) 0%, color-mix(in srgb, var(--phi-color-background-secondary) 50%, transparent) 55%, transparent 100%);
   padding: var(--phi-space-4);
 }
 

@@ -81,8 +81,7 @@ export const AddressCard: React.FC<AddressCardProps> = ({
             )}
             {onEdit && (
               <Button
-                variant="ghost"
-                size="sm"
+                variant="glass"
                 onClick={(e) => {
                   e.stopPropagation();
                   onEdit(address.id);

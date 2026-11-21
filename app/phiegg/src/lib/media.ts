@@ -1,19 +1,17 @@
 // Where pictures come from. Set VITE_PHI_MEDIA to the bucket or CDN address and every picture reads its key there
-// (a local S3 store now, S3 and CloudFront later); unset, the app serves its own public/ folder. Keys are set out in
-// CONTENT-SERVING.md and built by scripts/media/build_media.py.
+// (https://phiegg.com/cdn on the server, a local S3 store here, S3 and CloudFront later); unset, the app serves its own
+// public/ folder. Keys are set out in CONTENT-SERVING.md and built by scripts/media/build_media.py.
 import media from '../data/media.json';
+import keys from '../data/media-key.json';
 
 const MEDIA = (import.meta.env.VITE_PHI_MEDIA as string | undefined)?.replace(/\/$/, '');
 
-/** A path under public/ as its key in the bucket. */
+/** A path under public/ as its key in the bucket: the first rule of data/media-key.json that fits, else the path. */
+const RULES = keys.rule.map((r) => ({ from: new RegExp(r.from), to: r.to }));
 const keyOf = (path: string) => {
   const p = path.replace(/^\//, '');
-  const logo = p.match(/^logos\/(.+)\.svg$/);
-  if (logo) return `worlds/${logo[1]}/logo.svg`;
-  if (/^(items|rides|jewels|portraits|welcome|logo)\//.test(p)) return 'assets/' + p;
-  if (p.startsWith('worlds/')) return 'assets/scenes/' + p.slice('worlds/'.length);
-  if (p.startsWith('assets/')) return p;
-  return p;
+  const rule = RULES.find((r) => r.from.test(p));
+  return rule ? p.replace(rule.from, rule.to) : p;
 };
 
 export const mediaUrl = (path: string) => (MEDIA ? `${MEDIA}/${keyOf(path)}` : import.meta.env.BASE_URL + path.replace(/^\//, ''));

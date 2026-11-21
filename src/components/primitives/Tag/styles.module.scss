@@ -9,10 +9,10 @@
   font-weight: var(--phi-font-weight-medium);
   line-height: 1;
   border-radius: var(--phi-chip-radius, var(--phi-radius-sm));
-  /* Neutral tags are mixed from the text colour, so they read in light and dark and in every theme style. */
-  background-color: color-mix(in srgb, var(--phi-color-text-primary) 6%, transparent);
-  color: var(--phi-color-text-secondary);
-  border: 1px solid color-mix(in srgb, var(--phi-color-text-primary) 12%, transparent);
+  /* Every tag wears the label's light (tokens.scss), whatever its intent and wherever it stands: one light, no rim. */
+  background: var(--phi-control-ground);
+  color: var(--phi-color-text-primary);
+  border: 0;
   white-space: nowrap;
   user-select: none;
   transition: all var(--phi-transition-fast);
@@ -24,9 +24,7 @@
 
   &.interactive {
     cursor: pointer;
-    &:hover {
-      filter: brightness(0.95);
-    }
+    &:hover { background: var(--phi-control-ground-strong); }
   }
 
   /* Sizes */
@@ -45,47 +43,18 @@
     font-size: var(--phi-font-size-base);
   }
 
-  /* Intents */
-  &.intent-primary {
-    background-color: var(--phi-color-primary-light);
-    color: var(--phi-color-primary);
-    border-color: rgba(59, 130, 246, 0.3);
-  }
+  /* An intent is a stronger light, never a colour of its own. */
+  &.intent-primary, &.intent-success, &.intent-warning, &.intent-error, &.intent-info { background: var(--phi-control-ground-strong); }
 
-  &.intent-success {
-    background-color: var(--phi-color-success-light);
-    color: var(--phi-color-success);
-    border-color: rgba(16, 185, 129, 0.3);
-  }
-
-  &.intent-warning {
-    background-color: var(--phi-color-warning-light);
-    color: var(--phi-color-warning);
-    border-color: rgba(245, 158, 11, 0.3);
-  }
-
-  &.intent-error {
-    background-color: var(--phi-color-error-light);
-    color: var(--phi-color-error);
-    border-color: rgba(239, 68, 68, 0.3);
-  }
-
-  &.intent-info {
-    background-color: var(--phi-color-info-light);
-    color: var(--phi-color-info);
-    border-color: rgba(14, 165, 233, 0.3);
-  }
-
-  &.minimal {
-    background-color: transparent;
-    border-color: transparent;
-  }
+  /* Nothing sits on a page for free: the quietest tag still stands on a faint light, from its foot. */
+  &.minimal { background: var(--phi-control-ground); }
+  /* With no ground of its own, a minimal tag's icon takes the label's chip, so it never sits bare. */
+  /* The tag is the icon's ground now; the icon needs no chip of its own. */
 
   /* A minimal tag you can press is a control: it rests on the theme's control surface like every button. */
   &.minimal.interactive {
-    background-color: var(--phi-control-bg, transparent);
-    background-image: var(--phi-gradient-control-soft, none);
-    &:hover { background-color: var(--phi-control-bg-hover, transparent); filter: none; }
+    background: var(--phi-control-ground);
+    &:hover { background: var(--phi-control-ground-strong); filter: none; }
   }
 }
 
@@ -114,9 +83,6 @@
 
   &:hover {
     opacity: 1;
-    background-color: rgba(0, 0, 0, 0.1);
+    background: var(--phi-control-ground-strong);
   }
 }
-
-/* On a surface (tokens.scss) every tag is a shade of the page's one colour, whatever its intent; the text the page's ink. */
-:global(:is(.pui-card, [data-surface='card'], .phi-layers)) .tag { background-color: transparent; background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2)); border-color: transparent; color: var(--phi-color-text-primary); box-shadow: none; }

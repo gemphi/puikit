@@ -6,6 +6,8 @@ import { useFitRatio } from '../../layout/Fit';
 import styles from './styles.module.scss';
 
 /** One layer of a DepthMedia: an image, a CSS background (tone, gradient), or any node (an Avatar). */
+export type DepthAction = { id: string; label: string; icon: React.ReactNode; active?: boolean; onClick: () => void };
+
 export type DepthLayer = {
   src?: string;
   alt?: string;
@@ -48,6 +50,10 @@ export type DepthMediaProps = {
   deckDirection?: 'up' | 'down';
   /** Icon at the bottom-left of the footer, beside the caption (the world's / record's icon). */
   footerIcon?: React.ReactNode;
+  /** Who it belongs to (a person's avatar), at the top right. */
+  owner?: React.ReactNode;
+  /** The item's actions (like, comment, save, share): glass icons down the right that spring in under the pointer. */
+  actions?: DepthAction[];
   /** Chips over the top-left corner. */
   badges?: React.ReactNode;
   /** Caption over the bottom-left corner (title, subtitle). */
@@ -77,7 +83,7 @@ const Layer: React.FC<{ layer?: DepthLayer; className: string; fit: 'cover' | 'c
  */
 export const DepthMedia = ({
   back, mid, front, ratio = '4/5', tilt = true, grid = false, game = true, midSize = 0.74, frontSize = 0.42,
-  deck = 0, midDeck = 3, deckDirection = 'up', footerIcon, badges, children, onClick, className, style, ...rest
+  deck = 0, midDeck = 3, deckDirection = 'up', footerIcon, owner, actions, badges, children, onClick, className, style, ...rest
 }: DepthMediaProps) => {
   ratio = useFitRatio() ?? ratio; // a Fit or a mosaic's big cell gives its own shape
   const n = Math.max(0, Math.min(8, Math.round(deck)));
@@ -94,7 +100,8 @@ export const DepthMedia = ({
   const frame = (
     <Box
       ref={n ? undefined : ref}
-      className={cn(styles.depth, onClick && tilt && styles.tilt, onClick && game && styles.game, onClick && styles.click, !n && className)}
+      // pui-fill: in a mosaic cell the card grows to its cell like a framed picture (layout/Rows), never a short card in a tall cell.
+      className={cn('pui-fill', 'pui-media', styles.depth, onClick && tilt && styles.tilt, onClick && game && styles.game, onClick && styles.click, !n && className)}
       style={n ? vars : { ...vars, ...style }}
       onPointerMove={n ? undefined : move}
       onPointerLeave={n ? undefined : leave}
@@ -117,8 +124,16 @@ export const DepthMedia = ({
         </Layer>
       )}
       {badges && <Box className={styles.badges}>{badges}</Box>}
+      {owner && <Box className={styles.owner}>{owner}</Box>}
+      {actions?.length ? (
+        <Box className={styles.acts} role="toolbar">
+          {actions.map((a) => (
+            <button key={a.id} type="button" className={cn(styles.act, a.active && styles.actOn)} aria-label={a.label} title={a.label} aria-pressed={a.active}
+              onClick={(e) => { e.stopPropagation(); a.onClick(); }}>{a.icon}</button>))}
+        </Box>) : null}
       {(children || footerIcon) && (
         <Box className={styles.caption}>
+          <Box as="span" className={styles.glass} aria-hidden="true" />
           {footerIcon && <Box className={styles.footIcon}>{footerIcon}</Box>}
           {children && <Box className={styles.captionText}>{children}</Box>}
         </Box>

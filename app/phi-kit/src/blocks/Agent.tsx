@@ -50,6 +50,7 @@ export const Agent: React.FC<{ b: Block }> = ({ b }) => {
     if ('refused' in r) { setErr(r.message); return; }
     const out = r.results?.output ?? r.results;
     setRuns((xs) => [{ n: xs.length + 1, at: Date.now(), verb, ok: statusOf(out, r.results?.eval?.status) !== 'failed', status: statusOf(out, r.results?.eval?.status), confidence: r.confidence, ms: r.results?.duration_ms, output: out, actor: r.results?.actor }, ...xs]);
+    b.onRun?.(verb, r); // the page's own follow-up to a run (write it to a log, reload a list)
   };
   useEffect(() => { if (b.autorun && hasPhient && verb) void run(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const last = runs[0];
@@ -82,7 +83,7 @@ export const Agent: React.FC<{ b: Block }> = ({ b }) => {
         <Stack as="label" direction="column" gap={1}><Text as="span" size="xs" intent="muted">Parameters (JSON)</Text>
           <Textarea value={params} onChange={(e) => setParams(e.target.value)} minRows={3} aria-label="Parameters" /></Stack>
         <Stack direction="row" gap={2} align="center">
-          <Button variant="primary" size="sm" disabled={!hasPhient || !verb} loading={busy} onClick={() => void run()} icon={<Icon icon={Play} size="xs" />}>Run {verb}</Button>
+          <Button variant="glass" disabled={!hasPhient || !verb} loading={busy} onClick={() => void run()} icon={<Icon icon={Play} size="xs" />}>Run {verb}</Button>
           {err && <Text as="span" size="sm" intent="danger" role="alert">{err}</Text>}
         </Stack>
         {last && <Stack direction="column" gap={1} surface="sunken" maxHeight="20rem" scroll="y">

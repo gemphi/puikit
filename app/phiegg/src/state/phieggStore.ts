@@ -1,35 +1,32 @@
 import { DRAWER_EXIT_MS } from '@pui/components';
 import { createStore } from '@pui/store';
-import { D, FLAGSHIP_ID, agentOf, clubOf, greetingOf, person, poolOf, postById, site, storySets, t } from '../lib/data';
+import { D, FLAGSHIP_ID, greetingOf, lookStore, person, postById, site, storySets, t, itemOf } from '../lib/data';
 import { poolStory } from '../lib/market';
 import { reply, type AgentResult } from '../lib/agent';
 import { chat as modelChat, hasApi, persisted } from '@phi-kit/api';
 import { kindOfId, liveCreate, liveRemove } from '../lib/live';
-import pagesJson from '../data/pages.json';
-
-/** Where each kind opens (data/pages.json); a kind not listed opens its record page. */
-const PAGE_OF = (pagesJson as { pages: Record<string, string> }).pages;
+import { PARAM_OF, PATH_OF } from '../lib/route';
 import type { Shot } from '../types/phiegg';
 import type { AgentChatMessage, Comment, ID, Nest, NestKind, NestMessage, StoryFrame } from '../types/phiegg';
 import { record } from '../lib/activity';
 import { ONBOARDING } from '../lib/onboarding';
-/** Which page param a record id in the address fills: #/pool/<id>, #/club/<id>, #/world/<id>… One map for the
-    address, agent hrefs and navigation, so every record has a link. */
-const ID_PARAM: Record<string, string> = { world: 'worldId', show: 'showId', club: 'clubId', city: 'cityId', shop: 'storeId', pool: 'poolId', profile: 'profileId', collection: 'nestId', post: 'postId', look: 'lookId', asset: 'assetId', title: 'titleId', place: 'placeId' };
 /** Every page param a history step keeps. */
-const PARAM_KEYS = [...Object.values(ID_PARAM), 'feedKind'] as (keyof Params)[];
-const parseRoute = (hash: string): { tab: string; params: Record<string, string> } => {
-  const [tab = '', id] = hash.replace(/^#\/?/, '').split('/');
-  return { tab, params: id && ID_PARAM[tab] ? { [ID_PARAM[tab]]: decodeURIComponent(id) } : {} };
+const PARAM_KEYS = [...Object.values(PARAM_OF), 'feedKind'] as (keyof Params)[];
+/** The address is a plain path (/club/<id>, /feed), never a hash; an old #/club/<id> link still opens its page. */
+const BASE = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
+const here = () => (typeof location === 'undefined' ? '' : /^#\//.test(location.hash) ? location.hash.slice(2) : location.pathname.startsWith(BASE) ? location.pathname.slice(BASE.length) : '');
+const parseRoute = (path: string): { tab: string; params: Record<string, string> } => {
+  const [tab = '', id] = path.replace(/^\/+/, '').split('/');
+  return { tab, params: id && PARAM_OF[tab] ? { [PARAM_OF[tab]]: decodeURIComponent(id) } : {} };
 };
-const START = parseRoute(typeof location !== 'undefined' ? location.hash : '');
+const START = parseRoute(here());
 const startTab = () => START.tab || (ONBOARDING.get().done ? 'feed' : 'welcome');
 /** Keep the address on the page you are on (replaceState: no reload, no hashchange loop). */
 const writeRoute = (tab: string, state: Record<string, unknown>) => {
   if (typeof history === 'undefined') return;
-  const key = ID_PARAM[tab]; const id = key ? state[key] : undefined;
-  const next = '#/' + tab + (typeof id === 'string' && id ? '/' + encodeURIComponent(id) : '');
-  if (location.hash !== next) history.replaceState(null, '', next);
+  const key = PARAM_OF[tab]; const id = key ? state[key] : undefined;
+  const next = BASE + tab + (typeof id === 'string' && id ? '/' + encodeURIComponent(id) : '');
+  if (location.pathname !== next || location.hash) history.replaceState(null, '', next + location.search);
 };
 
 /** Anything the details column can show: a person, host, cast, club, world, look… (the relations kinds). */
@@ -61,16 +58,18 @@ export type Overlay =
 export interface Appearance { radius: string; gradient: string; motion: string; sidebar: string; content: string; opacity: string }
 type Flags = Record<string, boolean>;
 export type FlagKey = 'liked' | 'saved' | 'follow' | 'rsvp';
-export interface Params { worldId?: ID; showId?: ID; clubId?: ID; profileId?: ID; cityId?: ID; storeId?: ID; poolId?: ID; nestId?: ID; feedKind?: string; postId?: ID; lookId?: ID; assetId?: ID; titleId?: ID; placeId?: ID }
+export interface Params { worldId?: ID; showId?: ID; clubId?: ID; profileId?: ID; cityId?: ID; storeId?: ID; poolId?: ID; nestId?: ID; hostId?: ID; feedKind?: string; postId?: ID; lookId?: ID; assetId?: ID; titleId?: ID; placeId?: ID; recordId?: ID }
 
 export interface PhieggState extends Required<Params> {
   tab: string; liked: Flags; saved: Flags; follow: Flags; rsvp: Flags;
+  /** The shop's tab (a kind) and category, shared by the shop page and the shop's own menu in the sidebar. */
+  shopView: { tab: string; cat: string }; setShopView: (v: Partial<{ tab: string; cat: string }>) => void;
   /** Bumped when lib/heavy.ts or lib/live.ts lands new data, so open pages re-render over the fresh indexes. */
   dataRev: number;
   nests: Nest[]; nestMsgs: Record<ID, NestMessage[]>; comments: Record<ID, Comment[]>; chats: Record<ID, AgentChatMessage[]>;
   overlay: Overlay; /** The overlay that is sliding out (it stays a moment so its drawer leaves the way it came). */ closingOverlay: Overlay | null; toast: string | null; rail: string; searchQ: string; appearance: Appearance; view: { mode: 'tile' | 'list' | 'grid'; cols: number }; setView: (v: { mode: 'tile' | 'list' | 'grid'; cols: number }) => void;
   setRail: (r: string) => void; setAppearance: (k: keyof Appearance, v: string) => void; openPerson: (id: ID) => void; openSignIn: () => void; openEditProfile: () => void; openEditClub: (id: ID) => void; openCreate: (createKind: string, initial?: Record<string, unknown>, back?: { recordKind: string; id: ID }) => void; openRecord: (recordKind: string, id: ID) => void;
-  /** Open any record: its own page when its kind has one (data/pages.json), a person's profile or chat, else its record page. */
+  /** Open any record: its own page when its kind has one (data/route.json), a person's profile or chat, else its record page. */
   openRef: (ref: DetailRef) => void; openId: (id: ID) => void;
   /** Delete your own shot from the one database (and the feed). */
   removeShot: (id: ID) => void;
@@ -84,7 +83,7 @@ export interface PhieggState extends Required<Params> {
   openStory: (uid: ID, from?: number) => void; storyStep: (d: number) => void; pause: (p: boolean) => void;
   openChat: (id: ID, text?: string, details?: boolean) => void;
   /** Push a record onto the chat sheet's details column (opens the sheet if needed). */
-  openDetails: (ref: DetailRef) => void; detailBack: () => void; closeDetails: () => void; sendChat: (id: ID, text: string) => void; comment: (postId: ID, text: string) => void;
+  openDetails: (ref: DetailRef) => void; detailBack: () => void; closeDetails: () => void; sendChat: (id: ID, text: string) => void; comment: (postId: ID, text: string, parentId?: ID) => void;
   nestMsg: (nestId: ID, text: string) => void; openNest: (hostId: ID, parentId: ID | null, k: NestKind) => void;
   createNest: (name: string, k: NestKind) => void; summon: (agentId: ID) => void;
 }
@@ -101,22 +100,23 @@ const APPEARANCE = persisted<Appearance>('appearance', { radius: site.appearance
 const hrefToNav = (href: string): [string, Params] => {
   const [path, q] = href.split('?id=');
   const tab = path.replace('/', '');
-  return [tab, q ? { [ID_PARAM[tab] ?? 'profileId']: q } : {}];
+  return [tab, q ? { [PARAM_OF[tab] ?? 'profileId']: q } : {}];
 };
 
 export const phieggStore = createStore<PhieggState>((set, get) => ({
   // The public home page is where a first visit lands; `#tab` in the address opens a page directly.
-  tab: startTab(), dataRev: 0, worldId: D.core.worlds[0].id, showId: D.shows.shows[0]?.id ?? '', clubId: D.club.clubId, profileId: D.profile.userId, cityId: D.core.worlds[0].cities[0].id, storeId: FLAGSHIP_ID, poolId: D.pools.pools[0].id, nestId: '', postId: '', lookId: '', assetId: '', titleId: '', placeId: '', ...START.params,
+  tab: startTab(), dataRev: 0, worldId: D.core.worlds[0].id, showId: D.shows.shows[0]?.id ?? '', clubId: D.club.clubId, profileId: D.profile.userId, cityId: D.core.worlds[0].cities[0].id, storeId: FLAGSHIP_ID, poolId: D.pools.pools[0].id, nestId: '', hostId: D.hosts.hosts[0]?.id ?? '', postId: '', lookId: '', assetId: '', titleId: '', placeId: '', recordId: '', ...START.params,
   ...FLAGS.get(), nests: D.hosts.nests.slice(), nestMsgs: { ...D.hosts.messages }, comments: {}, chats: CHATS.get(),
-  overlay: { kind: 'none' }, closingOverlay: null, toast: null, rail: 'home', searchQ: '', feedKind: 'all',
+  overlay: { kind: 'none' }, closingOverlay: null, toast: null, rail: 'home', searchQ: '', feedKind: 'all', shopView: { tab: '', cat: '' },
   appearance: APPEARANCE.get(),
   view: { mode: 'grid', cols: 4 }, setView: (view) => set({ view }),
   setRail: (rail) => set({ rail }),
   setAppearance: (k, v) => set({ appearance: { ...get().appearance, [k]: v } }),
   // Agents open in the chat sheet with their details beside the chat; people open their profile drawer.
-  openPerson: (id) => (agentOf(id) ? get().openChat(id, undefined, true) : set({ overlay: { kind: 'person', id } })),
+  openPerson: (id) => (itemOf('agent', id) ? get().openChat(id, undefined, true) : set({ overlay: { kind: 'person', id } })),
   // A look, an asset, a title or a place is an entity: clicking one opens its page. Sheets are for what you do there.
-  openLook: (id) => { record('view', id, { refKind: 'look' }); get().closeDetails(); set({ overlay: { kind: 'none' } }); get().go('look', { lookId: id }); },
+  // An item opens in its own shop: the header's bag and the brand's menu are that shop's, wherever it was opened from.
+  openLook: (id) => { record('view', id, { refKind: 'look' }); get().closeDetails(); set({ overlay: { kind: 'none' } }); const l = itemOf('look', id); get().go('look', { lookId: id, ...(l ? { storeId: lookStore(l).id } : {}) }); },
   openSwap: (giveId, getId) => set({ overlay: { kind: 'swap', giveId, getId } }),
   openStat: (poolId, metricId) => set({ overlay: { kind: 'stat', poolId, metricId } }),
   openList: (list) => set({ overlay: { kind: 'list', list } }),
@@ -126,13 +126,16 @@ export const phieggStore = createStore<PhieggState>((set, get) => ({
   openCreate: (createKind, initial, back) => set({ overlay: { kind: 'create', createKind, initial, back } }),
   openRecord: (recordKind, id) => set({ overlay: { kind: 'record', recordKind, id } }),
   openRef: ({ kind, id }) => {
-    if (kind === 'person' || kind === 'agent') { get().openPerson(id); return; }
-    const tab = PAGE_OF[kind];
-    if (tab && ID_PARAM[tab]) { get().closeDetails(); set({ overlay: { kind: 'none' } }); get().go(tab, { [ID_PARAM[tab]]: id } as never); return; }
+    // Kinds that do more than change the page when they open (a person's chat, a look's shop, a post's view count).
+    const own: Record<string, (id: ID) => void> = { person: get().openPerson, agent: get().openPerson, look: get().openLook, post: get().openPost, feedPost: get().openPost };
+    if (own[kind]) { own[kind](id); return; }
+    const tab = PATH_OF[kind];
+    if (tab && PARAM_OF[tab]) { get().closeDetails(); set({ overlay: { kind: 'none' } }); get().go(tab, { [PARAM_OF[tab]]: id } as never); return; }
     get().openRecord(kind, id);
   },
   openId: (id) => { const kind = kindOfId(id); if (kind) get().openRef({ kind, id }); },
   openEditClub: (id) => set({ overlay: { kind: 'editClub', id } }),
+  setShopView: (v) => set({ shopView: { ...get().shopView, ...v } }),
   removeShot: (id) => {
     const done = () => { set({ overlay: { kind: 'none' }, dataRev: Date.now() }); if (get().tab === 'post') get().back(); get().flash(t('shotRemoved')); };
     if (!hasApi) { const i = D.feed.shots.findIndex((x) => x.id === id); if (i >= 0) D.feed.shots.splice(i, 1); done(); return; }
@@ -144,7 +147,7 @@ export const phieggStore = createStore<PhieggState>((set, get) => ({
   },
   postShot: (text) => { if (!text.trim()) return;
     const me = person(D.core.currentUserId); const clubId = me.clubIds[0] ?? null;
-    const fields = { title: text.trim().split(/\s+/).slice(0, 6).join(' '), authorId: me.id, clubId, worldId: clubOf(clubId)?.worldIds?.[0] ?? null,
+    const fields = { title: text.trim().split(/\s+/).slice(0, 6).join(' '), authorId: me.id, clubId, worldId: itemOf('club', clubId)?.worldIds?.[0] ?? null,
       media: { kind: 'image', tone: me.tone, ratio: '4/5', title: text.trim().split(/\s+/).slice(0, 4).join(' ') },
       caption: text.trim(), likes: 0, comments: 0, reshares: 0, createdAt: new Date().toISOString(), tags: [], lookItems: [] };
     const lead = (shot: Shot) => { const i = D.feed.shots.indexOf(shot); if (i > 0) { D.feed.shots.splice(i, 1); D.feed.shots.unshift(shot); } };
@@ -177,7 +180,7 @@ export const phieggStore = createStore<PhieggState>((set, get) => ({
   openPost: (postId) => { record('open', postId, { refKind: 'post' }); get().go('post', { postId }); },
   openComments: (postId, slide = 0) => set({ overlay: { kind: 'comments', postId, slide } }),
   openStory: (uid, from = 0) => {
-    const pool = poolOf(uid);
+    const pool = itemOf('pool', uid);
     const frames = (pool ? poolStory(pool) : storySets(uid)).slice(from).flatMap((h, k) => h.frames.map((f, i) => ({ ...f, set: h.label, setK: k, i })));
     if (frames.length) set({ overlay: { kind: 'story', uid, frames, idx: 0, paused: false } }); else get().flash(t('noMoments'));
   },
@@ -187,10 +190,13 @@ export const phieggStore = createStore<PhieggState>((set, get) => ({
   openChat: (agentId, text, details) => {
     const chats = get().chats; const o = get().overlay;
     const detail = details ? [{ kind: 'person', id: agentId }] : o.kind === 'chat' && o.agentId === agentId ? o.detail : [];
-    set({ overlay: { kind: 'chat', agentId, detail }, chats: chats[agentId] ? chats : { ...chats, [agentId]: [{ role: 'agent', text: (() => { const a = agentOf(agentId); return a ? greetingOf(a) : ''; })() }] } });
+    set({ overlay: { kind: 'chat', agentId, detail }, chats: chats[agentId] ? chats : { ...chats, [agentId]: [{ role: 'agent', text: (() => { const a = itemOf('agent', agentId); return a ? greetingOf(a) : ''; })() }] } });
     if (text) get().sendChat(agentId, text);
   },
   openDetails: (ref) => {
+    // A record with a page of its own is navigated to, never shown in the drawer; only people (and agents) and
+    // kinds with no page yet open on the right.
+    if (ref.kind !== 'person' && ref.kind !== 'agent' && PATH_OF[ref.kind] && PARAM_OF[PATH_OF[ref.kind]]) { get().openRef(ref); return; }
     const o = get().overlay;
     if (o.kind === 'chat') { const top = o.detail[o.detail.length - 1]; if (top?.kind === ref.kind && top.id === ref.id) return; set({ overlay: { ...o, detail: [...o.detail, ref] } }); return; }
     const recent = Object.keys(get().chats)[0] ?? D.agents.agents[0].id;
@@ -199,7 +205,7 @@ export const phieggStore = createStore<PhieggState>((set, get) => ({
   detailBack: () => { const o = get().overlay; if (o.kind === 'chat') set({ overlay: { ...o, detail: o.detail.slice(0, -1) } }); },
   closeDetails: () => { const o = get().overlay; if (o.kind === 'chat') set({ overlay: { ...o, detail: [] } }); },
   sendChat: (agentId, text) => {
-    const ag = agentOf(agentId); if (!ag || !text.trim()) return; record('chat', agentId, { refKind: 'agent', note: text.slice(0, 120) });
+    const ag = itemOf('agent', agentId); if (!ag || !text.trim()) return; record('chat', agentId, { refKind: 'agent', note: text.slice(0, 120) });
     const apply = (r: AgentResult) => {
       const s = get();
       set({ chats: { ...s.chats, [agentId]: [...(s.chats[agentId] ?? []), ...r.msgs] }, rsvp: r.rsvp ? { ...s.rsvp, [r.rsvp]: true } : s.rsvp });
@@ -212,10 +218,12 @@ export const phieggStore = createStore<PhieggState>((set, get) => ({
     const turns = history.flatMap((m) => ('text' in m ? [{ role: m.role === 'user' ? 'user' as const : 'assistant' as const, text: m.text }] : []));
     void modelChat('phiegg', agentId, turns).then((r) => apply(r ? { msgs: [{ role: 'agent', text: r.text }], href: r.href, rsvp: r.rsvp } : reply(ag, text)));
   },
-  comment: (postId, text) => {
-    if (!text.trim()) return; record('comment', postId, { refKind: 'post', note: text.slice(0, 120) }); const post = postById(postId); const ag = post && agentOf(post.authorId); const now = Date.now();
-    const list: Comment[] = [...(get().comments[postId] ?? []), { id: postId + '_m' + now, authorId: D.core.currentUserId, text, likes: 0, at: t('now') }];
-    if (ag) list.push({ id: postId + '_a' + now, authorId: ag.id, text: ag.commentFallback, likes: 0, at: t('now') });
+  // A comment on a post, or a reply under one of its comments (parentId); both go through the API's record.
+  comment: (postId, text, parentId) => {
+    if (!text.trim()) return; record('comment', postId, { refKind: 'post', note: text.slice(0, 120) }); const post = postById(postId); const ag = post && itemOf('agent', post.authorId); const now = Date.now();
+    const mine: Comment = { id: postId + '_m' + now, authorId: D.core.currentUserId, text, likes: 0, at: t('now'), parentId: parentId ?? null };
+    const list: Comment[] = [...(get().comments[postId] ?? []), mine];
+    if (ag) list.push({ id: postId + '_a' + now, authorId: ag.id, text: ag.commentFallback, likes: 0, at: t('now'), parentId: mine.id });
     set({ comments: { ...get().comments, [postId]: list } });
   },
   nestMsg: (nestId, text) => { if (!text.trim()) return; const m = get().nestMsgs;
@@ -231,7 +239,7 @@ export const phieggStore = createStore<PhieggState>((set, get) => ({
       }); return; }
     const n: Nest = { id: 'n_' + Date.now(), ...fields } as Nest;
     set({ nests: [...get().nests, n], overlay: { kind: 'none' } }); get().flash(t('nested', { kind: nestKind, name })); },
-  summon: (agentId) => { const ag = agentOf(agentId); const host = D.hosts.hosts[0]; const nest = get().nests.find((n) => n.hostId === host.id && !n.parentId);
+  summon: (agentId) => { const ag = itemOf('agent', agentId); const host = D.hosts.hosts[0]; const nest = get().nests.find((n) => n.hostId === host.id && !n.parentId);
     if (!ag || !nest) return; get().nestMsg(nest.id, ag.summonLine); get().flash(t('summoned', { name: ag.name, host: host.name, nest: nest.name })); },
 }));
 
@@ -247,7 +255,8 @@ CHATS.subscribe(() => { const c = CHATS.get(); if (c !== phieggStore.getState().
 APPEARANCE.subscribe(() => { const a = APPEARANCE.get(); if (a !== phieggStore.getState().appearance) phieggStore.setState({ appearance: a }); });
 
 // A link typed or pasted into the address of an open page navigates too (replaceState above never fires this).
-if (typeof window !== 'undefined') window.addEventListener('hashchange', () => {
-  const r = parseRoute(location.hash); const g = phieggStore.getState();
+const follow = () => {
+  const r = parseRoute(here()); const g = phieggStore.getState();
   if (r.tab && (r.tab !== g.tab || Object.entries(r.params).some(([k, v]) => (g as unknown as Record<string, unknown>)[k] !== v))) g.go(r.tab, r.params as never);
-});
+};
+if (typeof window !== 'undefined') { window.addEventListener('hashchange', follow); window.addEventListener('popstate', follow); }

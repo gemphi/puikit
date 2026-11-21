@@ -176,7 +176,6 @@ export const ProductItem: React.FC<ProductItemProps> = ({
           {onToggleWishlist && (
             <Button
               variant="icon"
-              size="sm"
               data-wishlist="true"
               data-active={inWishlist ? 'true' : 'false'}
               aria-label={copy.wishlist}
@@ -233,7 +232,6 @@ export const ProductItem: React.FC<ProductItemProps> = ({
           {onToggleWishlist && (
             <Button
               variant="icon"
-              size="sm"
               data-wishlist="true"
               data-active={inWishlist ? 'true' : 'false'}
               aria-label={copy.wishlist}
@@ -287,8 +285,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({
           <Price amount={price} saleAmount={salePrice} />
           {onAddToCart && (
             <Button
-              variant="primary"
-              size="sm"
+              variant="glass"
               icon={<ShoppingCart size={15} />}
               onClick={() => onAddToCart(id)}
             >

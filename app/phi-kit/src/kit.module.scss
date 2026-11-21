@@ -1,7 +1,8 @@
-/* Phi app shell, rail · section menu · content · right-bar. Organic tokens only (--phi-*). */
+/* Live code reads only .term, .termIn, .figImg, .fieldRow and .fill from here. Every other class is the shell from
+   before the kit's AppShell, kept because app/phiegg-v1 (not in the registry, not run) still names it. */
 .shell { display: flex; height: 100vh; background: var(--phi-gradient-main); color: var(--phi-color-text-primary); font-family: var(--phi-font-family); position: relative; overflow: hidden; }
 .rail { width: 66px; flex: none; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px 0; background: var(--phi-gradient-rail); z-index: 42; }
-.railBtn { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; border: 0; background: transparent; color: var(--phi-color-text-primary); cursor: pointer; text-decoration: none;
+.railBtn { width: 44px; height: 44px; border-radius: var(--phi-radius-full); display: grid; place-items: center; border: 0; background: transparent; color: var(--phi-color-text-primary); cursor: pointer; text-decoration: none;
   &:hover { background: var(--phi-organic-accent-200); } }
 .railOn { background: var(--phi-color-background-card); box-shadow: var(--phi-shadow-1); }
 .menu { width: 252px; flex: none; display: flex; flex-direction: column; gap: 4px; padding: 18px 12px; background: var(--phi-gradient-sidebar); overflow-y: auto; z-index: 42; }
@@ -28,7 +29,7 @@
 .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .tableWrap { border-radius: var(--phi-radius-lg); overflow: auto; background: var(--phi-color-background-card); }
 .table { width: 100%; border-collapse: collapse; font-size: 14px;
-  th { text-align: left; font-size: 12px; letter-spacing: 0.06em; color: var(--phi-color-text-secondary); padding: 12px 16px; background: var(--phi-gradient-table-header); }
+  th { text-align: left; font-size: 12px; color: var(--phi-color-text-secondary); padding: 12px 16px; background: var(--phi-gradient-table-header); }
   td { padding: 12px 16px; border-top: 1px solid var(--phi-color-border-subtle); } }
 .statValue { font-family: var(--phi-font-heading); font-size: 30px; line-height: 1; }
 .chat { display: flex; flex-direction: column; gap: 12px; padding: 16px; border-radius: var(--phi-radius-lg); background: var(--phi-color-background-card); min-height: 380px; }
@@ -36,7 +37,8 @@
 .msg { max-width: 75%; padding: 10px 14px; border-radius: var(--phi-radius-2xl); background: var(--phi-color-background-secondary); line-height: 1.45; }
 .me { align-self: flex-end; background: var(--phi-color-primary); color: var(--phi-color-text-inverse); }
 .input { flex: 1; min-width: 0; min-height: 44px; border-radius: var(--phi-radius-full); border: 1px solid var(--phi-color-border); background: var(--phi-color-background); padding: 0 16px; font: inherit; color: inherit; }
-.term { background: #201e1d; color: #f5ead8; font-family: var(--phi-font-mono); font-size: 13px; border-radius: var(--phi-radius-lg); padding: 18px; min-height: 300px; display: flex; flex-direction: column; gap: 4px; white-space: pre-wrap; }
+/* The terminal's colours are the theme's sunken surface (Terminal.tsx); only its shape is here. */
+.term { font-family: var(--phi-font-mono); min-height: 300px; display: flex; flex-direction: column; gap: 4px; white-space: pre-wrap; }
 .termIn { flex: 1; background: transparent; border: 0; color: inherit; font: inherit; outline: none; }
 .backdrop { display: none; }
 @keyframes slideIn { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }

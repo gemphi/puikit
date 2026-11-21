@@ -1,0 +1,19 @@
+// Bands: two bands of light round a child, the layer gaps of tokens.scss (--phi-layer-out, --phi-layer-in). Tokens only.
+.outer {
+  display: flex; min-width: 0; height: 100%;
+  padding: var(--phi-layer-out) var(--phi-layer-out) calc(var(--phi-layer-out) / 2) calc(var(--phi-layer-out) / 2);
+  border-radius: var(--phi-radius-md);
+  background-image: var(--phi-label);
+  transition: transform var(--phi-duration-slow) var(--phi-ease-spring);
+}
+.inner {
+  display: flex; flex: 1 1 auto; min-width: 0; flex-direction: column;
+  padding: var(--phi-layer-in) var(--phi-layer-in) calc(var(--phi-layer-in) / 2) calc(var(--phi-layer-in) / 2);
+  border-radius: var(--phi-radius-lg);
+  background-image: var(--phi-label-end-strong);
+  transition: background-image var(--phi-duration) var(--phi-ease);
+  > * { flex: 1 1 auto; min-width: 0; }
+}
+.outer:hover { transform: translateY(-2px); }
+.outer:hover > .inner { background-image: var(--phi-label-end-strong), var(--phi-label-end); }
+@media (prefers-reduced-motion: reduce) { .outer { transition: none; } .outer:hover { transform: none; } }

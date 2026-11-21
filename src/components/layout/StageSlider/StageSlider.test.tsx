@@ -6,11 +6,11 @@ import { StageSlider } from './index';
 const items = ['a', 'b', 'c', 'd', 'e'].map((x) => ({ id: x, node: <span>{x}</span> }));
 
 describe('StageSlider', () => {
-  it('puts one slide in the centre and its neighbours half its height, half tucked under', () => {
+  it('puts one slide in the centre and its neighbours three quarters of it, half tucked under', () => {
     const { container } = render(<StageSlider items={items} sides={1} />);
     const slides = [...container.querySelectorAll('[data-offset]')] as HTMLElement[];
     expect(slides.map((x) => x.getAttribute('data-offset'))).toEqual(['-1', '0', '1']);
-    expect(slides[2].style.transform).toBe('translateX(50%) scale(0.5)');
+    expect(slides[2].style.transform).toBe('translateX(50%) scale(0.75)');
     expect(slides[1].style.transform).toBe('translateX(0%) scale(1)');
   });
   it('steps with the side arrows and the keyboard, and shows the position', () => {
@@ -27,6 +27,6 @@ describe('StageSlider', () => {
     const { container } = render(<StageSlider items={items} sides={2} fill />);
     const root = container.querySelector('[role=region]') as HTMLElement;
     expect(container.querySelectorAll('[data-offset]').length).toBe(5);
-    expect(root.style.getPropertyValue('--pui-stage-span')).toBe('1.75');
+    expect(root.style.getPropertyValue('--pui-stage-span')).toBe('1.975');
   });
 });

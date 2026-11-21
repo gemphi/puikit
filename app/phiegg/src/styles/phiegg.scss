@@ -17,14 +17,14 @@
 .ph-app { position: relative; background-color: var(--phi-color-background); color: var(--phi-color-text-primary); }
 
 /* Appearance shades: −2…+2 darken / lighten the shell's sidebar (rail + panel) and its content area, in every theme. */
-.ph-app[data-ph-sidebar='-2'] { --pui-shell-nav-tint: rgba(0, 0, 0, 0.14); }
-.ph-app[data-ph-sidebar='-1'] { --pui-shell-nav-tint: rgba(0, 0, 0, 0.07); }
-.ph-app[data-ph-sidebar='1'] { --pui-shell-nav-tint: rgba(255, 255, 255, 0.10); }
-.ph-app[data-ph-sidebar='2'] { --pui-shell-nav-tint: rgba(255, 255, 255, 0.20); }
-.ph-app[data-ph-content='-2'] { --pui-shell-main-tint: rgba(0, 0, 0, 0.12); }
-.ph-app[data-ph-content='-1'] { --pui-shell-main-tint: rgba(0, 0, 0, 0.06); }
-.ph-app[data-ph-content='1'] { --pui-shell-main-tint: rgba(255, 255, 255, 0.10); }
-.ph-app[data-ph-content='2'] { --pui-shell-main-tint: rgba(255, 255, 255, 0.20); }
+.ph-app[data-ph-sidebar='-2'] { --pui-shell-nav-tint: color-mix(in srgb, var(--phi-color-background) 14%, transparent); }
+.ph-app[data-ph-sidebar='-1'] { --pui-shell-nav-tint: color-mix(in srgb, var(--phi-color-background) 7%, transparent); }
+.ph-app[data-ph-sidebar='1'] { --pui-shell-nav-tint: color-mix(in srgb, var(--phi-glass-light, var(--phi-color-text-primary)) 10%, transparent); }
+.ph-app[data-ph-sidebar='2'] { --pui-shell-nav-tint: color-mix(in srgb, var(--phi-glass-light, var(--phi-color-text-primary)) 20%, transparent); }
+.ph-app[data-ph-content='-2'] { --pui-shell-main-tint: color-mix(in srgb, var(--phi-color-background) 12%, transparent); }
+.ph-app[data-ph-content='-1'] { --pui-shell-main-tint: color-mix(in srgb, var(--phi-color-background) 6%, transparent); }
+.ph-app[data-ph-content='1'] { --pui-shell-main-tint: color-mix(in srgb, var(--phi-glass-light, var(--phi-color-text-primary)) 10%, transparent); }
+.ph-app[data-ph-content='2'] { --pui-shell-main-tint: color-mix(in srgb, var(--phi-glass-light, var(--phi-color-text-primary)) 20%, transparent); }
 
 /* Surface opacity: cards let the page show through (Glass adds a frosted blur). */
 html:root[data-ph-opacity='90'] { --phi-surface-opacity: 90%; }
@@ -32,11 +32,7 @@ html:root[data-ph-opacity='75'] { --phi-surface-opacity: 75%; }
 html:root[data-ph-opacity='60'] { --phi-surface-opacity: 60%; }
 html:root[data-ph-opacity='60'] .pui-shell-content [class*='card'] { backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); }
 
-/* Chat bubbles follow the gradient choice: flat = solid tones, otherwise accent → accent 2 (me) and a tinted card (them). */
-:root:not([data-gradient-level='flat']) {
-  --phi-bubble-me: linear-gradient(135deg, var(--phi-color-primary), color-mix(in oklch, var(--phi-color-primary) 45%, var(--phi-color-accent-2, var(--phi-color-info))));
-  --phi-bubble-them: linear-gradient(135deg, color-mix(in oklch, var(--phi-color-primary) 10%, var(--phi-color-background-secondary)), var(--phi-color-background-secondary));
-}
+/* Chat bubbles wear the kit's light, across only (ChatBubble): no colour of their own. */
 
 /* Game feel for the content column: cards lift and glow under the pointer. */
 .pui-shell-content [class*='card']:not([class*='flat']) { transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s; }
@@ -49,3 +45,18 @@ html:root[data-ph-opacity='60'] .pui-shell-content [class*='card'] { backdrop-fi
    the target. */
 .ph-open { display: flex; flex-direction: column; cursor: pointer; min-width: 0; min-height: 0; }
 .ph-open > * { flex: 1 1 auto; min-height: 0; }
+/* The shared chat columns fill the height they are given; each column scrolls its own content. */
+.ph-chat-columns { display: flex; min-height: 24rem; > * { flex: 1 1 auto; min-height: 0; height: 100%; } }
+/* An agent chat's messages: their own scroll, so a new message never moves the page. */
+.ph-chat-list { flex: 1 1 auto; min-height: 0; overflow-y: auto; scrollbar-width: none; &::-webkit-scrollbar { display: none; } }
+/* A relation tab that is one record carries its picture, small and round, before its name. */
+.ph-tab-thumb { display: inline-grid; place-items: center; width: 1.375rem; height: 1.375rem; border-radius: var(--phi-radius-full); overflow: hidden; flex: none;
+  > * { width: 100% !important; height: 100% !important; font-size: 0.5rem; } img { object-fit: cover; } }
+/* A look's picture carries its own words at its foot only, so nothing distracts from the picture: its name and what
+   marks it (its rarity) stand on a band of their own light, bright at the bottom and gone at its top, edge to edge
+   of the picture's holder. A frame gives what it holds its own size; the band keeps its words' height. */
+.ph-look { position: relative; }
+.ph-look > .ph-look-foot { position: absolute; z-index: 2; inset: auto 0 0 0; width: auto; height: auto; aspect-ratio: auto; place-self: auto;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: var(--phi-space-2); min-width: 0;
+  padding: var(--phi-space-6) var(--phi-space-3) var(--phi-space-3); background-image: var(--phi-surface-strong); pointer-events: none; }
+.ph-look-marks { display: flex; gap: var(--phi-space-1); flex: none; }

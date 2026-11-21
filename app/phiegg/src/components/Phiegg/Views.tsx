@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Box, DataTable, FacetFilters, FilterLayout, Rows, Stack, StageSlider, Text, ViewToolbar, facetsOf, matchFacets, type DataTableColumn } from '@pui/components';
+import React from 'react';
+import { Rows, StageSlider } from '@pui/components';
+import { ListView as SharedListView, type ListViewProps } from '@phi-kit/ListView';
 import { useStore } from '@pui/store';
 import { garmentOf, t } from '../../lib/data';
 import { phieggStore } from '../../state/phieggStore';
@@ -11,13 +12,6 @@ export const ClubIcon: React.FC<{ icon?: string; size?: string }> = ({ icon, siz
   return g ? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.25} strokeLinecap="round" strokeLinejoin="round" width={size} height={size} aria-label={g.name}><path d={g.path} /></svg> : null;
 };
 
-export type ViewMode = 'tile' | 'list' | 'grid';
-/** Tile (slider) · List · Grid as icons; the numbers (cards per view) only in tile mode. Shared by every list via the store. */
-export const ViewSwitch: React.FC<{ count: number; onFilters?: () => void; filtersOpen?: boolean; activeFilters?: number; perView?: boolean }> = ({ count, onFilters, filtersOpen, activeFilters, perView = true }) => {
-  const { view, setView } = useStore(phieggStore);
-  return <ViewToolbar mode={view.mode} onMode={(m) => setView({ ...view, mode: m })} perView={perView ? Math.min(3, Math.max(1, view.cols)) : undefined} onPerView={perView ? (n) => setView({ ...view, cols: n }) : undefined}
-    count={`${count} items`} onFilters={onFilters} filtersOpen={filtersOpen} activeFilters={activeFilters} labels={{ tile: 'Tile', list: 'List', grid: 'Grid', filters: t('lsFilterSort') }} />;
-};
 /** Grid wrapper that follows the chosen view: the stage slider (tile), full rows (grid) or one a row (list). */
 export const ViewGrid: React.FC<{ children: React.ReactNode; cols?: number; minItemWidth?: string }> = ({ children, cols: want = 4, minItemWidth = '15rem' }) => {
   const { view } = useStore(phieggStore); const { mobile } = useViewport();
@@ -34,54 +28,19 @@ export const ViewGrid: React.FC<{ children: React.ReactNode; cols?: number; minI
   return <Rows cols={cols} colsSm={Math.min(cols, 2)} minItemWidth={view.mode === 'list' ? undefined : minItemWidth}>{children}</Rows>;
 };
 
+export type { ListFacet, ListSort } from '@phi-kit/ListView';
+type Own = 'view' | 'onView' | 'labels' | 'count' | 'tile' | 'openCard' | 'cardClassName' | 'tableOptions' | 'mode' | 'pageSize' | 'noun';
 /**
- * Every list in the app: the view toolbar, a Filter & sort sidebar built from the rows' own fields (facets) and
- * sorts, and the grid. In list mode a `table` turns the rows into a DataTable sortable by its headings.
+ * Every list in the app is the shared ListView (app/phi-kit). This only hands it what is Phiegg's own: the one view
+ * the store keeps for all lists, the words, the stage slider for tile mode, cards that open their record, and the
+ * table that stays in view. In list mode `groupBy` sections the table into groups that expand and collapse.
  */
-export type ListFacet<T> = { id: string; label: string; get: (r: T) => string | undefined };
-export type ListSort<T> = { id: string; label: string; by: (a: T, b: T) => number };
-export function ListView<T>({ rows, keyOf, text, facets = [], sorts = [], render, table, cols, minItemWidth, empty, slider, onRow, groupBy }: {
-  rows: T[]; keyOf: (r: T) => string; text?: (r: T) => string; facets?: ListFacet<T>[]; sorts?: ListSort<T>[];
-  render: (r: T) => React.ReactNode; table?: DataTableColumn<T>[]; cols?: number; empty?: string;
-  /** In list (table) mode, section the rows into groups that expand and collapse. */
-  groupBy?: (r: T) => string;
-  /** The narrowest a card may get before the grid drops a column (default 15rem). */
-  minItemWidth?: string;
-  /** A bespoke slider for tile mode (e.g. the shows stage); otherwise tile mode is the Rows slider. */
-  slider?: (rows: T[]) => React.ReactNode;
-  /** Opens a row from the table. */
-  onRow?: (r: T) => void;
-}) {
-  const { view, openId } = useStore(phieggStore);
-  // Every record opens: the page's own action, else its record by id (state openId: its page, or its record page).
-  const openRow = onRow ?? ((r: T) => openId(keyOf(r)));
-  // A click on the card opens it; a click on something of its own inside (Buy, a link, a field) does only that.
-  const card = (r: T) => (
-    <Box className="ph-open" onClick={(e: React.MouseEvent) => {
-      const hit = (e.target as Element).closest('button, a, input, select, textarea, label, [role="button"], [role="radio"], [role="checkbox"], [role="tab"]');
-      if (hit && hit !== e.currentTarget && (e.currentTarget as Element).contains(hit)) return;
-      openRow(r);
-    }}>{render(r)}</Box>
-  );
-  const [open, setOpen] = useState(false); const [q, setQ] = useState(''); const [sel, setSel] = useState<Record<string, string>>({}); const [sort, setSort] = useState(sorts[0]?.id ?? '');
-  const ql = q.trim().toLowerCase();
-  const by = sorts.find((x) => x.id === sort)?.by;
-  const shown = rows.filter((r) => (!ql || !text || text(r).toLowerCase().includes(ql)) && matchFacets(r, facets, sel));
-  if (by) shown.sort(by);
-  const active = Object.values(sel).filter(Boolean).length + (ql ? 1 : 0);
-  return (
-    <Stack direction="column" gap={3}>
-      <ViewSwitch count={shown.length} onFilters={() => setOpen(!open)} filtersOpen={open} activeFilters={active} perView={!slider} />
-      <FilterLayout open={open} onClose={() => setOpen(false)} title={t('lsFilterSort')} closeLabel={t('lsClose')}
-        filters={<FacetFilters facets={facetsOf(rows, facets)} selected={sel} onSelect={(f, o) => setSel((x) => ({ ...x, [f]: o ?? '' }))}
-          search={text ? q : undefined} onSearch={text ? setQ : undefined} sorts={sorts.map((x) => ({ id: x.id, label: x.label }))} sort={sort} onSort={setSort}
-          labels={{ search: t('searchPh'), sort: t('lsSort'), all: t('seAll'), clear: t('lsClear') }} />}>
-        {shown.length === 0 ? <Text intent="muted">{empty ?? t('lsNone')}</Text>
-          : view.mode === 'list' && table ? <DataTable rows={shown} getKey={(r) => keyOf(r)} columns={table} onRowClick={(r) => openRow(r)}
-              stickyHeader stickyFirst maxHeight="34rem" limit={groupBy ? undefined : 25} groupBy={groupBy} />
-          : view.mode === 'tile' && slider ? slider(shown)
-          : <ViewGrid cols={cols} minItemWidth={minItemWidth}>{shown.map((r) => <React.Fragment key={keyOf(r)}>{card(r)}</React.Fragment>)}</ViewGrid>}
-      </FilterLayout>
-    </Stack>
-  );
+export function ListView<T>({ groupBy, onRow, cols, empty, ...rest }: Omit<ListViewProps<T>, Own> & { render: (r: T) => React.ReactNode; groupBy?: (r: T) => string }) {
+  const { view, setView, openId } = useStore(phieggStore); const { mobile } = useViewport();
+  return <SharedListView<T> {...rest} view={view} onView={setView} tile="stage" openCard cardClassName="ph-open"
+    // Every record opens: the page's own action, else its record by id (state openId: its page, or its record page).
+    onRow={onRow ?? ((r) => openId(rest.keyOf(r)))} cols={mobile ? Math.min(cols ?? 4, 2) : cols} empty={empty ?? t('lsNone')}
+    count={(n) => `${n} items`} tableOptions={{ sticky: true, maxHeight: '34rem', limit: groupBy ? undefined : 25, groupBy }}
+    labels={{ tile: 'Tile', list: 'List', grid: 'Grid', filters: t('lsFilters'), close: t('lsClose'), search: t('searchPh'), sort: t('lsSort'), all: t('seAll'), clear: t('lsClear'), order: t('lsOrder'), forward: t('lsForward'), backward: t('lsBackward'),
+      prev: t('slPrev'), next: t('slNext'), position: (k, n) => t('slPos', { i: k, n }) }} />;
 }

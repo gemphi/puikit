@@ -1,0 +1,15 @@
+// Picture: a blurred copy as the ground, a room of the kit's surface, the picture whole inside it. Tokens only.
+.root { position: absolute; inset: 0; display: block; overflow: hidden; }
+/* The ground is the picture drawn at a quarter size and scaled up: the same soft blur for a sixteenth of the work. */
+.ground { position: absolute; left: -5%; top: -5%; width: 25%; height: 25%; object-fit: cover; transform: scale(4.4); transform-origin: 0 0; filter: blur(6px); pointer-events: none; }
+/* The room: one band of the surface, the same for every picture, as close as the inner layer gap; the picture fills
+   the room's box and is fitted whole inside it (object-fit), never stretched or cropped. A plain 100% box on purpose:
+   sizing the picture from its own shape (auto sizes in a centring grid, or container units) made a page of cards lay
+   out pathologically slowly. */
+.room {
+  position: absolute; display: block; overflow: hidden;
+  inset: calc(var(--phi-layer-in) / 2) calc(var(--phi-layer-in) / 2) calc(var(--phi-layer-in) / 4) calc(var(--phi-layer-in) / 4);
+  padding: calc(var(--phi-layer-in) / 3) calc(var(--phi-layer-in) / 3) calc(var(--phi-layer-in) / 6) calc(var(--phi-layer-in) / 6);
+  border-radius: var(--phi-radius-md); background-image: var(--phi-surface);
+  > img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; }
+}

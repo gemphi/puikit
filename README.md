@@ -82,9 +82,7 @@ export const Counter = () => {
 ---
 
 ## 4. Documentation & Applications
-- **[`app/pui-book`](app/pui-book/)** (`puikit.com`): Interactive docs, live code playground, and component specs.
-- **[`app/demo-app`](app/demo-app/)**: Enterprise operational cockpit with live ontology tables and telemetry.
-- **[`app/landing-app`](app/landing-app/)**: Design system feature tour and theme switcher.
+- **[`app/phiapp`](app/phiapp/)**: the shared app every Phi app is configured on; the site's landing and demo, and the home of its tests (`npm test --prefix app/phiapp`).
 
 ---
 

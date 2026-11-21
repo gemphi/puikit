@@ -3,7 +3,8 @@ import type React from 'react';
 /** A record a menu entry pulls in (its top five pools, the latest runs): shown folded under the entry. `avatar` draws
  *  the row's picture instead of the initials, `meta` sits at the row's end (a count, a time), `onSelect` opens it. */
 export type AppShellPreview = { id: string; label: string; sub?: string; image?: string; avatar?: React.ReactNode; meta?: string; onSelect?: () => void };
-/** A menu entry. With `items` it is a foot entry with its own panel (the account sub-nav, bank-style). With `panel` it
+/** A menu entry. With `items` it holds a sub-menu folded under it (a storefront's department > category > item, as
+ *  deep as needed); a foot entry with `items` has its own panel instead (the account sub-nav, bank-style). With `panel` it
  *  folds that content open instead of going anywhere (an appearance panel); `open` folds it open at first. `inline`
  *  puts it on the row of the entry before it. */
 export type AppShellLeaf = {

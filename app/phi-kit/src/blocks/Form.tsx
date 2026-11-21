@@ -15,6 +15,10 @@ import { pullItems, type Pull } from '../pulls';
 type FieldDef = {
   id: string; label: string; control?: string; options?: string[]; placeholder?: string; hint?: string; full?: boolean;
   required?: boolean; pull?: Pull; min?: number;
+  /** `group` gathers a step's fields into titled sections; `locked` shows the field but keeps it for later (filled in by review). */
+  group?: string; locked?: boolean;
+  /** What the field starts on. */
+  value?: string;
 };
 type StepDef = { id: string; label: string; icon?: string; title?: string; lede?: string; fields?: FieldDef[]; review?: boolean };
 type Option = { value: string; label: string; title?: string };
@@ -24,7 +28,14 @@ const trim = (s: string, n = 36) => (s.length > n ? s.slice(0, n - 1) + '…' : 
 const fromHash = (): Record<string, string> => Object.fromEntries(new URLSearchParams(window.location.hash.split('?')[1] ?? ''));
 const missing = (f: FieldDef, v: string) => !!f.required && (f.control === 'consent' ? v !== 'yes' : !v.trim());
 
+/** A step's fields: flat, or in titled sections when the fields name a `group`. */
+const grouped = <T,>(fields: FieldDef[], row: (f: FieldDef) => T): { fields: T[] } | { sections: { title: string; fields: T[] }[] } => {
+  const groupList = [...new Set(fields.map((f) => f.group ?? ''))];
+  return groupList.some(Boolean) ? { sections: groupList.map((g) => ({ title: g, fields: fields.filter((f) => (f.group ?? '') === g).map(row) })) } : { fields: fields.map(row) };
+};
+
 const Control: React.FC<{ f: FieldDef; value: string; options?: Option[]; onChange: (v: string) => void }> = ({ f, value, options, onChange }) => {
+  if (f.locked) return <Input value={value} disabled placeholder={f.placeholder ?? 'Filled in later'} />;
   switch (f.control) {
     case 'textarea': return <Textarea value={value} rows={3} placeholder={f.placeholder} onChange={(e) => onChange(e.target.value)} />;
     case 'select': return <Select value={value} placeholder="Choose" onChange={(e) => onChange(e.target.value)} options={(f.options ?? []).map((o) => ({ value: o, label: o }))} />;
@@ -45,9 +56,9 @@ const Control: React.FC<{ f: FieldDef; value: string; options?: Option[]; onChan
  * in on the review step. Add a form to an app's data, never a form component per app.
  */
 export const Form: React.FC<{ b: Block }> = ({ b }) => {
-  const defs: StepDef[] = b.steps ?? [];
+  const defs: StepDef[] = b.steps ?? (b.fields ? [{ id: 'only', label: '', fields: b.fields }] : []);
   const allFields = defs.flatMap((s) => s.fields ?? []);
-  const blank = () => ({ ...Object.fromEntries(allFields.map((f) => [f.id, ''])), ...fromHash() });
+  const blank = () => ({ ...Object.fromEntries(allFields.map((f) => [f.id, f.value ?? ''])), ...fromHash() });
   const me = useMe();
   const guest = hasApi && (!me || me.guest);
   const [vals, setVals] = React.useState<Record<string, string>>(blank);
@@ -74,6 +85,7 @@ export const Form: React.FC<{ b: Block }> = ({ b }) => {
     const name = String(fields.name || fields.title || (from && (opts[from.id]?.find((o) => o.value === vals[from.id])?.title ?? vals[from.id])) || b.heading || 'Untitled');
     fields.name = fields.name ?? (b.namePrefix ? b.namePrefix + ' · ' + name : name);
     fields.submittedAt = new Date().toISOString();
+    if (b.onSubmit) await b.onSubmit(fields);
     if (hasApi && b.createKind) {
       const r = await apiSend<{ item: { id: string } }>('POST', '/tree/item', { kind: b.createKind, fields });
       setBusy(false);
@@ -82,6 +94,27 @@ export const Form: React.FC<{ b: Block }> = ({ b }) => {
     setDone({ name: String(fields.name) });
   };
 
+  // The inline variant (`variant: 'inline'`, flat `fields`): the fields and their button in one row, the values handed
+  // to the block's own `onSubmit`. `busy`, `disabled`, `note` (a line beside the button) and `output` (a result, in
+  // mono) are the block's to set. For a console action, a lookup, a publish: no rail, no record written.
+  if (b.variant === 'inline') {
+    return (
+      <Stack direction="column" gap={2}>
+        <Stack as="form" direction="row" gap={2} align="end" wrap onSubmit={(e: React.FormEvent) => { e.preventDefault(); void b.onSubmit?.(vals); }}>
+          {allFields.map((f) => (
+            <Stack as="label" key={f.id} direction="column" gap={1} flex={(f.full ?? f.control === 'textarea') ? '1 1 100%' : '0 1 16rem'}>
+              <Text as="span" size="xs" intent="muted">{f.label}</Text>
+              <Control f={f} value={vals[f.id] ?? ''} options={opts[f.id]} onChange={set(f.id)} />
+            </Stack>
+          ))}
+          <Button type="submit" variant={b.submitVariant ?? 'primary'} loading={!!b.busy} disabled={!!b.disabled || allFields.some((f) => missing(f, vals[f.id] ?? ''))}>{b.submitLabel ?? 'Submit'}</Button>
+          {b.note ? <Text as="span" size="sm" intent="secondary" role="status">{b.note}</Text> : null}
+        </Stack>
+        {b.output ? <Stack direction="column" surface="sunken" maxHeight="20rem" scroll="y"><Text size="xs" mono pre>{b.output}</Text></Stack> : null}
+      </Stack>
+    );
+  }
+
   if (done) {
     return (
       <Stack direction="column" gap={3} surface="card" align="start">
@@ -89,8 +122,8 @@ export const Form: React.FC<{ b: Block }> = ({ b }) => {
         <Text intent="secondary">{b.done ?? 'Received. It is on your profile and under review.'}</Text>
         <Text size="sm" weight="medium">{done.name}</Text>
         <Stack direction="row" gap={2} wrap>
-          <Button variant="primary" href="#/_you">See it on your profile</Button>
-          <Button variant="outline" onClick={() => { setVals(blank()); setAt(0); setDone(null); }}>{b.againLabel ?? 'Submit another'}</Button>
+          <Button variant="glass" href="#/_you">See it on your profile</Button>
+          <Button variant="glass" onClick={() => { setVals(blank()); setAt(0); setDone(null); }}>{b.againLabel ?? 'Submit another'}</Button>
         </Stack>
       </Stack>
     );
@@ -129,7 +162,7 @@ export const Form: React.FC<{ b: Block }> = ({ b }) => {
     return {
       id: s.id, label: s.label, icon, title: s.title ?? s.label, lede: s.lede, hint: chosen ? trim(chosen) : undefined,
       valid: !fields.some((f) => missing(f, vals[f.id] ?? '')),
-      fields: fields.map((f) => ({
+      ...grouped(fields, (f) => ({
         id: f.id, label: f.required ? f.label + ' *' : f.label, hint: f.hint, full: f.full ?? (f.control === 'textarea' || f.control === 'consent'),
         control: <Control f={f} value={vals[f.id] ?? ''} options={opts[f.id]} onChange={set(f.id)} />,
       })),

@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card, CardBody, Drawer, DrawerClosingContext, Icon, Input, Modal, ProgressBar, Rows, Stack, Tag, Text, Textarea, Title, TabList, Toast, CommentThread } from '@pui/components';
+import { Button, Card, CardBody, ChatComposer, Drawer, DrawerClosingContext, Icon, Input, Modal, ProgressBar, Rows, Stack, Tag, Text, Textarea, Title, TabList, Toast, CommentThread } from '@pui/components';
 import { useStore } from '@pui/store';
 import { ChevronLeft, ChevronRight, Pause, Play, Send } from 'lucide-react';
-import { D, agentOf, fmt, person, poolOf, postById, postsBy, site, storySets, t } from '../../lib/data';
+import { D, fmt, person, postById, postsBy, site, storySets, t, itemOf } from '../../lib/data';
 import { useThreadFor } from '../../lib/lazy';
 import { phieggStore } from '../../state/phieggStore';
-import { liveCreate, liveEdit, type LiveKind, findRecord, liveRemove } from '../../lib/live';
+import { liveCreate, liveEdit, type LiveKind, liveRemove } from '../../lib/live';
 import { KindForm, describe, kindLabel } from '../../lib/fields';
 import { withDefaults } from '../../lib/kindDefaults';
 import { RecordSheet } from './RecordSheet';
 import { PersonLine } from './PersonLine';
+import { PersonProfile } from './PersonProfile';
 import { PersonAvatar } from './PersonAvatar';
 import { EntityAvatar } from './EntityAvatar';
 import { Tile } from './Tile';
@@ -20,12 +21,8 @@ import { CollectionSheet } from './CollectionSheet';
 import { Connected } from './Connected';
 import { ChatSheet } from './ChatSheet';
 
-const Composer: React.FC<{ placeholder: string; onSend: (v: string) => void }> = ({ placeholder, onSend }) => {
-  const [v, setV] = useState('');
-  const send = () => { if (v.trim()) { onSend(v.trim()); setV(''); } };
-  return <Stack direction="row" gap={2}><Input value={v} placeholder={placeholder} onChange={(e) => setV(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && send()} />
-    <Button variant="primary" icon={<Icon icon={Send} size="sm" />} onClick={send}>{t('send')}</Button></Stack>;
-};
+/** Where a message is written: the kit's one composer, with this app's word for Send. */
+const Composer: React.FC<{ placeholder: string; onSend: (v: string) => void }> = ({ placeholder, onSend }) => <ChatComposer placeholder={placeholder} sendLabel={t('send')} onSend={onSend} />;
 export { Composer };
 
 const Story: React.FC = () => {
@@ -35,17 +32,17 @@ const Story: React.FC = () => {
   useEffect(() => { if (!o || o.paused) return; const id = setInterval(() => setEl((e) => e + tickMs), tickMs); return () => clearInterval(id); }, [o?.paused, o?.idx]);
   useEffect(() => { if (el >= storyMs) s.storyStep(1); }, [el]);
   if (!o) return null;
-  const f = o.frames[o.idx]; const p = person(o.uid); const segs = o.frames.filter((x) => x.setK === f.setK); const pool = poolOf(o.uid);
+  const f = o.frames[o.idx]; const p = person(o.uid); const segs = o.frames.filter((x) => x.setK === f.setK); const pool = itemOf('pool', o.uid);
   return (
     <Modal isOpen onClose={s.close} size="sm" title={pool ? <Stack direction="row" gap={2} align="center"><EntityAvatar id={pool.id} name={pool.name} size="sm" /><Stack direction="column" gap={0}><Text size="sm" weight="bold">{pool.name}</Text><Text size="xs" intent="muted">{f.set}</Text></Stack></Stack> : <PersonLine id={p.id} sub={f.set} size="sm" />}>
       <Stack direction="column" gap={3}>
         <Stack direction="row" gap={1}>{segs.map((x) => <Stack key={x.i} grow={1}><ProgressBar value={x.i < f.i ? 1 : x.i === f.i ? el / storyMs : 0} size="sm" animate={false} /></Stack>)}</Stack>
         <Tile key={o.idx} animate tone={f.tone} ratio="9/16" big depth={pool ? { clubId: pool.clubId, worldId: pool.worldId, entityId: pool.id, entityName: pool.name } : { personId: o.uid }} title={f.title} sub={f.caption} onClick={() => s.storyStep(1)} />
-        {pool && <Button variant="primary" onClick={() => s.go('pool', { poolId: pool.id })}>{t('plOpen')}</Button>}
+        {pool && <Button variant="glass" onClick={() => s.go('pool', { poolId: pool.id })}>{t('plOpen')}</Button>}
         <Stack direction="row" gap={2} justify="center">
-          <Button variant="ghost" icon={<Icon icon={ChevronLeft} size="sm" />} onClick={() => s.storyStep(-1)} aria-label={t('prev')} />
-          <Button variant="ghost" icon={<Icon icon={o.paused ? Play : Pause} size="sm" />} onClick={() => s.pause(!o.paused)} aria-label={t('pause')} />
-          <Button variant="ghost" icon={<Icon icon={ChevronRight} size="sm" />} onClick={() => s.storyStep(1)} aria-label={t('next')} />
+          <Button variant="glass" icon={<Icon icon={ChevronLeft} size="sm" />} onClick={() => s.storyStep(-1)} aria-label={t('prev')} />
+          <Button variant="glass" icon={<Icon icon={o.paused ? Play : Pause} size="sm" />} onClick={() => s.pause(!o.paused)} aria-label={t('pause')} />
+          <Button variant="glass" icon={<Icon icon={ChevronRight} size="sm" />} onClick={() => s.storyStep(1)} aria-label={t('next')} />
         </Stack>
         <Composer placeholder={t('reply', { name: p.name })} onSend={(v) => p.isAgent ? s.openChat(p.id, v) : (s.close(), s.flash(t('replySent', { name: p.name })))} />
       </Stack>
@@ -53,21 +50,41 @@ const Story: React.FC = () => {
   );
 };
 
-/** A post's comments: what a comment button opens, from the post's page or its card. */
+/** A post's comments as one block: the thread, then the composer held at its foot. The post's page shows it in its
+ *  Chat section; anywhere else the comment button opens it in a drawer at the right (Comments, below). */
+export const PostComments: React.FC<{ postId: string; slide?: number }> = ({ postId, slide = 0 }) => {
+  const s = useStore(phieggStore); const post = postById(postId);
+  const thread = useThreadFor(postId, D.shows.shows.find((x) => x.id === postId)?.looks[slide]?.poseId);
+  if (!post) return null;
+  const p = person(post.authorId);
+  type TC = { id: string; targetId?: string; parentId: string | null; authorId: string; text: string; at: string; likes: number };
+  const all: TC[] = [...post.comments.map((c) => ({ ...c, parentId: null })), ...((thread ?? []) as TC[]), ...(s.comments[post.id] ?? []).map((c) => ({ ...c, parentId: c.parentId ?? null }))];
+  const me = D.core.currentUserId;
+  return (
+    <Stack direction="column" gap={3}>
+      {/* The same chat as everywhere: each comment and reply a bubble with its writer's picture; Reply and Like work. */}
+      <CommentThread aria-label={t('lsColComments')} maxDepth={6}
+        comments={all.map((c) => ({ id: c.id, parentId: c.parentId, author: person(c.authorId).name, avatar: <PersonAvatar id={c.authorId} size="sm" />, meta: c.at, text: c.text,
+          mine: c.authorId === me, liked: !!s.liked[c.id], likes: (c.likes ?? 0) + (s.liked[c.id] ? 1 : 0) }))}
+        onReply={(parentId, text) => s.comment(post.id, text, parentId)} onLike={(id) => s.toggle('liked', id)}
+        labels={{ reply: t('tcReply'), hide: t('tcHide'), show: (n) => t('tcShow', { n }), like: t('isLike'), send: t('send'), replyTo: t('tcReply') }} />
+      <Composer placeholder={p.isAgent ? t('commentAgentPh', { name: p.name }) : t('commentPh')} onSend={(v) => s.comment(post.id, v)} />
+    </Stack>
+  );
+};
+
+/** A post's comments opened from its card: a drawer at the right, as wide as a column (never a window with the
+ *  thread in a strip of it), the post's picture at its head so it is clear what the comments are on. */
 const Comments: React.FC = () => {
   const s = useStore(phieggStore); const o = s.overlay.kind === 'comments' ? s.overlay : null;
   const post = o ? postById(o.postId) : undefined;
-  const thread = useThreadFor(o?.postId, D.shows.shows.find((x) => x.id === o?.postId)?.looks[o?.slide ?? 0]?.poseId);
   if (!o || !post) return null;
-  const p = person(post.authorId);
-  type TC = { id: string; targetId?: string; parentId: string | null; authorId: string; text: string; at: string; likes: number };
-  const all: TC[] = [...post.comments.map((c) => ({ ...c, parentId: null })), ...((thread ?? []) as TC[]), ...(s.comments[post.id] ?? []).map((c) => ({ ...c, parentId: null }))];
+  const sl = post.slides[o.slide] ?? post.slides[0];
   return (
-    <Drawer isOpen onClose={s.close} position="bottom" size="lg" expandable expandLabel={t('expand')} collapseLabel={t('collapse')} title={t('comments', { n: all.length })}>
+    <Drawer isOpen onClose={s.close} position="right" size="md" title={sl.title}>
       <Stack direction="column" gap={3}>
-        <CommentThread aria-label={t('lsColComments')} maxDepth={6} depth={2} comments={all.map((c) => ({ id: c.id, parentId: c.parentId, author: <PersonLine id={c.authorId} size="sm" />, meta: c.at, text: c.text }))}
-          labels={{ reply: t('tcReply'), hide: t('tcHide'), show: (n) => t('tcShow', { n }) }} />
-        <Composer placeholder={p.isAgent ? t('commentAgentPh', { name: p.name }) : t('commentPh')} onSend={(v) => s.comment(post.id, v)} />
+        <Tile {...postTile(post, o.slide)} ratio="4/3" title={sl.title} sub={person(post.authorId).name} onClick={() => { s.close(); s.openPost(post.id); }} />
+        <PostComments postId={post.id} slide={o.slide} />
       </Stack>
     </Drawer>
   );
@@ -81,7 +98,7 @@ const NestNew: React.FC = () => {
   const kinds = D.hosts.nestKinds.filter((k) => (inWorld ? !['world', 'stage'].includes(k.kind) : k.kind !== 'city'));
   return (
     <Modal isOpen onClose={s.close} size="md" title={t('nestIn', { where: parent?.name ?? '' })}
-      footer={<Stack direction="row" gap={2} justify="end"><Button variant="ghost" onClick={s.close}>{t('cancel')}</Button><Button variant="primary" disabled={!name.trim()} onClick={() => s.createNest(name, kind)}>{t('nestIt')}</Button></Stack>}>
+      footer={<Stack direction="row" gap={2} justify="end"><Button variant="glass" onClick={s.close}>{t('cancel')}</Button><Button variant="glass" disabled={!name.trim()} onClick={() => s.createNest(name, kind)}>{t('nestIt')}</Button></Stack>}>
       <Stack direction="column" gap={3}><Text size="sm" intent="muted">{t('nestHint')}</Text>
         <TabList size="sm" variant="pills" activeId={kind} onChange={(id) => setKind(id as typeof kind)} items={kinds.map((k) => ({ id: k.kind, label: k.label }))} />
         <Input value={name} placeholder={t('nestName')} onChange={(e) => setName(e.target.value)} /></Stack>
@@ -146,25 +163,14 @@ const EditClub: React.FC = () => {
   return <EditSheet kind="club" id={club.id} row={club as unknown as Record<string, unknown>} title={t('editClub')} savedMsg={t('ecSaved')} />;
 };
 
+/** A person opened from anywhere: the one profile (PersonProfile) in the drawer at the right; widened, it lays out as the page. */
 const PersonDrawer: React.FC = () => {
   const s = useStore(phieggStore); const o = s.overlay.kind === 'person' ? s.overlay : null;
   const [wide, setWide] = useState(false);
   if (!o) return null;
-  const p = person(o.id); const ag = agentOf(p.id); const all = postsBy(p.id); const posts = all.slice(0, wide ? 18 : 6); const sets = storySets(p.id);
   return (
-    <Drawer isOpen onClose={s.close} position="right" size="md" expandable expanded={wide} onExpandedChange={setWide} expandLabel={t('expand')} collapseLabel={t('collapse')}
-      title={<Stack direction="row" gap={2} align="center"><PersonAvatar id={p.id} size="lg" /><Stack direction="column" gap={0}><Title level={4} size="md">{p.name}</Title><Text size="xs" intent="muted">@{p.handle}{ag ? ' · ' + ag.role : ''}</Text></Stack></Stack>}
-      footer={<Stack direction="row" gap={2}><Button variant="primary" onClick={() => s.go('profile', { profileId: p.id })}>{t('viewProfile')}</Button>
-        <Button variant={s.follow[p.id] ? 'secondary' : 'outline'} onClick={() => s.toggle('follow', p.id)}>{s.follow[p.id] ? t('following') : t('follow')}</Button>
-        {ag && <Button variant="outline" onClick={() => s.openChat(ag.id)}>{t('chat')}</Button>}</Stack>}>
-      <Stack direction="column" gap={3}>
-        <Tile tone={p.tone} ratio={wide ? '3/1' : '16/9'} big={wide} grid title={p.name} sub={t('counts', { shots: fmt(ag ? ag.postCount : all.length), followers: fmt(p.followers), following: fmt(p.following) })} depth={{ clubId: p.clubIds[0], personId: p.id }} />
-        <Text>{p.bio}</Text>
-        {p.badges.length > 0 && <Stack direction="row" gap={1} wrap>{p.badges.map((b) => <Tag key={b} minimal round intent="primary">{b}</Tag>)}</Stack>}
-        {sets.length > 0 && <Stack direction="row" gap={1} wrap>{sets.map((h, i) => <Tag key={h.id} interactive round onClick={() => s.openStory(p.id, i)}>▶ {h.label}</Tag>)}</Stack>}
-        <Rows cols={wide ? 6 : 3} colsSm={3} minItemWidth={wide ? '11rem' : undefined}>{posts.map((x) => <Tile key={x.id} animate {...postTile(x)} ratio={wide ? '4/5' : '1'} title={wide ? x.slides[0].title : undefined} onClick={() => s.openPost(x.id)} />)}</Rows>
-        <Connected kind="person" id={p.id} max={wide ? 12 : 4} />
-      </Stack>
+    <Drawer isOpen onClose={s.close} position="right" size="md" expandable expanded={wide} onExpandedChange={setWide} expandLabel={t('expand')} collapseLabel={t('collapse')} title={t('prProfile')}>
+      <PersonProfile id={o.id} variant="popup" wide={wide} />
     </Drawer>
   );
 };

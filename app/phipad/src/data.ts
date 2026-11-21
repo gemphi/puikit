@@ -71,6 +71,4 @@ export const usd = (n: number) => Math.round(n).toLocaleString('en-US') + ' USD'
 
 export const num = (n: number) => n >= 1e6 ? (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M' : n >= 1e3 ? Math.round(n / 1e3) + 'K' : String(n);
 
-export const TONE: Record<string, [string, string]> = { accent: ['var(--phi-organic-accent-300)', 'var(--phi-organic-accent-900)'], sage: ['var(--phi-organic-sage-300)', 'var(--phi-organic-sage-900)'], ink: ['var(--phi-color-gray-800)', '#f5ead8'], neutral: ['var(--phi-color-background-secondary)', 'var(--phi-color-text-primary)'] };
-export const tone = (t: string) => TONE[t] || TONE.neutral;
 export const initials = (s: string) => s.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();

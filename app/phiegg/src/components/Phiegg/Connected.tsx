@@ -1,64 +1,119 @@
-import React from 'react';
-import { Box, Image, RelationList, SpriteImage } from '@pui/components';
+import React, { useEffect, useState } from 'react';
+import { Box, Icon, Image, RelationList, SpriteImage, Stack, TabList } from '@pui/components';
 import type { RelationGroup, RelationItem } from '@pui/components';
 import { useStore } from '@pui/store';
-import { castOf, pieceOf, roleCategoryOf, roleOf, D, STORES, cityOf, clubOf, eventOf, fmt, hostOf, itemImage, lookOf, person, postById, seriesOf, showOf, t, worldImage, worldOf, jewelOf, jewelSprite, rideKind, rideOf, rideSprite } from '../../lib/data';
-import { lookFor, sceneFor } from '../../lib/depth';
+import * as L from 'lucide-react';
+import { D, STORES, cityOf, fmt, itemImage, person, postById, profileItemOfHolder, site, t, jewelSprite, rideKind, rideSprite, itemOf } from '../../lib/data';
+import { mediaUrl } from '../../lib/media';
+import { lookFor } from '../../lib/depth';
+import { spriteOfCell } from '../../lib/portraits';
 import { relationsOf, type Kind, type Ref } from '../../lib/relations';
 import { phieggStore } from '../../state/phieggStore';
+import type { World } from '../../types/phiegg';
 import { PersonAvatar } from './PersonAvatar';
 import { EntityAvatar } from './EntityAvatar';
 
 type S = ReturnType<typeof phieggStore.getState>;
-const KIND_LABEL: Record<Kind, string> = { person: 'People', club: 'Clubs', world: 'Worlds', city: 'Cities', host: 'Hosts', nest: 'Nests', post: 'Shots', show: 'Shows', event: 'Events', series: 'Series', quest: 'Quests', coin: 'Coins', store: 'Stores', look: 'Looks', room: 'Voice rooms', role: 'Roles', cast: 'Casts', piece: 'Pieces', ride: 'Rides', jewel: 'Jewellery' };
-const img = (src?: string) => (src ? <Image src={src} alt="" loading="lazy" /> : undefined);
-const glyph = (id: string, name: string) => <EntityAvatar id={id} name={name} size="sm" />;
+const SITE = site as unknown as { kindLabels: Record<string, string>; kindIcons: Record<string, string>; kindCards: Record<string, { ratio?: string; layout?: 'grid' | 'slider' }>; relationNames: Record<string, string> };
+/** A kind's card: its picture's shape and whether its row slides (site.json kindCards). */
+export const cardOf = (kind: string) => SITE.kindCards[kind] ?? {};
+/** A kind's glyph (site.json kindIcons). */
+export const kindIcon = (kind: string, size: 'xs' | 'sm' = 'sm') => {
+  const G = (L as unknown as Record<string, L.LucideIcon>)[SITE.kindIcons[kind] ?? ''];
+  return G ? <Icon icon={G} size={size} /> : undefined;
+};
+/** What a set of records of a kind is called (site.json kindLabels). */
+export const kindLabel = (kind: string) => SITE.kindLabels[kind] ?? kind;
+const glyph = (id: string, name: string) => <EntityAvatar id={id} name={name} size="lg" />;
+/** A world's own finished view (never a drawn stand-in scene). */
+const worldPicture = (w?: World) => (w?.gallery?.length ? mediaUrl(w.gallery[0].sm) : undefined);
+const look = (seed: string, clubId?: string | null) => { const src = lookFor(seed, clubId); return src ? itemImage(src) : undefined; };
 
-/** Label, thumbnail and where it opens, for any related record. */
+/** Label, picture and where it opens, for any related record. */
 function describe(r: Ref, s: S): RelationItem | null {
-  const it = describeBase(r, s);
-  // Every related record opens the one way any record opens (state openRef: its page, else its record page);
-  // nests keep their own place (a collection's page, or the hosts).
-  return it && r.kind !== 'nest' ? { ...it, onClick: () => s.openRef(r) } : it;
+  const it = describeBase(r);
+  // Every related record opens its own page (state openRef); only people open on the right.
+  return it && { ...it, onClick: r.kind === 'person' ? () => s.openDetails(r) : r.kind === 'nest' ? it.onClick : () => s.openRef(r) };
 }
-function describeBase(r: Ref, s: S): RelationItem | null {
-  const k = r.kind + ':' + r.id;
+function describeBase(r: Ref): RelationItem | null {
+  const k = r.kind + ':' + r.id; const s = phieggStore.getState();
   switch (r.kind) {
-    case 'person': { const p = person(r.id); return { id: k, label: p.name, sub: '@' + p.handle, media: <PersonAvatar id={p.id} size="sm" />, onClick: () => s.openPerson(p.id) }; }
-    case 'club': { const c = clubOf(r.id); return c ? { id: k, label: c.name, sub: c.ticker + ' · ' + fmt(c.holders) + ' ' + t('holders'), media: glyph(c.id, c.name), onClick: () => s.go('club', { clubId: c.id }) } : null; }
-    case 'world': { const w = worldOf(r.id); return w ? { id: k, label: w.name, sub: fmt(w.visitorsNow) + ' inside', media: img(worldImage(w)), onClick: () => s.go('world', { worldId: w.id }) } : null; }
-    case 'city': { const c = cityOf(r.id); return c ? { id: k, label: c.city.name, sub: c.world.name, media: img(worldImage(c.world)), onClick: () => s.go('city', { cityId: r.id }) } : null; }
-    case 'host': { const h = hostOf(r.id); return h ? { id: k, label: h.name, sub: (h as unknown as { members?: number }).members ? fmt((h as unknown as { members: number }).members) + ' members' : undefined, media: glyph(h.id, h.name), onClick: () => s.openDetails(r) } : null; }
+    case 'person': { const p = person(r.id); const pft = profileItemOfHolder(p.id);
+      return { id: k, label: p.name, sub: '@' + p.handle, image: pft ? <SpriteImage sprite={spriteOfCell(pft.sheet, pft.index)} alt="" /> : undefined, media: <PersonAvatar id={p.id} size="lg" /> }; }
+    case 'club': { const c = itemOf('club', r.id); return c ? { id: k, label: c.name, sub: c.ticker + ' · ' + fmt(c.holders) + ' ' + t('holders'), image: worldPicture(itemOf('world', c.worldIds.find((w) => itemOf('world', w)?.gallery?.length))) ?? look(c.id, c.id), media: glyph(c.id, c.name) } : null; }
+    case 'world': { const w = itemOf('world', r.id); return w ? { id: k, label: w.name, sub: fmt(w.visitorsNow) + ' inside', image: worldPicture(w), media: glyph(w.id, w.name) } : null; }
+    case 'city': { const c = cityOf(r.id); return c ? { id: k, label: c.city.name, sub: c.world.name, image: worldPicture(c.world), media: glyph(r.id, c.city.name) } : null; }
+    case 'host': { const h = itemOf('host', r.id); return h ? { id: k, label: h.name, sub: fmt(h.members) + ' members', image: worldPicture(itemOf('world', (h as { worldId?: string }).worldId)), media: glyph(h.id, h.name) } : null; }
     case 'nest': { const n = D.hosts.nests.find((x) => x.id === r.id); return n ? { id: k, label: '#' + n.name, sub: n.kind, media: glyph(n.id, n.name), onClick: () => (n.kind === 'collection' ? s.go('collection', { nestId: n.id }) : s.go('hosts')) } : null; }
-    case 'post': { const p = postById(r.id); return p ? { id: k, label: p.slides[0]?.title ?? p.caption, sub: person(p.authorId).name, media: img(sceneFor(p.id, p.worldId, p.clubId)), onClick: () => s.openPost(p.id) } : null; }
-    case 'show': { const x = showOf(r.id); return x ? { id: k, label: x.title, sub: x.season, media: img(worldImage(worldOf(x.worldId))), onClick: () => s.go('show', { showId: x.id }) } : null; }
-    case 'event': { const e = eventOf(r.id); return e ? { id: k, label: e.title, sub: new Date(e.startsAt).toLocaleDateString(), media: glyph(e.id, e.title), onClick: () => s.go('events') } : null; }
-    case 'series': { const x = seriesOf(r.id); return x ? { id: k, label: x.title, sub: x.kind + ' · ' + x.era, media: img(worldImage(worldOf(x.worldId))), onClick: () => s.openSeries(x.id) } : null; }
-    case 'quest': { const q = D.economy.quests.find((x) => x.id === r.id); return q ? { id: k, label: q.title, sub: fmt(q.reward) + ' ' + q.rewardCoin, media: glyph(q.id, q.title), onClick: () => s.go('quests') } : null; }
-    case 'coin': { const c = D.economy.coins.find((x) => x.id === r.id); return c ? { id: k, label: c.name, sub: '$' + c.price, media: glyph(c.id, c.name), onClick: () => s.go('coins') } : null; }
-    case 'store': { const st = STORES.find((x) => x.id === r.id); return st ? { id: k, label: st.name, sub: st.looks.length + ' looks', media: img(lookFor(st.id, st.clubId)), onClick: () => s.go('shop', { storeId: st.id }) } : null; }
-    case 'look': { const l = lookOf(r.id); const v = l && (l.views.FRONT ?? Object.values(l.views)[0]); return l ? { id: k, label: l.name, sub: '$' + fmt(l.usd), media: v ? img(itemImage(v)) : glyph(l.id, l.name), onClick: () => s.openLook(l.id) } : null; }
-    case 'role': { const x = roleOf(r.id); return x ? { id: k, label: x.name, sub: roleCategoryOf(x.categoryId)?.name, media: glyph(x.id, x.name), onClick: () => s.openDetails(r) } : null; }
-    case 'cast': { const c = castOf(r.id); return c ? { id: k, label: c.title, sub: c.kind + (c.live ? ' · live' : '') + ' · ' + c.hostIds.length + ' hosts', media: glyph(c.id, c.title), onClick: () => s.openDetails(r) } : null; }
-    case 'ride': { const x = rideOf(r.id); return x ? { id: k, label: x.name, sub: rideKind(x.kind) + ' · ' + x.make, media: <SpriteImage sprite={rideSprite(x)} alt="" ratio="16 / 10" radius="sm" />, onClick: () => s.openAsset(x.id) } : null; }
-    case 'jewel': { const x = jewelOf(r.id); return x ? { id: k, label: x.name, sub: x.piece + ' · ' + x.metal, media: <SpriteImage sprite={jewelSprite(x)} alt="" radius="sm" />, onClick: () => s.openAsset(x.id) } : null; }
-    case 'piece': { const p = pieceOf(r.id); return p ? { id: k, label: p.name, sub: p.tokenId, media: glyph(p.id, p.name), onClick: () => s.openDetails(r) } : null; }
-    case 'room': { const v = D.messages.voiceRooms.find((x) => x.id === r.id); return v ? { id: k, label: v.title, sub: fmt(v.listeners) + ' listening', media: glyph(v.id, v.title), onClick: () => s.go('messages') } : null; }
+    case 'post': { const p = postById(r.id); return p ? { id: k, label: p.slides[0]?.title ?? p.caption, sub: person(p.authorId).name, image: p.slides[0]?.src ? itemImage(p.slides[0].src) : look(p.id, p.clubId) } : null; }
+    case 'show': { const x = itemOf('show', r.id); const l = itemOf('look', x?.looks?.[0]?.lookId ?? ''); return x ? { id: k, label: x.title, sub: x.season, image: l?.views.FRONT ? itemImage(l.views.FRONT) : worldPicture(itemOf('world', x.worldId)) ?? look(x.id, x.clubId), media: glyph(x.id, x.title) } : null; }
+    case 'event': { const e = itemOf('event', r.id); return e ? { id: k, label: e.title, sub: new Date(e.startsAt).toLocaleDateString(), image: worldPicture(itemOf('world', e.worldId)), media: glyph(e.id, e.title) } : null; }
+    case 'series': { const x = itemOf('series', r.id); return x ? { id: k, label: x.title, sub: x.kind + ' · ' + x.era, image: worldPicture(itemOf('world', x.worldId)), media: glyph(x.id, x.title) } : null; }
+    case 'quest': { const q = D.economy.quests.find((x) => x.id === r.id); return q ? { id: k, label: q.title, sub: fmt(q.reward) + ' ' + q.rewardCoin, media: glyph(q.id, q.title) } : null; }
+    case 'coin': { const c = D.economy.coins.find((x) => x.id === r.id); return c ? { id: k, label: c.name, sub: '$' + c.price, media: glyph(c.id, c.name) } : null; }
+    case 'store': { const st = STORES.find((x) => x.id === r.id); const v = st?.looks[0]?.views.FRONT; return st ? { id: k, label: st.name, sub: st.looks.length + ' looks', image: v ? itemImage(v) : look(st.id, st.clubId), media: glyph(st.id, st.name) } : null; }
+    case 'look': { const l = itemOf('look', r.id); const v = l && (l.views.FRONT ?? Object.values(l.views)[0]); return l ? { id: k, label: l.name, sub: '$' + fmt(l.usd), image: v ? itemImage(v) : undefined, media: glyph(l.id, l.name) } : null; }
+    case 'role': { const x = itemOf('role', r.id); return x ? { id: k, label: x.name, sub: itemOf('roleCategory', x.categoryId)?.name, media: glyph(x.id, x.name) } : null; }
+    case 'cast': { const c = itemOf('cast', r.id); return c ? { id: k, label: c.title, sub: c.kind + (c.live ? ' · live' : '') + ' · ' + c.hostIds.length + ' hosts', image: worldPicture(itemOf('world', c.worldId)), media: glyph(c.id, c.title) } : null; }
+    case 'ride': { const x = itemOf('ride', r.id); return x ? { id: k, label: x.name, sub: rideKind(x.kind) + ' · ' + x.make, image: <SpriteImage sprite={rideSprite(x)} alt="" ratio={cardOf('ride').ratio} /> } : null; }
+    case 'jewel': { const x = itemOf('jewel', r.id); return x ? { id: k, label: x.name, sub: x.piece + ' · ' + x.metal, image: <SpriteImage sprite={jewelSprite(x)} alt="" ratio={cardOf('jewel').ratio} /> } : null; }
+    case 'piece': { const p = itemOf('piece', r.id); return p ? { id: k, label: p.name, sub: p.tokenId + ' · ' + p.trait, image: look(p.id, (p as { clubId?: string }).clubId), media: glyph(p.id, p.name) } : null; }
+    case 'profilePft': { const x = itemOf('profilePft', r.id); return x ? { id: k, label: x.name, sub: '$' + fmt(x.priceUsd), image: <SpriteImage sprite={spriteOfCell(x.sheet, x.index)} alt="" ratio={cardOf('profilePft').ratio} /> } : null; }
+    case 'egg': { const x = itemOf('egg', r.id); return x ? { id: k, label: x.name, sub: fmt(x.priceEgg) + ' EGG · ' + x.sold + '/' + x.supply, image: worldPicture(itemOf('world', x.worldId)), media: glyph(x.id, x.name) } : null; }
+    case 'sum': { const x = itemOf('sum', r.id); return x ? { id: k, label: x.name, sub: x.apy + '% APY · ' + fmt(x.holders) + ' ' + t('holders'), media: glyph(x.id, x.name) } : null; }
+    case 'room': { const v = D.messages.voiceRooms.find((x) => x.id === r.id); return v ? { id: k, label: v.title, sub: fmt(v.listeners) + ' listening', media: glyph(v.id, v.title) } : null; }
   }
 }
 
-/** Everything a record links to and everything that links to it, each one a step away. */
-/** `inPanel`: inside the chat sheet's details column every item pushes onto that column instead of navigating. */
-export const Connected: React.FC<{ kind: Kind; id: string; max?: number; inPanel?: boolean; bare?: boolean }> = ({ kind, id, max = 6, inPanel, bare }) => {
+/** A record's relations as groups: each its name, the kind it holds, its glyph and its records. */
+export function relationGroups(kind: Kind, id: string, s: S): RelationGroup[] {
+  return relationsOf({ kind, id }).map((g) => ({
+    // One word for a heading (site.json relationNames); the kind is its glyph, not a second phrase.
+    id: g.rel, label: SITE.relationNames[g.rel] ?? g.rel, icon: kindIcon(g.refs[0].kind), ...SITE.kindCards[g.refs[0].kind],
+    items: g.refs.map((r) => describe(r, s)).filter((x): x is RelationItem => !!x),
+  })).filter((g) => g.items.length > 0);
+}
+
+export const listLabels = () => ({ showAllLabel: (n: number) => t('showAllN', { n }), showLessLabel: t('showLess'), labels: { grid: t('lyGrid'), slider: t('lySlider') } });
+
+/** Everything a record links to and everything that links to it, each one a step away, one row per relation. */
+export const Connected: React.FC<{ kind: Kind; id: string; max?: number; inPanel?: boolean; bare?: boolean }> = ({ kind, id, max = 3, bare }) => {
   const s = useStore(phieggStore);
-  const groups: RelationGroup[] = relationsOf({ kind, id }).map((g) => ({
-    id: g.rel, label: g.rel, kind: KIND_LABEL[g.refs[0].kind],
-    items: g.refs.map((r) => { const x = describe(r, s); return x && inPanel ? { ...x, onClick: () => s.openDetails(r) } : x; }).filter((x): x is RelationItem => !!x),
-  }));
-  if (!groups.some((g) => g.items.length)) return null;
-  return (
-    <Box>
-      <RelationList title={bare ? undefined : t('connected')} groups={groups} max={max} showAllLabel={(n) => t('showAllN', { n })} showLessLabel={t('showLess')} />
-    </Box>
-  );
+  const groups = relationGroups(kind, id, s);
+  if (!groups.length) return null;
+  return <Box><RelationList title={bare ? undefined : t('connected')} groups={groups} max={max} {...listLabels()} /></Box>;
 };
+
+/**
+ * A record's tabs are its relations (a club's PFTs, worlds, hosts, shots, members…), every one the data has: a centred
+ * row that scrolls sideways and stays under the header, each tab with its record's picture when it is one record
+ * (a founder, a host) and its kind's glyph otherwise, and its count. The chosen relation's records are picture cards
+ * three across, grid or slider.
+ */
+export const RelationTabs: React.FC<{ kind: Kind; id: string; first?: string[] }> = ({ kind, id, first }) => {
+  const { bar, body } = useRelationTabs(kind, id, first);
+  return bar ? <Stack direction="column" gap={3}>{bar}{body}</Stack> : null;
+};
+
+/** The same tabs in two parts, for a page that holds the row of tabs in one place (a profile's opening) and what the
+ *  tab shows in another. */
+export function useRelationTabs(kind: Kind, id: string, first: string[] = []): { bar: React.ReactNode; body: React.ReactNode } {
+  const s = useStore(phieggStore);
+  const groups = relationGroups(kind, id, s);
+  // The record's own items lead (its PFTs, pieces, looks), then the rest biggest first; single links last.
+  const rank = (g: RelationGroup) => { const i = first.indexOf(g.id); return i >= 0 ? -1e6 + i : -g.items.length; };
+  const order = [...groups].sort((a, b) => rank(a) - rank(b));
+  const [tab, setTab] = useState(order[0]?.id);
+  useEffect(() => setTab(order[0]?.id), [kind, id]);
+  const on = order.find((g) => g.id === tab) ?? order[0];
+  if (!on) return { bar: null, body: null };
+  const thumb = (g: RelationGroup) => {
+    const one = g.items.length === 1 ? g.items[0] : undefined;
+    return typeof one?.image === 'string' ? <Box as="span" className="ph-tab-thumb"><Image src={one.image} alt="" fit="cover" fill /></Box> : one?.media && g.items.length === 1 ? <Box as="span" className="ph-tab-thumb">{one.media}</Box> : g.icon;
+  };
+  return {
+    bar: <TabList size="sm" variant="pills" place="center" aria-label={t('connected')} activeId={on.id} onChange={setTab}
+      items={order.map((g) => ({ id: g.id, label: g.label, icon: thumb(g), count: g.items.length > 1 ? fmt(g.items.length) : undefined }))} />,
+    body: <RelationList key={on.id} groups={[on]} max={12} {...listLabels()} />,
+  };
+}

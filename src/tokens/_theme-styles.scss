@@ -75,6 +75,25 @@
   --phi-gradient-navbar: linear-gradient(180deg, rgba(11, 15, 25, 0.92) 0%, rgba(15, 23, 42, 0.88) 100%);
 }
 
+/* Gradient: the one surface and the one label wear the brand's two colours, so every card, row, field, tab bar,
+   column, message and control in the look is a gradient, set here and nowhere else. Its first colour is strongest at
+   the foot (a label's start), its second takes over midway, and the light is gone at the head as in every look. */
+:root[data-theme-style='gradient'] {
+  --phi-tint-1: color-mix(in srgb, var(--phi-color-primary) var(--phi-tint-pct, 26%), transparent);
+  --phi-tint-2: color-mix(in srgb, var(--phi-color-secondary, var(--phi-color-primary)) calc(var(--phi-tint-pct, 26%) * 0.7), transparent);
+  --phi-tint-3: color-mix(in srgb, var(--phi-color-primary) calc(var(--phi-tint-pct, 26%) * 0.5), transparent);
+  --phi-tint-4: color-mix(in srgb, var(--phi-color-primary) calc(var(--phi-tint-pct, 26%) * 1.5), transparent);
+  --phi-surface: linear-gradient(20deg, var(--phi-tint-1) 0%, var(--phi-tint-2) 55%, transparent 100%);
+  --phi-surface-soft: linear-gradient(20deg, var(--phi-tint-3) 0%, transparent 100%);
+  --phi-surface-strong: linear-gradient(20deg, var(--phi-tint-4) 0%, var(--phi-tint-1) 55%, transparent 100%);
+  --phi-label: linear-gradient(90deg, var(--phi-tint-1), var(--phi-tint-2) 55%, transparent);
+  --phi-label-soft: linear-gradient(90deg, var(--phi-tint-3), transparent);
+  --phi-label-strong: linear-gradient(90deg, var(--phi-tint-4), var(--phi-tint-1) 55%, transparent);
+  --phi-label-end: linear-gradient(90deg, transparent, var(--phi-tint-2) 45%, var(--phi-tint-1));
+  --phi-label-end-soft: linear-gradient(90deg, transparent, var(--phi-tint-3));
+  --phi-label-end-strong: linear-gradient(90deg, transparent, var(--phi-tint-1) 45%, var(--phi-tint-4));
+}
+
 /* ============================================================
    Gradient-by-default bindings
    ------------------------------------------------------------

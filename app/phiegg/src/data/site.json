@@ -1,4 +1,6 @@
 {
+ "recordHide": ["seed", "anchors", "spread", "shelf", "base", "slug", "hex", "tone", "image", "glyph", "sprite", "sheet", "index", "mid", "code", "sellRate"],
+ "recordName": { "sold0": "Sold at opening", "opensAt": "Opens", "createdAt": "Created", "visitorsNow": "Inside now" },
  "brand": {
   "name": "phiegg",
   "tagline": "The Phiace community platform",
@@ -194,7 +196,78 @@
     "small": 40
    }
   },
-  "iconPath": "M10.84 61.92C13.09 62.81 15.26 64.12 17.38 65.26C23.26 68.37 29.12 71.66 35.45 73.72C41.62 75.73 48.16 76.26 54.59 75.55C58.55 75.12 62.62 74.54 66.11 72.55C71.95 69.24 75.22 60.48 78.81 54.99C80.52 52.34 82.58 49.92 84.89 47.77C85.69 47.03 86.44 46.23 87.31 45.64C90.28 45.69 93.33 47.19 96.3 46.6C96.37 43.54 93.69 40.4 91.63 38.37C91.11 37.86 90.38 37.38 89.96 36.77C89.67 36.33 89.58 35.67 89.39 35.17C88.64 33.09 87.59 31.16 86.17 29.5C80.22 22.45 69.59 23.25 61.98 26.77C58.91 28.19 56.19 30.32 53.17 31.71C52.05 31.6 50.93 31.28 49.83 31.05C46.97 30.48 44.02 30.09 41.12 30.23C38.58 30.34 32.32 31.42 29.69 31.99C28.47 32.24 27.29 32.56 26.05 32.81C20.88 33.82 15.62 34.34 10.55 35.83C10.04 35.97 9.47 36.06 9.01 36.31C8.76 36.42 8.67 36.58 8.51 36.79C8.49 37.77 9.01 38.53 9.59 39.31C11.42 41.73 14.05 42.03 16.84 41.61C17.41 41.52 18 41.27 18.53 41.34C18.05 41.8 17.5 42.16 17 42.58C19.33 44.24 21.25 44.4 23.83 43.15C24.29 42.92 24.7 42.62 25.16 42.55C24.86 43.4 24.27 43.81 23.79 44.47C23.9 44.66 23.95 44.79 24.18 44.91C24.7 45.14 25.36 45.14 25.94 45.23C27.61 45.48 29.46 46.39 30.65 47.58C30.44 48.34 29.64 48.89 29.07 49.44C28.38 50.05 27.72 50.78 26.97 51.31C23.58 53.53 14.23 56.68 10.2 56.78C9.33 56.34 6.34 54.24 5.58 54.4C5.17 54.47 4.92 54.88 5.01 55.29C5.22 56.34 6.8 58.1 7.25 59.34C6.36 60.57 4.9 61.35 3.92 62.54C3.73 62.77 3.64 63.06 3.76 63.36C4.33 64.76 9.66 62.17 10.84 61.92ZM77.16 28.92C77.5 28.95 77.85 28.95 78.17 29.04C78.49 29.13 78.78 29.34 79.08 29.5C80.43 30.16 81.94 30.8 82.83 32.08C83.26 32.74 82.51 33.38 82.1 33.86C81.02 35.12 79.86 36.65 78.05 36.79C77.75 36.79 77.46 36.68 77.16 36.68C76.88 36.7 76.63 36.79 76.36 36.79C74.76 36.7 73.45 35.35 72.54 34.18C72.27 33.82 71.49 33.09 71.4 32.67C71.33 32.31 71.6 32.03 71.81 31.78C72.54 30.89 75.08 29.38 76.2 29.04C76.5 28.95 76.84 28.95 77.16 28.92ZM77.16 30.71C76.54 30.8 73.2 31.83 73.11 32.4C73.04 32.86 76.13 34.55 76.63 34.73C76.88 34.8 77.18 34.82 77.43 34.8C78.01 34.73 79.86 33.66 80.38 33.29C81.3 32.7 81.62 32.42 80.54 31.9C80.22 31.74 79.9 31.53 79.56 31.39C78.78 31.1 77.98 30.82 77.16 30.71Z"
+  "iconPath": "M10.84 61.92C13.09 62.81 15.26 64.12 17.38 65.26C23.26 68.37 29.12 71.66 35.45 73.72C41.62 75.73 48.16 76.26 54.59 75.55C58.55 75.12 62.62 74.54 66.11 72.55C71.95 69.24 75.22 60.48 78.81 54.99C80.52 52.34 82.58 49.92 84.89 47.77C85.69 47.03 86.44 46.23 87.31 45.64C90.28 45.69 93.33 47.19 96.3 46.6C96.37 43.54 93.69 40.4 91.63 38.37C91.11 37.86 90.38 37.38 89.96 36.77C89.67 36.33 89.58 35.67 89.39 35.17C88.64 33.09 87.59 31.16 86.17 29.5C80.22 22.45 69.59 23.25 61.98 26.77C58.91 28.19 56.19 30.32 53.17 31.71C52.05 31.6 50.93 31.28 49.83 31.05C46.97 30.48 44.02 30.09 41.12 30.23C38.58 30.34 32.32 31.42 29.69 31.99C28.47 32.24 27.29 32.56 26.05 32.81C20.88 33.82 15.62 34.34 10.55 35.83C10.04 35.97 9.47 36.06 9.01 36.31C8.76 36.42 8.67 36.58 8.51 36.79C8.49 37.77 9.01 38.53 9.59 39.31C11.42 41.73 14.05 42.03 16.84 41.61C17.41 41.52 18 41.27 18.53 41.34C18.05 41.8 17.5 42.16 17 42.58C19.33 44.24 21.25 44.4 23.83 43.15C24.29 42.92 24.7 42.62 25.16 42.55C24.86 43.4 24.27 43.81 23.79 44.47C23.9 44.66 23.95 44.79 24.18 44.91C24.7 45.14 25.36 45.14 25.94 45.23C27.61 45.48 29.46 46.39 30.65 47.58C30.44 48.34 29.64 48.89 29.07 49.44C28.38 50.05 27.72 50.78 26.97 51.31C23.58 53.53 14.23 56.68 10.2 56.78C9.33 56.34 6.34 54.24 5.58 54.4C5.17 54.47 4.92 54.88 5.01 55.29C5.22 56.34 6.8 58.1 7.25 59.34C6.36 60.57 4.9 61.35 3.92 62.54C3.73 62.77 3.64 63.06 3.76 63.36C4.33 64.76 9.66 62.17 10.84 61.92ZM77.16 28.92C77.5 28.95 77.85 28.95 78.17 29.04C78.49 29.13 78.78 29.34 79.08 29.5C80.43 30.16 81.94 30.8 82.83 32.08C83.26 32.74 82.51 33.38 82.1 33.86C81.02 35.12 79.86 36.65 78.05 36.79C77.75 36.79 77.46 36.68 77.16 36.68C76.88 36.7 76.63 36.79 76.36 36.79C74.76 36.7 73.45 35.35 72.54 34.18C72.27 33.82 71.49 33.09 71.4 32.67C71.33 32.31 71.6 32.03 71.81 31.78C72.54 30.89 75.08 29.38 76.2 29.04C76.5 28.95 76.84 28.95 77.16 28.92ZM77.16 30.71C76.54 30.8 73.2 31.83 73.11 32.4C73.04 32.86 76.13 34.55 76.63 34.73C76.88 34.8 77.18 34.82 77.43 34.8C78.01 34.73 79.86 33.66 80.38 33.29C81.3 32.7 81.62 32.42 80.54 31.9C80.22 31.74 79.9 31.53 79.56 31.39C78.78 31.1 77.98 30.82 77.16 30.71Z",
+  "media": {
+   "note": "icons for media (avatars, posts, stores): the bird inside a frame drawn from the brand's own shapes, and the EGG token sign built like the pound sign, all from scripts/logo-media.py; the colours and PNGs from scripts/logo-merch.mjs media",
+   "out": "logo/media",
+   "png": 1024,
+   "ink": "#00ff00",
+   "room": 6,
+   "gap": 0.055,
+   "gapNote": "the room between the bird and its frame's inside, a share of the inside's width: the egg mark's own (the bird 31 px from a hole 567 px wide)",
+   "bird": "logo/phiegg-bird-eye-px.svg",
+   "font": "../../src/tokens/fonts/phi/Phifing/Phifing4-Light.woff2",
+   "frame": {
+    "phiegg-eye": {
+     "from": "eye",
+     "note": "the bird's own eye: its outer edge and its diamond, the bird where the diamond was"
+    },
+    "phiegg-square": {
+     "from": "glyph",
+     "glyph": "8",
+     "note": "Phifing 4's 8: its lower bowl, the outside's bottom mirrored to close the top, the bird in its square"
+    },
+    "phiegg-egg": {
+     "from": "file",
+     "file": "logo/phiegg-egg-bird-eye.svg",
+     "note": "the egg mark with the bird, as the header and favicon draw it"
+    }
+   },
+   "token": {
+    "note": "the EGG sign: Phifing 4's capital E made like the pound sign, from the pound's own parts: its bar through the E's back, its curl and foot at the E's bottom",
+    "pound": "£",
+    "sign": {
+     "egg-sign-capital-e": {
+      "letter": "E",
+      "stem": "left",
+      "bar": "arm",
+      "note": "the pound's bar through the E's back, running on into its middle arm"
+     },
+     "egg-sign-foot": {
+      "letter": "E",
+      "stem": "left",
+      "foot": "back",
+      "note": "the pound's curl and foot behind the E's back; the E's own bottom arm"
+     },
+     "egg-sign-foot-bar": {
+      "letter": "E",
+      "stem": "left",
+      "foot": "back",
+      "bar": "arm",
+      "note": "the pound's foot behind the back, and its bar through the back into the arm"
+     },
+     "egg-sign-base": {
+      "letter": "E",
+      "stem": "left",
+      "foot": "whole",
+      "note": "the pound's whole bottom (curl and foot, its own length) under the E's top and arm"
+     },
+     "egg-sign-base-bar": {
+      "letter": "E",
+      "stem": "left",
+      "foot": "whole",
+      "bar": "arm",
+      "note": "the pound's whole bottom and its bar through the back: the pound with the E's top"
+     }
+    },
+    "nameNote": "file names are lower case: Windows keeps E and e as one name"
+   },
+   "colours": {
+    "black": "#000000",
+    "white": "#ffffff",
+    "copper": "#c67139"
+   }
+  }
  },
  "theme": "phiegg-light",
  "themes": [
@@ -387,8 +460,10 @@
   "verifiedAgent": "Verified agent",
   "verifiedOwner": "Verified owner",
   "about": "About",
-  "abilities": "What I can do",
-  "badges": "Roles & badges",
+  "prAsk": "Chat",
+  "prProfile": "Person",
+  "abilities": "Skills",
+  "badges": "Badges",
   "shots": "shots",
   "followers": "followers",
   "followingCount": "following",
@@ -399,6 +474,15 @@
   "commentPh": "Add a comment…",
   "commentAgentPh": "Comment, {name} replies…",
   "messagePh": "Message {name}…",
+  "chAgents": "Agents",
+  "details": "Details",
+  "chMine": "My chats",
+  "chAll": "All agents",
+  "chSearch": "Search agents",
+  "chCount": "{chats} chats · {agents} agents",
+  "chDetailsOf": "{name} details",
+  "chBack": "Back",
+  "chBackToChat": "Back to chat",
   "thinking": "{name} is thinking…",
   "typing": "{name} is typing…",
   "autoplayOn": "Autoplay",
@@ -441,6 +525,10 @@
   "chat": "Chat",
   "profile": "Profile",
   "clubsToJoin": "Clubs to join",
+  "fdClubs": "Clubs",
+  "fdEvents": "Events",
+  "fdWorlds": "Worlds",
+  "fdAgents": "Agents",
   "comingUp": "Coming up",
   "view": "View",
   "sharePh": "Share a shot from your world…",
@@ -458,7 +546,7 @@
   "applied": "{name} is in Applied",
   "live": "{name} is live on Phiegg",
   "raised": "Ask {ask} · raised {raised}",
-  "voiceRooms": "Voice rooms",
+  "voiceRooms": "Rooms",
   "join": "Join",
   "listening": "+{n} listening",
   "joined": "Joined {name}",
@@ -495,7 +583,7 @@
   "slideOf": "{i} / {n}",
   "piece": "Piece {n} of the look",
   "ownedBy": "@{handle} · {club}",
-  "stats": "{visitors} inside · {cities} cities",
+  "stats": "{visitors} inside · {cities} zones",
   "kindFilter": "Kind",
   "sortBy": "Sort",
   "mostVisited": "Most visited",
@@ -596,6 +684,7 @@
   "contentShade": "Content shade",
   "opacityLabel": "Opacity",
   "pgHome": "Home",
+  "pgFeed": "Feed",
   "pgExplore": "Explore",
   "pgWorlds": "Worlds",
   "pgShows": "Shows",
@@ -674,6 +763,31 @@
   "lgPlayQuest": "Play the quest",
   "ctDistricts": "{n} districts",
   "ctPlaces": "{n} places",
+  "pgShops": "Shops",
+  "pgReels": "Reels",
+  "pgCasts": "Casts",
+  "pgPools": "Pools",
+  "ctViews": "Views",
+  "ctLand": "Land {n}",
+  "wdAbout": "About",
+  "wdPosts": "Posts",
+  "wdPfts": "PFTs",
+  "wdHosts": "Hosts",
+  "wdHostLine": "{n} members · {gated}",
+  "wdLand": "Land type",
+  "wdKind": "Kind",
+  "wdResidents": "Residents",
+  "wdInside": "Inside now",
+  "wdZoneCount": "Zones",
+  "wdPlaceCount": "Places",
+  "wdClub": "Club",
+  "wdCreator": "Built by",
+  "wdTags": "Tags",
+  "wdSiblings": "More from {name}",
+  "wdWorld": "World",
+  "wdZoneLine": "{vibe} · {n} residents · {places} places",
+  "wdPftLine": "{size} m² · {price} EGG · {sold} of {supply} sold",
+  "wdNoPosts": "No posts in {name} yet.",
   "ctInside": "{n} inside",
   "ctEnter": "Go inside",
   "ctAlsoIn": "Also in {name}",
@@ -752,8 +866,14 @@
   "collapse": "Collapse",
   "palette": "Palette",
   "paletteNone": "Brand",
-  "connected": "Related",
+  "connected": "Linked",
   "showAllN": "Show all {n}",
+  "lyGrid": "Grid",
+  "dmPeople": "People",
+  "secInfo": "Info",
+  "poCover": "Cover",
+  "poMenu": "Post menu",
+  "lySlider": "Slider",
   "showLess": "Show less",
   "plKind_collection": "Store",
   "plKind_drop": "Club drop",
@@ -772,6 +892,13 @@
   "plLadder": "Price ladder, high to low",
   "plTotal": "Total {v}",
   "plTotalNote": "The total is the sum of moving prices, so it changes every few seconds.",
+  "plHigh": "High",
+  "plLow": "Low",
+  "plLeft": "Left",
+  "plCount": "Units",
+  "plSoldOut": "Sold out",
+  "plOnSale": "On sale",
+  "plMoving": "Moving",
   "plBuyPack": "Buy pack · {v}",
   "plBuyUnit": "Buy",
   "plBought": "Bought {name} for {v}.",
@@ -823,8 +950,9 @@
   "plItemStats": "Stats",
   "plAnswer": "Answer",
   "isAngles": "Angles",
-  "isInLots": "Packs and drops",
-  "isVariants": "Like this",
+  "isFull": "Full screen",
+  "isInLots": "Lots",
+  "isVariants": "Alike",
   "isVariantsTitle": "Related",
   "isItem": "Item",
   "isBuy": "Buy · offer · swap",
@@ -849,6 +977,9 @@
   "lsAskWear": "What should I wear?",
   "lsFilterSort": "Filter & sort",
   "lsSort": "Sort",
+  "lsOrder": "Order",
+  "lsForward": "As sorted",
+  "lsBackward": "Turned round",
   "lsClose": "Close filters",
   "lsNone": "Nothing matches these filters.",
   "seGenre": "Genre",
@@ -861,7 +992,7 @@
   "seSortYear": "Newest",
   "seSortBox": "Box office",
   "seTitle": "Title",
-  "wCities": "Cities",
+  "wCities": "Zones",
   "wVisitors": "Visitors",
   "lsColName": "Name",
   "lsColKind": "Kind",
@@ -919,6 +1050,22 @@
   "lsSortRare": "Rarest",
   "lsColItems": "Items",
   "lsSortNew": "Opening first",
+  "lsSortValueLow": "Lowest value",
+  "lsSortSoldLeast": "Least sold",
+  "lsSortUnits": "Most units",
+  "lsSortMove": "Biggest move",
+  "lsSortTop": "Highest unit",
+  "lsStock": "Stock",
+  "lsSoldOut": "Sold out",
+  "lsOnSale": "On sale",
+  "lsMove": "Move",
+  "lsRising": "Rising",
+  "lsFalling": "Falling",
+  "lsSize": "Size",
+  "lsSizeOf": "{n} units",
+  "lsColMove": "Move",
+  "lsColHigh": "Highest unit",
+  "lsColLeft": "Left",
   "lsHost": "Host",
   "lsVenue": "Venue",
   "lsColDate": "Date",
@@ -958,6 +1105,15 @@
   "tcHide": "Hide replies",
   "tcShow": "Show {n} replies",
   "isSpecs": "Specs",
+  "isTabInfo": "Info",
+  "isTabTrail": "Trail",
+  "isTabOwner": "Owner",
+  "isNoOwner": "No one holds this yet.",
+  "isHeldSince": "Since {date}",
+  "isTabBuy": "Buy",
+  "isTabActivity": "Activity",
+  "isTabStats": "Stats",
+  "isTabRelated": "Related",
   "isActivity": "Activity",
   "isField": "Field",
   "isValue": "Value",
@@ -1134,7 +1290,7 @@
   "asNoEgg": "Not enough EGG, swap some in your wallet",
   "asTitles": "In productions",
   "asTraits": "Traits",
-  "asLinked": "Related",
+  "asLinked": "Linked",
   "asDetails": "Details",
   "asAskHost": "How much does the gate take?",
   "asAskSum": "How does this machine compound?",
@@ -1211,7 +1367,7 @@
   "secDown": "Move down",
   "secReset": "Reset layout",
   "plQuestTitle": "Pool quest",
-  "wdCities": "Cities",
+  "wdCities": "Zones",
   "asStats": "Stats",
   "asBuy": "Buy",
   "asFacts": "Details",
@@ -1247,7 +1403,7 @@
   "rdWorld": "Rides in {name}",
   "rdWorldHint": "{n} rides. Open one and the page takes its colours.",
   "rdAll": "All rides",
-  "jwTitle": "Jewellery and watches",
+  "jwTitle": "Gems",
   "jwHint": "{n} pieces, each made once.",
   "jwMetal": "Metal",
   "jwStone": "Stone",
@@ -1393,6 +1549,8 @@
  ],
  "previewCount": 4,
  "appearance": {
+  "order": { "_": "The Appearance panel's rows, broad choices first, fine-tuning after.", "rows": ["mode", "look", "accent", "palette", "radius", "gradient", "opacity", "sidebar", "content", "motion"] },
+  "rev": { "_": "A change of default: a saved appearance still on the old default value moves to the new one once (App.tsx).", "id": "2026-11-18-large", "from": { "radius": "medium" } },
   "radii": [
    {
     "id": "small",
@@ -1488,7 +1646,7 @@
    }
   ],
   "defaults": {
-   "radius": "medium",
+   "radius": "large",
    "theme": "system",
    "brand": "apple",
    "gradient": "soft",
@@ -2005,6 +2163,83 @@
   "Your utility. Your value.",
   "Making value. Making sense."
  ],
+ "profileTabIcons": { "_": "The glyph on each profile tab (lucide names).", "Shots": "Image", "Reels": "Film", "Looks": "Shirt", "Clubs": "Shield", "Likes": "Heart", "Items": "Gem", "Hosts": "MessagesSquare", "Credits": "Clapperboard" },
+ "profileRail": { "_": "A profile's status row: its story sets, then its own posts, so the row never shows fewer than min.", "min": 8 },
+ "clubTabsFirst": ["PFTs", "Pieces", "Store", "Worlds", "Shots", "EGG items", "Members", "Host"],
+ "layouts": { "_": "The layouts a grid section can switch between (lucide icons); they set the app's list view.", "list": [ { "id": "tile", "label": "Tile", "icon": "GalleryHorizontal" }, { "id": "grid", "label": "Grid", "icon": "LayoutGrid" }, { "id": "list", "label": "List", "icon": "List" } ] },
+ "worldMenu": { "_": "A city's full-screen menu (the vertical rail at the left), by the section each entry goes to; only the sections the city has show.", "items": [
+  { "id": "about", "label": "About", "icon": "Info" }, { "id": "zones", "label": "Zones", "icon": "MapPin" }, { "id": "posts", "label": "Posts", "icon": "Image" },
+  { "id": "pfts", "label": "PFTs", "icon": "Gem" }, { "id": "clubs", "label": "Clubs", "icon": "Shield" }, { "id": "rides", "label": "Rides", "icon": "Car" },
+  { "id": "jewels", "label": "Gems", "icon": "Diamond" }, { "id": "related", "label": "Links", "icon": "Link" } ] },
+ "postMenu": {
+    "_": "A post's menu, the first column of its sheet: 4-6 letter words; an entry with a section shows when that section is on the sheet (the post's Info, Chat and Links, its city's Views, Zones, Posts, PFTs, Hosts...), one with an action when it can act (PostPage).",
+    "items": [
+      { "id": "post", "label": "About", "icon": "Info", "section": "post" },
+      { "id": "chat", "label": "Chat", "icon": "MessageCircle", "section": "chat" },
+      { "id": "views", "label": "Views", "icon": "Layers", "section": "views" },
+      { "id": "zones", "label": "Zones", "icon": "MapPin", "section": "zones" },
+      { "id": "posts", "label": "Posts", "icon": "Image", "section": "posts" },
+      { "id": "pfts", "label": "PFTs", "icon": "Gem", "section": "pfts" },
+      { "id": "hosts", "label": "Hosts", "icon": "MessagesSquare", "section": "hosts" },
+      { "id": "clubs", "label": "Clubs", "icon": "Shield", "section": "clubs" },
+      { "id": "rides", "label": "Rides", "icon": "Car", "section": "rides" },
+      { "id": "jewels", "label": "Gems", "icon": "Diamond", "section": "jewels" },
+      { "id": "links", "label": "Links", "icon": "Link", "section": "related" },
+      { "id": "join", "label": "Join", "icon": "LogIn", "action": "join" },
+      { "id": "shop", "label": "Shop", "icon": "ShoppingBag", "action": "shop" }
+    ]
+  },
+ "kindCards": {
+  "_": "Each kind's related cards: the shape of the picture and whether its row slides (else a grid of three). A record related alone joins the strip of single records instead.",
+  "person": { "ratio": "3 / 4", "layout": "slider" }, "club": { "ratio": "16 / 9" }, "world": { "ratio": "16 / 9", "layout": "slider" }, "city": { "ratio": "16 / 9" },
+  "host": { "ratio": "4 / 3" }, "post": { "ratio": "4 / 5", "layout": "slider" }, "show": { "ratio": "16 / 9", "layout": "slider" }, "event": { "ratio": "16 / 9" },
+  "series": { "ratio": "2 / 3", "layout": "slider" }, "store": { "ratio": "3 / 4" }, "look": { "ratio": "3 / 4", "layout": "slider" }, "piece": { "ratio": "3 / 4" },
+  "ride": { "ratio": "16 / 10", "layout": "slider" }, "jewel": { "ratio": "1" }, "profilePft": { "ratio": "1", "layout": "slider" }, "egg": { "ratio": "4 / 3" }, "cast": { "ratio": "16 / 9" }
+ },
+ "relationNames": {
+  "_": "Each relation's heading: one word of four to six letters (a relation's own name in lib/relations.ts can be a phrase); a name not listed must already be one.",
+  "Pieces created": "Owned", "Worlds created": "Built", "Hosts owned": "Owns", "PFTs held": "Holds", "Rides held": "Rides", "Jewellery held": "Gems",
+  "Shows hosted": "Stage", "Casts hosted": "Casts", "Speaking in": "Talks", "EGG items owned": "EGGs", "EGG items": "EGGs", "Series & films": "Series",
+  "Jewellery and watches": "Gems", "Jewellery": "Gems", "Voice rooms": "Rooms", "Made by": "Maker", "Hosted by": "Host", "Held by": "Holder",
+  "Founder": "Lead", "Founded": "Leads", "Collection": "Sets", "Members": "Crew", "Creator": "Maker", "Sponsor": "Backer",
+  "Speakers": "Voices", "By": "Author"
+ },
+ "kindLabels": {
+  "_": "What a record of each kind is called, as a related set (Connected, the relation tabs).",
+  "person": "People", "club": "Clubs", "world": "Worlds", "city": "Zones", "host": "Hosts", "nest": "Nests", "post": "Shots", "show": "Shows",
+  "event": "Events", "series": "Series", "quest": "Quests", "coin": "Coins", "store": "Shops", "look": "Looks", "room": "Voice rooms", "role": "Roles",
+  "cast": "Casts", "piece": "Pieces", "ride": "Rides", "jewel": "Jewellery", "profilePft": "PFTs", "egg": "EGG items", "sum": "SUMs"
+ },
+ "kindIcons": {
+  "_": "The glyph of each kind (lucide names), on its relation tab and heading.",
+  "person": "Users", "club": "Shield", "world": "Globe", "city": "MapPin", "host": "MessagesSquare", "nest": "Hash", "post": "Image", "show": "Clapperboard",
+  "event": "CalendarDays", "series": "Film", "quest": "Target", "coin": "Coins", "store": "Store", "look": "Shirt", "room": "Mic", "role": "BadgeCheck",
+  "cast": "Radio", "piece": "Puzzle", "ride": "Car", "jewel": "Gem", "profilePft": "PawPrint", "egg": "Egg", "sum": "Layers"
+ },
+ "hostPeople": 24,
+ "_hostPeople": "How many people a host's page lists down its side.",
+ "sectionIcons": { "angles": "Rotate3d", "alike": "Sparkles", "linked": "Link", "views": "Layers",
+  "_": "The glyph before a page section's title, by section id (lucide names); a section with none shows its title alone.",
+  "world": "Globe", "worlds": "Globe", "drops": "Flame", "events": "CalendarDays", "agents": "Bot", "swaps": "ArrowLeftRight", "profile": "User", "info": "Info", "ask": "Sparkles", "abilities": "Wand2", "badges": "BadgeCheck", "about": "Info", "zones": "MapPin", "posts": "Image", "pfts": "Gem", "clubs": "Users", "rides": "Car", "jewels": "Diamond", "related": "Link",
+  "item": "Shirt", "look": "Sparkles", "looks": "Shirt", "buy": "ShoppingBag", "specs": "ListChecks", "activity": "Activity", "price": "LineChart", "appears": "Clapperboard", "stats": "BarChart3",
+  "poses": "PersonStanding", "chat": "MessageCircle", "hosts": "Home", "casts": "Clapperboard", "shows": "Sparkles", "sales": "Tag", "info": "Info", "details": "Info",
+  "lots": "Package", "quests": "Flag", "metrics": "BarChart3", "liquidity": "Droplets", "members": "Users", "events": "CalendarDays", "series": "Film", "places": "Store",
+  "sale": "Tag", "fun": "FerrisWheel", "hire": "KeyRound", "inputs": "Layers", "holders": "Users", "history": "History"
+ },
+ "typeNames": {
+  "_": "What a type of record is called where it is named in a line (a template's steps, an item's type).",
+  "host": "Host", "egg": "EGG", "pft": "PFT", "sum": "SUM", "agent": "Agent", "title": "Title", "profile": "Profile"
+ },
+ "cityViews": {
+  "three-quarter": "Three-quarter",
+  "front": "Front",
+  "side": "Side",
+  "top": "Top",
+  "close-up-1": "Close-up 1",
+  "close-up-2": "Close-up 2",
+  "close-up-3": "Close-up 3",
+  "close-up-4": "Close-up 4"
+ },
  "placeKinds": {
   "boutique": "Boutique",
   "atelier": "Atelier",
@@ -2018,29 +2253,12 @@
   "library": "Library",
   "theatre": "Theatre",
   "market": "Market",
-  "club": "Members’ club"
+  "club": "Members’ club",
+  "arcade": "Arcade",
+  "park": "Park",
+  "plaza": "Plaza"
  },
  "lists": {
-  "quests": {
-   "title": "Quests",
-   "sub": "Challenges across the 64 worlds. Rewards pay out in club coins.",
-   "source": "quests"
-  },
-  "play": {
-   "title": "Sponsored quests",
-   "sub": "Quests sponsored by clubs. Play, win coin rewards, climb the front row.",
-   "source": "sponsored"
-  },
-  "coins": {
-   "title": "Coins",
-   "sub": "Every club has a coin. PHI is the platform coin.",
-   "source": "coins"
-  },
-  "pools": {
-   "title": "Pools",
-   "sub": "Every store line, club drop and fashion show is a pool: the centre of your PFTs. Live prices, stats, quests and swaps.",
-   "source": "pools"
-  },
   "series": {
    "title": "Watch",
    "sub": "Films from the 1940s to the 1960s, reality and fashion dramas, music and beauty series and plays: produced by clubs and streamed in their hosts.",
@@ -2085,34 +2303,13 @@
  "profileTabsMore": [
   "Likes",
   "Items",
-  "Hosts",
   "Credits"
  ],
  "feedKinds": [
-  {
-   "id": "all",
-   "label": "Everything"
-  },
-  {
-   "id": "following",
-   "label": "Following"
-  },
-  {
-   "id": "looks",
-   "label": "Looks"
-  },
-  {
-   "id": "reels",
-   "label": "Reels"
-  },
-  {
-   "id": "agents",
-   "label": "Agents"
-  },
-  {
-   "id": "worlds",
-   "label": "Worlds"
-  }
+  { "id": "all", "label": "Recent", "icon": "Clock" },
+  { "id": "following", "label": "Following", "icon": "UserCheck" },
+  { "id": "popular", "label": "Popular", "icon": "Flame" },
+  { "id": "favourite", "label": "Favourite", "icon": "Heart" }
  ],
  "createKinds": [
   {

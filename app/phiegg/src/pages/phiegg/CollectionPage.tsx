@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardBody, Grid, Page, ChoiceRow, Stack, Tag, Text, Title } from '@pui/components';
 import { useStore } from '@pui/store';
 import { phieggStore } from '../../state/phieggStore';
-import { D, STORES, clubOf, clubsOfCollection, collectionOf, fmt, jewelOf, person, rideOf, t, usd, worldOf } from '../../lib/data';
+import { D, STORES, clubsOfCollection, collectionOf, fmt, person, t, usd, itemOf } from '../../lib/data';
 import { Tile } from '../../components/Phiegg/Tile';
 import { ListView } from '../../components/Phiegg/Views';
 import { Connected } from '../../components/Phiegg/Connected';
@@ -34,7 +34,7 @@ export const CollectionPage: React.FC = () => {
   const ids = React.useMemo(() => new Set(pfts.map((x) => x.id)), [pfts]);
   const sales = D.sales.sales.filter((x) => ids.has(x.itemId) && x.event === 'sale');
   const lead = clubs[0];
-  const world = worldOf((col as { worldId?: ID }).worldId ?? lead?.worldIds[0]);
+  const world = itemOf('world', (col as { worldId?: ID }).worldId ?? lead?.worldIds[0]);
   const floor = clubs.length ? Math.min(...clubs.map((c) => c.floor || Infinity)) : 0;
   const stats: [string, string][] = [
     [t('colClubs'), String(clubs.length)],
@@ -56,7 +56,7 @@ export const CollectionPage: React.FC = () => {
 
         <Title level={3} size="lg">{t('colClubs')}</Title>
         <ListView<Club> rows={clubs} keyOf={(c) => c.id} text={(c) => c.name + ' ' + c.tagline} onRow={(c) => s.go('club', { clubId: c.id })}
-          facets={[{ id: 'world', label: t('lsWorld'), get: (c) => worldOf(c.worldIds[0])?.name }, { id: 'chain', label: t('lsColChain'), get: (c) => c.chain }]}
+          facets={[{ id: 'world', label: t('lsWorld'), get: (c) => itemOf('world', c.worldIds[0])?.name }, { id: 'chain', label: t('lsColChain'), get: (c) => c.chain }]}
           sorts={[{ id: 'holders', label: t('holders'), by: (a, b) => b.holders - a.holders }, { id: 'floor', label: t('floor'), by: (a, b) => (b.floor || 0) - (a.floor || 0) }, { id: 'az', label: t('lsSortAz'), by: (a, b) => a.name.localeCompare(b.name) }]}
           table={[{ id: 'name', header: t('lsColName'), cell: (c) => c.name, sortValue: (c) => c.name }, { id: 'holders', header: t('holders'), cell: (c) => fmt(c.holders), sortValue: (c) => c.holders, align: 'right' },
             { id: 'floor', header: t('floor'), cell: (c) => (c.floor ? c.floor + ' ETH' : '·'), sortValue: (c) => c.floor ?? 0, align: 'right' }, { id: 'supply', header: t('supply'), cell: (c) => fmt(c.supply), sortValue: (c) => c.supply, align: 'right' }]}
@@ -64,11 +64,11 @@ export const CollectionPage: React.FC = () => {
 
         <Title level={3} size="lg">{t('colPfts')}</Title>
         <ListView<Pft> rows={pfts} keyOf={(x) => x.id} text={(x) => x.name + ' ' + x.kind} onRow={(x) => x.open()}
-          facets={[{ id: 'kind', label: t('lsColKind'), get: (x) => x.kind }, { id: 'club', label: t('lsColClub'), get: (x) => clubOf(x.clubId)?.name }]}
+          facets={[{ id: 'kind', label: t('lsColKind'), get: (x) => x.kind }, { id: 'club', label: t('lsColClub'), get: (x) => itemOf('club', x.clubId)?.name }]}
           sorts={[{ id: 'price', label: t('colPrice'), by: (a, b) => (b.usd ?? -1) - (a.usd ?? -1) }, { id: 'az', label: t('lsSortAz'), by: (a, b) => a.name.localeCompare(b.name) }]}
           table={[{ id: 'name', header: t('lsColName'), cell: (x) => x.name, sortValue: (x) => x.name }, { id: 'kind', header: t('lsColKind'), cell: (x) => x.kind, sortValue: (x) => x.kind },
-            { id: 'club', header: t('lsColClub'), cell: (x) => clubOf(x.clubId)?.name ?? '·', sortValue: (x) => clubOf(x.clubId)?.name ?? '' }, { id: 'usd', header: t('colPrice'), cell: (x) => (x.usd != null ? usd(x.usd) : '·'), sortValue: (x) => x.usd ?? -1, align: 'right' }]}
-          render={(x) => <Tile tone={x.tone ?? clubOf(x.clubId)?.tone ?? 'neutral'} ratio="1" depth={{ clubId: x.clubId, worldId: clubOf(x.clubId)?.worldIds[0], entityId: x.id, entityName: x.name }} title={x.name} sub={x.kind + (x.usd != null ? ' · ' + usd(x.usd) : '')} onClick={() => x.open()} />} />
+            { id: 'club', header: t('lsColClub'), cell: (x) => itemOf('club', x.clubId)?.name ?? '·', sortValue: (x) => itemOf('club', x.clubId)?.name ?? '' }, { id: 'usd', header: t('colPrice'), cell: (x) => (x.usd != null ? usd(x.usd) : '·'), sortValue: (x) => x.usd ?? -1, align: 'right' }]}
+          render={(x) => <Tile tone={x.tone ?? itemOf('club', x.clubId)?.tone ?? 'neutral'} ratio="1" depth={{ clubId: x.clubId, worldId: itemOf('club', x.clubId)?.worldIds[0], entityId: x.id, entityName: x.name }} title={x.name} sub={x.kind + (x.usd != null ? ' · ' + usd(x.usd) : '')} onClick={() => x.open()} />} />
 
         <Connected kind="nest" id={col.id} />
       </Stack>

@@ -3,7 +3,7 @@
 // reads GET /item/theme); without it they are kept on this device.
 import { useSyncExternalStore } from 'react';
 import { apiGet, apiSend, hasApi, persisted } from '@phi-kit/api';
-import { D, clubOf } from './data';
+import { D, itemOf } from './data';
 import type { ID, ShopLook } from '../types/phiegg';
 
 export type Theme = { kinds: string[]; mood: string | null; story: string | null; colours?: string[]; by?: ID; at?: number };
@@ -21,7 +21,7 @@ export function themeOf(l: ShopLook): Theme & { source: 'designer' | 'pending' }
 export const useTheme = (l: ShopLook) => { useSyncExternalStore(subscribe, () => server[l.id] ?? LOCAL.get()[l.id]); return themeOf(l); };
 
 /** Who may set it: the house's designer. Offline (no API) anyone may, and it stays on this device. */
-export const designerOf = (l: ShopLook) => l.specs?.provenance?.designerId ?? clubOf(l.specs?.provenance?.clubId)?.founderId;
+export const designerOf = (l: ShopLook) => l.specs?.provenance?.designerId ?? itemOf('club', l.specs?.provenance?.clubId)?.founderId;
 export const canDesign = (l: ShopLook) => !hasApi || designerOf(l) === D.core.currentUserId;
 
 export async function saveTheme(l: ShopLook, t: Theme): Promise<{ ok: boolean; message?: string }> {

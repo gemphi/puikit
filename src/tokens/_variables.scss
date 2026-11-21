@@ -85,22 +85,23 @@
   /* Rounding
      ---------------------------------------------------------------
      The corner option (16px, 32px, 48px or 64px: data-radius on the root, written by PuiProvider from the saved choice,
-     the same in every look) sets one container corner, a quarter of it, that every container shares: the sidebar,
-     side panels, page columns, sections, cards and drawers all round alike. Parts inside a container step down from it
-     (sm an eighth, xs a sixteenth). Always pixels, never a percentage of the element. Buttons, inputs and chips are not
-     on this scale: every button, input and chip in every look and app takes one corner, a quarter and an eighth of the
-     option, held to 10px and 6px (--phi-control-radius, --phi-chip-radius), so they stay soft rectangles. none stays 0. */
+     the same in every look) is the largest corner there is, and the scale is four shares of it, each half the one
+     above: xl the option itself (a sheet rising from the foot, a stage), lg a half (a card, a tile, a drawer: every
+     surface standing on the page), md a quarter (the sidebar and side panels, a surface inside a surface, and every
+     button, input, select and tab: --phi-control-radius), sm an eighth (a part inside those), xs a sixteenth. So a
+     larger option rounds everything, and the four sizes always differ. Always pixels, never a percentage of the
+     element. Chips take an eighth, held to 6px (--phi-chip-radius). none stays 0. */
   --phi-radius-none: 0px;
   --phi-radius-card: 32px;
-  --phi-radius-2xl: calc(var(--phi-radius-card) / 4);
-  --phi-radius-xl: calc(var(--phi-radius-card) / 4);
-  --phi-radius-lg: calc(var(--phi-radius-card) / 4);
+  --phi-radius-2xl: var(--phi-radius-card);
+  --phi-radius-xl: var(--phi-radius-card);
+  --phi-radius-lg: calc(var(--phi-radius-card) / 2);
   --phi-radius-md: calc(var(--phi-radius-card) / 4);
   --phi-radius-sm: calc(var(--phi-radius-card) / 8);
   --phi-radius-xs: calc(var(--phi-radius-card) / 16);
-  /* A card's own corner (the same as lg: a quarter of the option, like every container), and its inner card's inset. */
+  /* A card's own corner (lg: half the option; a card inside a card steps down, tokens.scss), and its inner card's inset. */
   --phi-radius-shape: var(--phi-radius-lg);
-  --phi-card-inset: calc(var(--phi-radius-lg) / 2);
+  --phi-card-inset: calc(var(--phi-radius-card) / 8);
   --phi-radius-full: 9999px;
 
   /* Spacing
@@ -141,7 +142,7 @@
   /* Buttons, inputs and chips: one corner for all of them, in every look (see Rounding above). */
   /* The one gap between things side by side or stacked: cards, columns, sections, groups, the shell's panes. */
   --phi-gap: var(--phi-space-3, 0.75rem);
-  --phi-control-radius: min(calc(var(--phi-radius-card) / 4), 10px);
+  --phi-control-radius: var(--phi-radius-md);
   --phi-chip-radius: min(calc(var(--phi-radius-card) / 8), 6px);
   /* Menu items: a light shade of the theme colour at rest; on hover / active the colours merge and fade away. */
   --phi-control-shade: color-mix(in srgb, var(--phi-color-primary) 9%, var(--phi-color-background-secondary, var(--phi-color-background)));

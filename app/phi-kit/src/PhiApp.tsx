@@ -1,10 +1,10 @@
 import React from 'react';
-import { Box, Spinner, Text, Title } from '@pui/components';
+import { Box, Spinner, Text } from '@pui/components';
 import { appMeta, loadApp, type AppData } from './data';
 import { resolvePulls } from './pulls';
 import { PhiShell } from './PhiShell';
 import { Block, type GridItem } from './blocks';
-import { SettingsView, ItemPanel } from './views';
+import { Head, SettingsView, ItemPanel } from './views';
 import { Profile, useMine, buildAccountNav } from './Profile';
 import { AppLanding } from './AppLanding';
 import { RecordSheet } from './RecordSheet';
@@ -58,7 +58,7 @@ export const PhiApp: React.FC<{ appKey: string }> = ({ appKey }) => {
   else if (!v) page = <Text intent="secondary" maxWidth="60ch" marginTop={2}>Nothing here yet.</Text>;
   else page = (
     <>
-      {v.title ? <Box as="header"><Title level={1} size="2xl" lineHeight={1.1}>{v.title}</Title>{v.sub ? <Text intent="secondary" maxWidth="60ch" marginTop={2}>{v.sub}</Text> : null}</Box> : null}
+      {v.title ? <Head title={v.title} sub={v.sub} /> : null}
       {v.blocks.map((b, i) => <Block key={cur + i} b={b} onOpen={openItem} />)}
     </>
   );
@@ -67,7 +67,7 @@ export const PhiApp: React.FC<{ appKey: string }> = ({ appKey }) => {
   if (data?.bare) return <Box as="main" style={{ minHeight: '100vh', padding: 'clamp(1rem, 3vw, 2.5rem)' }}>{page}</Box>;
 
   return (
-    <PhiShell app={app} nav={nav} view={cur} onView={go} onRecord={openItem} account={account} right={open ? <ItemPanel it={open} onClose={() => setOpen(null)} /> : null}>
+    <PhiShell app={app} nav={nav} side={data?.side} view={cur} onView={go} onRecord={openItem} account={account} right={open ? <ItemPanel it={open} onClose={() => setOpen(null)} /> : null}>
       {page}
       {record ? <RecordSheet kind={record.kind} id={record.id} onClose={() => go('#/' + cur)} go={go} formFor={formFor} /> : null}
     </PhiShell>

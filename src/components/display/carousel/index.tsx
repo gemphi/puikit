@@ -96,11 +96,10 @@ export const Carousel: React.FC<CarouselProps> = ({
       <Box className={styles.viewport}>
         {showControls && scrollable && (
           <Button
-            variant="outline"
-            size="sm"
+            variant="glass"
             className={styles.control}
             aria-label={copy.prev}
-            disabled={atStart}
+            hidden={atStart}
             onClick={() => page(-1)}
             icon={<ChevronLeft size={16} />}
           />
@@ -116,11 +115,10 @@ export const Carousel: React.FC<CarouselProps> = ({
 
         {showControls && scrollable && (
           <Button
-            variant="outline"
-            size="sm"
+            variant="glass"
             className={styles.control}
             aria-label={copy.next}
-            disabled={atEnd}
+            hidden={atEnd}
             onClick={() => page(1)}
             icon={<ChevronRight size={16} />}
           />

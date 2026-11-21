@@ -132,7 +132,6 @@ export const SidebarBrand: React.FC<SidebarBrandProps> = ({
           )}
           <Button
             variant="icon"
-            size="sm"
             iconLeft={collapsed ? PanelLeftOpen : PanelLeftClose}
             aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
             aria-expanded={!collapsed}
@@ -167,8 +166,7 @@ export const SidebarBrand: React.FC<SidebarBrandProps> = ({
 
           {/* New session action */}
           <Button
-            variant="secondary"
-            size="sm"
+            variant="glass"
             fullWidth={!collapsed}
             iconLeft={Plus}
             aria-label="New session"

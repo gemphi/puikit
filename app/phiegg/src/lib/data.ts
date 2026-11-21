@@ -9,10 +9,11 @@ import settings from "../data/settings.json";
 import landing from "../data/landing.json";
 import { mediaUrl } from "./media";
 import siteJson from "../data/site.json";
+import sourceJson from '../data/source.json';
 import threadCounts from '../data/threadCounts.json';
 import type {
   Agent, AgentsData, ClubPage, CoreData, EventsPage, ExplorePage, FeedPage, Highlight, HostsPage, ID,
-  LandingPage, MessagesPage, RolesData, CastsData, SalesData, ShowsData, Show, EconomyData, SeriesData, LeagueData, LsData, StoresData, Store, ShopLook, PoolsData, Pool, PoolLot, PoolQuest, AssetsData, RideItem, RideData, JewelItem, JewelData, EggItem, SumItem, ItemType, ProfileItem, City, World, District, Place, PhipadPage, Post, ProfilePage, SettingsPage, Shot, Tone, User,
+  LandingPage, MessagesPage, RolesData, CastsData, SalesData, TrailData, ShowsData, Show, EconomyData, SeriesData, LeagueData, LsData, StoresData, Store, ShopLook, PoolsData, Pool, PoolLot, PoolQuest, AssetsData, RideItem, RideData, JewelItem, JewelData, EggItem, SumItem, ItemType, ProfileItem, City, World, District, Place, PhipadPage, Post, ProfilePage, SettingsPage, Shot, Tone, User,
 } from "../types/phiegg";
 
 export const D = {
@@ -37,6 +38,7 @@ export const D = {
   roles: rolesJson as unknown as RolesData,
   casts: castsJson as unknown as CastsData,
   sales: { sales: [] } as unknown as SalesData, // filled by lib/heavy.ts
+  trail: { sales: [] } as unknown as TrailData, // the assets' ledger, filled by lib/heavy.ts
   pools: poolsJson as unknown as PoolsData,
   assets: assetsJson as unknown as AssetsData,
   ride: rideJson as unknown as RideData,
@@ -82,21 +84,90 @@ export interface Person {
 
 export const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).join("").slice(0, 2).toUpperCase();
 export const firstName = (n: string) => n.split(" ")[0].replace(/'s$/, "");
-export const agentOf = (id: ID) => D.agents.agents.find((a) => a.id === id);
-export const userOf = (id: ID) => D.core.users.find((u) => u.id === id);
-export const clubOf = (id: ID | null | undefined) => (id ? D.core.clubs.find((c) => c.id === id) : undefined);
-export const worldOf = (id: ID | null | undefined) => (id ? D.core.worlds.find((w) => w.id === id) : undefined);
-export const hostOf = (id: ID | null | undefined) => (id ? D.hosts.hosts.find((h) => h.id === id) : undefined);
-export const eventOf = (id: ID) => D.events.events.find((e) => e.id === id);
-export const showOf = (id: ID) => D.shows.shows.find((s) => s.id === id);
+// ── One lookup for every kind. Where a kind's rows live is data (data/source.json), never a function per kind ──
+/** What a row of each kind is. A kind not listed here is still found, as a plain row. */
+type Schema = {
+  person: (typeof D.core.users)[number]; agent: (typeof D.agents.agents)[number]; club: (typeof D.core.clubs)[number]; world: World;
+  host: (typeof D.hosts.hosts)[number]; nest: (typeof D.hosts.nests)[number]; show: Show; pose: (typeof D.shows.poses)[number];
+  series: (typeof D.series.series)[number]; event: (typeof D.events.events)[number]; coin: (typeof D.economy.coins)[number];
+  store: Store; look: ShopLook; pool: Pool; lot: PoolLot; poolQuest: PoolQuest; metric: (typeof D.pools.metrics)[number];
+  piece: (typeof D.club.pieces)[number]; role: (typeof D.roles.types)[number]; roleCategory: (typeof D.roles.categories)[number];
+  egg: EggItem; sum: SumItem; profilePft: ProfileItem; ride: RideItem; jewel: JewelItem; cast: (typeof D.casts.casts)[number];
+  pft: Pft; rental: Rental; shade: Shade & { line: string };
+};
+export type ItemKind = keyof Schema;
+/** A row of a kind: Item<'world'>. */
+export type Item<K extends ItemKind> = Schema[K];
+export type ItemRow = Record<string, unknown> & { id: ID };
+const SOURCE = (sourceJson as unknown as { kind: Record<string, string | string[]> }).kind;
+/** The sets the app builds from D, read only when a path walks into them. */
+const DERIVED = { get store() { return STORES; }, get pft() { return PFTS; }, get rental() { return RENTALS; }, get shade() { return [...SHADES.values()]; }, get feedPost() { return feedPosts(); } };
+/** Every value at a path: `*` steps into each row of a list; the end is a list's rows, or the one value there. */
+export const valuesAt = (v: unknown, keys: string[]): unknown[] => (keys.length === 0 ? (Array.isArray(v) ? v : v == null ? [] : [v])
+  : keys[0] === '*' ? (Array.isArray(v) ? v : []).flatMap((x) => valuesAt(x, keys.slice(1)))
+  : valuesAt((v as Record<string, unknown> | undefined)?.[keys[0]], keys.slice(1)));
+const INDEX = new Map<string, Map<ID, ItemRow>>();
+/** Every kind that has rows. */
+export const kindsOf = () => Object.keys(SOURCE);
+export const hasKind = (kind: string) => kind in SOURCE;
+/** The lists at a path, the arrays themselves: `*` steps into each row of a list. */
+const listsAt = (v: unknown, keys: string[]): ItemRow[][] => (keys.length === 0 ? (Array.isArray(v) ? [v as ItemRow[]] : [])
+  : keys[0] === '*' ? (Array.isArray(v) ? v : []).flatMap((x) => listsAt(x, keys.slice(1)))
+  : listsAt((v as Record<string, unknown> | undefined)?.[keys[0]], keys.slice(1)));
+/** The lists a kind's rows are kept in (the arrays themselves, so a row can be taken out of them). */
+export const listsOf = (kind: string): ItemRow[][] => [SOURCE[kind] ?? []].flat().flatMap((path) => listsAt({ ...D, derived: DERIVED }, path.split('.')));
+/** Every row of a kind. */
+export function itemsOf<K extends ItemKind>(kind: K): Schema[K][];
+export function itemsOf(kind: string): ItemRow[];
+export function itemsOf(kind: string): unknown[] {
+  const lists = listsOf(kind); const rows = lists.flat();
+  if (lists.length < 2) return rows;
+  const seen = new Set<ID>(); // kept in several lists: the first row with an id wins
+  return rows.filter((r) => !seen.has(r.id) && !!seen.add(r.id));
+}
+/** One row of a kind by its id. */
+export function itemOf<K extends ItemKind>(kind: K, id?: ID | null): Schema[K] | undefined;
+export function itemOf(kind: string, id?: ID | null): ItemRow | undefined;
+export function itemOf(kind: string, id?: ID | null): unknown {
+  if (!id) return undefined;
+  let rows = INDEX.get(kind);
+  if (!rows) { rows = new Map(); for (const r of itemsOf(kind)) if (!rows.has(r.id)) rows.set(r.id, r); INDEX.set(kind, rows); }
+  return rows.get(id);
+}
+/** The kind of any record from its id alone (ids are unique across kinds), so anything listed can be opened. */
+let KIND_OF: Map<ID, string> | null = null;
+export const kindOfId = (id: ID): string | undefined => {
+  if (!KIND_OF) { KIND_OF = new Map(); for (const k of kindsOf()) for (const r of itemsOf(k)) if (!KIND_OF.has(r.id)) KIND_OF.set(r.id, k); }
+  return KIND_OF.get(id);
+};
+/** New, edited or removed records: the next lookup rebuilds. */
+export const forgetKinds = () => { KIND_OF = null; };
+/** The one value at a path from a record ("cities.length"). A step into an id follows it to the record it names:
+ *  "worldId.kind" is the kind of the record's world, "clubId.ticker" its club's ticker. */
+export const valueAt = (v: unknown, path: string): unknown => path.split('.').reduce<unknown>((x, k) => {
+  const row = typeof x === 'string' ? itemOf(kindOfId(x) ?? '', x) : x;
+  return row == null ? undefined : (row as Record<string, unknown>)[k];
+}, v);
+/** The record a nested record is kept in (a zone in its world, a look in its shop), read from where the kind's rows
+ *  are kept (data/source.json: `core.worlds.*.cities` is a list inside each world). */
+export const holderOf = (kind: string, id: ID): { kind: string; row: ItemRow } | undefined => {
+  for (const path of [SOURCE[kind] ?? []].flat()) {
+    const at = path.lastIndexOf('.*.'); const parent = path.slice(0, Math.max(0, at));
+    const holder = at < 0 ? undefined : kindsOf().find((k) => [SOURCE[k]].flat().includes(parent));
+    const row = holder ? itemsOf(holder).find((r) => valuesAt(r, path.slice(at + 3).split('.')).some((x) => (x as ItemRow | undefined)?.id === id)) : undefined;
+    if (holder && row) return { kind: holder, row };
+  }
+  return undefined;
+};
+/** A value of the data itself ("shows.season"), for words that carry a figure. */
+export const dataAt = (path: string): unknown => valueAt({ ...D, derived: DERIVED }, path);
 export const showForWorld = (worldId: ID) => D.shows.shows.find((s) => s.worldId === worldId);
-export const poseOf = (id: ID) => D.shows.poses.find((p) => p.id === id);
 
 export function person(id: ID): Person {
-  const a = agentOf(id);
+  const a = itemOf('agent', id);
   if (a) return { id: a.id, name: a.name, handle: a.handle, tone: a.tone, initials: initials(a.name), isAgent: true, glyph: a.glyph,
     verified: a.verified, followers: a.followers, following: a.following, bio: a.bio, badges: a.badges, clubIds: a.clubIds, agent: a };
-  const u = userOf(id);
+  const u = itemOf('person', id);
   if (!u) return { id, name: id, handle: id, tone: "neutral", initials: "?", isAgent: false, verified: false, followers: 0, following: 0, bio: "", badges: [], clubIds: [] };
   return { id: u.id, name: u.name, handle: u.handle, tone: u.tone, initials: initials(u.name), isAgent: false,
     verified: u.verified, followers: u.followers, following: u.following, bio: u.bio, badges: u.badges, clubIds: u.clubIds, user: u };
@@ -106,44 +177,16 @@ export const me = () => person(D.core.currentUserId);
 /** A feed shot as a carousel post: cover slide + one slide per look item. */
 export function shotPost(s: Shot): Post {
   return {
-    id: s.id, authorId: s.authorId, kind: s.media.kind, clubId: s.clubId, worldId: s.worldId, caption: s.caption,
+    id: s.id, authorId: s.authorId, kind: s.media.kind, clubId: s.clubId, worldId: s.worldId, cityId: s.cityId, caption: s.caption,
     likes: s.likes, createdAt: s.createdAt, tags: s.tags,
-    slides: [{ title: s.media.title, tone: s.media.tone, hex: s.media.hex, lookId: s.media.lookId, family: s.media.family }, ...s.lookItems.map((li, i) => ({
+    slides: [{ title: s.media.title, tone: s.media.tone, hex: s.media.hex, lookId: s.media.lookId, family: s.media.family, src: s.media.src },
+      ...(s.media.views ?? []).map((v) => ({ title: s.media.title, tone: s.media.tone, src: v.src, caption: viewLabel(v.view) })), ...s.lookItems.map((li, i) => ({
       title: li, tone: site.lookTones[i % site.lookTones.length] as Tone, caption: t("piece", { n: i + 2 }) }))],
-    comments: site.defaultComments.map((c, i) => ({ ...c, id: `${s.id}_c${i}` })),
+    comments: site.defaultComments.map((c, i) => ({ ...c, authorId: rid('person', c.authorId), id: `${s.id}_c${i}` })), // site.json keeps the written ids
   };
 }
 export const postById = (id: ID): Post | undefined =>
   D.agents.posts.find((p) => p.id === id) ?? (() => { const s = D.feed.shots.find((x) => x.id === id); return s && shotPost(s); })();
-// ── Item types: PFT (looks), EGG (gate, earnings, land), SUM (machines) ──
-const EGGS = new Map<ID, EggItem>(); const SUMS = new Map<ID, SumItem>(); const PROFILES = new Map<ID, ProfileItem>();
-const RIDES = new Map<ID, RideItem>(); const JEWELS = new Map<ID, JewelItem>();
-export const profileItemOf = (id?: ID | null): ProfileItem | undefined => (id ? PROFILES.get(id) : undefined);
-export const rideOf = (id?: ID | null): RideItem | undefined => (id ? RIDES.get(id) : undefined);
-export const ridesOfWorld = (worldId: ID) => D.ride.list.filter((r) => r.worldId === worldId);
-export const ridesOfClub = (clubId: ID) => D.ride.list.filter((r) => r.clubId === clubId);
-/** The ride's cell on its sheet, for SpriteImage. */
-export const rideSprite = (r: RideItem) => ({ src: mediaUrl(D.ride.sheets[r.sheet]), cols: D.ride.cols, rows: D.ride.rows, index: r.index });
-export const jewelOf = (id?: ID | null): JewelItem | undefined => (id ? JEWELS.get(id) : undefined);
-export const jewelsOfWorld = (worldId: ID) => D.jewel.list.filter((j) => j.worldId === worldId);
-export const jewelSprite = (j: JewelItem) => ({ src: mediaUrl(D.jewel.sheet), cols: D.jewel.cols, rows: D.jewel.rows, index: j.index });
-/** Labels for a ride's kind and use (site.json copy rdKind_* and rdMode_*). */
-export const rideKind = (k: string) => t(('rdKind_' + k) as 'rdKind_car');
-export const rideMode = (m: string) => t(('rdMode_' + m) as 'rdMode_sale');
-/** What a ride costs: its price for sale, else its ticket or fare. */
-export const ridePrice = (r: RideItem) => (r.mode === 'sale' ? r.priceUsd : r.ticketUsd);
-/** Every club that lives in a world (its owner first). */
-export const clubsInWorld = (worldId: ID) => D.core.clubs.filter((c) => c.worldIds?.includes(worldId)).sort((a, b) => (worldOf(worldId)?.clubId === a.id ? -1 : worldOf(worldId)?.clubId === b.id ? 1 : 0));
-export const profileItemOfHolder = (holderId: ID) => D.assets.profiles.find((x) => x.holderId === holderId);
-export const profilesOfPool = (p: { profileIds?: ID[] }) => (p.profileIds ?? []).map(profileItemOf).filter((e): e is ProfileItem => !!e);
-export const eggOf = (id?: ID | null): EggItem | undefined => (id ? EGGS.get(id) : undefined);
-export const sumOf = (id?: ID | null): SumItem | undefined => (id ? SUMS.get(id) : undefined);
-/** Which of the three an item id is. */
-export const itemTypeOf = (id: ID): ItemType | undefined => (EGGS.has(id) ? 'egg' : SUMS.has(id) ? 'sum' : PROFILES.has(id) || RIDES.has(id) || JEWELS.has(id) || lookOf(id) ? 'pft' : undefined);
-export const eggsOfHost = (hostId: ID) => D.assets.eggs.filter((e) => e.hostId === hostId);
-export const eggsOfPool = (p: { eggIds?: ID[] }) => (p.eggIds ?? []).map(eggOf).filter((e): e is EggItem => !!e);
-export const sumsOfPool = (p: { sumIds?: ID[] }) => (p.sumIds ?? []).map(sumOf).filter((e): e is SumItem => !!e);
-export const eggUsd = (egg: number) => egg * D.assets.eggUsd;
 
 /** An agent's greeting addressed to whoever is signed in (the seed text names the prototype's member, Noor). */
 export const greetingOf = (a: { greeting: string }) => { const me = person(D.core.currentUserId).name.split(' ')[0]; return me && me !== 'Guest' ? a.greeting.replace(/\bNoor\b/g, me) : a.greeting.replace(/,? Noor\b/g, ''); };
@@ -154,12 +197,12 @@ export const postsBy = (author: ID): Post[] =>
 
 /** People's shots interleaved with agent posts. */
 export function feedPosts(): Post[] {
-  const ap = D.agents.posts.filter((p) => agentOf(p.authorId)).sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)); // newest first, so live drops lead
+  const ap = D.agents.posts.filter((p) => itemOf('agent', p.authorId)).sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)); // newest first, so live drops lead
   return D.feed.shots.flatMap((s, i) => (ap[i] ? [shotPost(s), ap[i]] : [shotPost(s)]));
 }
 
 export function storySets(uid: ID): Highlight[] {
-  const a = agentOf(uid);
+  const a = itemOf('agent', uid);
   if (a) return a.highlights;
   const ps = postsBy(uid);
   if (!ps.length) return [];
@@ -176,80 +219,43 @@ export const ago = (iso: string, now = Date.now()) => {
 
 /** Public path of a world's generated default image (assets/worlds → public/worlds). */
 export const worldImage = (w?: { image?: string }) => (w && w.image ? mediaUrl(w.image.replace(/^assets\//, '')) : undefined);
+/** A world's picture for a card: its own small render when it has views (never the large file), else its scene. */
+export const worldThumb = (w?: World) => (w?.gallery?.length ? mediaUrl(w.gallery[0].sm) : worldImage(w));
+/** A world's own mark (public/cities/<slug>/logo.webp), when it has one. */
+export const worldMark = (w?: World) => (w?.logo ? mediaUrl(w.logo) : undefined);
+/** What a type of record is called (host, egg, pft …), from site.json typeNames. */
+export const typeName = (type: string) => (site as unknown as { typeNames: Record<string, string> }).typeNames[type] ?? type;
+/** The label of a world view (3q, front, close-up-1 …), from site.json cityViews. */
+export const viewLabel = (view: string) => (site as unknown as { cityViews: Record<string, string> }).cityViews[view] ?? view;
 export const garmentOf = (id?: string) => (site as unknown as { garments: { id: string; name: string; path: string }[] }).garments.find((g) => g.id === id);
 
-export const seriesOf = (id: ID) => D.series.series.find((x) => x.id === id);
 
 /** Public URL of a shop image (public/items/…). */
 export const itemImage = (p: string) => mediaUrl(p);
+/** The same picture for a full screen: a city's view is written small and large (core.json gallery sm, lg; sizes in
+ *  scripts/media/bold-cities.json), so a view shown big takes its large file; any other picture is its own full size. */
+let LARGE: Map<string, string> | undefined;
+export const itemImageLarge = (p: string) => {
+  LARGE ??= new Map(D.core.worlds.flatMap((w) => (w.gallery ?? []).map((g) => [g.sm, g.lg] as [string, string])));
+  return mediaUrl(LARGE.get(p) ?? p);
+};
 export const usd = (n: number) => '$' + Math.round(n).toLocaleString('en-US');
 
-// ── Places: world → city → district → place ──
-export const cityOf = (id: ID | null | undefined): { city: City; world: World } | undefined => {
-  if (!id) return undefined;
-  for (const w of D.core.worlds) { const c = w.cities.find((x) => x.id === id); if (c) return { city: c, world: w }; }
-  return undefined;
-};
-import { PLACES } from './lazy';
-const P = () => PLACES.now() ?? { cities: {}, districts: {} as Record<ID, District[]> };
-/** City / district / place lookups read the lazily loaded places.json, call usePlaces() in the component. */
-export const cityMeta = (id: ID) => P().cities[id];
-export const districtsOf = (cityId: ID): District[] => P().districts[cityId] ?? [];
-export const placeOf = (id: ID): { place: Place; district: District; cityId: ID } | undefined => {
-  for (const [cityId, ds] of Object.entries(P().districts)) for (const d of ds) { const p = d.places.find((x) => x.id === id); if (p) return { place: p, district: d, cityId }; }
-  return undefined;
-};
-export const placesOfClub = (clubId: ID) => Object.entries(P().districts).flatMap(([cityId, ds]) => ds.flatMap((d) => d.places.filter((p) => p.clubId === clubId).map((p) => ({ place: p, cityId }))));
-
 // ── Stores: Lora's Spark is the flagship; every other club has its own ──
-export const FLAGSHIP_ID = 'ls';
+export const FLAGSHIP_ID: ID = D.ls.store.id;
 const flagship: Store = { id: FLAGSHIP_ID, clubId: (D.ls.store as { clubId?: ID }).clubId ?? rid('club', 'c_opal'), code: D.ls.store.code, name: D.ls.store.name, tagline: D.ls.store.tagline, pools: D.ls.pools, looks: D.ls.looks };
 export const STORES: Store[] = [flagship, ...D.stores.stores];
 export const storeOf = (id: ID | null | undefined) => STORES.find((s) => s.id === id) ?? flagship;
 export const storeOfClub = (clubId: ID) => STORES.find((s) => s.clubId === clubId);
-const LOOKS = new Map<ID, ShopLook>();
-export const lookOf = (id: ID) => LOOKS.get(id);
 /** A show's lead look: the first runway look that walks a store look with a render, so the show's card wears its own
  *  dress and colour (not a render picked from the club). */
 export const showLead = (sh: Show): { mid?: string; hex?: string } => {
-  for (const l of sh.looks) { const p = l.lookId ? LOOKS.get(l.lookId) : undefined; if (p?.views.FRONT) return { mid: itemImage(p.views.FRONT), hex: l.hex ?? p.hex }; }
+  for (const l of sh.looks) { const p = itemOf('look', l.lookId); if (p?.views.FRONT) return { mid: itemImage(p.views.FRONT), hex: l.hex ?? p.hex }; }
   return {};
 };
 export const lookStore = (l: ShopLook) => STORES.find((s) => s.looks.some((x) => x.id === l.id)) ?? flagship;
 
-// ── Hosts as roles, casts, sales (data/roles.json, casts.json, sales.json, scripts/hosts-casts.mjs) ──
-export const roleOf = (id: ID | null | undefined) => (id ? D.roles.types.find((r) => r.id === id) : undefined);
-export const roleCategoryOf = (id: ID | null | undefined) => (id ? D.roles.categories.find((c) => c.id === id) : undefined);
-export const castOf = (id: ID) => D.casts.casts.find((c) => c.id === id);
-/** Hosts are children of a profile: the hosts a person owns. */
-export const hostsOwnedBy = (personId: ID) => D.hosts.hosts.filter((h) => h.ownerId === personId);
-export const castsOfHost = (hostId: ID) => D.casts.casts.filter((c) => c.hostIds.includes(hostId));
-export const castsOfPerson = (personId: ID) => { const hs = new Set(hostsOwnedBy(personId).map((h) => h.id)); return D.casts.casts.filter((c) => c.hostAgentId === personId || c.hostIds.some((h) => hs.has(h))); };
-export const salesOfPerson = (personId: ID) => D.sales.sales.filter((x) => x.fromId === personId || x.toId === personId);
-export const salesOfItem = (itemId: ID) => D.sales.sales.filter((x) => x.itemId === itemId);
-export const pieceOf = (id: ID) => D.club.pieces.find((p) => p.id === id);
-/** Items a person holds now: the last owner of each item in the sales ledger, plus pieces marked as theirs. */
-export function itemsOfPerson(personId: ID): { kind: 'piece' | 'look'; id: ID }[] {
-  const last = new Map<string, { kind: 'piece' | 'look'; owner: string }>();
-  for (const x of [...D.sales.sales].reverse()) if (x.event === 'mint' || x.event === 'sale' || x.event === 'transfer') last.set(x.itemId, { kind: x.itemKind, owner: x.toId! });
-  const out = [...last.entries()].filter(([, v]) => v.owner === personId).map(([id, v]) => ({ kind: v.kind, id }));
-  for (const p of D.club.pieces) if (p.ownerId === personId && !last.has(p.id)) out.push({ kind: 'piece', id: p.id });
-  return out;
-}
-/** OpenSea-style numbers for a person, from the ledger. */
-export function statsOfPerson(personId: ID) {
-  const ss = salesOfPerson(personId).filter((x) => x.event === 'sale');
-  const bought = ss.filter((x) => x.toId === personId), sold = ss.filter((x) => x.fromId === personId);
-  const sum = (xs: { priceUsd: number }[]) => xs.reduce((n, x) => n + x.priceUsd, 0);
-  const items = itemsOfPerson(personId);
-  const listed = D.sales.sales.filter((x) => x.event === 'list' && x.fromId === personId);
-  return { items: items.length, volumeUsd: sum(ss), boughtUsd: sum(bought), soldUsd: sum(sold), trades: ss.length,
-    floorUsd: listed.length ? Math.min(...listed.map((x) => x.priceUsd)) : 0, bestSaleUsd: ss.length ? Math.max(...ss.map((x) => x.priceUsd)) : 0,
-    hosts: hostsOwnedBy(personId).length, casts: castsOfPerson(personId).length };
-}
-
 // ── Pools: the centre of PFTs. Every look sits in a pool; pools sell lots, publish stats, run a pool quest ──
-const POOLS = new Map<ID, Pool>(); const LOTS = new Map<ID, PoolLot>(); const PQ = new Map<ID, PoolQuest>();
 
 /** Modules with their own caches over D (depth.ts, relations.ts) register here; refreshIndexes calls them. */
 const REFRESH: (() => void)[] = [];
@@ -258,22 +264,11 @@ export const onDataRefresh = (cb: () => void) => { REFRESH.push(cb); };
 /** (Re)build every lookup index from D — at import, and again after lib/heavy.ts and lib/live.ts land their rows. */
 export function refreshIndexes() {
   FAMILIES = null;
-  EGGS.clear(); for (const e of D.assets.eggs) EGGS.set(e.id, e);
-  SUMS.clear(); for (const x of D.assets.sums) SUMS.set(x.id, x);
-  PROFILES.clear(); for (const x of D.assets.profiles) PROFILES.set(x.id, x);
-  RIDES.clear(); for (const r of D.ride.list) RIDES.set(r.id, r);
-  JEWELS.clear(); for (const j of D.jewel.list) JEWELS.set(j.id, j);
-  LOOKS.clear(); for (const st of STORES) for (const l of st.looks) if (!LOOKS.has(l.id)) LOOKS.set(l.id, l);
-  POOLS.clear(); for (const p of D.pools.pools) POOLS.set(p.id, p);
-  LOTS.clear(); for (const l of D.pools.lots) LOTS.set(l.id, l);
-  PQ.clear(); for (const q of D.pools.quests) PQ.set(q.id, q);
+  INDEX.clear(); forgetKinds();
   for (const cb of REFRESH) cb();
 }
 refreshIndexes();
-export const poolOf = (id: ID | null | undefined) => (id ? POOLS.get(id) : undefined);
-export const lotOf = (id: ID) => LOTS.get(id);
-export const poolQuestOf = (id: ID | null | undefined) => (id ? PQ.get(id) : undefined);
-export const lotsOfPool = (p: Pool) => (p.lotIds ?? []).map(lotOf).filter((l): l is PoolLot => !!l);
+export const lotsOfPool = (p: Pool) => (p.lotIds ?? []).map(((id) => itemOf('lot', id))).filter((l): l is PoolLot => !!l);
 /** A PFT item minted inside a pool (kind `pft` in Phiora), linked to its pool by poolId. */
 export type Pft = { id: ID; poolId: ID; name: string; rarity?: string; edition?: number; priceUsd?: number; traits?: string; hex?: string; ownerId?: ID };
 export const PFTS: Pft[] = [];
@@ -282,16 +277,16 @@ export const pftsOfPool = (poolId: ID) => PFTS.filter((x) => x.poolId === poolId
 export type Rental = { id: ID; pftId: ID; renterId?: ID; days?: number; priceUsd?: number; status?: string; note?: string };
 export const RENTALS: Rental[] = [];
 export const poolsOfClub = (clubId: ID) => D.pools.pools.filter((p) => p.clubId === clubId);
-export const poolOfLook = (l: ShopLook) => poolOf(l.poolId);
+export const poolOfLook = (l: ShopLook) => itemOf('pool', l.poolId);
 export const poolOfShow = (showId: ID) => D.pools.pools.find((p) => p.showId === showId);
-export const metricOf = (id: string) => D.pools.metrics.find((m) => m.id === id);
 export const liquidityOf = (p: Pool) => (p.liquidityId ? D.economy.liquidity.find((x) => x.id === p.liquidityId) : undefined);
-export const coinOf = (id: ID) => D.economy.coins.find((c) => c.id === id);
 /** Beauty shades (data/beauty.json): each is a unit of its line's 64-shade drop. */
 export type Shade = { id: ID; name: string; hex: string };
 const SHADES = new Map<ID, Shade & { line: string }>((beautyJson as { lines: { name: string; shades: Shade[] }[] }).lines.flatMap((l) => l.shades.map((x) => [x.id, { ...x, line: l.name }] as [ID, Shade & { line: string }])));
-export const shadeOf = (id: ID) => SHADES.get(id);
 /** Name of any PFT unit: a shop look, a show look or a beauty shade. */
-export const unitName = (id: ID) => lookOf(id)?.name ?? showLookOf(id)?.look.title ?? shadeOf(id)?.name ?? id;
+export const unitName = (id: ID) => itemOf('look', id)?.name ?? showLookOf(id)?.look.title ?? itemOf('shade', id)?.name ?? id;
 /** A show look (a unit of a show drop) by id. */
 export const showLookOf = (id: ID) => { for (const sh of D.shows.shows) { const l = sh.looks.find((x) => x.id === id); if (l) return { look: l, show: sh }; } return undefined; };
+
+// Lookups by relation live in their own file; everything imports them from here as before.
+export * from './relation';

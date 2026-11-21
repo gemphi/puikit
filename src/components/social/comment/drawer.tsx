@@ -71,7 +71,7 @@ export const CommentsDrawer: React.FC<CommentsDrawerProps> = ({
                 if (e.key === 'Enter') submit();
               }}
             />
-            <Button variant="primary" size="sm" aria-label={copy.post} icon={<Send size={14} />} onClick={submit} />
+            <Button variant="glass" aria-label={copy.post} icon={<Send size={14} />} onClick={submit} />
           </Stack>
         )
       }

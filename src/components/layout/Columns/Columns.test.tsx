@@ -1,7 +1,8 @@
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { Columns } from './index';
+import { act } from '@testing-library/react';
+import { Columns, columnStore } from './index';
 
 const cols = (onBack = vi.fn(), onClose = vi.fn()) => [
   { id: 'list', title: 'Agents', content: 'list', width: '16rem', closable: true },
@@ -10,11 +11,13 @@ const cols = (onBack = vi.fn(), onClose = vi.fn()) => [
 ];
 
 describe('Columns', () => {
-  it('closes a column into the reopen strip and reopens it', () => {
+  it('closes a column with no strip left behind, and a menu brings it back', () => {
     render(<Columns columns={cols()} />);
     fireEvent.click(screen.getAllByLabelText('Close')[0]);
     expect(screen.queryByText('list')).toBeNull();
-    fireEvent.click(screen.getByRole('button', { name: 'Agents' }));
+    expect(screen.queryByRole('button', { name: 'Agents' })).toBeNull();
+    expect(columnStore.list().find((e) => e.id === 'list')?.open).toBe(false);
+    act(() => columnStore.set('list', true));
     expect(screen.getByText('list')).toBeTruthy();
   });
   it('expands one column over the row and restores', () => {

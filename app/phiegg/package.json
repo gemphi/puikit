@@ -11,15 +11,16 @@
     "typecheck": "tsc --noEmit",
     "data:deepen": "node scripts/deepen-data.mjs",
     "data:brands": "node scripts/brands.mjs && node scripts/hosts-casts.mjs",
-    "data:check": "node scripts/check-relations.mjs",
+    "data:check": "node scripts/catalog.mjs && node scripts/check-relations.mjs",
     "data:audit": "node scripts/audit-data.mjs",
     "lists": "node scripts/list-variants.mjs",
-    "data": "python3 scripts/looks-import.py && python3 scripts/recolour-renders.py && python3 scripts/item-colors.py && node scripts/brands.mjs && node scripts/deepen-data.mjs && node scripts/hosts-casts.mjs && node scripts/celebs.mjs && node scripts/productions.mjs && node scripts/items.mjs && node scripts/rides.mjs && node scripts/jewels.mjs && node scripts/style05.mjs && node scripts/pools.mjs && node scripts/assets.mjs && node scripts/threads.mjs && python3 scripts/world-images.py && node scripts/heavy-ids.mjs && node scripts/check-relations.mjs",
+    "data": "python3 scripts/looks-import.py && python3 scripts/recolour-renders.py && python3 scripts/item-colors.py && node scripts/brands.mjs && node scripts/deepen-data.mjs && node scripts/hosts-casts.mjs && node scripts/celebs.mjs && node scripts/productions.mjs && node scripts/items.mjs && node scripts/ledger.mjs && node scripts/rides.mjs && node scripts/jewels.mjs && node scripts/style05.mjs && node scripts/pools.mjs && node scripts/assets.mjs && node scripts/threads.mjs && python3 scripts/world-images.py && node scripts/heavy-ids.mjs && node scripts/catalog.mjs && node scripts/check-relations.mjs",
     "data:portraits": "sh -c 'for k in 0 1 2 3 4 5 6 7 8 9 10 11; do python3 scripts/portraits.py $k; done; python3 scripts/portraits.py -1'",
     "data:worlds": "node scripts/rides.mjs && node scripts/jewels.mjs && python3 scripts/world-images.py",
     "data:renders": "python3 scripts/recolour-renders.py && python3 scripts/item-colors.py",
     "data:looks": "python3 scripts/looks-import.py && python3 scripts/item-colors.py && node scripts/items.mjs && node scripts/style05.mjs",
-    "data:ids": "node scripts/heavy-ids.mjs"
+    "data:ids": "node scripts/heavy-ids.mjs",
+    "data:ledger": "node scripts/ledger.mjs && node scripts/heavy-ids.mjs"
   },
   "dependencies": {
     "puikit": "file:../..",

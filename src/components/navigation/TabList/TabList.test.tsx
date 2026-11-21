@@ -30,4 +30,23 @@ describe('TabList', () => {
     expect(row.dataset.ready).toBe('true');
     expect(row.style.getPropertyValue('--pui-tab-x')).toBe('0px');
   });
+
+  it('is one stop for the Tab key, and the arrows move between the tabs that can be picked', () => {
+    const onChange = vi.fn();
+    const { getAllByRole, getByRole } = render(<TabList items={items} activeId="b" onChange={onChange} />);
+    const tabs = getAllByRole('tab');
+    expect(tabs.map((x) => x.tabIndex)).toEqual([-1, 0, -1]);
+    expect(tabs.map((x) => x.getAttribute('aria-selected'))).toEqual(['false', 'true', 'false']);
+    tabs[1].focus();
+    fireEvent.keyDown(getByRole('tablist'), { key: 'ArrowRight' });
+    expect(document.activeElement).toBe(tabs[0]); // the disabled tab is passed over, round to the first
+    fireEvent.keyDown(getByRole('tablist'), { key: 'End' });
+    expect(document.activeElement).toBe(tabs[1]);
+    expect(onChange).not.toHaveBeenCalled(); // moving is not picking: Enter or Space picks
+  });
+
+  it('gives the Tab key the first tab when none is on', () => {
+    const { getAllByRole } = render(<TabList items={items} />);
+    expect(getAllByRole('tab').map((x) => x.tabIndex)).toEqual([0, -1, -1]);
+  });
 });

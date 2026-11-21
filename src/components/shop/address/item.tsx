@@ -87,17 +87,17 @@ export const AddressItem: React.FC<AddressItemProps> = ({
           {(onEdit || onRemove || onSetDefault) && (
             <Stack direction="row" gap={2}>
               {onSetDefault && !address.isDefault && (
-                <Button variant="ghost" size="sm" onClick={() => onSetDefault(address.id)}>
+                <Button variant="glass" onClick={() => onSetDefault(address.id)}>
                   {labels.setDefault ?? 'Set as default'}
                 </Button>
               )}
               {onEdit && (
-                <Button variant="ghost" size="sm" onClick={() => onEdit(address.id)}>
+                <Button variant="glass" onClick={() => onEdit(address.id)}>
                   {labels.edit ?? 'Edit'}
                 </Button>
               )}
               {onRemove && (
-                <Button variant="ghost" size="sm" onClick={() => onRemove(address.id)}>
+                <Button variant="glass" onClick={() => onRemove(address.id)}>
                   {labels.remove ?? 'Remove'}
                 </Button>
               )}

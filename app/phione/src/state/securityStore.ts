@@ -67,11 +67,11 @@ export const securityStore = createStore<SecurityStoreState>((set, get) => ({
     const out = outputOf(await executeVerb('phisec', 'scan_vulnerability', { target }));
     if (!out) { set({ busy: false, lastError: lastRefusal?.message ?? 'PhiSec did not answer.' }); return; }
     const scan = toScan(out);
-    set({ busy: false, scan, scans: [scan, ...get().scans].slice(0, 20), lastAction: `Scanned ${scan.target} — risk ${scan.riskScore}` });
+    set({ busy: false, scan, scans: [scan, ...get().scans].slice(0, 20), lastAction: `Scanned ${scan.target} - risk ${scan.riskScore}` });
   },
   runVerb: async (verb, parameters) => {
     set({ busy: true, lastError: null });
-    if (!hasPhiadk) { set({ busy: false, lastAction: `Sample mode — ${verb} not sent.` }); return null; }
+    if (!hasPhiadk) { set({ busy: false, lastAction: `Sample mode - ${verb} not sent.` }); return null; }
     const out = outputOf(await executeVerb('phisec', verb, parameters));
     set({ busy: false, lastError: out ? null : lastRefusal?.message ?? 'PhiSec did not answer.', lastAction: out ? `Ran ${verb}.` : null });
     return out;

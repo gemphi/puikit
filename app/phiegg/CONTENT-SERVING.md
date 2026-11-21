@@ -38,6 +38,28 @@ scripts/media/sync.sh local
 
 Then start an app with `VITE_PHI_MEDIA=http://localhost:8333/phi-media`.
 
+## On the server: phiegg.com/cdn
+
+The server hands the same keys out from a folder: `https://phiegg.com/cdn/<key>` is the file `/srv/phi-cdn/<key>`
+(`https://phiegg.com/cdn/worlds/skim-city/hero.webp` is `/srv/phi-cdn/worlds/skim-city/hero.webp`). Caddy serves it
+(the `(cdn)` part of `/etc/caddy/Caddyfile`): a picture that is there is cached for a year, a record for five minutes,
+a missing file is not cached, and any site may read it.
+
+```bash
+node scripts/media/fill_public.mjs      # public/ pictures into media/phi-media, each under its key
+PHI_CDN_SSH=user@host PHI_CDN_KEY=path/to/key scripts/media/sync.sh server
+```
+
+The sync compares checksums and sends only the files that differ, by tar over ssh. What it replaces is kept on the
+server in `~/deploy-backups/cdn-<time>.tgz`. A file that is on the server only stays unless `DELETE=1`.
+
+The server builds Phiegg with `VITE_PHI_MEDIA=https://phiegg.com/cdn` (set in `~/phi-deploy.sh`); to build it alone,
+`VITE_PHI_MEDIA=https://phiegg.com/cdn node build-all.mjs phiegg` in `app/`. A picture's key comes from its path under
+`public/` by the rules in `src/data/media-key.json`, which the app and `fill_public.mjs` both read.
+
+New pictures for a city go in `app/phiegg/public/world/<slug>/` (its key is `worlds/<slug>/…`), then the two commands
+above. Pictures are never committed.
+
 ## Move to AWS
 
 ```bash

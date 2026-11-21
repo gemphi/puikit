@@ -215,11 +215,11 @@ export const StepForm: React.FC<StepFormProps> = ({
       </Box>
 
       <Box className={styles.foot}>
-        <Box className={styles.actionsLeft}>{onCancel && <Button variant="ghost" onClick={onCancel}>{cancelLabel}</Button>}</Box>
+        <Box className={styles.actionsLeft}>{onCancel && <Button variant="glass" onClick={onCancel}>{cancelLabel}</Button>}</Box>
         <Stack direction="row" gap={2} align="center">
-          {at > 0 && <Button variant="outline" onClick={() => go(at - 1)}>{backLabel}</Button>}
-          {!last && <Button variant="primary" disabled={blocked} onClick={() => go(at + 1)}>{nextLabel}</Button>}
-          {last && <Button variant="primary" disabled={busy || blocked} onClick={() => void onSubmit()}>{submitLabel}</Button>}
+          {at > 0 && <Button variant="glass" onClick={() => go(at - 1)}>{backLabel}</Button>}
+          {!last && <Button variant="glass" disabled={blocked} onClick={() => go(at + 1)}>{nextLabel}</Button>}
+          {last && <Button variant="glass" disabled={busy || blocked} onClick={() => void onSubmit()}>{submitLabel}</Button>}
         </Stack>
       </Box>
     </Box>

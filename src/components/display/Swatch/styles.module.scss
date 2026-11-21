@@ -3,7 +3,7 @@
   background: var(--pui-swatch);
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--phi-color-text, #000) 18%, transparent);
 }
-.round { border-radius: 50%; }
+.round { border-radius: var(--phi-radius-full); }
 .square { border-radius: var(--phi-radius-sm, 0.25rem); }
 .xs { width: 0.75rem; height: 0.75rem; }
 .sm { width: 1rem; height: 1rem; }

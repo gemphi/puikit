@@ -6,7 +6,7 @@ import React from 'react';
 import { Input, RelationPicker, type RelationOption, ChoiceRow, StepForm, type StepFormSection, type StepFormStep, TabList, Textarea, type DataTableColumn } from '@pui/components';
 import { CircleUser, Coins, FileText, Layers, Link2, Palette, Truck, Package, CreditCard, MapPin, ClipboardCheck, ShieldCheck, Sparkles } from 'lucide-react';
 import kindsJson from '../data/kinds.json';
-import { D, PFTS, clubOf, fmt, person, poolOf, site, t, usd, worldOf, type SiteCopyKey } from './data';
+import { D, PFTS, fmt, person, site, t, usd, type SiteCopyKey, itemOf, valueAt } from './data';
 import type { ListFacet, ListSort } from '../components/Phiegg/Views';
 
 export type FieldDecl = {
@@ -58,14 +58,15 @@ export const fieldLabel = (kind: string, id: string): string => { const f = fiel
 /** A kind's name for people (kinds.json `label`), else its key. */
 export const kindLabel = (kind: string): string => KINDS[kind]?.label ?? kind;
 const label = (k: string) => (k in site.copy ? t(k as SiteCopyKey) : k);
-const dig = (r: unknown, path: string): unknown => path.split('.').reduce<unknown>((v, k) => (v == null ? v : (v as Record<string, unknown>)[k]), r);
+/** A field's value along its path; a step into an id follows the link (lib/data valueAt). */
+const dig = valueAt;
 
 /** Named resolvers a field's `via` can point at: ids become names, dates become months, site maps label codes. */
 const VIA: Record<string, (v: unknown, r: unknown) => string | undefined> = {
   person: (v) => (typeof v === 'string' && v ? person(v).name : undefined),
-  club: (v) => (typeof v === 'string' ? clubOf(v)?.name : undefined),
-  world: (v) => (typeof v === 'string' ? worldOf(v)?.name : undefined),
-  pool: (v) => (typeof v === 'string' ? poolOf(v)?.name : undefined),
+  club: (v) => (typeof v === 'string' ? itemOf('club', v)?.name : undefined),
+  world: (v) => (typeof v === 'string' ? itemOf('world', v)?.name : undefined),
+  pool: (v) => (typeof v === 'string' ? itemOf('pool', v)?.name : undefined),
   month: (v) => (typeof v === 'string' ? (site as unknown as { months: string[] }).months[Number(v.slice(5, 7)) - 1] : undefined),
   cities: (v) => (Array.isArray(v) ? v.length + ' cities' : undefined),
   mine: (v) => (v === D.core.currentUserId ? t('lsYours') : t('lsOthers')),
@@ -81,6 +82,9 @@ const FMT: Record<string, (v: unknown) => React.ReactNode> = {
   usd: (v) => usd(Number(v ?? 0)),
   dollars: (v) => (v ? '$' + fmt(Number(v)) : '·'),
   date: (v) => String(v ?? '').slice(0, 10),
+  percent: (v) => Math.round(Number(v ?? 0) * 100) + '%',
+  price: (v) => '$' + String(v ?? 0),
+  signed: (v) => (Number(v) > 0 ? '+' : '') + String(v ?? 0) + '%',
 };
 
 type Over<T> = { get?: Record<string, (r: T) => string | undefined>; cell?: Record<string, (r: T) => React.ReactNode> };
@@ -115,11 +119,8 @@ export function tableFor<T>(kind: string, over: Over<T> = {}): DataTableColumn<T
 }
 /** A record as people read it, from its kind's declaration: each declared field's label and shown value (links become
     the linked records' names, formats and resolvers applied), in declared order, empty fields left out. */
+/** What a kind declares about a record, said for people. What it holds beyond that is lib/record.tsx. */
 export function describe(kind: string, row: Record<string, unknown>): { id: string; label: string; value: React.ReactNode; group?: string }[] {
-  // A kind with nothing declared still shows: its own plain fields (text, numbers, yes/no), named from their keys.
-  if (!fieldsOf(kind).length) return Object.entries(row)
-    .filter(([k, v]) => k !== 'id' && !/(Id|Ids)$/.test(k) && v !== '' && v != null && ['string', 'number', 'boolean'].includes(typeof v))
-    .map(([k, v]) => ({ id: k, label: k.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/^./, (c) => c.toUpperCase()), value: String(v) }));
   return fieldsOf(kind).map((f) => {
     const raw = dig(row, f.path ?? f.id);
     if (raw == null || raw === '' || (Array.isArray(raw) && !raw.length)) return null;
@@ -133,13 +134,14 @@ export function describe(kind: string, row: Record<string, unknown>): { id: stri
 /** How a record is named: its kind's `title` template ("{renterId} · {days} days"), placeholders filled with shown
     values (links become names), else its name or title, else its id. */
 export function titleOf(kind: string, row: Record<string, unknown>): string {
-  const tpl = KINDS[kind]?.title;
-  if (tpl) {
-    const shownOf = new Map(describe(kind, row).map((d) => [d.id, typeof d.value === 'string' || typeof d.value === 'number' ? String(d.value) : String(dig(row, d.id) ?? '')]));
-    const out = tpl.replace(/\{(\w+)\}/g, (_, f: string) => shownOf.get(f) ?? '').replace(/(\s·\s)+$/, '').replace(/^(\s·\s)+/, '').trim();
-    if (out) return out;
-  }
-  return String(row.name ?? row.title ?? row.id ?? '');
+  return fill(kind, row, KINDS[kind]?.title) || String(row.name ?? row.title ?? row.id ?? '');
+}
+/** A template filled from a record ("{name} · {trait}"): each placeholder is the field's shown value (a link becomes
+    the name it points at), an empty one drops its separator. */
+export function fill(kind: string, row: Record<string, unknown>, tpl?: string): string {
+  if (!tpl) return '';
+  const shownOf = new Map(describe(kind, row).map((d) => [d.id, typeof d.value === 'string' || typeof d.value === 'number' ? String(d.value) : String(dig(row, d.id) ?? '')]));
+  return tpl.replace(/\{([\w.]+)\}/g, (_, f: string) => shownOf.get(f) ?? String(dig(row, f) ?? '')).replace(/(\s·\s)+$/, '').replace(/^(\s·\s)+/, '').trim();
 }
 
 /** Facets, sorts and table for a ListView in one spread: `{...listOf('look', { get: { owned } })}`. */
@@ -155,8 +157,8 @@ export const optionsOf = (kind: string): RelationOption[] => {
     case 'nest': return D.hosts.nests.map((n) => ({ value: n.id, label: n.name }));
     case 'person': return D.core.users.map((u) => ({ value: u.id, label: u.name, sub: '@' + u.handle }));
     case 'quest': return D.economy.quests.map((q) => ({ value: q.id, label: q.title }));
-    case 'pool': return D.pools.pools.map((p) => ({ value: p.id, label: p.name, sub: clubOf(p.clubId)?.name }));
-    case 'pft': return PFTS.map((x) => ({ value: x.id, label: x.name, sub: poolOf(x.poolId)?.name }));
+    case 'pool': return D.pools.pools.map((p) => ({ value: p.id, label: p.name, sub: itemOf('club', p.clubId)?.name }));
+    case 'pft': return PFTS.map((x) => ({ value: x.id, label: x.name, sub: itemOf('pool', x.poolId)?.name }));
     default: return [];
   }
 };

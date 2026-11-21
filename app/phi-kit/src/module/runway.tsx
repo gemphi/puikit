@@ -1,4 +1,4 @@
-import { Box, Button, Frame, Image, Stack, Text, Title } from '@pui/components';
+import { Box, Button, Frame, Image, Pressable, Rows, Stack, Swatch, Text, Title } from '@pui/components';
 import React from 'react';
 import { assetUrl, type Block } from '../data';
 
@@ -6,9 +6,6 @@ type Swatch = { name: string; hex: string };
 type Item = { name: string; about?: string };
 type Look = { id: string; number: number; title: string; color: Swatch; cut: string; about?: string; items?: Item[]; views: { label: string; image: string }[] };
 
-const wrap: React.CSSProperties = { display: 'flex', flexWrap: 'wrap', gap: '0.75rem' };
-const dot = (hex: string, on: boolean): React.CSSProperties => ({ width: 28, height: 28, padding: 0, borderRadius: '50%', background: hex, cursor: 'pointer', border: 0, outline: on ? '1px solid currentColor' : 'none', outlineOffset: 3 });
-const plain: React.CSSProperties = { display: 'block', width: '100%', padding: 0, border: 0, background: 'none', color: 'inherit', font: 'inherit', textAlign: 'left', cursor: 'pointer' };
 
 /** One look: its angles, what she wears, and the colours the same cut comes in. */
 const LookPage: React.FC<{ look: Look; looks: Look[]; onLook: (id: string | null) => void }> = ({ look, looks, onLook }) => {
@@ -18,18 +15,18 @@ const LookPage: React.FC<{ look: Look; looks: Look[]; onLook: (id: string | null
   const sameCut = looks.filter((l) => l.cut === look.cut);
   return (
     <Stack as="article" direction="column" gap={4}>
-      <Button variant="ghost" onClick={() => onLook(null)} style={{ alignSelf: 'flex-start' }}>All looks</Button>
-      <Box style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 22rem), 1fr))', gap: '2.5rem', alignItems: 'start' }}>
+      <Button variant="glass" onClick={() => onLook(null)} style={{ alignSelf: 'flex-start' }}>All looks</Button>
+      <Stack autoFill="22rem" gap={5} align="start">
         <Stack direction="column" gap={3}>
           {shown ? <Frame ratio="1/1" rounded="none"><Image src={assetUrl(shown.image)} alt={look.title + ', ' + shown.label} fit="cover" fill /></Frame> : null}
-          <Box style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5rem' }}>
+          <Stack direction="row" gap={2}>
             {look.views.map((v, i) => (
-              <button key={v.label} type="button" onClick={() => setAngle(i)} aria-label={v.label} aria-pressed={i === angle} style={{ ...plain, opacity: i === angle ? 1 : 0.6 }}>
+              <Pressable key={v.label} column flex="none" width="calc((100% - 1.5rem) / 4)" onClick={() => setAngle(i)} aria-label={v.label} aria-pressed={i === angle} opacity={i === angle ? 1 : 0.6}>
                 <Frame ratio="1/1" rounded="none"><Image src={assetUrl(v.image)} alt="" fit="cover" fill loading="lazy" /></Frame>
                 <Text as="span" size="xs" intent="secondary">{v.label}</Text>
-              </button>
+              </Pressable>
             ))}
-          </Box>
+          </Stack>
         </Stack>
         <Stack direction="column" gap={4}>
           <Box>
@@ -39,14 +36,14 @@ const LookPage: React.FC<{ look: Look; looks: Look[]; onLook: (id: string | null
           </Box>
           <Box>
             <Text as="p" size="sm">{look.color.name}</Text>
-            <Box style={{ ...wrap, marginTop: '0.5rem' }}>
-              {sameCut.map((l) => <button key={l.id} type="button" title={l.color.name} aria-label={l.color.name} aria-pressed={l.id === look.id} onClick={() => onLook(l.id)} style={dot(l.color.hex, l.id === look.id)} />)}
-            </Box>
+            <Stack direction="row" gap={2} wrap marginTop={2}>
+              {sameCut.map((l) => <Pressable key={l.id} hover pad="sm" selected={l.id === look.id} aria-label={l.color.name} aria-pressed={l.id === look.id} onClick={() => onLook(l.id)}><Swatch color={l.color.hex} label={l.color.name} size="lg" /></Pressable>)}
+            </Stack>
           </Box>
           {look.items?.length ? (
             <Stack direction="column" gap={2}>
               {look.items.map((it) => (
-                <Box key={it.name} style={{ borderTop: '1px solid var(--phi-border, currentColor)', paddingTop: '0.75rem' }}>
+                <Box key={it.name} rule="top" paddingTop={3}>
                   <Text as="p">{it.name}</Text>
                   {it.about ? <Text as="p" size="sm" intent="secondary">{it.about}</Text> : null}
                 </Box>
@@ -54,7 +51,7 @@ const LookPage: React.FC<{ look: Look; looks: Look[]; onLook: (id: string | null
             </Stack>
           ) : null}
         </Stack>
-      </Box>
+      </Stack>
     </Stack>
   );
 };
@@ -86,15 +83,15 @@ export const Runway: React.FC<{ b: Block }> = ({ b }) => {
           {b.sub ? <Text as="p" intent="secondary" marginTop={2} maxWidth="60ch">{b.sub}</Text> : null}
         </Box>
       ) : null}
-      <Box style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 15rem), 1fr))', gap: '2rem 1rem' }}>
+      <Rows minItemWidth="15rem" cols={4} mosaic={false}>
         {looks.map((l) => (
-          <button key={l.id} type="button" onClick={() => choose(l.id)} style={plain}>
+          <Pressable key={l.id} column fill onClick={() => choose(l.id)}>
             {l.views[0] ? <Frame ratio="3/4" rounded="none"><Image src={assetUrl(l.views[0].image)} alt={l.title} fit="cover" fill loading="lazy" /></Frame> : null}
             <Text as="p" size="sm" intent="secondary" marginTop={1}>Look {l.number}</Text>
             <Text as="p">{l.title}</Text>
-          </button>
+          </Pressable>
         ))}
-      </Box>
+      </Rows>
       {(b.wide as string[] | undefined)?.map((src) => <Frame key={src} ratio="1/1" rounded="none" style={{ maxHeight: '86vh', width: '100%' }}><Image src={assetUrl(src)} alt="" fit="cover" fill loading="lazy" /></Frame>)}
     </Stack>
   );

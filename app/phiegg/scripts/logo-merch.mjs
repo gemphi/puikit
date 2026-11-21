@@ -2,7 +2,9 @@
 // The Phiegg bird for merchandise: every item in site.json brand.merch.items, in every colour of brand.merch.colours,
 // as an SVG (the drawing's ink swapped for the colour) and as a transparent square PNG brand.merch.png pixels wide,
 // into public/<brand.merch.out>. The PNGs are drawn by headless Chrome, so they match what a browser shows.
-//   node scripts/logo-merch.mjs [--chrome "C:/Program Files/Google/Chrome/Application/chrome.exe"]
+// With a set's name (node scripts/logo-merch.mjs media), the same for site.json brand.<name>: brand.media's items are
+// every file scripts/logo-media.py wrote (its frames and token signs).
+//   node scripts/logo-merch.mjs [merch|media] [--chrome "C:/Program Files/Google/Chrome/Application/chrome.exe"]
 import { spawn } from 'node:child_process';
 import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -10,7 +12,10 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const M = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'site.json'), 'utf8')).brand.merch;
+const SET = process.argv[2] && !process.argv[2].startsWith('--') ? process.argv[2] : 'merch';
+const M = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'site.json'), 'utf8')).brand[SET];
+if (!M.items) M.items = Object.fromEntries([...Object.keys(M.frame ?? {}), ...Object.keys(M.token?.sign ?? {}), 'pound']
+  .map((n) => [n, `${M.out}/${n}.svg`]));
 const arg = (k, d) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : d; };
 const CHROME = arg('--chrome', 'C:/Program Files/Google/Chrome/Application/chrome.exe');
 const OUT = join(ROOT, 'public', M.out);
@@ -21,7 +26,8 @@ const made = [];
 for (const [name, src] of Object.entries(M.items)) {
   const svg = readFileSync(join(ROOT, 'public', src), 'utf8');
   for (const [colour, hex] of Object.entries(M.colours)) {
-    const file = join(OUT, `${name}-${colour}.svg`);
+    const file = join(OUT, SET === 'merch' ? `${name}-${colour}.svg` : colour, SET === 'merch' ? '' : `${name}.svg`);
+    mkdirSync(dirname(file), { recursive: true });
     writeFileSync(file, svg.split(M.ink).join(hex));
     made.push(file);
   }
@@ -40,7 +46,7 @@ await send('Emulation.setDeviceMetricsOverride', { width: M.png, height: M.png, 
 await send('Emulation.setDefaultBackgroundColorOverride', { color: { r: 0, g: 0, b: 0, a: 0 } });
 try {
   for (const file of made) {
-    const html = join(OUT, '.page.html');
+    const html = join(dirname(file), '.page.html');
     writeFileSync(html, `<html><body style="margin:0;background:transparent"><img src="${pathToFileURL(file).href}" width="${M.png}" height="${M.png}" style="display:block"/></body></html>`);
     await send('Page.navigate', { url: pathToFileURL(html).href }); await sleep(700);
     const shot = await send('Page.captureScreenshot', { format: 'png', clip: { x: 0, y: 0, width: M.png, height: M.png, scale: 1 } });

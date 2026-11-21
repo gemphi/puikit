@@ -14,7 +14,7 @@ export const Terminal: React.FC<{ b: Block }> = ({ b }) => {
     setLines((l) => [...l, '$ ' + c, ...out]); setCmd('');
   };
   return (
-    <Stack as="form" className={s.term} gap={1} onSubmit={run}>
+    <Stack as="form" direction="column" className={s.term} gap={1} surface="sunken" onSubmit={run}>
       {lines.map((l, i) => <Text as="span" key={i} size="sm" mono pre intent="inherit">{l}</Text>)}
       <Stack direction="row" gap={2} align="center"><Text as="span" size="sm" mono intent="inherit">$</Text><Input className={s.termIn} value={cmd} onChange={(e) => setCmd(e.target.value)} aria-label="Command" autoComplete="off" /></Stack>
     </Stack>

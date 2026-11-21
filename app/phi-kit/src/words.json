@@ -4,6 +4,29 @@
     "open": "Open {page}",
     "close": "Make your move in {app}"
   },
+  "profile": {
+    "note": "Note, only you see it",
+    "notePh": "Add a note",
+    "highlights": "Highlights",
+    "identity": "Phione identity",
+    "guest": "Not signed in",
+    "manage": "Manage in Phione"
+  },
+  "room": {
+    "write": "Message {room}",
+    "member": "Members",
+    "profile": "Profile",
+    "message": "Message",
+    "follow": "Follow",
+    "following": "Following",
+    "like": "Like",
+    "since": "Member since",
+    "space": "Spaces",
+    "media": "Pictures",
+    "open": "Open {name}",
+    "none": "Nothing here yet",
+    "you": "You"
+  },
   "account": {
     "title": "You",
     "guest": "Guest",

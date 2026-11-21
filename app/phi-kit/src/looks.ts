@@ -11,6 +11,8 @@ export const LOOKS: Look[] = [
   { id: 'apple', label: 'Apple', style: 'apple', brand: 'apple', palette: 'apple', gradient: 'soft', radius: 'medium' },
   { id: 'organic', label: 'Organic', style: 'organic', brand: 'phiegg', palette: 'opal', gradient: 'vivid', radius: 'pill' },
   { id: 'muse', label: 'Muse', style: 'muse', brand: 'muse', palette: 'none', gradient: 'flat', radius: 'medium' },
+  // Gradient: every surface and label wears the brand's two colours (tokens: _theme-styles.scss). Phiogy's own look.
+  { id: 'gradient', label: 'Gradient', style: 'gradient', brand: 'phiogy', palette: 'none', gradient: 'vivid', radius: 'medium' },
 ];
 /** Gradient level every app starts on (Settings / Appearance change it). */
 export const DEFAULT_GRADIENT = 'soft' as const;

@@ -125,7 +125,7 @@ export function DataTable<T>({
           : groups ? groups.flatMap((g) => [
               <Tr key={'g:' + g.key} className={styles.groupRow}>
                 <Td colSpan={columns.length} className={styles.groupCell}>
-                  <Button variant="ghost" size="sm" aria-expanded={!shut[g.key]} onClick={() => setShut((x) => ({ ...x, [g.key]: !x[g.key] }))}>
+                  <Button variant="glass" aria-expanded={!shut[g.key]} onClick={() => setShut((x) => ({ ...x, [g.key]: !x[g.key] }))}>
                     {(shut[g.key] ? '▸ ' : '▾ ') + g.key + ' · ' + g.rows.length}
                   </Button>
                 </Td>
@@ -155,7 +155,7 @@ export function DataTable<T>({
     </Table>
     </Box>
     {!groups && limit && shown.length > limit && (
-      <Box className={styles.more}><Button variant="ghost" size="sm" onClick={() => setAll(!all)}>{all ? lessLabel : moreLabel(shown.length)}</Button></Box>
+      <Box className={styles.more}><Button variant="glass" onClick={() => setAll(!all)}>{all ? lessLabel : moreLabel(shown.length)}</Button></Box>
     )}
     </>
   );

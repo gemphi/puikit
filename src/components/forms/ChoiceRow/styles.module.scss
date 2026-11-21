@@ -12,8 +12,8 @@
 .option {
   display: flex; align-items: center; justify-content: space-between; gap: 0.375rem; min-width: 0; width: 100%; min-height: var(--phi-control-height-md); padding: 0 0.75rem;
   border: 0; border-radius: var(--phi-radius-sm, 0.5rem); cursor: pointer; text-align: left; color: var(--phi-color-text-primary); font: inherit;
-  background: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2));
-  &:hover { background: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1)); }
+  background: var(--phi-control-ground);
+  &:hover { background: var(--phi-control-ground-strong); }
   &:focus-visible { outline: 2px solid var(--phi-color-text-primary); outline-offset: -2px; }
 }
-.on { color: var(--phi-color-text-primary); background: linear-gradient(90deg, var(--phi-shade-1), var(--phi-shade-1)); font-weight: var(--phi-font-weight-semibold, 600); }
+.on { color: var(--phi-color-text-primary); background: var(--phi-control-ground-strong), var(--phi-control-ground); font-weight: var(--phi-font-weight-semibold, 600); }

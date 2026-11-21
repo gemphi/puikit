@@ -1,24 +1,31 @@
-.row { display: flex; align-items: stretch; width: 100%; height: 100%; min-height: 0; overflow-x: auto; }
-.strip { display: flex; flex-direction: column; gap: 0.25rem; padding: 0.5rem 0.25rem; border-right: 1px solid var(--phi-color-border-subtle, var(--phi-color-border)); background: var(--phi-color-background-secondary); }
-.col { display: flex; flex-direction: column; min-height: 0; flex: 0 1 auto; border-right: 1px solid var(--phi-color-border-subtle, var(--phi-color-border)); background-image: var(--phi-gradient-child, none); animation: puiColIn var(--phi-duration, 0.3s) var(--phi-ease, ease-out); transition: width var(--phi-transition-slow), flex-basis var(--phi-transition-slow), min-width var(--phi-transition-slow); }
-.col:last-child { border-right: 0; }
+.row { display: flex; align-items: stretch; gap: var(--phi-gap); width: 100%; height: 100%; min-height: 0; overflow-x: auto; }
+/* Each column is the one surface (tokens.scss) with the one corner. A closed column leaves no strip: a menu brings it back. */
+.col { display: flex; flex-direction: column; min-height: 0; flex: 0 1 auto; border-radius: var(--phi-radius-md); animation: puiColIn var(--phi-duration, 0.3s) var(--phi-ease, ease-out); }
 .flex { flex: 1 1 0; min-width: 0; }
 .exp { flex: 1 1 auto; width: auto !important; }
-.head { display: flex; align-items: center; gap: 0.25rem; padding: 0.5rem 0.6rem; min-height: 2.75rem; border-bottom: 1px solid var(--phi-color-border-subtle, var(--phi-color-border)); }
+.head { display: flex; align-items: center; gap: 0.25rem; padding: 0.5rem 0.6rem; min-height: 2.75rem; }
 .title { flex: 1; min-width: 0; display: flex; align-items: center; gap: 0.5rem; overflow: hidden; }
+/* A header's actions show while the pointer is over its column or it holds the focus; with no pointer they stay. */
+.acts { display: inline-flex; align-items: center; gap: 0.125rem; flex: none; opacity: 0; transition: opacity var(--phi-transition-fast); }
+.col:hover .acts, .col:focus-within .acts { opacity: 1; }
+.dots { display: none; }
+@media (hover: none) { .acts { opacity: 1; } }
 .body { flex: 1; min-height: 0; overflow: auto; padding: 0.75rem; }
+/* The edge between two columns drags. It lies in the gap and takes no room of its own. */
+.grip { flex: none; align-self: stretch; width: var(--phi-gap); margin-inline: calc(var(--phi-gap) * -1); cursor: col-resize; touch-action: none; z-index: 1; border-radius: var(--phi-radius-full); }
+.grip:hover, .grip:active { background: var(--phi-shade-2); }
 @keyframes puiColIn { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .col { animation: none; } }
+/* A narrow screen: the actions sit behind three dots. */
+@media (max-width: 900px) {
+  .dots { display: inline-flex; }
+  .acts { display: none; opacity: 1; }
+  .actsOpen { display: inline-flex; }
+}
 @media (max-width: 720px) {
   .row { position: relative; }
   /* Phones: one column at a time — the last open one. */
-  .col:not(:last-child) { display: none; }
+  .col:not(:last-of-type) { display: none; }
   .col { width: 100% !important; min-width: 0 !important; }
+  .grip { display: none; }
 }
-
-/* Glass (tokens/_glass.scss): the left column runs from nothing to glass across, the right one the opposite, and the
-   ones between from glass down to nothing, so a row of columns brightens towards its middle. */
-.col { background-image: var(--phi-glass-from-down); border-color: var(--phi-glass-rim-soft); }
-.col:first-child:not(:last-child), .strip + .col:not(:last-child) { background-image: var(--phi-glass-to-across); }
-.col:last-child:not(:first-child) { background-image: var(--phi-glass-from-across); }
-.strip { background: var(--phi-glass-to-across); }

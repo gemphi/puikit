@@ -1,8 +1,17 @@
 import React from 'react';
-import { Box, Button, DataTable, FacetFilters, FilterLayout, Rows, Stack, Text, ViewToolbar, facetsOf, matchFacets, type DataTableColumn, type ViewMode } from '@pui/components';
+import { Box, Button, DataTable, FacetFilters, FilterLayout, Rows, Stack, StageSlider, Text, ViewToolbar, facetsOf, matchFacets, type DataTableColumn, type ViewMode } from '@pui/components';
 
 export type ListFacet<T> = { id: string; label: string; get: (r: T) => string | undefined };
 export type ListSort<T> = { id: string; label: string; by: (a: T, b: T) => number };
+
+/** The view an app keeps for all its lists (a store): the mode, and the cards a view in tile mode. */
+export type ListViewState = { mode: ViewMode; cols: number };
+/** The list's words, for an app that has its own (a translation); each falls back to the English default. */
+export type ListViewLabels = {
+  tile?: string; list?: string; grid?: string; filters?: string; close?: string;
+  search?: string; sort?: string; all?: string; clear?: string; order?: string; forward?: string; backward?: string;
+  prev?: string; next?: string; position?: (k: number, n: number) => string;
+};
 
 export type ListViewProps<T> = {
   rows: T[]; keyOf: (r: T) => string;
@@ -23,54 +32,97 @@ export type ListViewProps<T> = {
   empty?: string;
   /** Counted thing, e.g. "items", "link types". */
   noun?: string;
+  /** The whole count line, when the noun alone does not say it. */
+  count?: (n: number) => string;
+  /** The view held outside the list (one view for every list of an app); without it the list keeps its own. */
+  view?: ListViewState; onView?: (v: ListViewState) => void;
+  labels?: ListViewLabels;
+  /** Tile mode: `row` (default) is one row of cards a view, `stage` the kit's stage slider (one card in front, its neighbours behind). */
+  tile?: 'row' | 'stage';
+  /** A slider of the caller's own for tile mode (a stage of shows); the cards-per-view numbers are then left out. */
+  slider?: (rows: T[]) => React.ReactNode;
+  /** A click anywhere on a card opens the row (onRow); a click on a control of its own inside does only that. */
+  openCard?: boolean;
+  /** The class of the box round each card when `openCard` is on. */
+  cardClassName?: string;
+  /** The table of list mode: its head and first column kept in view inside its own height, rows a step, and groups that fold. */
+  tableOptions?: { sticky?: boolean; maxHeight?: string; limit?: number; groupBy?: (r: T) => string };
 };
 
+const CONTROL = 'button, a, input, select, textarea, label, [role="button"], [role="radio"], [role="checkbox"], [role="tab"]';
+
 /**
- * Every list in a phi-kit app: the view toolbar (tile, list, grid), Filter & sort as a drawer from the right built
- * from the rows' own fields (facets), search and sorts, then the cards or a sortable table. The same as Phiegg's
- * lists, without a store, so any app can use it.
+ * Every list in a phi-kit app: the view toolbar (tile, list, grid), then Filter and Sort, two icons and two drawers
+ * from the right: Filter is the search and the rows' own fields (facets), Sort the sorts and their order (any sort
+ * can be turned round). Then the cards or a sortable table. The same as Phiegg's lists, without a store, so any app
+ * can use it.
  */
-export function ListView<T>({ rows, keyOf, text, facets = [], sorts = [], render, table, onRow, mode: start, cols = 4, minItemWidth = '15rem', pageSize, empty = 'Nothing matches.', noun = 'items' }: ListViewProps<T>) {
+export function ListView<T>({ rows, keyOf, text, facets = [], sorts = [], render, table, onRow, mode: start, cols = 4, minItemWidth = '15rem', pageSize, empty = 'Nothing matches.', noun = 'items',
+  count, view, onView, labels = {}, tile = 'row', slider, openCard = false, cardClassName, tableOptions }: ListViewProps<T>) {
   // Phones start on cards: a table of many columns reads badly at 390px (it still scrolls sideways if chosen).
   const narrow = typeof window !== 'undefined' && !!window.matchMedia?.('(max-width: 640px)').matches;
-  const [mode, setMode] = React.useState<ViewMode>(start ?? (table && (!narrow || !render) ? 'list' : 'grid'));
-  const [perView, setPerView] = React.useState(2);
-  const [open, setOpen] = React.useState(false);
+  const [ownMode, setOwnMode] = React.useState<ViewMode>(start ?? (table && (!narrow || !render) ? 'list' : 'grid'));
+  const [ownPerView, setOwnPerView] = React.useState(2);
+  // Held outside (an app's one view for all its lists) or kept here.
+  const mode = view?.mode ?? ownMode;
+  const perView = view ? Math.min(3, Math.max(1, view.cols)) : ownPerView;
+  const setMode = (m: ViewMode) => (view ? onView?.({ ...view, mode: m }) : setOwnMode(m));
+  const setPerView = (n: number) => (view ? onView?.({ ...view, cols: n }) : setOwnPerView(n));
+  const [open, setOpen] = React.useState<'filter' | 'sort' | null>(null);
+  const [reverse, setReverse] = React.useState(false);
   const [q, setQ] = React.useState('');
   const [sel, setSel] = React.useState<Record<string, string>>({});
   const [sort, setSort] = React.useState(sorts[0]?.id ?? '');
   const [page, setPage] = React.useState(0);
-  React.useEffect(() => { setPage(0); }, [rows, q, sel, sort]);
+  React.useEffect(() => { setPage(0); }, [rows, q, sel, sort, reverse]);
   const ql = q.trim().toLowerCase();
   const by = sorts.find((x) => x.id === sort)?.by;
   const shown = rows.filter((r) => (!ql || !text || text(r).toLowerCase().includes(ql)) && matchFacets(r, facets, sel));
   if (by) shown.sort(by);
+  if (reverse) shown.reverse();
   const pages = pageSize ? Math.max(1, Math.ceil(shown.length / pageSize)) : 1;
   const cur = Math.min(page, pages - 1);
   const slice = pageSize ? shown.slice(cur * pageSize, cur * pageSize + pageSize) : shown;
   const active = Object.values(sel).filter(Boolean).length + (ql ? 1 : 0);
-  const tableOf = () => <Box scroll="x"><DataTable rows={slice} getKey={(r) => keyOf(r)} columns={table!} onRowClick={onRow ? (r) => onRow(r) : undefined} /></Box>;
-  const cards = (n: number, min?: string) => <Rows cols={n} colsSm={Math.min(n, 2)} minItemWidth={min}>{slice.map((r) => <React.Fragment key={keyOf(r)}>{render ? render(r) : null}</React.Fragment>)}</Rows>;
+  const rowClick = onRow ? (r: T) => onRow(r) : undefined;
+  const words = { filters: labels.filters ?? 'Filter', search: labels.search ?? 'Search', sort: labels.sort ?? 'Sort', all: labels.all ?? 'All', clear: labels.clear ?? 'Clear', order: labels.order, forward: labels.forward, backward: labels.backward };
+  // A sticky table scrolls inside its own height; a plain one scrolls sideways in a box.
+  const tableOf = () => (tableOptions?.sticky
+    ? <DataTable rows={slice} getKey={(r) => keyOf(r)} columns={table!} onRowClick={rowClick} stickyHeader stickyFirst maxHeight={tableOptions.maxHeight} limit={tableOptions.limit} groupBy={tableOptions.groupBy} />
+    : <Box scroll="x"><DataTable rows={slice} getKey={(r) => keyOf(r)} columns={table!} onRowClick={rowClick} limit={tableOptions?.limit} groupBy={tableOptions?.groupBy} /></Box>);
+  const card = (r: T) => (!render ? null : !openCard ? render(r) : (
+    <Box className={cardClassName} onClick={(e: React.MouseEvent) => {
+      const hit = (e.target as Element).closest(CONTROL);
+      if (hit && hit !== e.currentTarget && (e.currentTarget as Element).contains(hit)) return;
+      onRow?.(r);
+    }}>{render(r)}</Box>
+  ));
+  const cards = (n: number, min?: string) => <Rows cols={n} colsSm={Math.min(n, 2)} minItemWidth={min}>{slice.map((r) => <React.Fragment key={keyOf(r)}>{card(r)}</React.Fragment>)}</Rows>;
+  const stage = () => <StageSlider items={slice.map((r) => ({ id: keyOf(r), node: card(r) }))} prevLabel={labels.prev} nextLabel={labels.next} positionLabel={labels.position} />;
   return (
     <Stack direction="column" gap={3}>
-      <ViewToolbar mode={mode} onMode={setMode} perView={perView} onPerView={setPerView} count={`${shown.length.toLocaleString('en-US')} ${noun}`}
-        onFilters={() => setOpen(!open)} filtersOpen={open} activeFilters={active} />
-      <FilterLayout open={open} onClose={() => setOpen(false)}
-        filters={<FacetFilters facets={facetsOf(rows, facets)} selected={sel} onSelect={(f, o) => setSel((x) => ({ ...x, [f]: o ?? '' }))}
-          search={text ? q : undefined} onSearch={text ? setQ : undefined} sorts={sorts.map((x) => ({ id: x.id, label: x.label }))} sort={sort} onSort={setSort}
-          labels={{ search: 'Search', sort: 'Sort', all: 'All', clear: 'Clear' }} />}>
-        {shown.length === 0 ? <Text intent="muted">{empty}</Text>
+      <ViewToolbar mode={mode} onMode={setMode} perView={slider ? undefined : perView} onPerView={slider ? undefined : setPerView}
+        count={count ? count(shown.length) : `${shown.length.toLocaleString('en-US')} ${noun}`}
+        onFilters={facets.length || text ? () => setOpen(open === 'filter' ? null : 'filter') : undefined} filtersOpen={open === 'filter'} activeFilters={active}
+        onSort={sorts.length ? () => setOpen(open === 'sort' ? null : 'sort') : undefined} sortOpen={open === 'sort'} sortLabel={sorts.find((x) => x.id === sort)?.label}
+        labels={{ tile: labels.tile, list: labels.list, grid: labels.grid, filters: words.filters, sort: words.sort }} />
+      <FilterLayout open={open !== null} onClose={() => setOpen(null)} title={open === 'sort' ? words.sort : words.filters} closeLabel={labels.close}
+        filters={open === 'sort'
+          ? <FacetFilters sorts={sorts.map((x) => ({ id: x.id, label: x.label }))} sort={sort} onSort={setSort} reverse={reverse} onReverse={setReverse} labels={words} />
+          : <FacetFilters facets={facetsOf(rows, facets)} selected={sel} onSelect={(f, o) => setSel((x) => ({ ...x, [f]: o ?? '' }))}
+            search={text ? q : undefined} onSearch={text ? setQ : undefined} openGroups={4} labels={words} />}>
+        {shown.length === 0 ? <Box surface="region"><Text intent="muted">{empty}</Text></Box>
           : mode === 'list' && table ? tableOf()
           : !render ? (table ? tableOf() : null)
-          : mode === 'tile' ? cards(perView)
+          : mode === 'tile' ? (slider ? slider(slice) : tile === 'stage' ? stage() : cards(perView))
           : mode === 'list' ? cards(1)
           : cards(cols, minItemWidth)}
       </FilterLayout>
       {pages > 1 ? (
         <Stack direction="row" gap={2} align="center">
-          <Button size="sm" variant="outline" disabled={cur === 0} onClick={() => setPage(cur - 1)}>Previous</Button>
+          <Button variant="glass" disabled={cur === 0} onClick={() => setPage(cur - 1)}>Previous</Button>
           <Text as="span" size="xs" intent="muted">Page {cur + 1} of {pages}</Text>
-          <Button size="sm" variant="outline" disabled={cur >= pages - 1} onClick={() => setPage(cur + 1)}>Next</Button>
+          <Button variant="glass" disabled={cur >= pages - 1} onClick={() => setPage(cur + 1)}>Next</Button>
         </Stack>
       ) : null}
     </Stack>

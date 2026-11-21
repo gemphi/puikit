@@ -1,6 +1,5 @@
 import React from 'react';
-import { Avatar, useCardTint } from '@pui/components';
-import { personColour } from '../../lib/colour';
+import { Avatar } from '@pui/components';
 import { person, site } from '../../lib/data';
 import { portrait } from '../../lib/portraits';
 
@@ -11,7 +10,6 @@ export const PersonAvatar: React.FC<{ id: string; size?: 'xs' | 'sm' | 'md' | 'l
   const p = person(id);
   const d = p.isAgent && p.glyph ? GLYPHS[p.glyph] : undefined;
   const pic = portrait(p.id);
-  useCardTint(personColour(p.id), 16); // a profile card takes its person's colour (a tile in the card still wins)
   if (pic) return <Avatar size={size} alt={p.name} seed={p.id} initials={p.initials} sprite={pic.sprite} />;
   return (
     <Avatar size={size} alt={p.name} seed={p.id} initials={p.initials}

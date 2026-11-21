@@ -11,6 +11,9 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
+  /* Lit from its foot: the head stands free, the shade gathers under what is folded inside. */
+  border-radius: var(--phi-radius-md);
+  padding: 0;
 }
 
 .header {
@@ -27,7 +30,7 @@
 }
 
 .header:hover {
-  background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2));
+  background-image: var(--phi-label-soft);
 }
 
 .title {

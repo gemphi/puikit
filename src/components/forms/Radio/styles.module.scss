@@ -30,7 +30,7 @@
   width: var(--phi-control-size);
   height: var(--phi-control-size);
   border: var(--phi-control-border-width) solid var(--phi-color-border-strong, var(--phi-color-border));
-  border-radius: 50%;
+  border-radius: var(--phi-radius-full);
   background-color: var(--phi-color-background);
   transition:
     border-color var(--phi-transition-fast),

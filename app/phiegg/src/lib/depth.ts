@@ -1,8 +1,8 @@
 // Three-layer media for every card: a world scene (parent) → a look render framed inside it → a profile photo inside that.
 // Layers come from the record's own links (world, club, author); anything missing is picked deterministically from the
 // same pools, so a card always has all three and keeps the same images between visits.
-import type { ID, Tone } from '../types/phiegg';
-import { D, STORES, clubOf, itemImage, onDataRefresh, storeOfClub, worldImage, worldOf } from './data';
+import type { ID } from '../types/phiegg';
+import { D, STORES, itemImage, onDataRefresh, storeOfClub, worldImage, itemOf } from './data';
 
 const hash = (s: string) => { let h = 2166136261; for (let i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 16777619); return h >>> 0; };
 const pick = <T,>(xs: T[], seed: string): T | undefined => (xs.length ? xs[hash(seed) % xs.length] : undefined);
@@ -32,7 +32,7 @@ const near = (a: string, b: string) => { const x = hue(a), y = hue(b); const dh 
 
 /** The parent layer: the linked world's scene, else the club's first world, else one from the pool. */
 export function sceneFor(seed: string, worldId?: ID | null, clubId?: ID | null): string | undefined {
-  const w = worldOf(worldId) ?? worldOf(clubOf(clubId)?.worldIds?.[0]);
+  const w = itemOf('world', worldId) ?? itemOf('world', itemOf('club', clubId)?.worldIds?.[0]);
   return worldImage(w) ?? pick(WORLD_IMAGES, 'w' + seed);
 }
 
@@ -52,11 +52,3 @@ export function renderFor(seed: string, clubId?: ID | null, hex?: string): Rende
 }
 export function lookFor(seed: string, clubId?: ID | null, hex?: string): string | undefined { return renderFor(seed, clubId, hex)?.src; }
 export { LOOK_IMAGES };
-
-/** Tone → CSS background for layers without an image. */
-export const toneBackground = (tone: Tone | string = 'accent') => ({
-  accent: 'color-mix(in srgb, var(--phi-color-primary) 22%, var(--phi-color-background))',
-  sage: 'color-mix(in srgb, var(--phi-color-success) 22%, var(--phi-color-background))',
-  neutral: 'var(--phi-color-gray-200)',
-  ink: 'var(--phi-color-gray-900)',
-} as Record<string, string>)[tone] ?? 'var(--phi-color-background-secondary)';

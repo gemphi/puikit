@@ -7,7 +7,7 @@ import { D, STORES, feedPosts, onDataRefresh } from './data';
 import { buildDB } from '@phi-kit/kinds';
 import { indexRelations, type RelationIndex } from '@phi-kit/relations';
 
-export type Kind = 'person' | 'club' | 'world' | 'city' | 'host' | 'nest' | 'post' | 'show' | 'event' | 'series' | 'quest' | 'coin' | 'store' | 'look' | 'room' | 'role' | 'cast' | 'piece' | 'ride' | 'jewel';
+export type Kind = 'person' | 'club' | 'world' | 'city' | 'host' | 'nest' | 'post' | 'show' | 'event' | 'series' | 'quest' | 'coin' | 'store' | 'look' | 'room' | 'role' | 'cast' | 'piece' | 'ride' | 'jewel' | 'profilePft' | 'egg' | 'sum';
 export type Ref = { kind: Kind; id: ID };
 export const key = (r: Ref) => r.kind + ':' + r.id;
 
@@ -81,6 +81,14 @@ export const SPECS: Spec[] = [
   { from: 'jewel', rows: () => rows(D.jewel.list), field: 'holderId', to: 'person', out: 'Held by', in: 'Jewellery held' },
   { from: 'piece', rows: () => rows(D.club.pieces), field: 'clubId', to: 'club', out: 'Club', in: 'Pieces' },
   { from: 'piece', rows: () => rows(D.club.pieces), field: 'creatorId', to: 'person', out: 'Creator', in: 'Pieces created' },
+  // A club's own items (assets.json): its PFT collection, the EGG items of its hosts and worlds, and its SUMs.
+  { from: 'profilePft', rows: () => rows(D.assets.profiles), field: 'clubId', to: 'club', out: 'Club', in: 'PFTs' },
+  { from: 'profilePft', rows: () => rows(D.assets.profiles), field: 'holderId', to: 'person', out: 'Held by', in: 'PFTs held' },
+  { from: 'egg', rows: () => rows(D.assets.eggs), field: 'clubId', to: 'club', out: 'Club', in: 'EGG items' },
+  { from: 'egg', rows: () => rows(D.assets.eggs), field: 'hostId', to: 'host', out: 'Host', in: 'EGG items' },
+  { from: 'egg', rows: () => rows(D.assets.eggs), field: 'worldId', to: 'world', out: 'World', in: 'EGG items' },
+  { from: 'egg', rows: () => rows(D.assets.eggs), field: 'ownerId', to: 'person', out: 'Owner', in: 'EGG items owned' },
+  { from: 'sum', rows: () => rows(D.assets.sums), field: 'clubId', to: 'club', out: 'Club', in: 'SUMs' },
 ];
 
 /** The same records in the shared items+kinds shape (phi-kit/kinds), what Phidata browses and Phiora serves. */

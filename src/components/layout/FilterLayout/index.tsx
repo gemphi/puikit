@@ -26,7 +26,7 @@ export const FilterLayout = ({ open, onClose, title = 'Filter & sort', filters, 
       </Drawer>
     ) : open && (
       <Box as="aside" className={styles.aside} aria-label={typeof title === 'string' ? title : 'Filters'}>
-        <Box className={styles.head}><Text size="sm" weight="semibold">{title}</Text><Button variant="icon" size="sm" onClick={onClose} aria-label={closeLabel}><X size={15} /></Button></Box>
+        <Box className={styles.head}><Text size="sm" weight="semibold">{title}</Text><Button variant="icon" onClick={onClose} aria-label={closeLabel}><X size={15} /></Button></Box>
         <Box className={styles.body}>{filters}</Box>
       </Box>
     )}

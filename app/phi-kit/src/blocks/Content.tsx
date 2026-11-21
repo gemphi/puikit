@@ -11,7 +11,7 @@ export const Hero: React.FC<{ b: Block }> = ({ b }) => (
     {b.subtitle ? <Text size="lg" intent="secondary">{b.subtitle}</Text> : null}
     {b.body ? <Text intent="secondary" maxWidth="64ch">{b.body}</Text> : null}
     {Array.isArray(b.actions) && b.actions.length ? (
-      <Stack direction="row" gap={2} wrap align="center">{b.actions.map((a: any, i: number) => <Button key={i} variant={i === 0 ? 'primary' : 'outline'} href={a.app ? appUrl(a.app) : a.href || ('#/' + a.view)}>{a.label}</Button>)}</Stack>
+      <Stack direction="row" gap={2} wrap align="center">{b.actions.map((a: any, i: number) => <Button key={i} variant="glass" href={a.app ? appUrl(a.app) : a.href || ('#/' + a.view)}>{a.label}</Button>)}</Stack>
     ) : null}
   </Stack>
   {b.image ? <Frame ratio="16/10" rounded="lg" width="min(100%, 26rem)" flex="0 1 26rem"><Image src={assetUrl(b.image)} alt="" fit="cover" fill /></Frame> : null}

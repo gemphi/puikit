@@ -83,7 +83,7 @@ export const PostStage: React.FC<PostStageProps> = ({
             type="button"
             className={styles.railButton}
             aria-label={copy.previous}
-            disabled={!onPrev}
+            hidden={!onPrev}
             onClick={onPrev}
           >
             <ChevronUp size={20} />
@@ -92,7 +92,7 @@ export const PostStage: React.FC<PostStageProps> = ({
             type="button"
             className={styles.railButton}
             aria-label={copy.next}
-            disabled={!onNext}
+            hidden={!onNext}
             onClick={onNext}
           >
             <ChevronDown size={20} />

@@ -1,11 +1,16 @@
 import React from 'react';
 import { Avatar, Box, Button, Stack, Tag, Text, Title } from '@pui/components';
+import { BadgeCheck, ExternalLink, UserRound } from 'lucide-react';
 import { apiGet, hasApi } from './api';
 import { useMe } from './auth';
 import { AccountPanel } from './AccountDialog';
 import { appUrl } from './data';
 import { Block, type GridItem } from './blocks';
 import { useWallet, fmt, LABEL, USD, type Coin } from './wallet';
+import { ProfileView } from './ProfileView';
+import words from './words.json';
+
+const W = words.profile;
 
 /**
  * The account dashboard every Phi app shows under You — Phisum reads like a bank: who you are (one Phione identity),
@@ -64,24 +69,18 @@ export function buildAccountNav(spec: ProfileSpec | undefined, mine: Mine): { id
   return nav;
 }
 
+/** The account's own head: the one profile (ProfileView) said in a line, from the Phione identity. */
 const Identity: React.FC<{ compact?: boolean }> = ({ compact }) => {
   const me = useMe();
   const signedIn = !!me && !me.guest;
-  const initials = (me?.name ?? 'Guest').split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
-  return (
-    <Stack direction="row" gap={3} align="center" wrap surface="card">
-      <Avatar size={compact ? 'md' : 'lg'} initials={initials} seed={me?.id} alt={me?.name ?? 'Guest'} />
-      <Stack direction="column" gap={1} flex="1" minWidth="12rem">
-        <Title level={2} size={compact ? 'md' : 'lg'}>{signedIn ? me!.name : 'Guest'}</Title>
-        <Stack direction="row" gap={2} wrap align="center">
-          {me?.handle ? <Text size="sm" intent="muted">@{me.handle}</Text> : null}
-          <Tag minimal round size="sm" intent={signedIn ? 'success' : undefined}>{signedIn ? 'Phione identity' : 'Not signed in'}</Tag>
-        </Stack>
-        {!compact && <Text size="sm" intent="secondary">{signedIn ? 'One identity across every Phiace app. Everything you hold here is kept under it.' : 'Sign in to keep what you submit under one Phione identity.'}</Text>}
-      </Stack>
-      <Button variant="outline" size="sm" href={appUrl('phione')}>Manage in Phione</Button>
-    </Stack>
-  );
+  const name = signedIn ? me!.name : words.account.guest;
+  const initials = name.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
+  return <ProfileView variant="line" record={{
+    id: me?.id ?? 'guest', name, handle: me?.handle ?? undefined, avatar: <Avatar size={compact ? 'md' : 'lg'} initials={initials} seed={me?.id} alt={name} />,
+    status: { icon: signedIn ? <BadgeCheck size={16} /> : <UserRound size={16} />, label: signedIn ? W.identity : W.guest },
+    bio: compact ? undefined : signedIn ? 'One identity across every Phiace app. Everything you hold here is kept under it.' : 'Sign in to keep what you submit under one Phione identity.',
+    actions: [{ id: 'manage', label: W.manage, icon: ExternalLink, primary: true, onClick: () => { window.location.href = appUrl('phione'); } }],
+  }} />;
 };
 
 const WalletCard: React.FC = () => {
@@ -105,7 +104,7 @@ const SectionView: React.FC<{ s: ProfileSection; mine: Mine; onOpen: (it: GridIt
     <Stack as="section" direction="column" gap={2}>
       <Stack direction="row" gap={2} align="center" justify="between" wrap>
         <Stack direction="row" gap={2} align="center"><Title level={2} size="lg">{s.title}</Title><Tag minimal round size="sm">{mine.loaded ? rows.length : '…'}</Tag></Stack>
-        {s.action ? <Button variant="outline" size="sm" href={(s.action.app ? appUrl(s.action.app) : '') + '#/' + s.action.view}>{s.action.label}</Button> : null}
+        {s.action ? <Button variant="glass" href={(s.action.app ? appUrl(s.action.app) : '') + '#/' + s.action.view}>{s.action.label}</Button> : null}
       </Stack>
       {rows.length
         ? <Block b={{ kind: 'table', cols: s.cols ?? s.fields.map(human), rows: rows.map((r) => s.fields.map((f) => when(r[f]))), routes: rows.map((r) => '#/' + s.kind + '/' + r.id) }} onOpen={onOpen} />

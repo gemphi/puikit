@@ -35,20 +35,23 @@ export const Appearance: React.FC = () => {
   const [look, setLook] = usePhieggLook();
   const { appearance, setAppearance } = useStore(phieggStore);
   const ap = site.appearance;
+  // Each row by its id; the order is data (site.json appearance.order).
+  const rows: Record<string, React.ReactNode> = {
+    look: ap.looks.length > 1 && <Row label={t('lookStyle')} opts={ap.looks} value={look.id} set={setLook} />,
+    mode: <Row label={t('mode')} opts={ap.themes} value={theme} set={(v) => setTheme(v as typeof theme)} />,
+    palette: <Stack direction="column" gap={1}><Text size="xs" intent="muted" weight="bold">{t('palette')}</Text><PalettePicker noneLabel={t('paletteNone')} /></Stack>,
+    accent: <Row label={t('accent')} opts={ap.brands} value={brandId} set={(v) => { setBrandId(v as typeof brandId); setPaletteId('none'); }} />,
+    radius: <Stack direction="column" gap={1}><Text size="xs" intent="muted" weight="bold">{t('radius')}</Text>
+      <RadiusPicker value={appearance.radius as RadiusPreset} onChange={(v) => setAppearance('radius', v)} labels={Object.fromEntries(ap.radii.map((r) => [r.id, r.label]))} /></Stack>,
+    gradient: <Stack direction="column" gap={1}><Text size="xs" intent="muted" weight="bold">{t('gradient')}</Text>
+      <GradientLevelPicker value={appearance.gradient as 'flat'} onChange={(v) => { setAppearance('gradient', v); setGradientLevel(v); }} /></Stack>,
+    sidebar: <Row label={t('sidebarShade')} opts={ap.shades} value={appearance.sidebar} set={(v) => setAppearance('sidebar', v)} />,
+    content: <Row label={t('contentShade')} opts={ap.shades} value={appearance.content} set={(v) => setAppearance('content', v)} />,
+    opacity: <Row label={t('surfaceOpacity')} opts={ap.opacities} value={appearance.opacity} set={(v) => setAppearance('opacity', v)} />,
+    motion: <Row label={t('motion')} opts={ap.motion} value={appearance.motion} set={(v) => setAppearance('motion', v)} />,
+  };
+  const order = (ap as unknown as { order: { rows: string[] } }).order.rows;
   return (
-    <Stack direction="column" gap={3}>
-      {ap.looks.length > 1 && <Row label={t('lookStyle')} opts={ap.looks} value={look.id} set={setLook} />}
-      <Row label={t('mode')} opts={ap.themes} value={theme} set={(v) => setTheme(v as typeof theme)} />
-      <Stack direction="column" gap={1}><Text size="xs" intent="muted" weight="bold">{t('palette')}</Text><PalettePicker noneLabel={t('paletteNone')} /></Stack>
-      <Row label={t('accent')} opts={ap.brands} value={brandId} set={(v) => { setBrandId(v as typeof brandId); setPaletteId('none'); }} />
-      <Stack direction="column" gap={1}><Text size="xs" intent="muted" weight="bold">{t('radius')}</Text>
-        <RadiusPicker value={appearance.radius as RadiusPreset} onChange={(v) => setAppearance('radius', v)} labels={Object.fromEntries(ap.radii.map((r) => [r.id, r.label]))} /></Stack>
-      <Stack direction="column" gap={1}><Text size="xs" intent="muted" weight="bold">{t('gradient')}</Text>
-        <GradientLevelPicker value={appearance.gradient as 'flat'} onChange={(v) => { setAppearance('gradient', v); setGradientLevel(v); }} /></Stack>
-      <Row label={t('sidebarShade')} opts={ap.shades} value={appearance.sidebar} set={(v) => setAppearance('sidebar', v)} />
-      <Row label={t('contentShade')} opts={ap.shades} value={appearance.content} set={(v) => setAppearance('content', v)} />
-      <Row label={t('surfaceOpacity')} opts={ap.opacities} value={appearance.opacity} set={(v) => setAppearance('opacity', v)} />
-      <Row label={t('motion')} opts={ap.motion} value={appearance.motion} set={(v) => setAppearance('motion', v)} />
-    </Stack>
+    <Stack direction="column" gap={3}>{order.map((id) => rows[id] ? <React.Fragment key={id}>{rows[id]}</React.Fragment> : null)}</Stack>
   );
 };

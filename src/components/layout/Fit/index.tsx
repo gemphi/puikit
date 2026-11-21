@@ -3,6 +3,7 @@ import { cn } from '../../../utils/cn';
 import { Box } from '../Box';
 import { Stack } from '../Stack';
 import { useSectionExpanded } from '../Sections';
+import { Pressable } from '../../primitives/Pressable';
 import styles from './styles.module.scss';
 
 /** The ratio a Fit gives what it holds: a Frame inside takes it instead of its own. */
@@ -29,22 +30,37 @@ export const Fit = ({ ratio = 1, className, children }: FitProps) => (
   </Box>
 );
 
+/** An action on the picture itself (like, save, share, cart, full screen): an icon floating over the picture. */
+export type MediaStageAction = { id: string; label: string; icon: React.ReactNode; active?: boolean; onClick: () => void };
+
 export type MediaStageProps = {
   /** The picture (an image, a framed render). */
   media: React.ReactNode;
   /** What sits under it (the angles, a caption). */
   children?: React.ReactNode;
+  /** Icons floating over the picture's top left, where a render leaves the corner empty; each says its name on hover. */
+  actions?: MediaStageAction[];
 };
 
 /**
  * MediaStage: a section's picture with its controls under it, sized by the kit, never by the page: a square as wide as
  * its column in its section, and when the section is expanded, the largest square of the whole stage.
  */
-export const MediaStage = ({ media, children }: MediaStageProps) => {
+export const MediaStage = ({ media, children, actions = [] }: MediaStageProps) => {
   const big = useSectionExpanded();
+  const icons = actions.length > 0 && (
+    <Box className={styles.actions} role="toolbar">
+      {actions.map((a) => (
+        <Pressable key={a.id} className={cn(styles.action, a.active && styles.on)} onClick={a.onClick} aria-label={a.label} aria-pressed={a.active} title={a.label}>{a.icon}</Pressable>
+      ))}
+    </Box>
+  );
   return (
     <Stack direction="column" gap={2} className="pui-media-stage">
-      {big ? <Fit ratio={1}>{media}</Fit> : <Box className={styles.column}><Fit ratio={1}>{media}</Fit></Box>}
+      <Box className={styles.stage}>
+        {big ? <Fit ratio={1}>{media}</Fit> : <Box className={styles.column}><Fit ratio={1}>{media}</Fit></Box>}
+        {icons}
+      </Box>
       {children}
     </Stack>
   );

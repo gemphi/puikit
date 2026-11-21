@@ -28,7 +28,7 @@
 .colorDot {
   width: 10px;
   height: 10px;
-  border-radius: 50%;
+  border-radius: var(--phi-radius-full);
   flex-shrink: 0;
 }
 

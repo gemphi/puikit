@@ -1,71 +1,79 @@
-import React, { useState } from 'react';
-import { Button, Card, CardBody, Page, ChoiceRow, Stack, TabList, Tag, Text, Title } from '@pui/components';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Button, FullScreen, Image, Stack, TabList, Tag } from '@pui/components';
+import { Share2, Store as StoreIcon } from 'lucide-react';
 import { useStore } from '@pui/store';
-import { ShoppingBag } from 'lucide-react';
 import { phieggStore } from '../../state/phieggStore';
-import { facetsFor, listOf, sortsFor, tableFor } from '../../lib/fields';
-import { STORES, clubOf, fmt, lookOf, lotsOfPool, poolOf, storeOf, t, usd } from '../../lib/data';
-import { lookLive, poolNumbers, quote, useNow } from '../../lib/market';
-import { LotCard } from '../../components/Phiegg/Pools';
-import { useCart, useOwned } from '../../lib/cart';
-import { ListView } from '../../components/Phiegg/Views';
-import { LookImage } from '../../components/Phiegg/LookImage';
-import type { PoolLot, ShopLook } from '../../types/phiegg';
+import { fmt, itemOf, storeOf, t, worldImage } from '../../lib/data';
+import { mediaUrl } from '../../lib/media';
+import { poolNumbers, useNow } from '../../lib/market';
+import { useCart } from '../../lib/cart';
+import { KindList } from '../../components/Phiegg/KindList';
+import { EntityPage } from '../../components/Phiegg/EntityPage';
+import { Mention } from '../../components/Phiegg/Mention';
+import { Tile } from '../../components/Phiegg/Tile';
+import { inPlace, placeLabel } from '../../lib/shopMenu';
+import { routeOf, rowsOf } from '../../lib/route';
+import type { ShopLook } from '../../types/phiegg';
 
-/** Every club's store: its pools as one row of tabs, then looks (solo) and lots (packs, drops) at moving prices, each
- *  list with Filter & sort and a table sortable by its headings. Looks open in the item sheet; buying spends the wallet. */
+/** A shop: its name and numbers, then its path's tabs (data/route.json). Each tab is a kind and the rows of it that
+ *  belong to this shop, drawn by the one list of any kind; the page names no kind and no card. */
+const TABS = routeOf('shop').tab ?? [];
+
 export const ShopPage: React.FC = () => {
-  const s = useStore(phieggStore); const { cart, offers } = useCart(); const mine = useOwned();
-  const store = storeOf(s.storeId); const club = clubOf(store.clubId);
+  const s = useStore(phieggStore); const { offers } = useCart();
+  const store = storeOf(s.storeId); const club = itemOf('club', store.clubId);
   const pending = offers.filter((o) => o.status === 'pending').length; const now = useNow(2000);
-  const [tab, setTab] = useState<string>('looks');
-  const poolName = (id: string) => store.pools.find((p) => p.id === id)?.name ?? poolOf(id)?.name ?? '';
-  const looks = store.pools.flatMap((p) => p.lookIds.map(lookOf).filter((l): l is ShopLook => !!l));
-  const lots = store.pools.flatMap((p) => { const pool = poolOf(p.id); return pool ? lotsOfPool(pool) : []; });
-  const totals = store.pools.map((p) => poolOf(p.id)).filter((p): p is NonNullable<typeof p> => !!p).map((p) => poolNumbers(p, now));
+  const cat = s.shopView.cat;
+  // Each tab with its rows; a tab that follows the menu keeps the rows under the entry picked. Only tabs with rows show.
+  const tabs = useMemo(() => TABS.map((tab) => ({ tab, rows: rowsOf(tab, store).filter((r) => !tab.menu || inPlace(r as unknown as ShopLook, cat)) })).filter((x) => x.rows.length > 0),
+    [store, cat, s.dataRev]); // eslint-disable-line react-hooks/exhaustive-deps
+  const totals = store.pools.map((p) => itemOf('pool', p.id)).filter((p): p is NonNullable<typeof p> => !!p).map((p) => poolNumbers(p, now));
   const sold = totals.reduce((n, x) => n + x.sold, 0), supply = totals.reduce((n, x) => n + x.supply, 0);
-  return (
-    <Page><Stack direction="column" gap={4}>
-      <Stack direction="row" justify="between" align="end" wrap gap={3}>
-        <Stack direction="column" gap={1}>
-          <Title level={2} size="xl">{store.name}</Title>
-          <Text intent="secondary">{store.tagline}</Text>
-          <Stack direction="row" gap={1} wrap align="center">
-            {club && <Button size="sm" variant="ghost" onClick={() => s.go('club', { clubId: club.id })}>{t('byClub', { name: club.name })}</Button>}
-            {supply > 0 && <Tag minimal round size="sm">{t('plSold', { sold: fmt(sold), supply: fmt(supply) })}</Tag>}
-            {store.pools.map((p) => poolOf(p.id) && <Tag key={p.id} minimal round size="sm" interactive onClick={() => s.go('pool', { poolId: p.id })}>{p.name}</Tag>)}
-          </Stack>
-        </Stack>
-        <Stack direction="row" gap={2} align="center" wrap>
-          {pending > 0 && <Tag minimal round>{t('shPending', { n: pending })}</Tag>}
-          <Button variant="outline" iconLeft={ShoppingBag} onClick={s.openCart}>{t('shCart', { n: cart.length })}</Button>
-        </Stack>
-      </Stack>
-      <ChoiceRow value={store.id} label={t('shStores')} onChange={(v) => s.go('shop', { storeId: v })} options={STORES.map((x) => ({ value: x.id, label: x.name }))} />
-      <TabList size="sm" variant="pills" activeId={tab} onChange={setTab} items={[{ id: 'looks', label: t('lsLooks'), count: looks.length }, ...(lots.length ? [{ id: 'lots', label: t('lsLots'), count: lots.length }] : [])]} />
-      {tab === 'looks' ? (
-        <ListView<ShopLook> rows={looks} keyOf={(l) => l.id} text={(l) => l.name + ' ' + l.colour + ' ' + l.garments.join(' ')}
-          facets={facetsFor<ShopLook>('look', { get: { owned: (l) => (mine[l.id] ? t('lsOwned') : t('lsOpen')) } })}
-          sorts={sortsFor<ShopLook>('look')}
-          table={[...tableFor<ShopLook>('look'),
-            { id: 'live', header: t('lsColLive'), cell: (l) => usd(lookLive(l, now).total), sortValue: (l) => lookLive(l, now).total, align: 'right' },
-            { id: 'minted', header: t('lsColMinted'), cell: (l) => l.minted + ' / ' + l.edition, sortValue: (l) => l.minted / (l.edition || 1), align: 'right' }]}
-          render={(l) => (
-            <Card depth={2} deckDirection="both" tint={l.hex} tintStrength={22} onClick={() => s.openLook(l.id)}><CardBody><Stack direction="column" gap={2}>
-              <LookImage look={l} />
-              <Stack direction="row" gap={1}><Tag minimal round size="sm">{l.rarity}</Tag>{mine[l.id] ? <Tag intent="success" minimal round size="sm">{t('shOwned')}</Tag> : null}</Stack>
-              <Text weight="bold">{l.name}</Text>
-              <Text size="xs" intent="muted" numeric>{t('plLive', { v: usd(lookLive(l, now).total) })} · {t('shMinted', { minted: l.minted, edition: l.edition })}</Text>
-            </Stack></CardBody></Card>)} />
-      ) : (
-        <ListView<PoolLot> rows={lots} keyOf={(x) => x.id} text={(x) => x.title}
-          facets={facetsFor<PoolLot>('lot')}
-          sorts={[{ id: 'value', label: t('lsSortValue'), by: (a, b) => quote(b, now).total - quote(a, now).total }, { id: 'sold', label: t('lsSortSold'), by: (a, b) => quote(b, now).sold / b.supply - quote(a, now).sold / a.supply }, { id: 'new', label: t('lsSortNew'), by: (a, b) => a.opensAt.localeCompare(b.opensAt) }]}
-          table={[...tableFor<PoolLot>('lot'),
-            { id: 'total', header: t('lsColValue'), cell: (x) => usd(quote(x, now).total), sortValue: (x) => quote(x, now).total, align: 'right' },
-            { id: 'sold', header: t('lsColSold'), cell: (x) => fmt(quote(x, now).sold) + ' / ' + fmt(x.supply), sortValue: (x) => quote(x, now).sold / x.supply, align: 'right' }]}
-          render={(x) => <LotCard lot={x} now={now} />} />
-      )}
-    </Stack></Page>
+  // It opens as a profile does: its club's banner and its name first, its tabs under the name, then its own square
+  // card in the centre and the rows of the tab that is on. The card opens the shop full screen.
+  const at = tabs.find((x) => x.tab.id === s.shopView.tab) ?? tabs[0];
+  const [full, setFull] = useState(false);
+  useEffect(() => setFull(false), [store.id]);
+  const worlds = (club?.worldIds ?? []).map((w) => itemOf('world', w)).filter((w): w is NonNullable<typeof w> => !!w);
+  const seen = worlds.find((w) => w.gallery?.length);
+  const picture = seen?.gallery?.[0] ? mediaUrl(seen.gallery[0].lg) : worldImage(worlds[0]);
+  const card = <Tile tone={club?.tone ?? 'neutral'} ratio="1" big grid depth={{ clubId: club?.id, worldId: club?.worldIds[0], personId: club?.founderId }} />;
+  const share = () => { void navigator.clipboard?.writeText(location.href); s.flash(t('isCopied')); };
+  // Everything you can press about the shop is one kind of button, and its club is named with its thumbnail.
+  const about = (
+    <Stack direction="row" gap={2} wrap align="center">
+      {club && <Mention id={club.id} />}
+      {store.pools.map((p) => itemOf('pool', p.id) && <Button key={p.id} variant="glass" onClick={() => s.go('pool', { poolId: p.id })}>{p.name}</Button>)}
+      <Button variant="glass" onClick={() => s.go('shops')}>{t('pgShops')}</Button>
+      {supply > 0 && <Tag minimal round>{t('plSold', { sold: fmt(sold), supply: fmt(supply) })}</Tag>}
+      {pending > 0 && <Tag minimal round>{t('shPending', { n: pending })}</Tag>}
+    </Stack>
   );
+  const rows = at ? (
+    <Stack direction="column" gap={3}>
+      {about}
+      {/* The menu entry picked (Women, Women · Dresses...) over its rows, with the way back to all of them. */}
+      {at.tab.menu && cat ? (
+        <Stack direction="row" gap={2} align="center">
+          <Tag round>{placeLabel(store.id, cat)}</Tag>
+          <Button variant="glass" onClick={() => s.setShopView({ cat: '' })}>{t('seAll')}</Button>
+        </Stack>) : null}
+      <KindList key={at.tab.id} kind={at.tab.kind} rows={at.rows} label={store.name} />
+    </Stack>) : about;
+  return (<>
+    {full && <FullScreen label={store.name} fill={picture} tint={club?.colors?.[0]} onClose={() => setFull(false)} closeLabel={t('close')}
+      media={picture ? <Image src={picture} alt={store.name} fit="contain" fill /> : card} infoLabel={store.name}
+      actions={[
+        { id: 'shops', label: t('pgShops'), icon: <StoreIcon size={18} />, onClick: () => s.go('shops') },
+        { id: 'share', label: t('isShare'), icon: <Share2 size={18} />, onClick: share },
+      ]}>
+      {about}
+    </FullScreen>}
+    <EntityPage wear={club?.colors?.[0]} picture={picture ? <Image src={picture} alt="" fit="cover" fill /> : undefined}
+      title={store.name} sub={store.tagline}
+      hero={{ card, onCard: () => setFull(true), cardLabel: t('isFull'),
+        tabs: tabs.length > 1 ? <TabList size="sm" variant="pills" aria-label={store.name} activeId={at?.tab.id} onChange={(id) => s.setShopView({ tab: id, cat: '' })}
+          items={tabs.map(({ tab, rows: r }) => ({ id: tab.id, label: tab.label, count: fmt(r.length) }))} /> : undefined }}
+      columns={[{ id: 'shop', title: store.name, label: store.name, content: rows, minWidth: '20rem' }]} />
+  </>);
 };

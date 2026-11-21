@@ -18,9 +18,12 @@ export type FacetFiltersProps = {
   sorts?: SortOption[];
   sort?: string;
   onSort?: (id: string) => void;
+  /** The chosen sort turned round (its last first); shown as a second group under the sorts when `onReverse` is given. */
+  reverse?: boolean;
+  onReverse?: (on: boolean) => void;
   /** How many groups start open (the rest are folded to their header). */
   openGroups?: number;
-  labels?: { search?: string; sort?: string; all?: string; clear?: string };
+  labels?: { search?: string; sort?: string; all?: string; clear?: string; order?: string; forward?: string; backward?: string };
 };
 
 /** Options a row from the longest label: short labels three a row, medium two, long ones one. */
@@ -28,7 +31,7 @@ export const facetCols = (labels: string[]): 1 | 2 | 3 => { const n = Math.max(0
 
 /** One accordion group: a header (label, the current choice, a chevron) over an equal-width grid of options. */
 const Group = ({ id, label, current, open, onToggle, cols, children }: { id: string; label: string; current?: string; open: boolean; onToggle: () => void; cols: number; children: React.ReactNode }) => (
-  <Box className={cn(styles.group, open && styles.open)} role="group" aria-label={label}>
+  <Box className={cn(styles.group, 'phi-region', open && styles.open)} role="group" aria-label={label}>
     <Box as="button" className={styles.head} aria-expanded={open} aria-controls={'facet-' + id} onClick={onToggle}>
       <Text as="span" size="xs" weight="bold">{label}</Text>
       {current && <Text as="span" size="xs" intent="primary" className={styles.current}>{current}</Text>}
@@ -47,9 +50,10 @@ const Option = ({ on, onClick, children, role = 'checkbox' }: { on: boolean; onC
  * length of its labels (or `cols`), so every chip in a row is the same width. The same block fills the filter drawer,
  * a page's filter sidebar and a bottom sheet's filter column.
  */
-export const FacetFilters = ({ facets = [], selected = {}, onSelect, search, onSearch, sorts, sort, onSort, openGroups = 3, labels = {} }: FacetFiltersProps) => {
+export const FacetFilters = ({ facets = [], selected = {}, onSelect, search, onSearch, sorts, sort, onSort, reverse = false, onReverse, openGroups = 3, labels = {} }: FacetFiltersProps) => {
   const any = Object.values(selected).some(Boolean);
-  const ids = [...(sorts?.length ? ['__sort'] : []), ...facets.map((f) => f.id)];
+  const ids = [...(sorts?.length ? ['__sort'] : []), ...(onReverse ? ['__order'] : []), ...facets.map((f) => f.id)];
+  const forward = labels.forward ?? 'As sorted'; const backward = labels.backward ?? 'Turned round';
   const [open, setOpen] = useState<Record<string, boolean>>(() => Object.fromEntries(ids.map((id, i) => [id, i < openGroups])));
   const toggle = (id: string) => setOpen((o) => ({ ...o, [id]: !(o[id] ?? false) }));
   const sortLabel = sorts?.find((x) => x.id === sort)?.label;
@@ -59,6 +63,12 @@ export const FacetFilters = ({ facets = [], selected = {}, onSelect, search, onS
       {sorts && sorts.length > 0 && (
         <Group id="__sort" label={labels.sort ?? 'Sort'} current={sortLabel} open={open.__sort ?? true} onToggle={() => toggle('__sort')} cols={facetCols(sorts.map((x) => x.label))}>
           {sorts.map((o) => <Option key={o.id} role="radio" on={sort === o.id} onClick={() => onSort?.(o.id)}>{o.label}</Option>)}
+        </Group>
+      )}
+      {onReverse && (
+        <Group id="__order" label={labels.order ?? 'Order'} current={reverse ? backward : forward} open={open.__order ?? true} onToggle={() => toggle('__order')} cols={facetCols([forward, backward])}>
+          <Option role="radio" on={!reverse} onClick={() => onReverse(false)}>{forward}</Option>
+          <Option role="radio" on={reverse} onClick={() => onReverse(true)}>{backward}</Option>
         </Group>
       )}
       {facets.map((f) => {

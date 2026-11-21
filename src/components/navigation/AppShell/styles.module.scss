@@ -3,7 +3,8 @@
    inside them (menu rows, rail buttons, tabs) wears the page's shades, left to right, with no borders: a light shade
    under the pointer, a deeper one for the page you are on. The header has no border and no ground of its own. */
 .root {
-  --pui-shell-rail: 3.25rem; --pui-shell-panel: 13.5rem;
+  /* The rail is as narrow as its icons allow: the control and a breath either side. */
+  --pui-shell-rail: 2.75rem; --pui-shell-panel: 13.5rem;
   /* One control size for the whole shell: the pin, every rail icon and every control in the header row. */
   --pui-shell-control: 2.25rem;
   /* ...and the least height of anything you press anywhere in the app: every button, tab, chip, field and menu row in
@@ -32,7 +33,11 @@
 /* An entity page: its picture very large and very soft, only its colour left, the page colour over it so text reads. */
 .blurred .picture { inset: -12%; filter: blur(64px) saturate(1.5); transform: scale(1.2); }
 .blurred::after { content: ''; position: absolute; inset: 0;
-  background: linear-gradient(180deg, color-mix(in srgb, var(--phi-color-background) 30%, transparent) 0%, color-mix(in srgb, var(--phi-color-background) 62%, transparent) 100%); }
+  background: linear-gradient(90deg, color-mix(in srgb, var(--phi-color-background) 30%, transparent) 0%, color-mix(in srgb, var(--phi-color-background) 62%, transparent) 100%); }
+/* A profile's opening: its banner a little out of focus, still a picture; the page colour gathers toward the foot, where the name stands. */
+.soft .picture { inset: -4%; filter: blur(14px) saturate(1.2); }
+.soft::after { content: ''; position: absolute; inset: 0;
+  background: linear-gradient(0deg, color-mix(in srgb, var(--phi-color-background) 78%, transparent) 0%, color-mix(in srgb, var(--phi-color-background) 30%, transparent) 60%, color-mix(in srgb, var(--phi-color-background) 12%, transparent) 100%); }
 .sharp::after { content: ''; position: absolute; inset: 0; background: radial-gradient(62% 58% at 50% 40%, color-mix(in srgb, var(--phi-color-background) 50%, transparent) 0%, transparent 100%); }
 @keyframes puiStageIn { from { opacity: 0; } to { opacity: 1; } }
 .open { --pui-shell-side: calc(var(--pui-shell-rail) + var(--pui-shell-panel)); }
@@ -51,11 +56,13 @@
   width: calc(var(--pui-shell-side) + var(--pui-shell-gap)); padding-left: var(--pui-shell-gap); transition: width var(--phi-transition-normal); }
 .brandOpen { padding-right: var(--phi-space-2); }
 .brand { display: flex; align-items: center; gap: var(--phi-space-2); min-width: 0; cursor: pointer; padding: var(--phi-space-1) var(--phi-space-2); border-radius: var(--phi-radius-sm); }
-.brandName { margin: 0; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* A long name ends in an ellipsis, which needs the box to clip; the room above and below (taken back by the margin, so
+   the row keeps its height) keeps the clip clear of a letter's tail or rise: g, y, p in any face. */
+.brandName { margin: -0.5em 0; padding: 0.5em 0; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 /* The logo in black and white: the theme's own ink, never the app's colour. */
 .brandGlyph { display: inline-flex; align-items: center; justify-content: center; flex: none; color: var(--phi-color-text-primary); filter: grayscale(1); }
 .pin { flex: none; display: grid; place-items: center; width: var(--pui-shell-control); height: var(--pui-shell-control); border-radius: var(--phi-radius-sm); color: var(--phi-color-text-secondary); cursor: pointer; }
-.pin:hover { color: var(--phi-color-text-primary); background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2)); }
+.pin:hover { color: var(--phi-color-text-primary); background-image: var(--phi-label-soft); }
 .pinPill { transition: width var(--phi-transition-normal); }
 /* Closed: the glyph centred over the rail; under the pointer it gives way to the pin. */
 .brandClosed { justify-content: center; }
@@ -80,18 +87,35 @@
    of the theme's maximum, never more; everything inside it rounds one step down (sm, then xs). */
 .nav { display: flex; flex: none; min-height: 0; margin: 0 0 var(--pui-shell-gap) var(--pui-shell-gap);
   overflow: hidden;
-  /* The sidebar wears the one surface every layer wears (.phi-layers, tokens.scss): see-through, from nothing to the
-     page's shade, over a blur. No colour of its own. */ }
+  /* A sidebar disappears toward the edge of the window it stands at and is lit toward the page: the left one runs
+     from nothing at its left to light at its right, the right one (.navEnd) the other way. What you press inside it
+     (rail icons, menu rows) runs against it, lit at the window's edge and gone toward the page, so the two lights
+     cross and only meet in the middle. No ground and no blur of its own, and no colour but the page's one light. */
+  --pui-nav-ground: var(--phi-label-end);
+  /* The two ways a light can run in this sidebar: against it (lit at the window's edge) and with it (lit toward the
+     page). Layers take turns: the sidebar runs with, a region in it (a menu group, with its heading) against, a row
+     or a folding card in that region with, a row inside that card against. So no ground is ever filled edge to edge
+     and each thing shows against what holds it. */
+  --pui-nav-against-soft: var(--phi-label-soft); --pui-nav-against: var(--phi-label); --pui-nav-against-strong: var(--phi-label-strong);
+  --pui-nav-with-soft: var(--phi-label-end-soft); --pui-nav-with: var(--phi-label-end);
+  /* What a rail icon or a row stands on here: against the sidebar, until a region or a card says otherwise. */
+  --pui-nav-item-soft: var(--pui-nav-against-soft); --pui-nav-item: var(--pui-nav-against); --pui-nav-item-strong: var(--pui-nav-against-strong);
+  background: var(--pui-nav-ground);
+  backdrop-filter: none; -webkit-backdrop-filter: none; }
 
 .rail { display: grid; grid-template-rows: minmax(min-content, 1fr) auto minmax(min-content, 1fr); justify-items: center; gap: var(--phi-space-2); flex: none; inline-size: var(--pui-shell-rail); padding-block: var(--phi-space-3); }
 .railGroup { width: 100%; }
 .railBtn { display: inline-flex; align-items: center; justify-content: center; inline-size: var(--pui-shell-control); block-size: var(--pui-shell-control);
-  border-radius: var(--phi-radius-sm); border: 1px solid transparent; color: var(--phi-color-text-secondary); background: transparent; cursor: pointer;
+  border-radius: var(--phi-radius-sm); border: 1px solid transparent; color: var(--phi-color-text-secondary); cursor: pointer;
+  /* Every rail icon stands on its own light, running against the sidebar's: soft at rest, fuller under the pointer,
+     fullest for the one that is on. */
+  background-color: transparent; background-image: var(--pui-nav-item-soft, var(--phi-label-soft));
   transition: background var(--phi-transition-fast), color var(--phi-transition-fast), border-color var(--phi-transition-fast); }
-.railBtn:hover { background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2)); color: var(--phi-color-text-primary); }
-.railOn, .railOn:hover { background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1)); border-color: transparent; color: var(--phi-color-text-primary); }
+.railBtn:hover { background-image: var(--pui-nav-item, var(--phi-label)); color: var(--phi-color-text-primary); }
+.railOn, .railOn:hover { background-image: var(--pui-nav-item-strong, var(--phi-label-strong)); border-color: transparent; color: var(--phi-color-text-primary); }
 .railGlyph { font-weight: var(--phi-font-weight-medium); font-size: var(--phi-font-size-sm); }
 
+/* The secondary column has no ground of its own: the sidebar's light fades across it to nothing (.nav). */
 .panel { display: flex; flex-direction: column; flex: none; inline-size: var(--pui-shell-panel); min-height: 0;
   animation: puiPanelIn var(--phi-duration, 0.3s) var(--phi-ease, ease-out); }
 @keyframes puiPanelIn { from { opacity: 0; transform: translateX(-6px); } to { opacity: 1; transform: none; } }
@@ -99,26 +123,42 @@
 .panelScroll::-webkit-scrollbar { display: none; }
 .panelFoot { padding: var(--phi-space-2); }
 
-/* A menu group: no background or border of its own; its rows wear the page's shades (tokens.scss). */
-.panelGroup { display: flex; flex-direction: column; gap: 2px; padding: var(--phi-space-2) 0; border-radius: var(--phi-radius-sm); }
+/* A menu group is a region of the sidebar: a faint card running against it, its heading part of it (no ground of its
+   own); its rows run against the region in turn, the sidebar's way. */
+.panelGroup { display: flex; flex-direction: column; gap: 2px; padding: var(--phi-space-2); border-radius: var(--phi-radius-md);
+  background-image: var(--pui-nav-against, var(--phi-label));
+  --pui-nav-item-soft: var(--pui-nav-with-soft, var(--phi-label-end-soft)); --pui-nav-item: var(--pui-nav-with, var(--phi-label-end)); }
 .groupHead { min-height: var(--pui-shell-control); }
 .panelScroll { display: flex; flex-direction: column; gap: var(--phi-space-2); }
 /* The three places, in the panel and the rail alike: each row is at least as tall as what it holds, so nothing in the
    sidebar scrolls or is cut; the room left over is shared equally above and below the centre, so the centre stays
    in the middle whenever it can. Nothing scrolls sideways. */
-.panelScroll { display: grid; grid-template-rows: minmax(min-content, 1fr) auto minmax(min-content, 1fr); align-content: stretch; }
+.panelScroll { display: grid; grid-template-rows: minmax(min-content, 1fr) auto minmax(min-content, 1fr); align-content: stretch;
+  /* One column exactly the panel's width: a wide child (a row of tabs) never stretches the panel past its edge. */
+  grid-template-columns: minmax(0, 1fr); }
+.placeTop, .placeCenter, .placeBottom { min-width: 0; }
+/* Nothing in the sidebar scrolls sideways: a row of tabs in the panel wraps onto as many lines as it needs. */
+.panel :global([role='tablist']) { flex-wrap: wrap; overflow: visible; mask-image: none; -webkit-mask-image: none; max-width: 100%;
+  /* In the sidebar a row of tabs is a plain row: not centred, not pinned, no glass of its own. */
+  position: static; margin-inline: 0; width: auto; background: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
 .placeTop { grid-row: 1; align-self: start; min-height: 0; display: flex; flex-direction: column; gap: var(--phi-space-2); }
 .placeCenter { grid-row: 2; display: flex; flex-direction: column; gap: var(--phi-space-2); }
 .placeBottom { grid-row: 3; align-self: end; min-height: 0; display: flex; flex-direction: column; gap: var(--phi-space-2); }
-/* Lights: an open fold wears the page's shades like an open accordion (display/Accordion), so what is open shows. */
-.groupOpen { border-radius: var(--phi-radius-sm); background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-3) 60%, transparent); }
-.navEntry:has(.caret[aria-expanded='true']) > :first-child { border-radius: var(--phi-radius-sm); background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-3) 60%, transparent); }
+/* A group's heading has no ground of its own: it is part of the region it heads, whose light is already under it. */
+.groupOpen { border-radius: var(--phi-radius-sm); }
+/* An entry that folds is a card in its region: a faint light running against the region's (the sidebar's way), its
+   own heading row bare. Its rows run against it in turn. */
+.navEntry:has(> :first-child > .caret) { border-radius: var(--phi-radius-md); background: var(--pui-nav-with-soft, var(--phi-label-end-soft)); padding-bottom: var(--phi-space-1);
+  --pui-nav-item-soft: var(--pui-nav-against-soft, var(--phi-label-soft)); --pui-nav-item: var(--pui-nav-against, var(--phi-label)); }
 .entryPanel { padding: var(--phi-space-2) 0 var(--phi-space-2) 1.5rem; }
+/* A sub-menu steps in under its entry, past the fold arrow; no line, only the folding group's light. */
+.subMenu { display: flex; flex-direction: column; padding: 0 0 var(--phi-space-1) var(--phi-space-4); }
 .inlineRow { display: flex; gap: var(--phi-space-1); }
 .inlineRow > * { flex: 1 1 0; min-width: 0; }
 
 /* A row: the fold arrow (or its room) at the left, then the item; children flush under it, never indented. */
 .navEntry { display: flex; flex-direction: column; min-width: 0; }
+.navEntry + .navEntry:has(> :first-child > .caret), .navEntry:has(> :first-child > .caret) + .navEntry { margin-top: var(--phi-space-1); }
 .caret, .caretRoom { flex: none; width: 1.5rem; min-width: 1.5rem; height: 1.75rem; }
 /* A row with nothing to fold takes the full width: no empty room at its left. */
 .caretRoom { display: none; }
@@ -127,16 +167,16 @@
 .caret svg { transition: transform var(--phi-transition-normal); }
 .caret[aria-expanded='false'] svg { transform: rotate(-90deg); }
 /* Menu rows run the full width of the menu, in the page's shades, no borders: a shade under the pointer, a deeper
-   one for the page you are on, both running left to right like every surface. */
+   one for the page you are on, both running against the sidebar they are in (.nav). */
 .navRow, .pullRow { flex: 1 1 auto; width: 100%; min-width: 0; min-height: var(--pui-shell-control); border-radius: var(--phi-radius-sm); border: 0; background: transparent; }
-.navRow:hover, .pullRow:hover { background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2)); color: var(--phi-color-text-primary); }
-.navRow[aria-current='page'] { background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1)); color: var(--phi-color-text-primary); }
+.navRow:hover, .pullRow:hover { background-image: var(--pui-nav-item-soft, var(--phi-label-soft)); color: var(--phi-color-text-primary); }
+.navRow[aria-current='page'] { background-image: var(--pui-nav-item, var(--phi-label)); color: var(--phi-color-text-primary); }
 
 /* The app switcher: each row glass from its left edge to nothing, each glyph black and white on a pane of glass. */
 .appRow { display: flex; align-items: center; gap: var(--phi-space-2); padding: var(--phi-space-2) var(--phi-space-3); border-radius: var(--phi-radius-sm);
   text-decoration: none; color: var(--phi-color-text-primary); background: transparent; border: 0; }
-.appRow:hover { background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2)); }
-.appOn { background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1)); }
+.appRow:hover { background-image: var(--phi-label-soft); }
+.appOn { background-image: var(--phi-label); }
 .appGlyph { display: inline-flex; align-items: center; justify-content: center; inline-size: 2rem; block-size: 2rem; flex: none; border-radius: var(--phi-radius-xs);
   background: var(--phi-shade-2); border: 0; color: var(--phi-color-text-primary); filter: grayscale(1);
   font-weight: var(--phi-font-weight-medium); font-size: var(--phi-font-size-sm); }
@@ -174,8 +214,9 @@
 .inner :has(:global(.pui-sections[data-expanded]), :global(.pui-columns[data-expanded])) { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; transform: none !important; filter: none !important; animation: none !important; }
 .inner :global(.pui-sections[data-expanded]), .inner :global(.pui-columns[data-expanded]) {
   position: fixed; z-index: 20; top: var(--pui-shell-head); bottom: var(--pui-shell-gap); right: var(--pui-shell-gap); left: calc(var(--pui-shell-side) + 2px + var(--pui-shell-gap) * 2);
-  max-width: none; height: auto; overflow-y: auto; padding: var(--phi-space-4); border: 0; border-radius: var(--phi-radius-md);
-  background-color: var(--phi-shade-3); background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2)); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur); }
+  /* Its width is what left and right leave: a width of its own (a row is 100% wide) would run it past the right edge. */
+  width: auto; max-width: none; height: auto; overflow-y: auto; padding: var(--phi-space-4); border: 0; border-radius: var(--phi-radius-md);
+  background-color: var(--phi-shade-3); background-image: var(--phi-label-soft); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur); }
 
 /* The right aside: the opposite of the sidebar, glass at its left edge to nothing. A set width, its own padding and
    spacing like a page's, and no scroll bar of its own: the content area is the one scroll you see. */
@@ -189,7 +230,29 @@
 /* Phone tabs: the menu and the app's tabs in a glass bar at the foot (phones only). */
 .tabs { display: none; }
 .tab { flex: 1 1 0; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: var(--phi-space-1); border-radius: var(--phi-radius-xs); color: var(--phi-color-text-secondary); cursor: pointer; }
-.tabOn { color: var(--phi-color-text-primary); background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1)); }
+.tabOn { color: var(--phi-color-text-primary); background-image: var(--phi-label); }
+/* The rail as the phone's bar: an icon alone, on the ground every control stands on; lit when its menu is open. */
+/* The same bar at the foot of an open menu (the drawer covers the page's own), so another icon swaps the menu and the
+   same one shuts it. */
+.tabsIn { display: flex; gap: var(--phi-space-3); width: 100%; }
+.tabIcon { justify-content: center; min-height: 3rem; border-radius: var(--phi-radius-md); background-image: var(--phi-surface-strong); }
+.tabIcon.tabOn { background-image: var(--phi-surface-strong), var(--phi-surface-strong), var(--phi-surface); }
+/* A menu opened from the bar: every row on a ground lit from top to bottom, with room between the rows. */
+/* The drawer is drawn outside the shell, so the shell's own sizes are said again here (a finger's height for a row). */
+.phoneMenu, .tabsIn { --pui-shell-control: 2.75rem; --pui-shell-icon: 1.25rem; --pui-shell-stroke: 1.75; }
+.phoneMenu { display: flex; flex-direction: column; gap: var(--phi-space-3); }
+.phoneMenu > * { align-self: stretch; }
+.phoneMenu .panelGroup { gap: var(--phi-space-2); flex: 1 1 auto; width: 100%; box-sizing: border-box; }
+.phoneMenu :is(.navRow, .pullRow) { background-image: var(--phi-surface); }
+.phoneMenu :is(.navRow, .pullRow):hover { background-image: var(--phi-surface-strong); }
+.phoneMenu .navRow[aria-current='page'] { background-image: var(--phi-surface-strong), var(--phi-surface); }
+.tabIcon svg { width: var(--pui-shell-icon) !important; height: var(--pui-shell-icon) !important; stroke-width: var(--pui-shell-stroke); }
+
+/* The right sidebar: the same holder mirrored. It is lit at its left, toward the page, and disappears to the right;
+   its icons and rows are lit at the right and gone to the left. */
+.navEnd { margin: 0 var(--pui-shell-gap) var(--pui-shell-gap) 0; --pui-nav-ground: var(--phi-label);
+  --pui-nav-against-soft: var(--phi-label-end-soft); --pui-nav-against: var(--phi-label-end); --pui-nav-against-strong: var(--phi-label-end-strong);
+  --pui-nav-with-soft: var(--phi-label-soft); --pui-nav-with: var(--phi-label); }
 
 /* Phone: no sidebar; the header shows the menu button and the glyph, the drawer carries the whole menu. */
 @media (max-width: 900px) {
@@ -201,7 +264,11 @@
   .lane { padding-inline: var(--phi-space-4); }
   .inner { padding: var(--phi-space-3); }
   .inner :global(.pui-sections[data-expanded]), .inner :global(.pui-columns[data-expanded]) { left: var(--pui-shell-gap); }
-  .withTabs .tabs { display: flex; flex: none; gap: var(--phi-space-1); margin: 0 var(--pui-shell-gap) var(--pui-shell-gap); padding: var(--phi-space-1);
-    border: 0; border-radius: var(--phi-radius-md); background: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2)); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur); }
-  .withTabs .brandCell { padding-left: var(--pui-shell-gap); }
+  .withTabs .tabs { display: flex; flex: none; gap: var(--phi-space-3); margin: 0 var(--pui-shell-gap) var(--pui-shell-gap); padding: var(--phi-space-2);
+    border: 0; border-radius: var(--phi-radius-md); background: var(--phi-surface); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur); }
+  /* A phone with the bar has no logo in its header: Home is in the bar, and the row is for the page's tools. */
+  .withTabs .brandCell { display: none; }
 }
+
+/* An item full screen (overlays/FullScreen) has the whole window: the header and the sidebar are not shown at all. */
+:global(html[data-pui-fullscreen]) .head, :global(html[data-pui-fullscreen]) .nav { visibility: hidden; }

@@ -50,8 +50,8 @@ export const AssetBrowser: React.FC<AssetBrowserProps> = ({
           <Text size="sm" intent="secondary">{filtered.length} asset{filtered.length === 1 ? '' : 's'} available</Text>
         </Stack>
         <Stack direction="row" gap={1} className={styles.viewToggle}>
-          <Button variant={view === 'grid' ? 'primary' : 'ghost'} size="sm" aria-label="Grid view" onClick={() => setView('grid')} icon={<Grid2X2 size={15} />} />
-          <Button variant={view === 'list' ? 'primary' : 'ghost'} size="sm" aria-label="List view" onClick={() => setView('list')} icon={<List size={15} />} />
+          <Button variant="glass" aria-label="Grid view" onClick={() => setView('grid')} icon={<Grid2X2 size={15} />} />
+          <Button variant="glass" aria-label="List view" onClick={() => setView('list')} icon={<List size={15} />} />
         </Stack>
       </Stack>
 

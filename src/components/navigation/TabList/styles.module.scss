@@ -15,7 +15,11 @@
   scroll-behavior: smooth;
   scrollbar-width: none;
   padding: 0.125rem;
+  /* Every row of tabs stands on the one surface, lit from its foot to nothing like every other ground; its tabs are lit
+     from their foot too, the one that is on the most. */
+  border-radius: var(--phi-radius-md); background-color: transparent; background-image: var(--phi-surface);
   isolation: isolate;
+  --pui-tab-pad: 1rem; /* a tab's side padding: the underline of the tab that is on spans its label */
   &::-webkit-scrollbar { display: none; }
   /* Soft edge only on a side that has more tabs past it, so a scrolling row reads as "more this way". */
   --pui-fade-l: 0rem;
@@ -38,29 +42,37 @@
   padding: 0 1rem;
   border: none;
   border-bottom: 2px solid transparent;
-  /* Glass (tokens/_glass.scss): from nothing to glass across at rest; the theme's colour under the pointer. */
+  /* Every tab is lit from its foot to nothing at its head, never filled edge to edge: quietly at rest, fully for the
+     one that is on (which also carries the underline and the page's ink), so it cannot be mistaken. */
+  /* CHILD AND PARENT MERGE. The bar is lit from its foot (bright at the bottom, nothing at the top); a tab is the
+     opposite, bright at its top and gone at its foot, so a tab melts into the bar where the bar is brightest. */
   background-color: transparent;
-  background-image: var(--phi-glass-to-across);
+  background-image: var(--phi-surface-down-soft);
   border-radius: var(--phi-radius-md) var(--phi-radius-md) 0 0;
-  color: var(--phi-color-text-secondary);
+  color: var(--phi-color-text-muted, var(--phi-color-text-secondary));
   font: inherit;
   font-size: 0.875rem;
   font-weight: var(--phi-font-weight-medium);
   line-height: 1.2;
   cursor: pointer;
-  transition: color var(--phi-transition-normal), border-color var(--phi-transition-normal), background-color var(--phi-transition-normal),
+  /* A tab you are not on is a little see-through; under the pointer, or on, it is whole. Opacity, never another colour. */
+  opacity: 0.72;
+  transition: opacity var(--phi-transition-normal), color var(--phi-transition-normal), border-color var(--phi-transition-normal), background-color var(--phi-transition-normal),
     transform var(--phi-duration-fast) var(--phi-ease-spring);
 
-  &:hover:not([aria-disabled='true']) {
-    color: var(--phi-color-text-primary);
-    background-color: var(--phi-tint);
-  }
+  &:hover:not([aria-disabled='true']), &[aria-selected='true'] { color: var(--phi-color-text-primary); opacity: 1; }
+  /* Under the pointer a tab you could pick takes a little more of the same light, not the theme's colour. */
+  &:hover:not([aria-disabled='true']):not([aria-selected='true']) { background-image: var(--phi-surface-down); }
   &:active:not([aria-disabled='true']) { transform: scale(0.96); }
-  &:focus-visible { outline: 2px solid var(--phi-color-primary); outline-offset: 1px; }
+  &:focus-visible { outline: 2px solid var(--phi-color-primary); color: var(--phi-color-text-primary); }
+  /* The ring sits inside the tab, so the row (which clips what scrolls past it) never cuts it; said twice to stand
+     over a theme style's own ring offset, whose colour and width are kept. */
+  .tabList &.tab:focus-visible { outline-offset: -2px; }
   &[aria-disabled='true'] { opacity: 0.5; cursor: not-allowed; }
 }
 .icon { display: inline-flex; flex: none; }
 .count { font-size: 0.85em; opacity: 0.72; font-variant-numeric: tabular-nums; }
+.active .count { opacity: 1; }
 
 /* The tab shown: the page's ink and its underline, no colour of its own. */
 .active {
@@ -71,6 +83,7 @@
 
 .indicator { display: none; }
 
+.sm { --pui-tab-pad: 0.75rem; }
 .sm .tab { padding: 0.375rem 0.75rem; font-size: 0.8125rem; }
 
 .pills {
@@ -88,10 +101,16 @@
     height: var(--pui-tab-h, 0px);
     transform: translate3d(var(--pui-tab-x, 0px), var(--pui-tab-y, 0px), 0);
     border-radius: var(--phi-control-radius, var(--phi-radius-md));
-    /* The page's deeper shade, like a pressed button: no fill of its own. */
+    /* Lit from its foot, where the underline is, to nothing at its head: never a ground filled edge to edge. */
     background-color: transparent;
-    background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1));
+    background-image: var(--phi-surface-down-strong), var(--phi-surface-down-soft);
     pointer-events: none;
+    /* The underline of the tab that is on, in the page's ink; it slides with the pill. */
+    color: var(--phi-color-text-primary);
+    &::after {
+      content: ''; position: absolute; left: var(--pui-tab-pad); right: var(--pui-tab-pad); bottom: 0.1875rem;
+      height: 2px; border-radius: var(--phi-radius-full); background-color: currentColor;
+    }
   }
   &[data-ready='true'] .indicator {
     transition: transform var(--phi-duration) var(--phi-ease), width var(--phi-duration) var(--phi-ease), height var(--phi-duration) var(--phi-ease);
@@ -102,10 +121,21 @@
     color: var(--phi-color-text-primary);
   }
   /* Before measuring (first paint, tests) the active tab paints its own pill. */
-  &:not([data-ready='true']) .active { background-color: transparent; background-image: linear-gradient(90deg, var(--phi-shade-2), var(--phi-shade-1)); }
+  &:not([data-ready='true']) .active { background-color: transparent; background-image: var(--phi-surface-down-strong); }
 }
 
-/* On a surface (tokens.scss) the active pill is a shade of the page's one colour, not a solid fill. */
-:global(:is(.pui-card, [data-surface='card'], .phi-layers)) .pills .indicator { background-color: transparent; background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2)); border-color: transparent; color: var(--phi-color-text-primary); box-shadow: none; }
+/* On a surface (tokens.scss) the active pill is the same light from its foot, never a solid fill. */
+:global(:is(.pui-card, [data-surface='card'], .phi-layers)) .pills .indicator { background-color: transparent; background-image: var(--phi-surface-down-strong); border-color: transparent; color: var(--phi-color-text-primary); box-shadow: none; }
 :global(:is(.pui-card, [data-surface='card'], .phi-layers)) .pills .active { color: var(--phi-color-text-primary); }
-:global(:is(.pui-card, [data-surface='card'], .phi-layers)) .pills:not([data-ready='true']) .active { background-color: transparent; background-image: linear-gradient(90deg, var(--phi-shade-3), var(--phi-shade-2)); }
+:global(:is(.pui-card, [data-surface='card'], .phi-layers)) .pills:not([data-ready='true']) .active { background-color: transparent; background-image: var(--phi-surface-down-strong); }
+
+/* A page's row of tabs: centred at no more than half the content's width, more tabs scroll sideways in place, and the
+   row stays under the header while the page scrolls, on the page's own glass. */
+.center {
+  align-self: center; margin-inline: auto; width: fit-content; max-width: min(100%, max(50%, 40rem));
+  overflow-x: auto; scrollbar-width: none; &::-webkit-scrollbar { display: none; }
+  position: sticky; top: 0; z-index: 3;
+  /* Over the blur of what scrolls beneath, so the labels stay readable; the row's light is the tab row's own (.tabList). */
+  backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur);
+  border-radius: var(--phi-radius-md); padding: var(--phi-space-1, 0.25rem);
+}

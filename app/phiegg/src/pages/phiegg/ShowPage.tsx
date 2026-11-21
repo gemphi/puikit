@@ -3,7 +3,7 @@ import { Button, Card, CardBody, Columns, Drawer, Icon, ItemCard, Page, Progress
 import { useStore } from '@pui/store';
 import { phieggStore } from '../../state/phieggStore';
 import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
-import { D, itemImage, lookOf, person, poolOfShow, poseOf, showLead, showOf, site, t, usd, worldOf } from '../../lib/data';
+import { D, itemImage, person, poolOfShow, showLead, site, t, usd, itemOf } from '../../lib/data';
 import { lookLive, poolNumbers, useNow } from '../../lib/market';
 import { record } from '../../lib/activity';
 import type { Look, PoseRig } from '../../types/phiegg';
@@ -18,7 +18,7 @@ const Rig: React.FC<{ rig: PoseRig }> = ({ rig }) => (
       <Stack grow={1}><ProgressBar value={(rig[k] + 90) / 180} size="sm" animate={false} /></Stack><Text size="xs" mono>{rig[k]}°</Text></Stack>))}</Stack>
 );
 /** A runway look's render: the store look (PFT) it walks, so the dress and its background are the same colour. */
-const renderOf = (lk: Look) => { const p = lk.lookId ? lookOf(lk.lookId) : undefined; return p?.views.FRONT ? itemImage(p.views.FRONT) : undefined; };
+const renderOf = (lk: Look) => { const p = lk.lookId ? itemOf('look', lk.lookId) : undefined; return p?.views.FRONT ? itemImage(p.views.FRONT) : undefined; };
 
 /**
  * The play page. The stage shows the look on the runway; the player is a docked bottom sheet whose header holds the
@@ -28,7 +28,7 @@ const renderOf = (lk: Look) => { const p = lk.lookId ? lookOf(lk.lookId) : undef
  */
 export const ShowPage: React.FC = () => {
   const s = useStore(phieggStore);
-  const show = showOf(s.showId) ?? D.shows.shows[0]; // undefined only for an instant, before lib/heavy.ts lands
+  const show = itemOf('show', s.showId) ?? D.shows.shows[0]; // undefined only for an instant, before lib/heavy.ts lands
   const [idx, setIdx] = useState(0); const [playing, setPlaying] = useState(true); const [family, setFamily] = useState(site.poseFamilies[0]);
   const [folded, setFolded] = useState(false);
   const n = show?.looks.length ?? 1;
@@ -36,9 +36,9 @@ export const ShowPage: React.FC = () => {
   useEffect(() => { if (!playing || !show) return; const id = setInterval(() => setIdx((i) => (i + 1) % n), site.autoplay.slideMs); return () => clearInterval(id); }, [playing, show?.id, n]);
   const now = useNow(2000);
   if (!show) return null;
-  const w = worldOf(show.worldId)!; const host = person(show.hostAgentId);
+  const w = itemOf('world', show.worldId)!; const host = person(show.hostAgentId);
   const lead = showLead(show);
-  const look = show.looks[idx]; const pose = poseOf(look.poseId)!; const pft = look.lookId ? lookOf(look.lookId) : undefined;
+  const look = show.looks[idx]; const pose = itemOf('pose', look.poseId)!; const pft = look.lookId ? itemOf('look', look.lookId) : undefined;
   const dropPool = poolOfShow(show.id); const dropN = dropPool ? poolNumbers(dropPool, now) : undefined;
   const step = (d: number) => setIdx((i) => (i + d + n) % n);
   const pick = (i: number) => { setIdx(i); setPlaying(false); record('open', show.looks[i].id, { refKind: 'runway-look', with: show.id }); };
@@ -46,14 +46,14 @@ export const ShowPage: React.FC = () => {
   // ── sheet header: the player controls ──
   const controls = (
     <Stack direction="row" gap={2} align="center" minWidth="0">
-      <Button variant="ghost" size="sm" icon={<Icon icon={ChevronLeft} size="sm" />} onClick={() => step(-1)} aria-label={t('prev')} />
-      <Button variant="primary" size="sm" iconLeft={playing ? Pause : Play} onClick={() => setPlaying(!playing)}>{playing ? t('autoplayOn') : t('autoplayOff')}</Button>
-      <Button variant="ghost" size="sm" icon={<Icon icon={ChevronRight} size="sm" />} onClick={() => step(1)} aria-label={t('next')} />
+      <Button variant="glass" icon={<Icon icon={ChevronLeft} size="sm" />} onClick={() => step(-1)} aria-label={t('prev')} />
+      <Button variant="glass" iconLeft={playing ? Pause : Play} onClick={() => setPlaying(!playing)}>{playing ? t('autoplayOn') : t('autoplayOff')}</Button>
+      <Button variant="glass" icon={<Icon icon={ChevronRight} size="sm" />} onClick={() => step(1)} aria-label={t('next')} />
       <Stack direction="column" gap={1} grow={1} minWidth="0">
         <Text size="sm" weight="semibold" truncate>{t('lookOf', { i: look.n, n })} · {look.title}</Text>
         <ProgressBar value={(idx + 1) / n} size="sm" animate={false} />
       </Stack>
-      {pft && <Button size="sm" variant="outline" onClick={() => s.openLook(pft.id)}>{t('shOpenPft')}</Button>}
+      {pft && <Button variant="glass" onClick={() => s.openLook(pft.id)}>{t('shOpenPft')}</Button>}
     </Stack>
   );
 
@@ -68,8 +68,8 @@ export const ShowPage: React.FC = () => {
       <Stack direction="row" gap={1} wrap>{look.pieces.map((x) => <Tag key={x} minimal round intent="primary">{x}</Tag>)}</Stack>
       {pft && <ItemCard depth={2} mediaSize="lg" onClick={() => s.openLook(pft.id)} media={<LookImage look={pft} cascade={1} />}
         title={pft.name} meta={t('shThePft') + ' · ' + pft.colour + ' · ' + pft.rarity}
-        actions={<><Button size="sm" variant="primary" onClick={(e) => { e.stopPropagation(); s.openLook(pft.id); }}>{t('shOpenPft')}</Button>
-          {dropPool && <Button size="sm" variant="outline" onClick={(e) => { e.stopPropagation(); s.go('pool', { poolId: dropPool.id }); }}>{t('plOpensDrop')}</Button>}</>}>
+        actions={<><Button variant="glass" onClick={(e) => { e.stopPropagation(); s.openLook(pft.id); }}>{t('shOpenPft')}</Button>
+          {dropPool && <Button variant="glass" onClick={(e) => { e.stopPropagation(); s.go('pool', { poolId: dropPool.id }); }}>{t('plOpensDrop')}</Button>}</>}>
         <Text size="xs" intent="muted" numeric>{t('plLive', { v: usd(lookLive(pft, now).total) })}</Text>
       </ItemCard>}
       <Card depth={1} variant="flat"><CardBody><Title level={5} size="sm">{t('pose')} · {pose.name}</Title><Rig rig={pose.rig} /></CardBody></Card>
@@ -78,7 +78,7 @@ export const ShowPage: React.FC = () => {
   const posesCol = (
     <Stack direction="column" gap={2}>
       <TabList size="sm" variant="pills" activeId={family} onChange={(id) => setFamily(id as typeof family)} items={site.poseFamilies.map((f) => ({ id: f, label: f }))} />
-      <Rows cols={1} colsSm={1}>{show.poseIds.map((pid) => poseOf(pid)!).filter((p) => p.family === family).map((p) => (
+      <Rows cols={1} colsSm={1}>{show.poseIds.map((pid) => itemOf('pose', pid)!).filter((p) => p.family === family).map((p) => (
         <Card depth={1} key={p.id} variant="flat" padding="sm"><CardBody><Stack direction="row" justify="between"><Text size="sm" weight="bold">{p.name}</Text><Tag minimal round size="sm">{p.family}</Tag></Stack><Rig rig={p.rig} /></CardBody></Card>))}</Rows>
     </Stack>
   );
@@ -90,8 +90,8 @@ export const ShowPage: React.FC = () => {
           badges={<><Tag round size="sm">{t('looksN', { n })}</Tag><Tag round size="sm">{t('posesN', { n: show.poseIds.length })}</Tag><Tag round size="sm">{show.date.slice(0, 10)}</Tag>{dropPool && <Tag round size="sm" intent="primary">{t('plShowDrop')}</Tag>}</>} />
         <Stack direction="row" gap={2} wrap align="center">
           <Text size="sm">{t('hostedBy', { name: host.name })}</Text>
-          <Button size="sm" variant="outline" onClick={() => s.go('world', { worldId: w.id })}>{w.name}</Button>
-          {dropPool && <Button size="sm" variant="outline" onClick={() => s.go('pool', { poolId: dropPool.id })}>{t('plOpensDrop')} · {t('plSold', { sold: dropN!.sold.toLocaleString('en-US'), supply: dropN!.supply.toLocaleString('en-US') })} · {usd(dropN!.total)}</Button>}
+          <Button variant="glass" onClick={() => s.go('world', { worldId: w.id })}>{w.name}</Button>
+          {dropPool && <Button variant="glass" onClick={() => s.go('pool', { poolId: dropPool.id })}>{t('plOpensDrop')} · {t('plSold', { sold: dropN!.sold.toLocaleString('en-US'), supply: dropN!.supply.toLocaleString('en-US') })} · {usd(dropN!.total)}</Button>}
         </Stack>
         {/* The stage: the look walking now, on its own colour. */}
         <Stack maxWidth="30rem" width="100%" centered>

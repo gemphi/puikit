@@ -38,7 +38,9 @@ describe('Sections: the reader sets the order', () => {
     const { unmount } = render(<Sections reorderable storageKey="t1" sections={secs} />);
     const titles = () => screen.getAllByRole('region').map((r) => r.getAttribute('data-section'));
     expect(titles()).toEqual(['top', 'mid', 'bot']);
-    expect((screen.getAllByLabelText('Move up')[0] as HTMLButtonElement).disabled).toBe(true);
+    // A move that cannot be made is not shown: no Move up on the first section, no Move down on the last.
+    expect(screen.getAllByLabelText('Move up')).toHaveLength(2);
+    expect(screen.getAllByLabelText('Move down')).toHaveLength(2);
     fireEvent.click(screen.getAllByLabelText('Move down')[0]);
     expect(titles()).toEqual(['mid', 'top', 'bot']);
     unmount();

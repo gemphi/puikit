@@ -71,7 +71,7 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
           const isGroupActive = group.items.some((item) => isPathActive(activePath, item.path));
           return (
             <Stack key={group.label} align="center" justify="center" className={styles.collapsedItem}>
-              <Button variant={isGroupActive ? 'primary' : 'ghost'} size="sm" className={styles.collapsedBtn} title={group.label}>
+              <Button variant="glass" className={styles.collapsedBtn} title={group.label}>
                 <Icon icon={group.icon} size="sm" />
               </Button>
             </Stack>

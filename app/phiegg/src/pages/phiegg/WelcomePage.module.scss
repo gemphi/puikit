@@ -1,112 +1,70 @@
-/* The welcome, after Meta's Worlds and Muse pages: a big scene to step into, then calm panels with room around them.
-   Theme tokens only; the on-media tokens come from the Muse look and fall back for the others. */
-$on-media: var(--phi-muse-on-media, #fff);
-$scrim: var(--phi-muse-scrim, rgba(0, 0, 0, 0.6));
+/* The welcome: the cities on screen-filling stages, the agent among the posts, the cities to step into, shelves.
+   Theme tokens only: corners from the theme's corner option, glass from its glass, motion from its motion. */
+.page { display: flex; flex-direction: column; gap: calc(var(--phi-gap) * 5); width: 100%; padding-bottom: calc(var(--phi-gap) * 4); }
+.heading.heading { margin: 0; display: inline-flex; align-items: center; gap: var(--phi-space-2); font-size: var(--phi-font-size-xl); line-height: 1.2; }
+/* The page's ground: the slide shown, blurred by the shell's backdrop, fading in when the slide changes. */
+.ground.ground { width: 100%; height: 100%; max-width: none; border-radius: 0; object-fit: cover; animation: groundIn var(--phi-duration-slow) var(--phi-ease); }
+@keyframes groundIn { from { opacity: 0; } to { opacity: 1; } }
+.lede.lede { margin: 0; max-width: 40rem; font-size: 1.125rem; color: var(--phi-color-text-secondary); }
 
-.page { display: flex; flex-direction: column; gap: clamp(3.5rem, 7vw, 6.5rem); width: 100%; max-width: none; margin-inline: auto; padding-bottom: 4rem; }
-
-/* The scene fills its panel at any shape, and keeps its picture's middle in view. */
-.scene { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; }
-.scene svg { width: 100%; height: 100%; display: block; }
-
-.hero, .closing {
-  position: relative; overflow: hidden; isolation: isolate; border-radius: var(--phi-radius-xl);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
-  color: $on-media; background: var(--phi-color-gray-900);
+/* Ask: a centred head, then the agent's chat as a glass phone with the posts fanned out on both sides, floating. */
+.ask { display: flex; flex-direction: column; align-items: center; gap: calc(var(--phi-gap) * 2); text-align: center; overflow-x: clip; padding-block: var(--phi-gap); }
+.askHead { display: flex; flex-direction: column; align-items: center; gap: var(--phi-space-3); padding-inline: var(--phi-space-4); }
+.fan { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 38rem; }
+.fanCard {
+  flex: none; width: clamp(11rem, 17vw, 18rem); aspect-ratio: 3 / 4; height: auto; margin-inline: calc(var(--phi-space-5) * -1);
+  transform: rotate(calc(var(--k) * 4deg)) translateY(calc(var(--k) * var(--k) * var(--phi-space-2)));
+  animation: float calc(var(--phi-duration-slow) * 12) var(--phi-ease) infinite alternate; animation-delay: calc(var(--k) * var(--phi-duration) * -2);
+  transition: transform var(--phi-duration) var(--phi-ease-spring);
+  &:hover { z-index: 3; transform: rotate(0deg) translateY(calc(var(--phi-space-4) * -1)) scale(1.08); animation-play-state: paused; }
 }
-.hero { min-height: clamp(30rem, 78vh, 52rem); padding: clamp(2rem, 6vw, 5rem) clamp(1.25rem, 5vw, 4rem); }
-/* The hero over the full-screen scene (Backdrop): no panel, no frame, just the copy and the cast, a screen tall. */
-.hero.open { background: transparent; border-radius: 0; overflow: visible; min-height: calc(100vh - 56px - 3rem); }
-.hero.open::after { content: none; }
-.closing { min-height: 24rem; padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.25rem, 5vw, 4rem); }
-.hero::after, .closing::after { content: ''; position: absolute; inset: 0; z-index: 0; background: radial-gradient(62% 58% at 50% 46%, $scrim 0%, transparent 100%), linear-gradient(180deg, rgba(5, 9, 11, 0.28) 0%, $scrim 100%); }
-.copy { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 1.25rem; max-width: 42rem; padding: 2.25rem 2.5rem 2.75rem; text-align: center; }
-/* The hero's copy sits over the scene, so its glass is the scene's own darkening (the look's scrim) rather than light
-   frost: still blurred and still fading in from the left, dark enough that the on-media white reads on any picture. */
-/* The hero's copy wears the sidebar's glass (.phi-layers, tokens.scss), no dark paint of its own: the same shades, over
-   a heavier blur that also dims the scene behind it, so the white type reads on any part of the picture. */
-.hero .copy, .closing .copy {
-  backdrop-filter: blur(48px) saturate(150%) brightness(0.62); -webkit-backdrop-filter: blur(48px) saturate(150%) brightness(0.62);
-  text-shadow: 0 1px 2px color-mix(in srgb, $scrim 70%, transparent), 0 0 1.5rem color-mix(in srgb, $scrim 45%, transparent);
+/* A fanned card's picture is the kit's Picture, which fills the positioned box it is put in. */
+.fanPicture { position: relative; }
+.phone {
+  position: relative; z-index: 2; flex: none; display: flex; flex-direction: column; width: min(24rem, 92vw); height: 36rem; margin-inline: var(--phi-space-6);
+  overflow: hidden; text-align: left;
+  > * { flex: 1 1 auto; min-height: 0; }
 }
-.kicker.kicker { color: $on-media; opacity: 0.86; }
-.heroTitle { color: $on-media; font-size: clamp(2rem, 4.4vw, 3.5rem); line-height: 1.08; margin: 0; }
-.closingTitle { color: $on-media; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.12; margin: 0; }
-.lede.lede { color: $on-media; opacity: 0.92; font-size: clamp(1rem, 1.6vw, 1.25rem) !important; line-height: 1.5 !important; max-width: 36rem; }
-.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 0.5rem; }
-.glass.glass { color: $on-media; background: var(--phi-muse-glass, rgba(255, 255, 255, 0.16)); border-color: var(--phi-muse-glass-border, rgba(255, 255, 255, 0.42)); backdrop-filter: blur(16px); }
-.glass.glass:hover { background: color-mix(in srgb, var(--phi-muse-glass, rgba(255, 255, 255, 0.16)) 60%, $on-media 20%); }
 
-.section { display: flex; flex-direction: column; gap: clamp(1.5rem, 3vw, 2.5rem); min-width: 0; }
-.head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem 2rem; }
-.headCopy { display: flex; flex-direction: column; gap: 0.5rem; max-width: 44rem; }
-.eyebrow.eyebrow { color: var(--phi-color-text-accent); font-size: 0.9375rem !important; }
-.heading { font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.15; margin: 0; }
-.sub.sub { color: var(--phi-color-text-secondary); font-size: 1.0625rem !important; line-height: 1.5 !important; }
-
-/* World portals: tall panels you lean into. */
-.portals { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: 1rem; }
-.portal.portal { position: relative; display: block; overflow: hidden; width: 100%; aspect-ratio: 4 / 5; padding: 0; border: 0; border-radius: var(--phi-radius-xl) !important; background: var(--phi-color-background-secondary); color: $on-media; text-align: left; cursor: pointer; transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.45s cubic-bezier(0.2, 0.7, 0.2, 1); }
-.portal.portal:hover, .portal.portal:focus-visible { transform: translateY(-6px) scale(1.012); box-shadow: var(--phi-shadow-4); }
-.portal .scene { transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1); }
-.portal:hover .scene { transform: scale(1.06); }
-.portal::after { content: ''; position: absolute; inset: 40% 0 0; background: linear-gradient(180deg, transparent 0%, $scrim 100%); }
-.portalCopy { position: absolute; z-index: 1; left: 1.5rem; right: 1.5rem; bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.375rem; }
-.portalName.portalName { color: $on-media; font-size: 1.5rem !important; line-height: 1.2 !important; }
-.portalBody.portalBody { color: $on-media; opacity: 0.88; font-size: 0.9375rem !important; line-height: 1.4 !important; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-
-/* Features: choices on one side, the shot they open on the other. */
-.tour { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(1.5rem, 4vw, 4rem); align-items: center; }
-.choices { display: flex; flex-direction: column; min-width: 0; }
-.choice { border-top: 1px solid var(--phi-color-border); }
-.choice:last-child { border-bottom: 1px solid var(--phi-color-border); }
-.choiceHead.choiceHead { display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%; padding: 1.25rem 0; border: 0; border-radius: 0 !important; background: transparent; color: var(--phi-color-text-primary); font-size: 1.375rem; line-height: 1.25; text-align: left; cursor: pointer; }
-.choiceBody { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; padding-bottom: 1.5rem; color: var(--phi-color-text-secondary); font-size: 1.0625rem; line-height: 1.5; }
-.shot { position: relative; overflow: hidden; aspect-ratio: 16 / 10; border-radius: var(--phi-radius-xl); background: var(--phi-color-background-secondary); }
-
-/* The cast: characters around the scene, drifting on their own and leaning with the pointer. */
-.cast.cast { position: absolute; z-index: 1; height: auto; pointer-events: none; filter: drop-shadow(0 24px 32px rgba(5, 9, 11, 0.42)); animation: drift 7s ease-in-out infinite; translate: calc(var(--mx, 0) * var(--depth, 14px)) calc(var(--my, 0) * var(--depth, 14px)); transition: translate 0.5s cubic-bezier(0.2, 0.7, 0.2, 1); }
-.hero .cast0 { left: 3%; top: 6%; width: 22%; --depth: 22px; }
-.hero .cast1 { right: 3%; bottom: 5%; width: 25%; --depth: 30px; animation-delay: -2.4s; }
-.closing .cast0 { left: 3%; bottom: 6%; width: 26%; --depth: 18px; }
-.closing .cast1 { right: 4%; top: 8%; width: 20%; --depth: 26px; animation-delay: -3s; }
-.hero .copy, .closing .copy { z-index: 2; }
-.portalLogo.portalLogo { display: block; width: auto; height: 2.75rem; max-width: 100%; object-fit: contain; object-position: left center; filter: drop-shadow(0 4px 10px rgba(5, 9, 11, 0.5)); }
-.portal::after { z-index: 1; }
-.portalCopy { z-index: 2; }
-
-/* Stories: a picture over its words. */
-.stories { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: 1rem; }
-.story.story { display: flex; flex-direction: column; overflow: hidden; width: 100%; padding: 0; border-radius: var(--phi-radius-xl) !important; color: inherit; text-align: left; cursor: pointer; transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.45s cubic-bezier(0.2, 0.7, 0.2, 1); }
-.story.story:hover, .story.story:focus-visible { transform: translateY(-4px); box-shadow: var(--phi-shadow-3); }
-.storyArt { position: relative; overflow: hidden; aspect-ratio: 16 / 10; background: var(--phi-glass-from-down); }
-.storyArt .scene { transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1); }
-.story:hover .storyArt .scene { transform: scale(1.05); }
-.storyCopy { padding: 1.25rem 1.5rem 1.5rem; }
-.storyTitle.storyTitle { font-size: 1.25rem !important; line-height: 1.25 !important; }
-
-.fade { animation: fadeIn 0.5s ease both; }
-
-/* Sections rise as they come into view. */
-[data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
-[data-reveal][data-shown] { opacity: 1; transform: none; }
-
-@keyframes drift { 0%, 100% { transform: translateY(0) rotate(-0.6deg); } 50% { transform: translateY(-12px) rotate(0.6deg); } }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-@media (max-width: 860px) {
-  .tour { grid-template-columns: minmax(0, 1fr); }
-  .shot { order: -1; }
-  .hero .cast0 { width: 34%; top: 2%; left: 2%; }
-  .hero .cast1 { width: 46%; bottom: 2%; right: 2%; }
-  .hero .copy { margin-bottom: 8rem; }
-  .closing .cast1 { display: none; }
-  .closing .cast0 { width: 44%; bottom: 2%; }
-  .closing .copy { margin-bottom: 7rem; }
+/* Step in: a glass band with the line split across it and the posts floating in round glass. */
+.step {
+  position: relative; min-height: 42rem; padding: calc(var(--phi-gap) * 3) calc(var(--phi-gap) * 4); overflow: hidden; border-radius: var(--phi-radius-lg);
+  /* Light only, from the top fading to nothing: no blur, no colour. */
+  background: var(--phi-surface);
 }
-@media (prefers-reduced-motion: reduce) {
-  .portal.portal, .portal .scene, .story.story, .storyArt .scene { transition: none; }
-  .portal.portal:hover, .portal.portal:focus-visible, .portal:hover .scene, .story.story:hover, .story:hover .storyArt .scene { transform: none; }
-  .cast.cast, .fade { animation: none; transition: none; translate: none; }
-  [data-reveal] { opacity: 1; transform: none; transition: none; }
+.before.before, .after.after { position: relative; z-index: 1; margin: 0; font-size: clamp(3rem, 7vw, 6rem); line-height: 1; max-width: 9ch; }
+.after.after { position: absolute; right: calc(var(--phi-gap) * 4); bottom: 10rem; text-align: right; color: var(--phi-color-text-secondary); }
+/* The button keeps the theme's own corners (a theme rule fixes every button's); the round glass is the pill inside. */
+.capsule.capsule {
+  position: absolute; z-index: 0; width: clamp(10rem, 17vw, 18rem); aspect-ratio: 16 / 10; padding: 0; background: none;
+  animation: float calc(var(--phi-duration-slow) * 14) var(--phi-ease) infinite alternate; animation-delay: calc(var(--i) * var(--phi-duration) * -3);
+  transition: transform var(--phi-duration) var(--phi-ease-spring);
+  &:hover { z-index: 2; transform: scale(1.1); animation-play-state: paused; }
+  /* Clear of the words: the line's two halves (top left, right) and the foot (bottom left). */
+  &:nth-of-type(1) { left: 40%; top: 4%; } &:nth-of-type(2) { left: 64%; top: 8%; } &:nth-of-type(3) { left: 22%; top: 25%; }
+  &:nth-of-type(4) { left: 46%; top: 29%; } &:nth-of-type(5) { left: 4%; top: 39%; } &:nth-of-type(6) { left: 32%; top: 49%; }
 }
+.pill {
+  display: block; width: 100%; height: 100%; padding: var(--phi-space-1); border-radius: var(--phi-radius-full);
+  /* Light only: the band under it already blurs, so the pill adds no blur of its own. */
+  background-image: var(--phi-glass-to-across);
+  > img { display: block; width: 100%; height: 100%; border-radius: var(--phi-radius-full); object-fit: cover; object-position: center; }
+}
+.stepFoot { position: absolute; left: calc(var(--phi-gap) * 4); bottom: calc(var(--phi-gap) * 3); z-index: 2; display: flex; flex-direction: column; align-items: flex-start; gap: var(--phi-space-3); max-width: 28rem; }
+
+
+/* A ride in the cascade: its picture, then its name and kind. */
+.ride { display: flex; flex-direction: column; overflow: hidden; }
+.rideText { display: flex; flex-direction: column; gap: 0.125rem; padding: var(--phi-space-2) var(--phi-space-3) var(--phi-space-3); }
+
+@keyframes float { from { translate: 0 calc(var(--phi-space-2) * -1); } to { translate: 0 var(--phi-space-3); } }
+
+@media (max-width: 900px) { .fanCard:nth-of-type(1), .fanCard:nth-last-of-type(1) { display: none; } }
+@media (max-width: 640px) {
+  .fanCard { display: none; }
+  .step { min-height: 36rem; padding: calc(var(--phi-gap) * 2); }
+  .capsule.capsule:nth-of-type(n + 4) { display: none; }
+  .after.after { right: calc(var(--phi-gap) * 2); bottom: 13rem; }
+  .stepFoot { left: calc(var(--phi-gap) * 2); }
+}
+@media (prefers-reduced-motion: reduce) { .fanCard, .capsule.capsule { animation: none; } }

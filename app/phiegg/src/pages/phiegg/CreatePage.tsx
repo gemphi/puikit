@@ -3,7 +3,7 @@ import { Button, Card, CardBody, Icon, ItemCard, Page, Rows, Stack, Tag, Text, T
 import { useStore } from '@pui/store';
 import { Camera, Clapperboard, Hash, Layers, Rocket, Sparkles, Workflow, type LucideIcon } from 'lucide-react';
 import { phieggStore } from '../../state/phieggStore';
-import { D, fmt, site, t, worldOf } from '../../lib/data';
+import { D, fmt, site, t, itemOf } from '../../lib/data';
 import { Composer } from '../../components/Phiegg/Overlays';
 import { EntityAvatar } from '../../components/Phiegg/EntityAvatar';
 import { PageSections } from '../../components/Phiegg/PageSections';
@@ -27,13 +27,13 @@ export const CreatePage: React.FC = () => {
         { id: 'start', title: t('crStart'), hint: t('crStartHint'), content: (
           <Rows cols={4} colsSm={1} minItemWidth="14rem">{KINDS.filter((k) => k.action !== 'post').map((k) => (
             <ItemCard key={k.id} depth={1} variant="flat" onClick={() => act(k)} media={<Icon icon={ICONS[k.icon] ?? Sparkles} size="lg" />} title={k.label}
-              actions={<Button size="sm" variant="outline" onClick={(e) => { e.stopPropagation(); act(k); }}>{t('open')}</Button>}>{k.body}</ItemCard>))}</Rows>) },
+              actions={<Button variant="glass" onClick={(e) => { e.stopPropagation(); act(k); }}>{t('open')}</Button>}>{k.body}</ItemCard>))}</Rows>) },
         { id: 'quests', title: t('crQuests'), hint: t('crQuestsHint'), content: (
-          <Rows cols={3} colsSm={1} minItemWidth="16rem">{quests.map((q) => { const w = worldOf(q.worldId); return (
+          <Rows cols={3} colsSm={1} minItemWidth="16rem">{quests.map((q) => { const w = itemOf('world', q.worldId); return (
             <ItemCard key={q.id} depth={1} variant="flat" onClick={() => s.go('quests')} media={<EntityAvatar id={q.worldId} name={w?.name ?? q.title} size="md" />} title={q.title}
               meta={[w?.name, t('entrants', { n: fmt(q.entrants) })].filter(Boolean).join(' · ')} aside={<Tag round size="sm" intent="primary">{t('reward', { n: fmt(q.reward), coin: q.rewardCoin })}</Tag>} />); })}</Rows>) },
         { id: 'soon', title: t('crSoon'), hint: t('crSoonHint'), content: (
-          <Rows cols={3} colsSm={1} minItemWidth="16rem">{soon.map((e) => { const w = e.worldId ? worldOf(e.worldId) : undefined; return (
+          <Rows cols={3} colsSm={1} minItemWidth="16rem">{soon.map((e) => { const w = e.worldId ? itemOf('world', e.worldId) : undefined; return (
             <ItemCard key={e.id} depth={1} variant="flat" onClick={() => s.go('events')} media={<EntityAvatar id={e.clubId ?? e.worldId ?? e.id} name={e.title} size="md" />} title={e.title}
               meta={[site.eventKinds[e.kind as keyof typeof site.eventKinds] ?? e.kind, w?.name, e.startsAt.slice(0, 10)].filter(Boolean).join(' · ')}
               aside={e.recurring ? <Tag minimal round size="sm">{e.recurring}</Tag> : undefined} />); })}</Rows>) },

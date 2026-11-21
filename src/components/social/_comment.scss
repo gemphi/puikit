@@ -1,0 +1,127 @@
+/* ------------------------------------------------------------- comments */
+
+.commentMain {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Controls that ride on top of imagery are glass, not filled: a translucent
+   wash over whatever is behind them, tokenised so a brand can retune it. */
+button.glassControl,
+.glassControl {
+  background-color: transparent;
+  background-image: var(--phi-social-glass-gradient, var(--phi-label));
+  color: var(--phi-color-text-primary);
+  border: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+button.glassControl:hover:not(:disabled),
+.glassControl:hover:not(:disabled) {
+  background-image: var(--phi-social-glass-gradient-hover, var(--phi-label-strong));
+}
+
+/* ------------------------------------------------------ the post overlay */
+
+/* A post opened in place — from a profile grid, say — rather than on its own
+   page: the immersive frame on a dimmed stage, with the comment thread in a
+   side panel the viewer can toggle like a drawer. */
+.postOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+}
+
+.postOverlayBackdrop {
+  position: absolute;
+  inset: 0;
+  background-color: color-mix(in srgb, #000 78%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.postOverlayStage {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--phi-space-6);
+}
+
+/* The stage's one child is the immersive post row; give it the stage's
+   height or the 9/16 frame resolves against nothing. */
+.postOverlayStage .frame {
+  aspect-ratio: 1 / 1;
+  height: auto;
+  width: min(100%, 46rem);
+  max-height: 100%;
+}
+
+.postOverlayStage > [data-variant='immersive'] {
+  height: 100%;
+  min-height: 0;
+}
+
+.postOverlayClose {
+  position: absolute;
+  top: var(--phi-space-4);
+  inset-inline-start: var(--phi-space-4);
+  z-index: 2;
+}
+
+.postOverlayPanelToggle {
+  position: absolute;
+  top: var(--phi-space-4);
+  inset-inline-end: var(--phi-space-4);
+  z-index: 2;
+}
+
+/* The panel scrolls by itself; the stage never moves. */
+.postOverlayPanel {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  width: min(26rem, 42vw);
+  display: flex;
+  min-height: 0;
+  overflow: hidden;
+  background-color: var(--phi-color-background);
+  border-radius: var(--phi-radius-lg, 16px);
+  margin: var(--phi-layout-rail-margin, var(--phi-space-3, 12px));
+  animation: postOverlayPanelIn var(--phi-transition-medium, 0.25s) ease;
+
+  > * {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+@keyframes postOverlayPanelIn {
+  from { transform: translateX(100%); }
+  to { transform: none; }
+}
+
+/* A comment's heart: quiet, borderless, no wash — the thread stays text. */
+.commentLike {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--phi-space-1);
+  border: none;
+  border-radius: var(--phi-radius-full);
+  background: none;
+  cursor: pointer;
+  color: var(--phi-color-text-muted, inherit);
+
+  &:hover { color: var(--phi-color-text-primary); }
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--phi-color-background), 0 0 0 4px var(--phi-color-primary);
+  }
+}
+.commentLike[data-active='true'] { color: var(--phi-color-primary); }

@@ -1,0 +1,100 @@
+{
+ "_": "One taxonomy for every fashion shop, as a storefront lays it out: departments, then categories, then their sub-menus. A product sits under a node when it meets the node's rule: `match` names product fields (dot paths) and the values that count; `garment` names words that one of its garments carries. A category with `from` takes its sub-menus from that field's values (a shop's own collections). scripts/catalog.mjs writes each product's places (`catalog`) into the product data; lib/catalog.js builds the menu from them, for the app and for Phiora (GET /shop/catalog). A node with no product is not shown.",
+ "departments": [
+  { "id": "women", "label": "Women", "match": { "specs.gender": ["Womenswear", "Unisex", "Genderless"] } },
+  { "id": "men", "label": "Men", "match": { "specs.gender": ["Menswear", "Unisex", "Genderless"] } }
+ ],
+ "categories": [
+  { "id": "ready-to-wear", "label": "Ready-to-wear", "items": [
+   { "id": "dresses", "label": "Dresses", "match": { "specs.category": ["dress"] } },
+   { "id": "mini-dresses", "label": "Mini dresses", "match": { "specs.category": ["dress"], "specs.length": ["Mini"] } },
+   { "id": "gowns", "label": "Gowns", "match": { "specs.category": ["gown"] } },
+   { "id": "tops", "label": "Tops", "match": { "specs.category": ["top"] } },
+   { "id": "skirts", "label": "Skirts", "garment": ["skirt", "tutu"] },
+   { "id": "trousers", "label": "Trousers", "garment": ["trousers"] },
+   { "id": "co-ords", "label": "Co-ords", "match": { "specs.category": ["set"] } },
+   { "id": "coats-jackets", "label": "Coats and jackets", "garment": ["coat", "jacket"] },
+   { "id": "tailoring", "label": "Tailoring", "match": { "specs.category": ["tailoring"] } },
+   { "id": "knitwear", "label": "Knitwear", "garment": ["knit"] },
+   { "id": "corsets", "label": "Corsets", "garment": ["corset"] },
+   { "id": "slips", "label": "Slips", "garment": ["slip"] }
+  ] },
+  { "id": "shoes", "label": "Shoes", "items": [
+   { "id": "all", "label": "All shoes", "garment": ["boots", "sandal"] },
+   { "id": "ankle-boots", "label": "Ankle boots", "garment": ["ankle boots"] },
+   { "id": "knee-boots", "label": "Knee boots", "garment": ["knee boots"] },
+   { "id": "thigh-boots", "label": "Thigh boots", "garment": ["thigh boots"] },
+   { "id": "platform-boots", "label": "Platform boots", "garment": ["platform boots"] },
+   { "id": "sandals", "label": "Heeled sandals", "garment": ["sandal"] }
+  ] },
+  { "id": "accessories", "label": "Accessories", "items": [
+   { "id": "all", "label": "All accessories", "garment": ["gloves", "visor", "sash", "cape collar"] },
+   { "id": "gloves", "label": "Gloves", "garment": ["gloves"] },
+   { "id": "visors", "label": "Visors", "garment": ["visor"] },
+   { "id": "sashes", "label": "Sashes", "garment": ["sash"] },
+   { "id": "collars", "label": "Collars", "garment": ["cape collar"] }
+  ] },
+  { "id": "length", "label": "Length", "items": [
+   { "id": "mini", "label": "Mini", "match": { "specs.length": ["Mini"] } },
+   { "id": "knee", "label": "Knee", "match": { "specs.length": ["Knee"] } },
+   { "id": "midi", "label": "Midi", "match": { "specs.length": ["Midi"] } },
+   { "id": "tea", "label": "Tea", "match": { "specs.length": ["Tea"] } },
+   { "id": "full", "label": "Full length", "match": { "specs.length": ["Full length"] } },
+   { "id": "floor", "label": "Floor", "match": { "specs.length": ["Floor", "Floor with train"] } },
+   { "id": "train", "label": "With a train", "match": { "specs.length": ["Floor with train"] } }
+  ] },
+  { "id": "sleeves", "label": "Sleeves", "items": [
+   { "id": "sleeveless", "label": "Sleeveless", "match": { "specs.sleeve": ["Sleeveless"] } },
+   { "id": "strapless", "label": "Strapless", "match": { "specs.sleeve": ["Strapless"] } },
+   { "id": "cap", "label": "Cap", "match": { "specs.sleeve": ["Cap"] } },
+   { "id": "short", "label": "Short", "match": { "specs.sleeve": ["Short"] } },
+   { "id": "puff", "label": "Puff", "match": { "specs.sleeve": ["Puff"] } },
+   { "id": "three-quarter", "label": "Three-quarter", "match": { "specs.sleeve": ["Three-quarter"] } },
+   { "id": "bishop", "label": "Bishop", "match": { "specs.sleeve": ["Bishop"] } },
+   { "id": "long", "label": "Long", "match": { "specs.sleeve": ["Tailored long", "Sheer long"] } },
+   { "id": "cape", "label": "Cape", "match": { "specs.sleeve": ["Cape"] } }
+  ] },
+  { "id": "necklines", "label": "Necklines", "items": [
+   { "id": "halter", "label": "Halter", "match": { "specs.neckline": ["Halter"] } },
+   { "id": "sweetheart", "label": "Sweetheart", "match": { "specs.neckline": ["Sweetheart"] } },
+   { "id": "v-neck", "label": "V-neck", "match": { "specs.neckline": ["V-neck"] } },
+   { "id": "plunge", "label": "Plunge", "match": { "specs.neckline": ["Plunge"] } },
+   { "id": "square", "label": "Square", "match": { "specs.neckline": ["Square"] } },
+   { "id": "scoop", "label": "Scoop", "match": { "specs.neckline": ["Scoop"] } },
+   { "id": "high", "label": "High neck", "match": { "specs.neckline": ["High neck"] } },
+   { "id": "cowl", "label": "Cowl", "match": { "specs.neckline": ["Cowl"] } },
+   { "id": "boat", "label": "Boat", "match": { "specs.neckline": ["Boat"] } },
+   { "id": "bow", "label": "Bow neck", "match": { "specs.neckline": ["Bow neck"] } },
+   { "id": "keyhole", "label": "Keyhole", "match": { "specs.neckline": ["Keyhole"] } },
+   { "id": "lapel", "label": "Notched lapel", "match": { "specs.neckline": ["Notched lapel"] } }
+  ] },
+  { "id": "fabrics", "label": "Fabrics", "items": [
+   { "id": "silk", "label": "Silk", "match": { "specs.fabric": ["silk"] } },
+   { "id": "satin", "label": "Satin", "match": { "specs.fabric": ["satin"] } },
+   { "id": "organza", "label": "Organza", "match": { "specs.fabric": ["organza"] } },
+   { "id": "tulle", "label": "Tulle", "match": { "specs.fabric": ["tulle"] } },
+   { "id": "lace", "label": "Lace", "match": { "specs.fabric": ["lace"] } },
+   { "id": "wool", "label": "Wool", "match": { "specs.fabric": ["wool"] } },
+   { "id": "velvet", "label": "Velvet", "match": { "specs.fabric": ["velvet"] } },
+   { "id": "feathers", "label": "Feathers", "match": { "specs.fabric": ["feathers"] } },
+   { "id": "linen", "label": "Linen", "match": { "specs.fabric": ["linen"] } }
+  ] },
+  { "id": "occasions", "label": "Occasions", "items": [
+   { "id": "day", "label": "Day", "match": { "specs.occasion": ["Day"] } },
+   { "id": "business", "label": "Business", "match": { "specs.occasion": ["Business"] } },
+   { "id": "travel", "label": "Travel", "match": { "specs.occasion": ["Travel"] } },
+   { "id": "date-night", "label": "Date night", "match": { "specs.occasion": ["Date night"] } },
+   { "id": "party", "label": "Party", "match": { "specs.occasion": ["Party"] } },
+   { "id": "cocktail", "label": "Cocktail", "match": { "specs.occasion": ["Cocktail"] } },
+   { "id": "evening", "label": "Evening", "match": { "specs.occasion": ["Evening"] } },
+   { "id": "black-tie", "label": "Black tie", "match": { "specs.occasion": ["Black tie"] } },
+   { "id": "gala", "label": "Gala", "match": { "specs.occasion": ["Gala"] } },
+   { "id": "red-carpet", "label": "Red carpet", "match": { "specs.occasion": ["Red carpet"] } },
+   { "id": "premiere", "label": "Premiere", "match": { "specs.occasion": ["Premiere"] } },
+   { "id": "runway", "label": "Runway", "match": { "specs.occasion": ["Runway"] } },
+   { "id": "ballet", "label": "Ballet", "match": { "specs.occasion": ["Ballet"] } },
+   { "id": "arrivals", "label": "Arrivals", "match": { "specs.occasion": ["Arrivals"] } }
+  ] },
+  { "id": "collections", "label": "Collections", "from": "specs.collection" }
+ ]
+}

@@ -100,8 +100,7 @@ export const FacetFilter: React.FC<FacetFilterProps> = ({
     <Stack gap={2} className={className} data-facet-filter="true" data-open={open ? 'true' : 'false'}>
       {collapsible ? (
         <Button
-          variant="ghost"
-          size="sm"
+          variant="glass"
           className={styles.groupToggle}
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
@@ -153,8 +152,7 @@ export const FacetFilter: React.FC<FacetFilterProps> = ({
 
           {(hiddenCount > 0 || expanded) && maxVisible !== undefined && options.length > maxVisible && (
             <Button
-              variant="ghost"
-              size="sm"
+              variant="glass"
               className={cn(styles.more)}
               onClick={() => setExpanded((v) => !v)}
             >

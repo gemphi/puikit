@@ -1,35 +1,27 @@
-// CommentThread: a tree of replies. Indent, rail colour, radius and motion are theme tokens.
-.thread { display: flex; flex-direction: column; gap: var(--phi-space-3, 0.75rem); }
-
-.comment { display: flex; flex-direction: column; gap: var(--phi-space-1, 0.25rem); min-width: 0; }
-
-.head { display: flex; align-items: center; gap: var(--phi-space-2, 0.5rem); min-width: 0; }
-.author { min-width: 0; }
-.meta { font-size: var(--phi-font-size-xs, 0.75rem); color: var(--phi-color-text-muted, currentColor); white-space: nowrap; }
-.text { font-size: var(--phi-font-size-sm, 0.875rem); line-height: 1.45; overflow-wrap: anywhere; }
-
-.actions { display: flex; gap: var(--phi-space-1, 0.25rem); margin-left: calc(-1 * var(--phi-space-2, 0.5rem)); }
-
+// CommentThread: a chat of comments on the kit's one surface. The thread is a surface; each comment is a surface that
+// encloses its own replies; each level of replies steps in by one space (16px). No lines, no theme colour. Tokens only.
+.area { display: flex; flex-direction: column; gap: var(--phi-space-2, 0.5rem); min-width: 0; min-height: 0; }
+.thread {
+  display: flex; flex-direction: column; gap: var(--phi-space-2, 0.5rem); min-width: 0;
+  /* No ground of its own: the thread lies in a region, and each comment is one. */
+  border-radius: var(--phi-radius-md);
+}
+.thread:empty { display: none; }
+// A comment holds its band and, under it, its replies. It has no ground or room of its own: the band is the ground.
+.comment { display: flex; flex-direction: column; gap: var(--phi-space-1, 0.25rem); min-width: 0; border-radius: var(--phi-radius-md); }
+// Its actions are icon buttons at the right of the comment's own band (ChatBubble actions).
+.action { min-height: 0; padding: var(--phi-space-1, 0.25rem); font-size: var(--phi-font-size-xs, 0.75rem); }
+.fact { padding: var(--phi-space-1) var(--phi-space-2); }
+.action:hover { background-image: var(--phi-control-ground-strong); }
+.reply { padding: 0 0 0 var(--pui-thread-indent, var(--phi-space-4, 1rem)); }
+// Replies step in by one space a level, inside their comment's box.
 .replies {
-  display: flex; flex-direction: column; gap: var(--phi-space-3, 0.75rem);
-  margin-top: var(--phi-space-1, 0.25rem);
-  margin-left: var(--pui-thread-indent, 0.75rem);
-  padding: var(--phi-space-2, 0.5rem) var(--phi-space-2, 0.5rem) var(--phi-space-2, 0.5rem) var(--pui-thread-indent, 0.75rem);
-  border-left: 0.125rem solid color-mix(in srgb, var(--phi-color-primary) 30%, transparent);
-  border-radius: 0 var(--phi-radius-md, 0.5rem) var(--phi-radius-md, 0.5rem) 0;
-  /* Every reply level is a shade of the theme colour fading to transparent, left to right; nested levels stack,
-     so each level reads a little deeper than its parent. */
-  background: linear-gradient(90deg, color-mix(in srgb, var(--phi-color-primary) var(--pui-thread-shade, 9%), transparent) 0%, transparent 85%);
+  display: flex; flex-direction: column; gap: var(--phi-space-2, 0.5rem);
+  padding: 0 0 0 var(--pui-thread-indent, var(--phi-space-4, 1rem));
   animation: pui-thread-in var(--phi-duration-base, 200ms) var(--phi-ease, ease) both;
 }
-.card { min-width: 0; }
-// At the deepest level replies stop indenting and line up under their parent.
-.flat .replies, .flat { margin-left: 0; }
-
+.flat .replies, .flat { padding-left: var(--phi-space-2, 0.5rem); }
+.scroll { overflow: auto; overscroll-behavior: contain; }
+.area > .thread { flex: 1 1 auto; min-height: 0; }
 @keyframes pui-thread-in { from { opacity: 0; transform: translateY(-0.25rem); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .replies { animation: none; } }
-
-// Thread actions are quiet text buttons in the theme colour, not filled controls.
-.actions .action { background: transparent; box-shadow: none; border-color: transparent; min-height: 0; padding: 0.15rem var(--phi-space-2, 0.5rem); font-size: var(--phi-font-size-xs, 0.75rem); font-weight: var(--phi-font-weight-medium); color: var(--phi-color-primary); }
-.actions .action:hover { background: color-mix(in srgb, var(--phi-color-primary) 10%, transparent); }
-.scroll { overflow: auto; overscroll-behavior: contain; }

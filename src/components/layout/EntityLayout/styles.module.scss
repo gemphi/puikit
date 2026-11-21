@@ -2,21 +2,51 @@
 // Nothing here scrolls on its own; the content area is the one scroll. Tokens only.
 .page { display: flex; flex-direction: column; gap: var(--phi-gap); padding-bottom: 1rem; container-type: inline-size; }
 .head { min-width: 0; }
+.headAction { margin-left: auto; flex: none; }
 .title.title { margin: 0; font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.1; }
 .sub.sub { padding-bottom: 0.3rem; }
 
-.grid { --pui-entity-strip: 3.25rem; display: grid; grid-template-columns: var(--pui-entity-cols); gap: var(--phi-gap); align-items: start;
+/* A profile's opening. The first screen is the backdrop alone: the name stands at its foot, centred, with the row of
+   tabs under it; the header has no ground of its own. The tabs are then held at the top while the page scrolls, and
+   the record's own square card comes to the centre, scrolling with the page, the columns after it. */
+.hero { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 0.5rem; text-align: center;
+  /* The first screen, less the shell's header, the row of tabs and the page's own breath above and below. */
+  min-height: calc(100dvh - var(--pui-shell-head, 3.5rem) - var(--phi-control-height-md, 2.75rem) - 5rem);
+  /* A heading has no ground: the name stands on the page's picture, bare. */
+  padding: 0 var(--phi-space-4) var(--phi-space-4); }
+.hero .title.title { font-size: clamp(2.25rem, 6vw, 4.5rem); }
+.hero .sub.sub { padding-bottom: 0; max-width: 44rem; }
+/* The tabs stand in the middle of the row whatever is at its end: three tracks, the tabs in the middle one, the
+   record's one action at the right end of the third. */
+.heroTabs { position: sticky; top: 0; z-index: 3; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: var(--phi-space-3); min-width: 0; }
+.heroTabs > :not(.heroAction) { grid-column: 2; min-width: 0; max-width: 100%; }
+.heroAction { grid-column: 3; justify-self: end; }
+/* Held over the page as it scrolls, the tabs wash out what passes behind them with a blur alone: no colour of their
+   own is laid under them. */
+.heroTabs > :not(.heroAction) { backdrop-filter: var(--phi-glass-blur-deep); -webkit-backdrop-filter: var(--phi-glass-blur-deep); border-radius: var(--phi-radius-md); }
+.heroCard { align-self: center; display: block; width: min(100%, 30rem); aspect-ratio: 1; padding: 0; border: 0; background: none;
+  border-radius: var(--phi-radius-lg); overflow: hidden; }
+.heroCard > * { width: 100%; height: 100%; }
+button.heroCard { cursor: zoom-in; }
+button.heroCard:focus-visible { outline: 2px solid var(--phi-color-primary); outline-offset: 2px; }
+/* A section a tab brings into view stops under the held tabs, not behind them. */
+.withHero :global([data-section]) { scroll-margin-top: calc(var(--phi-control-height-md, 2.75rem) + 1.5rem); }
+/* Under held tabs, a column that stays in view stays below them. */
+.withHero .stick, .withHero .hold { top: calc(var(--phi-control-height-md, 2.75rem) + 1rem); }
+
+.grid { display: grid; grid-template-columns: var(--pui-entity-cols); gap: var(--phi-gap); align-items: start;
   transition: grid-template-columns var(--phi-duration, 0.3s) var(--phi-ease, ease-out); }
 
 /* Each column is a surface (.phi-layers, tokens.scss), like every container. */
-.col { min-width: 0; display: flex; flex-direction: column; }
+.col { position: relative; min-width: 0; display: flex; flex-direction: column; }
 .colHead { display: flex; align-items: center; gap: 0.5rem; min-height: 3rem; padding: 0.5rem 1rem; }
-.fold { margin-left: auto; flex: none; }
-/* A folded side column: a strip as tall as the page's first screen, its name running down it; a click opens it. */
-.strip { position: sticky; top: 0; align-items: center; justify-content: flex-start; gap: var(--phi-space-3); min-height: min(32rem, calc(100vh - 12rem));
-  padding: var(--phi-space-3) 0; cursor: pointer; color: var(--phi-color-text-secondary); }
-.strip:hover { color: var(--phi-color-text-primary); }
-.stripName { writing-mode: vertical-rl; white-space: nowrap; }
+.fold { margin-left: auto; flex: none; opacity: 0; transition: opacity var(--phi-transition-fast); }
+.col:hover .fold, .col:focus-within .fold { opacity: 1; }
+@media (hover: none) { .fold { opacity: 1; } }
+/* A side column's inner edge drags (it lies in the gap beside the column). */
+.grip { position: absolute; top: 0; bottom: 0; width: var(--phi-gap); cursor: col-resize; touch-action: none; z-index: 1; border-radius: var(--phi-radius-full); }
+.gripEnd { right: calc(var(--phi-gap) * -1); } .gripStart { left: calc(var(--phi-gap) * -1); }
+.grip:hover, .grip:active { background: var(--phi-shade-2); }
 .colBody { padding: 1rem; min-width: 0; }
 
 /* The chat stays in view beside the scrolling columns; its messages fit its height with no scroll bar of their own. */
@@ -25,6 +55,11 @@
 .stick .colBody > * { flex: 1 1 auto; min-height: 0; }
 .stick .colBody * { scrollbar-width: none; }
 .stick .colBody *::-webkit-scrollbar { display: none; }
+
+/* A column held in view (stick): it stays under the header and scrolls inside itself while its neighbours scroll by. */
+.hold { position: sticky; top: 0; max-height: calc(100vh - 56px - 2.5rem); }
+.hold .colBody { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; }
+.hold .colBody::-webkit-scrollbar { display: none; }
 
 /* A desktop: the middle column is as wide as the screen is tall, less the header, title and its own head, so the
    square picture in it fits the screen; the side columns share what is left. */
@@ -37,4 +72,6 @@
   .grid { grid-template-columns: minmax(0, 1fr); }
   .middle { order: -1; }
   .stick { position: static; height: 32rem; }
+  .hold { position: static; max-height: none; }
+  .hold .colBody { overflow: visible; }
 }

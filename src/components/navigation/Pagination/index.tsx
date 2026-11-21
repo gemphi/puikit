@@ -27,7 +27,6 @@ export const Pagination = ({ currentPage, totalPages, onPageChange, className = 
     <nav className={cn(styles.pagination, className)} aria-label="Pagination">
       <Button
         variant="icon"
-        size="sm"
         onClick={() => onPageChange(Math.max(1, currentPage - 1))}
         disabled={currentPage === 1}
         aria-label="Previous page"
@@ -38,8 +37,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange, className = 
       {pages.map((page) => (
         <Button
           key={page}
-          variant={page === currentPage ? 'primary' : 'ghost'}
-          size="sm"
+          variant="glass"
           onClick={() => onPageChange(page)}
         >
           {page}
@@ -48,7 +46,6 @@ export const Pagination = ({ currentPage, totalPages, onPageChange, className = 
 
       <Button
         variant="icon"
-        size="sm"
         onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
         disabled={currentPage === totalPages}
         aria-label="Next page"

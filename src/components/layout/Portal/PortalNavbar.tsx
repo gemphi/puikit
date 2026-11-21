@@ -61,7 +61,6 @@ export const PortalNavbar: React.FC<PortalNavbarProps> = ({
         {onToggleSidebar && (
           <Button
             variant="icon"
-            size="sm"
             onClick={onToggleSidebar}
             aria-label="Toggle sidebar"
             iconLeft={PanelLeft}
@@ -113,7 +112,7 @@ export const PortalNavbar: React.FC<PortalNavbarProps> = ({
       )}
       <NavbarSection align="end">
         {onBackToApp && (
-          <Button variant="outline" size="sm" onClick={onBackToApp}>
+          <Button variant="glass" onClick={onBackToApp}>
             <ArrowLeft size={15} />
             <Text as="span">{backToAppLabel}</Text>
           </Button>
@@ -121,7 +120,6 @@ export const PortalNavbar: React.FC<PortalNavbarProps> = ({
         {onToggleDark && (
           <Button
             variant="icon"
-            size="sm"
             onClick={onToggleDark}
             aria-label="Toggle theme mode"
             iconLeft={dark ? Sun : Moon}
@@ -130,7 +128,6 @@ export const PortalNavbar: React.FC<PortalNavbarProps> = ({
         {onOpenPreferences && (
           <Button
             variant="icon"
-            size="sm"
             onClick={onOpenPreferences}
             aria-label={preferencesLabel}
             iconLeft={SlidersHorizontal}

@@ -8,15 +8,46 @@
   animation: puiSecIn var(--phi-duration, 0.3s) var(--phi-ease, ease-out);
 }
 .exp { flex: 1 1 auto; }
-.head { display: flex; align-items: center; gap: 0.25rem; padding: 0.35rem 0.5rem 0.35rem 0.75rem; min-height: 2.5rem; }
+/* The head and the body share one side padding (--pui-sec-x), so a title lines up with what it heads. */
+.section { --pui-sec-x: 0.75rem; }
+.lg .section { --pui-sec-x: 1.25rem; }
+.head { display: flex; align-items: center; gap: 0.5rem; padding: 0.35rem var(--pui-sec-x); min-height: 2.5rem;
+  /* The header stays at the top while its section scrolls by, on the section's own glass. */
+  position: sticky; top: 0; z-index: 2; border-radius: inherit;
+  /* Light, never a dark band: the page's light from the left fading to nothing, over a blur so it reads while pinned. */
+  /* The head sits straight on its section's own ground: no band or colour of its own; one region, one background. */
+  background: none; }
+.icon { display: inline-flex; flex: none; color: var(--phi-color-primary); }
+/* A header with no title of its own (it repeats the page's) holds only its controls: no bar, nothing pinned. */
+.head:has(> .title:empty) { position: static; background: none; backdrop-filter: none; min-height: 0; padding-block: 0; }
+/* With its title hidden (it would repeat the page's), a head still holds its controls in a row of their own, never over the content. */
+.head:has(> .title:empty) > .tools {
+  /* In the head's own row, after its action and layout icons: shown under the pointer, never laid over another icon. */
+  display: none; align-items: center; gap: 0.125rem; flex: none;
+}
 .folded .head { border-bottom: 0; }
 /* A section's controls (move, fold, expand, close) show only while the pointer is over it or it holds the focus;
    on a touch screen, with no pointer to hover, they stay. */
-.head > :not(.title) { opacity: 0; transition: opacity var(--phi-transition-fast); }
-.section:hover > .head > *, .section:focus-within > .head > * { opacity: 1; }
-@media (hover: none) { .head > :not(.title) { opacity: 1; } }
+/* The section's own action (See all, Add) stays in the header; its controls (move, fold, expand, close) float over the
+   header's end while the pointer is over it or it holds the focus, on the header's glass, so they never take the
+   title's room nor touch the edge. On a touch screen, with no pointer to hover, they stay. */
+.actions { display: inline-flex; align-items: center; gap: 0.25rem; flex: none; }
+.tools {
+  position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); display: inline-flex; align-items: center; gap: 0.125rem;
+  padding: 0.125rem; border-radius: var(--phi-radius-full); opacity: 0; pointer-events: none; transition: opacity var(--phi-transition-fast);
+  /* Light glass, never a dark pill: the page's light from the left fading to nothing, over a blur. */
+  background: var(--phi-control-ground); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur);
+}
+.section:hover > .head > .tools, .section:focus-within > .head > .tools { display: inline-flex; }
+/* A head's buttons are icons alone, with no ground of their own: only standalone buttons and tabs wear one. */
+.head button { background: none !important; box-shadow: none; }
+.head button:hover { background-image: var(--phi-control-ground-strong) !important; }
+@media (hover: none) { .tools { display: inline-flex; } }
+/* The heading: its icon in the label's chip (tokens.scss .pui-label-icon), its words on nothing; the tools keep the
+   header's far end. */
 .title { flex: 1; min-width: 0; display: flex; align-items: center; gap: 0.5rem; overflow: hidden; }
-.body { min-height: 0; overflow: auto; padding: 0 0.75rem 0.75rem; }
+/* A section's content never touches its heading or its edges: room above, on both sides and most below. */
+.body { min-height: 0; overflow: auto; padding: 0.5rem var(--pui-sec-x) 1rem; }
 .exp > .body { flex: 1; display: flex; flex-direction: column; }
 .exp > .body > * { flex: 1 1 auto; min-height: 0; }   /* the content takes the whole stage */
 .strip { display: flex; flex-wrap: wrap; gap: 0.25rem; }
@@ -24,13 +55,29 @@
 @media (prefers-reduced-motion: reduce) { .section { animation: none; } }
 // Page sections: a larger header, the plain variant sits on the page background with a hairline under each header.
 .lg { gap: var(--phi-space-4, 1rem); }
-.lg .head { min-height: 3rem; padding-left: 1rem; }
-.lg .body { padding: 0 1rem 1rem; }
-.lg .title { flex-direction: column; align-items: flex-start; gap: 0.125rem; }
+.lg .head { min-height: 3rem; }
+.lg .body { padding: 0.75rem var(--pui-sec-x) 1.25rem; }
+.lg .title { flex-wrap: wrap; align-items: center; gap: 0.125rem 0.5rem; }
+.lg .title > :not(.icon) { flex-basis: auto; }
 .sm .title { flex-wrap: wrap; }
-.plain .section { background: none; box-shadow: none; border-radius: 0; }
-.plain .head { padding-left: 0; padding-right: 0; border-bottom: 1px solid var(--phi-color-border-subtle, var(--phi-color-border)); margin-bottom: var(--phi-space-2, 0.5rem); }
+/* A plain section is a region: its ground comes from tokens.scss by its depth, like every group. */
+.plain .section { box-shadow: none; }
+.plain .head { padding-left: 0; padding-right: 0; border-bottom: 0; margin-bottom: var(--phi-space-2, 0.5rem); }
 .plain .body { padding-left: 0; padding-right: 0; overflow: visible; }
 
-/* Glass (tokens/_glass.scss): a section is a child of the pane it sits in, laid from nothing down to glass. */
-.plain .section { background: none; box-shadow: none; }
+
+/* Band: no surface of its own, only the page's light from its top fading to nothing at its foot (no blur, no colour),
+   as on a shop's columns; its content as close as the inner layer gap (tokens.scss --phi-layer-in). */
+.band .section { box-shadow: none; border-radius: var(--phi-radius-md); }
+.band .head { background: none; backdrop-filter: none; -webkit-backdrop-filter: none; padding: var(--phi-layer-in) var(--phi-layer-in) 0 calc(var(--phi-layer-in) / 2); }
+.band .body { overflow: visible; padding: calc(var(--phi-layer-in) / 2) var(--phi-layer-in) calc(var(--phi-layer-in) / 2) calc(var(--phi-layer-in) / 2); }
+
+/* The layout switch: one icon for the layout shown; under the pointer its choices drop below it as a row of glass. */
+.layout { position: relative; display: inline-flex; flex: none; }
+.layoutMenu {
+  position: absolute; top: 100%; right: 0; z-index: 6; display: none; gap: var(--phi-space-1); padding: var(--phi-space-1);
+  border-radius: var(--phi-radius-md); background: var(--phi-control-ground);
+  backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur); white-space: nowrap;
+  > button { display: inline-flex; align-items: center; gap: var(--phi-space-1); }
+}
+.layout:hover .layoutMenu, .layout:focus-within .layoutMenu { display: flex; }

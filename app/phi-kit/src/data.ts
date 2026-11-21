@@ -2,11 +2,13 @@ import registry from './registry.json';
 import { resolveLinks } from './links';
 
 export type IconPath = { d: string; tf?: string; fill: string; stroke: string; sw: number };
-export type AppMeta = { look?: string; mode?: 'light' | 'dark'; key: string; name: string; tagline: string; desc: string; color: string; port: number; built: boolean; config?: boolean; icon: IconPath[] };
+export type AppMeta = { look?: string; mode?: 'light' | 'dark'; /** The face the app reads in until a person picks one (an id from fonts.ts). */ font?: string; key: string; name: string; tagline: string; desc: string; color: string; port: number; built: boolean; config?: boolean; icon: IconPath[] };
 export type NavItem = { id: string; label: string; icon: string; items?: NavItem[]; image?: string; pull?: Record<string, unknown>; previews?: import('./blocks/Grid').GridItem[] };
 export type Block = { kind: string; title?: string; [k: string]: any };
 export type View = { title: string; sub?: string; blocks: Block[] };
-export type AppData = { app: string; start?: string; bare?: boolean; nav: NavItem[]; views: Record<string, View>; profile?: import('./Profile').ProfileSpec };
+export type AppData = { app: string; start?: string; bare?: boolean; nav: NavItem[];
+  /** The right sidebar: groups like `nav`, shown as icons at the right edge, each opening its menu. */
+  side?: NavItem[]; views: Record<string, View>; profile?: import('./Profile').ProfileSpec };
 
 export const APPS = registry as AppMeta[];
 export const appMeta = (key: string) => APPS.find((a) => a.key === key) as AppMeta;
@@ -51,10 +53,11 @@ export function assetUrl(ref?: string): string | undefined {
  *  records) or, with no API, from public/data/<key>.json, the file that seeds them. Linked blocks resolve here. */
 export const loadApp = async (key: string): Promise<AppData> => {
   const api = import.meta.env.VITE_PHI_API as string | undefined;
-  const url = api ? api.replace(/\/$/, '') + '/app/' + key : appBase() + 'data/' + key + '.json';
-  let r = await fetch(url);
-  // An app the API has not been told about yet still has its own file.
-  if (!r.ok && api) r = await fetch(appBase() + 'data/' + key + '.json');
+  const file = appBase() + 'data/' + key + '.json';
+  // An API that cannot be reached is no answer, like one that has not been told about the app yet: the app still has
+  // its own file, so the site opens either way.
+  let r = api ? await fetch(api.replace(/\/$/, '') + '/app/' + key).catch(() => null) : null;
+  if (!r?.ok) r = await fetch(file);
   if (!r.ok) throw new Error('Could not load ' + key + ' (' + r.status + ')');
   return resolveLinks(await r.json());
 };

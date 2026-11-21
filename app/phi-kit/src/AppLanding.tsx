@@ -39,9 +39,9 @@ export const AppLanding: React.FC<{ data: AppData; go: (id: string) => void }> =
     <FeatureShowcase
       title={app?.tagline ?? name}
       lede={app?.desc}
-      actions={first ? <Button variant="primary" onClick={() => go(first.id)}>{say(words.landing.enter, { app: name })}</Button> : undefined}
+      actions={first ? <Button variant="glass" onClick={() => go(first.id)}>{say(words.landing.enter, { app: name })}</Button> : undefined}
       features={features}
-      close={{ title: say(words.landing.close, { app: name }), body: app?.desc, actions: first ? <Button variant="primary" onClick={() => go(first.id)}>{say(words.landing.open, { page: first.label })}</Button> : undefined }}
+      close={{ title: say(words.landing.close, { app: name }), body: app?.desc, actions: first ? <Button variant="glass" onClick={() => go(first.id)}>{say(words.landing.open, { page: first.label })}</Button> : undefined }}
     />
   );
 };

@@ -67,7 +67,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
               <ShoppingBag size={48} strokeWidth={1.5} />
             </Text>
             <Text as="span" intent="muted">{labels?.empty ?? 'Your bag is empty'}</Text>
-            <Button variant="secondary" size="sm" onClick={onClose}>
+            <Button variant="glass" onClick={onClose}>
               {labels?.continueShopping ?? 'Continue shopping'}
             </Button>
           </Stack>

@@ -11,7 +11,7 @@ import { Menu as MenuIcon } from 'lucide-react';
 import { ShellProvider } from './context';
 import { ShellBrand } from './Brand';
 import { APPS, Rail } from './Rail';
-import { AppsList, GroupMenu, PageMenu, PhoneTabs } from './Panel';
+import { AppsList, GroupMenu, PageMenu, PhoneRail, PhoneTabs } from './Panel';
 import { entriesOf, leafOf, type AppShellApp, type AppShellGroup, type AppShellLabels, type AppShellLeaf, type AppShellPreview, type AppShellTab } from './types';
 import styles from './styles.module.scss';
 
@@ -35,10 +35,16 @@ export type AppShellProps = {
   foot?: AppShellLeaf[];
   /** Phone tabs: on a phone the rail gives way to these in a bar at the foot. */
   tabs?: AppShellTab[];
+  /** The phone's bar as the rail itself: the ids of the menu groups it shows, in order, as icons. A group's icon
+   *  opens that group's own menu and nothing else; one that is a single page goes to it. Wins over `tabs`. */
+  phoneRail?: string[];
   /** Tools shown at the foot of the panel (a look/theme switch). */
   tools?: React.ReactNode;
   /** Optional right aside. */
   right?: React.ReactNode;
+  /** A second sidebar at the right edge, the same rail and menus as the left one: what the page that is open offers
+   *  (switch to another, its centre, its market). It starts as icons only; an icon opens its menu beside it. */
+  side?: { label: string; groups: AppShellGroup[] };
   /** A pulled record under a menu entry was picked. */
   onPreview?: (leafId: string, preview: AppShellPreview) => void;
   /** Where you are, when the app knows more than the menu does (an entity's own trail); the menu's trail otherwise. */
@@ -68,7 +74,7 @@ const readOpen = () => { try { return localStorage.getItem(KEY) !== '0'; } catch
  */
 export const AppShell: React.FC<AppShellProps> = ({
   collapseKey,
-  brand, groups, view, onView, rail, onRail, apps, appsLabel = 'Apps', appsIcon, foot = [], tabs, tools, right, onPreview, crumbs, headerRight, labels, children, className = '',
+  brand, groups, view, onView, rail, onRail, apps, appsLabel = 'Apps', appsIcon, foot = [], tabs, phoneRail, tools, right, side, onPreview, crumbs, headerRight, labels, children, className = '',
 }) => {
   const L: AppShellLabels = { openMenu: 'Open the menu', closeMenu: 'Close the menu', menu: 'Menu', moreApps: 'More apps', fold: (l, o) => (o ? 'Fold ' : 'Open ') + l, ...labels };
   const footGroups = foot.filter((f): f is AppShellGroup => Array.isArray(f.items) && f.items.length > 0);
@@ -79,6 +85,7 @@ export const AppShell: React.FC<AppShellProps> = ({
   const railId = rail ?? ownRail;
   const setRail = (id: string) => { setOwnRail(id); onRail?.(id); };
   const [drawer, setDrawer] = React.useState(false);
+  const [phoneId, setPhoneId] = React.useState('');
   const [open, setOpenState] = React.useState(readOpen);
   const [stage, setStage] = React.useState<HTMLElement | null>(null);
   const setOpen = (o: boolean) => { setOpenState(o); try { localStorage.setItem(KEY, o ? '1' : '0'); } catch { /* storage off: it holds for this visit */ } };
@@ -87,17 +94,34 @@ export const AppShell: React.FC<AppShellProps> = ({
   const lastRail = React.useRef(rail);
   React.useEffect(() => { if (rail !== undefined && rail !== lastRail.current) setOpen(true); lastRail.current = rail; }, [rail]);
 
-  // A new collapseKey (a record opened full width) folds the panel and the drawer away.
-  const lastKey = React.useRef(collapseKey);
-  React.useEffect(() => { if (collapseKey && collapseKey !== lastKey.current) { setOpen(false); setDrawer(false); } lastKey.current = collapseKey; }, [collapseKey]); // eslint-disable-line react-hooks/exhaustive-deps
+  // A new collapseKey (the app names the page that is open: a new page, a new record) folds both sidebars and the
+  // drawer away, so a page always opens with the room to itself. A rail icon that opens its own menu as it goes to
+  // its page keeps that menu open (the person just asked for it).
+  const lastKey = React.useRef(collapseKey); const keep = React.useRef(false);
+  React.useEffect(() => {
+    if (collapseKey && collapseKey !== lastKey.current) { if (!keep.current) setOpen(false); setSideRail(''); setDrawer(false); }
+    keep.current = false; lastKey.current = collapseKey;
+  }, [collapseKey]); // eslint-disable-line react-hooks/exhaustive-deps
   const go = (id: string) => { onView(id); setDrawer(false); };
   // The current icon closes its open panel. Otherwise a leaf group navigates, a group opens its menu (and goes to its
   // own page when it has one).
   const pick = (g: AppShellGroup) => {
     if (g.id === railId && open && !leafOf(g)) { setOpen(false); return; }
-    const leaf = leafOf(g); if (leaf) go(leaf.id); else { if (g.to) go(g.to); setOpen(true); }
+    const leaf = leafOf(g); if (leaf) go(leaf.id); else { if (g.to) { keep.current = true; go(g.to); } setOpen(true); }
     setRail(g.id);
   };
+  // The right sidebar keeps its own open menu: closed (icons only) until one is picked, and again on the same icon.
+  const [sideRail, setSideRail] = React.useState(''); const sideGroup = side?.groups.find((g) => g.id === sideRail);
+  const pickSide = (g: AppShellGroup) => { const leaf = leafOf(g); if (leaf) { go(leaf.id); setSideRail(''); return; } if (g.to) go(g.to); setSideRail(g.id === sideRail ? '' : g.id); };
+  // The phone's bar: an icon opens its own group's menu in the drawer, and closes it again; a page group goes there.
+  const phoneGroups = (phoneRail ?? []).map((id) => allGroups.find((g) => g.id === id)).filter((g): g is AppShellGroup => !!g);
+  const phoneGroup = phoneGroups.find((g) => g.id === phoneId);
+  const pickPhone = (g: AppShellGroup) => {
+    const leaf = leafOf(g); if (leaf) { setPhoneId(''); go(leaf.id); return; }
+    if (drawer && phoneId === g.id) { setDrawer(false); return; }
+    setPhoneId(g.id); setRail(g.id); setDrawer(true);
+  };
+  const bar = phoneGroups.length > 0 || !!tabs?.length;
   const pickApps = () => { if (railId === APPS && open) { setOpen(false); return; } setRail(APPS); setOpen(true); };
 
   // Groups that are one page each make one menu of pages, so a page never shows its own name as a heading over itself.
@@ -130,10 +154,10 @@ export const AppShell: React.FC<AppShellProps> = ({
 
   return (
     <ShellProvider navOpen={open} stage={stage}>
-      <Box className={cn(styles.root, open ? styles.open : styles.closed, tabs?.length && styles.withTabs, className)}>
+      <Box className={cn(styles.root, open ? styles.open : styles.closed, bar && styles.withTabs, className)}>
         <Box ref={setStage} className={styles.stage} aria-hidden />
         <Box as="header" className={styles.head}>
-          {!tabs?.length && <Pressable className={cn(styles.railBtn, styles.menuBtn)} aria-label={L.menu} onClick={() => setDrawer(true)}><MenuIcon size={20} /></Pressable>}
+          {!bar && <Pressable className={cn(styles.railBtn, styles.menuBtn)} aria-label={L.menu} onClick={() => setDrawer(true)}><MenuIcon size={20} /></Pressable>}
           <ShellBrand brand={brand} open={open} onToggle={() => setOpen(!open)} openLabel={L.openMenu} closeLabel={L.closeMenu}
             onHome={() => { const first = entriesOf(groups[0] ?? { id: '', label: '', items: [] })[0]; if (first) go(first.id); }} />
           <Box className={styles.lane}>
@@ -150,16 +174,24 @@ export const AppShell: React.FC<AppShellProps> = ({
           </Box>
           <Box as="main" className={styles.main}><Box className={cn(styles.inner, 'pui-shell-content')}>{children}</Box></Box>
           {right ? <Box as="aside" className={cn(styles.right, 'phi-layers')}>{right}</Box> : null}
+          {side?.groups.length ? (
+            <Box className={cn(styles.nav, styles.navEnd, 'phi-layers')} data-side="end">
+              {sideGroup && <Box as="aside" className={styles.panel} aria-label={sideGroup.label}><Box className={styles.panelScroll}><GroupMenu key={sideGroup.id} group={sideGroup} {...menu} /></Box></Box>}
+              <Rail label={side.label} groups={side.groups} footGroups={[]} footLeaves={[]} railId={sideRail} view={view} pick={pickSide} pickApps={() => undefined} go={go} />
+            </Box>
+          ) : null}
         </Box>
-        {tabs?.length ? <PhoneTabs tabs={tabs} view={view} go={go} menu={{ label: L.menu, icon: <MenuIcon size={18} />, open: drawer, onClick: () => setDrawer(!drawer) }} /> : null}
+        {phoneGroups.length ? <PhoneRail label={L.menu} groups={phoneGroups} on={drawer ? phoneId : ''} current={groupOfView} pick={pickPhone} />
+          : tabs?.length ? <PhoneTabs tabs={tabs} view={view} go={go} menu={{ label: L.menu, icon: <MenuIcon size={18} />, open: drawer, onClick: () => setDrawer(!drawer) }} /> : null}
 
-        <Drawer isOpen={drawer} onClose={() => setDrawer(false)} position="left" size="md" title={brand.name}>
-          <Stack direction="column" gap={3}>
+        <Drawer isOpen={drawer} onClose={() => setDrawer(false)} position="left" size="md" title={phoneGroup?.label ?? brand.name}
+          footer={phoneGroup ? <PhoneRail inDrawer label={L.menu} groups={phoneGroups} on={phoneId} current={groupOfView} pick={pickPhone} /> : undefined}>
+          {phoneGroup ? <Box className={styles.phoneMenu}><GroupMenu key={phoneGroup.id} group={phoneGroup} {...menu} /></Box> : <Stack direction="column" gap={3}>
             {pages.length > 0 && <PageMenu pages={pages} {...menu} />}
             {allGroups.filter((g) => !leafOf(g)).map((g) => <GroupMenu key={g.id} group={g} {...menu} />)}
             {apps && apps.length > 0 && <Box className={styles.panelGroup}><Text size="sm" weight="semibold">{appsLabel}</Text><AppsList apps={apps} moreLabel={L.moreApps} /></Box>}
             {(tools || footRows.length > 0) && <Stack direction="column" gap={1}>{tools}{footRows}</Stack>}
-          </Stack>
+          </Stack>}
         </Drawer>
       </Box>
     </ShellProvider>

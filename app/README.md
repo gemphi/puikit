@@ -18,8 +18,6 @@ Apps with their own code (`phiegg`, `phione`, `phipad`, `phidao`) still run on t
 
 | Application | Port | Description |
 |:---|:---|:---|
-| [`pui-book`](./pui-book) | `3001` | **Component Documentation & Live Playground (`puikit.com`)**: Interactive workbench with real-time props inspector, token switcher, and live code examples (replaces legacy Storybook). |
-| [`demo-app`](./demo-app) | `3002` | **Enterprise Operations Showcase**: Full operational cockpit featuring agent swarms, ontology Topos trees, dense data tables, and metrics telemetry. |
 | [`uaia`](./uaia) | `3005` | **UAIA (`uaiagency.org`)**: Unified Artificial Intelligence Agency — 16-page regulatory-body site on the `uaia` brand theme. |
 | [`phiegg`](./phiegg) | `3101` | **Phiegg**: feed, explore, worlds, SS26 shows, series & films, hosts & nests, agents, quests/coins/pools, League, events, Phipad, Laura's Spark shop. Apple theme by default, puikit-only markup; every card is a three-layer `DepthMedia` (scene → look → photo). Replaces the `phiegg-v2` draft. |
 | [`phiegg-v1`](./phiegg-v1) | `3101` | **Phiegg v1**: the earlier social app (feed, clubs, Laura's Spark shop). Shares port 3101 with `phiegg` — run one at a time. |
@@ -35,10 +33,11 @@ Apps with their own code (`phiegg`, `phione`, `phipad`, `phidao`) still run on t
 | [`phiret`](./phiret) | `3111` | **Phiret**: The real estate council. Organic theme, phi-kit shell. |
 | [`phidao`](./phidao) | `3112` | **Phidao**: The members platform. Organic theme, phi-kit shell. |
 | [`phisum`](./phisum) | `3113` | **Phisum**: The fund and the $UM token. Organic theme, phi-kit shell. |
+| [`phiapp`](./phiapp) | `3114` | **Phiapp**: the shared app every Phi app is configured on; the landing and demo (the site's root opens it) and the home of the shared tests (`app/phiapp/test`). |
+| [`phiogy`](./phiogy) | `3118` | **Phiogy**: talk and community - direct messages, spaces with channels, pictures and reactions, the member profile beside the stream. A config app on the host (`/phiogy/`), the chat block's `room` variant; Gradient look, Phi-Soft face. |
 | [`phione`](./phione) | `3115` | **Phione** (formerly the Phiegg cockpit): console of the Phient platform — core ontology, platform agents and their verbs, workforce, API docs. Reads the Python Phient API (`VITE_PHIADK_API`, gemphi/phient `phiadk.phiapi`, port 8000); sample data without it. |
 | [`phiora-server`](./phiora-server) | `4300` | **Phiora API**: app content, per-user state, server-owned wallet, shop orders priced from data, persona chat via a model. Zero dependencies — `npm start`. |
 | [`phi-kit`](./phi-kit) | — | **Shared Phiace shell** (rail, section menu, right-bar, content blocks, wallet). Imported via `@phi-kit`; not run on its own. |
-| [`landing-app`](./landing-app) | `3003` | **Design System Landing Page**: Showcase and overview of Phient UI's design philosophy, Palantir Blueprint parity, and theming capabilities. |
 
 ---
 
@@ -89,20 +88,13 @@ npm run data:phiegg        # rebuild the Phiegg data (worlds, rides, jewels, sto
 ### One app
 
 ```bash
-# 1. Run the Component Documentation & Workbench (puikit.com)
-cd app/pui-book
+# The landing and demo: phiapp, on the shared app
+cd app/phiapp
 npm install
 npm run dev
 
-# 2. Run the Enterprise Operations Showcase
-cd ../demo-app
-npm install
-npm run dev
-
-# 3. Run the Landing Showcase
-cd ../landing-app
-npm install
-npm run dev
+# Its tests (the shared app's)
+npm test
 ```
 
 ## Phiace apps (Organic theme)

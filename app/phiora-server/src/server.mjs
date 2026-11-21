@@ -8,6 +8,7 @@ import { randomBytes, createHash } from 'node:crypto';
 import { createStore } from './store.mjs';
 import { ensureWallet, swap, spend, earn, USD, LedgerError } from './ledger.mjs';
 import { loadCatalog, buy, offer, sell } from './shop.mjs';
+import { loadMenus, menuOf } from './menu.mjs';
 import { modelFromEnv } from './model.mjs';
 import { AuthError, checkEmail, checkPassword, checkSignup, hashPassword, publicMe, throttle, verifyPassword } from './auth.mjs';
 import { mailerFromEnv, resetMail, verifyMail } from './mail.mjs';
@@ -17,6 +18,8 @@ import { APP_KINDS, appList, composeApp } from './apps.mjs';
 import { rowsOf } from './rows.mjs';
 import { RecordError, createRecord, deleteRecord, readRecord, updateRecord } from './records.mjs';
 import { DelegationError, delegationSecret, signDelegation, verifyDelegation } from './delegation.mjs';
+import { accountRoute } from './account.mjs';
+import { memberRoute } from './member.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const APPS = resolve(here, '..', '..');                       // puikit/app
@@ -60,6 +63,7 @@ export function createPhiora({
     return os ? b + ' on ' + os : b;
   };
   const catalog = loadCatalog(shopDataDir);
+  const menus = loadMenus(shopDataDir);
   // The database is the source of the records; the data files only seed it. On start, in development, changed files
   // are loaded again (records changed through the API stay as they are); in production (PHI_ENV=production) only an
   // empty database is loaded, and `npm run seed` is the way to bring file changes in. PHI_SEED=0 skips it.
@@ -160,6 +164,8 @@ export function createPhiora({
       if (route === 'GET /health') return send(res, 200, { ok: true, store: store.kind, mail: mailer.kind, model: { provider: model.provider, configured: model.configured }, looks: catalog.size });
 
       let m;
+      // The menu a path has, as the arrays its data holds (menu.mjs).
+      if (route === 'GET /menu') return send(res, 200, menuOf(menus, url.searchParams.get('path'), url.searchParams.get('id')), { 'cache-control': 'public, max-age=60' });
       // An app's menus and pages are records (apps.mjs); the document is composed from them. Before the database has
       // them (or for an app it does not hold) the app's own file answers.
       if (route === 'GET /app') return send(res, 200, { apps: appList(await appRecords()) });
@@ -212,143 +218,12 @@ export function createPhiora({
         return send(res, 200, { ...issued, ephemeral: delegation.ephemeral });
       }
 
-      // Accounts. Registering upgrades the current guest in place, so its wallet, looks and saved state carry over.
-      if (route === 'POST /auth/register') {
-        if (!u.guest) return fail(res, 409, 'signed_in', 'Sign out first to create another account.');
-        const body = (await readBody(req)) || {};
-        const { handle, name, password } = checkSignup(body); const email = checkEmail(body.email, { optional: true });
-        if (await store.handleOwner(handle) || seedHandles.has(handle)) return fail(res, 409, 'handle_taken', 'That handle is taken.');
-        if (email && await store.emailOwner(email)) return fail(res, 409, 'email_taken', 'That email is already on an account.');
-        Object.assign(u, { guest: false, handle, name, passwordHash: hashPassword(password), registeredAt: Date.now(), email, emailVerified: false });
-        await store.claimHandle(handle, u.id); if (email) await store.claimEmail(email, u.id); await store.saveUser(u);
-        return send(res, 200, { ...me(u), ...(email ? await sendVerify(req, u) : {}) });
-      }
-      if (route === 'POST /auth/signin') {
-        const { handle, password } = (await readBody(req)) || {};
-        const h = String(handle || '').trim().toLowerCase(); const key = (req.socket.remoteAddress || '') + '|' + h;
-        if (signins.blocked(key)) return fail(res, 429, 'throttled', 'Too many tries — wait a few minutes.');
-        const acct = await accountOf(h);
-        if (!acct || !verifyPassword(password, acct.passwordHash)) { signins.fail(key); return fail(res, 401, 'bad_credentials', 'Handle or password is wrong.'); }
-        signins.clear(key); await store.setSessionUser(sid, acct.id, String(req.headers['user-agent'] || ''));
-        return send(res, 200, me(acct));
-      }
-      // Email: add or change (signed in), confirm with the emailed link.
-      if (route === 'POST /auth/email') {
-        if (u.guest) return fail(res, 401, 'sign_in', 'Create an account or sign in first.');
-        const email = checkEmail(((await readBody(req)) || {}).email);
-        const owner = await store.emailOwner(email); if (owner && owner !== u.id) return fail(res, 409, 'email_taken', 'That email is already on an account.');
-        Object.assign(u, { email, emailVerified: owner === u.id ? !!u.emailVerified : false }); await store.claimEmail(email, u.id); await store.saveUser(u);
-        return send(res, 200, { ...me(u), ...(u.emailVerified ? {} : await sendVerify(req, u)) });
-      }
-      if (route === 'POST /auth/verify') {
-        const t = await store.takeToken('verify', String(((await readBody(req)) || {}).token || ''));
-        const acct = t && await store.user(t.userId);
-        if (!acct || acct.email !== t.data?.email) return fail(res, 400, 'bad_token', 'This link has expired or was already used.');
-        acct.emailVerified = true; await store.saveUser(acct);
-        return send(res, 200, { ok: true, email: acct.email, ...(acct.id === u.id ? { me: me(acct) } : {}) });
-      }
-      // Password reset: always answers ok (no account probing); mails a 30-minute link when the account has an email.
-      if (route === 'POST /auth/forgot') {
-        const key = req.socket.remoteAddress || ''; if (forgots.blocked(key)) return fail(res, 429, 'throttled', 'Too many requests — wait a few minutes.');
-        forgots.fail(key);
-        const acct = await accountOf(((await readBody(req)) || {}).login); let extra = {};
-        if (acct?.email) {
-          const t = token(); await store.dropTokens('reset', acct.id); await store.putToken('reset', t, acct.id, { email: acct.email }, RESET_TTL);
-          const link = linkFor(req, 'phi_reset', t); await mailer.send(resetMail(acct.email, acct.name, link));
-          if (devLinks && loopback(req)) extra = { devLink: link };
-        }
-        return send(res, 200, { ok: true, ...extra });
-      }
-      if (route === 'POST /auth/reset') {
-        const body = (await readBody(req)) || {}; const password = checkPassword(body.password);
-        const t = await store.takeToken('reset', String(body.token || '')); const acct = t && await store.user(t.userId);
-        if (!acct) return fail(res, 400, 'bad_token', 'This link has expired or was already used.');
-        acct.passwordHash = hashPassword(password); if (acct.email && acct.email === t.data?.email) acct.emailVerified = true;
-        await store.saveUser(acct); await store.dropUserSessions(acct.id); await store.setSessionUser(sid, acct.id, String(req.headers['user-agent'] || ''));
-        return send(res, 200, me(acct));
-      }
-      if (route === 'POST /auth/password') {
-        if (u.guest) return fail(res, 401, 'sign_in', 'Sign in first.');
-        const { current, password } = (await readBody(req)) || {}; const key = (req.socket.remoteAddress || '') + '|' + u.handle;
-        if (signins.blocked(key)) return fail(res, 429, 'throttled', 'Too many tries — wait a few minutes.');
-        if (!verifyPassword(current, u.passwordHash)) { signins.fail(key); return fail(res, 401, 'bad_credentials', 'Current password is wrong.'); }
-        u.passwordHash = hashPassword(checkPassword(password)); await store.saveUser(u); await store.dropUserSessions(u.id, sid);
-        return send(res, 200, me(u));
-      }
-      // Signed-in browsers: list them, sign one (or all others) out.
-      if (route === 'GET /auth/session') {
-        return send(res, 200, await store.userSessions(u.id).map((x) => ({ id: sessionId(x.sid), current: x.sid === sid, browser: browserOf(x.ua), created: x.created, lastSeen: x.at })));
-      }
-      if (route === 'POST /auth/session/revoke') {
-        const { id, others } = (await readBody(req)) || {}; let n = 0;
-        for (const x of await store.userSessions(u.id)) if (x.sid !== sid && (others || sessionId(x.sid) === id)) { await store.dropSession(x.sid); n++; }
-        return n || others ? send(res, 200, { ok: true, revoked: n }) : fail(res, 404, 'no_session', 'No such session.');
-      }
-      // Your data: download everything Phiora keeps about you; or delete the account.
-      if (route === 'GET /me/export') {
-        const { passwordHash, ...doc } = u; void passwordHash;
-        return send(res, 200, { exportedAt: new Date().toISOString(), user: doc }, { 'content-disposition': `attachment; filename="phiace-${u.handle || u.id}.json"` });
-      }
-      if (route === 'POST /auth/delete') {
-        const { password, confirm } = (await readBody(req)) || {};
-        if (!u.guest) {
-          if (String(confirm || '').toLowerCase() !== u.handle) return fail(res, 400, 'confirm', 'Type your handle to confirm.');
-          if (!verifyPassword(password, u.passwordHash)) return fail(res, 401, 'bad_credentials', 'Password is wrong.');
-        }
-        await store.deleteUser(u.id); res.setHeader('set-cookie', 'phi_sid=; Path=/; Max-Age=0');
-        return send(res, 200, { ok: true });
-      }
-      // Demo sign-in as a seeded member (no password) — PHI_DEMO_LOGIN=0 turns it off.
-      if (route === 'GET /auth/demo-user') return demoLogin ? send(res, 200, seedUsers.slice(0, 24).map((x) => ({ id: x.id, name: x.name, handle: x.handle }))) : fail(res, 403, 'disabled', 'Demo sign-in is off.');
-      if (route === 'POST /auth/login' || route === 'POST /auth/demo') {
-        if (!demoLogin) return fail(res, 403, 'disabled', 'Demo sign-in is off.');
-        const { userId } = (await readBody(req)) || {};
-        const seed = seedUsers.find((x) => x.id === userId);
-        if (!seed) return fail(res, 404, 'no_user', 'Unknown user.');
-        // Accounts live under the same md5 ids as the records, so a person owns the records that name them.
-        const uid = ((await store.global('items.idmap')) ?? {})[seed.id] ?? seed.id;
-        const existing = await store.user(uid) ?? await store.createUser({ id: uid, name: seed.name, handle: seed.handle });
-        await store.saveUser(ensureWallet(existing)); await store.setSessionUser(sid, uid, String(req.headers['user-agent'] || ''));
-        return send(res, 200, me(existing));
-      }
-      if (route === 'POST /auth/logout') { await store.dropSession(sid); res.setHeader('set-cookie', 'phi_sid=; Path=/; Max-Age=0'); return send(res, 200, { ok: true }); }
-
-      if ((m = pathname.match(/^\/state\/(.+)$/))) {
-        const name = decodeURIComponent(m[1]);
-        if (!NAME.test(name)) return fail(res, 400, 'bad_name', 'Bad document name.');
-        if (req.method === 'GET') { const v = docRead(u, name); return v === undefined ? fail(res, 404, 'unset', 'Not set.') : send(res, 200, v); }
-        if (req.method === 'PUT') {
-          if (SERVER_DOCS.has(name)) return fail(res, 403, 'server_owned', name + ' is written by the server — use /wallet or /shop.');
-          const body = await readBody(req);
-          if (body === undefined) return fail(res, 400, 'empty', 'Send a JSON value.');
-          u.docs[name] = body; await store.saveUser(u); return send(res, 204);
-        }
-      }
-
-      if (req.method === 'POST' && (m = pathname.match(/^\/wallet\/(swap|spend|earn)$/))) {
-        const body = (await readBody(req)) || {};
-        const out = { swap, spend, earn }[m[1]](ensureWallet(u), body);
-        await store.saveUser(u); return send(res, 200, { ...out, ...money(u) });
-      }
-      if (route === 'POST /shop/buy') {
-        const { lookIds, label } = (await readBody(req)) || {};
-        const out = buy(ensureWallet(u), catalog, lookIds, label);
-        await store.saveUser(u); return send(res, 200, { ...out, ...money(u), cartOffers: u.docs.cartOffers });
-      }
-      if (route === 'POST /shop/offer') {
-        const { lookId, usd } = (await readBody(req)) || {};
-        const out = offer(ensureWallet(u), catalog, lookId, usd);
-        await store.saveUser(u); return send(res, 200, { ...out, ...money(u), cartOffers: u.docs.cartOffers });
-      }
-
-      if (route === 'POST /shop/sell') {
-        const { lookId } = (await readBody(req)) || {};
-        const out = sell(ensureWallet(u), catalog, lookId);
-        await store.saveUser(u); return send(res, 200, { ...out, ...money(u) });
-      }
-      if (route === 'POST /activity') { const out = addActivity(u, await readBody(req)); await store.saveUser(u); return send(res, 200, out); }
-      if (route === 'GET /activity') return send(res, 200, { events: activityOf(u, searchParams.get('ref') || undefined) });
-      if (req.method === 'PUT' && (m = pathname.match(/^\/item\/([\w.:-]{1,120})\/theme$/))) return send(res, 200, await setTheme(store, u, catalog, m[1], await readBody(req), designers));
+      // The account routes (account.mjs); one that answered has ended the response.
+      await accountRoute(route, { RESET_TTL, accountOf, browserOf, demoLogin, devLinks, fail, forgots, linkFor, loopback, mailer, me, readBody, req, res, seedHandles, seedUsers, send, sendVerify, sessionId, sid, signins, store, token, u });
+      if (res.writableEnded) return;
+      // A member's own routes (member.mjs); one that answered has ended the response.
+      await memberRoute(route, { SERVER_DOCS, catalog, designers, docRead, fail, money, pathname, readBody, req, res, searchParams, send, store, u });
+      if (res.writableEnded) return;
       // Records in the items database: read with who may change them, create, edit, delete (30 changes a minute each).
       const rec = pathname.match(/^\/tree\/item\/([A-Za-z][A-Za-z0-9]{0,39})\/([\w.:-]{1,120})$/);
       if (rec && req.method === 'GET') return send(res, 200, await readRecord(store, u, editors, rec[1], decodeURIComponent(rec[2])));

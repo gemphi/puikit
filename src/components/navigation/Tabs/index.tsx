@@ -2,14 +2,16 @@
 
 import React, { useState } from 'react';
 import { cn } from '../../../utils/cn';
-import { Button } from '../../primitives/Button';
 import { Stack } from '../../layout/Stack';
+import { TabList } from '../TabList';
 import styles from './styles.module.scss';
 
 export type TabItem = {
   id: string;
   label: string;
   content: React.ReactNode;
+  /** Count shown after the label. */
+  count?: number | string;
 };
 
 type TabsProps = {
@@ -18,26 +20,16 @@ type TabsProps = {
   className?: string;
 };
 
+/** A row of tabs with the panel of the one that is on. The row is the kit's one TabList, so it is marked, focused
+ *  and counted the same everywhere. */
 export const Tabs = ({ items, defaultActiveId, className = '' }: TabsProps) => {
   const [active, setActive] = useState(defaultActiveId ?? items[0]?.id);
   const activeItem = items.find((item) => item.id === active) ?? items[0];
 
   return (
     <Stack direction="column" className={cn(styles.tabs, className)}>
-      <Stack direction="row" gap={1} className={styles.list} role="tablist">
-        {items.map((item) => (
-          <button
-            key={item.id}
-            type="button"
-            role="tab"
-            aria-selected={active === item.id}
-            className={cn(styles.tab, active === item.id && styles.active)}
-            onClick={() => setActive(item.id)}
-          >
-            {item.label}
-          </button>
-        ))}
-      </Stack>
+      <TabList className={styles.list} place="start" activeId={activeItem?.id} onChange={setActive}
+        items={items.map(({ id, label, count }) => ({ id, label, count }))} />
       <Stack direction="column" className={styles.panel} role="tabpanel">
         {activeItem?.content}
       </Stack>
