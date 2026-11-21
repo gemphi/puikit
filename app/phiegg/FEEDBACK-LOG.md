@@ -700,3 +700,9 @@ To give those three pools their records I ran `node scripts/pools.mjs`. It rewri
 - The asset page has all five tabs: Trail 8 rows or more, Owner 8 where it is held (seen on Gate pass · Opal Atelier, Style 08 SUM, Bold Pup #7007) - **Done**
 - A SUM's trail reads as sales between holders; a SUM is deposited into, so "Deposit" events would say it better - **Open**
 - `trail.json` is not in `tree.json`, so Phiora's seed does not carry it yet - **Open**
+
+## 68. Same cards everywhere: quest, coin and event from data (2026-11-21)
+- "Next" on "the same cards everywhere, no app's own components": the shared card layouts (tile, row) take parts written in `data/card.json`: `figures` (declared fields), `progress`, `tags`, `act` (rsvp, quest, coin), and on a row `date` and `art`. They live once, in `components/Phiegg/CardPart.tsx` - **Done**
+- Quest is a tile with progress, figures and Play; coin is a row with its price, holders and Buy and Sell; event and drop are rows with their day, world art, tags and RSVP. Their own cards (`Economy.tsx`, `EventCard.tsx`) moved to `_temp/puikit-phiegg-own-cards`. Seen on /events, /quests and /coins - **Done**
+- A coin's price and change now read as one tag ("$1.62 · +3.4%"), without the green or red on the change - **Note**
+- Look, lot, pool, post and sale still have layouts of their own: their live prices are worked out each tick, so the card needs live values the templates can read first - **Open**

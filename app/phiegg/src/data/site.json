@@ -1069,6 +1069,7 @@
   "lsHost": "Host",
   "lsVenue": "Venue",
   "lsColDate": "Date",
+  "lsColTime": "Time",
   "lsColLooks": "Looks",
   "lsColPoses": "Poses",
   "lsSortSoon": "Soonest",

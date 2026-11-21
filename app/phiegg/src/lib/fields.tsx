@@ -82,6 +82,7 @@ const FMT: Record<string, (v: unknown) => React.ReactNode> = {
   usd: (v) => usd(Number(v ?? 0)),
   dollars: (v) => (v ? '$' + fmt(Number(v)) : '·'),
   date: (v) => String(v ?? '').slice(0, 10),
+  time: (v) => String(v ?? '').slice(11, 16),
   percent: (v) => Math.round(Number(v ?? 0) * 100) + '%',
   price: (v) => '$' + String(v ?? 0),
   signed: (v) => (Number(v) > 0 ? '+' : '') + String(v ?? 0) + '%',

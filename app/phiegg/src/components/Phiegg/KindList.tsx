@@ -17,12 +17,11 @@ import { postTile } from './ShotCard';
 import { EntityAvatar } from './EntityAvatar';
 import { LookImage } from './LookImage';
 import { LotCard, PoolCard } from './Pools';
-import { CoinCard, QuestCard } from './Economy';
-import { EventCard } from './EventCard';
-import type { Coin, PhieggEvent, Pool, PoolLot, Post, Quest, ShopLook, Tone } from '../../types/phiegg';
+import { DateArt, hasParts, Parts, ACT, type PartDecl } from './CardPart';
+import type { Pool, PoolLot, Post, ShopLook, Tone } from '../../types/phiegg';
 
 /** How a kind's card is drawn (data/card.json): a layout, that layout's options, and how often its live values move. */
-type CardDecl = { layout?: string; tick?: number; cols?: number; ratio?: string; title?: string; sub?: string; aside?: string; mark?: string; flag?: { field: string; label: string };
+type CardDecl = PartDecl & { layout?: string; tick?: number; cols?: number; ratio?: string; title?: string; sub?: string; aside?: string; mark?: string; flag?: { field: string; label: string };
   tone?: string; club?: string; world?: string; person?: string; path?: string;
   /** A tile's own picture (paths tried in order), floor grid and size; the words on it; the values listed under it. */
   image?: string[]; grid?: boolean; big?: boolean; animate?: boolean; badge?: string[]; tag?: string;
@@ -60,15 +59,19 @@ const LAYOUT: Record<string, React.FC<CardProps>> = {
         depth={{ clubId: at(row, decl.club), worldId: at(row, decl.world), personId: at(row, decl.person), mid: lead.mid }}
         title={fill(kind, row, decl.title)} sub={fill(kind, row, decl.sub)} onClick={open}
         badges={badges.length ? <>{badges.map((b) => <Tag key={b} round size="sm">{b}</Tag>)}</> : undefined} />);
-    return tags.length ? <Stack direction="column" gap={1}>{tile}<Stack direction="row" gap={1} wrap>{tags.map((x) => <Tag key={x} minimal round size="sm" intent="primary">{x}</Tag>)}</Stack></Stack> : tile;
+    const face = tags.length ? <Stack direction="column" gap={1}>{tile}<Stack direction="row" gap={1} wrap>{tags.map((x) => <Tag key={x} minimal round size="sm" intent="primary">{x}</Tag>)}</Stack></Stack> : tile;
+    return hasParts(decl) ? <Card depth={2}><CardBody><Stack direction="column" gap={2}>{face}<Parts kind={kind} row={row} decl={decl} /></Stack></CardBody></Card> : face;
   },
-  /** A row: the record's mark, its title and line, and at its end a figure, or a flag when the record carries it. */
+  /** A row: the record's mark (or its day and art), its title and line, at its end a figure, or a flag when the record
+   *  carries it; with parts, they sit under it and what the viewer can do at its foot. */
   row: ({ kind, row, decl, open }) => {
     const title = fill(kind, row, decl.title) || titleOf(kind, row); const aside = fill(kind, row, decl.aside);
-    const end = decl.flag && row[decl.flag.field] ? t(decl.flag.label as 'live') : aside;
+    const end = decl.flag && row[decl.flag.field] ? t(decl.flag.label as 'live') : aside; const Act = decl.act ? ACT[decl.act] : undefined; const parts = hasParts(decl);
     return (
-      <ItemCard variant="flat" stackBelow="never" onClick={open} media={<EntityAvatar id={at(row, decl.mark) ?? row.id} name={title} size="lg" />}
-        title={title} meta={fill(kind, row, decl.sub)} aside={end ? <Tag minimal round size="sm">{end}</Tag> : undefined} />);
+      <ItemCard variant={parts ? undefined : 'flat'} depth={parts ? 2 : undefined} stackBelow={parts ? 'lg' : 'never'} onClick={parts ? undefined : open}
+        media={decl.date || decl.art ? <DateArt kind={kind} row={row} date={decl.date} art={decl.art} /> : <EntityAvatar id={at(row, decl.mark) ?? row.id} name={title} size={parts ? 'md' : 'lg'} />}
+        title={title} meta={fill(kind, row, decl.sub)} aside={end ? <Tag minimal round size="sm">{end}</Tag> : undefined}
+        actions={Act ? <Act kind={kind} row={row} /> : undefined}>{parts ? <Parts kind={kind} row={row} decl={decl} actHere={false} /> : undefined}</ItemCard>);
   },
   /** A look: its render, rarity, whether the viewer owns it, and its live price. */
   look: function LookCard({ row, open }) {
@@ -83,11 +86,6 @@ const LAYOUT: Record<string, React.FC<CardProps>> = {
   lot: function LotTile({ row }) { return <LotCard lot={as<PoolLot>(row)} now={useContext(Now)} />; },
   /** A pool: its numbers as they stand now. */
   pool: function PoolTile({ row }) { return <PoolCard pool={as<Pool>(row)} now={useContext(Now)} />; },
-  /** A quest and a coin: what the viewer can do with each (enter, leave; buy, sell). */
-  quest: ({ row }) => <QuestCard q={as<Quest>(row)} />,
-  coin: ({ row }) => <CoinCard x={as<Coin>(row)} />,
-  /** An event or a drop: its day, when and where, and the viewer's answer to it. */
-  event: ({ row }) => <EventCard e={as<PhieggEvent>(row)} />,
   /** A post or a reel: its first slide. */
   post: ({ row, open }) => { const x = as<Post>(row); return <Tile {...postTile(x)} ratio="4/5" title={x.slides[0]?.title} sub={x.caption} onClick={open} />; },
   /** A sale: the look sold, its price and day. */

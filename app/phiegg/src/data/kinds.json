@@ -462,6 +462,12 @@
         "table": true
       },
       {
+        "id": "time",
+        "path": "startsAt",
+        "label": "lsColTime",
+        "format": "time"
+      },
+      {
         "id": "title",
         "label": "lsColName",
         "control": "text",
