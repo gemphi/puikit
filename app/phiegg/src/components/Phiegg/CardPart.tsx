@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { Button, Figure, FigureRow, Frame, Image, Input, Popover, ProgressBar, Stack, Tag, Text, Title } from '@pui/components';
+import { Button, Figure, FigureRow, Frame, Image, Input, Ladder, Popover, ProgressBar, Stack, Tag, Text, Title } from '@pui/components';
 import { useStore } from '@pui/store';
 import { phieggStore } from '../../state/phieggStore';
 import { describe, fill } from '../../lib/fields';
-import { D, itemOf, site, t, usd, valueAt, worldImage, type ItemRow } from '../../lib/data';
+import { useWallet } from '@phi-kit/wallet';
+import { D, itemOf, showLookOf, site, t, unitName, usd, valueAt, worldImage, type ItemRow } from '../../lib/data';
 import { buyCoin, enterQuest, leaveQuest, sellCoin, useEconomy } from '../../lib/economy';
+import { buyLot, quote } from '../../lib/market';
+import { useNowValue } from '../../lib/liveValue';
+import type { PoolLot } from '../../types/phiegg';
 
 /** The parts a card may carry under or beside its face (data/card.json), the same on every layout:
  *  `figures`, declared fields (data/kinds.json) shown as label and value, or `{ label, value }` with a template;
@@ -103,18 +107,35 @@ export const ACT: Record<string, React.FC<PartProps>> = {
         {held > 0 && <Button variant="glass" onClick={() => { const got = sellCoin(row.id); s.flash(t('sold', { coin, usd: usd(got) })); }}>{t('sell')}</Button>}
       </Stack>);
   },
+  /** A lot (a pack or a drop): its price ladder high to low, each unit of a drop bought alone, a pack bought whole. */
+  lot: function LotAct({ row }) {
+    const s = useStore(phieggStore); const w = useWallet(); const now = useNowValue(); const [all, setAll] = useState(false);
+    const lot = row as unknown as PoolLot; const q = quote(lot, now); const shown = all ? q.units : q.units.slice(0, lot.kind === 'pack' ? 7 : 8); const out = q.remaining <= 0;
+    const buy = (i: number | null) => { const price = i == null ? q.total : q.units[i].usd; s.flash(buyLot(lot, i, now) ? t('plBought', { name: i == null ? lot.title : unitName(q.units[i].itemId), v: usd(price) }) : t('noFunds')); };
+    return (
+      <Stack direction="column" gap={2} surface="region">
+        <Text size="xs" intent="muted" weight="bold">{t('plLadder')}</Text>
+        <Ladder aria-label={t('plLadder')} rows={shown.map((u) => ({
+          id: String(u.index), label: unitName(u.itemId), share: q.high ? u.usd / q.high : 0, amount: usd(u.usd),
+          color: itemOf('shade', u.itemId)?.hex ?? showLookOf(u.itemId)?.look.hex,
+          action: lot.kind === 'drop' ? <Button variant="glass" disabled={w.usd < u.usd || out} onClick={() => buy(q.units.indexOf(u))}>{t('plBuyUnit')}</Button> : undefined,
+        }))} />
+        {q.units.length > shown.length && <Button variant="glass" onClick={() => setAll(true)}>{t('plMore', { n: q.units.length - shown.length })}</Button>}
+        {lot.kind === 'pack' && <Button variant="glass" disabled={w.usd < q.total || out} onClick={() => buy(null)}>{w.usd < q.total ? t('shNoFunds') : t('plBuyPack', { v: usd(q.total) })}</Button>}
+      </Stack>);
+  },
 };
 
 /** Whether a card carries any part beyond its face. */
 export const hasParts = (d: PartDecl) => !!(d.figures || d.progress || d.tags || d.act);
 /** The parts under a card's face, in one order: progress, figures, tags, then what the viewer can do. */
-export const Parts: React.FC<PartProps & { decl: PartDecl; actHere?: boolean }> = ({ kind, row, decl, actHere = true }) => {
+export const Parts: React.FC<PartProps & { decl: PartDecl }> = ({ kind, row, decl }) => {
   const Act = decl.act ? ACT[decl.act] : undefined;
   return (
     <>
       {decl.progress && <Progress kind={kind} row={row} of={decl.progress} />}
       {decl.figures && <Figures kind={kind} row={row} of={decl.figures} />}
       {decl.tags && <Tags kind={kind} row={row} of={decl.tags} />}
-      {actHere && Act && <Act kind={kind} row={row} />}
+      {Act && <Act kind={kind} row={row} />}
     </>);
 };

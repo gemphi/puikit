@@ -1,11 +1,12 @@
 import React, { useMemo, useState } from 'react';
 import { BrowseSheet, Button, Card, CardBody, Stack, Tag, Text, type BrowseFacet, type BrowseLayout } from '@pui/components';
 import { useStore } from '@pui/store';
-import { D, fmt, site, t, itemOf } from '../../lib/data';
+import { D, fmt, site, t, itemOf, type ItemRow } from '../../lib/data';
 import { livePools, useNow } from '../../lib/market';
 import { phieggStore, type PhieggState } from '../../state/phieggStore';
 import { AgentChat } from './AgentChat';
-import { PoolCard } from './Pools';
+import { KindCard } from './KindList';
+import { Now } from '../../lib/liveValue';
 import { Tile } from './Tile';
 
 /**
@@ -42,7 +43,7 @@ const SOURCES: Record<string, Source<DropRow> | Source<Club> | Source<Ev>> = {
       { id: 'world', label: 'World', get: (r) => itemOf('world', r.pool.worldId)?.name },
       { id: 'sold', label: 'Sold', get: (r) => band(r.N.supply ? r.N.sold / r.N.supply : 0) },
     ],
-    card: (r, _s, now) => <PoolCard pool={r.pool} now={now} />,
+    card: (r, _s, now) => <Now.Provider value={now}><KindCard kind="pool" row={r.pool as unknown as ItemRow} /></Now.Provider>,
     clubOf: (r) => r.pool.clubId, prompts: () => [t('lsAskDrop'), t('lsAskCheap'), t('lsAskSwap')],
   } as Source<DropRow>,
   clubs: {

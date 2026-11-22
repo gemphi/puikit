@@ -706,3 +706,9 @@ To give those three pools their records I ran `node scripts/pools.mjs`. It rewri
 - Quest is a tile with progress, figures and Play; coin is a row with its price, holders and Buy and Sell; event and drop are rows with their day, world art, tags and RSVP. Their own cards (`Economy.tsx`, `EventCard.tsx`) moved to `_temp/puikit-phiegg-own-cards`. Seen on /events, /quests and /coins - **Done**
 - A coin's price and change now read as one tag ("$1.62 · +3.4%"), without the green or red on the change - **Note**
 - Look, lot, pool, post and sale still have layouts of their own: their live prices are worked out each tick, so the card needs live values the templates can read first - **Open**
+
+## 85. Same cards everywhere: look, lot and pool from data (2026-11-22)
+- "Next": looks, lots and pools are `card.json` entries on the shared tile and row. Their moving values (live price, sold, floor, volume, high and low) are worked out once in `lib/liveValue.ts` and read by the templates as `{live.<name>}`; the sums stay in `lib/market`. A tile with `face: look` shows the look's own picture - **Done**
+- A lot's price ladder and buying are one more action (`act: lot`) in `CardPart.tsx`. A row's action now sits under its parts and spans the card (RSVP, Buy and Sell moved there too) - **Done**
+- The pool page's lots and the pools "see all" sheet use the same card. `PoolCard` and `LotCard` were cut from `Pools.tsx` to `_temp/puikit-phiegg-own-cards`. Seen on /pools, /pool/style-08 (lots, ladders full width) and Lora's Spark's Looks tab - **Done**
+- Post and sale keep layouts of their own (a post's slides, a sale's look) - **Open**
