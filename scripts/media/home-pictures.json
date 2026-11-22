@@ -1,18 +1,25 @@
 {
   "_": "Finished renders shown on Phiegg's home page. app/phiegg/scripts/home-pictures.py reads this: each picture is a render with a clear ground, set whole on a card of `ratio` (the figure with `margin` of the card's height above and below), `height` pixels tall, written to public/<out>/<name>.webp. {DL} is the Downloads folder. The home page reads the list it shows from src/data/landing.json (ask.fan), not from here.",
-  "source": "{DL}/SHOWCASE-2025/Laura's-Spark/LS-DRESS-PHI-BIRD",
-  "out": "home/phi-bird",
+  "source": "{DL}/NEW-PHIEGG-POSts/LS-welcome-screen",
+  "out": "home/dress",
   "ratio": [3, 4],
   "height": 1280,
   "margin": 0.04,
   "quality": 90,
   "picture": [
-    { "name": "violet-rain", "file": "LS-RENDER-01-OPTION-04-POSE-01-VIOLET-RAIN.png" },
-    { "name": "phantom-gold", "file": "LS-RENDER-01-OPTION-04-POSE-01-PHANTOM-GOLD.png" },
-    { "name": "beach-day", "file": "LS-RENDER-01-OPTION-04-POSE-01-BEACH-DAY.png" },
-    { "name": "plain", "file": "LS-RENDER-01-OPTION-04-POSE-01.png" },
-    { "name": "front", "file": "LS-RENDER-01-OPTION-04-A-POSE-FRONT.png" },
-    { "name": "side", "file": "LS-RENDER-01-OPTION-04-A-POSE-SIDE.png" },
-    { "name": "back", "file": "LS-RENDER-01-OPTION-04-A-POSE-BACK.png" }
+    {"name": "dress-01-pose-01-beach-day", "file": "DRESS-01-OPTION-04-POSE-01-BEACH-DAY.png"},
+    {"name": "dress-01-pose-01-phantom-gold", "file": "DRESS-01-OPTION-04-POSE-01-PHANTOM-GOLD.png"},
+    {"name": "dress-01-pose-01-phantom-grey", "file": "DRESS-01-OPTION-04-POSE-01-PHANTOM-GREY.png"},
+    {"name": "dress-01-pose-01-violet-rain", "file": "DRESS-01-OPTION-04-POSE-01-VIOLET-RAIN.png"},
+    {"name": "dress-03-pose-01-bubblegum", "file": "DRESS-03-POSE-01-BUBBLEGUM.png"},
+    {"name": "dress-03-pose-01-night-sky", "file": "DRESS-03-POSE-01-NIGHT-SKY.png"},
+    {"name": "dress-03-pose-01-phantom-black", "file": "DRESS-03-POSE-01-PHANTOM-BLACK.png"},
+    {"name": "dress-03-pose-01-quicksand", "file": "DRESS-03-POSE-01-QUICKSAND.png"},
+    {"name": "dress-03-pose-02-70s-carpet", "file": "DRESS-03-POSE-02-70S-CARPET.png"},
+    {"name": "dress-03-pose-02-camo", "file": "DRESS-03-POSE-02-CAMO.png"},
+    {"name": "dress-03-pose-02-ice", "file": "DRESS-03-POSE-02-ICE.png"},
+    {"name": "dress-03-pose-02-orange-peel", "file": "DRESS-03-POSE-02-ORANGE-PEEL.png"},
+    {"name": "dress-03-pose-03-blood-cacoon", "file": "DRESS-03-POSE-03-BLOOD-CACOON.png"},
+    {"name": "dress-03-pose-03-watermelon", "file": "DRESS-03-POSE-03-WATERMELON.png"}
   ]
 }

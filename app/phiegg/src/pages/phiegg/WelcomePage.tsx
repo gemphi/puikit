@@ -19,7 +19,7 @@ const L = D.landing as unknown as {
   cta: { title: string; body: string; primary: string; secondary: string };
   featured?: { seriesIds: string[] };
   stage: { origin: string; auto: number; enter: string; about: string; sub: string; lead?: { id: string; src: string; title: string; sub: string }[] };
-  ask: { title: string; body: string; agentId: string; context: string; prompts: string[]; fan: string[] };
+  ask: { title: string; body: string; agentId: string; context: string; prompts: string[]; fan: string[]; fanShown?: number };
   step: { before: string; after: string; body: string; cta: string };
   tour: { title: string; image: string; body: string; cta: string; tab: string }[];
   rows: { worlds: string; posts: string; rides: string; compare: string };
@@ -48,7 +48,9 @@ export const WelcomePage: React.FC = () => {
   const posts = D.feed.shots.filter((x) => x.origin === L.post.origin && (x.media.src ?? '').includes(L.post.picture));
   const pics = posts.map((x) => mediaUrl(x.media.src!));
   // The pictures either side of the chat are named in the data (landing.json ask.fan), half a side.
-  const fan = L.ask.fan.map(mediaUrl); const half = Math.ceil(fan.length / 2);
+  // `fanShown` of them are picked on each visit: the first always, the rest at random.
+  const [fan] = useState(() => { const [first, ...rest] = L.ask.fan; return [first, ...rest.sort(() => Math.random() - 0.5)].slice(0, L.ask.fanShown ?? L.ask.fan.length).map(mediaUrl); });
+  const half = Math.ceil(fan.length / 2);
   // Rides for the cascade: one of each kind first, then more until the row is full.
   const firsts = KINDS.map((k) => D.ride.list.find((r) => r.kind === k)).filter((r): r is NonNullable<typeof r> => !!r);
   const rides = [...firsts, ...D.ride.list.filter((r) => !firsts.includes(r))].slice(0, Math.max(L.cascade.rides, L.cascade.min));
