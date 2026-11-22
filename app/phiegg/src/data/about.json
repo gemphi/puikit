@@ -1,0 +1,133 @@
+{
+ "_": "The About page (/about): who Phiegg is, as a run of screens. Every word and picture is here; the page loops. `hero` is the first screen, `band` the parts (picture and words side by side, sides alternating), `figure` the counts (`count` is a path into the data whose length is shown), `coin` the coins (how they move, then the `shown` most held club coins), `closing` the last screen. Pictures are the Phi stage renders (scripts/media/home-pictures.json, set `about`). A `tab` is the path a button opens.",
+ "hero": {
+  "kicker": "About Phiegg",
+  "title": "Where virtual worlds get dressed.",
+  "body": "Our mission is to give every club a world of its own, and everyone in it something to wear, make and trade.",
+  "picture": "about/phi-arena-view.webp",
+  "primary": {
+   "label": "Enter Phiegg",
+   "tab": "feed"
+  },
+  "secondary": {
+   "label": "See the worlds",
+   "tab": "worlds"
+  }
+ },
+ "band": [
+  {
+   "id": "stage",
+   "title": "Stage",
+   "body": "Every world walks its own show. Looks go from the runway to the feed, and from the feed to the people who wear them.",
+   "picture": "about/phi-stage-view.webp",
+   "cta": {
+    "label": "Shows",
+    "tab": "shows"
+   }
+  },
+  {
+   "id": "worlds",
+   "title": "Worlds",
+   "body": "A club starts as a nest and grows into a city: zones to walk, places to meet, hosts to join.",
+   "picture": "about/phi-outer-view.webp",
+   "cta": {
+    "label": "Worlds",
+    "tab": "worlds"
+   }
+  },
+  {
+   "id": "hosts",
+   "title": "Hosts",
+   "body": "A host is where a club gathers. What you hold decides what you can open, with no roles to hand out by hand.",
+   "picture": "about/phi-inner-view.webp",
+   "cta": {
+    "label": "Hosts",
+    "tab": "hosts"
+   }
+  },
+  {
+   "id": "makers",
+   "title": "Makers",
+   "body": "Creators publish looks, rides and gems as PFTs. Every sale, quest and show pays the people who made it.",
+   "picture": "about/phi-close-view.webp",
+   "cta": {
+    "label": "Shops",
+    "tab": "shops"
+   }
+  }
+ ],
+ "figure": {
+  "title": "Today",
+  "item": [
+   {
+    "label": "Worlds",
+    "count": "core.worlds"
+   },
+   {
+    "label": "Clubs",
+    "count": "core.clubs"
+   },
+   {
+    "label": "Hosts",
+    "count": "hosts.hosts"
+   },
+   {
+    "label": "Shows",
+    "count": "shows.shows"
+   },
+   {
+    "label": "Coins",
+    "count": "economy.coins"
+   },
+   {
+    "label": "Quests",
+    "count": "economy.quests"
+   }
+  ]
+ },
+ "coin": {
+  "title": "Coins",
+  "body": "Coins are how thanks, tickets and trades move on Phiegg. Every club has its own; PHI is the platform's.",
+  "step": [
+   {
+    "icon": "Wallet",
+    "title": "Get",
+    "body": "Top up with PHI, or pick up a club's coin in its pool."
+   },
+   {
+    "icon": "Gift",
+    "title": "Give",
+    "body": "Send coins to a creator on a shot, a show or a cast you liked."
+   },
+   {
+    "icon": "Trophy",
+    "title": "Earn",
+    "body": "Quests, sales and front rows pay out in the club's coin."
+   },
+   {
+    "icon": "ArrowLeftRight",
+    "title": "Swap",
+    "body": "Trade one club's coin for another in the pools, at the live price."
+   }
+  ],
+  "shown": 8,
+  "held": "{n} holders",
+  "cta": {
+   "label": "All coins",
+   "tab": "coins"
+  }
+ },
+ "closing": {
+  "title": "Hatch your club.",
+  "body": "Go direct or through Phipad. Same platform, same world.",
+  "picture": "about/phi-arena-view.webp",
+  "primary": {
+   "label": "Open a host",
+   "tab": "phipad"
+  },
+  "secondary": {
+   "label": "Join",
+   "tab": "join"
+  }
+ }
+}

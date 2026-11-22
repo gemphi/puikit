@@ -204,6 +204,17 @@
     ],
     "_picture": "The pictures floating in this band, six at most. When the list is here they are shown whole in upright pills and are not pressed; without it the band shows the cities' posts (`post` below), each opening its post. 2026-11-22: the dress renders with their shoes, in place of the cities' duo posts."
   },
+  "gallery": {
+    "_": "The finished renders on Home, in sets (scripts/media/home-pictures.json writes them): a tab per set and one for all of them; each set's pictures stand whole in cards of its `ratio`.",
+    "title": "Renders",
+    "all": "All",
+    "group": [
+      { "id": "dress", "label": "Dresses", "ratio": "3 / 4", "picture": ["home/dress/design-06-seated.webp", "home/dress/dress-01-pose-01-phantom-gold.webp", "home/dress/dress-03-pose-02-orange-peel.webp", "home/dress/dress-03-pose-03-watermelon.webp"] },
+      { "id": "animal", "label": "Animals", "ratio": "1", "picture": ["home/animal/animal-pose-06-rust.webp", "home/animal/animal-pose-06-green.webp", "home/animal/animal-pose-08-steel.webp"] },
+      { "id": "scene", "label": "Scenes", "ratio": "1", "picture": ["home/scene/ride-pink.webp", "home/scene/boldroid-orange-peel.webp", "home/scene/crew-close-up.webp"] },
+      { "id": "city", "label": "Cities", "ratio": "16 / 9", "picture": ["home/city/city-three-quarter.webp", "home/city/city-side.webp"] }
+    ]
+  },
   "tour": [
     {
       "title": "Worlds",

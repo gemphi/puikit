@@ -44,7 +44,7 @@
   "hosts": { "name": "pgHosts", "title": "Hosts", "sub": "Where each club gathers: channels, worlds and the people in them.", "tab": [ { "id": "all", "label": "All", "kind": "host" } ] },
   "host": { "param": "hostId", "record": "host", "up": { "path": "hosts" } },
   "nests": { "like": "host" }, "channels": { "like": "host" },
-  "feed": { "name": "pgFeed" }, "explore": { "name": "pgExplore" }, "search": { "name": "search" }, "recent": { "name": "recent" }, "messages": { "name": "pgMessages" },
+  "feed": { "name": "pgFeed" }, "about": { "name": "About" }, "explore": { "name": "pgExplore" }, "search": { "name": "search" }, "recent": { "name": "recent" }, "messages": { "name": "pgMessages" },
   "phipad": { "name": "pgPhipad" }, "agents-hub": { "name": "pgAgents" }, "agents": { "like": "agents-hub" }, "studio": { "name": "seStudio" }, "rides": { "name": "pgRides" },
   "series": { "name": "watchTitle" }, "watch": { "like": "series" }, "league": { "name": "League" }, "create": { "name": "create" }, "join": { "name": "join" },
   "shops": { "menu": "shop", "name": "pgShops", "title": "Shops", "sub": "Every house and its looks, packs and drops.", "tab": [{ "id": "all", "label": "All", "kind": "store" }] },

@@ -1,0 +1,18 @@
+/* The About page: screens one under another, a picture and its words side by side, sides alternating. Theme tokens only. */
+.page { display: flex; flex-direction: column; gap: calc(var(--phi-gap) * 4); width: 100%; padding-bottom: calc(var(--phi-gap) * 4); }
+.heading.heading { margin: 0; font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.1; }
+.lede.lede { margin: 0; max-width: 36rem; font-size: 1.125rem; color: var(--phi-color-text-secondary); }
+.band { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); align-items: center; gap: calc(var(--phi-gap) * 3); }
+.flip { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
+.flip .shot { order: 2; }
+/* The picture stands whole in its card (the kit's Picture fills the positioned box it is put in). */
+.shot { aspect-ratio: 16 / 10; overflow: hidden; }
+.hold { position: relative; width: 100%; height: 100%; }
+.words { display: flex; flex-direction: column; align-items: flex-start; gap: var(--phi-space-4); padding-inline: var(--phi-space-4); }
+.block { display: flex; flex-direction: column; align-items: stretch; gap: calc(var(--phi-gap) * 1.5); }
+.block > button { align-self: flex-start; }
+.step { display: flex; flex-direction: column; align-items: flex-start; gap: var(--phi-space-2); padding: var(--phi-space-5); }
+@media (max-width: 760px) {
+  .band, .flip { grid-template-columns: minmax(0, 1fr); gap: var(--phi-gap); }
+  .flip .shot { order: 0; }
+}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Backdrop, Bands, Box, Button, Card, DataTable, Icon, Image, Label, Picture, Pressable, Showcase, SpriteImage, StageSlider, Text, Title, type ShowcaseSlide, type StageSlide } from '@pui/components';
+import { Backdrop, Bands, Box, Button, Card, DataTable, Icon, Image, Label, Picture, Pressable, Rows, Showcase, SpriteImage, StageSlider, TabList, Text, Title, type ShowcaseSlide, type StageSlide } from '@pui/components';
 import { Tile } from '../../components/Phiegg/Tile';
 import { PersonAvatar } from '../../components/Phiegg/PersonAvatar';
 import { PageSections } from '../../components/Phiegg/PageSections';
@@ -20,6 +20,7 @@ const L = D.landing as unknown as {
   featured?: { seriesIds: string[] };
   stage: { origin: string; auto: number; enter: string; about: string; sub: string; lead?: { id: string; src: string; title: string; sub: string }[] };
   ask: { title: string; body: string; agentId: string; context: string; prompts: string[]; fan: string[]; fanShown?: number };
+  gallery?: { title: string; all: string; group: { id: string; label: string; ratio: string; picture: string[] }[] };
   step: { before: string; after: string; body: string; cta: string; picture?: string[]; centre?: string };
   tour: { title: string; image: string; body: string; cta: string; tab: string }[];
   rows: { worlds: string; posts: string; rides: string; compare: string };
@@ -56,6 +57,10 @@ export const WelcomePage: React.FC = () => {
   const rides = [...firsts, ...D.ride.list.filter((r) => !firsts.includes(r))].slice(0, Math.max(L.cascade.rides, L.cascade.min));
   const close = cities.find((w) => w.name === L.closing.world) ?? cities[0];
 
+  // The finished renders in their sets (landing.json gallery): a tab per set, and one for all of them.
+  const [set, setSet] = useState('all');
+  const shown = (L.gallery?.group ?? []).filter((g) => set === 'all' || g.id === set);
+
   const [bg, setBg] = useState<string | undefined>(slides[0]?.src);
   // Every card on Home sits inside the two bands of light (kit Bands), so it merges into its row.
   // The same actions everywhere, as on the post itself: like, comments, save, share.
@@ -78,6 +83,7 @@ export const WelcomePage: React.FC = () => {
           {cities.some((w) => w.id === x.id) && <Button variant="glass" onClick={() => s.go('world', { worldId: x.id })}>{fill(L.stage.enter, { name: String(x.title) })}</Button>}
           <Button variant="glass" onClick={() => s.go('feed', { feedKind: 'all' })}>{L.hero.primary}</Button>
           <Button variant="glass" onClick={() => s.openSignIn()}>{t('hdSignIn')}</Button>
+          <Button variant="glass" onClick={() => s.go('about' as Tab)}>{L.stage.about}</Button>
         </>} />
 
       {/* Ask: the agent at the centre, her own renders fanned out on either side. */}
@@ -110,6 +116,14 @@ export const WelcomePage: React.FC = () => {
           <Button variant="glass" onClick={() => s.go('worlds')}>{L.step.cta}</Button>
         </Box>
       </Box>
+
+      {L.gallery && <Box as="section" className={styles.gallery}>
+        <Title level={2} className={styles.heading}>{L.gallery.title}</Title>
+        <TabList size="sm" variant="pills" aria-label={L.gallery.title} activeId={set} onChange={setSet} items={[{ id: 'all', label: L.gallery.all }, ...L.gallery.group.map((g) => ({ id: g.id, label: g.label, count: g.picture.length }))]} />
+        {shown.map((g) => (
+          <Box key={g.id} className={styles.set}><Rows cols={4} colsSm={2} minItemWidth="12rem">{g.picture.map((src) => (
+            <Bands key={src} className={styles.shot} style={{ '--r': g.ratio } as React.CSSProperties}><Box className={styles.fanPicture}><Picture src={mediaUrl(src)} /></Box></Bands>))}</Rows></Box>))}
+      </Box>}
 
       {/* The tour: one part at a time on its own stage, a finished city picture whole behind its words. */}
       <Showcase height="min(36rem, 72vh)" auto={L.stage.auto} picker={false} labels={{ prev: t('slPrev'), next: t('slNext'), picker: L.rows.compare }}

@@ -19,7 +19,7 @@ import { PlacePage } from './components/Phiegg/Commerce';
 import { useListedLook } from './components/Shell/Appearance';
 import {
   AgentsHubPage, ClubPage, CollectionPage, ListPage, CreatePage, ExplorePage, FeedPage, HostPage, JoinPage,
-  MessagesPage, PhipadPage, ProfilePage, ShowPage, WorldPage, ShopPage, PoolPage, SeriesPage, LeaguePage, CityPage, SearchPage, RecentPage, StudioPage, RidesPage, WelcomePage, PostPage,
+  MessagesPage, PhipadPage, ProfilePage, ShowPage, WorldPage, ShopPage, PoolPage, SeriesPage, LeaguePage, CityPage, SearchPage, RecentPage, StudioPage, RidesPage, WelcomePage, PostPage, AboutPage,
 } from './pages/phiegg';
 import { me, site, t } from './lib/data';
 import { MENUS } from './lib/menus';
@@ -47,6 +47,7 @@ const page = (tab: string, s: S): React.ReactNode => {
     case 'studio': return <StudioPage />;
     case 'rides': return <RidesPage />;
     case 'welcome': return <WelcomePage />;
+    case 'about': return <AboutPage />;
     case 'post': return <PostPage />;
     case 'look': return <ItemSheet id={s.lookId} />;
     case 'asset': return <AssetSheet id={s.assetId} />;

@@ -1,3 +1,4 @@
+export { AboutPage } from './AboutPage';
 export { FeedPage } from './FeedPage';
 export { ExplorePage } from './ExplorePage';
 export { HostPage } from './HostPage';
