@@ -24,6 +24,19 @@ export const columnStore = {
 export const useColumnEntries = (): ColumnEntry[] =>
   useSyncExternalStore((f) => { listeners.add(f); return () => { listeners.delete(f); }; }, () => entries, () => entries);
 
+/** A part of the page a menu can bring into view (a section: About, Zones): its id and its name. */
+export type PartEntry = { id: string; label: string };
+let parts: PartEntry[] = [];
+const partListeners = new Set<() => void>();
+export const partStore = {
+  /** The page says which parts it has, in order (an empty list as it leaves). */
+  set: (next: PartEntry[]) => { if (JSON.stringify(next) !== JSON.stringify(parts)) { parts = next; partListeners.forEach((f) => f()); } },
+  list: () => parts,
+};
+/** The parts of the page now, for a menu that brings one into view. */
+export const usePartEntries = (): PartEntry[] =>
+  useSyncExternalStore((f) => { partListeners.add(f); return () => { partListeners.delete(f); }; }, () => parts, () => parts);
+
 /** Drag a column's edge: from the press, every move hands back the column's new width (never under `least` px).
  *  `grow` is +1 when dragging right widens it (a column on the left) and -1 for one on the right. */
 export const dragWidth = (e: React.PointerEvent, from: number, grow: 1 | -1, onWidth: (px: number) => void, least = 160) => {

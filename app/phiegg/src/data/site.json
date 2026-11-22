@@ -2168,6 +2168,10 @@
  "profileRail": { "_": "A profile's status row: its story sets, then its own posts, so the row never shows fewer than min.", "min": 8 },
  "clubTabsFirst": ["PFTs", "Pieces", "Store", "Worlds", "Shots", "EGG items", "Members", "Host"],
  "layouts": { "_": "The layouts a grid section can switch between (lucide icons); they set the app's list view.", "label": "Layout", "list": [ { "id": "tile", "label": "Tile", "icon": "GalleryHorizontal" }, { "id": "list", "label": "List", "icon": "List" }, { "id": "deck", "label": "Deck", "icon": "Layers" }, { "id": "grid", "label": "Grid", "icon": "LayoutGrid" } ] },
+ "worldTabs": { "_": "A world's page: the sections it shows, in order. `tab` puts one in the row of tabs under the name (the others are reached from the right sidebar's Center); `of` makes one section of several of the city's (CityParts), each under its own name; `own` is the page's own (status: its figures and what you can do there; views: the city's views as slides). A section with nothing in it is left out.", "items": [
+  { "id": "status", "label": "Status", "tab": true, "own": true }, { "id": "about", "label": "About", "tab": true }, { "id": "zones", "label": "Zones", "tab": true },
+  { "id": "items", "label": "Items", "tab": true, "of": ["pfts", "rides", "jewels"] },
+  { "id": "views", "label": "Views", "own": true }, { "id": "posts", "label": "Posts" }, { "id": "hosts", "label": "Hosts" }, { "id": "clubs", "label": "Clubs" }, { "id": "related", "label": "Links" } ] },
  "worldMenu": { "_": "A city's full-screen menu (the vertical rail at the left), by the section each entry goes to; only the sections the city has show.", "items": [
   { "id": "about", "label": "About", "icon": "Info" }, { "id": "zones", "label": "Zones", "icon": "MapPin" }, { "id": "posts", "label": "Posts", "icon": "Image" },
   { "id": "pfts", "label": "PFTs", "icon": "Gem" }, { "id": "clubs", "label": "Clubs", "icon": "Shield" }, { "id": "rides", "label": "Rides", "icon": "Car" },
@@ -2219,7 +2223,7 @@
  },
  "hostPeople": 24,
  "_hostPeople": "How many people a host's page lists down its side.",
- "sectionIcons": { "angles": "Rotate3d", "alike": "Sparkles", "linked": "Link", "views": "Layers",
+ "sectionIcons": { "status": "Activity", "items": "Gem", "angles": "Rotate3d", "alike": "Sparkles", "linked": "Link", "views": "Layers",
   "_": "The glyph before a page section's title, by section id (lucide names); a section with none shows its title alone.",
   "world": "Globe", "worlds": "Globe", "drops": "Flame", "events": "CalendarDays", "agents": "Bot", "swaps": "ArrowLeftRight", "profile": "User", "info": "Info", "ask": "Sparkles", "abilities": "Wand2", "badges": "BadgeCheck", "about": "Info", "zones": "MapPin", "posts": "Image", "pfts": "Gem", "clubs": "Users", "rides": "Car", "jewels": "Diamond", "related": "Link",
   "item": "Shirt", "look": "Sparkles", "looks": "Shirt", "buy": "ShoppingBag", "specs": "ListChecks", "activity": "Activity", "price": "LineChart", "appears": "Clapperboard", "stats": "BarChart3",

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import * as L from 'lucide-react';
 import { Avatar, Button, Card, CardBody, Frame, FullScreen, Image, ItemCard, Rows, Showcase, Stack, TabList, Tag, Text, Title, type SectionDef } from '@pui/components';
+import { partStore } from '@pui/components';
+import { StatGrid } from '@phi-kit/blocks/Stats';
 import { useStore } from '@pui/store';
 import { Bookmark, Clapperboard, Heart, LogIn, MapPin, Maximize2, Plus, Share2, Shield, type LucideIcon } from 'lucide-react';
 import { phieggStore } from '../../state/phieggStore';
@@ -21,11 +23,13 @@ import { ListView } from '../../components/Phiegg/Views';
 import type { City, Club, World } from '../../types/phiegg';
 
 /**
- * A world's page (#/world/<id>), opened the way a fashion item is: the world under the whole window, the world itself
- * as an object on its stage with its actions, then About, Zones, Posts, PFTs, clubs, rides and jewellery, and a chat
- * with the club's agent beside it. A world is a city: its zones are the old
+ * A world's page (/world/<id>), opened as a profile is: the world's picture under the whole window, sharp, its name
+ * and four tabs (Status, About, Zones, Items: site.json worldTabs); scrolling blurs the picture and brings the world's
+ * square card up, then its sections; every section is also in the right sidebar's Center, and a chat with the club's
+ * agent stands beside the page. A world is a city: its zones are the old
  * "cities" (World = City -> Zones -> Places, and Lands).
  */
+const WORLD_TABS = (site as unknown as { worldTabs: { items: { id: string; label: string; tab?: boolean; own?: boolean; of?: string[] }[] } }).worldTabs.items;
 const WORLD_MENU = (site as unknown as { worldMenu: { items: { id: string; label: string; icon: string }[] } }).worldMenu.items;
 const glyph = (name: string) => { const G = (L as unknown as Record<string, L.LucideIcon>)[name]; return G ? <G size={18} /> : null; };
 
@@ -46,11 +50,6 @@ export const WorldPage: React.FC = () => {
   const residents = w.cities.reduce((n, c) => n + c.population, 0);
   const mark = worldMark(w);
 
-  // ── centre: the world as an object on its stage, then what it holds ──
-  // A city is wide: its stage is a wide frame the size of the column, so the whole city fits the screen (never a square that overflows it).
-  const stage = w.gallery?.length && big
-    ? <Frame ratio="16/9" rounded="lg"><Image src={big} alt={w.name} fit="contain" fill /></Frame>
-    : <Tile image={worldImage(w)} tone={w.tone} ratio="1" big grid title={w.name} depth={{ worldId: w.id, clubId: w.clubId, personId: w.creatorId }} />;
   const facts: [string, React.ReactNode][] = [
     [t('wdKind'), (site.worldKinds as Record<string, string>)[w.kind]],
     ...(w.land ? [[t('wdLand'), [w.landName, t('ctLand', { n: w.land }), w.landGroup].filter(Boolean).join(' · ')] as [string, React.ReactNode]] : []),
@@ -73,29 +72,35 @@ export const WorldPage: React.FC = () => {
     {act(Share2, t('isShare'), () => { void navigator.clipboard?.writeText(location.href); s.flash(t('isCopied')); })}
     {slides.length > 0 && act(Maximize2, t('isFull'), () => setFull(true))}
   </>;
-  // What the city holds: the same sections under the square, in the full-screen sheet and under its posts.
-  const parts = useCityParts(w);
-  const centre = (
-    <PageSections id="world-item" size="sm" sections={[
-      // The city as a square on its own blur (whole, never cropped), its views as the picker, its actions as glass icons at
-      // the foot of the square; everything else scrolls under it. Full screen opens the same view and sheet as a post.
-      { id: 'world', title: w.name, collapsible: true, content: slides.length
-        ? <Showcase ratio="1" auto={0} slides={slides} labels={{ prev: t('slPrev'), next: t('slNext'), picker: t('ctViews') }} actions={() => <>{acts}</>} />
-        : <Stack direction="column" gap={2}>{stage}<Stack direction="row" gap={1} wrap>{acts}</Stack></Stack> },
-      ...parts,
-    ]} />
-  );
+  // What the city holds, as the full-screen sheet and a post's sheet show it (CityParts); the page lays the same
+  // sections out by data (site.json worldTabs): its own Status first, several of the city's as one (Items), the rest after.
+  const parts = useCityParts(w); const held = useCityParts(w, { facts: false });
+  const own: Record<string, React.ReactNode> = {
+    status: <Stack direction="column" gap={3}><Stack direction="row" gap={1} wrap>{acts}</Stack><StatGrid size="sm" items={facts.map(([label, value]) => ({ label, value }))} /></Stack>,
+    views: slides.length ? <Showcase ratio="16/9" auto={0} slides={slides} labels={{ prev: t('slPrev'), next: t('slNext'), picker: t('ctViews') }} /> : null,
+  };
+  const sections: SectionDef[] = WORLD_TABS.flatMap((x): SectionDef[] => {
+    if (x.own) return own[x.id] ? [{ id: x.id, title: x.label, content: own[x.id] }] : [];
+    if (x.of) { const of = x.of.flatMap((id) => held.filter((p) => p.id === id && !p.hidden));
+      return of.length ? [{ id: x.id, title: x.label, hint: String(of.length), expandable: true, content: (
+        <Stack direction="column" gap={4}>{of.map((p) => <Stack key={p.id} direction="column" gap={2}><Title level={4} size="sm">{p.title}</Title>{p.content}</Stack>)}</Stack>) }] : []; }
+    return held.filter((p) => p.id === x.id && !p.hidden).map((p) => ({ ...p, title: x.label }));
+  });
+  const centre = <PageSections id="world-page" size="sm" sections={sections} />;
+  // The page's sections are known outside it: the right sidebar's Center lists them all and brings one into view.
+  const named = sections.map((x) => x.id + '=' + String(x.title)).join('|');
+  useEffect(() => { partStore.set(sections.map((x) => ({ id: x.id, label: String(x.title) }))); return () => partStore.set([]); }, [named]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // It opens as a profile does: the city's picture and name first, its sections as tabs under the name (a tab brings its
-  // section into view), then the city's own square card in the centre; the card opens the city full screen.
-  const shownParts = parts.filter((x) => !x.hidden);
+  // It opens as a profile does: the city's picture as it is and its name, its first sections as tabs under the name (a
+  // tab brings its section into view; the others are in the right sidebar), then the city's own square card in the
+  // centre, growing to the page's width as it comes up; the card opens the city full screen.
+  const tabs = WORLD_TABS.filter((x) => x.tab && sections.some((p) => p.id === x.id));
   const [part, setPart] = useState<string>();
-  const toPart = (id: string) => { setPart(id); document.querySelector(`#world-item [data-section="${id}"], [data-section="${id}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+  const toPart = (id: string) => { setPart(id); document.querySelector(`[data-section="${id}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
   const card = big ? <Image src={big} alt={w.name} fit="cover" fill />
     : <Tile image={worldImage(w)} tone={w.tone} ratio="1" big grid depth={{ worldId: w.id, clubId: w.clubId, personId: w.creatorId }} />;
   const hero = { card, onCard: big ? () => setFull(true) : undefined, cardLabel: t('isFull'),
-    tabs: shownParts.length > 1 ? <TabList size="sm" variant="pills" aria-label={w.name} activeId={part ?? shownParts[0].id} onChange={toPart}
-      items={shownParts.map((x) => ({ id: x.id, label: typeof x.title === 'string' ? x.title : x.id, count: typeof x.hint === 'string' || typeof x.hint === 'number' ? x.hint : undefined }))} /> : undefined };
+    tabs: tabs.length > 1 ? <TabList size="sm" variant="pills" aria-label={w.name} activeId={part ?? tabs[0].id} onChange={toPart} items={tabs.map((x) => ({ id: x.id, label: x.label }))} /> : undefined };
   const columns = [
     { id: 'world', title: w.name, label: t('wdWorld'), content: centre, minWidth: '20rem' },
     ...(agent ? [{ id: 'chat', title: <Stack direction="row" gap={2} align="center"><PersonAvatar id={agent.id} size="xs" /><Text size="sm" weight="semibold">{agent.name}</Text></Stack>,

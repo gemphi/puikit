@@ -18,7 +18,11 @@ export type Route = { kind?: string | string[]; param?: string; menu?: string; h
  *  that belong to the path's record (`@` is the path's own kind; `where` as on a tab), then plain links to paths. */
 export type SideGroup = { id: string; label: string; icon: string; place?: 'top' | 'center' | 'bottom'; kind?: string; where?: Record<string, string>; limit?: number; link?: { label: string; path: string }[];
   /** This group lists the page's own columns (chat, linked, people): picking one shows or hides it. */
-  columns?: boolean };
+  columns?: boolean;
+  /** This group lists the page's own sections first (picking one brings it into view); its menu is open as the page opens. */
+  parts?: boolean; open?: boolean;
+  /** Named sets of rows folded under an entry each (a world's zones, its hosts): a kind and which of its rows, as on a tab. */
+  sub?: { id: string; label: string; kind: string; where?: Record<string, string>; not?: Record<string, string>; limit?: number }[] };
 /** The list a path sits under: its path, what it is called there when that differs from the path's own name, and its params. */
 export type Up = { path: string; name?: string; params?: Record<string, string> };
 

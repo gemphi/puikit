@@ -18,9 +18,10 @@ import type { City, Club, World } from '../../types/phiegg';
 /**
  * What a city holds, as sections: About, Zones, Posts, PFTs, Hosts, Clubs, Rides, Gems and Links. The city's page, its
  * full-screen sheet and the sheet of a post made in it all show these same sections, so a city reads the same wherever
- * it is opened; a section with nothing in it is hidden.
+ * it is opened; a section with nothing in it is hidden. `facts: false` leaves the figures out of About (the world's
+ * page shows them as its Status).
  */
-export const useCityParts = (w: World): SectionDef[] => {
+export const useCityParts = (w: World, opts: { facts?: boolean } = {}): SectionDef[] => {
   const s = useStore(phieggStore); const placesReady = !!usePlaces();
   const club = itemOf('club', w.clubId);
   const nest = s.nests.find((n) => n.kind === 'world' && n.worldId === w.id);
@@ -43,7 +44,7 @@ export const useCityParts = (w: World): SectionDef[] => {
       { id: 'about', title: t('wdAbout'), expandable: true, content: (
         <Stack direction="column" gap={3}>
           <Text size="md">{w.description}</Text>
-          <StatGrid size="sm" items={facts.map(([label, value]) => ({ label, value }))} />
+          {opts.facts !== false && <StatGrid size="sm" items={facts.map(([label, value]) => ({ label, value }))} />}
           {w.tags?.length ? <Stack direction="row" gap={1} wrap>{w.tags.map((x) => <Tag key={x} minimal round size="sm">{x}</Tag>)}</Stack> : null}
         </Stack>) },
       { id: 'zones', title: t('wdCities'), hint: String(w.cities.length), expandable: true, actions: <Button variant="glass" iconLeft={Plus} onClick={() => s.openNest(hostId, nest?.id ?? null, 'city')}>{t('nestCity')}</Button>, content: (
