@@ -1,7 +1,7 @@
 import type React from 'react';
 
 export type Theme = 'light' | 'dark' | 'system';
-export type ThemeStyle = 'apple' | 'flat' | 'gradient' | 'elevated' | 'glass' | 'organic' | 'spacex' | 'muse';
+export type ThemeStyle = 'apple' | 'flat' | 'gradient' | 'elevated' | 'glass' | 'organic' | 'spacex' | 'muse' | 'jingle';
 
 export interface BrandColors {
   primary: string;

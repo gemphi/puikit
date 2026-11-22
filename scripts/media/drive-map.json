@@ -1,0 +1,79 @@
+{
+  "_": "Where the finished assets are on Google Drive. The Drive connector can read these but cannot move thousands of images, so download these folders as zips into Downloads (or sync them with Drive for desktop), then run import_collections.py --images.",
+  "collections": {
+    "epac": {
+      "name": "EPAC",
+      "images": { "folder": "EPAC-NFTS-FINAL", "id": "1Vm_0JU1EXQU0ZgGSK7-CW1dVeN3GwObH", "file": "EPAC-NNNN.png" },
+      "sameImages": { "folder": "BOLD-NFTS-FINAL/EPAC", "id": "1xZSmbEiaVURci5AB7WS51lu3ej8eT6Uy" },
+      "pixel": { "folder": "BOLD-NFTS-FINAL/EPAC-PIXEL", "id": "1AcfvfMPz9wwbNSgVORaew4tbJ-moZl4k" },
+      "attributes": { "sheet": "FINAL-NFT-NONPIXEL", "id": "1eVebdVesWhXMGXaxBNDwXHWpbiUZRfE7O1dU8Yrjcec" },
+      "supersedes": { "folder": "BAEC-NFTS-OLD", "id": "1jw5N_OW16XmDHj86DmolehaGp9K4nkLC" }
+    },
+    "bold-pups": {
+      "name": "Bold Pups",
+      "images": { "folder": "BOLD-PUPS-2D/BFRC-NFTS/FINAL-NFTS", "id": "1jlFbuyz63s2QxtoYck_38q8ruY-rbqVH" },
+      "clubs": { "BPSC": { "folder": "BPSC-NFTS-8000", "id": "13jz3xr-UB59qwhutJMuQAnFJukjLKMf7" }, "HHOC": { "folder": "HHOC-NFTS-2000", "id": "1Ubvwhw2Tyn12tyUTZyxVOWY1cAow4j5x", "already": "the zips in Downloads" } },
+      "attributes": { "sheet": "BPWC-1-1000", "id": "1KjmhfdoTZKa2bwqd64BU51Ru5dK50WVHpmqs8luyuVU" },
+      "planning": { "file": "BFRC-PLANNING-17-10-2022.pdf", "id": "1dwdXN73lsFEhvKGh8hLO9LFvzx_WNWPN" },
+      "models": { "folder": "BOLD-PUPS-3D", "id": "1AzOzjFObMmMR1ZMdkoc9kQnG8Als7l9Y" },
+      "clubhouse": { "folder": "BP-PALM-CLUB-HOUSE", "id": "1qxCCIyYSzz7sTY9Uz3YyJ0PHFR987B8c" },
+      "mediaKit": { "folder": "BOLD-BP-MEDIA-KIT", "id": "1yUfDra0COF48EM06p0WnwwfJjAaHHsk5" }
+    },
+    "epic-pods": {
+      "name": "Epic Pods",
+      "folder": { "folder": "BOLD-LAND-BL/EPIC-PODS-EP", "id": "1qpIaLTYjzjOLImMBcbmnrbU-2vdq87P1" },
+      "clubhouse": { "folder": "EP-CHIC-CLUB-HOUSE", "id": "1r1LGDNAykMWRKG7ixNms55gYp5ToPUZt" },
+      "models": { "folder": "BOLD-EPICS-3D", "id": "1kYMyJVuk8n9nc2zgwpDQ9ICZWZT2T1GF" },
+      "pixel": { "folder": "BOLD-EPICS-2D-PIXEL", "id": "1SESLMsNY8Cb1gYZl3XR1OPmtdUDn3kCp" }
+    }
+  },
+  "cityLogos": {
+    "folder": "11NJG5gTWUdSGd6OIrdhHPiMAZZY81uJV",
+    "cities": {
+      "Skim City": "194fCkgCDeLD1FXlHt7dxmUiw7nQTziNO",
+      "Naim City": "1A0IaU1HGyDtnvE_Cb3jhlAI1PGUFbdl_",
+      "Loon City": "1tPuG0Zcs1jx3ZAVmBlPqSor2-c4Bi73F",
+      "Bozo City": "1BcQv0mDmDv4fLivbTfrsJGSSVbqrwNYl",
+      "Lace City": "1NBWBh3ldq7OpjSx1hZlKf0mRjguvppuE",
+      "Peep City": "1uRr2aI6HGipS4jEEVBm25NWFAycKY37q",
+      "Povo City": "10rr-KJ4SKrCB8YbVMwtEIHz3CWAcX2aU"
+    }
+  },
+  "boldCities": {
+    "folder": "1-g_4gB-7RjCvK_BFY1YGF13N3UKgiQ8V",
+    "name": "BOLDCITIES-LANDTYPES",
+    "note": "The 16 Bold Cities, one per land type: NN-NAME/BC-NN (RENDERS: 3Q, FRONT, SIDE, TOP and four close-ups, 2560x1440 on a clear background; BLENDER-FILES), BCL-NN (logos and icons), BLT-NN (the land). Downloaded to Downloads/BOLD-CITIES/NN-NAME/RENDERS and LOGOS; bold-cities.json lists the cities and app/phiegg/scripts/bold-cities.py puts them in the app. Also here: LOGOS-ICONS-PER-NAME, RENDER-FRAMES-LAND-TYPES, GTLF-FILES, EXTRAS."
+  },
+  "landTypes": {
+    "doc": "1uEfaeXGypi9NyfQyQ0ghOK9ByyaKr8CijeQkinUuU1E",
+    "note": "Each land has BCL-NN (city logos and icons) and, where finished, BLT-NN (renders and Blender files) under a folder NN-NAME.",
+    "groups": { "Natural Environments": [1, 2, 3, 4], "Aquatic & Submerged Zones": [5, 6, 7, 8], "Fantasy & Extreme Terrains": [9, 10, 11, 12], "Urban & City Zones": [13, 14, 15, 16] },
+    "lands": {
+      "1": { "name": "Forest", "BCL": "15Lvy6gY78HnZh1E31pqpuZyM__JlSDai" },
+      "2": { "name": "Desert", "BCL": "1TN1W7v7oGFP34gTN3s196zgztQ6MG8dn" },
+      "3": { "name": "Grasslands", "BCL": "1DZ_I0JGaZbn6vK1BkAs0xPiki1YIiDZB" },
+      "4": { "name": "Arctic", "BCL": "1xwK11mJEYbKnzephfVOiWV2Gcr0WZoEV" },
+      "5": { "name": "Water Scene", "BCL": "1Mp2zSnW-W69luJrtY8IF3qkjKXWibO0f" },
+      "6": { "name": "Tropical Beach", "BCL": "1Pbw5-QAWMegHzYGaR3ObYEuH0vc6ftwm" },
+      "7": { "name": "Swamp", "BCL": "1ix9py0Usp88Rgq33tP8aiIHQ6DNh0UUE" },
+      "8": { "name": "Coral Reef", "BCL": "1cmJxylm5RuMcvRvkmISK_MiwUqpcLXRQ" },
+      "9": { "name": "Lava Scene", "BCL": "1LcMUVb4C64hFr_Y5AfF_W1VdlDLvih8a", "BLT": "1Q8JuPYnR2YfIIDUCTsGXav-80bCdq1us" },
+      "10": { "name": "Crystal Caves", "BCL": "1UEgf8QjMNRcHuWDxEqMUGN1mMgG6W9Cd", "BLT": "1G8OfoeYKT57OoLkF5AthMRknUYDNnceE" },
+      "11": { "name": "Floating Island", "BCL": "1iufEs0Sdm3a4eGihPKSHou_kGUvoQ9cT", "BLT": "18RC4hBuH-5pI-9LUKi2iRoUJZ_7X2H-5" },
+      "12": { "name": "Moonscape", "BCL": "1B9Ojiy4lkct-XkbV0pMzbCS8O-biRmaW" },
+      "13": { "name": "Modern City", "BCL": "1zswfdmlk-yvgfeG2rKJF4QcEnm9YgCQd", "BLT": "10CK8lf0S2uRlYwb6yjz34c5pJMlSBvvc" },
+      "14": { "name": "City Ruins", "BCL": "1CHWYmsnRXt8shkxlSw3ycCrzViu9TXQh", "BLT": "1qwKFbbkWMIAZ3O_yLyGXZiaeFnGokxxC" },
+      "15": { "name": "Cyberpunk", "BCL": "1LCi19vMx3kPo5G9R8wpW3iDe1JUYVh47", "BLT": "1_UOSvQ1SZnVZnJK2YY_xGl3TLvYiD6jA" },
+      "16": { "name": "Village", "BCL": "1sb4Ge9IdwFfv4acHJjF30TqxQohA1gUp", "BLT": "1LfrazTnWNBxkDRvwsrwqRgUjFqJW_8-6" }
+    }
+  },
+  "other": {
+    "BOLD-NFTS-FINAL": "1Ik0tNK-t5MA5bxmtL9cSuD-Hm0TQRuV5",
+    "BOLD-ASSETS": "1e7go7SxP51TDGCPmCr6yr0Kzwlf8rvFM",
+    "BOLD-CHARS-TRACKING.xlsx": "1ldQ1CU5zNch-bho-j0Sb7uxYTnkjBqVz",
+    "BOLD-LOOKS-TRACKING": "1lv_hTgRylCF7RXCo8Zz5CoEUlkgJ1U_lXPCestwOpvs",
+    "PR-CW-POSE-ASSET-TRACKER.xlsx": "1QeA14STqYcrhnXr6U5o0qg4a3Wb43xZd",
+    "BOLD-SHOW-BUILDINGS": "11xzUXRo597m95dMyvftc-fT6RqkzM5oMi6toTZFM_EM",
+    "BoldCity Plan.xlsx": "1kqvga7bo4XZ4JyaMRs6C4dZy9COFixtF"
+  }
+}

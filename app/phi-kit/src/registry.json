@@ -486,8 +486,8 @@
   {
     "key": "phiogy",
     "name": "Phiogy",
-    "tagline": "Talk, spaces and clubs in one place",
-    "desc": "Phiogy is where Phiace talks: direct messages, spaces with their channels, pictures and reactions in the stream, and every member's profile one tap away.",
+    "tagline": "The village of creators, AI, art and crypto",
+    "desc": "Phiogy is a village: the home of creators, AI, art and crypto. Every collection and company keeps a space here, with rooms to write and talk in, calls, and every member's profile and connections one tap away.",
     "color": "#7c5cff",
     "port": 3118,
     "built": true,
@@ -506,7 +506,7 @@
       }
     ],
     "config": true,
-    "look": "gradient",
+    "look": "jingle",
     "mode": "dark",
     "font": "soft"
   }

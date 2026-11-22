@@ -10,6 +10,12 @@
   height: 1px;
 }
 
+/* A line with words in its middle: the same line to both sides of them. */
+.labelled {
+  display: flex; align-items: center; gap: var(--phi-space-2); width: 100%; min-width: 0;
+  &::before, &::after { content: ''; flex: 1 1 0; height: 1px; background-color: var(--phi-color-border); }
+}
+
 .vertical {
   width: 1px;
   height: 100%;

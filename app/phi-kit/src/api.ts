@@ -19,6 +19,8 @@ import { useSyncExternalStore } from 'react';
 
 const BASE = ((import.meta.env.VITE_PHI_API as string | undefined) || '').replace(/\/$/, '');
 export const hasApi = BASE !== '';
+/** Where a path of the API is, for what does not go through fetch (an event stream). */
+export const apiUrl = (path: string) => BASE + path;
 
 const req = async <T>(method: string, path: string, body?: unknown): Promise<T | undefined> => {
   if (!hasApi) return undefined;

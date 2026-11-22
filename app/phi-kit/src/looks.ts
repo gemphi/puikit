@@ -8,11 +8,14 @@ export type Look = { id: string; label: string; style: ThemeStyle; brand: string
 export const LOOKS: Look[] = [
   // SpaceX first: the rocket-interior look is the house default — instrument-blue seams, brushed panels, square edges.
   { id: 'spacex', label: 'SpaceX', style: 'spacex', brand: 'spacex', palette: 'none', gradient: 'soft', radius: 'small' },
-  { id: 'apple', label: 'Apple', style: 'apple', brand: 'apple', palette: 'apple', gradient: 'soft', radius: 'medium' },
+  // Apple: rounder than the others (the 48px corner), and its sidebars carry a hairline of light (_theme-styles.scss).
+  { id: 'apple', label: 'Apple', style: 'apple', brand: 'apple', palette: 'apple', gradient: 'soft', radius: 'large' },
   { id: 'organic', label: 'Organic', style: 'organic', brand: 'phiegg', palette: 'opal', gradient: 'vivid', radius: 'pill' },
   { id: 'muse', label: 'Muse', style: 'muse', brand: 'muse', palette: 'none', gradient: 'flat', radius: 'medium' },
   // Gradient: every surface and label wears the brand's two colours (tokens: _theme-styles.scss). Phiogy's own look.
   { id: 'gradient', label: 'Gradient', style: 'gradient', brand: 'phiogy', palette: 'none', gradient: 'vivid', radius: 'medium' },
+  // Jingle: one gradient under the whole window, the brand's own, and the kit's plain light on everything over it.
+  { id: 'jingle', label: 'Jingle', style: 'jingle', brand: 'jingle', palette: 'none', gradient: 'flat', radius: 'medium' },
 ];
 /** Gradient level every app starts on (Settings / Appearance change it). */
 export const DEFAULT_GRADIENT = 'soft' as const;
@@ -39,4 +42,17 @@ export function useLook(): [Look, (id: string) => void] {
     setThemeStyle(l.style); setBrandId(l.brand); setPaletteId(l.palette); setGradientLevel(l.gradient); setBorderRadius(RADIUS_PRESETS[l.radius]);
   };
   return [cur, set];
+}
+
+/** What a bought thing puts on when it is worn (a shop's theme): one of the kit's palettes, by its name. */
+export type Wear = { palette?: string };
+/** Wearing: is this on now, put it on, and take it off again (back to what the look itself wears). */
+export function useWear() {
+  const { paletteId, setPaletteId } = usePuiTheme();
+  const [look] = useLook();
+  return {
+    on: (w?: Wear) => !!w?.palette && w.palette === paletteId,
+    put: (w?: Wear) => { if (w?.palette) setPaletteId(w.palette); },
+    off: () => setPaletteId(look.palette),
+  };
 }

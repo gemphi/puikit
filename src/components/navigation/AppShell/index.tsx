@@ -159,7 +159,7 @@ export const AppShell: React.FC<AppShellProps> = ({
         <Box as="header" className={styles.head}>
           {!bar && <Pressable className={cn(styles.railBtn, styles.menuBtn)} aria-label={L.menu} onClick={() => setDrawer(true)}><MenuIcon size={20} /></Pressable>}
           <ShellBrand brand={brand} open={open} onToggle={() => setOpen(!open)} openLabel={L.openMenu} closeLabel={L.closeMenu}
-            onHome={() => { const first = entriesOf(groups[0] ?? { id: '', label: '', items: [] })[0]; if (first) go(first.id); }} />
+            onHome={() => { const first = entriesOf(groups[0] ?? { id: '', label: '', items: [] }).find((e) => !e.head); if (first) go(first.id); }} />
           <Box className={styles.lane}>
             <Box className={styles.crumbs}>{trail}</Box>
             <Box flex="1" />

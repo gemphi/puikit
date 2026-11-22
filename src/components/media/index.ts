@@ -6,3 +6,5 @@ export * from './SpriteImage';
 export * from './Frame';
 export * from './Showcase';
 export * from './Picture';
+export * from './Stream';
+export * from './PhiSvg';

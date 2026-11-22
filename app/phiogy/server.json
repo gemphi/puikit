@@ -1,0 +1,363 @@
+{
+  "source": "../phiegg/src/data",
+  "sheet": "phiegg:portraits/",
+  "host": {
+    "first": [
+      "h_bp",
+      "h_epac",
+      "h_opal",
+      "h_swan",
+      "h_lynx",
+      "h_runway"
+    ],
+    "more": 2,
+    "by": "members"
+  },
+  "nest": {
+    "channel": "text",
+    "gallery": "text",
+    "voice": "voice",
+    "stage": "voice",
+    "category": "head"
+  },
+  "head": {
+    "text": "Text",
+    "voice": "Voice"
+  },
+  "icon": {
+    "text": "hash",
+    "voice": "volume",
+    "host": "users"
+  },
+  "day": "Today",
+  "presence": [
+    [
+      "here",
+      "Here now",
+      5
+    ],
+    [
+      "away",
+      "Away",
+      2
+    ],
+    [
+      "busy",
+      "Do not disturb",
+      1
+    ],
+    [
+      "off",
+      "Offline",
+      2
+    ]
+  ],
+  "role": "Member",
+  "agent": "AI agent",
+  "link": {
+    "least": 64,
+    "most": 256,
+    "file": "public/data/link.json"
+  },
+  "space": {
+    "least": 64,
+    "most": 256
+  },
+  "cast": "cast.json",
+  "friend": {
+    "with": [
+      "lora",
+      "kairo",
+      "mina"
+    ],
+    "more": 9,
+    "asked": 3
+  },
+  "village": {
+    "room": {
+      "id": "lobby",
+      "label": "lobby",
+      "topic": "A room for holders and friends. Kept by its members, not by the collection."
+    },
+    "space": [
+      {
+        "id": "v_acrobirds",
+        "label": "Acrobirds"
+      },
+      {
+        "id": "v_bayc",
+        "label": "Bored Apes",
+        "x": "https://x.com/BoredApeYC"
+      },
+      {
+        "id": "v_penguins",
+        "label": "Penguins",
+        "x": "https://x.com/pudgypenguins"
+      },
+      {
+        "id": "v_moonbirds",
+        "label": "Moonbirds",
+        "x": "https://x.com/moonbirds"
+      }
+    ]
+  },
+  "collection": {
+    "template": "collection",
+    "topic": "A room for holders and friends. Kept by its members, not by the collection.",
+    "space": [
+      {
+        "id": "c_punks",
+        "label": "CryptoPunks",
+        "x": "https://x.com/cryptopunksnfts"
+      },
+      {
+        "id": "c_mutants",
+        "label": "Mutant Apes"
+      },
+      {
+        "id": "c_azuki",
+        "label": "Azuki",
+        "x": "https://x.com/Azuki"
+      },
+      {
+        "id": "c_doodles",
+        "label": "Doodles",
+        "x": "https://x.com/doodles"
+      },
+      {
+        "id": "c_coolcats",
+        "label": "Cool Cats",
+        "x": "https://x.com/coolcats"
+      },
+      {
+        "id": "c_wow",
+        "label": "World of Women",
+        "x": "https://x.com/worldofwomennft"
+      },
+      {
+        "id": "c_clonex",
+        "label": "CloneX"
+      },
+      {
+        "id": "c_meebits",
+        "label": "Meebits"
+      },
+      {
+        "id": "c_milady",
+        "label": "Milady",
+        "x": "https://x.com/miladymaker"
+      },
+      {
+        "id": "c_degods",
+        "label": "DeGods",
+        "x": "https://x.com/DeGodsNFT"
+      },
+      {
+        "id": "c_y00ts",
+        "label": "y00ts",
+        "x": "https://x.com/y00tsNFT"
+      },
+      {
+        "id": "c_madlads",
+        "label": "Mad Lads",
+        "x": "https://x.com/MadLads"
+      },
+      {
+        "id": "c_artblocks",
+        "label": "Art Blocks",
+        "x": "https://x.com/artblocks_io"
+      },
+      {
+        "id": "c_nouns",
+        "label": "Nouns",
+        "x": "https://x.com/nounsdao"
+      },
+      {
+        "id": "c_veefriends",
+        "label": "VeeFriends",
+        "x": "https://x.com/veefriends"
+      },
+      {
+        "id": "c_goblintown",
+        "label": "Goblintown",
+        "x": "https://x.com/goblintown"
+      },
+      {
+        "id": "c_kongz",
+        "label": "CyberKongz",
+        "x": "https://x.com/CyberKongz"
+      },
+      {
+        "id": "c_seals",
+        "label": "Sappy Seals",
+        "x": "https://x.com/SappySealsNFT"
+      },
+      {
+        "id": "c_bears",
+        "label": "Okay Bears",
+        "x": "https://x.com/okaybears"
+      },
+      {
+        "id": "c_clay",
+        "label": "Claynosaurz",
+        "x": "https://x.com/Claynosaurz"
+      },
+      {
+        "id": "c_mfers",
+        "label": "mfers"
+      },
+      {
+        "id": "c_checks",
+        "label": "Checks"
+      },
+      {
+        "id": "c_otherside",
+        "label": "Otherside",
+        "x": "https://x.com/OthersideMeta"
+      },
+      {
+        "id": "c_captainz",
+        "label": "Captainz",
+        "x": "https://x.com/Memeland"
+      },
+      {
+        "id": "c_pandas",
+        "label": "Kanpai Pandas",
+        "x": "https://x.com/KanpaiPandas"
+      },
+      {
+        "id": "c_deadfellaz",
+        "label": "Deadfellaz",
+        "x": "https://x.com/Deadfellaz"
+      },
+      {
+        "id": "c_invisible",
+        "label": "Invisible Friends"
+      },
+      {
+        "id": "c_loot",
+        "label": "Loot",
+        "x": "https://x.com/lootproject"
+      },
+      {
+        "id": "c_smb",
+        "label": "Solana Monkey Business",
+        "x": "https://x.com/SolanaMBS"
+      },
+      {
+        "id": "c_autoglyphs",
+        "label": "Autoglyphs"
+      },
+      {
+        "id": "c_nodemonkes",
+        "label": "NodeMonkes"
+      },
+      {
+        "id": "c_puppets",
+        "label": "Bitcoin Puppets"
+      }
+    ]
+  },
+  "catalogue": "public/data/host.json",
+  "template": [
+    {
+      "id": "own",
+      "label": "Create my own",
+      "icon": "spark",
+      "room": [
+        {
+          "label": "lobby",
+          "head": "Text"
+        }
+      ]
+    },
+    {
+      "id": "collection",
+      "label": "Collection",
+      "icon": "layers",
+      "room": [
+        {
+          "label": "announcements",
+          "head": "Start here"
+        },
+        {
+          "label": "holders",
+          "head": "Community"
+        },
+        {
+          "label": "gallery",
+          "head": "Community"
+        },
+        {
+          "label": "Lounge",
+          "head": "Live",
+          "kind": "voice"
+        }
+      ]
+    },
+    {
+      "id": "studio",
+      "label": "Studio",
+      "icon": "cube",
+      "room": [
+        {
+          "label": "brief",
+          "head": "Work"
+        },
+        {
+          "label": "work",
+          "head": "Work"
+        },
+        {
+          "label": "review",
+          "head": "Work"
+        },
+        {
+          "label": "Bench",
+          "head": "Live",
+          "kind": "voice"
+        }
+      ]
+    },
+    {
+      "id": "friends",
+      "label": "Friends",
+      "icon": "heart",
+      "room": [
+        {
+          "label": "lobby",
+          "head": "Text"
+        },
+        {
+          "label": "Lounge",
+          "head": "Voice",
+          "kind": "voice"
+        }
+      ]
+    },
+    {
+      "id": "club",
+      "label": "Club",
+      "icon": "users",
+      "room": [
+        {
+          "label": "welcome",
+          "head": "Start here"
+        },
+        {
+          "label": "general",
+          "head": "Community"
+        },
+        {
+          "label": "events",
+          "head": "Community"
+        },
+        {
+          "label": "Stage",
+          "head": "Live",
+          "kind": "voice"
+        }
+      ]
+    }
+  ]
+}

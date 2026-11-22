@@ -1,0 +1,75 @@
+// Lightbox: a picture opened over the whole app, which stays dimmed behind it. Tokens only.
+@keyframes lightboxIn { from { opacity: 0; } to { opacity: 1; } }
+
+.root {
+  position: fixed; inset: 0; z-index: var(--phi-z-modal, 1000);
+  --pui-lb-control: 2.75rem; --pui-lb-gap: var(--phi-space-4, 1rem); --pui-lb-thumb: 2.75rem;
+  backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur);
+  animation: lightboxIn var(--phi-animation-speed, 0.2s) ease-out forwards;
+}
+/* The app behind, dimmed by its own ground: nothing of it reads, and the picture is alone. */
+.veil { position: absolute; inset: 0; background: var(--phi-color-background); opacity: 0.9; }
+
+// The picture, whole, in the room the controls leave: under the top row, between the arrows, over the strip.
+.stage {
+  position: absolute; display: grid; place-items: center; overflow: hidden;
+  top: calc(var(--pui-lb-control) + var(--pui-lb-gap) * 2); bottom: calc(var(--pui-lb-thumb) + var(--pui-lb-gap) * 2.5);
+  left: calc(var(--pui-lb-control) + var(--pui-lb-gap) * 2); right: calc(var(--pui-lb-control) + var(--pui-lb-gap) * 2);
+}
+.picture { max-width: 100%; max-height: 100%; min-width: 0; min-height: 0; object-fit: contain; border-radius: var(--phi-radius-md); cursor: zoom-in; }
+/* Larger: at twice the room, moved about by scrolling. */
+.large { overflow: auto; place-items: start; scrollbar-width: thin;
+  .picture { max-width: none; max-height: none; width: 200%; height: auto; cursor: zoom-out; }
+}
+
+// Who posted it and when, at the top left.
+.who {
+  position: absolute; top: var(--pui-lb-gap); left: var(--pui-lb-gap); max-width: calc(50vw - var(--pui-lb-gap) * 2);
+  display: flex; align-items: center; gap: var(--phi-space-2, 0.5rem); min-height: var(--pui-lb-control); color: var(--phi-color-text);
+}
+.said { display: flex; flex-direction: column; min-width: 0; line-height: 1.2; }
+
+// Its tools and the way out, at the top right. Controls float on the kit's one surface.
+.top { position: absolute; top: var(--pui-lb-gap); right: var(--pui-lb-gap); display: flex; align-items: center; gap: var(--phi-space-3, 0.75rem); }
+.tools {
+  display: flex; gap: 2px; padding: var(--phi-space-1, 0.25rem); border-radius: var(--phi-radius-md);
+  background-image: var(--phi-glass-to-across); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur);
+}
+.tool {
+  display: grid; place-items: center; width: calc(var(--pui-lb-control) - var(--phi-space-2, 0.5rem)); height: calc(var(--pui-lb-control) - var(--phi-space-2, 0.5rem));
+  border-radius: var(--phi-radius-sm); color: var(--phi-color-text);
+  &:hover, &[aria-pressed='true'] { background-image: var(--phi-label-soft); }
+}
+.round {
+  display: grid; place-items: center; width: var(--pui-lb-control); height: var(--pui-lb-control); flex: none; border-radius: var(--phi-radius-md);
+  background-color: transparent; background-image: var(--phi-glass-to-across); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur);
+  color: var(--phi-color-text);
+  &:hover { background-image: var(--phi-label-strong); }
+}
+// The one before and the one after, at the sides, on the picture's middle line.
+.prev, .next { position: absolute; top: 50%; transform: translateY(-50%); }
+.prev { left: var(--pui-lb-gap); }
+.next { right: var(--pui-lb-gap); }
+
+// Every picture there is to step through, at the foot; the one shown is marked.
+.strip {
+  position: absolute; left: 50%; bottom: var(--pui-lb-gap); transform: translateX(-50%); max-width: calc(100vw - var(--pui-lb-gap) * 2);
+  display: flex; gap: var(--phi-space-1, 0.25rem); padding: var(--phi-space-1, 0.25rem); border-radius: var(--phi-radius-md);
+  overflow-x: auto; scrollbar-width: none; &::-webkit-scrollbar { display: none; }
+  background-image: var(--phi-glass-to-across); backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur);
+}
+.thumb {
+  flex: none; width: var(--pui-lb-thumb); height: var(--pui-lb-thumb); border-radius: var(--phi-radius-sm); overflow: hidden; opacity: 0.6;
+  transition: opacity var(--phi-duration-fast, 0.15s) linear;
+  img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  &:hover { opacity: 1; }
+}
+.on { opacity: 1; outline: 2px solid var(--phi-color-text); outline-offset: -2px; }
+
+@media (max-width: 640px) {
+  .root { --pui-lb-gap: var(--phi-space-2, 0.5rem); }
+  /* The arrows lie over the picture's edges, so the picture has the width. */
+  .stage { left: var(--pui-lb-gap); right: var(--pui-lb-gap); bottom: calc(var(--pui-lb-thumb) + var(--pui-lb-control) + var(--pui-lb-gap) * 5); }
+  /* The top row is the tools' alone: who posted it and when stand over the strip. */
+  .who { top: auto; bottom: calc(var(--pui-lb-thumb) + var(--pui-lb-gap) * 4); max-width: calc(100vw - var(--pui-lb-gap) * 2); }
+}

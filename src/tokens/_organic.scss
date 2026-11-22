@@ -29,7 +29,7 @@
   --phi-color-background: #f5ead8;
   --phi-color-background-secondary: #ebddc5;
   --phi-color-background-card: #f9f4ed;
-  --phi-color-surface-tint: linear-gradient(180deg, color-mix(in oklch, #c67139 10%, transparent), transparent);
+  --phi-color-surface-tint: linear-gradient(90deg, color-mix(in oklch, #c67139 10%, transparent), transparent);
   --phi-color-text-primary: #201e1d;
   --phi-color-text-secondary: #645c50;
   --phi-color-text-muted: #82796a;
@@ -45,12 +45,12 @@
   /* Brand-aware: every tint follows --phi-color-primary, so Emerald/Amber/… keep their gradients. */
   --phi-gradient-main: radial-gradient(90% 60% at 0% 0%, color-mix(in oklch, var(--phi-color-primary, #c67139) 12%, transparent) 0%, transparent 60%), radial-gradient(70% 50% at 100% 100%, color-mix(in oklch, #7a8a5e 12%, transparent) 0%, transparent 60%), linear-gradient(180deg, #f5ead8 0%, #f9f4ed 100%);
   --phi-gradient-main-lr: linear-gradient(to right, #f5ead8 0%, #f9f4ed 100%);
-  --phi-gradient-card: linear-gradient(180deg, color-mix(in oklch, var(--phi-color-primary, #c67139) 10%, #f9f4ed) 0%, transparent 100%);
-  --phi-gradient-navbar: linear-gradient(180deg, #f5ead8 0%, #f9f4ed 100%);
+  --phi-gradient-card: linear-gradient(90deg, color-mix(in oklch, var(--phi-color-primary, #c67139) 10%, #f9f4ed) 0%, transparent 100%);
+  --phi-gradient-navbar: linear-gradient(90deg, #f5ead8 0%, #f9f4ed 100%);
   --phi-gradient-sidebar: linear-gradient(90deg, color-mix(in oklch, var(--phi-color-primary, #c67139) 22%, #f5ead8) 0%, transparent 100%);
-  --phi-gradient-rail: linear-gradient(180deg, color-mix(in oklch, var(--phi-color-primary, #c67139) 30%, #f5ead8) 0%, transparent 100%);
+  --phi-gradient-rail: linear-gradient(90deg, color-mix(in oklch, var(--phi-color-primary, #c67139) 30%, #f5ead8) 0%, transparent 100%);
   --phi-gradient-accent: linear-gradient(to right, color-mix(in oklch, var(--phi-color-primary, #c67139) 22%, #fff4ec) 0%, #e1eecc 100%);
-  --phi-gradient-table-header: linear-gradient(180deg, #eee7db 0%, #ebddc5 100%);
+  --phi-gradient-table-header: linear-gradient(90deg, #eee7db 0%, #ebddc5 100%);
   --phi-glass-surface: color-mix(in srgb, #f9f4ed 80%, transparent);
   --phi-glass-border: color-mix(in srgb, #201e1d 10%, transparent);
   --phi-font-family: "Phifing 4", "Phifing", "Figtree", system-ui, sans-serif;
@@ -76,12 +76,12 @@
   --phi-color-border-subtle: color-mix(in srgb, #f5ead8 8%, transparent);
   --phi-gradient-main: radial-gradient(90% 60% at 0% 0%, color-mix(in oklch, var(--phi-color-primary, #c67139) 16%, transparent) 0%, transparent 60%), radial-gradient(70% 50% at 100% 100%, color-mix(in oklch, #7a8a5e 14%, transparent) 0%, transparent 60%), linear-gradient(180deg, #1f1b17 0%, #29241f 100%);
   --phi-gradient-main-lr: linear-gradient(to right, #1f1b17 0%, #29241f 100%);
-  --phi-gradient-card: linear-gradient(180deg, color-mix(in oklch, var(--phi-color-primary, #c67139) 14%, #29241f) 0%, transparent 100%);
-  --phi-gradient-navbar: linear-gradient(180deg, color-mix(in oklch, var(--phi-color-primary, #c67139) 8%, #1f1b17) 0%, #1f1b17 100%);
+  --phi-gradient-card: linear-gradient(90deg, color-mix(in oklch, var(--phi-color-primary, #c67139) 14%, #29241f) 0%, transparent 100%);
+  --phi-gradient-navbar: linear-gradient(90deg, color-mix(in oklch, var(--phi-color-primary, #c67139) 8%, #1f1b17) 0%, #1f1b17 100%);
   --phi-gradient-accent: linear-gradient(to right, color-mix(in oklch, var(--phi-color-primary, #c67139) 28%, #29241f) 0%, color-mix(in oklch, #7a8a5e 24%, #29241f) 100%);
   --phi-gradient-sidebar: linear-gradient(90deg, color-mix(in oklch, var(--phi-color-primary, #c67139) 20%, #1f1b17) 0%, transparent 100%);
-  --phi-gradient-rail: linear-gradient(180deg, color-mix(in oklch, var(--phi-color-primary, #c67139) 26%, #1f1b17) 0%, transparent 100%);
-  --phi-gradient-table-header: linear-gradient(180deg, #2e2924 0%, #29241f 100%);
+  --phi-gradient-rail: linear-gradient(90deg, color-mix(in oklch, var(--phi-color-primary, #c67139) 26%, #1f1b17) 0%, transparent 100%);
+  --phi-gradient-table-header: linear-gradient(90deg, #2e2924 0%, #29241f 100%);
   --phi-shadow-1: 0 0 0 1px color-mix(in srgb, #f5ead8 8%, transparent);
   --phi-shadow-2: 0 4px 14px rgba(0, 0, 0, 0.45);
   --phi-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.55);

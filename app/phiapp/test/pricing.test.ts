@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { PRICE_PERIOD_MS, quoteLot, quoteSwap, shelfValues, soldAt, soloLot, unitPrice, type Lot } from './pricing';
+import { PRICE_PERIOD_MS, quoteLot, quoteSwap, shelfValues, soldAt, soloLot, unitPrice, type Lot } from '../../phi-kit/src/pricing';
 
 const drop: Lot = {
   id: 'drop_x', kind: 'drop', poolId: 'pool_x', title: 'X drop', itemIds: Array.from({ length: 64 }, (_, i) => 'l' + i),

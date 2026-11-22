@@ -2167,7 +2167,7 @@
  "profileTabIcons": { "_": "The glyph on each profile tab (lucide names).", "Shots": "Image", "Reels": "Film", "Looks": "Shirt", "Clubs": "Shield", "Likes": "Heart", "Items": "Gem", "Hosts": "MessagesSquare", "Credits": "Clapperboard" },
  "profileRail": { "_": "A profile's status row: its story sets, then its own posts, so the row never shows fewer than min.", "min": 8 },
  "clubTabsFirst": ["PFTs", "Pieces", "Store", "Worlds", "Shots", "EGG items", "Members", "Host"],
- "layouts": { "_": "The layouts a grid section can switch between (lucide icons); they set the app's list view.", "list": [ { "id": "tile", "label": "Tile", "icon": "GalleryHorizontal" }, { "id": "grid", "label": "Grid", "icon": "LayoutGrid" }, { "id": "list", "label": "List", "icon": "List" } ] },
+ "layouts": { "_": "The layouts a grid section can switch between (lucide icons); they set the app's list view.", "label": "Layout", "list": [ { "id": "tile", "label": "Tile", "icon": "GalleryHorizontal" }, { "id": "list", "label": "List", "icon": "List" }, { "id": "deck", "label": "Deck", "icon": "Layers" }, { "id": "grid", "label": "Grid", "icon": "LayoutGrid" } ] },
  "worldMenu": { "_": "A city's full-screen menu (the vertical rail at the left), by the section each entry goes to; only the sections the city has show.", "items": [
   { "id": "about", "label": "About", "icon": "Info" }, { "id": "zones", "label": "Zones", "icon": "MapPin" }, { "id": "posts", "label": "Posts", "icon": "Image" },
   { "id": "pfts", "label": "PFTs", "icon": "Gem" }, { "id": "clubs", "label": "Clubs", "icon": "Shield" }, { "id": "rides", "label": "Rides", "icon": "Car" },

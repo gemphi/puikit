@@ -48,8 +48,28 @@ services:
       PHI_MODEL: ${PHI_MODEL:-}
       PHI_MODEL_KEY: ${PHI_MODEL_KEY:-}
       PHI_MODEL_URL: ${PHI_MODEL_URL:-}
+      # Calls: with both set, Phiora keeps no rooms and passes /call to Phiogy's line (the service below), saying who
+      # each page belongs to. The key is a word the two share; the ICE list is what a page is told to find a way by.
+      PHI_CALL_LINE: ${PHI_CALL_LINE:-}
+      PHI_CALL_KEY: ${PHI_CALL_KEY:-}
+      PHI_CALL_ICE: ${PHI_CALL_ICE:-}
     volumes:
       - phioradata:/data
+    restart: unless-stopped
+
+  # Phiogy's call line, in Rust (phikit: crates/appkit/app/phiogy, `phiogy --line`): who is in each room's call, and
+  # their signals passed on. It shares Phiora's network, so the two speak over that container's own loopback
+  # (PHI_CALL_LINE=http://127.0.0.1:4310) and nothing of it is opened to the outside. The image is built from phikit:
+  #   bash crates/appkit/app/phiogy/script/ship.sh ubuntu@HOST KEY     (on the machine with the source)
+  #   docker build -f crates/appkit/app/phiogy/Dockerfile -t phiogy-line .   (on the server, in gemphi/phikit)
+  # It is brought up by name, after Phiora:  docker compose up -d phiogy
+  phiogy:
+    image: phiogy-line
+    network_mode: "service:phiora"
+    depends_on: [phiora]
+    environment:
+      PHI_CALL_KEY: ${PHI_CALL_KEY:-}
+      PHI_CALL_ICE: ${PHI_CALL_ICE:-}
     restart: unless-stopped
 
   # phiadk — the platform container (Python). Phiora, its FastAPI data engine, answers

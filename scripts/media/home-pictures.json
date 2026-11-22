@@ -1,0 +1,18 @@
+{
+  "_": "Finished renders shown on Phiegg's home page. app/phiegg/scripts/home-pictures.py reads this: each picture is a render with a clear ground, set whole on a card of `ratio` (the figure with `margin` of the card's height above and below), `height` pixels tall, written to public/<out>/<name>.webp. {DL} is the Downloads folder. The home page reads the list it shows from src/data/landing.json (ask.fan), not from here.",
+  "source": "{DL}/SHOWCASE-2025/Laura's-Spark/LS-DRESS-PHI-BIRD",
+  "out": "home/phi-bird",
+  "ratio": [3, 4],
+  "height": 1280,
+  "margin": 0.04,
+  "quality": 90,
+  "picture": [
+    { "name": "violet-rain", "file": "LS-RENDER-01-OPTION-04-POSE-01-VIOLET-RAIN.png" },
+    { "name": "phantom-gold", "file": "LS-RENDER-01-OPTION-04-POSE-01-PHANTOM-GOLD.png" },
+    { "name": "beach-day", "file": "LS-RENDER-01-OPTION-04-POSE-01-BEACH-DAY.png" },
+    { "name": "plain", "file": "LS-RENDER-01-OPTION-04-POSE-01.png" },
+    { "name": "front", "file": "LS-RENDER-01-OPTION-04-A-POSE-FRONT.png" },
+    { "name": "side", "file": "LS-RENDER-01-OPTION-04-A-POSE-SIDE.png" },
+    { "name": "back", "file": "LS-RENDER-01-OPTION-04-A-POSE-BACK.png" }
+  ]
+}

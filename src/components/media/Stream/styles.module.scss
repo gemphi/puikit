@@ -1,0 +1,3 @@
+// Stream: a live picture that fills and covers whatever holds it. No ground, border or colour of its own.
+.stream { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; background: transparent; }
+.mirrored { transform: scaleX(-1); }

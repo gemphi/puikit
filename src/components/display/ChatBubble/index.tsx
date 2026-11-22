@@ -23,7 +23,13 @@ export type ChatBubbleProps = {
   more?: React.ReactNode;
   /** The three dots' name for assistive tech. */
   moreLabel?: string;
+  /** The message this one answers, over its words on a ground of its own: who said it and the start of what they said. */
+  quote?: React.ReactNode;
+  /** This message follows one by the same sender: no picture and no name again, set in line under the one before. */
+  follows?: boolean;
   children?: React.ReactNode;
+  /** The element's id, so a reply can lead to the message it answers. */
+  id?: string;
   className?: string;
 };
 
@@ -34,11 +40,12 @@ export type ChatBubbleProps = {
  * actions as icons, and three dots for the rest. The viewer's own is the same band turned round. The grounds are the
  * kit's label lights, never a painted colour.
  */
-export const ChatBubble = ({ side = 'them', avatar, name, time, actions, more, moreLabel = 'More', children, className }: ChatBubbleProps) => (
-  <Box className={cn(styles.row, styles[side], className)} data-side={side}>
-    {avatar && <Box className={styles.avatar}>{avatar}</Box>}
+export const ChatBubble = ({ side = 'them', avatar, name, time, actions, more, moreLabel = 'More', quote, follows, children, id, className }: ChatBubbleProps) => (
+  <Box id={id} className={cn(styles.row, styles[side], follows && styles.follows, className)} data-side={side}>
+    {avatar && <Box className={styles.avatar} aria-hidden={follows || undefined}>{avatar}</Box>}
     <Box className={styles.col}>
-      {name && <Box className={styles.meta}><Text as="span" size="xs" weight="semibold">{name}</Text></Box>}
+      {quote && <Box className={styles.quote}>{quote}</Box>}
+      {name && !follows && <Box className={styles.meta}><Text as="span" size="xs" weight="semibold">{name}</Text></Box>}
       <Box className={styles.bubble}>{children}</Box>
     </Box>
     {(time || actions || more) && (

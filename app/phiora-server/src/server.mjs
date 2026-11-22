@@ -20,6 +20,7 @@ import { RecordError, createRecord, deleteRecord, readRecord, updateRecord } fro
 import { DelegationError, delegationSecret, signDelegation, verifyDelegation } from './delegation.mjs';
 import { accountRoute } from './account.mjs';
 import { memberRoute } from './member.mjs';
+import { callRoute, createCalls } from './call.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const APPS = resolve(here, '..', '..');                       // puikit/app
@@ -142,6 +143,8 @@ export function createPhiora({
   const editors = new Set((env.PHI_EDITORS || '').split(',').map((x) => x.trim()).filter(Boolean));
   const createKinds = env.PHI_CREATE_KINDS ? new Set(env.PHI_CREATE_KINDS.split(',').map((x) => x.trim()).filter(Boolean)) : null;
   const writeHits = new Map();
+  // Calls between the browsers in a room (call.mjs): who is in each, and their signals passed on.
+  const calls = createCalls(env);
 
   const server = createServer(async (req, res) => {
     const origin = req.headers.origin;
@@ -224,6 +227,9 @@ export function createPhiora({
       // A member's own routes (member.mjs); one that answered has ended the response.
       await memberRoute(route, { SERVER_DOCS, catalog, designers, docRead, fail, money, pathname, readBody, req, res, searchParams, send, store, u });
       if (res.writableEnded) return;
+      // A room's call (call.mjs); one it took has answered, or is held open as the room's line.
+      await callRoute(route, { calls, fail, pathname, readBody, req, res, searchParams, send, u });
+      if (res.headersSent) return;
       // Records in the items database: read with who may change them, create, edit, delete (30 changes a minute each).
       const rec = pathname.match(/^\/tree\/item\/([A-Za-z][A-Za-z0-9]{0,39})\/([\w.:-]{1,120})$/);
       if (rec && req.method === 'GET') return send(res, 200, await readRecord(store, u, editors, rec[1], decodeURIComponent(rec[2])));
@@ -277,8 +283,8 @@ export function createPhiora({
       console.error(e); return fail(res, 500, 'internal', 'Something went wrong.');
     }
   });
-  server.on('close', () => { clearInterval(sweeper); store.close(); });
-  return { server, store, catalog, model, mailer, init, itemsDir, appsDir };
+  server.on('close', () => { clearInterval(sweeper); calls.close(); store.close(); });
+  return { server, store, calls, catalog, model, mailer, init, itemsDir, appsDir };
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

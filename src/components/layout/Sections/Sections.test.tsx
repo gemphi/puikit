@@ -2,6 +2,7 @@ import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Sections } from './index';
+import { HeadTools } from '../HeadTools';
 
 const secs = [
   { id: 'top', title: 'Media', content: 'media', expandable: true, collapsible: true },
@@ -48,5 +49,16 @@ describe('Sections: the reader sets the order', () => {
     expect(titles()).toEqual(['mid', 'top', 'bot']);
     fireEvent.click(screen.getByRole('button', { name: 'Reset layout' }));
     expect(titles()).toEqual(['top', 'mid', 'bot']);
+  });
+  it('hands what it heads three places in its header, and marks a hint that is only a count', () => {
+    const { container } = render(<Sections sections={[
+      { id: 'rides', title: 'Rides', hint: '79', content: <><HeadTools at="start"><span>total</span></HeadTools><HeadTools at="center"><span>search</span></HeadTools><HeadTools><span>sort</span></HeadTools></> },
+      { id: 'about', title: 'About', hint: 'Who made it', content: 'words' },
+    ]} />);
+    const head = container.querySelector('[data-section="rides"]')!.firstElementChild!;
+    expect([...head.querySelectorAll('[data-head-tools]')].map((x) => x.getAttribute('data-head-tools') + ':' + x.textContent)).toEqual(['start:total', 'center:search', 'end:sort']);
+    // The count goes where a list puts its own total beside the title (the stylesheet hides what is marked).
+    expect(screen.getByText('79').hasAttribute('data-count')).toBe(true);
+    expect(screen.getByText('Who made it').hasAttribute('data-count')).toBe(false);
   });
 });

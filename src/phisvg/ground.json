@@ -1,0 +1,35 @@
+{
+  "set": [
+    {
+      "look": [],
+      "colour": {
+        "cool": "--phi-color-primary",
+        "hot": "--phi-color-secondary",
+        "third": "--phi-color-accent-2"
+      },
+      "strength": {
+        "": 1,
+        "-soft": 0.5,
+        "-strong": 1.5
+      },
+      "ground": {
+        "--phi-surface": {
+          "stop": [["cool", 0, 0.26], ["hot", 0.5, 0.18], ["hot", 1, 0]],
+          "feather": [0.04, 0.16]
+        },
+        "--phi-label": {
+          "stop": [["hot", 0, 0.18], ["hot", 0.5, 0], ["cool", 0.5, 0], ["cool", 1, 0.26]],
+          "feather": [0.04, 0.16]
+        },
+        "--phi-label-end": {
+          "stop": [["cool", 0, 0], ["cool", 0.5, 0.26], ["hot", 1, 0.18]],
+          "feather": [0.04, 0.16]
+        },
+        "--phi-label-back": {
+          "stop": [["cool", 0, 0], ["cool", 0.5, 0.26], ["hot", 1, 0.18]],
+          "feather": [0.04, 0.16]
+        }
+      }
+    }
+  ]
+}

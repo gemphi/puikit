@@ -1,4 +1,4 @@
-import { Stack, Title } from '@pui/components';
+import { Box, Stack, Title, WithHeadTools } from '@pui/components';
 import React from 'react';
 import type { Block as B } from '../data';
 import { Agent } from '../blocks/Agent';
@@ -12,6 +12,7 @@ import { Swap } from '../blocks/Swap';
 import { Table } from '../blocks/Table';
 import { Terminal } from '../blocks/Terminal';
 import { Feed } from './feed';
+import { Product } from './product';
 import { Query } from './query';
 import { Runway } from './runway';
 
@@ -33,6 +34,7 @@ const MODULE: Record<string, ModuleView> = {
   grid: Grid,
   hero: ({ b }) => <Hero b={b} />,
   news: ({ b }) => <News b={b} />,
+  product: ({ b }) => <Product b={b} />,
   prose: ({ b }) => <Prose b={b} />,
   query: ({ b }) => <Query b={b} />,
   runway: ({ b }) => <Runway b={b} />,
@@ -48,5 +50,16 @@ export const registerModule = (kind: string, view: ModuleView) => { MODULE[kind]
 export const Block: React.FC<ModuleProps> = ({ b, onOpen }) => {
   const View = MODULE[b.kind];
   if (!View) return null;
-  return <Stack as="section" direction="column" gap={3}>{b.title ? <Title level={2} size="lg">{b.title}</Title> : null}<View b={b} onOpen={onOpen} /></Stack>;
+  // A titled block's heading is a header that takes tools: a list in it puts its total and layout right after the
+  // title, its search and tabs in the room between, its filter and sort at the far end. With no title there is no
+  // header, and the list draws its own bar.
+  if (!b.title) return <Stack as="section" direction="column" gap={3}><View b={b} onOpen={onOpen} /></Stack>;
+  return (
+    <WithHeadTools>{(slot) => (
+      <Stack as="section" direction="column" gap={3}>
+        <Stack direction="row" gap={2} align="center" wrap><Box minWidth="0"><Title level={2} size="lg">{b.title}</Title></Box>{slot.start}{slot.center}{slot.end}</Stack>
+        <View b={b} onOpen={onOpen} />
+      </Stack>)}
+    </WithHeadTools>
+  );
 };

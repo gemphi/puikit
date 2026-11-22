@@ -1,38 +1,49 @@
 import React from 'react';
-import { Box, Button, Frame, Image, ItemCard, Rows, Stack, Tag, Text, ViewToolbar, type ViewMode } from '@pui/components';
-import { appUrl, assetUrl, type Block } from '../data';
-import { CardExtra, Facet, LaneRow, More, cardHead, cardTag, inFacet } from './GridExtra';
+import { Box, Button, ItemCard, Stack, Tag, Text } from '@pui/components';
+import { appUrl, type Block } from '../data';
+import { ListView } from '../ListView';
+import type { Wear } from '../looks';
+import { CardExtra, Facet, LaneRow, More, cardPicture, cardTag, inFacet } from './GridExtra';
+import { LIST, countOf, facetsFor, layoutOf, sortsFor, textOf, type GridRow } from './GridList';
 
 export type GridItem = { id?: string; kind?: string; route?: string; title: string; sub?: string; body?: string; action?: string; done?: string; app?: string; href?: string; cost?: number; meta?: string; image?: string; fields?: [string, string][];
+  /** A card's picture when it is no file of its own: a cell of a sheet (`sprite`, a portrait), or colours (`swatch`: a
+   *  theme's ground, then its accents). */
+  sprite?: { sheet: string; cols: number; index: number }; swatch?: string[];
+  /** What the thing puts on once it is the viewer's (a theme: its palette). */
+  wear?: Wear;
   /** Optional parts, all drawn by GridExtra: a tinted head (`tone`, with `mark` a round mark of initials or a number), a tag
    *  at the title's end, a big figure, a meter (0 to 1; `split` for two shares), one more line, a list of points, and the
    *  lane and facet the card belongs to. */
   tone?: string; mark?: string; tag?: string; tagIntent?: 'success' | 'warning' | 'error'; value?: string; progress?: number; split?: boolean;
   note?: string; pointList?: string[]; lane?: string; facet?: string;
   /** `selected` marks the card as the one picked; `chipList` is a row of small buttons on the card (an agent's verbs),
-   *  each handed to the block's `onChip(item, chip)`. */
+   *  each handed to the block's `onChip(item, chip)`. A block with `onAct(item)` is handed a press of a card's
+   *  `action` too, and says how the card stands by the words it gives it (a shop: add to the bag, in the bag, owned). */
   selected?: boolean; chipList?: string[] };
 
-/** One grid, every app: the shared ItemCard laid out by Rows, with the house layout toolbar (tile · list · grid).
- *  Nothing bespoke — the card's border, gradient and spacing are the framework's, the only difference is the data. */
+/** One grid, every app: the shared ItemCard in the shared ListView, so every grid has the one header: its count, Filter,
+ *  Sort and the layout (list, deck or grid, from one icon). All of it is read from the block's data (GridList): `layout`,
+ *  `layoutSet`, `sort`, `filter`; a block that names none gets the defaults. Nothing bespoke: the card's border, ground
+ *  and spacing are the framework's, the only difference is the data. */
 export const GRID_MIN = '16rem';
 const TILE_W = '18rem';
 
 export const Grid: React.FC<{ b: Block; onOpen: (it: GridItem) => void }> = ({ b, onOpen }) => {
   const [done, setDone] = React.useState<Record<number, boolean>>({});
-  const [mode, setMode] = React.useState<ViewMode>((b.layout as ViewMode) || 'grid');
   const [facet, setFacet] = React.useState<string>(b.facet?.[0] ?? '');
-  const items: GridItem[] = inFacet(b.items || [], b.facet, facet);
+  const all: GridRow[] = ((b.items || []) as GridItem[]).map((it, i) => ({ it, i }));
+  const rows = all.filter((r) => inFacet([r.it], b.facet, facet).length > 0);
   const stop = (e: React.MouseEvent) => e.stopPropagation();
 
   const card = (it: GridItem, i: number, list: boolean) => (
     <ItemCard key={i} layout={list ? 'auto' : 'vertical'} onClick={() => onOpen(it)} selected={it.selected}
-      media={it.image ? <Frame ratio={list ? '1/1' : '16/9'} rounded="md" width={list ? '4.5rem' : undefined}><Image src={assetUrl(it.image)} alt="" fit="cover" fill loading="lazy" /></Frame> : cardHead(it)}
+      media={cardPicture(it, list)}
       title={it.title} meta={it.sub} aside={cardTag(it)}
       actions={it.action ? (
         it.app || it.href
           ? <Button variant="glass" href={it.href || appUrl(it.app!)} onClick={stop}>{it.action}</Button>
-          : <Button variant="glass" onClick={(e) => { stop(e); setDone((d) => ({ ...d, [i]: !d[i] })); }}>{done[i] ? it.done || 'Done' : it.action}</Button>
+          : <Button variant="glass" aria-pressed={b.onAct ? !!it.selected : undefined} onClick={(e) => { stop(e); if (b.onAct) b.onAct(it); else setDone((d) => ({ ...d, [i]: !d[i] })); }}>{!b.onAct && done[i] ? it.done || 'Done' : it.action}</Button>
       ) : undefined}>
       {it.body ? <Text as="p" size="sm" intent="secondary">{it.body}</Text> : null}
       {it.chipList?.length ? <Stack direction="row" gap={1} wrap>{it.chipList.map((c) => <Button key={c} variant="glass" onClick={(e) => { stop(e); b.onChip?.(it, c); }}><Text as="span" size="xs" mono>{c}</Text></Button>)}</Stack> : null}
@@ -42,19 +53,19 @@ export const Grid: React.FC<{ b: Block; onOpen: (it: GridItem) => void }> = ({ b
     </ItemCard>
   );
 
-  const body =
-    b.laneSet ? <LaneRow laneSet={b.laneSet} items={items} card={(it, i) => card(it, i, false)} /> :
-    mode === 'list' ? <Stack direction="column" gap={2}>{items.map((it, i) => card(it, i, true))}</Stack> :
-    mode === 'tile' ? <Box scroll="x" paddingBottom={2}><Stack direction="row" gap={3} align="stretch">{items.map((it, i) => <Box key={i} width={TILE_W} flex="none">{card(it, i, false)}</Box>)}</Stack></Box> :
-    // Cards with pictures take the mosaic's sizes; cards of words alone keep their own height, so none stands half empty.
-    <Rows minItemWidth={GRID_MIN} cols={4} mosaic={items.some((it) => it.image)}>{items.map((it, i) => card(it, i, false))}</Rows>;
-
+  const tabs = b.facet ? <Facet list={b.facet} value={facet} onChange={setFacet} /> : null;
+  const more = b.more ? <More more={b.more} /> : null;
+  // Lanes are their own layout (a pipeline by stage): no switch.
+  if (b.laneSet) return <Stack direction="column" gap={3}>{tabs}{more}<LaneRow laneSet={b.laneSet} items={rows.map((r) => r.it)} card={(it, i) => card(it, i, false)} /></Stack>;
+  const { mode, modes } = layoutOf(b);
   return (
-    <Stack direction="column" gap={3}>
-      {b.facet ? <Facet list={b.facet} value={facet} onChange={setFacet} /> : null}
-      {b.toolbar === false || b.laneSet ? null : <ViewToolbar mode={mode} onMode={setMode} count={items.length === 1 ? '1 item' : `${items.length} items`} />}
-      {b.more ? <More more={b.more} /> : null}
-      {body}
-    </Stack>
+    <ListView<GridRow> rows={rows} keyOf={(r) => String(r.i)} text={textOf} sorts={sortsFor(all, b.sort)} facets={facetsFor(all, b.filter, b.facet ? ['facet'] : [])}
+      mode={mode} modes={modes} toolbar={b.toolbar !== false} count={countOf} empty={LIST.empty} cols={4} minItemWidth={GRID_MIN}
+      // Cards with pictures take the mosaic's sizes; cards of words alone keep their own height, so none stands half empty.
+      mosaic={rows.some((r) => r.it.image)} tabs={tabs ?? undefined} lead={more ?? undefined}
+      render={(r, m) => card(r.it, r.i, m === 'list')}
+      // Tile: one sideways row of cards a fixed width.
+      slider={(list) => <Box scroll="x" paddingBottom={2}><Stack direction="row" gap={3} align="stretch">{list.map((r) => <Box key={r.i} width={TILE_W} flex="none">{card(r.it, r.i, false)}</Box>)}</Stack></Box>}
+      labels={{ tile: LIST.tile, list: LIST.list, deck: LIST.deck, grid: LIST.grid, layout: LIST.layout, filters: LIST.filter, sort: LIST.sort, search: LIST.search, all: LIST.all, clear: LIST.clear }} />
   );
 };

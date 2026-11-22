@@ -67,7 +67,7 @@ export interface PhieggState extends Required<Params> {
   /** Bumped when lib/heavy.ts or lib/live.ts lands new data, so open pages re-render over the fresh indexes. */
   dataRev: number;
   nests: Nest[]; nestMsgs: Record<ID, NestMessage[]>; comments: Record<ID, Comment[]>; chats: Record<ID, AgentChatMessage[]>;
-  overlay: Overlay; /** The overlay that is sliding out (it stays a moment so its drawer leaves the way it came). */ closingOverlay: Overlay | null; toast: string | null; rail: string; searchQ: string; appearance: Appearance; view: { mode: 'tile' | 'list' | 'grid'; cols: number }; setView: (v: { mode: 'tile' | 'list' | 'grid'; cols: number }) => void;
+  overlay: Overlay; /** The overlay that is sliding out (it stays a moment so its drawer leaves the way it came). */ closingOverlay: Overlay | null; toast: string | null; rail: string; searchQ: string; appearance: Appearance; view: { mode: 'tile' | 'list' | 'deck' | 'grid'; cols: number }; setView: (v: { mode: 'tile' | 'list' | 'deck' | 'grid'; cols: number }) => void;
   setRail: (r: string) => void; setAppearance: (k: keyof Appearance, v: string) => void; openPerson: (id: ID) => void; openSignIn: () => void; openEditProfile: () => void; openEditClub: (id: ID) => void; openCreate: (createKind: string, initial?: Record<string, unknown>, back?: { recordKind: string; id: ID }) => void; openRecord: (recordKind: string, id: ID) => void;
   /** Open any record: its own page when its kind has one (data/route.json), a person's profile or chat, else its record page. */
   openRef: (ref: DetailRef) => void; openId: (id: ID) => void;

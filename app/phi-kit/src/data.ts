@@ -3,10 +3,24 @@ import { resolveLinks } from './links';
 
 export type IconPath = { d: string; tf?: string; fill: string; stroke: string; sw: number };
 export type AppMeta = { look?: string; mode?: 'light' | 'dark'; /** The face the app reads in until a person picks one (an id from fonts.ts). */ font?: string; key: string; name: string; tagline: string; desc: string; color: string; port: number; built: boolean; config?: boolean; icon: IconPath[] };
-export type NavItem = { id: string; label: string; icon: string; items?: NavItem[]; image?: string; pull?: Record<string, unknown>; previews?: import('./blocks/Grid').GridItem[] };
+export type NavItem = { id: string; label: string; icon: string; /** A person of the app (an id in its `people` file): the entry shows their picture and presence in place of the icon. */ who?: string;
+  /** A heading over its `items` (a space's text and voice rooms): it folds them and is no page. */ head?: boolean;
+  /** A room of the `people` file (a voice room): who is in it shows folded under the entry. */ crowd?: string;
+  /** How many things wait behind the entry (requests to answer), shown as its count. */ count?: number;
+  /** A group's own picture on the rail, a cell of a sheet, in place of its icon (a host's portrait). */ mark?: { sheet: string; cols: number; index: number }; items?: NavItem[]; image?: string; pull?: Record<string, unknown>; previews?: import('./blocks/Grid').GridItem[] };
 export type Block = { kind: string; title?: string; [k: string]: any };
 export type View = { title: string; sub?: string; blocks: Block[] };
 export type AppData = { app: string; start?: string; bare?: boolean; nav: NavItem[];
+  /** The file that holds the app's people (their names, pictures and presence), for menu entries that name one (`who`). */
+  people?: string;
+  /** The catalogue of hosts a person joins, leaves and makes (the hosts they are in become groups of the menu), and the
+   *  ones they are in before they choose. */
+  host?: string; joined?: string[];
+  /** The index of the shops a person opens (`shops.tsx`): an open shop is a group of the menu, its own menu its pages. */
+  shop?: string;
+  /** The menu group that lists direct conversations (its id): the way to find anyone, and everyone the viewer began a
+   *  conversation with, join it. */
+  direct?: string;
   /** The right sidebar: groups like `nav`, shown as icons at the right edge, each opening its menu. */
   side?: NavItem[]; views: Record<string, View>; profile?: import('./Profile').ProfileSpec };
 

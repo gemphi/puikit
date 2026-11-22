@@ -54,6 +54,7 @@ The API uses singular names: `/app/<key>`, `/item/theme`, `/item/<id>/theme`, `/
 | `PATCH /tree/item/<kind>/<id> {set?,unset?}` · `DELETE …` | change or delete a record: its owner, the person it is or names (founder, owner, creator, author, user, holder), or an editor (`PHI_EDITORS`). Guests never. The id never changes; 32 KB per record; 30 changes a minute per user |
 | `GET /tree/change?kind=&id=&n=` | the change log, newest first: action, fields, who (id and handle), when |
 | `POST /chat {app,persona,messages}` | persona reply from a model (30/min per user); canned reply when none is configured |
+| `GET /call/<app>/<room>?peer=<id>` · `POST /call/<app>/<room> {peer, join?, send?: [{to, signal}]}` | a room's call line (src/call.mjs): an event stream that says who is in the room's call and brings the WebRTC offers, answers and ICE candidates other callers send this page; the post joins, leaves and sends. Phiora carries no sound or picture, only these introductions; a call holds 8; nothing is stored |
 
 Every money route answers with `{ wallet, history, owned, cartOffers? }`; the client applies that answer (`settle()` in `wallet.ts`).
 
@@ -82,6 +83,8 @@ Every money route answers with `{ wallet, history, owned, cartOffers? }`; the cl
 | `PHI_MODEL_URL` | — | OpenAI-compatible base, e.g. `http://localhost:11434/v1` (Ollama) |
 | `PHI_MODEL` | `llama3.1` | model name / Anthropic model id |
 | `PHI_MODEL_KEY` · `ANTHROPIC_API_KEY` | — | kept on the server only |
+| `PHI_CALL_LINE` + `PHI_CALL_KEY` | none | where Phiogy's call line listens (the Rust program, `phiogy --line --port N`, e.g. `http://localhost:4310`) and the word the two share (the line is started with the same `PHI_CALL_KEY`). With both set Phiora keeps no call rooms of its own: it passes every `/call` ask to that line and says who the page belongs to; the ICE servers are then the line's (`PHI_CALL_ICE` given to it). With either unset Phiora's own rooms are used |
+| `PHI_CALL_ICE` | none | a JSON list of RTCIceServer (STUN, TURN) the browsers in a call are told to use, e.g. `[{"urls":"stun:stun.example.org:3478"}]`. With none, a call reaches the same machine and the same network |
 
 ## Email in development
 

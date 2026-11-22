@@ -1,0 +1,136 @@
+{
+  "source": "../phiegg/src/data",
+  "art": "../phiegg/public",
+  "index": "public/data/shop.json",
+  "folder": "public/data/shop",
+  "picture": "phiegg:",
+  "view": "FRONT",
+  "world": "worlds/{id}.png",
+  "money": "${n}",
+  "icon": {
+    "shop": "bag",
+    "node": "layers",
+    "theme": "spark",
+    "pft": "user"
+  },
+  "word": {
+    "new": "New in",
+    "all": "Everything"
+  },
+  "new": 8,
+  "house": {
+    "id": "s_phiogy",
+    "label": "Phiogy Shop",
+    "tagline": "Themes and pictures for your profile, and a look from every shop of the village.",
+    "image": "worlds/w_opalia.png",
+    "look": 64
+  },
+  "open": [
+    "s_phiogy"
+  ],
+  "theme": {
+    "label": "Themes",
+    "kind": "Theme",
+    "usd": 12
+  },
+  "pft": {
+    "label": "PFTs",
+    "kind": "PFT"
+  },
+  "portrait": "portraits/",
+  "hsl": "hsl({h} {s}% {l}%)",
+  "page": {
+    "body": "specs.theme.story",
+    "point": "specs.utility",
+    "look": [
+      [
+        "Colour",
+        "colour"
+      ],
+      [
+        "Category",
+        "specs.category"
+      ],
+      [
+        "Silhouette",
+        "specs.silhouette"
+      ],
+      [
+        "Fabric",
+        "specs.fabric"
+      ],
+      [
+        "Sizes",
+        "specs.sizes"
+      ],
+      [
+        "Fit",
+        "specs.fit"
+      ],
+      [
+        "Length",
+        "specs.length"
+      ],
+      [
+        "Sleeve",
+        "specs.sleeve"
+      ],
+      [
+        "Neckline",
+        "specs.neckline"
+      ],
+      [
+        "Occasion",
+        "specs.occasion"
+      ],
+      [
+        "Season",
+        "specs.season"
+      ],
+      [
+        "Collection",
+        "specs.collection"
+      ],
+      [
+        "Rarity",
+        "rarity"
+      ],
+      [
+        "Edition",
+        "edition"
+      ],
+      [
+        "Minted",
+        "minted"
+      ],
+      [
+        "Owners",
+        "owners"
+      ],
+      [
+        "Care",
+        "specs.care.physical"
+      ]
+    ],
+    "pft": [
+      [
+        "Collection",
+        "set"
+      ],
+      [
+        "Edition",
+        "traits.edition"
+      ],
+      [
+        "Token",
+        "tokenId"
+      ]
+    ],
+    "theme": [
+      [
+        "Drawn from",
+        "source"
+      ]
+    ]
+  }
+}

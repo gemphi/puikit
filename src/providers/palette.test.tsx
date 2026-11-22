@@ -7,8 +7,8 @@ import { PuiProvider, usePuiTheme } from './PuiProvider';
 const root = () => document.documentElement;
 
 describe('seeded palettes', () => {
-  it('carries the 16 phiber v2 + Phiegg palettes', () => {
-    expect(PALETTES).toHaveLength(16);
+  it('carries the 16 phiber v2 + Phiegg palettes and the 8 of Boldland', () => {
+    expect(PALETTES).toHaveLength(24);
     expect(PALETTES.map((p) => p.id)).toContain('apple');
     expect(PALETTES.map((p) => p.id)).toContain('opal');
   });

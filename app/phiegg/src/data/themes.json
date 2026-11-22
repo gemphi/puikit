@@ -1,5 +1,5 @@
 {
-  "source": "phiber v2 theme/palette (11) + 5 Phiegg",
+  "source": "phiber v2 theme/palette (11) + 5 Phiegg + 8 Boldland (read off CW-COLOURS.png)",
   "themes": [
     {
       "id": "sphere",
@@ -295,6 +295,150 @@
         150,
         30,
         45
+      ]
+    },
+    {
+      "id": "phantom-gold",
+      "name": "Phantom Gold",
+      "seed": "#3D2F1A",
+      "lightSeed": null,
+      "accent": [
+        35.4,
+        81.7,
+        42.7
+      ],
+      "lightAccent": null,
+      "source": "Boldland",
+      "accent2": [
+        35.9,
+        96.3,
+        32.0
+      ]
+    },
+    {
+      "id": "piggy-bank",
+      "name": "Piggy Bank",
+      "seed": "#3C1A20",
+      "lightSeed": null,
+      "accent": [
+        349.5,
+        78.3,
+        65.7
+      ],
+      "lightAccent": null,
+      "source": "Boldland",
+      "accent2": [
+        332.3,
+        81.5,
+        25.5
+      ]
+    },
+    {
+      "id": "sunrise",
+      "name": "Sunrise",
+      "seed": "#242C33",
+      "lightSeed": null,
+      "accent": [
+        205.9,
+        34.2,
+        53.5
+      ],
+      "lightAccent": null,
+      "source": "Boldland",
+      "accent2": [
+        28.1,
+        97.6,
+        48.4
+      ]
+    },
+    {
+      "id": "tornado-ice",
+      "name": "Tornado Ice",
+      "seed": "#341A3D",
+      "lightSeed": null,
+      "accent": [
+        284.2,
+        79.7,
+        71.0
+      ],
+      "lightAccent": null,
+      "source": "Boldland",
+      "accent2": [
+        36.1,
+        99.2,
+        52.4
+      ]
+    },
+    {
+      "id": "phantom-red",
+      "name": "Phantom Red",
+      "seed": "#362A20",
+      "lightSeed": null,
+      "accent": [
+        27.2,
+        50.6,
+        54.7
+      ],
+      "lightAccent": null,
+      "source": "Boldland",
+      "accent2": [
+        0.0,
+        100.0,
+        29.2
+      ]
+    },
+    {
+      "id": "phantom-sunset",
+      "name": "Phantom Sunset",
+      "seed": "#312A25",
+      "lightSeed": null,
+      "accent": [
+        24.0,
+        27.8,
+        57.6
+      ],
+      "lightAccent": null,
+      "source": "Boldland",
+      "accent2": [
+        350.3,
+        100.0,
+        50.2
+      ]
+    },
+    {
+      "id": "phantom-black",
+      "name": "Phantom Black",
+      "seed": "#2B2B2B",
+      "lightSeed": null,
+      "accent": [
+        0.0,
+        0.0,
+        58.0
+      ],
+      "lightAccent": null,
+      "source": "Boldland",
+      "accent2": [
+        40.0,
+        0.0,
+        58.0
+      ]
+    },
+    {
+      "id": "grape",
+      "name": "Grape",
+      "seed": "#2F3324",
+      "lightSeed": null,
+      "accent": [
+        74.4,
+        33.3,
+        53.5
+      ],
+      "lightAccent": null,
+      "source": "Boldland",
+      "accent2": [
+        271.1,
+        51.4,
+        43.5
       ]
     }
   ]

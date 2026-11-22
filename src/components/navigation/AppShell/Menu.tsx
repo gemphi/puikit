@@ -5,6 +5,7 @@ import { Box } from '../../layout/Box';
 import { Stack } from '../../layout/Stack';
 import { Text } from '../../primitives/Text';
 import { Pressable } from '../../primitives/Pressable';
+import { Badge } from '../../primitives/Badge';
 import { Avatar } from '../../media/Avatar';
 import type { AppShellGroup, AppShellLeaf, AppShellPreview } from './types';
 import styles from './styles.module.scss';
@@ -30,20 +31,21 @@ const holds = (it: AppShellLeaf, view: string): boolean => it.id === view || (it
  *  department > category > item). An entry with a sub-menu opens it and also goes to its own page; it starts open when
  *  the page shown is inside it. */
 const Entry: React.FC<MenuProps & { it: AppShellLeaf; folded: Record<string, boolean>; fold: (id: string, open: boolean) => void }> = ({ it, view, go, onPreview, foldLabel, folded, fold }) => {
-  const pulls = it.previews ?? []; const subs = it.items ?? []; const kids = pulls.length > 0 || !!it.panel || subs.length > 0;
-  const open = folded[it.id] ?? (it.open || (subs.length ? holds(it, view) : view === it.id)); const on = view === it.id && !it.panel;
+  const pulls = it.previews ?? []; const subs = it.items ?? []; const kids = !it.steady && (pulls.length > 0 || !!it.panel || subs.length > 0);
+  const open = it.steady || (folded[it.id] ?? (it.open || (subs.length ? holds(it, view) : view === it.id))); const on = view === it.id && !it.panel && !it.head;
   return (
     <Box className={styles.navEntry}>
       <Stack direction="row" gap={0} align="center">
         {kids ? <Caret open={open} label={foldLabel(it.label, open)} onClick={() => fold(it.id, !open)} /> : <span className={styles.caretRoom} />}
         <Pressable row gap={3} fill hover minHeight="var(--pui-shell-control)" paddingX={2} className={styles.navRow}
-          aria-current={on ? 'page' : undefined} onClick={() => { if (it.panel) { fold(it.id, !open); return; } if (subs.length) fold(it.id, true); go(it.id); }}>
+          aria-current={on ? 'page' : undefined} onClick={() => { if (it.panel || it.head) { fold(it.id, !open); return; } if (subs.length) fold(it.id, true); go(it.id); }}>
           {it.icon ?? null}
-          <Text as="span" intent="inherit" weight={on ? 'bold' : 'medium'} truncate>{it.label}</Text>
+          <Text as="span" size={it.head ? 'xs' : undefined} intent={it.head ? 'muted' : 'inherit'} weight={on ? 'bold' : 'medium'} truncate>{it.label}</Text>
+          {it.count ? <Box as="span" className={styles.rowCount}><Badge variant="count">{it.count}</Badge></Box> : null}
         </Pressable>
       </Stack>
       {open && it.panel ? <Box className={styles.entryPanel}>{it.panel}</Box> : null}
-      {open && subs.length > 0 ? <Box role="group" aria-label={it.label} className={styles.subMenu}><Run items={subs} view={view} go={go} onPreview={onPreview} foldLabel={foldLabel} /></Box> : null}
+      {open && subs.length > 0 ? <Box role="group" aria-label={it.label} className={cn(styles.subMenu, it.head && styles.headMenu)}><Run items={subs} view={view} go={go} onPreview={onPreview} foldLabel={foldLabel} /></Box> : null}
       {open && pulls.map((p) => (
         <Pressable key={p.id} row gap={2} fill hover paddingY={1} paddingX={2} className={styles.pullRow} onClick={() => (p.onSelect ? p.onSelect() : onPreview?.(it.id, p))}>
           {p.avatar ?? <Avatar size="xs" src={p.image} alt={p.label} initials={initials(p.label)} seed={p.id} />}

@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
-import { md5 } from './md5';
-import { buildIdMap, mapKeys, remapDeep, reverseOf, slugify, treeId } from './normalize';
+import { md5 } from '../../phi-kit/src/md5';
+import { buildIdMap, mapKeys, remapDeep, reverseOf, slugify, treeId } from '../../phi-kit/src/normalize';
 
 describe('client-side ids match the database', () => {
   it('md5 equals node crypto md5 (so client ids equal seed ids)', () => {

@@ -1,0 +1,12 @@
+{
+  "_": "Lora's Spark look pictures. Every look's views live at look/<look-id>/<view>.webp (opaque layers <view>-opaque.webp), 480 px squares on a clear background; the view words come from `views`. `replace` swaps a temporary mannequin render for the finished character render of the same look (from Downloads/@POSTS). app/phiegg/scripts/look-files.py reads this, writes the files, and rewrites every old path in src/data to the new one. Source file names are never used for ours.",
+  "side": 480,
+  "views": { "FRONT": "front", "3Q": "three-quarter", "SIDE": "side", "BACK": "back", "TOP": "top", "BOTTOM": "bottom" },
+  "replace": [
+    { "look": "ls-s08-01", "view": "BACK", "source": "{DL}/@POSTS/BOZO-CIty/CHARACtER-10/LS-STYLE-08-LOOK-01-BACK-WITH-BOOTS (1).png", "note": "Indigo Tier with boots, character 10" },
+    { "look": "ls-s08-01", "view": "SIDE", "source": "{DL}/@POSTS/BOZO-CIty/CHARACtER-10/LS-STYLE-08-LOOK-01-SIDE-WITH-BOOTS (1).png", "note": "Indigo Tier with boots, character 10" },
+    { "look": "ls-tutu-08", "view": "FRONT", "source": "{DL}/@POSTS/ACRO-CIty/CHARACtER-09/OUTFIT-08-DRESS-FRONT.png", "note": "Magenta Bow, character 9" },
+    { "look": "ls-tutu-08", "view": "BACK", "source": "{DL}/@POSTS/ACRO-CIty/CHARACtER-09/OUTFIT-08-DRESS-BACK.png", "note": "Magenta Bow, character 9" },
+    { "look": "ls-s05-06", "view": "FRONT", "source": "{DL}/@POSTS/LOON-CIty/CHARACtER-06/LS-STYLE-05-LOOK-06-FRONT-OPTION-02-NEW-BOOTS.png", "note": "Style 05 Look 06, the plum colourway with new boots, character 6" }
+  ]
+}

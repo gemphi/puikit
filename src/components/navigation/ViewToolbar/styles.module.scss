@@ -1,0 +1,9 @@
+// The layouts dropped below the layout icon: the bar's own ground (the kit's one surface), over the popover's solid
+// base so the words read wherever it lands. Tokens only.
+.menu {
+  min-width: 0;
+  background-image: var(--phi-surface);
+  border-radius: var(--phi-radius-md);
+  padding: var(--phi-space-1, 0.25rem);
+  > * > :is(button, a) { display: flex; width: 100%; justify-content: flex-start; text-align: start; }
+}

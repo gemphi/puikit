@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { buildDB, kindLabel } from './kinds';
-import { indexRelations, outName, relationsOfDB, specsFromDB } from './relations';
+import { buildDB, kindLabel } from '../../phi-kit/src/kinds';
+import { indexRelations, outName, relationsOfDB, specsFromDB } from '../../phi-kit/src/relations';
 
 const sources = [
   { kind: 'person', rows: [{ id: 'p1', name: 'Noor', clubIds: ['c1', 'c2'] }, { id: 'p2', name: 'Ada', clubIds: ['c1'] }] },

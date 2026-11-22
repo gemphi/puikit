@@ -24,3 +24,5 @@ export * from './Bands';
 export * from './Fit';
 export * from './EntityLayout';
 export * from './ShownTitle';
+export * from './HeadTools';
+export * from './Deck';

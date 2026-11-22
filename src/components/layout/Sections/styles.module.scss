@@ -11,7 +11,7 @@
 /* The head and the body share one side padding (--pui-sec-x), so a title lines up with what it heads. */
 .section { --pui-sec-x: 0.75rem; }
 .lg .section { --pui-sec-x: 1.25rem; }
-.head { display: flex; align-items: center; gap: 0.5rem; padding: 0.35rem var(--pui-sec-x); min-height: 2.5rem;
+.head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; padding: 0.35rem var(--pui-sec-x); min-height: 2.5rem;
   /* The header stays at the top while its section scrolls by, on the section's own glass. */
   position: sticky; top: 0; z-index: 2; border-radius: inherit;
   /* Light, never a dark band: the page's light from the left fading to nothing, over a blur so it reads while pinned. */
@@ -45,7 +45,11 @@
 @media (hover: none) { .tools { display: inline-flex; } }
 /* The heading: its icon in the label's chip (tokens.scss .pui-label-icon), its words on nothing; the tools keep the
    header's far end. */
-.title { flex: 1; min-width: 0; display: flex; align-items: center; gap: 0.5rem; overflow: hidden; }
+/* The title keeps its own width; the centre slot after it (HeadTools) takes the room that is left, so a list's total
+   and layout stand right beside the title and whatever is at the far end stays there. */
+.title { flex: 0 1 auto; min-width: 0; display: flex; align-items: center; gap: 0.5rem; overflow: hidden; }
+/* A count beside the title is said once: where the list below puts its total there, the heading's own count goes. */
+.title:has(+ :global([data-head-tools='start']):not(:empty)) [data-count] { display: none; }
 /* A section's content never touches its heading or its edges: room above, on both sides and most below. */
 .body { min-height: 0; overflow: auto; padding: 0.5rem var(--pui-sec-x) 1rem; }
 .exp > .body { flex: 1; display: flex; flex-direction: column; }
