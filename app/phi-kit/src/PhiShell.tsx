@@ -1,4 +1,4 @@
-import { AppShell, type AppShellGroup, Button, Stack, TabList, Text, columnStore, useColumnEntries } from '@pui/components';
+import { AppShell, type AppShellGroup, type AppShellLeaf, Avatar, Button, Stack, TabList, Text, columnStore, useColumnEntries } from '@pui/components';
 import { usePuiTheme } from '@pui/providers';
 import React from 'react';
 import { Columns3, Eye, EyeOff, Moon, Sun, User, Settings } from 'lucide-react';
@@ -6,6 +6,8 @@ import { APPS, appUrl, assetUrl, type AppMeta, type NavItem } from './data';
 import type { GridItem } from './blocks/Grid';
 import { AppGlyph, NavIcon } from './icons';
 import { LOOKS, useLook } from './looks';
+import { Face, READ, crowdOf, waitingIn, type People } from './people';
+import { VoiceBar, VoiceLine, useInside } from './voice';
 import { AccountDrawer } from './AccountDrawer';
 
 export type AccountItem = { id: string; label: string; previews?: { id: string; label: string; sub?: string }[] };
@@ -18,6 +20,8 @@ export type ShellProps = {
   onRecord?: (it: GridItem) => void;
   /** The account (You) sub-nav: Overview, a leaf per profile section, Wallet, Account, Settings. */
   account?: AccountItem[];
+  /** The app's people, for the entries that are one (`who`): their picture and presence stand where the icon would. */
+  people?: People | null;
 };
 
 /** A small icon for each account entry (bank-style): the overview, each kind, the wallet, the account, settings. */
@@ -25,20 +29,38 @@ const ACCOUNT_ICON: Record<string, string> = { _you: 'user', _wallet: 'wallet', 
 
 /** The app's menu, as data, mapped to the shared shell: a nav item with `items` is a rail group with a sub-nav; one
  *  without is a leaf the rail navigates to. Apps are a secondary panel, never the primary rail. */
-const toGroups = (nav: NavItem[]): AppShellGroup[] => nav.map((n) => ({
-  id: n.id, label: n.label, icon: <NavIcon name={n.icon} size={20} />,
-  items: (n.items && n.items.length ? n.items : [n]).map((it) => ({ id: it.id, label: it.label, icon: <NavIcon name={it.icon} size={18} />,
-    previews: it.previews?.map((p, i) => ({ id: p.id ?? String(i), label: p.title, sub: p.sub, image: p.image ? assetUrl(p.image) : undefined })) })),
-}));
+const toGroups = (nav: NavItem[], crowd?: Crowd): AppShellGroup[] => {
+  const people = crowd?.people;
+  // An entry, and its own entries under it at any depth. A person's entry shows their picture and presence; a heading
+  // shows no icon and starts open; a voice room's entry always shows who is in it, and a press on one goes to the room.
+  const leaf = (it: NavItem): AppShellLeaf => ({
+    id: it.id, label: it.label, head: it.head, open: it.head, steady: !!it.crowd || undefined,
+    count: it.count ?? (people && crowd ? waitingIn(people, crowd.app, it.id, crowd.read) : undefined),
+    icon: it.head ? undefined : it.who && people ? <Face file={people} m={people.member.find((m) => m.id === it.who)} size="sm" dot /> : <NavIcon name={it.icon} size={18} />,
+    items: it.items?.length ? it.items.map(leaf) : undefined,
+    previews: it.crowd && crowd && people
+      ? crowdOf(people, it.crowd, !!crowd.joined[crowd.app + '/' + it.crowd]).map((m) => ({ id: m.id, label: m.name, sub: m.state, avatar: <Face file={people} m={m} size="xs" dot />, onSelect: () => crowd.go(it.id) }))
+      : it.previews?.map((p, i) => ({ id: p.id ?? String(i), label: p.title, sub: p.sub, image: p.image ? assetUrl(p.image) : undefined })),
+  });
+  // What waits in a group is what waits in its entries, at any depth.
+  const sum = (list: AppShellLeaf[]): number => list.reduce((n, it) => n + (it.count ?? 0) + sum(it.items ?? []), 0);
+  return nav.map((n) => { const items = (n.items && n.items.length ? n.items : [{ ...n, items: undefined }]).map(leaf); return { id: n.id, label: n.label, items, count: sum(items),
+    icon: n.mark ? <Avatar size="sm" deck={0} alt={n.label} sprite={{ src: assetUrl(n.mark.sheet), cols: n.mark.cols, index: n.mark.index }} /> : <NavIcon name={n.icon} size={20} /> }; });
+};
+/** What the menu needs to show people: the app's people, the rooms the viewer joined and those they opened, and the
+ *  way to a page. */
+type Crowd = { app: string; people?: People | null; joined: Record<string, boolean>; read: Record<string, boolean>; go: (id: string) => void };
 
 /**
  * Every Phi app's shell is the puikit {@link AppShell}; this wrapper only feeds it the app's data — menu groups, the
  * app switcher, the built-in You/Settings, and the look switch. Nothing here is per-app logic.
  */
-export const PhiShell: React.FC<ShellProps> = ({ app, nav, side = [], view, onView, right, onRecord, account, children }) => {
+export const PhiShell: React.FC<ShellProps> = ({ app, nav, side = [], view, onView, right, onRecord, account, people, children }) => {
   // The right sidebar, the same in every app: the page's own columns (shown or hidden by picking one, so no column
   // keeps a strip of its own), then whatever groups the app's data names.
-  const columns = useColumnEntries();
+  const columns = useColumnEntries(); const joined = useInside(); const read = READ.use();
+  // The viewer in the foot: their own picture and presence where the person icon would be, once the app has people.
+  const me = people ? <Face file={people} m={people.member.find((m) => m.id === people.me)} size="sm" dot /> : <User size={18} />;
   const panels: AppShellGroup[] = columns.length ? [{ id: '_panels', label: 'Panels', icon: <Columns3 size={20} />, items: columns.map((c) => ({ id: 'col:' + c.id, label: c.label, icon: c.open ? <Eye size={16} /> : <EyeOff size={16} /> })) }] : [];
   const sideGroups = [...panels, ...toGroups(side).map((g) => ({ ...g, id: 'side:' + g.id }))];
   const pick = (id: string) => { if (id.startsWith('col:')) columnStore.toggle(id.slice(4)); else onView(id); };
@@ -50,8 +72,8 @@ export const PhiShell: React.FC<ShellProps> = ({ app, nav, side = [], view, onVi
   };
   // The account (You) is a foot group with its own panel — the sidebar becomes the account menu, bank-style.
   const foot = account?.length
-    ? [{ id: '_you', label: 'You', icon: <User size={18} />, items: account.map((a) => ({ id: a.id, label: a.label, icon: <NavIcon name={ACCOUNT_ICON[a.id] ?? 'layers'} size={18} />, previews: a.previews?.map((p) => ({ id: p.id, label: p.label, sub: p.sub })) })) }]
-    : [{ id: '_you', label: 'You', icon: <User size={18} /> }, { id: '_settings', label: 'Settings', icon: <Settings size={18} /> }];
+    ? [{ id: '_you', label: 'You', icon: me, items: account.map((a) => ({ id: a.id, label: a.label, icon: <NavIcon name={ACCOUNT_ICON[a.id] ?? 'layers'} size={18} />, previews: a.previews?.map((p) => ({ id: p.id, label: p.label, sub: p.sub })) })) }]
+    : [{ id: '_you', label: 'You', icon: me }, { id: '_settings', label: 'Settings', icon: <Settings size={18} /> }];
   const apps = APPS.filter((a) => a.built || a.key === app.key).map((a) => ({
     id: a.key, name: a.name, tagline: a.key === app.key ? 'This app' : a.tagline,
     href: appUrl(a.key), current: a.key === app.key, color: a.color, glyph: <AppGlyph paths={a.icon} size={20} />,
@@ -59,13 +81,14 @@ export const PhiShell: React.FC<ShellProps> = ({ app, nav, side = [], view, onVi
   return (
     <AppShell
       brand={{ name: app.name, tagline: app.tagline, color: app.color, glyph: <AppGlyph paths={app.icon} size={22} /> }}
-      groups={toGroups(nav)} view={view} onView={pick} side={{ label: app.name, groups: sideGroups }}
+      groups={toGroups(nav, { app: app.key, people, joined, read, go: onView })} view={view} onView={pick} side={{ label: app.name, groups: sideGroups }}
       apps={apps} appsLabel="Apps"
       foot={foot}
-      tools={<LookSwitch />} right={right} onPreview={(leafId, p) => pulled(leafId, p.id)}
+      tools={<><VoiceBar go={(store) => onView(store.slice(app.key.length + 1))} /><LookSwitch /></>} right={right} onPreview={(leafId, p) => pulled(leafId, p.id)}
       headerRight={<AccountDrawer onProfile={() => onView('_you')} />}
     >
       {children}
+      <VoiceLine />
     </AppShell>
   );
 };

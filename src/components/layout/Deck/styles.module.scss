@@ -1,0 +1,25 @@
+// Deck: bars above a card, each nine tenths as wide as what is under it. Tokens only.
+.deck {
+  /* One bar's share of the width under it, its height, and the room between bars. */
+  --pui-deck-share: 0.9;
+  --pui-deck-bar: var(--phi-space-2, 0.5rem);
+  --pui-deck-gap: 2px;
+  display: flex; flex-direction: column; align-items: center; gap: var(--pui-deck-gap); min-width: 0; height: 100%;
+  > :not(.bar) { width: 100%; flex: 1 1 auto; min-width: 0; }
+}
+.bar {
+  display: block; flex: none; height: var(--pui-deck-bar);
+  /* The card's corner at its top, cut square where the next card covers it. */
+  border-radius: var(--phi-radius-shape, var(--phi-radius-md)) var(--phi-radius-shape, var(--phi-radius-md)) 0 0;
+  /* A slim bar is an edge, so it wears the theme's edge colour (its border token) under the kit's surface light: it
+     reads on a light page and a dark one, where a card's face alone is only a breath of light. */
+  background: var(--phi-surface-strong, var(--phi-surface)), var(--phi-color-border);
+  transition: transform var(--phi-transition-fast);
+}
+.bar[data-k='1'] { width: calc(100% * var(--pui-deck-share)); }
+.bar[data-k='2'] { width: calc(100% * var(--pui-deck-share) * var(--pui-deck-share)); opacity: 0.8; }
+.bar[data-k='3'] { width: calc(100% * var(--pui-deck-share) * var(--pui-deck-share) * var(--pui-deck-share)); opacity: 0.6; }
+/* Under the pointer the cards behind lift a little. */
+.deck:hover .bar[data-k='2'] { transform: translateY(-1px); }
+.deck:hover .bar[data-k='3'] { transform: translateY(-2px); }
+@media (prefers-reduced-motion: reduce) { .bar { transition: none; } }

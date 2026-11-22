@@ -1,0 +1,360 @@
+{
+  "note": "People Phiogy adds to those of Phiegg, read by server.py. `origin` is the 32 people of the old site (gembar's mock users, lib/mocks/mockUsers.ts), brought once. `hero` is made-up names by the part they play, after the heroes of today's films; none is a real person or a character of a film.",
+  "about": "Plays the {role}. Made up for the demo, after the heroes of today's films.",
+  "origin": [
+    {
+      "id": "o_chattywhims",
+      "name": "Chatty",
+      "handle": "chattywhims",
+      "role": "Luxury",
+      "bio": "Born in Milan, raised on haute couture. Former Vogue intern turned full-time trendsetter with 3 capsule collections under my belt. I don't follow trends - I set them ablaze.",
+      "since": "January 2023"
+    },
+    {
+      "id": "o_tropis",
+      "name": "Tropis",
+      "handle": "tropis_vogue",
+      "role": "Travel fashion",
+      "bio": "Globe-trotting style ambassador - 47 countries and counting. I bring resort-wear energy to every city sidewalk. My suitcase is my mood board, and the world is my runway.",
+      "since": "March 2023"
+    },
+    {
+      "id": "o_artemis",
+      "name": "Artemis",
+      "handle": "artemis_luxe",
+      "role": "Power dressing",
+      "bio": "Trained in classical ballet for 12 years before pivoting to fashion. Now I run a luxury consultancy and dress executives who want to command the boardroom. Elegance is earned, not bought.",
+      "since": "November 2022"
+    },
+    {
+      "id": "o_baltus",
+      "name": "Baltus",
+      "handle": "baltus_prime",
+      "role": "Business luxury",
+      "bio": "Self-made from the ground up. Started in fintech, now building a lifestyle empire spanning watches, whiskey, and wardrobe. My philosophy: invest in classics that appreciate - including yourself.",
+      "since": "June 2023"
+    },
+    {
+      "id": "o_glynis",
+      "name": "Glynis",
+      "handle": "glynis_glam",
+      "role": "Red carpet",
+      "bio": "Hollywood's most-wanted stylist for a decade, now creating content for the culture. I've dressed 14 Oscar nominees and 3 winners. Glamour isn't an act - it's an art form I happen to have mastered.",
+      "since": "August 2022"
+    },
+    {
+      "id": "o_floris",
+      "name": "Floris",
+      "handle": "floris_style",
+      "role": "Vintage",
+      "bio": "Vintage soul in a modern world. I curate one-of-a-kind pieces from flea markets in 6 countries and prove that sustainable fashion can be jaw-droppingly gorgeous. Every garment has a story - I just help it find its next chapter.",
+      "since": "February 2023"
+    },
+    {
+      "id": "o_epicus",
+      "name": "Epicus",
+      "handle": "epicus_world",
+      "role": "Streetwear",
+      "bio": "Underground sneaker culture veteran - been in the game since triple-white Air Force 1s were just shoes. Now I bridge street culture and high fashion, one grail at a time. If your fit doesn't tell a story, you're just wearing clothes.",
+      "since": "January 2022"
+    },
+    {
+      "id": "o_ruby",
+      "name": "Ruby",
+      "handle": "ruby_queen",
+      "role": "Jewelry design",
+      "bio": "Gemologist by education, jewelry designer by passion. I've cut stones for royal families and now I create wearable art that bridges ancient craft with futuristic aesthetics. Every piece I make starts with a conversation between light and mineral.",
+      "since": "April 2023"
+    },
+    {
+      "id": "o_boldroid",
+      "name": "Boldroid",
+      "handle": "boldroid_hq",
+      "role": "Ai fashion",
+      "bio": "Ex-Google engineer who left tech to fuse AI with fashion. My generative algorithms create patterns that have never existed before. I design clothes no human mind could imagine alone - then I wear them on the street to prove they belong there.",
+      "since": "September 2023"
+    },
+    {
+      "id": "o_phigus",
+      "name": "Phigus",
+      "handle": "phigus_elite",
+      "role": "Minimalism",
+      "bio": "Precision is my religion. Inspired by Japanese wabi-sabi and Scandinavian minimalism, every outfit I build has exactly zero unnecessary elements. I spend 3 hours choosing a belt. My closet has 40 items. Each one is perfect.",
+      "since": "December 2022"
+    },
+    {
+      "id": "o_nova",
+      "name": "Nova",
+      "handle": "nova_spark",
+      "role": "Art fashion",
+      "bio": "Digital artist by day, fashion experimentalist by night. I paint my outfits before I sew them, and every look starts as a watercolor sketch. My studio smells like turpentine and fabric softener in equal measure.",
+      "since": "May 2023"
+    },
+    {
+      "id": "o_atlas",
+      "name": "Atlas",
+      "handle": "atlas_explores",
+      "role": "Outdoor fashion",
+      "bio": "Summited 4 of the 7 peaks and looked good doing it. I test outdoor fashion at 8,000 meters and urban fashion at street level. My content proves you don't have to choose between technical gear and personal style.",
+      "since": "July 2023"
+    },
+    {
+      "id": "o_cipher",
+      "name": "Cipher",
+      "handle": "cipher_code",
+      "role": "Fashion tech",
+      "bio": "I put NFC chips in jacket lapels and blockchain-verified authenticity in every stitch. Fashion tech isn't just wearables - it's the entire supply chain reimagined. My mission: make every garment traceable from field to closet.",
+      "since": "October 2023"
+    },
+    {
+      "id": "o_blaze",
+      "name": "Blaze",
+      "handle": "blaze_fire",
+      "role": "Hype culture",
+      "bio": "Started reselling sneakers at 16 from my mom's garage. Now I run the hottest hype drops commentary channel on the platform. I don't just cover the culture - I AM the culture. Every drop day is my Super Bowl.",
+      "since": "March 2024"
+    },
+    {
+      "id": "o_thymus",
+      "name": "Thymus",
+      "handle": "thymus",
+      "role": "Music fashion",
+      "bio": "DJ, producer, and accidental fashion icon. I pick my stage outfits the same way I pick my beats - by feel, never by formula. Music and fashion share the same DNA: rhythm, texture, and the courage to be the loudest thing in the room.",
+      "since": "August 2023"
+    },
+    {
+      "id": "o_chatty",
+      "name": "Chatty Talks",
+      "handle": "chatty_talks",
+      "role": "Fashion commentary",
+      "bio": "Fashion's most honest critic. I review collections with surgical precision and zero filter. My podcast \"Stitched Together\" has 200 episodes dissecting everything from fast fashion ethics to couture craftsmanship. The truth is always in style.",
+      "since": "February 2024"
+    },
+    {
+      "id": "o_zephyr",
+      "name": "Zephyr",
+      "handle": "zephyr_wind",
+      "bio": "Breezing through the fashion world. Light fabrics, lighter attitude, endless style."
+    },
+    {
+      "id": "o_celestia",
+      "name": "Celestia",
+      "handle": "celestia_stars",
+      "bio": "Written in the stars. Cosmic fashion queen with an eye for celestial color palettes."
+    },
+    {
+      "id": "o_kronos",
+      "name": "Kronos",
+      "handle": "kronos_time",
+      "bio": "Timeless style curator. Vintage watches, heritage brands, classic silhouettes."
+    },
+    {
+      "id": "o_nyx",
+      "name": "Nyx",
+      "handle": "nyx_dark",
+      "bio": "Queen of the night. Dark aesthetics, gothic couture, and midnight runway energy."
+    },
+    {
+      "id": "o_solara",
+      "name": "Solara",
+      "handle": "solara_bright",
+      "bio": "Shining bright with solar-powered style. Warm tones, golden hour energy."
+    },
+    {
+      "id": "o_orion",
+      "name": "Orion",
+      "handle": "orion_hunter",
+      "bio": "Hunting the next big trend before it breaks. Early adopter, always ahead."
+    },
+    {
+      "id": "o_luna",
+      "name": "Luna",
+      "handle": "luna_moon",
+      "bio": "Phases of fashion - always evolving, always illuminating the night."
+    },
+    {
+      "id": "o_phoenix",
+      "name": "Phoenix",
+      "handle": "phoenix_rise",
+      "bio": "Rising from the ashes with every collection. Rebirth is my aesthetic."
+    },
+    {
+      "id": "o_stardust",
+      "name": "Stardust",
+      "handle": "stardust_glitter",
+      "bio": "Leaving a trail of glitter everywhere I go. Cosmic couture curator."
+    },
+    {
+      "id": "o_titan",
+      "name": "Titan",
+      "handle": "titan_power",
+      "bio": "Power dressing taken literally. Command the room or don't enter it."
+    },
+    {
+      "id": "o_pixel",
+      "name": "Pixel",
+      "handle": "pixel_art",
+      "bio": "Digital art meets haute couture. Every pixel is a brushstroke."
+    },
+    {
+      "id": "o_velvet",
+      "name": "Velvet",
+      "handle": "velvet_touch",
+      "bio": "Smooth like velvet. Luxury threaded into every fiber of life."
+    },
+    {
+      "id": "o_flux",
+      "name": "Flux",
+      "handle": "flux_wave",
+      "bio": "Riding the waves of fashion. Ever-changing, never compromising."
+    },
+    {
+      "id": "o_aura",
+      "name": "Aura",
+      "handle": "aura_glow",
+      "bio": "Glowing inside out. Radiant fashion that starts with inner confidence."
+    },
+    {
+      "id": "o_cosmos",
+      "name": "Cosmos",
+      "handle": "cosmos_deep",
+      "bio": "Deep space fashion explorer. Beyond the stars, beyond the trends."
+    },
+    {
+      "id": "o_ember",
+      "name": "Ember",
+      "handle": "ember_glow",
+      "bio": "Warm glow, fierce fashion. Burning slow but always shining."
+    }
+  ],
+  "hero": {
+    "Pilot": [
+      "Rook Maddox",
+      "Vesper Kaine",
+      "Juno Alvarre",
+      "Dax Holloway",
+      "Mira Castellan",
+      "Tobin Reyes"
+    ],
+    "Heir": [
+      "Kaelen Voss",
+      "Isolde Marrow",
+      "Tavish Okoro",
+      "Seraphine Dray",
+      "Lucan Aster",
+      "Noor Valdane"
+    ],
+    "Detective": [
+      "Silas Wren",
+      "Odette Marsh",
+      "Harlan Pryce",
+      "Imani Crowe",
+      "Teo Lindqvist",
+      "Greta Fenn"
+    ],
+    "Driver": [
+      "Nico Furlan",
+      "Roxy Calder",
+      "Dario Okafor",
+      "Lena Brandt",
+      "Hugo Sato",
+      "Carmen Vale"
+    ],
+    "Spy": [
+      "Adrian Locke",
+      "Camille Roux",
+      "Jonas Thorne",
+      "Yara Petrova",
+      "Malcolm Sable",
+      "Ingrid Vos"
+    ],
+    "Boxer": [
+      "Marcus Bell",
+      "Rocco Santana",
+      "Amara Diallo",
+      "Viktor Sorin",
+      "Jaya Menon",
+      "Leon Ashby"
+    ],
+    "Archer": [
+      "Wren Ashdown",
+      "Tamsin Hart",
+      "Orin Blackwood",
+      "Sefa Lomu",
+      "Ayla Thorn",
+      "Corwin Ferris"
+    ],
+    "Sorcerer": [
+      "Elowen Marr",
+      "Cassian Rook",
+      "Zahra Quill",
+      "Ignatius Pell",
+      "Morwenna Slate",
+      "Dorian Ashe"
+    ],
+    "Bounty hunter": [
+      "Kade Varro",
+      "Sable Orsini",
+      "Brann Tolliver",
+      "Nyx Calloway",
+      "Ezra Volk",
+      "Tessa Draven"
+    ],
+    "Inventor": [
+      "Anton Stavros",
+      "Priya Lark",
+      "Felix Okonkwo",
+      "Margo Tesler",
+      "Rafael Quint",
+      "Hana Ishikawa"
+    ],
+    "Captain": [
+      "Elias Drummond",
+      "Calla Whitlock",
+      "Bastian Rourke",
+      "Nadia Farrow",
+      "Soren Halvard",
+      "Ines Montero"
+    ],
+    "Ranger": [
+      "Garrick Stone",
+      "Maeve Linden",
+      "Tolan Rivers",
+      "Asha Greywood",
+      "Finnick Dale",
+      "Rhea Calder"
+    ],
+    "Thief": [
+      "Lucien Bray",
+      "Mika Sorrel",
+      "Dante Vireo",
+      "Esme Lockhart",
+      "Jasper Flint",
+      "Oriel Sands"
+    ],
+    "Gladiator": [
+      "Cassius Verro",
+      "Octavia Lune",
+      "Tiber Kane",
+      "Lavinia Cross",
+      "Maro Dessa",
+      "Aurelia Nox"
+    ],
+    "Director": [
+      "Greer Aldous",
+      "Mateo Navarre",
+      "Sunniva Berg",
+      "Idris Fallon",
+      "Clem Okada",
+      "Petra Lang"
+    ],
+    "Composer": [
+      "Hollis Verne",
+      "Anouk Sterling",
+      "Ravi Castell",
+      "Linnea Frost",
+      "Otis Marlowe",
+      "Beatriz Sol"
+    ]
+  }
+}

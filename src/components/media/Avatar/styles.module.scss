@@ -64,5 +64,12 @@
   0 calc(var(--av-u) * -4.6) 0 calc(var(--av-u) * -2.3) color-mix(in srgb, var(--av-b, var(--phi-color-primary)) 24%, var(--phi-color-background-card, #fff)),
   0 calc(var(--av-u) * -6.6) 0 calc(var(--av-u) * -3.5) color-mix(in srgb, var(--av-a, var(--phi-color-primary)) 18%, var(--phi-color-background-card, #fff)), inset 0 0 0 1px color-mix(in srgb, var(--av-a, var(--phi-color-primary)) 22%, transparent); }
 
+/* Presence: the picture and a dot at its foot, in the theme's own status colours. The holder takes the picture's size. */
+.held { position: relative; display: inline-flex; flex: none; }
+.presence { position: absolute; right: -6%; bottom: -6%; width: clamp(0.45rem, 34%, 0.875rem); aspect-ratio: 1; border-radius: var(--phi-radius-full); background: var(--phi-color-text-muted); }
+.presence[data-presence='here'] { background: var(--phi-color-success); }
+.presence[data-presence='away'] { background: var(--phi-color-warning); }
+.presence[data-presence='busy'] { background: var(--phi-color-error); }
+
 /* A photo from a sprite sheet: one cell, covering the disc. */
 .sprite { position: absolute; inset: 0; border-radius: inherit; background-image: var(--pui-sprite); background-size: var(--pui-sprite-size); background-position: var(--pui-sprite-pos); background-repeat: no-repeat; }

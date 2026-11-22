@@ -1,13 +1,13 @@
 import React from 'react';
 import { LOOKS, useLook } from './looks';
-import { Box, Button, Frame, GradientLevelPicker, Image, PalettePicker, RadiusPicker, Stack, Tag, TabList, Text, Title } from '@pui/components';
+import { Box, Button, GradientLevelPicker, PalettePicker, RadiusPicker, Stack, Tag, TabList, Text, Title } from '@pui/components';
 import { usePuiTheme, type Theme } from '@pui/providers';
-import { APPS, appUrl, assetUrl } from './data';
+import { APPS, appUrl } from './data';
 import { AccountPanel } from './AccountDialog';
 import { accountsEnabled } from './auth';
 import { useWallet, fmt, LABEL, USD, type Coin } from './wallet';
 import type { GridItem } from './blocks';
-import s from './kit.module.scss';
+import { FieldList, cardPicture } from './blocks/GridExtra';
 import { Profile, type ProfileSpec } from './Profile';
 
 /** A page's head, the same on every page of every app: its title and one line under it. `action` puts the page's own
@@ -75,16 +75,10 @@ export const ItemPanel: React.FC<{ it: GridItem; onClose: () => void }> = ({ it,
       {it.sub ? <Text size="xs" weight="medium" as="span">{it.sub}</Text> : <Box />}
       <Button variant="glass" onClick={onClose}>Close</Button>
     </Stack>
-    {it.image ? <Frame ratio="16/10" rounded="lg"><Image src={assetUrl(it.image)} alt="" fit="cover" fill /></Frame> : null}
+    {it.image || it.sprite || it.swatch ? cardPicture(it, false, '16/10') : null}
     <Title level={2} size="2xl">{it.title}</Title>
     {it.body ? <Text as="p" size="sm" intent="secondary">{it.body}</Text> : null}
-    {it.fields?.length ? (
-      <Stack direction="column" gap={1}>
-        {it.fields.map(([k, v]) => (
-          <Stack key={k} direction="row" justify="between" gap={3} paddingY={1} className={s.fieldRow}>
-            <Text as="span" size="sm" intent="muted">{k}</Text><Text as="span" size="sm" weight="medium" align="right">{v}</Text>
-          </Stack>))}
-      </Stack>) : null}
+    {it.fields?.length ? <FieldList list={it.fields} /> : null}
     {it.cost ? <Text as="span" size="xs" intent="muted">Cost · {it.cost.toLocaleString('en-US')} USD</Text> : null}
     {it.meta ? <Text as="span" size="xs" intent="muted" mono>{it.meta}</Text> : null}
     {it.app ? <Button variant="glass" href={it.href || appUrl(it.app)}>Open in {it.app[0].toUpperCase() + it.app.slice(1)}</Button> : null}

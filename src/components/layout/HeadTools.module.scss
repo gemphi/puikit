@@ -1,0 +1,13 @@
+// A header's three slots for the tools of what it heads. Tokens only.
+.slot { display: inline-flex; align-items: center; gap: var(--phi-space-1, 0.25rem); min-width: 0; flex: none; }
+/* A slot nothing stands in takes no room, so a header without a list keeps its own spacing. */
+.start:empty, .end:empty { display: none; }
+/* The centre takes the room between the title's side and the far end, its tools in the middle of it; empty, it still
+   keeps the far end at the far end. */
+.center { flex: 1 1 auto; justify-content: center; }
+@media (max-width: 640px) {
+  /* A phone: a centre that holds tabs or an open search field takes a row of its own under the title's row (the header
+     wraps), from the left, scrolling sideways if it must; the far end stays at the far end of the first row. */
+  .center:has([role='tablist'], input) { order: 3; flex-basis: 100%; justify-content: flex-start; overflow-x: auto; scrollbar-width: none; }
+  .center:has([role='tablist'], input) ~ .end, .start ~ .end { margin-left: auto; }
+}

@@ -1,8 +1,8 @@
 import React from 'react';
-import { MessageCircle, Users, Database, Layers, Boxes, Vote, Wallet, Package, Terminal, LayoutGrid, House, ChartLine, Map, Circle, ShoppingBag, Rocket, Compass, Cpu, Link2, Network, FileText, CheckCircle2, Coins, UserRound, MapPin, CreditCard, ClipboardCheck, Hash, Heart, Sparkles, ThumbsUp, Flame, Bell, type LucideIcon } from 'lucide-react';
+import { MessageCircle, Users, Database, Layers, Boxes, Vote, Wallet, Package, Terminal, LayoutGrid, House, ChartLine, Map, Circle, ShoppingBag, Rocket, Compass, Cpu, Link2, Network, FileText, CheckCircle2, Coins, UserRound, MapPin, CreditCard, ClipboardCheck, Hash, Heart, Sparkles, ThumbsUp, Flame, Bell, Volume2, Plus, type LucideIcon } from 'lucide-react';
 import type { IconPath } from './data';
 
-const MAP: Record<string, LucideIcon> = { chat: MessageCircle, users: Users, db: Database, layers: Layers, cube: Boxes, vote: Vote, wallet: Wallet, box: Package, terminal: Terminal, grid: LayoutGrid, home: House, chart: ChartLine, map: Map, bag: ShoppingBag, rocket: Rocket, compass: Compass, cpu: Cpu, link: Link2, network: Network, file: FileText, check: CheckCircle2, coin: Coins, user: UserRound, pin: MapPin, card: CreditCard, clipboard: ClipboardCheck, hash: Hash, heart: Heart, spark: Sparkles, thumb: ThumbsUp, flame: Flame, bell: Bell };
+const MAP: Record<string, LucideIcon> = { chat: MessageCircle, users: Users, db: Database, layers: Layers, cube: Boxes, vote: Vote, wallet: Wallet, box: Package, terminal: Terminal, grid: LayoutGrid, home: House, chart: ChartLine, map: Map, bag: ShoppingBag, rocket: Rocket, compass: Compass, cpu: Cpu, link: Link2, network: Network, file: FileText, check: CheckCircle2, coin: Coins, user: UserRound, pin: MapPin, card: CreditCard, clipboard: ClipboardCheck, hash: Hash, heart: Heart, spark: Sparkles, thumb: ThumbsUp, flame: Flame, bell: Bell, volume: Volume2, plus: Plus };
 /** The icon a name in app data stands for, as a component (a button's icon). */
 export const iconOf = (name: string): LucideIcon => MAP[name] || Circle;
 

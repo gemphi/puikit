@@ -1,5 +1,7 @@
 import React from 'react';
-import { Box, Button, Frame, ProgressBar, Stack, TabList, Tag, Text } from '@pui/components';
+import { Box, Button, Frame, Image, ProgressBar, SpriteImage, Stack, Swatch, TabList, Tag, Text } from '@pui/components';
+import { assetUrl } from '../data';
+import s from '../kit.module.scss';
 import type { GridItem } from './Grid';
 
 /** The optional parts of the one Grid: a card's tinted head, tag, figure, meter and point list, and the grid's lane,
@@ -26,6 +28,30 @@ export const cardHead = (it: GridItem): React.ReactNode => {
   const [fill, ink] = toneOf(it.tone);
   return <Frame ratio="1/1" width="2.5rem" rounded="full" tint={fill} tintStrength={100} ink={ink}><Text as="span" size="sm" weight="bold">{it.mark}</Text></Frame>;
 };
+
+/** A card's picture: its own file, a cell of a sheet, or its colours (the first a square, a theme's ground, the rest
+ *  round, its accents) on the kit's surface like every picture; with none of them, its head.
+ *  In a list it is a small square; `wide` is the shape of a card's own file elsewhere (a panel). */
+export const cardPicture = (it: GridItem, list: boolean, wide = '16/9'): React.ReactNode => {
+  const shape = { rounded: 'md' as const, width: list ? '4.5rem' : undefined };
+  if (it.image) return <Frame ratio={list ? '1/1' : wide} {...shape}><Image src={assetUrl(it.image)} alt="" fit="cover" fill loading="lazy" /></Frame>;
+  if (it.sprite) return <Frame ratio="1/1" {...shape}><SpriteImage sprite={{ src: assetUrl(it.sprite.sheet), cols: it.sprite.cols, index: it.sprite.index }} alt={it.title} radius="md" /></Frame>;
+  if (it.swatch?.length) return (
+    <Frame ratio={list ? '1/1' : wide} {...shape}>
+      <Stack direction="row" gap={list ? 1 : 2} align="center">{it.swatch.map((c, i) => <Swatch key={i} color={c} size={list ? 'xs' : 'lg'} shape={i ? 'round' : 'square'} label={it.title} />)}</Stack>
+    </Frame>);
+  return cardHead(it);
+};
+
+/** A record's facts, one a row: what it is called, and what the record holds there. */
+export const FieldList: React.FC<{ list: [string, string][] }> = ({ list }) => (
+  <Stack direction="column" gap={1}>
+    {list.map(([k, v]) => (
+      <Stack key={k} direction="row" justify="between" gap={3} paddingY={1} className={s.fieldRow}>
+        <Text as="span" size="sm" intent="muted">{k}</Text><Text as="span" size="sm" weight="medium" align="right">{v}</Text>
+      </Stack>))}
+  </Stack>
+);
 
 /** The tag at the end of a card's title row (a stage, a status). */
 export const cardTag = (it: GridItem): React.ReactNode => (it.tag ? <Tag minimal round intent={it.tagIntent}>{it.tag}</Tag> : undefined);

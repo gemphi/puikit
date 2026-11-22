@@ -1,6 +1,8 @@
 {
   "app": "phiogy",
   "start": "lora",
+  "people": "data/room.json",
+  "direct": "direct",
   "nav": [
     {
       "id": "direct",
@@ -10,17 +12,20 @@
         {
           "id": "lora",
           "label": "Lora Vale",
-          "icon": "user"
+          "icon": "user",
+          "who": "lora"
         },
         {
           "id": "kairo",
           "label": "Kairo Finch",
-          "icon": "user"
+          "icon": "user",
+          "who": "kairo"
         },
         {
           "id": "mina",
           "label": "Mina Okoro",
-          "icon": "user"
+          "icon": "user",
+          "who": "mina"
         }
       ]
     },
@@ -30,19 +35,47 @@
       "icon": "network",
       "items": [
         {
-          "id": "lobby",
-          "label": "lobby",
-          "icon": "hash"
+          "id": "phiace-text",
+          "label": "Text",
+          "icon": "hash",
+          "head": true,
+          "items": [
+            {
+              "id": "lobby",
+              "label": "lobby",
+              "icon": "hash"
+            },
+            {
+              "id": "show",
+              "label": "show and tell",
+              "icon": "hash"
+            },
+            {
+              "id": "help",
+              "label": "help",
+              "icon": "hash"
+            }
+          ]
         },
         {
-          "id": "show",
-          "label": "show and tell",
-          "icon": "hash"
-        },
-        {
-          "id": "help",
-          "label": "help",
-          "icon": "hash"
+          "id": "phiace-voice",
+          "label": "Voice",
+          "icon": "volume",
+          "head": true,
+          "items": [
+            {
+              "id": "lounge",
+              "label": "Lounge",
+              "icon": "volume",
+              "crowd": "lounge"
+            },
+            {
+              "id": "stage",
+              "label": "Stage",
+              "icon": "volume",
+              "crowd": "stage"
+            }
+          ]
         }
       ]
     },
@@ -52,14 +85,120 @@
       "icon": "cube",
       "items": [
         {
-          "id": "studio",
-          "label": "studio",
-          "icon": "hash"
+          "id": "makers-text",
+          "label": "Text",
+          "icon": "hash",
+          "head": true,
+          "items": [
+            {
+              "id": "studio",
+              "label": "studio",
+              "icon": "hash"
+            },
+            {
+              "id": "build",
+              "label": "build",
+              "icon": "hash"
+            }
+          ]
         },
         {
-          "id": "build",
-          "label": "build",
-          "icon": "hash"
+          "id": "makers-voice",
+          "label": "Voice",
+          "icon": "volume",
+          "head": true,
+          "items": [
+            {
+              "id": "bench",
+              "label": "Bench",
+              "icon": "volume",
+              "crowd": "bench"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v_acrobirds",
+      "label": "Acrobirds",
+      "icon": "users",
+      "origin": "phiegg",
+      "items": [
+        {
+          "id": "v_acrobirds-text",
+          "label": "Text",
+          "icon": "hash",
+          "head": true,
+          "items": [
+            {
+              "id": "v_acrobirds-lobby",
+              "label": "lobby",
+              "icon": "hash"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v_bayc",
+      "label": "Bored Apes",
+      "icon": "users",
+      "origin": "phiegg",
+      "items": [
+        {
+          "id": "v_bayc-text",
+          "label": "Text",
+          "icon": "hash",
+          "head": true,
+          "items": [
+            {
+              "id": "v_bayc-lobby",
+              "label": "lobby",
+              "icon": "hash"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v_penguins",
+      "label": "Penguins",
+      "icon": "users",
+      "origin": "phiegg",
+      "items": [
+        {
+          "id": "v_penguins-text",
+          "label": "Text",
+          "icon": "hash",
+          "head": true,
+          "items": [
+            {
+              "id": "v_penguins-lobby",
+              "label": "lobby",
+              "icon": "hash"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v_moonbirds",
+      "label": "Moonbirds",
+      "icon": "users",
+      "origin": "phiegg",
+      "items": [
+        {
+          "id": "v_moonbirds-text",
+          "label": "Text",
+          "icon": "hash",
+          "head": true,
+          "items": [
+            {
+              "id": "v_moonbirds-lobby",
+              "label": "lobby",
+              "icon": "hash"
+            }
+          ]
         }
       ]
     }
@@ -160,6 +299,106 @@
           "room": "build"
         }
       ]
+    },
+    "lounge": {
+      "title": "",
+      "blocks": [
+        {
+          "kind": "chat",
+          "variant": "room",
+          "app": "phiogy",
+          "source": "data/room.json",
+          "room": "lounge"
+        }
+      ]
+    },
+    "stage": {
+      "title": "",
+      "blocks": [
+        {
+          "kind": "chat",
+          "variant": "room",
+          "app": "phiogy",
+          "source": "data/room.json",
+          "room": "stage"
+        }
+      ]
+    },
+    "bench": {
+      "title": "",
+      "blocks": [
+        {
+          "kind": "chat",
+          "variant": "room",
+          "app": "phiogy",
+          "source": "data/room.json",
+          "room": "bench"
+        }
+      ]
+    },
+    "v_acrobirds-lobby": {
+      "title": "",
+      "origin": "phiegg",
+      "blocks": [
+        {
+          "kind": "chat",
+          "variant": "room",
+          "app": "phiogy",
+          "source": "data/room.json",
+          "room": "v_acrobirds-lobby"
+        }
+      ]
+    },
+    "v_bayc-lobby": {
+      "title": "",
+      "origin": "phiegg",
+      "blocks": [
+        {
+          "kind": "chat",
+          "variant": "room",
+          "app": "phiogy",
+          "source": "data/room.json",
+          "room": "v_bayc-lobby"
+        }
+      ]
+    },
+    "v_penguins-lobby": {
+      "title": "",
+      "origin": "phiegg",
+      "blocks": [
+        {
+          "kind": "chat",
+          "variant": "room",
+          "app": "phiogy",
+          "source": "data/room.json",
+          "room": "v_penguins-lobby"
+        }
+      ]
+    },
+    "v_moonbirds-lobby": {
+      "title": "",
+      "origin": "phiegg",
+      "blocks": [
+        {
+          "kind": "chat",
+          "variant": "room",
+          "app": "phiogy",
+          "source": "data/room.json",
+          "room": "v_moonbirds-lobby"
+        }
+      ]
     }
-  }
+  },
+  "host": "data/host.json",
+  "joined": [
+    "h_bp",
+    "h_epac",
+    "h_opal",
+    "h_swan",
+    "h_lynx",
+    "h_runway",
+    "h_062",
+    "h_050"
+  ],
+  "shop": "data/shop.json"
 }

@@ -1,0 +1,78 @@
+{
+  "_": "The ladder for every world that has no generator of its own: how many posts and events a world has, and how many comments a post has, is brought up to a rung of `ladder` (16, 32, 64, 128, 256). app/phiegg/scripts/ladder.py reads this, after threads.mjs and city-life.py. Every record it adds carries origin `ladder` and a rerun replaces exactly those; records already there are never changed. Everything is fictional.",
+  "origin": "ladder",
+  "ladder": [16, 32, 64, 128, 256],
+  "spread": [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 4],
+  "rule": { "post": "fit", "event": "fit", "comment": "fit" },
+  "_rule": "`fit` brings a count up to the lowest rung that holds what is there (9 posts become 16, 20 become 32). `spread` also draws a rung for each record from `spread` (six in sixteen on the first rung, one on the last), so lists come in every size; it makes far more records.",
+  "leave": { "worldOrigin": ["bold-cities"], "recordOrigin": ["city-life"] },
+  "_leave": "Worlds and records of these origins are another generator's.",
+  "post": {
+    "_": "A post added to a world: written by someone of the world's club, wearing a look from the club's shop. `kind` and `ratio` are taken in turn; `title` and `caption` are templates ({world}, {zone} one of its zones, {club}); likes are a rung times `likesPer`; posts are dated back from `from`, `everyHours` apart.",
+    "kind": ["image", "image", "reel", "image", "world-capture", "image", "reel", "image"],
+    "ratio": ["4/5", "3/4", "4/5", "1/1"],
+    "likesPer": 8,
+    "from": "2026-11-18T18:00:00",
+    "everyHours": 9,
+    "title": [
+      "Morning in {zone}", "{world}, late", "Fitting day", "Off the runway", "Window light", "{zone} corner", "Second look", "After the show",
+      "The long walk", "First wear", "{club} colours", "Quiet hour", "Back of house", "On the steps", "Street cast", "Last light"
+    ],
+    "caption": [
+      "Early in {zone}, before the doors open.", "{world} looks different every time I come back.", "Wore it once and I am keeping it.", "Straight from the fitting to the street.",
+      "The light in {zone} did all the work.", "Found this corner of {world} by accident.", "{club} got this one right.", "Second time in this look, better than the first.",
+      "Nobody told me {zone} gets this busy.", "Walked the whole of {world} in these shoes.", "The colour is even better in person.", "One more from last night.",
+      "Front row was full, so I watched from the steps.", "Trying the new cut from {club}.", "Still thinking about the last look of the show.", "{zone}, right after the rain.",
+      "This is the one everyone asked about.", "Borrowed the jacket, kept the picture.", "A slow afternoon in {world}.", "The tailor in {zone} fixed it in an hour.",
+      "Dressed for the walk, stayed for the music.", "Same street, new look.", "Showing the back because the back is the point.", "{club} members will know.",
+      "Caught between two shows in {zone}.", "It moves better than it photographs.", "Kept the receipt, did not need it.", "Late to the show, early to the party.",
+      "The whole of {world} was out tonight.", "Layers, because {zone} runs cold.", "Nothing planned, just walking.", "Saving this one for the wall."
+    ]
+  },
+  "comment": {
+    "_": "Lines for the comments added under a post; one in `replyEvery` answers the comment before it. A line with {world} or {zone} is used only where the post has a world.",
+    "replyEvery": 3,
+    "line": [
+      "This is the one I keep coming back to.", "Where in {world} is this?", "The cut on that is perfect.", "Saving this.",
+      "{zone} suits you.", "I need to know who made it.", "Front row or nothing.", "The colour, the light, all of it.",
+      "Seen it in person and it is even better.", "That is how you wear it.", "Walking through {zone} tomorrow, will look for this spot.", "Everyone in {world} is dressing like this now.",
+      "You never miss.", "Adding this to my list.", "The details are doing a lot here.", "Is this from the last drop?",
+      "I was there, it was louder than it looks.", "Trade you for mine.", "This deserves a wall.", "Who took the picture?",
+      "Third time today I have stopped on this.", "The shoes carry it.", "Tell me this comes in another colour.", "Showed this to my whole table.",
+      "{world} at its best.", "Quietly the best look of the week.", "That jacket has a waiting list.", "Came for the look, stayed for the caption.",
+      "Meet you in {zone} at eight.", "I would wear this to everything.", "The styling is the story here.", "Front to back, no notes.",
+      "More from this day, please.", "It moves so well.", "The back of it is even better.", "This is what the show was missing.",
+      "Somebody frame it.", "I walked past and did not recognise the street.", "{zone} never looked like this when I lived there.", "Right place, right hour.",
+      "Is the bag part of the look?", "The tailoring is very clean.", "Counting the days to the next one.", "Sent this to my stylist.",
+      "Putting this on the mood board.", "Soft and sharp at once.", "Still my favourite from the season.", "The whole feed should look like this.",
+      "Came back to look again.", "That is a very good coat.", "I have questions about the hat.", "You wore it better than the runway did.",
+      "Was this before or after the show?", "{world} on a good day.", "Somebody tag the house.", "First thing I saw this morning.",
+      "It is the shoulders for me.", "Proof that less is more.", "Keeping this one.", "The fit is exactly right.",
+      "I heard the music from two streets away.", "Good light finds you.", "This is the look of the week.", "See you at the next one."
+    ]
+  },
+  "event": {
+    "_": "What is added to a world's calendar: templates taken in turn from a start that differs per world ({world}, {zone} one of its zones, {club}). `day` is days after `from`, moved by up to `shift` days per world; `time` the hour (UTC). The people going are a rung times `rsvpsPer`. A drop has a price (ETH) and a supply; a party a genre; a yearly event says when it comes back.",
+    "from": "2026-11-22",
+    "shift": 6,
+    "rsvpsPer": 8,
+    "template": [
+      { "kind": "runway", "title": "{zone} runway night", "day": 0, "time": "20:00" },
+      { "kind": "party", "title": "Late doors in {zone}", "day": 2, "time": "22:00", "genre": "culture" },
+      { "kind": "talk", "title": "Inside {club}: the studio talk", "day": 4, "time": "17:00" },
+      { "kind": "drop", "title": "{club} drop in {zone}", "day": 6, "time": "18:00", "price": 0.08, "supply": 256 },
+      { "kind": "runway", "title": "Open casting in {world}", "day": 9, "time": "15:00" },
+      { "kind": "show", "title": "{world} season show", "day": 12, "time": "20:00", "recurring": "Every season" },
+      { "kind": "party", "title": "{zone} rooftop set", "day": 14, "time": "21:00", "genre": "afrobeats" },
+      { "kind": "talk", "title": "How {world} was drawn", "day": 17, "time": "16:00" },
+      { "kind": "drop", "title": "{world} capsule drop", "day": 19, "time": "19:00", "price": 0.04, "supply": 128 },
+      { "kind": "runway", "title": "First looks in {zone}", "day": 21, "time": "19:00" },
+      { "kind": "party", "title": "{club} members' night", "day": 24, "time": "21:00", "genre": "couture" },
+      { "kind": "talk", "title": "Stylists' hour in {zone}", "day": 26, "time": "18:00" },
+      { "kind": "runway", "title": "Closing walk in {world}", "day": 28, "time": "20:00" },
+      { "kind": "drop", "title": "{zone} limited run", "day": 31, "time": "18:00", "price": 0.02, "supply": 64 },
+      { "kind": "party", "title": "{world} anniversary party", "day": 34, "time": "20:00", "genre": "digital", "recurring": "Every autumn" },
+      { "kind": "show", "title": "{club} live in {zone}", "day": 37, "time": "20:00" }
+    ]
+  }
+}

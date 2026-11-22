@@ -21,6 +21,15 @@ describe('Avatar default profile icon', () => {
   });
 });
 
+describe('Avatar presence', () => {
+  it('puts a named dot beside the picture, and none when no presence is given', () => {
+    const { getByRole, container } = render(<Avatar alt="Lora" initials="L" presence="away" presenceLabel="Away" />);
+    expect(getByRole('img', { name: 'Away' }).getAttribute('data-presence')).toBe('away');
+    expect(container.firstElementChild!.children).toHaveLength(2);
+    expect(render(<Avatar alt="Kai" initials="K" />).container.querySelector('[data-presence]')).toBeNull();
+  });
+});
+
 describe('Avatar sprite', () => {
   it('cuts one cell from a sheet', async () => {
     const { Avatar, spriteVars } = await import('./index');

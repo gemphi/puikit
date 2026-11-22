@@ -91,21 +91,23 @@
      from nothing at its left to light at its right, the right one (.navEnd) the other way. What you press inside it
      (rail icons, menu rows) runs against it, lit at the window's edge and gone toward the page, so the two lights
      cross and only meet in the middle. No ground and no blur of its own, and no colour but the page's one light. */
-  --pui-nav-ground: var(--phi-label-end);
+  --pui-nav-ground: var(--phi-label-back);
   /* The two ways a light can run in this sidebar: against it (lit at the window's edge) and with it (lit toward the
      page). Layers take turns: the sidebar runs with, a region in it (a menu group, with its heading) against, a row
      or a folding card in that region with, a row inside that card against. So no ground is ever filled edge to edge
      and each thing shows against what holds it. */
   --pui-nav-against-soft: var(--phi-label-soft); --pui-nav-against: var(--phi-label); --pui-nav-against-strong: var(--phi-label-strong);
-  --pui-nav-with-soft: var(--phi-label-end-soft); --pui-nav-with: var(--phi-label-end);
+  --pui-nav-with-soft: var(--phi-label-back-soft); --pui-nav-with: var(--phi-label-back);
   /* What a rail icon or a row stands on here: against the sidebar, until a region or a card says otherwise. */
   --pui-nav-item-soft: var(--pui-nav-against-soft); --pui-nav-item: var(--pui-nav-against); --pui-nav-item-strong: var(--pui-nav-against-strong);
   background: var(--pui-nav-ground);
+  /* A look may draw a line round its sidebars (--phi-sidebar-edge, a whole border; Apple's hairline of light). */
+  border: var(--phi-sidebar-edge, 0);
   backdrop-filter: none; -webkit-backdrop-filter: none; }
 
 .rail { display: grid; grid-template-rows: minmax(min-content, 1fr) auto minmax(min-content, 1fr); justify-items: center; gap: var(--phi-space-2); flex: none; inline-size: var(--pui-shell-rail); padding-block: var(--phi-space-3); }
 .railGroup { width: 100%; }
-.railBtn { display: inline-flex; align-items: center; justify-content: center; inline-size: var(--pui-shell-control); block-size: var(--pui-shell-control);
+.railBtn { position: relative; display: inline-flex; align-items: center; justify-content: center; inline-size: var(--pui-shell-control); block-size: var(--pui-shell-control);
   border-radius: var(--phi-radius-sm); border: 1px solid transparent; color: var(--phi-color-text-secondary); cursor: pointer;
   /* Every rail icon stands on its own light, running against the sidebar's: soft at rest, fuller under the pointer,
      fullest for the one that is on. */
@@ -127,7 +129,7 @@
    own); its rows run against the region in turn, the sidebar's way. */
 .panelGroup { display: flex; flex-direction: column; gap: 2px; padding: var(--phi-space-2); border-radius: var(--phi-radius-md);
   background-image: var(--pui-nav-against, var(--phi-label));
-  --pui-nav-item-soft: var(--pui-nav-with-soft, var(--phi-label-end-soft)); --pui-nav-item: var(--pui-nav-with, var(--phi-label-end)); }
+  --pui-nav-item-soft: var(--pui-nav-with-soft, var(--phi-label-back-soft)); --pui-nav-item: var(--pui-nav-with, var(--phi-label-back)); }
 .groupHead { min-height: var(--pui-shell-control); }
 .panelScroll { display: flex; flex-direction: column; gap: var(--phi-space-2); }
 /* The three places, in the panel and the rail alike: each row is at least as tall as what it holds, so nothing in the
@@ -148,11 +150,15 @@
 .groupOpen { border-radius: var(--phi-radius-sm); }
 /* An entry that folds is a card in its region: a faint light running against the region's (the sidebar's way), its
    own heading row bare. Its rows run against it in turn. */
-.navEntry:has(> :first-child > .caret) { border-radius: var(--phi-radius-md); background: var(--pui-nav-with-soft, var(--phi-label-end-soft)); padding-bottom: var(--phi-space-1);
+.navEntry:has(> :first-child > .caret) { border-radius: var(--phi-radius-md); background: var(--pui-nav-with-soft, var(--phi-label-back-soft)); padding-bottom: var(--phi-space-1);
   --pui-nav-item-soft: var(--pui-nav-against-soft, var(--phi-label-soft)); --pui-nav-item: var(--pui-nav-against, var(--phi-label)); }
 .entryPanel { padding: var(--phi-space-2) 0 var(--phi-space-2) 1.5rem; }
 /* A sub-menu steps in under its entry, past the fold arrow; no line, only the folding group's light. */
 .subMenu { display: flex; flex-direction: column; padding: 0 0 var(--phi-space-1) var(--phi-space-4); }
+/* A row's count stands at its far end, in line with its words (never pinned to the row's corner). */
+.rowCount { display: inline-flex; flex: none; margin-inline-start: auto; }
+/* Under a heading the rows do not step in: each runs the full width of the heading's section, flush at its left. */
+.headMenu { padding-left: 0; }
 .inlineRow { display: flex; gap: var(--phi-space-1); }
 .inlineRow > * { flex: 1 1 0; min-width: 0; }
 
@@ -251,7 +257,7 @@
 /* The right sidebar: the same holder mirrored. It is lit at its left, toward the page, and disappears to the right;
    its icons and rows are lit at the right and gone to the left. */
 .navEnd { margin: 0 var(--pui-shell-gap) var(--pui-shell-gap) 0; --pui-nav-ground: var(--phi-label);
-  --pui-nav-against-soft: var(--phi-label-end-soft); --pui-nav-against: var(--phi-label-end); --pui-nav-against-strong: var(--phi-label-end-strong);
+  --pui-nav-against-soft: var(--phi-label-back-soft); --pui-nav-against: var(--phi-label-back); --pui-nav-against-strong: var(--phi-label-back-strong);
   --pui-nav-with-soft: var(--phi-label-soft); --pui-nav-with: var(--phi-label); }
 
 /* Phone: no sidebar; the header shows the menu button and the glyph, the drawer carries the whole menu. */

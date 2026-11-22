@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Card, CardBody, Grid, Input, ItemCard, Page, ProgressBar, RelationList, Rows, Stack, TabList, Tag, Text, Title, type RelationGroup } from '@pui/components';
 import { useStore } from '@pui/store';
-import { fmt, liquidityOf, lotsOfPool, storeOf, t, usd, D, itemOf, type Item } from '../../lib/data';
+import { fmt, liquidityOf, lotsOfPool, storeOf, t, usd, D, itemOf, type Item, type ItemRow } from '../../lib/data';
 import { mediaUrl } from '../../lib/media';
 import { kindIcon, kindLabel } from '../../components/Phiegg/Connected';
 import { EntityAvatar } from '../../components/Phiegg/EntityAvatar';
@@ -12,7 +12,9 @@ import { useOwned } from '../../lib/cart';
 import { phieggStore } from '../../state/phieggStore';
 import { Tile } from '../../components/Phiegg/Tile';
 import { LookImage } from '../../components/Phiegg/LookImage';
-import { LotCard, PoolQuestCard, StatGrid } from '../../components/Phiegg/Pools';
+import { PoolQuestCard, StatGrid } from '../../components/Phiegg/Pools';
+import { KindCard } from '../../components/Phiegg/KindList';
+import { Now } from '../../lib/liveValue';
 import { PoolItems } from '../../components/Phiegg/PoolItems';
 import { PageSections } from '../../components/Phiegg/PageSections';
 import type { ShopLook, World } from '../../types/phiegg';
@@ -97,7 +99,7 @@ export const PoolPage: React.FC = () => {
             onClick={() => s.go('world', { worldId: w.id })} badges={party && <Tag round size="sm">{party.startsAt.slice(5, 10)} · {party.rsvps.toLocaleString('en-US')} RSVPs</Tag>} />); })}</Rows>
         ) },
         { id: 'lots', title: t('plLots'), hidden: !lots.length, content: (
-        <Grid gap={3} xs={1} md={2}>{lots.map((l) => <LotCard key={l.id} lot={l} now={now} />)}</Grid>
+        <Now.Provider value={now}><Grid gap={3} xs={1} md={2}>{lots.map((l) => <KindCard key={l.id} kind="lot" row={l as unknown as ItemRow} />)}</Grid></Now.Provider>
         ) },
         { id: 'looks', title: t('plSolo'), hidden: !pool.lookIds.length, content: (
         <Grid gap={3} xs={2} sm={3} md={4}>{pool.lookIds.map(((id) => itemOf('look', id))).filter((l): l is ShopLook => !!l).map((l) => { const q = lookLive(l, now); return (

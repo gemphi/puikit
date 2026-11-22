@@ -1,0 +1,60 @@
+{
+  "_": "The 16 Bold Cities. A city is a world (the old seed's geography: World = City -> Zones -> Places, and Lands), so each one is a Phiegg world with its zones, places, a post of its renders and a land plot (EGG) in every zone. Source: the shared drive folder BOLDCITIES-LANDTYPES (drive-map.json boldCities): NN-NAME/BC-NN (RENDERS), BCL-NN (marks), BLT-NN (the land). Land types and descriptions: BC-Land-Types-Phase-01. Zones and places: BOLD-CITY-README (Fashion, Entertainment and Social Districts). Run app/phiegg/scripts/bold-cities.py after editing; it never invents a picture.",
+  "source": "{DL}/BOLD-CITIES/{folder}",
+  "sizes": { "sm": 480, "lg": 1280, "logo": 256, "quality": 76 },
+  "names": "A city's real name (from Downloads/@POSTS and the drive's logos) is its world's name; `land` is the land type it stands on. Forest, Desert, Swamp and City Ruins have no name yet, so they keep their land's.",
+  "layout": "Every world's files: world/<slug>/mark.webp and world/<slug>/view/<view>-<width>.webp (served at worlds/<slug>/... in the bucket). The slug is the world's name; ids are w_<slug>, ct_<slug>_<zone>, s_<slug>, egg_<slug>_<zone>_land, all marked origin bold-cities. Source file and folder names from the drive are never used.",
+  "views": ["three-quarter", "front", "side", "top", "close-up-1", "close-up-2", "close-up-3", "close-up-4"],
+  "hero": "three-quarter",
+  "origin": "bold-cities",
+  "world": { "clubId": "c_bp", "hostId": "h_bp", "creatorId": "u_rexa", "kind": "virtual", "tags": ["bold city", "land type"] },
+  "groups": [
+    { "name": "Natural Environments", "tone": "sage" },
+    { "name": "Aquatic & Submerged Zones", "tone": "accent" },
+    { "name": "Fantasy & Extreme Terrains", "tone": "ink" },
+    { "name": "Urban & City Zones", "tone": "neutral" }
+  ],
+  "zones": [
+    { "key": "fashion", "name": "Fashion District", "share": 0.45, "vibe": "Shops and runway shows",
+      "desc": "The latest digital fashion: interactive shops and runway shows with avatars and models in BoldLooks.",
+      "places": [
+        { "key": "shops", "name": "Bold Shops", "kind": "boutique", "hours": "10:00-22:00", "visitors": 420, "rating": 4.6, "desc": "Shops models walk into and out of with what they bought; a chatty doorman greets you." },
+        { "key": "runway", "name": "Runway", "kind": "runway", "hours": "Show nights", "visitors": 610, "rating": 4.8, "desc": "Bold collections on the walk, with the crowd seated on the sidelines." }
+      ] },
+    { "key": "entertainment", "name": "Entertainment District", "share": 0.3, "vibe": "Concerts, art and games",
+      "desc": "Concerts, art installations and games with the Bold characters and visiting artists.",
+      "places": [
+        { "key": "stage", "name": "Concert Stage", "kind": "theatre", "hours": "18:00-02:00", "visitors": 530, "rating": 4.7, "desc": "Concerts with musicians and the Bold characters." },
+        { "key": "art", "name": "Art Installations", "kind": "gallery", "hours": "10:00-20:00", "visitors": 260, "rating": 4.5, "desc": "Installations and statues along the walkways." },
+        { "key": "games", "name": "Game Arcade", "kind": "arcade", "hours": "All day", "visitors": 380, "rating": 4.4, "desc": "Games with the Roids, Epics and Pups." }
+      ] },
+    { "key": "social", "name": "Social District", "share": 0.25, "vibe": "Cafes, parks and plazas",
+      "desc": "Cafes, parks and plazas to meet, show your avatar and talk.",
+      "places": [
+        { "key": "cafe", "name": "Cafe", "kind": "cafe", "hours": "07:00-23:00", "visitors": 310, "rating": 4.6, "desc": "Tables on the square; the doorman knows your order." },
+        { "key": "park", "name": "Park", "kind": "park", "hours": "All day", "visitors": 240, "rating": 4.5, "desc": "Trees in tall pots, watered by the BoldRoids." },
+        { "key": "plaza", "name": "Plaza", "kind": "plaza", "hours": "All day", "visitors": 450, "rating": 4.4, "desc": "The square where everyone meets, under the ad screens." }
+      ] }
+  ],
+  "land": { "name": "Land · {zone}, {city}", "priceEgg": 2400, "sizeM2": 960, "yieldDay": 1.4,
+    "desc": "A plot in the {zone} of {city}: build a shop, rent it or sell it on." },
+  "post": { "caption": "{city}: {desc} Every view of the city, from above to the close-ups.", "tags": ["#BoldCity", "#{tag}"], "createdAt": "2026-11-18T12:00:00Z" },
+  "cities": [
+    { "n": 1, "name": "Forest", "land": "Forest", "folder": "01-FOREST", "group": 0, "population": 1840, "visitorsNow": 412, "desc": "Dense foliage, tall and varied trees, evergreen and sunny scapes, natural flora." },
+    { "n": 2, "name": "Desert", "land": "Desert", "folder": "02-DESERT", "group": 0, "population": 920, "visitorsNow": 188, "desc": "An arid, sandy landscape of large, sweeping dunes." },
+    { "n": 3, "name": "Peep City", "land": "Grasslands", "folder": "03-GRASSLANDS", "group": 0, "population": 1310, "visitorsNow": 265, "desc": "Open fields and rolling hills with few large obstructions." },
+    { "n": 4, "name": "Lace City", "land": "Arctic", "folder": "04-ARCTIC", "group": 0, "population": 640, "visitorsNow": 131, "desc": "Snowy, icy, frozen terrain, made for cold-weather looks." },
+    { "n": 5, "name": "Skim City", "land": "Water Scene", "folder": "05-WATER-SCENE", "group": 1, "population": 1120, "visitorsNow": 240, "desc": "Deep blue water and the open sea, home of the ships and yachts." },
+    { "n": 6, "name": "Naim City", "land": "Tropical Beach", "folder": "06-TROPICAL-BEACH", "group": 1, "population": 2050, "visitorsNow": 506, "desc": "Sandy shores, clear shallow water and coastal plants." },
+    { "n": 7, "name": "Swamp", "land": "Swamp", "folder": "07-SWAMP", "group": 1, "population": 580, "visitorsNow": 97, "desc": "Murky water, dense low flora and tangled roots." },
+    { "n": 8, "name": "Loon City", "land": "Coral Reef", "folder": "08-CORAL-REEF", "group": 1, "population": 1460, "visitorsNow": 318, "desc": "A wide, detailed world under the water." },
+    { "n": 9, "name": "Lava City", "land": "Lava Scene", "folder": "09-LAVA-SCENE", "group": 2, "population": 990, "visitorsNow": 223, "desc": "Dark rock, flowing magma, ash and smoking vents, the backdrop for the roids." },
+    { "n": 10, "name": "Wand City", "land": "Crystal Caves", "folder": "10-CRYSTAL-CAVES", "source": "{DL}/phiber/CITY-POSES/10-CRYSTAL-CAVES-20261017T202648Z-1-001/10-CRYSTAL-CAVES", "logo": "BC-ICON-CRYSTAL-CAVES.png", "group": 2, "population": 1240, "visitorsNow": 287, "desc": "Bright, reflective crystals, underground and in the open." },
+    { "n": 11, "name": "Acro City", "land": "Floating Island", "folder": "11-FLOATING-ISLAND", "group": 2, "population": 1580, "visitorsNow": 364, "desc": "Land held high in the air, joined by bridges and platforms." },
+    { "n": 12, "name": "Warp City", "land": "Moonscape", "folder": "12-MOONSCAPE", "group": 2, "population": 710, "visitorsNow": 152, "desc": "Moon-grey, cratered and quiet, with low gravity." },
+    { "n": 13, "name": "Once City", "land": "Modern City", "folder": "13-MODERN-CITY", "group": 3, "population": 3420, "visitorsNow": 871, "desc": "Tall, contemporary buildings and sleek urban architecture." },
+    { "n": 14, "name": "City Ruins", "land": "City Ruins", "folder": "14-CITY-RUINS", "group": 3, "population": 860, "visitorsNow": 176, "desc": "The old Bold City: ancient, weathered stone and the remains of its buildings." },
+    { "n": 15, "name": "Roid City", "land": "Cyberpunk", "folder": "15-CYBERPUNK", "group": 3, "population": 2730, "visitorsNow": 655, "desc": "Dense streets, wet roads and bright neon signs." },
+    { "n": 16, "name": "Bozo City", "land": "Village", "folder": "16-VILLAGE", "group": 3, "population": 1190, "visitorsNow": 248, "desc": "Low buildings around a town square, made for gathering." }
+  ]
+}

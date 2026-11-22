@@ -11,10 +11,10 @@
   --phi-shadow-4: 0 24px 48px rgba(0, 0, 0, 0.14), 0 8px 20px rgba(0, 0, 0, 0.06);
   --phi-gradient-main: linear-gradient(180deg, #f5f5f7 0%, #ffffff 100%);
   --phi-gradient-main-lr: linear-gradient(to right, #f5f5f7 0%, #ffffff 100%);
-  --phi-gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, transparent 100%);
-  --phi-gradient-navbar: linear-gradient(180deg, rgba(255, 255, 255, 0.86) 0%, rgba(245, 245, 247, 0.76) 100%);
+  --phi-gradient-card: linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, transparent 100%);
+  --phi-gradient-navbar: linear-gradient(90deg, rgba(255, 255, 255, 0.86) 0%, rgba(245, 245, 247, 0.76) 100%);
   --phi-gradient-sidebar: linear-gradient(to right, rgba(245, 245, 247, 0.92) 0%, transparent 100%);
-  --phi-gradient-table-header: linear-gradient(180deg, rgba(245, 245, 247, 0.95) 0%, rgba(235, 235, 240, 0.9) 100%);
+  --phi-gradient-table-header: linear-gradient(90deg, rgba(245, 245, 247, 0.95) 0%, rgba(235, 235, 240, 0.9) 100%);
   --phi-glass-surface: rgba(255, 255, 255, 0.72);
   --phi-glass-border: rgba(255, 255, 255, 0.6);
   --phi-backdrop-blur: blur(20px) saturate(180%);
@@ -34,16 +34,16 @@
   --phi-shadow-4: 0 24px 48px rgba(0, 0, 0, 0.68), 0 8px 20px rgba(0, 0, 0, 0.5);
   --phi-gradient-main: linear-gradient(180deg, #000000 0%, #1c1c1e 100%);
   --phi-gradient-main-lr: linear-gradient(to right, #000000 0%, #1c1c1e 100%);
-  --phi-gradient-card: linear-gradient(180deg, rgba(44, 44, 46, 0.88) 0%, transparent 100%);
-  --phi-gradient-navbar: linear-gradient(180deg, rgba(28, 28, 30, 0.86) 0%, rgba(0, 0, 0, 0.76) 100%);
+  --phi-gradient-card: linear-gradient(90deg, rgba(44, 44, 46, 0.88) 0%, transparent 100%);
+  --phi-gradient-navbar: linear-gradient(90deg, rgba(28, 28, 30, 0.86) 0%, rgba(0, 0, 0, 0.76) 100%);
   --phi-gradient-sidebar: linear-gradient(to right, rgba(28, 28, 30, 0.9) 0%, transparent 100%);
-  --phi-gradient-table-header: linear-gradient(180deg, rgba(44, 44, 46, 0.92) 0%, rgba(28, 28, 30, 0.88) 100%);
+  --phi-gradient-table-header: linear-gradient(90deg, rgba(44, 44, 46, 0.92) 0%, rgba(28, 28, 30, 0.88) 100%);
   --phi-glass-surface: rgba(28, 28, 30, 0.68);
   --phi-glass-border: rgba(255, 255, 255, 0.12);
 }
 
 :root[data-theme-style='glass'] {
-  --phi-gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.68) 0%, transparent 100%);
+  --phi-gradient-card: linear-gradient(90deg, rgba(255, 255, 255, 0.68) 0%, transparent 100%);
   --phi-glass-surface: rgba(255, 255, 255, 0.64);
   --phi-glass-border: rgba(255, 255, 255, 0.48);
   --phi-backdrop-blur: blur(24px) saturate(180%);
@@ -51,7 +51,7 @@
 
 :root[data-theme='dark'][data-theme-style='glass'],
 :root.dark[data-theme-style='glass'] {
-  --phi-gradient-card: linear-gradient(180deg, rgba(30, 41, 59, 0.62) 0%, transparent 100%);
+  --phi-gradient-card: linear-gradient(90deg, rgba(30, 41, 59, 0.62) 0%, transparent 100%);
   --phi-glass-surface: rgba(15, 23, 42, 0.62);
   --phi-glass-border: rgba(255, 255, 255, 0.14);
 }
@@ -64,34 +64,43 @@
 
 :root[data-theme-style='gradient'] {
   --phi-gradient-main: linear-gradient(180deg, #ffffff 0%, #f8fafc 48%, #eef2ff 100%);
-  --phi-gradient-card: linear-gradient(180deg, #ffffff 0%, transparent 100%);
-  --phi-gradient-navbar: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  --phi-gradient-card: linear-gradient(90deg, #ffffff 0%, transparent 100%);
+  --phi-gradient-navbar: linear-gradient(90deg, #ffffff 0%, #f8fafc 100%);
 }
 
 :root[data-theme='dark'][data-theme-style='gradient'],
 :root.dark[data-theme-style='gradient'] {
   --phi-gradient-main: linear-gradient(180deg, #0b0f19 0%, #0f172a 48%, #111827 100%);
-  --phi-gradient-card: linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, transparent 100%);
-  --phi-gradient-navbar: linear-gradient(180deg, rgba(11, 15, 25, 0.92) 0%, rgba(15, 23, 42, 0.88) 100%);
+  --phi-gradient-card: linear-gradient(90deg, rgba(30, 41, 59, 0.7) 0%, transparent 100%);
+  --phi-gradient-navbar: linear-gradient(90deg, rgba(11, 15, 25, 0.92) 0%, rgba(15, 23, 42, 0.88) 100%);
 }
 
-/* Gradient: the one surface and the one label wear the brand's two colours, so every card, row, field, tab bar,
-   column, message and control in the look is a gradient, set here and nowhere else. Its first colour is strongest at
-   the foot (a label's start), its second takes over midway, and the light is gone at the head as in every look. */
-:root[data-theme-style='gradient'] {
-  --phi-tint-1: color-mix(in srgb, var(--phi-color-primary) var(--phi-tint-pct, 26%), transparent);
-  --phi-tint-2: color-mix(in srgb, var(--phi-color-secondary, var(--phi-color-primary)) calc(var(--phi-tint-pct, 26%) * 0.7), transparent);
-  --phi-tint-3: color-mix(in srgb, var(--phi-color-primary) calc(var(--phi-tint-pct, 26%) * 0.5), transparent);
-  --phi-tint-4: color-mix(in srgb, var(--phi-color-primary) calc(var(--phi-tint-pct, 26%) * 1.5), transparent);
-  --phi-surface: linear-gradient(20deg, var(--phi-tint-1) 0%, var(--phi-tint-2) 55%, transparent 100%);
-  --phi-surface-soft: linear-gradient(20deg, var(--phi-tint-3) 0%, transparent 100%);
-  --phi-surface-strong: linear-gradient(20deg, var(--phi-tint-4) 0%, var(--phi-tint-1) 55%, transparent 100%);
-  --phi-label: linear-gradient(90deg, var(--phi-tint-1), var(--phi-tint-2) 55%, transparent);
-  --phi-label-soft: linear-gradient(90deg, var(--phi-tint-3), transparent);
-  --phi-label-strong: linear-gradient(90deg, var(--phi-tint-4), var(--phi-tint-1) 55%, transparent);
-  --phi-label-end: linear-gradient(90deg, transparent, var(--phi-tint-2) 45%, var(--phi-tint-1));
-  --phi-label-end-soft: linear-gradient(90deg, transparent, var(--phi-tint-3));
-  --phi-label-end-strong: linear-gradient(90deg, transparent, var(--phi-tint-1) 45%, var(--phi-tint-4));
+/* Gradient: its grounds are the kit's one plain light, as in every look (tokens.scss). They once wore the brand's two
+   colours, mixed and turned from parent to child; a mix of colours inside the grounds read badly, so it is gone. The
+   look's colour is its window's ground, below. */
+
+/* THE WINDOW'S GROUND IN THE COLOURED LOOKS (Gradient, Jingle). The whole window, the gaps between its panels and its
+   edges included, stands on one sweep of the theme's own colours from its left edge to its right: its first colour
+   (cool), its third or second (hot), its second accent (hotter still). The page's dark or light ground is only what
+   each is mixed into, never a colour of its own, so no part of the window is left black. The provider writes a
+   page ground on the root itself from the gradient level; in these looks the ground is the look, so it is said over
+   that. Whatever colour a person picks (a palette) is the colour of the window. */
+:root:is([data-theme-style='gradient'], [data-theme-style='jingle']) {
+  --phi-gradient-main: linear-gradient(90deg,
+      color-mix(in srgb, var(--phi-color-primary) 62%, var(--phi-color-background)) 0%,
+      color-mix(in srgb, var(--phi-color-accent-3, var(--phi-color-secondary, var(--phi-color-primary))) 48%, var(--phi-color-background)) 50%,
+      color-mix(in srgb, var(--phi-color-accent-2, var(--phi-color-warning)) 46%, var(--phi-color-background)) 100%) !important;
+}
+
+/* Jingle: the whole window stands on ONE gradient from its left edge to its right, made of the theme's own colours
+   (its first colour, its third or second, its second accent), each let into the page's ground. So whatever colour a
+   person picks (a palette: Boldland's Sunrise, Grape, Phantom Gold) is the colour of the window. Nothing else in
+   the look is a colour: the rail, the menu, every column and card wear the kit's plain light (tokens.scss) over that
+   one ground, so the page reads as a single sweep of colour with its parts laid on it. */
+:root[data-theme-style='jingle'] {
+  --phi-gradient-navbar: none;
+  --phi-gradient-sidebar: none;
+  --phi-gradient-rail: none;
 }
 
 /* ============================================================
@@ -177,8 +186,8 @@
   --phi-color-text-accent: #0066cc;
   --phi-color-overlay: rgba(0, 0, 0, 0.32);
   --phi-gradient-main: radial-gradient(80% 50% at 0% 0%, color-mix(in oklch, var(--phi-color-primary, #0071e3) 7%, transparent) 0%, transparent 60%), radial-gradient(60% 40% at 100% 100%, color-mix(in oklch, var(--phi-color-secondary, #86868b) 6%, transparent) 0%, transparent 60%), linear-gradient(180deg, #f5f5f7 0%, #fbfbfd 100%);
-  --phi-gradient-rail: linear-gradient(180deg, rgba(232, 232, 237, 0.92) 0%, transparent 100%);
-  --phi-gradient-sidebar: linear-gradient(180deg, rgba(246, 246, 248, 0.92) 0%, transparent 100%);
+  --phi-gradient-rail: linear-gradient(90deg, rgba(232, 232, 237, 0.92) 0%, transparent 100%);
+  --phi-gradient-sidebar: linear-gradient(90deg, rgba(246, 246, 248, 0.92) 0%, transparent 100%);
   --phi-gradient-accent: linear-gradient(to right, color-mix(in oklch, var(--phi-color-primary, #0071e3) 12%, #ffffff) 0%, #ffffff 100%);
   --phi-font-family: "Phifing 4", "Phifing", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", Arial, sans-serif;
   --phi-font-heading: "Phifing 4", "Phifing", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", Arial, sans-serif;
@@ -196,8 +205,8 @@
   --phi-color-text-accent: #2997ff;
   --phi-color-overlay: rgba(0, 0, 0, 0.56);
   --phi-gradient-main: radial-gradient(80% 50% at 0% 0%, color-mix(in oklch, var(--phi-color-primary, #2997ff) 12%, transparent) 0%, transparent 60%), radial-gradient(60% 40% at 100% 100%, color-mix(in oklch, var(--phi-color-secondary, #86868b) 10%, transparent) 0%, transparent 60%), linear-gradient(180deg, #000000 0%, #111113 100%);
-  --phi-gradient-rail: linear-gradient(180deg, rgba(22, 22, 24, 0.94) 0%, transparent 100%);
-  --phi-gradient-sidebar: linear-gradient(180deg, rgba(28, 28, 30, 0.9) 0%, transparent 100%);
+  --phi-gradient-rail: linear-gradient(90deg, rgba(22, 22, 24, 0.94) 0%, transparent 100%);
+  --phi-gradient-sidebar: linear-gradient(90deg, rgba(28, 28, 30, 0.9) 0%, transparent 100%);
   --phi-gradient-accent: linear-gradient(to right, color-mix(in oklch, var(--phi-color-primary, #2997ff) 22%, #1c1c1e) 0%, #1c1c1e 100%);
 }
 
@@ -237,6 +246,8 @@
   --phi-gradient-accent: none;
   --phi-gradient-navbar: linear-gradient(rgba(251, 251, 253, 0.82), rgba(251, 251, 253, 0.82));
   --phi-glass-surface: rgba(255, 255, 255, 0.86);
+  /* Apple's sidebars always carry a hairline, made of the look's own ink: light on dark, dark on light. */
+  --phi-sidebar-edge: 1px solid color-mix(in srgb, var(--phi-color-text-primary) 14%, transparent);
 }
 
 :root[data-theme='dark'][data-theme-style='apple'],

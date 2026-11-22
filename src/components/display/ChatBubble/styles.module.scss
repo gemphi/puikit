@@ -1,29 +1,40 @@
 // ChatBubble: one band round the whole message, lit from a side in every place it is used. Tokens only.
 .row {
-  display: flex; gap: var(--phi-space-2); align-items: flex-start; width: 100%; min-width: 0;
+  display: flex; flex-wrap: wrap; gap: var(--phi-space-2); align-items: flex-start; width: 100%; min-width: 0; container-type: inline-size;
   padding: var(--phi-space-2); border-radius: var(--phi-radius-md);
-  /* Theirs: from the left to nothing. A message is never lit from its top or its foot, whatever holds it. */
-  background: var(--phi-label);
+  /* A message is a row: lit from its right, under its words, to nothing at its left, against the column that holds
+     it (tokens.scss, --phi-label-back). Never from its top or its foot. */
+  background: var(--phi-label-back);
   animation: puiBubbleIn 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 /* Mine: the same band turned round. The picture is at the right, the words are set to the right, the light comes
    from the right, and the time and actions go to the left end. */
-.me { flex-direction: row-reverse; background: var(--phi-label-end); }
+.me { flex-direction: row-reverse; background: var(--phi-label); }
 .me .col { align-items: flex-end; text-align: right; }
 .me .meta { justify-content: flex-end; }
 .me .end { flex-direction: row-reverse; margin-left: 0; margin-right: auto; }
 /* The sender's picture always stands in a holder, lit from the other side to the band. */
-.avatar { flex: none; display: grid; place-items: center; padding: var(--phi-space-1); border-radius: var(--phi-radius-md); background-image: var(--phi-label-end); }
-.me .avatar { background-image: var(--phi-label); }
-.col { display: flex; flex-direction: column; gap: 0.125rem; flex: 1 1 auto; min-width: 0; padding-block: var(--phi-space-1); }
+.avatar { flex: none; display: grid; place-items: center; padding: var(--phi-space-1); border-radius: var(--phi-radius-md); background-image: var(--phi-label); }
+.me .avatar { background-image: var(--phi-label-back); }
+/* One that follows the same sender keeps the picture's room and shows no picture, so its words stand under the first's. */
+.follows .avatar { visibility: hidden; height: 0; padding-block: 0; overflow: hidden; }
+/* The message answered: a line of its own over the words, lit from the other side to the band. */
+.quote { display: flex; align-items: center; gap: var(--phi-space-1); max-width: 100%; min-width: 0; overflow: hidden; white-space: nowrap; padding: var(--phi-space-1) var(--phi-space-2); border-radius: var(--phi-radius-md); background-image: var(--phi-label); }
+.me .quote { background-image: var(--phi-label-back); }
+.quote > * { min-width: 0; max-width: 100%; }
+.col { display: flex; flex-direction: column; gap: 0.125rem; flex: 1 1 0; min-width: 0; padding-block: var(--phi-space-1); }
 .meta { display: flex; align-items: baseline; gap: var(--phi-space-2); min-width: 0; }
 .bubble { line-height: 1.4; overflow-wrap: anywhere; font-size: var(--phi-font-size-sm, 0.875rem); color: var(--phi-color-text-primary); }
 /* The far end: the time on a ground of its own lit from that end, the actions as icons on grounds, then three dots. */
 .end { display: flex; align-items: center; gap: var(--phi-space-1); flex: none; margin-left: auto; }
-.time { padding: var(--phi-space-1) var(--phi-space-2); border-radius: var(--phi-radius-md); background-image: var(--phi-label-end); white-space: nowrap; }
-.me .time { background-image: var(--phi-label); }
+.time { padding: var(--phi-space-1) var(--phi-space-2); border-radius: var(--phi-radius-md); background-image: var(--phi-label); white-space: nowrap; }
+.me .time { background-image: var(--phi-label-back); }
 .actions { display: flex; align-items: center; gap: var(--phi-space-1); flex: none; }
 .dots { min-height: 0; padding: var(--phi-space-1); }
+/* In a narrow band (a phone, a slim column) the far end goes under the words, so the words keep the band's width. */
+@container (max-width: 24rem) {
+  .end, .me .end { flex-basis: 100%; justify-content: flex-end; margin-inline: 0; }
+}
 /* What the three dots open: a short column of rows. */
 .menu { display: flex; flex-direction: column; gap: var(--phi-space-1); min-width: 11rem; }
 .menu > :is(button, a) { display: flex; width: 100%; justify-content: flex-start; text-align: start; }

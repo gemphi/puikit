@@ -1,8 +1,8 @@
 import React from 'react';
-import { Rows, StageSlider } from '@pui/components';
+import { Deck, Rows, StageSlider } from '@pui/components';
 import { ListView as SharedListView, type ListViewProps } from '@phi-kit/ListView';
 import { useStore } from '@pui/store';
-import { garmentOf, t } from '../../lib/data';
+import { garmentOf, site, t } from '../../lib/data';
 import { phieggStore } from '../../state/phieggStore';
 import { useViewport } from '../../lib/viewport';
 
@@ -12,7 +12,11 @@ export const ClubIcon: React.FC<{ icon?: string; size?: string }> = ({ icon, siz
   return g ? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.25} strokeLinecap="round" strokeLinejoin="round" width={size} height={size} aria-label={g.name}><path d={g.path} /></svg> : null;
 };
 
-/** Grid wrapper that follows the chosen view: the stage slider (tile), full rows (grid) or one a row (list). */
+/** The layouts' words (site.json layouts): one per layout, and the switch's own name. */
+const LAYOUT = (site as unknown as { layouts: { label: string; list: { id: string; label: string }[] } }).layouts;
+const layoutLabel = Object.fromEntries(LAYOUT.list.map((l) => [l.id, l.label])) as Record<string, string>;
+
+/** Grid wrapper that follows the chosen view: the stage slider (tile), full rows (grid), decks or one a row (list). */
 export const ViewGrid: React.FC<{ children: React.ReactNode; cols?: number; minItemWidth?: string }> = ({ children, cols: want = 4, minItemWidth = '15rem' }) => {
   const { view } = useStore(phieggStore); const { mobile } = useViewport();
   // Tile is the slider: 1–3 large cards per view. Grid is full rows (two a row on phones). List is one a row.
@@ -24,6 +28,8 @@ export const ViewGrid: React.FC<{ children: React.ReactNode; cols?: number; minI
     return <StageSlider items={items} prevLabel={t('slPrev')} nextLabel={t('slNext')} positionLabel={(k, n) => t('slPos', { i: k, n })} />;
   }
   const cols = view.mode === 'list' ? 1 : mobile ? Math.min(want, 2) : want;
+  // Decks: the grid's columns, every card its own height under two bars (the cards behind it).
+  if (view.mode === 'deck') return <Rows cols={cols} colsSm={Math.min(cols, 2)} minItemWidth={minItemWidth} mosaic={false}>{React.Children.toArray(children).map((c, i) => <Deck key={(c as React.ReactElement).key ?? i}>{c}</Deck>)}</Rows>;
   // Responsive: up to `cols` a row, but never narrower than minItemWidth (the grid measures its own width).
   return <Rows cols={cols} colsSm={Math.min(cols, 2)} minItemWidth={view.mode === 'list' ? undefined : minItemWidth}>{children}</Rows>;
 };
@@ -41,6 +47,6 @@ export function ListView<T>({ groupBy, onRow, cols, empty, ...rest }: Omit<ListV
     // Every record opens: the page's own action, else its record by id (state openId: its page, or its record page).
     onRow={onRow ?? ((r) => openId(rest.keyOf(r)))} cols={mobile ? Math.min(cols ?? 4, 2) : cols} empty={empty ?? t('lsNone')}
     count={(n) => `${n} items`} tableOptions={{ sticky: true, maxHeight: '34rem', limit: groupBy ? undefined : 25, groupBy }}
-    labels={{ tile: 'Tile', list: 'List', grid: 'Grid', filters: t('lsFilters'), close: t('lsClose'), search: t('searchPh'), sort: t('lsSort'), all: t('seAll'), clear: t('lsClear'), order: t('lsOrder'), forward: t('lsForward'), backward: t('lsBackward'),
+    labels={{ tile: layoutLabel.tile, list: layoutLabel.list, deck: layoutLabel.deck, grid: layoutLabel.grid, layout: LAYOUT.label, filters: t('lsFilters'), close: t('lsClose'), search: t('searchPh'), sort: t('lsSort'), all: t('seAll'), clear: t('lsClear'), order: t('lsOrder'), forward: t('lsForward'), backward: t('lsBackward'),
       prev: t('slPrev'), next: t('slNext'), position: (k, n) => t('slPos', { i: k, n }) }} />;
 }

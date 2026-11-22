@@ -96,8 +96,17 @@ The config apps have no component of their own: every page is puiapp modules on 
 | A grid of cards with no picture stood half empty. | `app/phi-kit/src/blocks/Grid.tsx` | Cards of words alone keep their own height. |
 | The hard-coded ink colour in two tone tables. | `app/phipad/src/data.ts`, `app/phidao/src/data.ts` | Gone; the tones are theme tokens in the grid. |
 | Phiegg's own `Stats`, `ItemCard` and list. | `app/phiegg/src/components/Phiegg` | `StatGrid` in puiapp (`blocks/Stats.tsx`), the kit `ItemCard`, and puiapp's `ListView`, which Phiegg's `ListView` now only binds to its store. |
-| The chat block could only talk to a persona. | `app/phi-kit/src/blocks/Chat.tsx`, `Room.tsx` | A `room` variant: a direct message or a channel between people, with pictures, reactions, the composer and the one profile beside it. Phiogy is built on it. |
+| The chat block could only talk to a persona. | `app/phi-kit/src/blocks/Chat.tsx`, `Room.tsx`, `RoomStream.tsx`, `RoomHead.tsx`, `RoomVoice.tsx`, `people.tsx`, `voice.tsx`, `mic.ts` | A `room` variant: a direct message or a channel between people, with a line per day, one person's messages in a row under one picture, replies that quote, pictures, reactions, the composer and the one profile beside it. An app's data names its people file (`people`) and a menu entry a person (`who`), whose picture and presence then stand in the menu. A room's head searches it, lists its pinned messages and shows or hides the people beside it; a room of `kind` voice shows who is in it and lets the viewer in and out, and with Phiora on carries sound over the room's call line, held by the shell (`voice.tsx`) so it goes on from page to page; rooms stand under folding headings in the menu (`head`, `crowd`). Phiogy is built on it. |
 
+
+### Added on 2026-11-21: one header for every list
+
+| What | Where | How |
+|:---|:---|:---|
+| Every list has one header in three parts: at the left the total on its own ground, its word and one icon that is the layout shown and drops the layouts (list, deck, grid; tile where the list has a slider); in the centre its tabs and its search; at the right Filter and Sort. | puikit `navigation/ViewToolbar` | `mode`, `modes`, `title`, `count`, `noun`, `center`, `search`; `VIEW_MODES` is the default set. |
+| The parts stand in the header above the list. | puikit `layout/HeadTools.tsx` (`WithHeadTools`, `HeadTools`, `HeadPart`, `useHeadSlot`); used by `Sections` and by puiapp's `Block` title | A header hands out three places (`start`, `center`, `end`); the list fills them. With no header above, the list draws the bar itself from the same three parts. |
+| Deck: a card with two bars above it, each nine tenths as wide as what is under it. | puikit `layout/Deck` | `bars` 1 to 3. |
+| The grid block draws through `ListView`, and its layout, layouts offered, sorts and filters are data: `layout`, `layoutSet`, `sort`, `filter` on the block. | `app/phi-kit/src/blocks/Grid.tsx`, `GridList.ts`, `ListView.tsx` | Defaults and words are the `list` group of `app/phi-kit/src/words.json`. |
 
 ### Open, with the reason
 
@@ -107,6 +116,7 @@ The config apps have no component of their own: every page is puiapp modules on 
 | Phiegg's feed is its own page, not the puiapp feed module. | `app/phiegg/src/pages/phiegg/FeedPage.tsx` | The puiapp feed has the `card` variant only; Phiegg's needs stories, tabs and a composer as variants first. |
 | Plain HTML in Phiegg pages: 12 `<img>` and 6 `<span>` on the welcome page, 2 `<div>` on the agents hub, 1 `<img>` in the relation tabs. | `WelcomePage.tsx`, `AgentsHubPage.tsx`, `Connected.tsx` | Phiegg is being edited by another session; puikit's `Picture` and `Box` replace them. |
 | App-level features sit in puikit: `social` (feed, home, mail, post, profile, show, comment) and `shop` (cart, order, payment, address, wishlist, product, category, editorial). By the rule the general parts (post card, product card, comment row) stay and the features move to puiapp. | `src/components/social`, `src/components/shop` | The social stylesheet is being split by another session right now (staged, not committed); a move would collide with it. |
+| Lists that lay their cards with `Rows`, `Grid` or `Collection` directly have no layout switch, sort or filter. | About 30 places in `app/phiegg/src` (Explore, Search, Create, Recent, Pool, Show, the record and item sheets), `app/phi-kit/src/RecordSheet.tsx`, `module/runway.tsx`, `module/feed.tsx`, puikit `shop` and `social` lists, `overlays/BrowseSheet` | Each has its own card and some are a sheet's thumbnails; they move onto `ListView` one by one. |
 | App marks inside puikit. | `src/components/brand/marks.tsx` (phiegg, phipad) | Marks are data; they belong in the registry with the other app glyphs. Small, not done to keep this change to the app layer. |
 | Two components, one name: puiapp's `Table`, `Form` and `Grid` blocks wrap puikit's `Table`, `Form` and `Grid`. | `app/phi-kit/src/blocks` | They follow the rule (a block over the kit component); only the names collide. Renaming touches every config, so it is listed, not done. |
 | The shared stylesheet still carries about thirty classes of the shell from before `AppShell`. | `app/phi-kit/src/kit.module.scss` | Only `app/phiegg-v1` names them. They go when that app does. |
@@ -387,7 +397,7 @@ config app on the host, `localhost:3100/phiogy/` · 8 pages (three direct messag
 
 | Page | puikit | puiapp (`phi-kit`) |
 |:---|:---|:---|
-| *every page* | AppShell, Avatar, Button, ChatBubble, ChatComposer, Columns, Frame, Label, Picture, Pressable, Stack, TabList, Text | Chat (variant `room`), PhiShell, ProfileView |
+| *every page* | Accordion, AppShell, Avatar, Button, ChatBubble, ChatComposer, Columns, Divider, Frame, Input, Label, Picture, Popover, Pressable, Stack, TabList, Tag, Text | Chat (variant `room`), PhiShell, ProfileView |
 
 Its look is the `gradient` theme style with the `phiogy` brand (`src/providers/themes.ts`): the one surface and the one label take the brand's two colours in `src/tokens/_theme-styles.scss`, so nothing in the app writes a gradient. Its face is Phi-Soft Light, named on its registry entry (`font`). Its mark is drawn from the font by `app/phiogy/mark.py`.
 

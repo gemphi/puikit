@@ -26,6 +26,29 @@ describe('AppShell', () => {
     fireEvent.click(screen.getAllByLabelText('Fold Home')[0]);
     expect(screen.queryByText('First post')).toBeNull();
   });
+  it('folds a heading’s rooms without going anywhere, and knows the group of a page under a heading', () => {
+    const went: string[] = [];
+    const chat = [{ id: 'space', label: 'Space', items: [{ id: 'text', label: 'Text', head: true, open: true, items: [{ id: 'lobby', label: 'lobby' }] },
+      { id: 'lounge', label: 'Lounge', steady: true, previews: [{ id: 'tavi', label: 'Tavi' }] }] }];
+    render(<AppShell brand={{ name: 'Phitest' }} groups={chat} view="lobby" onView={(id) => went.push(id)}><Open /></AppShell>);
+    expect(screen.getByRole('complementary', { name: 'Space' })).toBeTruthy();
+    // A steady entry shows what it holds and has no fold arrow.
+    expect(screen.getByText('Tavi')).toBeTruthy();
+    expect(screen.queryByLabelText('Fold Lounge')).toBeNull();
+    fireEvent.click(screen.getByText('Text'));
+    expect(went).toEqual([]);
+    expect(screen.queryByText('lobby', { selector: 'button *' })).toBeNull();
+    fireEvent.click(screen.getByText('Text'));
+    fireEvent.click(screen.getByText('lobby', { selector: 'button *' }));
+    expect(went).toEqual(['lobby']);
+  });
+  it('shows what waits: a count on a group’s rail icon and at an entry’s end, none at 0', () => {
+    const chat = [{ id: 'space', label: 'Space', count: 3, items: [{ id: 'lobby', label: 'lobby', count: 3 }, { id: 'help', label: 'help', count: 0 }] }];
+    render(<AppShell brand={{ name: 'Phitest' }} groups={chat} view="help" onView={() => {}}>page</AppShell>);
+    expect(screen.getByLabelText('Space, 3')).toBeTruthy();
+    expect(screen.getAllByText('3')).toHaveLength(2);
+    expect(screen.queryByText('0')).toBeNull();
+  });
   it('folds sub-menus as deep as a storefront: department > category > item, open when the page is inside', () => {
     const shop = [{ id: 'shop', label: 'Shop', items: [{ id: 'women', label: 'Women', items: [
       { id: 'women/rtw', label: 'Ready-to-wear', items: [{ id: 'women/rtw/dresses', label: 'Dresses' }, { id: 'women/rtw/tops', label: 'Tops' }] },
@@ -40,9 +63,9 @@ describe('AppShell', () => {
     expect(screen.queryByText('Dresses')).toBeNull();
     fireEvent.click(screen.getByLabelText('Open Ready-to-wear'));
     expect(screen.getByText('Dresses')).toBeTruthy();
-    // A page inside a sub-menu opens every fold above it.
+    // A page inside a sub-menu opens every fold above it, and is named in the crumbs as well as in its menu.
     rerender(<AppShell brand={{ name: 'Phitest' }} groups={shop} view="women/shoes/boots" onView={() => {}}>page</AppShell>);
-    expect(screen.getByText('Boots')).toBeTruthy();
+    expect(screen.getAllByText('Boots')).toHaveLength(2);
   });
   it('lists one-page groups as one menu with no heading over itself', () => {
     const pages = [{ id: 'home', label: 'Home', items: [{ id: 'home', label: 'Home' }] }, { id: 'docs', label: 'Docs', items: [{ id: 'docs', label: 'Docs' }] }];

@@ -1,0 +1,51 @@
+{
+  "_": "Only art that belongs to its place. {DL} is the Downloads folder on C, {D} is D:/Dowloads. Everything is read only; build_media.py sizes copies into media/. A world without an entry here keeps the scene the app ships, with its 3D logo; drafts and art with no known owner are left out rather than guessed.",
+  "worlds": {
+    "Skim City": {
+      "logo": "{DL}/phiber/CITY-POSES/10-CRYSTAL-CAVES-20261017T202648Z-1-001/10-CRYSTAL-CAVES/BCL-10-CRYSTAL-CAVES/SKIM-CITY-LOGONAME-CRYSTAL-CAVES.png",
+      "icon": "{DL}/phiber/CITY-POSES/10-CRYSTAL-CAVES-20261017T202648Z-1-001/10-CRYSTAL-CAVES/BCL-10-CRYSTAL-CAVES/BC-ICON-CRYSTAL-CAVES.png",
+      "hero": "{DL}/phiber/CITY-POSES/10-CRYSTAL-CAVES-20261017T202648Z-1-001/10-CRYSTAL-CAVES/BC-10-CRYSTAL-CAVES/RENDERS/RENDER-CLOSE-UP-02.png",
+      "gallery": [
+        "{DL}/phiber/CITY-POSES/10-CRYSTAL-CAVES-20261017T202648Z-1-001/10-CRYSTAL-CAVES/BC-10-CRYSTAL-CAVES/RENDERS/RENDER-3Q-02.png",
+        "{DL}/phiber/CITY-POSES/10-CRYSTAL-CAVES-20261017T202648Z-1-001/10-CRYSTAL-CAVES/BC-10-CRYSTAL-CAVES/RENDERS/RENDER-CLOSE-UP-01.png",
+        "{DL}/phiber/CITY-POSES/10-CRYSTAL-CAVES-20261017T202648Z-1-001/10-CRYSTAL-CAVES/BC-10-CRYSTAL-CAVES/RENDERS/RENDER-CLOSE-UP-03.png",
+        "{DL}/phiber/CITY-POSES/10-CRYSTAL-CAVES-20261017T202648Z-1-001/10-CRYSTAL-CAVES/BC-10-CRYSTAL-CAVES/RENDERS/RENDER-CLOSE-UP-04.png"
+      ],
+      "land": "land-type-10"
+    },
+    "Naimia": {
+      "logo": "{D}/OLD-FEB-2026/NAIM-CITY.png",
+      "icon": "{D}/NaimLand (1).png"
+    },
+    "Chatty Valley": {
+      "logo": "{D}/CW-LOGOS-NAMES-20250810T140926Z-1-001/CW-LOGOS-NAMES/LOGONAME/CW-LOGONAME-01-C-02.png",
+      "hero": "{DL}/phiber/CW-POSES/RENDERS-WITH-BG/BS-POSE-13-BG.png",
+      "gallery": [
+        "{DL}/phiber/CW-POSES/RENDERS-WITH-TRANSPARENT-BG/BS-POSE-32.png",
+        "{DL}/phiber/CW-POSES/RENDERS-WITH-TRANSPARENT-BG/BS-Pose-14.png"
+      ]
+    },
+    "Lora Land": {
+      "icon": "{DL}/Loras-Spark-icon.png"
+    }
+  },
+  "lands": {
+    "land-type-10": {
+      "name": "Crystal Caves",
+      "glob": "{DL}/phiber/CITY-POSES/10-CRYSTAL-CAVES-20261017T202648Z-1-001/10-CRYSTAL-CAVES/BLT-10-CRYSTAL-CAVES/RENDERS/*.png"
+    },
+    "land-type-13": {
+      "name": "Modern Cityscape",
+      "glob": "{D}/OLD-FEB-2026/BLT-13-MODERN-CITY-20260124T134926Z-1-001/BLT-13-MODERN-CITY/RENDERS/*.png"
+    },
+    "land-type-15": {
+      "name": "Cyberpunk / Neon Alley",
+      "glob": "{D}/LAND-TYPE-15-RENDER.png"
+    }
+  },
+  "brand": {
+    "boldland": "{D}/Workspace/boldland/nextjs/public/assets/Icons/BoldLand_Logos/Icon_BoldLand_Final_Gold.png",
+    "bold-elegance": "{D}/BE-LOGO-05-512PX-20250910T211813Z-1-001/BE-LOGO-05-512PX/BE-LOGO-05-WHITE-02-512PX.png"
+  },
+  "oldWorldData": "{D}/Workspace/gemrepo/gemphi/phiadk/phiadk-js/web/lib/data/worlds-data.ts"
+}

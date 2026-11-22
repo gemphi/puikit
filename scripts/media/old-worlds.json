@@ -1,0 +1,386 @@
+[
+ {
+  "name": "Boldland",
+  "theme": "Racing Heritage",
+  "cities": [
+   "Speed Valley",
+   "Motor City",
+   "Rally Town",
+   "Drift Bay",
+   "Circuit Heights"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Naimia",
+  "theme": "Future Technology",
+  "cities": [
+   "Naim City",
+   "Tech Spire",
+   "Quantum Plains",
+   "Synth Valley",
+   "Neural Bay"
+  ],
+  "inAppToday": true
+ },
+ {
+  "name": "Chatty Valley",
+  "theme": "Social Lifestyle",
+  "cities": [
+   "Social Hub",
+   "Trend Central",
+   "Vibes Town",
+   "Lifestyle Lane",
+   "Community Heights"
+  ],
+  "inAppToday": true
+ },
+ {
+  "name": "Zudaland",
+  "theme": "Digital Trading",
+  "cities": [
+   "Trade Spire",
+   "Zuda Central",
+   "Exchange Bay",
+   "Market Heights",
+   "Crypto Plaza"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Acro World",
+  "theme": "Space Habitats",
+  "cities": [
+   "Hex Station",
+   "Orbital Ring",
+   "Zero-G Plaza",
+   "Star Port",
+   "Gravity Bay"
+  ],
+  "inAppToday": true
+ },
+ {
+  "name": "Gemium",
+  "theme": "Central Hub",
+  "cities": [
+   "Gem Central",
+   "Crystal City",
+   "Hub Prime",
+   "Gemrise",
+   "Core Plaza"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Roidium",
+  "theme": "Space Mining",
+  "cities": [
+   "Asteroid Station",
+   "Mining Bay",
+   "Ore Valley",
+   "Comet Town",
+   "Deep Dock"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Hero City",
+  "theme": "Superhero",
+  "cities": [
+   "Vigilante Heights",
+   "Justice Plaza",
+   "Hero Academy",
+   "Shield Bay",
+   "Power Central"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Bozo City",
+  "theme": "Entertainment",
+  "cities": [
+   "Laugh Town",
+   "Comedy Central",
+   "Circus Heights",
+   "Fun Bay",
+   "Chuckle Valley"
+  ],
+  "inAppToday": true
+ },
+ {
+  "name": "Nebula",
+  "theme": "Space Cosmic",
+  "cities": [
+   "Star Haven",
+   "Cosmic Plaza",
+   "Galaxy Hub",
+   "Nova City",
+   "Eclipse Bay"
+  ],
+  "inAppToday": true
+ },
+ {
+  "name": "Aurora Land",
+  "theme": "Nature Aurora",
+  "cities": [
+   "Aurora Bay",
+   "Northern Lights",
+   "Polar City",
+   "Glacier Heights",
+   "Snow Peak"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Horizon World",
+  "theme": "VR Metaverse",
+  "cities": [
+   "Horizon Hub",
+   "Vr Central",
+   "Sim City",
+   "Grid Plaza",
+   "Virtual Bay"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Iceberg Kingdom",
+  "theme": "Arctic Winter",
+  "cities": [
+   "Frost City",
+   "Ice Central",
+   "Penguin Bay",
+   "Glacier Town",
+   "Polar Heights"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Rock Valley",
+  "theme": "Desert Geology",
+  "cities": [
+   "Stone City",
+   "Rock Central",
+   "Boulder Bay",
+   "Desert Heights",
+   "Canyon Town"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Ocean Realm",
+  "theme": "Underwater Marine",
+  "cities": [
+   "Coral City",
+   "Deep Bay",
+   "Aqua Central",
+   "Wave Heights",
+   "Reef Town"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Safari World",
+  "theme": "Wildlife Safari",
+  "cities": [
+   "Savanna Central",
+   "Jungle Bay",
+   "Pride City",
+   "Wildlife Heights",
+   "Safari Town"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Onyx Realm",
+  "theme": "Dark Elegance",
+  "cities": [
+   "Shadow Spire",
+   "Midnight Plaza",
+   "Dark Harbor",
+   "Void Central",
+   "Eclipse Heights"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Ruby Kingdom",
+  "theme": "Passion & Power",
+  "cities": [
+   "Crimson Castle",
+   "Ember City",
+   "Flame Harbor",
+   "Heart Central",
+   "Blaze Heights"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Sapphire Seas",
+  "theme": "Ocean Wisdom",
+  "cities": [
+   "Azure Bay",
+   "Wisdom Spire",
+   "Deep Harbor",
+   "Wave Central",
+   "Tide Heights"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Emerald Forest",
+  "theme": "Nature Growth",
+  "cities": [
+   "Jade Grove",
+   "Vine City",
+   "Moss Harbor",
+   "Leaf Central",
+   "Canopy Heights"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Amethyst Dream",
+  "theme": "Mystical Vision",
+  "cities": [
+   "Violet Spire",
+   "Dream City",
+   "Vision Harbor",
+   "Mind Central",
+   "Purple Heights"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Diamond Peak",
+  "theme": "Ultimate Luxury",
+  "cities": [
+   "Crystal Spire",
+   "Prism City",
+   "Clarity Harbor",
+   "Crown Central",
+   "Carat Heights"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Topaz Sands",
+  "theme": "Desert Fortune",
+  "cities": [
+   "Golden Oasis",
+   "Dune City",
+   "Sun Harbor",
+   "Amber Central",
+   "Sphinx Heights"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Pearl Lagoon",
+  "theme": "Serene Beauty",
+  "cities": [
+   "Ivory Cove",
+   "Shell City",
+   "Moon Harbor",
+   "Oyster Central",
+   "Silk Heights"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Opal Nebula",
+  "theme": "Cosmic Wonder",
+  "cities": [
+   "Spectrum Station",
+   "Rainbow City",
+   "Prismatic Harbor",
+   "Aurora Central",
+   "Shimmer Heights"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Garnet Forge",
+  "theme": "Warrior Spirit",
+  "cities": [
+   "Iron Spire",
+   "Anvil City",
+   "Molten Harbor",
+   "Battle Central",
+   "Valor Heights"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Citrine Sun",
+  "theme": "Golden Joy",
+  "cities": [
+   "Sunshine Plaza",
+   "Joy City",
+   "Dawn Harbor",
+   "Honey Central",
+   "Radiant Heights"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Turquoise Tide",
+  "theme": "Healing Waters",
+  "cities": [
+   "Healing Springs",
+   "Calm City",
+   "Zen Harbor",
+   "Wellness Central",
+   "Serenity Heights"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Peridot Garden",
+  "theme": "Fresh Growth",
+  "cities": [
+   "Bloom Spire",
+   "Sprout City",
+   "Green Harbor",
+   "Herb Central",
+   "Vine Heights"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Aquamarine Depths",
+  "theme": "Ocean Explorer",
+  "cities": [
+   "Abyss Station",
+   "Trench City",
+   "Sub Harbor",
+   "Pressure Central",
+   "Pearl Heights"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Jade Empire",
+  "theme": "Ancient Wisdom",
+  "cities": [
+   "Dragon Palace",
+   "Temple City",
+   "Bamboo Harbor",
+   "Scroll Central",
+   "Mountain Heights"
+  ],
+  "inAppToday": false
+ },
+ {
+  "name": "Moonstone Haven",
+  "theme": "Lunar Magic",
+  "cities": [
+   "Lunar Spire",
+   "Crescent City",
+   "Twilight Harbor",
+   "Silver Central",
+   "Starlight Heights"
+  ],
+  "inAppToday": false
+ }
+]

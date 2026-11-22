@@ -3,8 +3,20 @@ import React from 'react';
 import { Button, Divider, Frame, Image, Stack, Tag, Text, Title } from '@pui/components';
 import { appUrl, assetUrl, type Block } from '../data';
 
-/** Hero band for an app's Home view. */
-export const Hero: React.FC<{ b: Block }> = ({ b }) => (
+/** Hero band for an app's Home view. `variant: "wide"` is a landing's: its picture across the whole page, the words
+ *  and the ways in under it. */
+export const Hero: React.FC<{ b: Block }> = ({ b }) => (b.variant === 'wide' ? (
+  <Stack direction="column" gap={4}>
+    {b.image ? <Frame ratio="21/9" rounded="lg" width="100%"><Image src={assetUrl(b.image)} alt="" fit="cover" fill /></Frame> : null}
+    <Stack direction="column" gap={2}>
+      <Title level={1} size="3xl">{b.heading}</Title>
+      {b.subtitle ? <Text size="lg" intent="secondary" maxWidth="64ch">{b.subtitle}</Text> : null}
+      {Array.isArray(b.actions) && b.actions.length ? (
+        <Stack direction="row" gap={2} wrap align="center">{b.actions.map((a: any, i: number) => <Button key={i} variant="glass" href={a.app ? appUrl(a.app) : a.href || ('#/' + a.view)}>{a.label}</Button>)}</Stack>
+      ) : null}
+    </Stack>
+  </Stack>
+) : (
   <Stack direction="row" gap={6} padding={8} rounded="lg" background="gradient-sidebar" wrap align="center">
   <Stack direction="column" gap={3} flex="1 1 22rem" minWidth="0">
     <Title level={1} size="3xl">{b.heading}</Title>
@@ -16,7 +28,7 @@ export const Hero: React.FC<{ b: Block }> = ({ b }) => (
   </Stack>
   {b.image ? <Frame ratio="16/10" rounded="lg" width="min(100%, 26rem)" flex="0 1 26rem"><Image src={assetUrl(b.image)} alt="" fit="cover" fill /></Frame> : null}
   </Stack>
-);
+));
 
 /** Dated news / announcement list. */
 export const News: React.FC<{ b: Block }> = ({ b }) => (

@@ -28,8 +28,13 @@ type AvatarProps = {
   deck?: number;
   /** How a picture fills the circle: cropped to it (cover, a photo) or whole inside it (contain, a mark or logo). */
   fit?: 'cover' | 'contain';
+  /** Whether the person is about, as a dot at the picture's foot: here, away, busy (not to be disturbed) or off. */
+  presence?: AvatarPresence;
+  /** The dot's name for assistive tech ("Here now"); without one the dot is decoration. */
+  presenceLabel?: string;
   className?: string;
 };
+export type AvatarPresence = 'here' | 'away' | 'busy' | 'off';
 
 const TONES = 6;
 /** Background position of one sprite cell, as CSS variables (the sheet scales to cols × rows of the avatar). */
@@ -40,10 +45,10 @@ export const spriteVars = ({ src, cols, rows = cols, index }: { src: string; col
 };
 const toneOf = (seed: string) => { let h = 0; for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0; return h % TONES; };
 
-export const Avatar = ({ src, sprite, alt = '', initials, icon, size = 'md', shades = true, seed, colors, deck, fit = 'cover', className = '' }: AvatarProps) => {
+export const Avatar = ({ src, sprite, alt = '', initials, icon, size = 'md', shades = true, seed, colors, deck, fit = 'cover', presence, presenceLabel, className = '' }: AvatarProps) => {
   const split = shades && !src && !sprite;
   const levels = Math.max(0, Math.min(3, deck ?? (split ? 2 : 0)));
-  return (
+  const disc = (
     <Stack
       direction="row" align="center" justify="center"
       className={cn(styles.avatar, styles[size], split && styles.split, src && fit === 'contain' && styles.mark, colors?.length && styles.tinted, levels > 0 && styles['deck' + levels], className)}
@@ -69,4 +74,11 @@ export const Avatar = ({ src, sprite, alt = '', initials, icon, size = 'md', sha
       )}
     </Stack>
   );
+  // The dot stands outside the disc, which cuts whatever leaves its circle.
+  return presence ? (
+    <Span className={cn(styles.held, styles[size])}>
+      {disc}
+      <Span className={styles.presence} data-presence={presence} role={presenceLabel ? 'img' : undefined} aria-label={presenceLabel} aria-hidden={presenceLabel ? undefined : true} />
+    </Span>
+  ) : disc;
 };

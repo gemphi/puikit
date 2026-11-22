@@ -6,10 +6,15 @@ export type AppShellPreview = { id: string; label: string; sub?: string; image?:
 /** A menu entry. With `items` it holds a sub-menu folded under it (a storefront's department > category > item, as
  *  deep as needed); a foot entry with `items` has its own panel instead (the account sub-nav, bank-style). With `panel` it
  *  folds that content open instead of going anywhere (an appearance panel); `open` folds it open at first. `inline`
- *  puts it on the row of the entry before it. */
+ *  puts it on the row of the entry before it. `head` makes it a heading over its sub-menu (a chat's text and voice
+ *  rooms): a press folds the sub-menu and goes nowhere, and it is never the page shown; its rows stand flush under
+ *  it, the full width of its section. `steady` keeps what the entry holds always shown, with no fold arrow, so its
+ *  row stays in line with its neighbours (who is in a voice room). */
 export type AppShellLeaf = {
   id: string; label: string; icon?: React.ReactNode; previews?: AppShellPreview[]; items?: AppShellLeaf[];
-  panel?: React.ReactNode; open?: boolean; inline?: boolean;
+  panel?: React.ReactNode; open?: boolean; inline?: boolean; head?: boolean; steady?: boolean;
+  /** How many things wait in it (unread messages): a count at the row's end, none when it is 0. */
+  count?: number;
 };
 /** A run of entries in a group's menu. `place` lays it in the panel the way the rail lays its groups: `top` (the
  *  default) from the top, `center` in the middle of the free space, `bottom` at the foot (`end` is the older name). */
@@ -26,6 +31,8 @@ export type AppShellGroup = {
   place?: 'top' | 'center' | 'bottom';
   /** Where picking the group goes as well as opening its menu (the group's own page). */
   to?: string;
+  /** How many things wait in it: a count on its rail icon, none when it is 0. */
+  count?: number;
 };
 export type AppShellApp = {
   id: string; name: string; tagline?: string; href?: string; current?: boolean; glyph?: React.ReactNode; color?: string;
@@ -42,5 +49,6 @@ export type AppShellLabels = {
 
 /** The page a group is, when it is one page and no menu: its single entry, which carries the group's own id. */
 export const leafOf = (g: AppShellGroup) => (g.items.length === 1 && g.items[0].id === g.id && !g.sections ? g.items[0] : null);
-/** Every entry of a group, its runs flattened. */
-export const entriesOf = (g: AppShellGroup) => (g.sections ? g.sections.flatMap((s) => s.items) : g.items);
+const deep = (it: AppShellLeaf): AppShellLeaf[] => [it, ...(it.items ?? []).flatMap(deep)];
+/** Every entry of a group, its runs flattened and its sub-menus with them, at any depth. */
+export const entriesOf = (g: AppShellGroup) => (g.sections ? g.sections.flatMap((s) => s.items) : g.items).flatMap(deep);

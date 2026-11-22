@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Accordion, AccordionItem, Avatar, Button, Drawer, Pressable, Stack, TabList, Text } from '@pui/components';
+import { Accordion, AccordionItem, Avatar, Button, Drawer, PalettePicker, Pressable, Stack, TabList, Text } from '@pui/components';
 import { usePuiTheme } from '@pui/providers';
 import { LogIn, LogOut, User, UserCog } from 'lucide-react';
 import { AccountDialog } from './AccountDialog';
@@ -27,7 +27,7 @@ export const AccountDrawer: React.FC<{ onProfile?: () => void; onLook?: (id: str
   const { theme, setTheme } = usePuiTheme();
   const [open, setOpen] = useState(false); const [account, setAccount] = useState(false);
   // Which sections are folded open; the look is open first, the rest a tap away. Several may be open at once.
-  const [shown, setShown] = useState<Record<string, boolean>>({ look: true });
+  const [shown, setShown] = useState<Record<string, boolean>>({ look: true, colour: true });
   const fold = (k: string) => setShown((s) => ({ ...s, [k]: !s[k] }));
   const name = me && !me.guest ? me.name : W.guest;
   const initials = name.split(/\s+/).map((x) => x[0]).join('').slice(0, 2).toUpperCase();
@@ -54,6 +54,10 @@ export const AccountDrawer: React.FC<{ onProfile?: () => void; onLook?: (id: str
 
             <AccordionItem title={W.look} open={!!shown.look} onToggle={() => fold('look')}>
               <TabList size="sm" variant="pills" aria-label={W.look} activeId={look.id} onChange={(id) => (onLook ?? setLook)(id)} items={LOOKS.map((l) => ({ id: l.id, label: l.label }))} />
+            </AccordionItem>
+
+            <AccordionItem title={W.colour} open={!!shown.colour} onToggle={() => fold('colour')}>
+              <PalettePicker noneLabel={W.own} />
             </AccordionItem>
 
             <AccordionItem title={W.mode} open={!!shown.mode} onToggle={() => fold('mode')}>

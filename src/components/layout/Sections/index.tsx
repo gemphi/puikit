@@ -7,6 +7,7 @@ import { Text } from '../../primitives/Text';
 import { Title } from '../../primitives/Title';
 import styles from './styles.module.scss';
 import { useTitleShown } from '../ShownTitle';
+import { WithHeadTools } from '../HeadTools';
 
 /** A section's title, left out when it would only repeat a title already shown above (the page's, its column's). */
 /** Its icon goes with it: a section whose title is already shown keeps no bare icon either. */
@@ -15,6 +16,9 @@ const SectionTitle: React.FC<{ title: React.ReactNode; size?: string; icon?: Rea
     {icon && <Box as="span" className={cn(styles.icon, 'pui-label-icon')} aria-hidden="true">{icon}</Box>}
     {typeof title === 'string' ? (size === 'lg' ? <Title level={3} size="lg">{title}</Title> : <Text size="sm" weight="semibold">{title}</Text>) : title}
   </>;
+
+/** A hint that is only a number: a count. Where a list puts its own total beside the title, the count is left out (said once). */
+const COUNT = /^[\d.,\s]+[kKmM]?$/;
 
 export type SectionDef = {
   id: string;
@@ -97,13 +101,18 @@ export const Sections = ({ sections, className, reorderable = false, storageKey,
       {shown.map((x) => {
         const isExp = expanded === x.id; const isFold = !!folded[x.id] && !isExp; const at = open.indexOf(x);
         return (
-          <Box key={x.id} as="section" className={cn(styles.section, variant === 'card' ? 'phi-layers' : 'phi-region', isExp && styles.exp, isFold && styles.folded)} aria-label={name(x)} data-section={x.id}>
+          <WithHeadTools key={x.id}>{(slot) => (
+          <Box as="section" className={cn(styles.section, variant === 'card' ? 'phi-layers' : 'phi-region', isExp && styles.exp, isFold && styles.folded)} aria-label={name(x)} data-section={x.id}>
             <Box className={styles.head}>
               <Box className={styles.title}>
                 <SectionTitle title={x.title} size={size} icon={x.icon} />
-                {x.hint && !isFold && <Text size="sm" intent="muted">{x.hint}</Text>}
+                {x.hint && !isFold && <Text size="sm" intent="muted" data-count={typeof x.hint === 'string' && COUNT.test(x.hint) ? '' : undefined}>{x.hint}</Text>}
               </Box>
+              {/* The tools of what this section heads (HeadTools puts them here): a list's total and layout right after
+                  the title, its search and tabs in the room between, its filter and sort at the far end. */}
+              {slot.start}{slot.center}
               {x.actions && <Box as="span" className={styles.actions}>{x.actions}</Box>}
+              {slot.end}
               {x.layouts?.length ? (() => { const on = x.layouts.find((l) => l.id === x.layout) ?? x.layouts[0]; return (
                 <Box as="span" className={styles.layout}>
                   <Button variant="icon" aria-label={on.label} title={on.label} aria-haspopup="true">{on.icon}</Button>
@@ -133,7 +142,8 @@ export const Sections = ({ sections, className, reorderable = false, storageKey,
               </Box>
             </Box>
             {!isFold && <Box className={styles.body}><Expanded.Provider value={isExp}>{x.content}</Expanded.Provider></Box>}
-          </Box>
+          </Box>)}
+          </WithHeadTools>
         );
       })}
       {(shut.length > 0 || (reorderable && changed)) && (

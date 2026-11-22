@@ -40,7 +40,7 @@ export type GradientLevel = 'flat' | 'soft' | 'vivid' | 'aurora';
 export const GRADIENT_LEVELS: GradientLevel[] = ['flat', 'soft', 'vivid', 'aurora'];
 const STRENGTH: Record<GradientLevel, number> = { flat: 0, soft: 0.55, vivid: 1, aurora: 1.3 };
 
-/** phiber v2 theme/palette (11) + 5 Phiegg — same values as app/phiegg/src/data/themes.json. */
+/** phiber v2 theme/palette (11) + 5 Phiegg + 8 Boldland — same values as app/phiegg/src/data/themes.json. */
 export const PALETTES: SeedPalette[] = [
   { id: 'sphere', name: 'Sphere', seed: '#3B4657', accent: [212, 58, 55], accent2: [142, 70, 45], source: 'phiber default' },
   { id: 'graphite', name: 'Graphite', seed: '#3D3D3D', accent: [28, 95, 54], accent2: [142, 70, 45], source: 'Blender grey + orange' },
@@ -58,6 +58,15 @@ export const PALETTES: SeedPalette[] = [
   { id: 'naimia', name: 'Naimia', seed: '#4A3A1F', accent: [38, 90, 55], accent2: [16, 70, 50], source: 'saffron capital' },
   { id: 'sage', name: 'Sage', seed: '#3A4230', accent: [84, 19, 45], accent2: [30, 55, 50], source: 'Phiegg sage' },
   { id: 'velour', name: 'Velour', seed: '#3D1F2A', accent: [345, 60, 45], accent2: [150, 30, 45], source: 'wine velvet' },
+  // Boldland's eight named colours, read off the colour sheet (the body's colour, and the strongest other colour of its mark).
+  { id: 'phantom-gold', name: 'Phantom Gold', seed: '#3D2F1A', accent: [35.4, 81.7, 42.7], accent2: [35.9, 96.3, 32.0], source: 'Boldland' },
+  { id: 'piggy-bank', name: 'Piggy Bank', seed: '#3C1A20', accent: [349.5, 78.3, 65.7], accent2: [332.3, 81.5, 25.5], source: 'Boldland' },
+  { id: 'sunrise', name: 'Sunrise', seed: '#242C33', accent: [205.9, 34.2, 53.5], accent2: [28.1, 97.6, 48.4], source: 'Boldland' },
+  { id: 'tornado-ice', name: 'Tornado Ice', seed: '#341A3D', accent: [284.2, 79.7, 71.0], accent2: [36.1, 99.2, 52.4], source: 'Boldland' },
+  { id: 'phantom-red', name: 'Phantom Red', seed: '#362A20', accent: [27.2, 50.6, 54.7], accent2: [0.0, 100.0, 29.2], source: 'Boldland' },
+  { id: 'phantom-sunset', name: 'Phantom Sunset', seed: '#312A25', accent: [24.0, 27.8, 57.6], accent2: [350.3, 100.0, 50.2], source: 'Boldland' },
+  { id: 'phantom-black', name: 'Phantom Black', seed: '#2B2B2B', accent: [0.0, 0.0, 58.0], accent2: [40.0, 0.0, 58.0], source: 'Boldland' },
+  { id: 'grape', name: 'Grape', seed: '#2F3324', accent: [74.4, 33.3, 53.5], accent2: [271.1, 51.4, 43.5], source: 'Boldland' },
 ];
 
 export const paletteOf = (id: string | null | undefined): SeedPalette | undefined => PALETTES.find((p) => p.id === id);

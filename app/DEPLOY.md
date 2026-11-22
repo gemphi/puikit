@@ -46,6 +46,37 @@ cannot be signed into. To start empty, bring up db + phiora without running `npm
 - Logs:    `docker compose logs -f phiora`
 - Health:  `curl https://<host>/api/health`
 
+## 7. Calls (optional)
+A room's call is kept by Phiogy's line, a Rust program (`phikit/crates/appkit/app/phiogy`), with Phiora in front
+of it; without it Phiora keeps the rooms itself.
+```sh
+# on the machine with the source, in phikit: send the crates the line builds from
+bash crates/appkit/app/phiogy/script/ship.sh ubuntu@<host> <key file>
+# on the server
+cd ~/gemphi/phikit && sudo docker build -f crates/appkit/app/phiogy/Dockerfile -t phiogy-line .
+cd ~/gemphi/puikit/app
+echo "PHI_CALL_KEY=$(openssl rand -hex 32)" >> .env; echo "PHI_CALL_LINE=http://127.0.0.1:4310" >> .env
+sudo docker compose up -d --build phiora && sudo docker compose up -d phiogy
+```
+The line shares Phiora's network, so start it again whenever Phiora is recreated (`up -d --force-recreate phiogy`).
+For callers on different networks, a relay: `sudo apt-get install coturn`, then
+`bash ../deploy/relay/setup.sh <domain> ~/gemphi/puikit/app/.env` (writes `PHI_CALL_ICE`), restart both services, and
+let UDP 3478, TCP 3478 and UDP 49152-49407 in through the host's firewall.
+
+## 8. A config app (Phiogy)
+An app with no package of its own is the one app (`app/phi`) under its key; `build-all.mjs` does not build it yet,
+so it is built where the source is and sent. In Git Bash keep the three paths from being rewritten:
+```sh
+cd app/phi
+MSYS2_ENV_CONV_EXCL='PHI_BASE;VITE_PHI_API;VITE_PHI_APPS_BASE' PHI_BASE=/phiogy/ VITE_PHI_API=/api VITE_PHI_APPS_BASE=/ \
+  npx vite build --outDir <out>/phiogy --emptyOutDir
+cp -r ../phiogy/public/. <out>/phiogy/
+```
+Send `<out>/phiogy` to the server's `app/dist-all/phiogy` (world-readable) and `app/phiogy/public` to the same place
+in the server's source, then `docker compose up -d --build phiora`, `up -d --force-recreate phiogy`, and
+`docker compose exec phiora npm run seed`. The first time, run `build-all.mjs` or add the app's `location` row to
+`dist-all/nginx.conf`, and restart `web` (a single mounted file is not seen again after it is replaced).
+
 ## Still worth doing before heavy traffic
 - Phiegg bundle diet (lazy-load kinds from `/tree`) — the big front-end optimisation.
 - A real chat model: set `PHI_MODEL_PROVIDER/MODEL/KEY/URL` (the apps' Talk falls back to a scripted
