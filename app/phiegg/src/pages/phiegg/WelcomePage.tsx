@@ -20,7 +20,7 @@ const L = D.landing as unknown as {
   featured?: { seriesIds: string[] };
   stage: { origin: string; auto: number; enter: string; about: string; sub: string; lead?: { id: string; src: string; title: string; sub: string }[] };
   ask: { title: string; body: string; agentId: string; context: string; prompts: string[]; fan: string[]; fanShown?: number };
-  step: { before: string; after: string; body: string; cta: string };
+  step: { before: string; after: string; body: string; cta: string; picture?: string[]; centre?: string };
   tour: { title: string; image: string; body: string; cta: string; tab: string }[];
   rows: { worlds: string; posts: string; rides: string; compare: string };
   post: { origin: string; picture: string };
@@ -96,7 +96,12 @@ export const WelcomePage: React.FC = () => {
       {/* Step in: the line split across the band, the cities' posts floating round it. */}
       <Box as="section" className={styles.step}>
         <Title level={2} className={styles.before}>{L.step.before}</Title>
-        {pics.slice(6, 12).map((src, i) => (
+        {(L.step.picture ?? []).slice(0, L.step.centre ? 5 : 6).map((src, i) => (
+          <Box key={src} className={`${styles.capsule} ${styles.upright} ${L.step.centre ? styles.around : ''}`} style={{ '--i': i } as React.CSSProperties}>
+            <Box as="span" className={styles.pill}><Image src={mediaUrl(src)} alt="" fit="contain" fill loading="lazy" /></Box></Box>))}
+        {L.step.centre && <Box className={`${styles.capsule} ${styles.upright} ${styles.centre}`} style={{ '--i': 6 } as React.CSSProperties}>
+          <Box as="span" className={styles.pill}><Image src={mediaUrl(L.step.centre)} alt="" fit="contain" fill loading="lazy" /></Box></Box>}
+        {!L.step.picture && pics.slice(6, 12).map((src, i) => (
           <Pressable key={src} className={styles.capsule} style={{ '--i': i } as React.CSSProperties} onClick={() => s.openPost(posts[i + 6].id)} aria-label={itemOf('world', posts[i + 6].worldId)?.name}>
             <Box as="span" className={styles.pill}><Image src={src} alt="" fit="cover" fill loading="lazy" /></Box></Pressable>))}
         <Title level={2} className={styles.after}>{L.step.after}</Title>

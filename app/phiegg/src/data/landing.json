@@ -191,7 +191,18 @@
     "before": "Step into",
     "after": "sixteen cities",
     "body": "Each city is its own world: zones to walk, hosts to join, shows on the runway and shops on every corner.",
-    "cta": "Step in"
+    "cta": "Step in",
+    "centre": "home/dress/design-06-seated.webp",
+    "_centre": "One picture standing large in the middle of the band, the pills (five then) around it.",
+    "picture": [
+      "home/dress/design-06-close.webp",
+      "home/dress/dress-01-pose-01-phantom-gold.webp",
+      "home/dress/dress-03-pose-01-bubblegum.webp",
+      "home/dress/dress-03-pose-02-ice.webp",
+      "home/dress/dress-01-pose-01-violet-rain.webp",
+      "home/dress/dress-03-pose-03-watermelon.webp"
+    ],
+    "_picture": "The pictures floating in this band, six at most. When the list is here they are shown whole in upright pills and are not pressed; without it the band shows the cities' posts (`post` below), each opening its post. 2026-11-22: the dress renders with their shoes, in place of the cities' duo posts."
   },
   "tour": [
     {
