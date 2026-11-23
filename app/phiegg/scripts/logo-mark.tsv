@@ -1,0 +1,66 @@
+# Phiegg's mark, as the picture given on 23 November 2026 has it
+# (public/logo/phiegg-icon-drawing.png): a Phi-Pill stem with round ends and its pill
+# cut out of it, and two wings, each a quarter of a ring closed by a
+# thin bar; the whole leant 45 degrees. The second half is the first
+# turned about the middle, as the picture's is, dot for dot.
+#
+# name	how many	of which measure
+#
+# Every length is a share of the stem's width, so the mark is drawn at
+# any size from these alone. Each number is the picture's own, found by
+# laying the drawing over the picture and moving each measure until
+# the fewest dots differ: 79 of its 1,647 dots, all at the edges, and
+# no edge further than nine tenths of a dot of the picture from it.
+# scripts/logo-mark.py --check lays one over the other again.
+#
+# How far the mark leans, in degrees, anticlockwise.
+lean	45	degree
+# How much of the picture is left clear round the mark.
+room	0.08	one
+# A wing's ring: the radius of its circle, and how far that circle's
+# middle is aside from the stem's own. The stem is as long as the ring
+# is wide, so the stem's top runs flat into the top of the wing.
+ring	0.877	stem
+aside	0.278	stem
+# The bar that closes a wing: where its lower and its upper edge are,
+# down from the middle of the mark. It is thin, a sixth of the stem.
+bar.low	0.140	stem
+bar.top	-0.018	stem
+# How thick the ring is at its top, and where the middle of the
+# opening's arc is from the ring's own, aside and down: the ring thins
+# toward its point, as the picture's does.
+band	0.243	stem
+band.aside	0.012	stem
+band.down	0.086	stem
+# Where a wing's opening meets the stem, from the stem's middle. Half a
+# stem would be the stem's own side; the picture has it a little in.
+inner	0.443	stem
+# The pill cut out of the stem: how wide and how long, as the picture
+# has it. The font's own pill, a third of its stem, is not used: the
+# user's word on 23 November 2026, "ignore the font".
+pill	0.237	stem
+pill.long	1.249	stem
+# How round each corner is: a wing's point, the notch where a bar
+# leaves the stem, and an opening's three corners (at the stem's top,
+# at the bar, and at the point, which is sharp).
+round.tip	0.203	stem
+round.notch	0.030	stem
+round.stem	0.105	stem
+round.bar	0.222	stem
+round.point	0	stem
+# The picture's own ink, for the sheet; the mark itself takes the
+# colour of the text round it.
+ink	#f115a2	colour
+# In a browser's tab there is no text round it to take a colour from:
+# the tab's file has an ink for a light tab and one for a dark tab.
+tab.ink	#16161a	colour
+# A tab is 16 dots: there the mark has next to no room left round it,
+# so that its pill and openings are as large as they can be.
+tab.room	0.02	one
+tab.ink.dark	#f4f4f0	colour
+# Where the site keeps the mark: the file with its data, the key under
+# `brand` there, and the files written (under public/).
+site	src/data/site.json	file
+site.key	pillMark	key
+site.file	logo/phiegg-mark.svg	file
+site.tab	logo/phiegg-mark-tab.svg	file
