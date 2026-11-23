@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, type AppShellApp, type AppShellGroup, type AppShellLeaf, type AppShellTab } from '@pui/components';
 import {
-  Bot, CalendarDays, Camera, ChevronDown, ChevronUp, Circle, Clapperboard, Clock, Film, Coins, Compass, Droplets, Flag, Gamepad2, Gem, Gift, Globe, Hash, Home, LayoutGrid, MessageCircle, Palette, Plus, Radio, Rocket, Search, Server, ShoppingBag, Sparkles, Tv, User, UserPlus,
+  Bot, CalendarDays, Camera, ChevronDown, ChevronUp, Circle, Clapperboard, Clock, Film, Coins, Compass, Droplets, Flag, Gamepad2, Gem, Gift, Globe, Hash, Home, Info, LayoutGrid, MessageCircle, Palette, Plus, Radio, Rocket, Search, Server, ShoppingBag, Sparkles, Tv, User, UserPlus,
   type LucideIcon,
 } from 'lucide-react';
 import { appMeta, appUrl, APPS } from '@phi-kit/data';
@@ -21,7 +21,7 @@ import { previews } from './previews';
 
 /** Icons named by the menus (data/phiegg.json). Named imports keep the rest of lucide out of the bundle; add a name here
  *  when the menus start using a new one. */
-const L: Record<string, LucideIcon> = { Bot, CalendarDays, Camera, ChevronDown, ChevronUp, Circle, Clapperboard, Clock, Film, Coins, Compass, Droplets, Flag, Gamepad2, Gem, Gift, Globe, Hash, Home, LayoutGrid, MessageCircle, Palette, Plus, Radio, Rocket, Search, Server, ShoppingBag, Sparkles, Tv, User, UserPlus };
+const L: Record<string, LucideIcon> = { Bot, CalendarDays, Camera, ChevronDown, ChevronUp, Circle, Clapperboard, Clock, Film, Coins, Compass, Droplets, Flag, Gamepad2, Gem, Gift, Globe, Hash, Home, Info, LayoutGrid, MessageCircle, Palette, Plus, Radio, Rocket, Search, Server, ShoppingBag, Sparkles, Tv, User, UserPlus };
 const TAB_ICON: Record<string, LucideIcon> = { home: Home, compass: Compass, server: Server, sparkles: Sparkles, user: User, globe: Globe, gem: Gem };
 type Glyph = React.FC<{ size?: string }>;
 const GLYPH: Record<string, Glyph> = { menu: MenuBars, host: HostPyramid, chat: ChatHex, home: HomeCut };
