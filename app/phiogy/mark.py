@@ -1,4 +1,8 @@
-"""Phiogy's mark, drawn on Phi-Soft Light's own measures: nothing in it is freehand.
+"""Phiogy's mark before 23 November 2026, drawn on Phi-Soft Light's own measures: nothing in it is freehand.
+
+The mark in use since then is the p with two bars cut out of it, which the Rust Phiogy's script draws
+(`phikit/crates/appkit/app/phiogy/script/logo.py`, into `doc/logo/registry-icon.json` there); this script is kept
+for the mark it replaced, and running it does not give the mark in use.
 
     python app/phiogy/mark.py
 
