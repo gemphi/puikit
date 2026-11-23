@@ -33,7 +33,7 @@ export const AboutPage: React.FC = () => {
 
       {about.band.map((b, i) => (
         <Box as="section" key={b.id} className={`${styles.band} ${i % 2 ? styles.flip : ''}`}>
-          <Bands className={styles.shot}><Box className={styles.hold}><Picture src={mediaUrl(b.picture)} /></Box></Bands>
+          <Box className={styles.shot}><Picture src={mediaUrl(b.picture)} /></Box>
           <Box className={styles.words}>
             <Title level={2} className={styles.heading}>{b.title}</Title>
             <Text as="p" className={styles.lede}>{b.body}</Text>

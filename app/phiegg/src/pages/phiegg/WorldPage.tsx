@@ -97,6 +97,18 @@ export const WorldPage: React.FC = () => {
   const tabs = WORLD_TABS.filter((x) => x.tab && sections.some((p) => p.id === x.id));
   const [part, setPart] = useState<string>();
   const toPart = (id: string) => { setPart(id); document.querySelector(`[data-section="${id}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+  // The tab follows the page: the last tab whose section has come up past the middle of the window is the one lit.
+  const tabIds = tabs.map((x) => x.id).join('|');
+  useEffect(() => {
+    let frame = 0;
+    const read = () => { frame = 0;
+      const line = window.innerHeight / 2;
+      const at = tabIds.split('|').filter((id) => { const el = document.querySelector(`[data-section="${id}"]`); return !!el && el.getBoundingClientRect().top <= line; }).pop();
+      setPart(at); };
+    const onScroll = () => { if (!frame) frame = requestAnimationFrame(read); };
+    document.addEventListener('scroll', onScroll, { capture: true, passive: true });
+    return () => { document.removeEventListener('scroll', onScroll, { capture: true }); if (frame) cancelAnimationFrame(frame); };
+  }, [tabIds, w.id]);
   const card = big ? <Image src={big} alt={w.name} fit="cover" fill />
     : <Tile image={worldImage(w)} tone={w.tone} ratio="1" big grid depth={{ worldId: w.id, clubId: w.clubId, personId: w.creatorId }} />;
   const hero = { card, onCard: big ? () => setFull(true) : undefined, cardLabel: t('isFull'),

@@ -122,7 +122,7 @@ export const WelcomePage: React.FC = () => {
         <TabList size="sm" variant="pills" aria-label={L.gallery.title} activeId={set} onChange={setSet} items={[{ id: 'all', label: L.gallery.all }, ...L.gallery.group.map((g) => ({ id: g.id, label: g.label, count: g.picture.length }))]} />
         {shown.map((g) => (
           <Box key={g.id} className={styles.set}><Rows cols={4} colsSm={2} minItemWidth="12rem">{g.picture.map((src) => (
-            <Bands key={src} className={styles.shot} style={{ '--r': g.ratio } as React.CSSProperties}><Box className={styles.fanPicture}><Picture src={mediaUrl(src)} /></Box></Bands>))}</Rows></Box>))}
+            <Box key={src} className={styles.shot} style={{ '--r': g.ratio } as React.CSSProperties}><Picture src={mediaUrl(src)} /></Box>))}</Rows></Box>))}
       </Box>}
 
       {/* The tour: one part at a time on its own stage, a finished city picture whole behind its words. */}
