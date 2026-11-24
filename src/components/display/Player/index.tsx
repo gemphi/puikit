@@ -13,6 +13,8 @@ export type PlayerProps = {
   ratio?: string;
   /** Marked as the one chosen: its rim lit. */
   selected?: boolean;
+  /** The face fills the whole player, edge to edge (a card's picture): it still draws back under the pointer. */
+  fill?: boolean;
   className?: string;
 };
 
@@ -24,7 +26,7 @@ export type PlayerProps = {
  * Under the pointer the face draws back to its size (it zooms out), the depth follows it in, the ground brightens and
  * a light crosses the face. Nothing moves where the person asked for less motion.
  */
-export const Player = ({ image, children, label, ratio = '16/10', selected, className }: PlayerProps) => {
+export const Player = ({ image, children, label, ratio = '16/10', selected, fill, className }: PlayerProps) => {
   const layer = (kind: string) => (
     <Box as="span" className={cn(styles.layer, styles[kind])} aria-hidden={kind !== 'face'}>
       {image ? <img src={image} alt={kind === 'face' ? label ?? '' : ''} draggable={false} /> : children}
@@ -32,7 +34,7 @@ export const Player = ({ image, children, label, ratio = '16/10', selected, clas
   );
   return (
     <Box as="span" role={label && !image ? 'img' : undefined} aria-label={label && !image ? label : undefined}
-      className={cn(styles.player, selected && styles.selected, className)} style={{ '--pui-player-ratio': ratio } as React.CSSProperties}>
+      className={cn(styles.player, selected && styles.selected, fill && styles.fill, className)} style={{ '--pui-player-ratio': ratio } as React.CSSProperties}>
       {layer('ground')}
       {layer('depth')}
       {layer('face')}

@@ -81,3 +81,6 @@
   .stepFoot { left: calc(var(--phi-gap) * 2); }
 }
 @media (prefers-reduced-motion: reduce) { .fanCard, .capsule.capsule { animation: none; } }
+/* The stage of cards at the top, and its buttons under it. */
+.stage { display: flex; flex-direction: column; gap: var(--phi-space-3); }
+.stageActions { display: flex; flex-wrap: wrap; gap: var(--phi-space-2); }

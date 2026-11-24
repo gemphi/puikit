@@ -11,6 +11,7 @@ import type { ID, Post, Slide, Tone } from '../types/phiegg';
 import { D, itemOf, kindOfId, person, postMaker } from './data';
 import landing from '../data/landing.json';
 import about from '../data/about.json';
+import gembar from '../data/gembar.json';
 
 type Row = Record<string, unknown> & { id: ID; name?: string; tone?: Tone };
 const text = (r: Row, ...keys: string[]) => keys.map((k) => r[k]).find((v): v is string => typeof v === 'string' && !!v) ?? '';
@@ -22,6 +23,11 @@ const picturesOf = (id: ID, r: Row): string[] => {
   const renders = r.views && typeof r.views === 'object' ? Object.values(r.views as Record<string, unknown>).filter((v): v is string => typeof v === 'string') : [];
   const own = [...gallery, ...renders, text(r, 'image'), text(r, 'cover'), text(r, 'logo')].filter(Boolean);
   if (own.length) return own;
+  // A show's or a drop's looks, each its renders (`looks`: their records or ids; `lookIds`).
+  const looked = [...((r.looks as ({ lookId?: ID; id?: ID } | ID)[] | undefined) ?? []), ...((r.lookIds as ID[] | undefined) ?? [])]
+    .map((one) => (typeof one === 'string' ? one : one.lookId ?? one.id ?? ''))
+    .flatMap((look) => { const l = itemOf('look', look) as Row | undefined; return l ? picturesOf(l.id, l).slice(0, 1) : []; });
+  if (looked.length) return looked;
   const world = itemOf('world', text(r, 'worldId')) as Row | undefined;
   const views = world ? picturesOf(world.id, world) : [];
   if (views.length) return views;
@@ -47,7 +53,11 @@ const recordPost = (id: ID): Post | undefined => {
 /** A band's picture as a post: the band's pictures from the one pressed on, in the band's words. */
 const STEP = landing.step as { before: string; after: string; body: string; picture?: string[]; centre?: string };
 const ABOUT = (about as { band: { title: string; body: string; picture: string }[] }).band;
-const BANDS = [{ pictures: [...(STEP.centre ? [STEP.centre] : []), ...(STEP.picture ?? [])], title: `${STEP.before} ${STEP.after}`, caption: STEP.body },
+/** The old gembar's reels (scripts/gembar.py): each its pictures, large, in its teller's words. */
+export const REELS = (gembar as { reel: { id: string; name: string; caption: string; picture: string[] }[] }).reel;
+export const reelPicture = (key: string, size: 'sm' | 'lg') => `${key}-${size}.webp`;
+const BANDS = [
+  ...REELS.map((reel) => ({ pictures: reel.picture.map((key) => reelPicture(key, 'lg')), title: reel.name, caption: reel.caption })),{ pictures: [...(STEP.centre ? [STEP.centre] : []), ...(STEP.picture ?? [])], title: `${STEP.before} ${STEP.after}`, caption: STEP.body },
   // About's bands, each its picture in its own words, the next band's after it.
   ...ABOUT.map((b, i) => ({ pictures: [b.picture, ...ABOUT.slice(i + 1).map((x) => x.picture)], title: b.title, caption: b.body }))];
 export const pictureId = (src: string) => 'pic:' + src;

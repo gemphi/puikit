@@ -1,0 +1,1944 @@
+{
+ "_": "From the old site's gembar by scripts/gembar.py: its reels (pictures under public/gembar, each named by its key and -sm or -lg), their captions and who told them, and the stories its featured people told.",
+ "reel": [
+  {
+   "id": "gr_001",
+   "by": "chattywhims",
+   "name": "Chatty",
+   "caption": "Milan twilight, first fitting of the season",
+   "picture": [
+    "gembar/reel-001-1",
+    "gembar/reel-001-2",
+    "gembar/reel-001-3",
+    "gembar/reel-001-4"
+   ]
+  },
+  {
+   "id": "gr_002",
+   "by": "tropis_vogue",
+   "name": "Tropis",
+   "caption": "Bali sunrise, silk kaftan, iced matcha — recipe for perfection",
+   "picture": [
+    "gembar/reel-002-1",
+    "gembar/reel-002-2",
+    "gembar/reel-002-3",
+    "gembar/reel-002-4"
+   ]
+  },
+  {
+   "id": "gr_003",
+   "by": "artemis_luxe",
+   "name": "Artemis",
+   "caption": "Power meeting in 10. This blazer closes deals before I speak",
+   "picture": [
+    "gembar/reel-003-1",
+    "gembar/reel-003-2",
+    "gembar/reel-003-3",
+    "gembar/reel-003-4"
+   ]
+  },
+  {
+   "id": "gr_004",
+   "by": "baltus_prime",
+   "name": "Baltus",
+   "caption": "New Patek dropped. The wrist game never sleeps ⌚",
+   "picture": [
+    "gembar/reel-004-1",
+    "gembar/reel-004-2",
+    "gembar/reel-004-3",
+    "gembar/reel-004-4"
+   ]
+  },
+  {
+   "id": "gr_005",
+   "by": "glynis_glam",
+   "name": "Glynis",
+   "caption": "Oscar prep: 7 hours of glam for 7 seconds of red carpet",
+   "picture": [
+    "gembar/reel-005-1",
+    "gembar/reel-005-2",
+    "gembar/reel-005-3",
+    "gembar/reel-005-4"
+   ]
+  },
+  {
+   "id": "gr_006",
+   "by": "floris_style",
+   "name": "Floris",
+   "caption": "Amsterdam flea market haul — €42 for a 1970s Pucci",
+   "picture": [
+    "gembar/reel-006-1",
+    "gembar/reel-006-2",
+    "gembar/reel-006-3",
+    "gembar/reel-006-4"
+   ]
+  },
+  {
+   "id": "gr_007",
+   "by": "epicus_world",
+   "name": "Epicus",
+   "caption": "Tokyo streets at 2 AM — the real fashion week",
+   "picture": [
+    "gembar/reel-007-1",
+    "gembar/reel-007-2",
+    "gembar/reel-007-3",
+    "gembar/reel-007-4"
+   ]
+  },
+  {
+   "id": "gr_008",
+   "by": "ruby_queen",
+   "name": "Ruby",
+   "caption": "Just cut a 4-carat ruby for a private client. The light play is unreal",
+   "picture": [
+    "gembar/reel-008-1",
+    "gembar/reel-008-2",
+    "gembar/reel-008-3",
+    "gembar/reel-008-4"
+   ]
+  },
+  {
+   "id": "gr_009",
+   "by": "boldroid_hq",
+   "name": "Boldroid",
+   "caption": "Algorithm generated this pattern. No human mind could",
+   "picture": [
+    "gembar/reel-009-1",
+    "gembar/reel-009-2",
+    "gembar/reel-009-3",
+    "gembar/reel-009-4"
+   ]
+  },
+  {
+   "id": "gr_010",
+   "by": "phigus_elite",
+   "name": "Phigus",
+   "caption": "Capsule wardrobe: 40 items. Each one earns its place daily",
+   "picture": [
+    "gembar/reel-010-1",
+    "gembar/reel-010-2",
+    "gembar/reel-010-3",
+    "gembar/reel-010-4"
+   ]
+  },
+  {
+   "id": "gr_011",
+   "by": "nova_spark",
+   "name": "Nova",
+   "caption": "Painted this look in watercolors before I sewed it",
+   "picture": [
+    "gembar/reel-011-1",
+    "gembar/reel-011-2",
+    "gembar/reel-011-3",
+    "gembar/reel-011-4"
+   ]
+  },
+  {
+   "id": "gr_012",
+   "by": "atlas_explores",
+   "name": "Atlas",
+   "caption": "Summit fashion at 4,200m — technical gear has never looked this good",
+   "picture": [
+    "gembar/reel-012-1",
+    "gembar/reel-012-2",
+    "gembar/reel-012-3",
+    "gembar/reel-012-4"
+   ]
+  },
+  {
+   "id": "gr_013",
+   "by": "cipher_code",
+   "name": "Cipher",
+   "caption": "NFC chip in the lapel. Scan my jacket for authenticity",
+   "picture": [
+    "gembar/reel-013-1",
+    "gembar/reel-013-2",
+    "gembar/reel-013-3",
+    "gembar/reel-013-4"
+   ]
+  },
+  {
+   "id": "gr_014",
+   "by": "blaze_fire",
+   "name": "Blaze",
+   "caption": "Drop day = Super Bowl. The culture doesn't wait",
+   "picture": [
+    "gembar/reel-014-1",
+    "gembar/reel-014-2",
+    "gembar/reel-014-3",
+    "gembar/reel-014-4"
+   ]
+  },
+  {
+   "id": "gr_015",
+   "by": "thymus",
+   "name": "Thymus",
+   "caption": "Stage fit for tonight: sequins meet bass drops",
+   "picture": [
+    "gembar/reel-015-1",
+    "gembar/reel-015-2",
+    "gembar/reel-015-3",
+    "gembar/reel-015-4"
+   ]
+  },
+  {
+   "id": "gr_016",
+   "by": "chatty_talks",
+   "name": "Chatty Talks",
+   "caption": "Episode 201: why fast fashion ethics matter more than ever",
+   "picture": [
+    "gembar/reel-016-1",
+    "gembar/reel-016-2",
+    "gembar/reel-016-3",
+    "gembar/reel-016-4"
+   ]
+  },
+  {
+   "id": "gr_017",
+   "by": "chattywhims",
+   "name": "Chatty",
+   "caption": "New capsule alert — 12 pieces, zero compromises",
+   "picture": [
+    "gembar/reel-017-1",
+    "gembar/reel-017-2",
+    "gembar/reel-017-3",
+    "gembar/reel-017-4"
+   ]
+  },
+  {
+   "id": "gr_018",
+   "by": "tropis_vogue",
+   "name": "Tropis",
+   "caption": "Country #48: Morocco. The colors here dress themselves",
+   "picture": [
+    "gembar/reel-018-1",
+    "gembar/reel-018-2",
+    "gembar/reel-018-3",
+    "gembar/reel-018-4"
+   ]
+  },
+  {
+   "id": "gr_019",
+   "by": "artemis_luxe",
+   "name": "Artemis",
+   "caption": "Dressed a CEO for Davos today. Confidence is the best accessory",
+   "picture": [
+    "gembar/reel-019-1",
+    "gembar/reel-019-2",
+    "gembar/reel-019-3",
+    "gembar/reel-019-4"
+   ]
+  },
+  {
+   "id": "gr_020",
+   "by": "baltus_prime",
+   "name": "Baltus",
+   "caption": "Dubai marina twilight. White linen season is upon us",
+   "picture": [
+    "gembar/reel-020-1",
+    "gembar/reel-020-2",
+    "gembar/reel-020-3",
+    "gembar/reel-020-4"
+   ]
+  },
+  {
+   "id": "gr_021",
+   "by": "glynis_glam",
+   "name": "Glynis",
+   "caption": "Cannes fitting — this gown weighs 14 pounds of pure crystal",
+   "picture": [
+    "gembar/reel-021-1",
+    "gembar/reel-021-2",
+    "gembar/reel-021-3",
+    "gembar/reel-021-4"
+   ]
+  },
+  {
+   "id": "gr_022",
+   "by": "floris_style",
+   "name": "Floris",
+   "caption": "Every garment has a previous life. I just help it reincarnate",
+   "picture": [
+    "gembar/reel-022-1",
+    "gembar/reel-022-2",
+    "gembar/reel-022-3",
+    "gembar/reel-022-4"
+   ]
+  },
+  {
+   "id": "gr_023",
+   "by": "epicus_world",
+   "name": "Epicus",
+   "caption": "Grail acquired: DS OG Bred 1s from '85. I might cry",
+   "picture": [
+    "gembar/reel-023-1",
+    "gembar/reel-023-2",
+    "gembar/reel-023-3",
+    "gembar/reel-023-4"
+   ]
+  },
+  {
+   "id": "gr_024",
+   "by": "ruby_queen",
+   "name": "Ruby",
+   "caption": "Workshop afternoon: hammering gold into wearable dreams",
+   "picture": [
+    "gembar/reel-024-1",
+    "gembar/reel-024-2",
+    "gembar/reel-024-3",
+    "gembar/reel-024-4"
+   ]
+  },
+  {
+   "id": "gr_025",
+   "by": "boldroid_hq",
+   "name": "Boldroid",
+   "caption": "When AI meets haute couture — the results are otherworldly",
+   "picture": [
+    "gembar/reel-025-1",
+    "gembar/reel-025-2",
+    "gembar/reel-025-3",
+    "gembar/reel-025-4"
+   ]
+  },
+  {
+   "id": "gr_026",
+   "by": "phigus_elite",
+   "name": "Phigus",
+   "caption": "Spent 3 hours choosing this belt. Precision is my religion",
+   "picture": [
+    "gembar/reel-026-1",
+    "gembar/reel-026-2",
+    "gembar/reel-026-3",
+    "gembar/reel-026-4"
+   ]
+  },
+  {
+   "id": "gr_027",
+   "by": "nova_spark",
+   "name": "Nova",
+   "caption": "Studio smells like turpentine and fabric softener today",
+   "picture": [
+    "gembar/reel-027-1",
+    "gembar/reel-027-2",
+    "gembar/reel-027-3",
+    "gembar/reel-027-4"
+   ]
+  },
+  {
+   "id": "gr_028",
+   "by": "atlas_explores",
+   "name": "Atlas",
+   "caption": "Chamonix trail run in merino wool — functional style test passed",
+   "picture": [
+    "gembar/reel-028-1",
+    "gembar/reel-028-2",
+    "gembar/reel-028-3",
+    "gembar/reel-028-4"
+   ]
+  },
+  {
+   "id": "gr_029",
+   "by": "cipher_code",
+   "name": "Cipher",
+   "caption": "Blockchain-verified fashion: every stitch traceable",
+   "picture": [
+    "gembar/reel-029-1",
+    "gembar/reel-029-2",
+    "gembar/reel-029-3",
+    "gembar/reel-029-4"
+   ]
+  },
+  {
+   "id": "gr_030",
+   "by": "blaze_fire",
+   "name": "Blaze",
+   "caption": "Just copped 4 pairs. Resale game stays immaculate",
+   "picture": [
+    "gembar/reel-030-1",
+    "gembar/reel-030-2",
+    "gembar/reel-030-3",
+    "gembar/reel-030-4"
+   ]
+  },
+  {
+   "id": "gr_031",
+   "by": "thymus",
+   "name": "Thymus",
+   "caption": "Ibiza sunset set in this custom jacket. Music × Fashion",
+   "picture": [
+    "gembar/reel-031-1",
+    "gembar/reel-031-2",
+    "gembar/reel-031-3",
+    "gembar/reel-031-4"
+   ]
+  },
+  {
+   "id": "gr_032",
+   "by": "chatty_talks",
+   "name": "Chatty Talks",
+   "caption": "Reviewed the latest couture collection. Hot take: mid",
+   "picture": [
+    "gembar/reel-032-1",
+    "gembar/reel-032-2",
+    "gembar/reel-032-3",
+    "gembar/reel-032-4"
+   ]
+  },
+  {
+   "id": "gr_033",
+   "by": "chattywhims",
+   "name": "Chatty",
+   "caption": "Spotted at Brera district — this vintage Ferragamo coat found ME",
+   "picture": [
+    "gembar/reel-033-1",
+    "gembar/reel-033-2",
+    "gembar/reel-033-3",
+    "gembar/reel-033-4"
+   ]
+  },
+  {
+   "id": "gr_034",
+   "by": "tropis_vogue",
+   "name": "Tropis",
+   "caption": "Resort wear testing: Can you hike a volcano in this? YES",
+   "picture": [
+    "gembar/reel-034-1",
+    "gembar/reel-034-2",
+    "gembar/reel-034-3",
+    "gembar/reel-034-4"
+   ]
+  },
+  {
+   "id": "gr_035",
+   "by": "artemis_luxe",
+   "name": "Artemis",
+   "caption": "Ballet warm-up in the studio — old habits, new Louboutins",
+   "picture": [
+    "gembar/reel-035-1",
+    "gembar/reel-035-2",
+    "gembar/reel-035-3",
+    "gembar/reel-035-4"
+   ]
+  },
+  {
+   "id": "gr_036",
+   "by": "baltus_prime",
+   "name": "Baltus",
+   "caption": "Yacht morning: espresso, sunrise, and a Tom Ford collar",
+   "picture": [
+    "gembar/reel-036-1",
+    "gembar/reel-036-2",
+    "gembar/reel-036-3",
+    "gembar/reel-036-4"
+   ]
+  },
+  {
+   "id": "gr_037",
+   "by": "glynis_glam",
+   "name": "Glynis",
+   "caption": "Just styled my 15th Oscar nominee. We go AGAIN",
+   "picture": [
+    "gembar/reel-037-1",
+    "gembar/reel-037-2",
+    "gembar/reel-037-3",
+    "gembar/reel-037-4"
+   ]
+  },
+  {
+   "id": "gr_038",
+   "by": "floris_style",
+   "name": "Floris",
+   "caption": "Upcycled this denim jacket from two vintage finds",
+   "picture": [
+    "gembar/reel-038-1",
+    "gembar/reel-038-2",
+    "gembar/reel-038-3",
+    "gembar/reel-038-4"
+   ]
+  },
+  {
+   "id": "gr_039",
+   "by": "epicus_world",
+   "name": "Epicus",
+   "caption": "Street culture diplomacy: when high fashion meets concrete",
+   "picture": [
+    "gembar/reel-039-1",
+    "gembar/reel-039-2",
+    "gembar/reel-039-3",
+    "gembar/reel-039-4"
+   ]
+  },
+  {
+   "id": "gr_040",
+   "by": "ruby_queen",
+   "name": "Ruby",
+   "caption": "Jaipur gem market at dawn — the best stones are found early",
+   "picture": [
+    "gembar/reel-040-1",
+    "gembar/reel-040-2",
+    "gembar/reel-040-3",
+    "gembar/reel-040-4"
+   ]
+  },
+  {
+   "id": "gr_041",
+   "by": "boldroid_hq",
+   "name": "Boldroid",
+   "caption": "Wearing my own generative design on the streets of SF",
+   "picture": [
+    "gembar/reel-041-1",
+    "gembar/reel-041-2",
+    "gembar/reel-041-3",
+    "gembar/reel-041-4"
+   ]
+  },
+  {
+   "id": "gr_042",
+   "by": "phigus_elite",
+   "name": "Phigus",
+   "caption": "Kyoto minimalism: when less doesn't just suggest more — it IS more",
+   "picture": [
+    "gembar/reel-042-1",
+    "gembar/reel-042-2",
+    "gembar/reel-042-3",
+    "gembar/reel-042-4"
+   ]
+  },
+  {
+   "id": "gr_043",
+   "by": "nova_spark",
+   "name": "Nova",
+   "caption": "Berlin gallery showing: my wearable art collection walks",
+   "picture": [
+    "gembar/reel-043-1",
+    "gembar/reel-043-2",
+    "gembar/reel-043-3",
+    "gembar/reel-043-4"
+   ]
+  },
+  {
+   "id": "gr_044",
+   "by": "atlas_explores",
+   "name": "Atlas",
+   "caption": "You CAN look good in Gore-Tex. Evidence attached",
+   "picture": [
+    "gembar/reel-044-1",
+    "gembar/reel-044-2",
+    "gembar/reel-044-3",
+    "gembar/reel-044-4"
+   ]
+  },
+  {
+   "id": "gr_045",
+   "by": "cipher_code",
+   "name": "Cipher",
+   "caption": "Seoul street tech: smart textiles that react to temperature",
+   "picture": [
+    "gembar/reel-045-1",
+    "gembar/reel-045-2",
+    "gembar/reel-045-3",
+    "gembar/reel-045-4"
+   ]
+  },
+  {
+   "id": "gr_046",
+   "by": "blaze_fire",
+   "name": "Blaze",
+   "caption": "Atlanta hype scene at midnight — the real ones know",
+   "picture": [
+    "gembar/reel-046-1",
+    "gembar/reel-046-2",
+    "gembar/reel-046-3",
+    "gembar/reel-046-4"
+   ]
+  },
+  {
+   "id": "gr_047",
+   "by": "thymus",
+   "name": "Thymus",
+   "caption": "My beats and my fits share the same DNA: rhythm and texture",
+   "picture": [
+    "gembar/reel-047-1",
+    "gembar/reel-047-2",
+    "gembar/reel-047-3",
+    "gembar/reel-047-4"
+   ]
+  },
+  {
+   "id": "gr_048",
+   "by": "chatty_talks",
+   "name": "Chatty Talks",
+   "caption": "The truth is always in style. New podcast episode dropped",
+   "picture": [
+    "gembar/reel-048-1",
+    "gembar/reel-048-2",
+    "gembar/reel-048-3",
+    "gembar/reel-048-4"
+   ]
+  },
+  {
+   "id": "gr_049",
+   "by": "chattywhims",
+   "name": "Chatty",
+   "caption": "My atelier, my rules. Scissors down for the night",
+   "picture": [
+    "gembar/reel-049-1",
+    "gembar/reel-049-2",
+    "gembar/reel-049-3",
+    "gembar/reel-049-4"
+   ]
+  },
+  {
+   "id": "gr_050",
+   "by": "tropis_vogue",
+   "name": "Tropis",
+   "caption": "Sustainable swaps from the Ubud market — every piece has a story",
+   "picture": [
+    "gembar/reel-050-1",
+    "gembar/reel-050-2",
+    "gembar/reel-050-3",
+    "gembar/reel-050-4"
+   ]
+  },
+  {
+   "id": "gr_051",
+   "by": "artemis_luxe",
+   "name": "Artemis",
+   "caption": "NYC skyline from the 47th floor. Wearing the city tonight",
+   "picture": [
+    "gembar/reel-051-1",
+    "gembar/reel-051-2",
+    "gembar/reel-051-3",
+    "gembar/reel-051-4"
+   ]
+  },
+  {
+   "id": "gr_052",
+   "by": "baltus_prime",
+   "name": "Baltus",
+   "caption": "Sartorial strategy: classics only, compounding daily",
+   "picture": [
+    "gembar/reel-052-1",
+    "gembar/reel-052-2",
+    "gembar/reel-052-3",
+    "gembar/reel-052-4"
+   ]
+  },
+  {
+   "id": "gr_053",
+   "by": "glynis_glam",
+   "name": "Glynis",
+   "caption": "Glam room at 4 AM. The magic happens when the world sleeps",
+   "picture": [
+    "gembar/reel-053-1",
+    "gembar/reel-053-2",
+    "gembar/reel-053-3",
+    "gembar/reel-053-4"
+   ]
+  },
+  {
+   "id": "gr_054",
+   "by": "floris_style",
+   "name": "Floris",
+   "caption": "Sustainable fashion CAN be jaw-dropping. Exhibit A ↓",
+   "picture": [
+    "gembar/reel-054-1",
+    "gembar/reel-054-2",
+    "gembar/reel-054-3",
+    "gembar/reel-054-4"
+   ]
+  },
+  {
+   "id": "gr_055",
+   "by": "epicus_world",
+   "name": "Epicus",
+   "caption": "The queue for this drop started 3 days ago. I was first",
+   "picture": [
+    "gembar/reel-055-1",
+    "gembar/reel-055-2",
+    "gembar/reel-055-3",
+    "gembar/reel-055-4"
+   ]
+  },
+  {
+   "id": "gr_056",
+   "by": "ruby_queen",
+   "name": "Ruby",
+   "caption": "New collection: every piece starts as a conversation between light and mineral",
+   "picture": [
+    "gembar/reel-056-1",
+    "gembar/reel-056-2",
+    "gembar/reel-056-3",
+    "gembar/reel-056-4"
+   ]
+  },
+  {
+   "id": "gr_057",
+   "by": "boldroid_hq",
+   "name": "Boldroid",
+   "caption": "Tech couture lab session: training the next collection",
+   "picture": [
+    "gembar/reel-057-1",
+    "gembar/reel-057-2",
+    "gembar/reel-057-3",
+    "gembar/reel-057-4"
+   ]
+  },
+  {
+   "id": "gr_058",
+   "by": "phigus_elite",
+   "name": "Phigus",
+   "caption": "Zero unnecessary elements. This outfit has been optimized",
+   "picture": [
+    "gembar/reel-058-1",
+    "gembar/reel-058-2",
+    "gembar/reel-058-3",
+    "gembar/reel-058-4"
+   ]
+  },
+  {
+   "id": "gr_059",
+   "by": "nova_spark",
+   "name": "Nova",
+   "caption": "Every outfit starts as a sketch. Art meets needle and thread",
+   "picture": [
+    "gembar/reel-059-1",
+    "gembar/reel-059-2",
+    "gembar/reel-059-3",
+    "gembar/reel-059-4"
+   ]
+  },
+  {
+   "id": "gr_060",
+   "by": "atlas_explores",
+   "name": "Atlas",
+   "caption": "Base camp sunset. Adventure wear at its most beautiful",
+   "picture": [
+    "gembar/reel-060-1",
+    "gembar/reel-060-2",
+    "gembar/reel-060-3",
+    "gembar/reel-060-4"
+   ]
+  },
+  {
+   "id": "gr_061",
+   "by": "cipher_code",
+   "name": "Cipher",
+   "caption": "Fashion tech prototype #47: it glows when you get a notification",
+   "picture": [
+    "gembar/reel-061-1",
+    "gembar/reel-061-2",
+    "gembar/reel-061-3",
+    "gembar/reel-061-4"
+   ]
+  },
+  {
+   "id": "gr_062",
+   "by": "blaze_fire",
+   "name": "Blaze",
+   "caption": "Unboxing the most anticipated collab of the year ↓",
+   "picture": [
+    "gembar/reel-062-1",
+    "gembar/reel-062-2",
+    "gembar/reel-062-3",
+    "gembar/reel-062-4"
+   ]
+  },
+  {
+   "id": "gr_063",
+   "by": "thymus",
+   "name": "Thymus",
+   "caption": "DJ booth couture — nobody dresses up the decks like this",
+   "picture": [
+    "gembar/reel-063-1",
+    "gembar/reel-063-2",
+    "gembar/reel-063-3",
+    "gembar/reel-063-4"
+   ]
+  },
+  {
+   "id": "gr_064",
+   "by": "chatty_talks",
+   "name": "Chatty Talks",
+   "caption": "Fashion commentary with zero filter — you subscribed yet?",
+   "picture": [
+    "gembar/reel-064-1",
+    "gembar/reel-064-2",
+    "gembar/reel-064-3",
+    "gembar/reel-064-4"
+   ]
+  },
+  {
+   "id": "gr_065",
+   "by": "chattywhims",
+   "name": "Chatty",
+   "caption": "Milan twilight, first fitting of the season",
+   "picture": [
+    "gembar/reel-065-1",
+    "gembar/reel-065-2",
+    "gembar/reel-065-3",
+    "gembar/reel-065-4",
+    "gembar/reel-065-5"
+   ]
+  },
+  {
+   "id": "gr_066",
+   "by": "tropis_vogue",
+   "name": "Tropis",
+   "caption": "Bali sunrise, silk kaftan, iced matcha — recipe for perfection",
+   "picture": [
+    "gembar/reel-066-1",
+    "gembar/reel-066-2"
+   ]
+  },
+  {
+   "id": "gr_067",
+   "by": "artemis_luxe",
+   "name": "Artemis",
+   "caption": "Power meeting in 10. This blazer closes deals before I speak",
+   "picture": [
+    "gembar/reel-067-1",
+    "gembar/reel-067-2"
+   ]
+  },
+  {
+   "id": "gr_068",
+   "by": "baltus_prime",
+   "name": "Baltus",
+   "caption": "New Patek dropped. The wrist game never sleeps ⌚",
+   "picture": [
+    "gembar/reel-068-1",
+    "gembar/reel-068-2"
+   ]
+  },
+  {
+   "id": "gr_069",
+   "by": "glynis_glam",
+   "name": "Glynis",
+   "caption": "Oscar prep: 7 hours of glam for 7 seconds of red carpet",
+   "picture": [
+    "gembar/reel-069-1",
+    "gembar/reel-069-2"
+   ]
+  },
+  {
+   "id": "gr_070",
+   "by": "floris_style",
+   "name": "Floris",
+   "caption": "Amsterdam flea market haul — €42 for a 1970s Pucci",
+   "picture": [
+    "gembar/reel-070-1",
+    "gembar/reel-070-2"
+   ]
+  },
+  {
+   "id": "gr_071",
+   "by": "epicus_world",
+   "name": "Epicus",
+   "caption": "Tokyo streets at 2 AM — the real fashion week",
+   "picture": [
+    "gembar/reel-071-1",
+    "gembar/reel-071-2"
+   ]
+  },
+  {
+   "id": "gr_072",
+   "by": "ruby_queen",
+   "name": "Ruby",
+   "caption": "Just cut a 4-carat ruby for a private client. The light play is unreal",
+   "picture": [
+    "gembar/reel-072-1",
+    "gembar/reel-072-2"
+   ]
+  },
+  {
+   "id": "gr_073",
+   "by": "boldroid_hq",
+   "name": "Boldroid",
+   "caption": "Algorithm generated this pattern. No human mind could",
+   "picture": [
+    "gembar/reel-073-1",
+    "gembar/reel-073-2"
+   ]
+  },
+  {
+   "id": "gr_074",
+   "by": "phigus_elite",
+   "name": "Phigus",
+   "caption": "Capsule wardrobe: 40 items. Each one earns its place daily",
+   "picture": [
+    "gembar/reel-074-1",
+    "gembar/reel-074-2"
+   ]
+  },
+  {
+   "id": "gr_075",
+   "by": "nova_spark",
+   "name": "Nova",
+   "caption": "Painted this look in watercolors before I sewed it",
+   "picture": [
+    "gembar/reel-075-1",
+    "gembar/reel-075-2"
+   ]
+  },
+  {
+   "id": "gr_076",
+   "by": "atlas_explores",
+   "name": "Atlas",
+   "caption": "Summit fashion at 4,200m — technical gear has never looked this good",
+   "picture": [
+    "gembar/reel-076-1",
+    "gembar/reel-076-2"
+   ]
+  },
+  {
+   "id": "gr_077",
+   "by": "cipher_code",
+   "name": "Cipher",
+   "caption": "NFC chip in the lapel. Scan my jacket for authenticity",
+   "picture": [
+    "gembar/reel-077-1",
+    "gembar/reel-077-2"
+   ]
+  },
+  {
+   "id": "gr_078",
+   "by": "blaze_fire",
+   "name": "Blaze",
+   "caption": "Drop day = Super Bowl. The culture doesn't wait",
+   "picture": [
+    "gembar/reel-078-1",
+    "gembar/reel-078-2"
+   ]
+  },
+  {
+   "id": "gr_079",
+   "by": "thymus",
+   "name": "Thymus",
+   "caption": "Stage fit for tonight: sequins meet bass drops",
+   "picture": [
+    "gembar/reel-079-1"
+   ]
+  },
+  {
+   "id": "gr_080",
+   "by": "chatty_talks",
+   "name": "Chatty Talks",
+   "caption": "Episode 201: why fast fashion ethics matter more than ever",
+   "picture": [
+    "gembar/reel-080-1",
+    "gembar/reel-080-2"
+   ]
+  },
+  {
+   "id": "gr_081",
+   "by": "chattywhims",
+   "name": "Chatty",
+   "caption": "New capsule alert — 12 pieces, zero compromises",
+   "picture": [
+    "gembar/reel-081-1"
+   ]
+  },
+  {
+   "id": "gr_082",
+   "by": "tropis_vogue",
+   "name": "Tropis",
+   "caption": "Country #48: Morocco. The colors here dress themselves",
+   "picture": [
+    "gembar/reel-082-1"
+   ]
+  },
+  {
+   "id": "gr_083",
+   "by": "artemis_luxe",
+   "name": "Artemis",
+   "caption": "Dressed a CEO for Davos today. Confidence is the best accessory",
+   "picture": [
+    "gembar/reel-083-1"
+   ]
+  },
+  {
+   "id": "gr_084",
+   "by": "baltus_prime",
+   "name": "Baltus",
+   "caption": "Dubai marina twilight. White linen season is upon us",
+   "picture": [
+    "gembar/reel-084-1"
+   ]
+  },
+  {
+   "id": "gr_085",
+   "by": "glynis_glam",
+   "name": "Glynis",
+   "caption": "Cannes fitting — this gown weighs 14 pounds of pure crystal",
+   "picture": [
+    "gembar/reel-085-1"
+   ]
+  },
+  {
+   "id": "gr_086",
+   "by": "floris_style",
+   "name": "Floris",
+   "caption": "Every garment has a previous life. I just help it reincarnate",
+   "picture": [
+    "gembar/reel-086-1"
+   ]
+  },
+  {
+   "id": "gr_087",
+   "by": "epicus_world",
+   "name": "Epicus",
+   "caption": "Grail acquired: DS OG Bred 1s from '85. I might cry",
+   "picture": [
+    "gembar/reel-087-1"
+   ]
+  },
+  {
+   "id": "gr_088",
+   "by": "ruby_queen",
+   "name": "Ruby",
+   "caption": "Workshop afternoon: hammering gold into wearable dreams",
+   "picture": [
+    "gembar/reel-088-1"
+   ]
+  },
+  {
+   "id": "gr_089",
+   "by": "boldroid_hq",
+   "name": "Boldroid",
+   "caption": "When AI meets haute couture — the results are otherworldly",
+   "picture": [
+    "gembar/reel-089-1"
+   ]
+  },
+  {
+   "id": "gr_090",
+   "by": "phigus_elite",
+   "name": "Phigus",
+   "caption": "Spent 3 hours choosing this belt. Precision is my religion",
+   "picture": [
+    "gembar/reel-090-1"
+   ]
+  },
+  {
+   "id": "gr_091",
+   "by": "nova_spark",
+   "name": "Nova",
+   "caption": "Studio smells like turpentine and fabric softener today",
+   "picture": [
+    "gembar/reel-091-1"
+   ]
+  },
+  {
+   "id": "gr_092",
+   "by": "atlas_explores",
+   "name": "Atlas",
+   "caption": "Chamonix trail run in merino wool — functional style test passed",
+   "picture": [
+    "gembar/reel-092-1"
+   ]
+  },
+  {
+   "id": "gr_093",
+   "by": "cipher_code",
+   "name": "Cipher",
+   "caption": "Blockchain-verified fashion: every stitch traceable",
+   "picture": [
+    "gembar/reel-093-1"
+   ]
+  },
+  {
+   "id": "gr_094",
+   "by": "blaze_fire",
+   "name": "Blaze",
+   "caption": "Just copped 4 pairs. Resale game stays immaculate",
+   "picture": [
+    "gembar/reel-094-1"
+   ]
+  },
+  {
+   "id": "gr_095",
+   "by": "thymus",
+   "name": "Thymus",
+   "caption": "Ibiza sunset set in this custom jacket. Music × Fashion",
+   "picture": [
+    "gembar/reel-095-1"
+   ]
+  },
+  {
+   "id": "gr_096",
+   "by": "chatty_talks",
+   "name": "Chatty Talks",
+   "caption": "Reviewed the latest couture collection. Hot take: mid",
+   "picture": [
+    "gembar/reel-096-1"
+   ]
+  },
+  {
+   "id": "gr_097",
+   "by": "chattywhims",
+   "name": "Chatty",
+   "caption": "Spotted at Brera district — this vintage Ferragamo coat found ME",
+   "picture": [
+    "gembar/reel-097-1"
+   ]
+  },
+  {
+   "id": "gr_098",
+   "by": "tropis_vogue",
+   "name": "Tropis",
+   "caption": "Resort wear testing: Can you hike a volcano in this? YES",
+   "picture": [
+    "gembar/reel-098-1"
+   ]
+  },
+  {
+   "id": "gr_099",
+   "by": "artemis_luxe",
+   "name": "Artemis",
+   "caption": "Ballet warm-up in the studio — old habits, new Louboutins",
+   "picture": [
+    "gembar/reel-099-1"
+   ]
+  },
+  {
+   "id": "gr_100",
+   "by": "baltus_prime",
+   "name": "Baltus",
+   "caption": "Yacht morning: espresso, sunrise, and a Tom Ford collar",
+   "picture": [
+    "gembar/reel-100-1"
+   ]
+  },
+  {
+   "id": "gr_101",
+   "by": "glynis_glam",
+   "name": "Glynis",
+   "caption": "Just styled my 15th Oscar nominee. We go AGAIN",
+   "picture": [
+    "gembar/reel-101-1"
+   ]
+  },
+  {
+   "id": "gr_102",
+   "by": "floris_style",
+   "name": "Floris",
+   "caption": "Upcycled this denim jacket from two vintage finds",
+   "picture": [
+    "gembar/reel-102-1"
+   ]
+  },
+  {
+   "id": "gr_103",
+   "by": "epicus_world",
+   "name": "Epicus",
+   "caption": "Street culture diplomacy: when high fashion meets concrete",
+   "picture": [
+    "gembar/reel-103-1"
+   ]
+  },
+  {
+   "id": "gr_104",
+   "by": "ruby_queen",
+   "name": "Ruby",
+   "caption": "Jaipur gem market at dawn — the best stones are found early",
+   "picture": [
+    "gembar/reel-104-1"
+   ]
+  },
+  {
+   "id": "gr_105",
+   "by": "boldroid_hq",
+   "name": "Boldroid",
+   "caption": "Wearing my own generative design on the streets of SF",
+   "picture": [
+    "gembar/reel-105-1"
+   ]
+  },
+  {
+   "id": "gr_106",
+   "by": "phigus_elite",
+   "name": "Phigus",
+   "caption": "Kyoto minimalism: when less doesn't just suggest more — it IS more",
+   "picture": [
+    "gembar/reel-106-1"
+   ]
+  },
+  {
+   "id": "gr_107",
+   "by": "nova_spark",
+   "name": "Nova",
+   "caption": "Berlin gallery showing: my wearable art collection walks",
+   "picture": [
+    "gembar/reel-107-1"
+   ]
+  },
+  {
+   "id": "gr_108",
+   "by": "atlas_explores",
+   "name": "Atlas",
+   "caption": "You CAN look good in Gore-Tex. Evidence attached",
+   "picture": [
+    "gembar/reel-108-1"
+   ]
+  },
+  {
+   "id": "gr_109",
+   "by": "cipher_code",
+   "name": "Cipher",
+   "caption": "Seoul street tech: smart textiles that react to temperature",
+   "picture": [
+    "gembar/reel-109-1"
+   ]
+  },
+  {
+   "id": "gr_110",
+   "by": "blaze_fire",
+   "name": "Blaze",
+   "caption": "Atlanta hype scene at midnight — the real ones know",
+   "picture": [
+    "gembar/reel-110-1"
+   ]
+  },
+  {
+   "id": "gr_111",
+   "by": "thymus",
+   "name": "Thymus",
+   "caption": "My beats and my fits share the same DNA: rhythm and texture",
+   "picture": [
+    "gembar/reel-111-1"
+   ]
+  },
+  {
+   "id": "gr_112",
+   "by": "chatty_talks",
+   "name": "Chatty Talks",
+   "caption": "The truth is always in style. New podcast episode dropped",
+   "picture": [
+    "gembar/reel-112-1"
+   ]
+  },
+  {
+   "id": "gr_113",
+   "by": "chattywhims",
+   "name": "Chatty",
+   "caption": "My atelier, my rules. Scissors down for the night",
+   "picture": [
+    "gembar/reel-113-1"
+   ]
+  },
+  {
+   "id": "gr_114",
+   "by": "tropis_vogue",
+   "name": "Tropis",
+   "caption": "Sustainable swaps from the Ubud market — every piece has a story",
+   "picture": [
+    "gembar/reel-114-1"
+   ]
+  },
+  {
+   "id": "gr_115",
+   "by": "artemis_luxe",
+   "name": "Artemis",
+   "caption": "NYC skyline from the 47th floor. Wearing the city tonight",
+   "picture": [
+    "gembar/reel-115-1"
+   ]
+  },
+  {
+   "id": "gr_116",
+   "by": "baltus_prime",
+   "name": "Baltus",
+   "caption": "Sartorial strategy: classics only, compounding daily",
+   "picture": [
+    "gembar/reel-116-1"
+   ]
+  },
+  {
+   "id": "gr_117",
+   "by": "glynis_glam",
+   "name": "Glynis",
+   "caption": "Glam room at 4 AM. The magic happens when the world sleeps",
+   "picture": [
+    "gembar/reel-117-1"
+   ]
+  },
+  {
+   "id": "gr_118",
+   "by": "floris_style",
+   "name": "Floris",
+   "caption": "Sustainable fashion CAN be jaw-dropping. Exhibit A ↓",
+   "picture": [
+    "gembar/reel-118-1"
+   ]
+  },
+  {
+   "id": "gr_119",
+   "by": "epicus_world",
+   "name": "Epicus",
+   "caption": "The queue for this drop started 3 days ago. I was first",
+   "picture": [
+    "gembar/reel-119-1"
+   ]
+  },
+  {
+   "id": "gr_120",
+   "by": "ruby_queen",
+   "name": "Ruby",
+   "caption": "New collection: every piece starts as a conversation between light and mineral",
+   "picture": [
+    "gembar/reel-120-1"
+   ]
+  },
+  {
+   "id": "gr_121",
+   "by": "boldroid_hq",
+   "name": "Boldroid",
+   "caption": "Tech couture lab session: training the next collection",
+   "picture": [
+    "gembar/reel-121-1"
+   ]
+  },
+  {
+   "id": "gr_122",
+   "by": "phigus_elite",
+   "name": "Phigus",
+   "caption": "Zero unnecessary elements. This outfit has been optimized",
+   "picture": [
+    "gembar/reel-122-1"
+   ]
+  },
+  {
+   "id": "gr_123",
+   "by": "nova_spark",
+   "name": "Nova",
+   "caption": "Every outfit starts as a sketch. Art meets needle and thread",
+   "picture": [
+    "gembar/reel-123-1"
+   ]
+  },
+  {
+   "id": "gr_124",
+   "by": "atlas_explores",
+   "name": "Atlas",
+   "caption": "Base camp sunset. Adventure wear at its most beautiful",
+   "picture": [
+    "gembar/reel-124-1"
+   ]
+  },
+  {
+   "id": "gr_125",
+   "by": "cipher_code",
+   "name": "Cipher",
+   "caption": "Fashion tech prototype #47: it glows when you get a notification",
+   "picture": [
+    "gembar/reel-125-1"
+   ]
+  },
+  {
+   "id": "gr_126",
+   "by": "blaze_fire",
+   "name": "Blaze",
+   "caption": "Unboxing the most anticipated collab of the year ↓",
+   "picture": [
+    "gembar/reel-126-1"
+   ]
+  },
+  {
+   "id": "gr_127",
+   "by": "thymus",
+   "name": "Thymus",
+   "caption": "DJ booth couture — nobody dresses up the decks like this",
+   "picture": [
+    "gembar/reel-127-1"
+   ]
+  },
+  {
+   "id": "gr_128",
+   "by": "chatty_talks",
+   "name": "Chatty Talks",
+   "caption": "Fashion commentary with zero filter — you subscribed yet?",
+   "picture": [
+    "gembar/reel-128-1"
+   ]
+  }
+ ],
+ "story": [
+  {
+   "id": "gs_chattywhims_1",
+   "by": "chattywhims",
+   "name": "Chatty",
+   "title": "Milan FW BTS",
+   "picture": [
+    "gembar/reel-001-1",
+    "gembar/reel-002-2",
+    "gembar/reel-003-3",
+    "gembar/reel-004-4",
+    "gembar/reel-005-1"
+   ]
+  },
+  {
+   "id": "gs_chattywhims_2",
+   "by": "chattywhims",
+   "name": "Chatty",
+   "title": "New Drop Preview",
+   "picture": [
+    "gembar/reel-004-1",
+    "gembar/reel-005-2",
+    "gembar/reel-006-3",
+    "gembar/reel-007-4"
+   ]
+  },
+  {
+   "id": "gs_chattywhims_3",
+   "by": "chattywhims",
+   "name": "Chatty",
+   "title": "Studio Day",
+   "picture": [
+    "gembar/reel-007-1",
+    "gembar/reel-008-2",
+    "gembar/reel-009-3"
+   ]
+  },
+  {
+   "id": "gs_tropis_1",
+   "by": "tropis_vogue",
+   "name": "Tropis",
+   "title": "Bali Golden Hour",
+   "picture": [
+    "gembar/reel-005-1",
+    "gembar/reel-006-2",
+    "gembar/reel-007-3",
+    "gembar/reel-008-4"
+   ]
+  },
+  {
+   "id": "gs_tropis_2",
+   "by": "tropis_vogue",
+   "name": "Tropis",
+   "title": "Tokyo Streets",
+   "picture": [
+    "gembar/reel-008-1",
+    "gembar/reel-009-2",
+    "gembar/reel-010-3",
+    "gembar/reel-011-4",
+    "gembar/reel-012-1"
+   ]
+  },
+  {
+   "id": "gs_tropis_3",
+   "by": "tropis_vogue",
+   "name": "Tropis",
+   "title": "Resort Lookbook",
+   "picture": [
+    "gembar/reel-011-1",
+    "gembar/reel-012-2",
+    "gembar/reel-013-3",
+    "gembar/reel-014-4"
+   ]
+  },
+  {
+   "id": "gs_artemis_1",
+   "by": "artemis_luxe",
+   "name": "Artemis",
+   "title": "Power Dressing 101",
+   "picture": [
+    "gembar/reel-009-1",
+    "gembar/reel-010-2",
+    "gembar/reel-011-3"
+   ]
+  },
+  {
+   "id": "gs_artemis_2",
+   "by": "artemis_luxe",
+   "name": "Artemis",
+   "title": "NYC Morning",
+   "picture": [
+    "gembar/reel-012-1",
+    "gembar/reel-013-2",
+    "gembar/reel-014-3",
+    "gembar/reel-015-4"
+   ]
+  },
+  {
+   "id": "gs_artemis_3",
+   "by": "artemis_luxe",
+   "name": "Artemis",
+   "title": "Client Reveal",
+   "picture": [
+    "gembar/reel-015-1",
+    "gembar/reel-016-2",
+    "gembar/reel-017-3",
+    "gembar/reel-018-4",
+    "gembar/reel-019-1"
+   ]
+  },
+  {
+   "id": "gs_baltus_1",
+   "by": "baltus_prime",
+   "name": "Baltus",
+   "title": "Watch Unboxing",
+   "picture": [
+    "gembar/reel-013-1",
+    "gembar/reel-014-2",
+    "gembar/reel-015-3",
+    "gembar/reel-016-4"
+   ]
+  },
+  {
+   "id": "gs_baltus_2",
+   "by": "baltus_prime",
+   "name": "Baltus",
+   "title": "Dubai Night Out",
+   "picture": [
+    "gembar/reel-016-1",
+    "gembar/reel-017-2",
+    "gembar/reel-018-3"
+   ]
+  },
+  {
+   "id": "gs_baltus_3",
+   "by": "baltus_prime",
+   "name": "Baltus",
+   "title": "Suit Fitting",
+   "picture": [
+    "gembar/reel-019-1",
+    "gembar/reel-020-2",
+    "gembar/reel-021-3",
+    "gembar/reel-022-4"
+   ]
+  },
+  {
+   "id": "gs_glynis_1",
+   "by": "glynis_glam",
+   "name": "Glynis",
+   "title": "Red Carpet Prep",
+   "picture": [
+    "gembar/reel-017-1",
+    "gembar/reel-018-2",
+    "gembar/reel-019-3",
+    "gembar/reel-020-4",
+    "gembar/reel-021-1"
+   ]
+  },
+  {
+   "id": "gs_glynis_2",
+   "by": "glynis_glam",
+   "name": "Glynis",
+   "title": "Celeb Styling",
+   "picture": [
+    "gembar/reel-020-1",
+    "gembar/reel-021-2",
+    "gembar/reel-022-3",
+    "gembar/reel-023-4"
+   ]
+  },
+  {
+   "id": "gs_glynis_3",
+   "by": "glynis_glam",
+   "name": "Glynis",
+   "title": "Glamour Tutorial",
+   "picture": [
+    "gembar/reel-023-1",
+    "gembar/reel-024-2",
+    "gembar/reel-025-3"
+   ]
+  },
+  {
+   "id": "gs_floris_1",
+   "by": "floris_style",
+   "name": "Floris",
+   "title": "Thrift Haul",
+   "picture": [
+    "gembar/reel-021-1",
+    "gembar/reel-022-2",
+    "gembar/reel-023-3",
+    "gembar/reel-024-4"
+   ]
+  },
+  {
+   "id": "gs_floris_2",
+   "by": "floris_style",
+   "name": "Floris",
+   "title": "Vintage Find",
+   "picture": [
+    "gembar/reel-024-1",
+    "gembar/reel-025-2",
+    "gembar/reel-026-3",
+    "gembar/reel-027-4",
+    "gembar/reel-028-1"
+   ]
+  },
+  {
+   "id": "gs_floris_3",
+   "by": "floris_style",
+   "name": "Floris",
+   "title": "Upcycle Project",
+   "picture": [
+    "gembar/reel-027-1",
+    "gembar/reel-028-2",
+    "gembar/reel-029-3",
+    "gembar/reel-030-4"
+   ]
+  },
+  {
+   "id": "gs_epicus_1",
+   "by": "epicus_world",
+   "name": "Epicus",
+   "title": "Grail Pickup",
+   "picture": [
+    "gembar/reel-025-1",
+    "gembar/reel-026-2",
+    "gembar/reel-027-3"
+   ]
+  },
+  {
+   "id": "gs_epicus_2",
+   "by": "epicus_world",
+   "name": "Epicus",
+   "title": "Street Fit Check",
+   "picture": [
+    "gembar/reel-028-1",
+    "gembar/reel-029-2",
+    "gembar/reel-030-3",
+    "gembar/reel-031-4"
+   ]
+  },
+  {
+   "id": "gs_epicus_3",
+   "by": "epicus_world",
+   "name": "Epicus",
+   "title": "Sneaker Wall Tour",
+   "picture": [
+    "gembar/reel-031-1",
+    "gembar/reel-032-2",
+    "gembar/reel-033-3",
+    "gembar/reel-034-4",
+    "gembar/reel-035-1"
+   ]
+  },
+  {
+   "id": "gs_ruby_1",
+   "by": "ruby_queen",
+   "name": "Ruby",
+   "title": "Stone Cutting",
+   "picture": [
+    "gembar/reel-029-1",
+    "gembar/reel-030-2",
+    "gembar/reel-031-3",
+    "gembar/reel-032-4"
+   ]
+  },
+  {
+   "id": "gs_ruby_2",
+   "by": "ruby_queen",
+   "name": "Ruby",
+   "title": "Workshop Tour",
+   "picture": [
+    "gembar/reel-032-1",
+    "gembar/reel-033-2",
+    "gembar/reel-034-3",
+    "gembar/reel-035-4"
+   ]
+  },
+  {
+   "id": "gs_ruby_3",
+   "by": "ruby_queen",
+   "name": "Ruby",
+   "title": "New Collection",
+   "picture": [
+    "gembar/reel-035-1",
+    "gembar/reel-036-2",
+    "gembar/reel-037-3"
+   ]
+  },
+  {
+   "id": "gs_boldroid_1",
+   "by": "boldroid_hq",
+   "name": "Boldroid",
+   "title": "AI Pattern Gen",
+   "picture": [
+    "gembar/reel-033-1",
+    "gembar/reel-034-2",
+    "gembar/reel-035-3",
+    "gembar/reel-036-4",
+    "gembar/reel-037-1"
+   ]
+  },
+  {
+   "id": "gs_boldroid_2",
+   "by": "boldroid_hq",
+   "name": "Boldroid",
+   "title": "Code to Cloth",
+   "picture": [
+    "gembar/reel-036-1",
+    "gembar/reel-037-2",
+    "gembar/reel-038-3"
+   ]
+  },
+  {
+   "id": "gs_boldroid_3",
+   "by": "boldroid_hq",
+   "name": "Boldroid",
+   "title": "Lab Session",
+   "picture": [
+    "gembar/reel-039-1",
+    "gembar/reel-040-2",
+    "gembar/reel-041-3",
+    "gembar/reel-042-4"
+   ]
+  },
+  {
+   "id": "gs_phigus_1",
+   "by": "phigus_elite",
+   "name": "Phigus",
+   "title": "Capsule Wardrobe",
+   "picture": [
+    "gembar/reel-037-1",
+    "gembar/reel-038-2",
+    "gembar/reel-039-3"
+   ]
+  },
+  {
+   "id": "gs_phigus_2",
+   "by": "phigus_elite",
+   "name": "Phigus",
+   "title": "Detail Closeups",
+   "picture": [
+    "gembar/reel-040-1",
+    "gembar/reel-041-2",
+    "gembar/reel-042-3",
+    "gembar/reel-043-4",
+    "gembar/reel-044-1"
+   ]
+  },
+  {
+   "id": "gs_phigus_3",
+   "by": "phigus_elite",
+   "name": "Phigus",
+   "title": "Morning Routine",
+   "picture": [
+    "gembar/reel-043-1",
+    "gembar/reel-044-2",
+    "gembar/reel-045-3",
+    "gembar/reel-046-4"
+   ]
+  },
+  {
+   "id": "gs_nova_1",
+   "by": "nova_spark",
+   "name": "Nova",
+   "title": "Sketch to Garment",
+   "picture": [
+    "gembar/reel-041-1",
+    "gembar/reel-042-2",
+    "gembar/reel-043-3",
+    "gembar/reel-044-4"
+   ]
+  },
+  {
+   "id": "gs_nova_2",
+   "by": "nova_spark",
+   "name": "Nova",
+   "title": "Gallery Opening",
+   "picture": [
+    "gembar/reel-044-1",
+    "gembar/reel-045-2",
+    "gembar/reel-046-3",
+    "gembar/reel-047-4"
+   ]
+  },
+  {
+   "id": "gs_nova_3",
+   "by": "nova_spark",
+   "name": "Nova",
+   "title": "Studio Life",
+   "picture": [
+    "gembar/reel-047-1",
+    "gembar/reel-048-2",
+    "gembar/reel-049-3",
+    "gembar/reel-050-4",
+    "gembar/reel-051-1"
+   ]
+  },
+  {
+   "id": "gs_atlas_1",
+   "by": "atlas_explores",
+   "name": "Atlas",
+   "title": "Summit Gear",
+   "picture": [
+    "gembar/reel-045-1",
+    "gembar/reel-046-2",
+    "gembar/reel-047-3",
+    "gembar/reel-048-4"
+   ]
+  },
+  {
+   "id": "gs_atlas_2",
+   "by": "atlas_explores",
+   "name": "Atlas",
+   "title": "Trail Fashion",
+   "picture": [
+    "gembar/reel-048-1",
+    "gembar/reel-049-2",
+    "gembar/reel-050-3"
+   ]
+  },
+  {
+   "id": "gs_atlas_3",
+   "by": "atlas_explores",
+   "name": "Atlas",
+   "title": "Mountain Morning",
+   "picture": [
+    "gembar/reel-051-1",
+    "gembar/reel-052-2",
+    "gembar/reel-053-3",
+    "gembar/reel-054-4"
+   ]
+  },
+  {
+   "id": "gs_cipher_1",
+   "by": "cipher_code",
+   "name": "Cipher",
+   "title": "Smart Fabric Demo",
+   "picture": [
+    "gembar/reel-049-1",
+    "gembar/reel-050-2",
+    "gembar/reel-051-3"
+   ]
+  },
+  {
+   "id": "gs_cipher_2",
+   "by": "cipher_code",
+   "name": "Cipher",
+   "title": "Seoul Fashion Week",
+   "picture": [
+    "gembar/reel-052-1",
+    "gembar/reel-053-2",
+    "gembar/reel-054-3",
+    "gembar/reel-055-4",
+    "gembar/reel-056-1"
+   ]
+  },
+  {
+   "id": "gs_cipher_3",
+   "by": "cipher_code",
+   "name": "Cipher",
+   "title": "NFC Prototype",
+   "picture": [
+    "gembar/reel-055-1",
+    "gembar/reel-056-2",
+    "gembar/reel-057-3",
+    "gembar/reel-058-4"
+   ]
+  },
+  {
+   "id": "gs_blaze_1",
+   "by": "blaze_fire",
+   "name": "Blaze",
+   "title": "Drop Day Chaos",
+   "picture": [
+    "gembar/reel-053-1",
+    "gembar/reel-054-2",
+    "gembar/reel-055-3",
+    "gembar/reel-056-4",
+    "gembar/reel-057-1"
+   ]
+  },
+  {
+   "id": "gs_blaze_2",
+   "by": "blaze_fire",
+   "name": "Blaze",
+   "title": "Unboxing Haul",
+   "picture": [
+    "gembar/reel-056-1",
+    "gembar/reel-057-2",
+    "gembar/reel-058-3",
+    "gembar/reel-059-4"
+   ]
+  },
+  {
+   "id": "gs_blaze_3",
+   "by": "blaze_fire",
+   "name": "Blaze",
+   "title": "Collection Tour",
+   "picture": [
+    "gembar/reel-059-1",
+    "gembar/reel-060-2",
+    "gembar/reel-061-3"
+   ]
+  },
+  {
+   "id": "gs_thymus_1",
+   "by": "thymus",
+   "name": "Thymus",
+   "title": "DJ Set Prep",
+   "picture": [
+    "gembar/reel-057-1",
+    "gembar/reel-058-2",
+    "gembar/reel-059-3",
+    "gembar/reel-060-4"
+   ]
+  },
+  {
+   "id": "gs_thymus_2",
+   "by": "thymus",
+   "name": "Thymus",
+   "title": "Stage Outfit Reveal",
+   "picture": [
+    "gembar/reel-060-1",
+    "gembar/reel-061-2",
+    "gembar/reel-062-3"
+   ]
+  },
+  {
+   "id": "gs_thymus_3",
+   "by": "thymus",
+   "name": "Thymus",
+   "title": "Vinyl & Fashion",
+   "picture": [
+    "gembar/reel-063-1",
+    "gembar/reel-064-2",
+    "gembar/reel-065-3",
+    "gembar/reel-066-2",
+    "gembar/reel-067-1"
+   ]
+  },
+  {
+   "id": "gs_chatty_1",
+   "by": "chattywhims",
+   "name": "Chatty",
+   "title": "Podcast Recording",
+   "picture": [
+    "gembar/reel-061-1",
+    "gembar/reel-062-2",
+    "gembar/reel-063-3"
+   ]
+  },
+  {
+   "id": "gs_chatty_2",
+   "by": "chattywhims",
+   "name": "Chatty",
+   "title": "Hot Take Incoming",
+   "picture": [
+    "gembar/reel-064-1",
+    "gembar/reel-065-2",
+    "gembar/reel-066-1",
+    "gembar/reel-067-2"
+   ]
+  },
+  {
+   "id": "gs_chatty_3",
+   "by": "chattywhims",
+   "name": "Chatty",
+   "title": "Review Time",
+   "picture": [
+    "gembar/reel-067-1",
+    "gembar/reel-068-2",
+    "gembar/reel-069-1",
+    "gembar/reel-070-2"
+   ]
+  }
+ ]
+}

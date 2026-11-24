@@ -1,0 +1,11 @@
+{
+  "_": "gembar.py: the old site's gembar (its reels, their captions and the stories its featured people told) brought into Phiegg. Where the old site is, which of its files, how large the pictures are made, and where they go.",
+  "source": "D:/Dowloads/Workspace/gemrepo/gemphi/phiadk",
+  "reels": "phiadk-js/public/gembar/REELS",
+  "mocks": "old-phiadk-js/app/gembar/lib/mocks",
+  "out": "public/gembar",
+  "key": "gembar",
+  "size": { "sm": 640, "lg": 1600 },
+  "quality": 82,
+  "data": "src/data/gembar.json"
+}

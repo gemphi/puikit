@@ -48,6 +48,13 @@
 
 .selected { box-shadow: 0 0 0 2px var(--phi-color-primary); }
 
+/* Filling: the face is the whole player, the depth under it unseen; it is held a little large and draws back. */
+.fill {
+  .face, .sheen { inset: 0; border-radius: inherit; box-shadow: none; }
+  .depth { display: none; }
+  .face > * { transform: scale(1.08); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .layer, .face > *, .sheen { transition: none; }
 }
