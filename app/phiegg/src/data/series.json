@@ -22794,6 +22794,2284 @@
           "tense"
         ]
       }
+    },
+    {
+      "id": "sr_oncecity",
+      "kind": "series",
+      "title": "Once City",
+      "clubId": "c_once",
+      "hostId": "h_once",
+      "worldId": "w_once",
+      "tone": "accent",
+      "synopsis": "High over the cloud sea, Once City floats on a ring of lotus-glass domes the way the old dreamers pictured cities over Venus. Vesper Lune reopens the Lotus Lounge, the city's heart, and the whole sky comes back to dance, fall in love and fight to keep the city aloft.",
+      "runtime": 52,
+      "genre": "Sky City Saga",
+      "era": "the golden age of the cloud cities",
+      "cast": [
+        "u_once",
+        "u_gideon_conroy",
+        "u_greer_conroy",
+        "u_gx_amber_parlour_m3",
+        "u_084",
+        "u_gx_garnet_society_m3",
+        "u_gx_dune_mill_m2",
+        "ag_h_calla_society"
+      ],
+      "poolId": "g_c_once_col1",
+      "directorId": "u_gx_sorrel_guild_m3",
+      "themes": {
+        "motifs": [
+          "the ledger",
+          "rain on glass",
+          "mirrors"
+        ],
+        "moods": [
+          "tense",
+          "tender"
+        ]
+      },
+      "rating": 4.2,
+      "views": 0,
+      "episodes": [
+        {
+          "n": 1,
+          "season": 1,
+          "title": "The Last Lift Up",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Vesper Lune rides the last working lift from the Low Lands with every coin she has and the deed to a dark dome."
+        },
+        {
+          "n": 2,
+          "season": 1,
+          "title": "Dust on the Velvet",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The Lotus Lounge is full of dust and a sleeping green lion; Vesper decides to open in seven days anyway."
+        },
+        {
+          "n": 3,
+          "season": 1,
+          "title": "The Sprite in the Garden",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "A green sprite dances alone in the dome garden at dawn, and Vesper offers Pip Verdant a stage."
+        },
+        {
+          "n": 4,
+          "season": 1,
+          "title": "Seven Nights",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Opening night: the lights fail, the band quits, and Pip dances in the dark until the whole dome claps."
+        },
+        {
+          "n": 5,
+          "season": 1,
+          "title": "The Lion Wakes",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Jade the lion wakes for the first time in years to Pip's music and lies down at Vesper's feet."
+        },
+        {
+          "n": 6,
+          "season": 1,
+          "title": "Carat Court",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The Conroy twins both want to dress the lounge in jewels, and each sends a gift the other must not see."
+        },
+        {
+          "n": 7,
+          "season": 1,
+          "title": "The Clockmaker",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Orrin Hale tells Vesper the city sinks a finger's breadth every night the towers run slow."
+        },
+        {
+          "n": 8,
+          "season": 1,
+          "title": "Pink Chaise",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "A pink chaise arrives with no sender, and everyone who sits on it tells the truth."
+        },
+        {
+          "n": 9,
+          "season": 1,
+          "title": "Zebra Post",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "A painted zebra brings Vesper a letter from the Low Lands offering to buy her dome."
+        },
+        {
+          "n": 10,
+          "season": 1,
+          "title": "The Midnight Arcade",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Pip follows a light to the Midnight Arcade and trades a dance for the name of the man who wrote the letter."
+        },
+        {
+          "n": 11,
+          "season": 1,
+          "title": "Silas Gray",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The land baron Silas Gray comes up the lift in a grey coat and pays for every table in the lounge."
+        },
+        {
+          "n": 12,
+          "season": 1,
+          "title": "The Empty House",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Vesper plays to a house Silas bought and left empty, and the sprites of the garden fill it instead."
+        },
+        {
+          "n": 13,
+          "season": 1,
+          "title": "Pearl Passage",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The pearl divers of the cloud sea bring Vesper the first pearl of the season for luck."
+        },
+        {
+          "n": 14,
+          "season": 1,
+          "title": "Greer's Secret",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Greer Conroy confesses she has been mending the lounge's chandeliers at night for free."
+        },
+        {
+          "n": 15,
+          "season": 1,
+          "title": "Tower Three",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The third candle tower stops for an hour and the whole city tilts toward the clouds."
+        },
+        {
+          "n": 16,
+          "season": 1,
+          "title": "Hold the Sky",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Orrin, Mira and the lift crews turn tower three by hand all night while the lounge keeps playing."
+        },
+        {
+          "n": 17,
+          "season": 1,
+          "title": "The Cowgirl Hat",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Vesper's rhinestone hat goes missing on the night of the Carat ball, and the thief is a zebra foal."
+        },
+        {
+          "n": 18,
+          "season": 1,
+          "title": "Stripe",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Stripe the rainbow foal will carry only love letters, which makes him the busiest zebra in Once City."
+        },
+        {
+          "n": 19,
+          "season": 1,
+          "title": "Gideon's Ring",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Gideon makes a ring for someone he will not name and leaves it in the lounge's lost and found."
+        },
+        {
+          "n": 20,
+          "season": 1,
+          "title": "Dance of the Domes",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Pip teaches the whole Pearl Passage a dance and the walkways shake with it."
+        },
+        {
+          "n": 21,
+          "season": 1,
+          "title": "Air Pilot",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Mira Sol flies the post through a storm when the walkways are closed and lands on the lounge roof."
+        },
+        {
+          "n": 22,
+          "season": 1,
+          "title": "The Velvet Rope",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Vesper turns away a duchess for being rude to the staff and the duchess starts a rival lounge."
+        },
+        {
+          "n": 23,
+          "season": 1,
+          "title": "The Rival Lounge",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The Silver Bell opens across the plaza with stolen dancers and twice the lights."
+        },
+        {
+          "n": 24,
+          "season": 1,
+          "title": "Green Light",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Pip is offered a fortune to dance at the Silver Bell and walks over the plaza to say no in person."
+        },
+        {
+          "n": 25,
+          "season": 1,
+          "title": "The Lionesses",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Amber and Onyx refuse Silas Gray entry at the main gate, and the whole city hears about it."
+        },
+        {
+          "n": 26,
+          "season": 1,
+          "title": "The Letter Gate",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Orrin shows Vesper that the main gate is a letter, and that one letter of the city's name is missing."
+        },
+        {
+          "n": 27,
+          "season": 1,
+          "title": "Night of Lanterns",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The Pearl Passage floats its lanterns and every one drifts toward the Lotus Lounge."
+        },
+        {
+          "n": 28,
+          "season": 1,
+          "title": "The Ledger",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Vesper finds the old lounge ledger and learns her mother once danced on the same stage."
+        },
+        {
+          "n": 29,
+          "season": 1,
+          "title": "Down a Breadth",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The city sinks a full breadth in one night and the cloud sea touches the lowest walkway."
+        },
+        {
+          "n": 30,
+          "season": 1,
+          "title": "The Bid",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Silas offers to save the towers if the city lets him own them; the council votes in the lounge."
+        },
+        {
+          "n": 31,
+          "season": 1,
+          "title": "One Vote",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The vote is tied, and the last vote belongs to whoever owns the Lotus Lounge."
+        },
+        {
+          "n": 32,
+          "season": 1,
+          "title": "Vesper Votes",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Vesper votes no, Jade roars for the first time in a century, and the towers start to turn faster."
+        },
+        {
+          "n": 33,
+          "season": 2,
+          "title": "The Fifth Gate",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Orrin's maps show a fifth Letter Gate no one has opened, sealed under the Midnight Arcade."
+        },
+        {
+          "n": 34,
+          "season": 2,
+          "title": "Amber Speaks",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Amber the lioness lets Vesper through the main gate at night and leads her round the walls."
+        },
+        {
+          "n": 35,
+          "season": 2,
+          "title": "Onyx Waits",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Onyx stays at the gate alone and stops a crate of Silas's tools from coming in."
+        },
+        {
+          "n": 36,
+          "season": 2,
+          "title": "The Zebra Stables",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Vesper visits the painted zebras' stables and learns each colour carries a different kind of news."
+        },
+        {
+          "n": 37,
+          "season": 2,
+          "title": "Blue Is Bad News",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "A blue zebra trots into the lounge and nobody wants to open the letter on its saddle."
+        },
+        {
+          "n": 38,
+          "season": 2,
+          "title": "The Missing O",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The letter missing from ONCE is the O, the round gate that was taken down in the old war."
+        },
+        {
+          "n": 39,
+          "season": 2,
+          "title": "Pip's Fever",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Pip falls ill when the dome garden's air runs thin and the whole lounge holds its breath."
+        },
+        {
+          "n": 40,
+          "season": 2,
+          "title": "Garden Air",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Greer and Gideon trade their best pearls for the glass to mend the garden dome."
+        },
+        {
+          "n": 41,
+          "season": 2,
+          "title": "The Duchess Returns",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The rival duchess of the Silver Bell needs Vesper's help when her dome cracks."
+        },
+        {
+          "n": 42,
+          "season": 2,
+          "title": "Two Lounges, One Night",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The Silver Bell and the Lotus Lounge put on one show together and the plaza overflows."
+        },
+        {
+          "n": 43,
+          "season": 2,
+          "title": "Stripe in Love",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Stripe the rainbow foal carries a letter that is for him, from a grey mare in the Low Lands."
+        },
+        {
+          "n": 44,
+          "season": 2,
+          "title": "Down the Lift",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Mira flies Stripe down to the Low Lands to meet the grey mare, and they find Silas's workshops."
+        },
+        {
+          "n": 45,
+          "season": 2,
+          "title": "The Workshops",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Below the clouds Silas is building iron towers that would pull the city down onto his land."
+        },
+        {
+          "n": 46,
+          "season": 2,
+          "title": "The Mare",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The grey mare is Silas's own, and she wants to go up to the city with Stripe."
+        },
+        {
+          "n": 47,
+          "season": 2,
+          "title": "Coming Home",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Stripe and the grey mare ride the lift up and Onyx lets them both through the gate."
+        },
+        {
+          "n": 48,
+          "season": 2,
+          "title": "Madame Orchid's Price",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Madame Orchid will open the arcade's sealed gate if Vesper sings one secret on stage."
+        },
+        {
+          "n": 49,
+          "season": 2,
+          "title": "The Secret Song",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Vesper sings that she once sold the lounge's lease to Silas when she was young and broke."
+        },
+        {
+          "n": 50,
+          "season": 2,
+          "title": "After the Song",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The lounge forgives her, Pip does not speak to her for a day, and Jade sleeps at her door."
+        },
+        {
+          "n": 51,
+          "season": 2,
+          "title": "Under the Arcade",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Behind the sealed gate is a great round door of gold, the lost O of Once City."
+        },
+        {
+          "n": 52,
+          "season": 2,
+          "title": "Too Heavy",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The O is too heavy to lift; every walkway would crack if it were moved by hand."
+        },
+        {
+          "n": 53,
+          "season": 2,
+          "title": "The Zebra Train",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Every painted zebra in the city pulls together, colour by colour, to bring the O to the plaza."
+        },
+        {
+          "n": 54,
+          "season": 2,
+          "title": "Pearl and Gold",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Greer and Gideon set pearls into the O and finally say what the ring in the lost and found was for."
+        },
+        {
+          "n": 55,
+          "season": 2,
+          "title": "Raising the Gate",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The city raises the O at the plaza and, for the first time, the gates spell ONCE."
+        },
+        {
+          "n": 56,
+          "season": 2,
+          "title": "The Gate Remembers",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "When the O stands, the candle towers turn by themselves and the city rises a breadth."
+        },
+        {
+          "n": 57,
+          "season": 2,
+          "title": "Silas's Iron",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Silas switches on his iron towers below and the city shudders against the pull."
+        },
+        {
+          "n": 58,
+          "season": 2,
+          "title": "The Tug",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Every night the city and the iron towers pull against each other while the lounge plays louder."
+        },
+        {
+          "n": 59,
+          "season": 2,
+          "title": "Lionesses on the Wall",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Amber and Onyx walk the walls every night, roaring whenever the iron pulls."
+        },
+        {
+          "n": 60,
+          "season": 2,
+          "title": "The Clockmaker's Son",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Orrin admits his son works for Silas and built the iron towers."
+        },
+        {
+          "n": 61,
+          "season": 2,
+          "title": "Hale and Son",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Orrin goes down the lift to talk to his son, and only Mira knows he went."
+        },
+        {
+          "n": 62,
+          "season": 2,
+          "title": "The Son Comes Up",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Tobin Hale comes up to Once City to see what his father kept turning all his life."
+        },
+        {
+          "n": 63,
+          "season": 2,
+          "title": "Tobin Dances",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Tobin sees Pip dance and switches off one of the iron towers from the lounge's stage."
+        },
+        {
+          "n": 64,
+          "season": 2,
+          "title": "Half the Iron",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Half the iron goes dark, the city settles, and Silas swears he will come up himself."
+        },
+        {
+          "n": 65,
+          "season": 3,
+          "title": "The Storm Bell",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The storm bell rings over the cloud sea, the season when nothing comes up the lift."
+        },
+        {
+          "n": 66,
+          "season": 3,
+          "title": "Locked In",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "No one can leave the city for a month, and the Lotus Lounge becomes everyone's home."
+        },
+        {
+          "n": 67,
+          "season": 3,
+          "title": "Thirty Nights",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Vesper promises a different show for every storm night and runs out of ideas by the fourth."
+        },
+        {
+          "n": 68,
+          "season": 3,
+          "title": "Everyone Sings",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The lounge lets the guests take the stage, and a shy watchmaker steals the season."
+        },
+        {
+          "n": 69,
+          "season": 3,
+          "title": "Lightning in the Glass",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Lightning cracks the Clockwork Quarter's dome and the clocks stop at a quarter past nine."
+        },
+        {
+          "n": 70,
+          "season": 3,
+          "title": "Quarter Past Nine",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "With every clock stopped, the city lives one long evening that nobody wants to end."
+        },
+        {
+          "n": 71,
+          "season": 3,
+          "title": "Silas in the Storm",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Silas Gray comes up in an airship through the storm and lands on the plaza in the rain."
+        },
+        {
+          "n": 72,
+          "season": 3,
+          "title": "Guest of the Lounge",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Vesper gives Silas a table, because the Lotus Lounge has never turned anyone away in a storm."
+        },
+        {
+          "n": 73,
+          "season": 3,
+          "title": "The Land Baron Dances",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Pip asks Silas to dance, and he does, badly, and laughs for the first time in the story."
+        },
+        {
+          "n": 74,
+          "season": 3,
+          "title": "What Silas Wants",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Silas tells Vesper the city's weight is ruining his land and the people below can't grow anything."
+        },
+        {
+          "n": 75,
+          "season": 3,
+          "title": "The Shadow Below",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Mira flies under the city and sees the dark the floating city casts on the Low Lands."
+        },
+        {
+          "n": 76,
+          "season": 3,
+          "title": "A Fair Question",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The council must decide whether a city in the sky owes anything to the land it shades."
+        },
+        {
+          "n": 77,
+          "season": 3,
+          "title": "Greer's Plan",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Greer suggests mirrors under the domes to send light down to the farms below."
+        },
+        {
+          "n": 78,
+          "season": 3,
+          "title": "Mirror Work",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The whole city works through the storm to hang mirrors under the walkways."
+        },
+        {
+          "n": 79,
+          "season": 3,
+          "title": "Pip Can't Go",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Pip wants to help below but can't breathe outside a dome, and Jade will not leave her side."
+        },
+        {
+          "n": 80,
+          "season": 3,
+          "title": "The Glass Bubble",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Tobin builds Pip a glass helmet so she can dance outside the domes for one hour."
+        },
+        {
+          "n": 81,
+          "season": 3,
+          "title": "One Hour Outside",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Pip dances on the outer walkway in the storm for one hour and the zebras dance with her."
+        },
+        {
+          "n": 82,
+          "season": 3,
+          "title": "Madame Orchid's Book",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Madame Orchid lends Vesper a book of every bargain ever made in Once City."
+        },
+        {
+          "n": 83,
+          "season": 3,
+          "title": "The First Bargain",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The book shows the city's founders promised the Low Lands light and forgot."
+        },
+        {
+          "n": 84,
+          "season": 3,
+          "title": "Founders' Debt",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Vesper reads the founders' promise aloud in the lounge, and the room goes quiet."
+        },
+        {
+          "n": 85,
+          "season": 3,
+          "title": "Stripe's Foal",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Stripe and the grey mare have a foal with grey and rainbow stripes."
+        },
+        {
+          "n": 86,
+          "season": 3,
+          "title": "Lionesses' Cubs",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Amber has three cubs in the gatehouse and Onyx keeps the gate alone again."
+        },
+        {
+          "n": 87,
+          "season": 3,
+          "title": "Light Below",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The first mirror light reaches the Low Lands' fields, and the farmers wave up at the city."
+        },
+        {
+          "n": 88,
+          "season": 3,
+          "title": "Silas Watches",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Silas stands at the edge of the plaza and watches the light fall on his own land."
+        },
+        {
+          "n": 89,
+          "season": 3,
+          "title": "The Iron Goes Dark",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Silas switches off the last iron tower himself."
+        },
+        {
+          "n": 90,
+          "season": 3,
+          "title": "The Clocks Start",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The storm breaks, the Clockwork Quarter's clocks start again, and the long evening ends."
+        },
+        {
+          "n": 91,
+          "season": 3,
+          "title": "After the Storm",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The lift runs again and half the Low Lands comes up to see the lounge."
+        },
+        {
+          "n": 92,
+          "season": 3,
+          "title": "The Duchess Proposes",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The duchess of the Silver Bell proposes the two lounges become one."
+        },
+        {
+          "n": 93,
+          "season": 3,
+          "title": "Two Names",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Vesper and the duchess argue over the name for a whole episode and settle on keeping both."
+        },
+        {
+          "n": 94,
+          "season": 3,
+          "title": "Gideon Leaves",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Gideon goes down to the Low Lands to set up a jeweller's school, and Greer stays."
+        },
+        {
+          "n": 95,
+          "season": 3,
+          "title": "The Ring Returns",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Greer finds the ring from the lost and found on her pillow with a zebra-post note."
+        },
+        {
+          "n": 96,
+          "season": 3,
+          "title": "Storm's End Ball",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The storm's end ball fills every dome, and Silas Gray buys a ticket like everyone else."
+        },
+        {
+          "n": 97,
+          "season": 4,
+          "title": "The Last Pageant",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Once City holds the first Miss Cloud Sea pageant since Vesper won it, and she is asked to judge."
+        },
+        {
+          "n": 98,
+          "season": 4,
+          "title": "Contestants",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Twelve contestants from twelve domes arrive, and one of them is Mira the air-pilot."
+        },
+        {
+          "n": 99,
+          "season": 4,
+          "title": "Pip's Pupil",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Pip takes on a pupil, a girl from the Low Lands who has never seen a dome."
+        },
+        {
+          "n": 100,
+          "season": 4,
+          "title": "The Rise",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Orrin says the towers could lift the city into the high air where storms can't reach."
+        },
+        {
+          "n": 101,
+          "season": 4,
+          "title": "Higher or Here",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The city debates rising out of reach or staying close to the land it now lights."
+        },
+        {
+          "n": 102,
+          "season": 4,
+          "title": "Tobin's Machine",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Tobin builds a lift that can reach the city from anywhere below, not just one tower."
+        },
+        {
+          "n": 103,
+          "season": 4,
+          "title": "Many Lifts",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Lifts go down to every village in the Low Lands, and the city fills with new faces."
+        },
+        {
+          "n": 104,
+          "season": 4,
+          "title": "Crowded Domes",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The domes are full, rents rise, and Vesper fights to keep the lounge open to everyone."
+        },
+        {
+          "n": 105,
+          "season": 4,
+          "title": "Free Night",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The Lotus Lounge declares one free night a week, and the queue reaches the gates."
+        },
+        {
+          "n": 106,
+          "season": 4,
+          "title": "Amber's Cubs Grow",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Amber's cubs learn to guard the gate and let in only people who smile at them."
+        },
+        {
+          "n": 107,
+          "season": 4,
+          "title": "Painted Zebras",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The painted zebras win the vote to become the city's official post, colour by colour."
+        },
+        {
+          "n": 108,
+          "season": 4,
+          "title": "Madame Orchid's Last Secret",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Madame Orchid closes the Midnight Arcade and tells Vesper who sent the pink chaise."
+        },
+        {
+          "n": 109,
+          "season": 4,
+          "title": "The Chaise",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The pink chaise was sent by Vesper's mother before she died, for the day the lounge reopened."
+        },
+        {
+          "n": 110,
+          "season": 4,
+          "title": "Mother's Stage",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Vesper dances, for the first time in the story, on the stage her mother danced on."
+        },
+        {
+          "n": 111,
+          "season": 4,
+          "title": "Jade Grows Old",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Jade the lion sleeps longer every day, and Pip plays only the songs he trusts."
+        },
+        {
+          "n": 112,
+          "season": 4,
+          "title": "The Green Sleep",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Jade falls asleep for good during the softest song, and the whole city dims its lights."
+        },
+        {
+          "n": 113,
+          "season": 4,
+          "title": "After Jade",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The lounge is quiet for a week, until Stripe's foal walks in and lies where Jade lay."
+        },
+        {
+          "n": 114,
+          "season": 4,
+          "title": "The Final Round",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The pageant's final round is a dance, and Mira wins it flying her airship to the music."
+        },
+        {
+          "n": 115,
+          "season": 4,
+          "title": "Mira's Crown",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Mira wears the crown for one night and gives it to Pip's pupil from the Low Lands."
+        },
+        {
+          "n": 116,
+          "season": 4,
+          "title": "Greer and Gideon",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Gideon comes back up the lift with his first class of jewellers, and Greer is at the gate."
+        },
+        {
+          "n": 117,
+          "season": 4,
+          "title": "A Wedding in Carat Court",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Greer and Gideon marry under the O gate, and the zebras carry every invitation."
+        },
+        {
+          "n": 118,
+          "season": 4,
+          "title": "Silas's Toast",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Silas Gray gives a toast at the wedding and admits Once City was worth more in the air."
+        },
+        {
+          "n": 119,
+          "season": 4,
+          "title": "The Vote Again",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The council votes once more: rise high, or stay low and share the light."
+        },
+        {
+          "n": 120,
+          "season": 4,
+          "title": "Stay",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The city votes to stay, and Orrin locks the towers at the height where the mirrors reach every field."
+        },
+        {
+          "n": 121,
+          "season": 4,
+          "title": "Orrin's Rest",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Orrin hands the towers to Tobin and sits down for the first time in forty years."
+        },
+        {
+          "n": 122,
+          "season": 4,
+          "title": "The Lounge Passes",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Vesper decides it is time to give the Lotus Lounge to the next keeper."
+        },
+        {
+          "n": 123,
+          "season": 4,
+          "title": "Who Keeps It",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Pip, the duchess and Mira each think they should have it, and none of them asks for it."
+        },
+        {
+          "n": 124,
+          "season": 4,
+          "title": "Pip's Answer",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Pip says the lounge should belong to whoever dances on its stage that night."
+        },
+        {
+          "n": 125,
+          "season": 4,
+          "title": "Everyone Dances",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "On the last night everyone in the city dances on the stage, so the lounge belongs to all of them."
+        },
+        {
+          "n": 126,
+          "season": 4,
+          "title": "The Letter Gates Open",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Every Letter Gate stands open at once, and the lionesses lie down in the sun."
+        },
+        {
+          "n": 127,
+          "season": 4,
+          "title": "Vesper's Hat",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "Vesper leaves her rhinestone hat on the pink chaise for the next queen of the cloud sea."
+        },
+        {
+          "n": 128,
+          "season": 4,
+          "title": "Once",
+          "tone": "accent",
+          "runtime": 52,
+          "synopsis": "The lights go down over the domes, the cloud sea turns gold, and Once City is still there in the morning."
+        }
+      ],
+      "seasons": [
+        {
+          "n": 1,
+          "title": "The Lotus Lounge",
+          "arc": "Vesper reopens the Lotus Lounge, finds Pip and Jade, and learns the candle towers are failing.",
+          "episodeCount": 32
+        },
+        {
+          "n": 2,
+          "title": "The Letter Gates",
+          "arc": "The city's gates are letters of its own type; the missing letter is found and the lionesses and the zebras keep the city whole.",
+          "episodeCount": 32
+        },
+        {
+          "n": 3,
+          "title": "Storm Season",
+          "arc": "Silas comes up in the storm season; the lounge, the gates and the people of the domes hold the city together.",
+          "episodeCount": 32
+        },
+        {
+          "n": 4,
+          "title": "Once and Always",
+          "arc": "Once City chooses what it will be: it rises, it shares its light, and the Lotus Lounge passes to the next dancers.",
+          "episodeCount": 32
+        }
+      ],
+      "castCount": 8,
+      "seasonCount": 4,
+      "episodeCount": 128,
+      "world": {
+        "place": "A ring of lotus-shaped glass domes ribbed in gold, floating on the cloud sea over the Low Lands, held up by the turning candle towers. The Lotus Lounge is the great dome at the middle; Carat Court, the Clockwork Quarter, Pearl Passage and the Midnight Arcade lie round it on the purple walkways.",
+        "doors": "Every district is entered through a Letter Gate, a door cut in the shape of a letter of the city's own type; read from the plaza the four main gates spell ONCE. Two lionesses, Amber and Onyx, keep the main gate, and the painted zebras, each a different colour, carry the city's post along the walkways.",
+        "people": [
+          [
+            "Vesper Lune",
+            "a former Miss Cloud Sea in a pink rhinestone hat who buys back the shuttered Lotus Lounge and means to make it shine again"
+          ],
+          [
+            "Pip Verdant",
+            "a green cloud sprite and the best dancer in the sky, born in the dome gardens and unable to breathe outside a dome"
+          ],
+          [
+            "Jade",
+            "the jade-green lion who sleeps at the lounge's centre and wakes only for music he trusts"
+          ],
+          [
+            "Amber and Onyx",
+            "the lionesses of the main Letter Gate, sisters who decide who may enter Once City"
+          ],
+          [
+            "Orrin Hale",
+            "the old clockmaker who keeps the candle towers turning and the city in the air"
+          ],
+          [
+            "Gideon and Greer Conroy",
+            "twin jewellers of Carat Court, rivals in business and in love"
+          ],
+          [
+            "Mira Sol",
+            "the young air-pilot who flies the zebra post when the walkways fail"
+          ],
+          [
+            "Silas Gray",
+            "a land baron of the Low Lands who wants Once City brought down to the ground and sold"
+          ],
+          [
+            "Madame Orchid",
+            "keeper of the Midnight Arcade, who trades in secrets after twelve"
+          ],
+          [
+            "Stripe",
+            "the rainbow zebra foal who refuses to carry anything but love letters"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "sr_chingmaid",
+      "kind": "series",
+      "title": "Ching Maid",
+      "clubId": "c_once",
+      "hostId": "h_once",
+      "worldId": "w_once",
+      "tone": "sage",
+      "synopsis": "In Once City's Pearl Passage, reigning beauty queen Mei Ching inherits Ching Maid, her grandmother's failing cleaning and concierge firm, and saves it the only way she can afford: with a crew of epic nerds who have never cleaned anything, against a city full of rival queens who run firms of their own.",
+      "runtime": 24,
+      "genre": "Workplace Comedy",
+      "era": "the golden age of the cloud cities",
+      "cast": [
+        "u_once",
+        "u_gideon_conroy",
+        "u_greer_conroy",
+        "u_gx_amber_parlour_m3",
+        "u_084",
+        "u_gx_garnet_society_m3",
+        "u_gx_dune_mill_m2",
+        "ag_h_calla_society"
+      ],
+      "poolId": "g_c_once_col1",
+      "directorId": "u_gx_sorrel_guild_m3",
+      "themes": {
+        "motifs": [
+          "the ledger",
+          "rain on glass",
+          "mirrors"
+        ],
+        "moods": [
+          "tense",
+          "tender"
+        ]
+      },
+      "rating": 4.2,
+      "views": 0,
+      "episodes": [
+        {
+          "n": 1,
+          "season": 1,
+          "title": "The Crown and the Keys",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Mei Ching is crowned Miss Pearl Passage on the same day Po Po hands her the keys to a firm with three clients left."
+        },
+        {
+          "n": 2,
+          "season": 1,
+          "title": "Help Wanted",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Mei's notice for staff is answered by a guildmaster, a speedrunner, a robot builder and a quiz champion."
+        },
+        {
+          "n": 3,
+          "season": 1,
+          "title": "The Interview",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Po Po interviews the four by making them fold a fitted sheet, and none of them can."
+        },
+        {
+          "n": 4,
+          "season": 1,
+          "title": "First Job",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The crew's first job is the Lotus Lounge after a party, and Dex plans it like a dungeon raid."
+        },
+        {
+          "n": 5,
+          "season": 1,
+          "title": "Speedrun",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Kenji cleans a whole tower in record time by skipping every room he decides is optional."
+        },
+        {
+          "n": 6,
+          "season": 1,
+          "title": "Bitsy's Mop",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Bitsy builds a mop that cleans by itself and also, unfortunately, by night."
+        },
+        {
+          "n": 7,
+          "season": 1,
+          "title": "Know-It-All",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Theo corrects a client's history of her own family vase until the vase is the only thing left talking to him."
+        },
+        {
+          "n": 8,
+          "season": 1,
+          "title": "Lan Yu Calls",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Rival queen Lan Yu offers to buy Ching Maid for the price of a good dinner."
+        },
+        {
+          "n": 9,
+          "season": 1,
+          "title": "The Sash Stays On",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Mei insists on wearing her sash on every job, and it turns out to be the best advert in the city."
+        },
+        {
+          "n": 10,
+          "season": 1,
+          "title": "Po Po's Rules",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Po Po teaches the crew her seven rules, and the first is never to read a client's letters."
+        },
+        {
+          "n": 11,
+          "season": 1,
+          "title": "Rule One",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Kenji reads a client's letter by accident and learns the client is planning to fire Ching Maid."
+        },
+        {
+          "n": 12,
+          "season": 1,
+          "title": "Save the Client",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The crew stays all night to make the client's dome so clean she forgets why she was angry."
+        },
+        {
+          "n": 13,
+          "season": 1,
+          "title": "Dumpling Night",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Po Po's Friday dumpling night becomes the crew's favourite meeting, and Dex makes the worst dumpling in history."
+        },
+        {
+          "n": 14,
+          "season": 1,
+          "title": "The Guild",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Dex brings his whole role-play guild to clean the convention dome in costume."
+        },
+        {
+          "n": 15,
+          "season": 1,
+          "title": "Cosplay Clean",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Pearl Passage is scandalised and delighted by forty knights polishing the walkways."
+        },
+        {
+          "n": 16,
+          "season": 1,
+          "title": "The Clockwork Queen",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Jade Tsai's cleaning gadgets beat Bitsy's mop at a demonstration, and Bitsy wants a rematch."
+        },
+        {
+          "n": 17,
+          "season": 1,
+          "title": "Gadget Duel",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Bitsy and Jade duel with machines in a dusty tower and accidentally invent a better vacuum together."
+        },
+        {
+          "n": 18,
+          "season": 1,
+          "title": "Theo's Crush",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Theo practises asking Mei to dinner by reading her quiz questions she always gets right."
+        },
+        {
+          "n": 19,
+          "season": 1,
+          "title": "The Lost Key",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Po Po's oldest key goes missing, and with it the key to a room nobody remembers."
+        },
+        {
+          "n": 20,
+          "season": 1,
+          "title": "The Locked Room",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The crew finds the locked room in the Lotus Lounge and Vesper won't say what is inside."
+        },
+        {
+          "n": 21,
+          "season": 1,
+          "title": "Coco After Dark",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Coco Wen hires Kenji for a night job and won't tell him what he is cleaning."
+        },
+        {
+          "n": 22,
+          "season": 1,
+          "title": "Night Shift",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Kenji's night job turns out to be a secret party that Coco is throwing for her own grandmother."
+        },
+        {
+          "n": 23,
+          "season": 1,
+          "title": "The Inspector",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "A city inspector threatens to close Ching Maid for having no licence for robots."
+        },
+        {
+          "n": 24,
+          "season": 1,
+          "title": "Robot Licence",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Bitsy studies all night for the robot licence and passes on the strength of Theo's flashcards."
+        },
+        {
+          "n": 25,
+          "season": 1,
+          "title": "Mei's Talent",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Mei's pageant talent round is the same night as the firm's biggest job, and she tries to do both."
+        },
+        {
+          "n": 26,
+          "season": 1,
+          "title": "Mop and Crown",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Mei performs a cleaning routine as her talent and wins the round and three new clients."
+        },
+        {
+          "n": 27,
+          "season": 1,
+          "title": "Lan Yu's Offer",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Lan Yu offers Dex a job at twice the pay, and Dex has to decide where his guild belongs."
+        },
+        {
+          "n": 28,
+          "season": 1,
+          "title": "Loyalty",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Dex stays, and brings Lan Yu a dumpling to show there are no hard feelings."
+        },
+        {
+          "n": 29,
+          "season": 1,
+          "title": "The Big Contract",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The council puts the cleaning of every Letter Gate out to tender."
+        },
+        {
+          "n": 30,
+          "season": 1,
+          "title": "The Pitch",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Mei pitches for the gates with a speech Theo wrote and Kenji timed to the second."
+        },
+        {
+          "n": 31,
+          "season": 1,
+          "title": "Losing",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Ching Maid loses the contract to Lan Yu, and the crew sulks over dumplings."
+        },
+        {
+          "n": 32,
+          "season": 1,
+          "title": "Clean Sweep",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Lan Yu's crew can't get past the lionesses at the main gate, and she has to call Po Po."
+        },
+        {
+          "n": 33,
+          "season": 2,
+          "title": "Season of Sashes",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The pageant season opens and every queen in Once City needs her dome spotless."
+        },
+        {
+          "n": 34,
+          "season": 2,
+          "title": "ConDome",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The convention comes to the dome across the walkway and Dex's guild has the biggest booth."
+        },
+        {
+          "n": 35,
+          "season": 2,
+          "title": "Same Week",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The pageant final and the convention land on the same week, and Ching Maid is booked for both."
+        },
+        {
+          "n": 36,
+          "season": 2,
+          "title": "Split Crew",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Mei sends the nerds to the pageant and takes the convention herself."
+        },
+        {
+          "n": 37,
+          "season": 2,
+          "title": "Queens Backstage",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Kenji, Bitsy, Theo and Dex learn that a pageant backstage is more dangerous than any raid."
+        },
+        {
+          "n": 38,
+          "season": 2,
+          "title": "Mei at the Con",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Mei walks the convention in her sash and is mistaken for a character from a famous game."
+        },
+        {
+          "n": 39,
+          "season": 2,
+          "title": "The Costume Contest",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Mei is entered in the costume contest as herself and wins second place."
+        },
+        {
+          "n": 40,
+          "season": 2,
+          "title": "Bitsy Gets Glammed",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Lan Yu does Bitsy's make-up backstage, and Bitsy builds Lan Yu a brush that never smudges."
+        },
+        {
+          "n": 41,
+          "season": 2,
+          "title": "Theo the Coach",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Theo coaches Coco Wen for the pageant's question round with a thousand flashcards."
+        },
+        {
+          "n": 42,
+          "season": 2,
+          "title": "Coco's Answer",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Coco answers the final question with a fact Theo taught her and gets a standing ovation."
+        },
+        {
+          "n": 43,
+          "season": 2,
+          "title": "Kenji's Record",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Kenji enters a speedrun at the convention and breaks the record while folding towels."
+        },
+        {
+          "n": 44,
+          "season": 2,
+          "title": "Dex's Quest",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Dex runs a quest across Pearl Passage, and the prize is a free clean from Ching Maid."
+        },
+        {
+          "n": 45,
+          "season": 2,
+          "title": "Everyone Wins",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Three hundred people win the quest, and Ching Maid has to clean three hundred domes."
+        },
+        {
+          "n": 46,
+          "season": 2,
+          "title": "The Long Week",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The crew works through the night for a week, and Po Po brings dumplings at every hour."
+        },
+        {
+          "n": 47,
+          "season": 2,
+          "title": "Po Po's Pageant",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Po Po reveals she was Miss Pearl Passage fifty years ago, with the sash to prove it."
+        },
+        {
+          "n": 48,
+          "season": 2,
+          "title": "Two Sashes",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Mei and Po Po wear their sashes together to the final, and the hall cheers the older one louder."
+        },
+        {
+          "n": 49,
+          "season": 2,
+          "title": "Jade's Gadget",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Jade Tsai's gadget fails on stage and Bitsy fixes it from the wings."
+        },
+        {
+          "n": 50,
+          "season": 2,
+          "title": "Rivals and Friends",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Jade asks Bitsy to build with her for the rest of the season."
+        },
+        {
+          "n": 51,
+          "season": 2,
+          "title": "The Final",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The pageant final comes down to Lan Yu and Coco, and Mei has to judge."
+        },
+        {
+          "n": 52,
+          "season": 2,
+          "title": "The Judge",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Mei gives the crown to Coco and loses her oldest rival's friendship for a week."
+        },
+        {
+          "n": 53,
+          "season": 2,
+          "title": "Lan Yu Alone",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Lan Yu's firm is struggling too, and she has nobody to tell."
+        },
+        {
+          "n": 54,
+          "season": 2,
+          "title": "Dumplings for Lan",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Po Po invites Lan Yu to Friday dumplings and seats her next to Dex."
+        },
+        {
+          "n": 55,
+          "season": 2,
+          "title": "The Con Ends",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The convention ends with a dance, and the knights and the queens dance together."
+        },
+        {
+          "n": 56,
+          "season": 2,
+          "title": "Theo's Question",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Theo finally asks Mei to dinner by putting it in a quiz, and she gets it wrong on purpose."
+        },
+        {
+          "n": 57,
+          "season": 2,
+          "title": "Dinner Date",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Mei and Theo's dinner is interrupted by an emergency at the Lotus Lounge."
+        },
+        {
+          "n": 58,
+          "season": 2,
+          "title": "The Lounge Flood",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "A burst fountain floods the Lotus Lounge on the night of the city's biggest show."
+        },
+        {
+          "n": 59,
+          "season": 2,
+          "title": "All Hands",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Ching Maid, Lan Yu's crew and Jade's machines work side by side to save the lounge."
+        },
+        {
+          "n": 60,
+          "season": 2,
+          "title": "Show Goes On",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The show goes on in a lounge still wet, and the dancers make the puddles part of it."
+        },
+        {
+          "n": 61,
+          "season": 2,
+          "title": "Vesper's Thanks",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Vesper gives Ching Maid the lounge contract for life, and Po Po cries."
+        },
+        {
+          "n": 62,
+          "season": 2,
+          "title": "Lan Yu's Partner",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Lan Yu proposes a partnership, and Mei says she'll think about it over dumplings."
+        },
+        {
+          "n": 63,
+          "season": 2,
+          "title": "Think It Over",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The crew votes on the partnership, and the vote is tied."
+        },
+        {
+          "n": 64,
+          "season": 2,
+          "title": "Crown and Controller",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Po Po casts the deciding vote: yes, if Lan Yu learns to fold a fitted sheet."
+        },
+        {
+          "n": 65,
+          "season": 3,
+          "title": "The Ching-bot",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Bitsy and Jade build a robot that cleans, folds, makes tea and tells Po Po's jokes."
+        },
+        {
+          "n": 66,
+          "season": 3,
+          "title": "Going Viral",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "A video of the Ching-bot folding a fitted sheet is seen by every dome in the sky."
+        },
+        {
+          "n": 67,
+          "season": 3,
+          "title": "Orders",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "A thousand orders for Ching-bots arrive in a day, and Ching Maid has no factory."
+        },
+        {
+          "n": 68,
+          "season": 3,
+          "title": "Kenji's Factory",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Kenji designs the fastest assembly line in Once City, mostly by skipping steps."
+        },
+        {
+          "n": 69,
+          "season": 3,
+          "title": "The Recall",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Half the Ching-bots tell jokes at funerals, and they all have to come back."
+        },
+        {
+          "n": 70,
+          "season": 3,
+          "title": "Po Po's Jokes",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Po Po teaches the robots when not to tell jokes, which is a lesson for Dex too."
+        },
+        {
+          "n": 71,
+          "season": 3,
+          "title": "The Bot That Cried",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "One Ching-bot learns to cry at sad films, and Bitsy can't bring herself to fix it."
+        },
+        {
+          "n": 72,
+          "season": 3,
+          "title": "Lan Yu's Fear",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Lan Yu fears robots will put her human crew out of work."
+        },
+        {
+          "n": 73,
+          "season": 3,
+          "title": "Robots and Hands",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Mei promises every Ching-bot works beside a person, never instead of one."
+        },
+        {
+          "n": 74,
+          "season": 3,
+          "title": "The Union",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The city's cleaners form a union, and Mei joins it as its first queen."
+        },
+        {
+          "n": 75,
+          "season": 3,
+          "title": "Coco's Gala",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Coco Wen throws a gala where the robots serve, and one of them falls in love with a chandelier."
+        },
+        {
+          "n": 76,
+          "season": 3,
+          "title": "Theo and Mei",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Theo and Mei try a second date with a Ching-bot as chaperone."
+        },
+        {
+          "n": 77,
+          "season": 3,
+          "title": "The Chaperone",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The robot chaperone reports every word of the date to Po Po."
+        },
+        {
+          "n": 78,
+          "season": 3,
+          "title": "Dex's Dragon",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Dex builds a dragon costume for a Ching-bot, and it frightens the lionesses at the gate."
+        },
+        {
+          "n": 79,
+          "season": 3,
+          "title": "The Lionesses Object",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Amber and Onyx refuse to let any robot through the main gate."
+        },
+        {
+          "n": 80,
+          "season": 3,
+          "title": "Making Friends",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Bitsy teaches a Ching-bot to bring the lionesses' cubs their favourite toys."
+        },
+        {
+          "n": 81,
+          "season": 3,
+          "title": "Through the Gate",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The lionesses let the Ching-bots through, one at a time, if they bring treats."
+        },
+        {
+          "n": 82,
+          "season": 3,
+          "title": "The Copycat",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "A firm in the Low Lands starts selling cheap copies of the Ching-bot."
+        },
+        {
+          "n": 83,
+          "season": 3,
+          "title": "Bad Bots",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The copies break down all over the city and everyone blames Ching Maid."
+        },
+        {
+          "n": 84,
+          "season": 3,
+          "title": "Fixing Everyone's",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The crew fixes every broken copy for free, and wins the city back."
+        },
+        {
+          "n": 85,
+          "season": 3,
+          "title": "Jade's Offer",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "A big firm offers Jade a fortune to leave Ching Maid and take the robot with her."
+        },
+        {
+          "n": 86,
+          "season": 3,
+          "title": "Jade Stays",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Jade stays, because nobody else brings dumplings on Friday."
+        },
+        {
+          "n": 87,
+          "season": 3,
+          "title": "The Exhibition",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The Ching-bot is shown at the Sky Exhibition, and Bitsy has to give a speech."
+        },
+        {
+          "n": 88,
+          "season": 3,
+          "title": "Bitsy's Speech",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Bitsy, who hates speaking, tells the hall that the robot is only as kind as the people who built it."
+        },
+        {
+          "n": 89,
+          "season": 3,
+          "title": "The Gold Ribbon",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The Ching-bot wins the gold ribbon, and Po Po pins it on Bitsy's overalls."
+        },
+        {
+          "n": 90,
+          "season": 3,
+          "title": "Mei Burns Out",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Mei runs the firm, the union and her reign at once and falls asleep in a fountain."
+        },
+        {
+          "n": 91,
+          "season": 3,
+          "title": "The Crew Takes Over",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The crew runs Ching Maid for a week so Mei can rest, and nothing goes right."
+        },
+        {
+          "n": 92,
+          "season": 3,
+          "title": "Mei Returns",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Mei comes back to find the crew has redecorated the shop as a guild hall."
+        },
+        {
+          "n": 93,
+          "season": 3,
+          "title": "The Guild Hall",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Mei keeps the guild hall, and the clients love it."
+        },
+        {
+          "n": 94,
+          "season": 3,
+          "title": "Po Po's Secret",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Po Po tells Mei the lost key from the first season opens a room under the shop."
+        },
+        {
+          "n": 95,
+          "season": 3,
+          "title": "Under the Shop",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Under the shop is the very first Ching Maid sign, from the old days, before the name was changed."
+        },
+        {
+          "n": 96,
+          "season": 3,
+          "title": "The Robot Maid",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The crew hangs the old sign beside the new one, and the Ching-bots polish both."
+        },
+        {
+          "n": 97,
+          "season": 4,
+          "title": "Lantern Season",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The Lantern Festival is coming, and Ching Maid is asked to hang every lantern in Pearl Passage."
+        },
+        {
+          "n": 98,
+          "season": 4,
+          "title": "Ten Thousand Lanterns",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Kenji calculates how fast ten thousand lanterns can be hung, and is wrong by a week."
+        },
+        {
+          "n": 99,
+          "season": 4,
+          "title": "Po Po Retires",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Po Po announces she will retire on Lantern Night, and the crew refuses to accept it."
+        },
+        {
+          "n": 100,
+          "season": 4,
+          "title": "The Plan",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Dex plans the greatest Lantern Night in history as Po Po's farewell."
+        },
+        {
+          "n": 101,
+          "season": 4,
+          "title": "Secret Rehearsals",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The crew rehearses a dance for Po Po in secret, and Kenji has two left feet."
+        },
+        {
+          "n": 102,
+          "season": 4,
+          "title": "Vesper Helps",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Vesper lends the Lotus Lounge's dancers to teach the crew the steps."
+        },
+        {
+          "n": 103,
+          "season": 4,
+          "title": "Pip's Class",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Pip the sprite gives Kenji a dance lesson and he finally finds the beat."
+        },
+        {
+          "n": 104,
+          "season": 4,
+          "title": "Lan Yu's Lanterns",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Lan Yu's crew makes lanterns shaped like every queen's sash."
+        },
+        {
+          "n": 105,
+          "season": 4,
+          "title": "The Missing Lantern",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Po Po's own lantern, from her first festival, has gone missing."
+        },
+        {
+          "n": 106,
+          "season": 4,
+          "title": "The Lantern Hunt",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The crew searches every dome in Pearl Passage for Po Po's lantern."
+        },
+        {
+          "n": 107,
+          "season": 4,
+          "title": "Coco Knows",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Coco Wen knows where the lantern is, and won't say until the festival."
+        },
+        {
+          "n": 108,
+          "season": 4,
+          "title": "Theo Proposes",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Theo tries to propose to Mei and is interrupted by a falling lantern."
+        },
+        {
+          "n": 109,
+          "season": 4,
+          "title": "Second Try",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Theo tries again at dumpling night and Po Po answers yes for her."
+        },
+        {
+          "n": 110,
+          "season": 4,
+          "title": "Mei's Answer",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Mei says yes herself the next morning, in her sash, on the walkway."
+        },
+        {
+          "n": 111,
+          "season": 4,
+          "title": "Bitsy and Jade",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Bitsy and Jade open a workshop together in the room under the shop."
+        },
+        {
+          "n": 112,
+          "season": 4,
+          "title": "Dex's Guild Grows",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Dex's guild becomes the biggest club in Once City, and half of them work for Ching Maid."
+        },
+        {
+          "n": 113,
+          "season": 4,
+          "title": "Kenji's Last Run",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Kenji retires from speedrunning to run the firm's schedule, and finds he likes going slowly."
+        },
+        {
+          "n": 114,
+          "season": 4,
+          "title": "The Rain",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Rain threatens to ruin the lanterns, and the Ching-bots hold umbrellas over every one."
+        },
+        {
+          "n": 115,
+          "season": 4,
+          "title": "The Storm Bell",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The storm bell rings, and the festival may have to be called off."
+        },
+        {
+          "n": 116,
+          "season": 4,
+          "title": "Lantern in the Storm",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The crew hangs the last lanterns in the storm while the lionesses guard the ladders."
+        },
+        {
+          "n": 117,
+          "season": 4,
+          "title": "The Sky Clears",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The storm passes on the evening of the festival, as if Po Po had arranged it."
+        },
+        {
+          "n": 118,
+          "season": 4,
+          "title": "Lantern Night",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Ten thousand lanterns float over Pearl Passage, and Po Po's is the last."
+        },
+        {
+          "n": 119,
+          "season": 4,
+          "title": "Coco's Gift",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Coco reveals she found Po Po's lantern and mended it, and gives it back at the river."
+        },
+        {
+          "n": 120,
+          "season": 4,
+          "title": "The Farewell Dance",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The crew dances for Po Po on the lantern walkway, and Kenji doesn't miss a step."
+        },
+        {
+          "n": 121,
+          "season": 4,
+          "title": "Po Po's Words",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Po Po tells the crew that the firm was never about cleaning but about keeping each other's keys."
+        },
+        {
+          "n": 122,
+          "season": 4,
+          "title": "The Keys",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Po Po gives each of the crew a key of their own to the shop."
+        },
+        {
+          "n": 123,
+          "season": 4,
+          "title": "The Wedding Plans",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Mei and Theo plan a wedding, and Lan Yu insists on being maid of honour."
+        },
+        {
+          "n": 124,
+          "season": 4,
+          "title": "Maid of Honour",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Lan Yu and Dex argue over the wedding plan and fall for each other while arguing."
+        },
+        {
+          "n": 125,
+          "season": 4,
+          "title": "The Wedding",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Mei and Theo marry in the Lotus Lounge, and the Ching-bots serve dumplings."
+        },
+        {
+          "n": 126,
+          "season": 4,
+          "title": "The New Queen",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Mei hands on her crown at the next pageant, to a girl who works the Ching Maid night shift."
+        },
+        {
+          "n": 127,
+          "season": 4,
+          "title": "Po Po's Garden",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "Po Po retires to the dome garden and grows the herbs for Friday's dumplings."
+        },
+        {
+          "n": 128,
+          "season": 4,
+          "title": "Ching Maid",
+          "tone": "sage",
+          "runtime": 24,
+          "synopsis": "The shop opens on a Monday with two signs, five keys and a queue round the walkway."
+        }
+      ],
+      "seasons": [
+        {
+          "n": 1,
+          "title": "Clean Sweep",
+          "arc": "Mei takes over Ching Maid with no money and no staff, and hires the only people who answer her notice: four epic nerds.",
+          "episodeCount": 32
+        },
+        {
+          "n": 2,
+          "title": "Crown and Controller",
+          "arc": "Pageant season and the city's biggest nerd convention land on the same week, and Ching Maid must clean both.",
+          "episodeCount": 32
+        },
+        {
+          "n": 3,
+          "title": "The Robot Maid",
+          "arc": "Bitsy and Jade build the Ching-bot, it goes viral across the cloud sea, and everyone wants one.",
+          "episodeCount": 32
+        },
+        {
+          "n": 4,
+          "title": "Lantern Night",
+          "arc": "The Lantern Festival comes to Pearl Passage; Po Po plans her retirement, the crew grows up, and Ching Maid becomes a family.",
+          "episodeCount": 32
+        }
+      ],
+      "castCount": 8,
+      "seasonCount": 4,
+      "episodeCount": 128,
+      "formerly": "Chinese Maid",
+      "world": {
+        "place": "Pearl Passage and its towers in Once City: the Ching family shop under the lantern arch, the domes the crew cleans, the pageant halls and the convention dome across the walkway.",
+        "people": [
+          [
+            "Mei Ching",
+            "the reigning Miss Pearl Passage, a sharp businesswoman in a sash who inherits the family firm the week she is crowned"
+          ],
+          [
+            "Po Po Ching",
+            "Mei's grandmother, founder of Ching Maid, who has kept every key in Pearl Passage for fifty years and knows everyone's secrets"
+          ],
+          [
+            "Dex Oyelaran",
+            "a guildmaster who runs the city's biggest live-action role-play and plans every job like a raid"
+          ],
+          [
+            "Kenji Moss",
+            "a speedrunner who times every task and cannot stop looking for shortcuts"
+          ],
+          [
+            "Bitsy Kowal",
+            "a robot builder who would rather build a machine to clean a room than clean it"
+          ],
+          [
+            "Theo Lindqvist",
+            "a quiz champion who knows everything except how to talk to Mei"
+          ],
+          [
+            "Lan Yu",
+            "Miss Carat Court, Mei's oldest rival, who runs the glossiest maid firm in the city"
+          ],
+          [
+            "Jade Tsai",
+            "Miss Clockwork, an engineer queen who builds her own cleaning gadgets"
+          ],
+          [
+            "Coco Wen",
+            "Miss Midnight Arcade, who only works nights and only for the very rich"
+          ],
+          [
+            "Vesper Lune",
+            "keeper of the Lotus Lounge, Ching Maid's biggest client and Po Po's old friend"
+          ]
+        ]
+      }
     }
   ]
 }
