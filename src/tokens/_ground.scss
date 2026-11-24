@@ -1,0 +1,54 @@
+/*
+ * THE WINDOW'S GROUND, BY THE PERSON'S CHOICE (providers/layout.ts: `data-phi-ground` on the root).
+ *
+ * A look can bring its own ground (Apple's, Glass's) and a bought theme can lay one (Ripple). The ground is the whole
+ * window's, under its panels: every app wears it without doing anything, since the shell and the page paint
+ * --phi-gradient-main. The provider writes a page ground on the root itself, so a chosen ground is said over it, as
+ * the coloured looks say theirs (_theme-styles.scss). Each ground has a dark form and a light one; the mode chooses.
+ * Every ground is built of circles and straight sweeps, no picture to load.
+ */
+
+/* APPLE: a deep night with two wide glows rising from its corners, as Apple's own desktops have it; the light form
+   the same glows on a pale sky. The Apple look opens dark (app looks.json `mode`), and the light is a switch. */
+:root[data-phi-ground='apple'] {
+  --phi-gradient-main:
+    radial-gradient(120% 90% at 8% 108%, rgba(94, 92, 230, 0.34) 0%, transparent 58%),
+    radial-gradient(90% 80% at 96% -6%, rgba(255, 159, 10, 0.22) 0%, transparent 52%),
+    radial-gradient(70% 60% at 62% 120%, rgba(48, 176, 199, 0.26) 0%, transparent 60%),
+    linear-gradient(90deg, #eef0f7 0%, #f7f6fb 55%, #fbf7f1 100%) !important;
+}
+:root:is(.dark, [data-theme='dark'])[data-phi-ground='apple'] {
+  --phi-gradient-main:
+    radial-gradient(120% 90% at 8% 108%, rgba(94, 92, 230, 0.55) 0%, transparent 58%),
+    radial-gradient(90% 80% at 96% -6%, rgba(191, 90, 242, 0.34) 0%, transparent 52%),
+    radial-gradient(70% 60% at 62% 120%, rgba(10, 132, 255, 0.4) 0%, transparent 60%),
+    linear-gradient(90deg, #05060c 0%, #0b0d1a 55%, #120c1c 100%) !important;
+}
+
+/* GLASS: glass is only glass over something: the theme's own colours in three wide pools, so every card, column and
+   bar shows what lies behind it, blurred. The surfaces let more through and blur more than in the other looks. */
+:root[data-phi-ground='glass'] {
+  --phi-gradient-main:
+    radial-gradient(70% 70% at 12% 20%, color-mix(in srgb, var(--phi-color-primary) 70%, transparent) 0%, transparent 62%),
+    radial-gradient(60% 70% at 88% 30%, color-mix(in srgb, var(--phi-color-secondary, var(--phi-color-primary)) 60%, transparent) 0%, transparent 60%),
+    radial-gradient(80% 60% at 50% 110%, color-mix(in srgb, var(--phi-color-accent-2, var(--phi-color-warning)) 55%, transparent) 0%, transparent 64%),
+    linear-gradient(90deg, var(--phi-color-background) 0%, var(--phi-color-background) 100%) !important;
+  --phi-glass-blur: blur(30px) saturate(140%);
+  --phi-glass-pct: 30%;
+}
+:root:is(.dark, [data-theme='dark'])[data-phi-ground='glass'] { --phi-glass-pct: 10%; }
+
+/* RIPPLE: rings spreading from the window's left edge, a pale crest after each dark trough, on brushed grey; sold in
+   the house shop (app/phiogy/shop.json `ground`), worn by anybody who has it. */
+:root[data-phi-ground='ripple'] {
+  --phi-gradient-main:
+    repeating-radial-gradient(circle at -12% 50%,
+      rgba(0, 0, 0, 0.07) 0 26px, rgba(255, 255, 255, 0.62) 34px, rgba(255, 255, 255, 0.12) 42px, rgba(0, 0, 0, 0.07) 58px),
+    linear-gradient(90deg, #9a9a9c 0%, #c4c4c6 48%, #dcdcde 100%) !important;
+}
+:root:is(.dark, [data-theme='dark'])[data-phi-ground='ripple'] {
+  --phi-gradient-main:
+    repeating-radial-gradient(circle at -12% 50%,
+      rgba(0, 0, 0, 0.22) 0 26px, rgba(255, 255, 255, 0.2) 34px, rgba(255, 255, 255, 0.04) 42px, rgba(0, 0, 0, 0.22) 58px),
+    linear-gradient(90deg, #2a2a2d 0%, #3a3a3e 48%, #47474b 100%) !important;
+}

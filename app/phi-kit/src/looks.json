@@ -1,0 +1,112 @@
+{
+  "_": "The looks every Phi app offers, first the default. A look is a puikit theme style, the brand that voices it, the seeded palette that colours it ('none' = the brand's), its gradient level and corner preset; `mode` the light or dark it opens in, `ground` the window's ground it lays (tokens/_ground.scss), '' or none for the page's own. Read by looks.ts. `swatch`: the colours its picture in Settings is drawn in, its ground's first at the left.",
+  "looks": [
+    {
+      "id": "spacex",
+      "label": "SpaceX",
+      "style": "spacex",
+      "brand": "spacex",
+      "palette": "none",
+      "gradient": "soft",
+      "radius": "small",
+      "note": "the rocket-interior look, the house default: instrument-blue seams, brushed panels, square edges",
+      "swatch": [
+        "#0b1220",
+        "#1d3a63",
+        "#5b8fd6"
+      ]
+    },
+    {
+      "id": "apple",
+      "label": "Apple",
+      "style": "apple",
+      "brand": "apple",
+      "palette": "apple",
+      "gradient": "soft",
+      "radius": "large",
+      "mode": "dark",
+      "ground": "apple",
+      "note": "rounder than the others (the 48px corner), its sidebars a hairline of light; it opens dark on Apple's night ground, and the light is a switch",
+      "swatch": [
+        "#05060c",
+        "#5e5ce6",
+        "#bf5af2"
+      ]
+    },
+    {
+      "id": "glass",
+      "label": "Glass",
+      "style": "glass",
+      "brand": "apple",
+      "palette": "none",
+      "gradient": "soft",
+      "radius": "large",
+      "mode": "dark",
+      "ground": "glass",
+      "note": "every surface is glass over the theme's own colours, blurred",
+      "swatch": [
+        "#1b2140",
+        "#3f7cff",
+        "#ff9f0a"
+      ]
+    },
+    {
+      "id": "organic",
+      "label": "Organic",
+      "style": "organic",
+      "brand": "phiegg",
+      "palette": "opal",
+      "gradient": "vivid",
+      "radius": "pill",
+      "swatch": [
+        "#f4efe6",
+        "#c9a77c",
+        "#7a9a6a"
+      ]
+    },
+    {
+      "id": "muse",
+      "label": "Muse",
+      "style": "muse",
+      "brand": "muse",
+      "palette": "none",
+      "gradient": "flat",
+      "radius": "medium",
+      "swatch": [
+        "#0e1a3a",
+        "#2f5bd3",
+        "#9fb8ff"
+      ]
+    },
+    {
+      "id": "gradient",
+      "label": "Gradient",
+      "style": "gradient",
+      "brand": "phiogy",
+      "palette": "none",
+      "gradient": "vivid",
+      "radius": "medium",
+      "note": "every surface and label wears the brand's two colours (_theme-styles.scss); Phiogy's own look",
+      "swatch": [
+        "#5b2fd6",
+        "#e0457b",
+        "#ffb14a"
+      ]
+    },
+    {
+      "id": "jingle",
+      "label": "Jingle",
+      "style": "jingle",
+      "brand": "jingle",
+      "palette": "none",
+      "gradient": "flat",
+      "radius": "medium",
+      "note": "one gradient under the whole window, the brand's own, and the kit's plain light on everything over it",
+      "swatch": [
+        "#ff6a3d",
+        "#ffb14a",
+        "#7a3df0"
+      ]
+    }
+  ]
+}

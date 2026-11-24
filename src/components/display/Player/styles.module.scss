@@ -1,0 +1,53 @@
+/* The Player: one picture three times over (ground, depth, face), each a share of the theme's corner. */
+.player {
+  position: relative; display: block; width: 100%; aspect-ratio: var(--pui-player-ratio, 16/10);
+  border-radius: var(--phi-radius-shape, var(--phi-radius-lg)); isolation: isolate; overflow: hidden;
+  --pui-player-ease: var(--phi-ease, cubic-bezier(0.2, 0.7, 0.2, 1));
+  --pui-player-time: var(--phi-duration-slow, 0.45s);
+}
+
+.layer {
+  position: absolute; inset: 0; display: grid; place-items: stretch; overflow: hidden; border-radius: inherit;
+  transition: transform var(--pui-player-time) var(--pui-player-ease), filter var(--pui-player-time) var(--pui-player-ease), opacity var(--pui-player-time) var(--pui-player-ease);
+  > * { width: 100%; height: 100%; min-width: 0; min-height: 0; }
+  img { object-fit: cover; display: block; }
+}
+
+/* The haze it stands in: its own colours, blurred wide. */
+.ground { transform: scale(1.3); filter: blur(22px) saturate(1.3); opacity: 0.7; }
+
+/* Its depth: the same picture, softer, set down and right as the font's letter is set again behind it. Its corner
+   is the face's less the step, so the two edges keep one centre. */
+.depth {
+  inset: 10% 6% 4% 10%; border-radius: calc(var(--phi-radius-shape, var(--phi-radius-lg)) * 0.75);
+  filter: blur(6px) brightness(0.72); transform: translate(4%, 5%) scale(1.04); opacity: 0.9;
+}
+
+/* The face: sharp, a step inside the ground, held large until the pointer comes. */
+.face {
+  inset: 6% 8% 10% 6%; border-radius: calc(var(--phi-radius-shape, var(--phi-radius-lg)) * 0.75);
+  box-shadow: var(--phi-shadow-3); overflow: hidden;
+  > * { transform: scale(1.14); transition: transform var(--pui-player-time) var(--pui-player-ease); }
+}
+
+/* A light across the face, only under the pointer. */
+.sheen {
+  position: absolute; inset: 6% 8% 10% 6%; border-radius: calc(var(--phi-radius-shape, var(--phi-radius-lg)) * 0.75);
+  pointer-events: none; opacity: 0;
+  background: linear-gradient(90deg, transparent 0%, color-mix(in srgb, var(--phi-glass-light, #fff) 38%, transparent) 50%, transparent 100%);
+  background-size: 250% 100%; background-position: 120% 0;
+  transition: opacity var(--pui-player-time) var(--pui-player-ease), background-position calc(var(--pui-player-time) * 2) var(--pui-player-ease);
+}
+
+.player:hover, .player:focus-within {
+  .face > * { transform: scale(1); }
+  .depth { transform: translate(2%, 3%) scale(1); filter: blur(4px) brightness(0.8); }
+  .ground { opacity: 0.95; transform: scale(1.18); }
+  .sheen { opacity: 1; background-position: -20% 0; }
+}
+
+.selected { box-shadow: 0 0 0 2px var(--phi-color-primary); }
+
+@media (prefers-reduced-motion: reduce) {
+  .layer, .face > *, .sheen { transition: none; }
+}

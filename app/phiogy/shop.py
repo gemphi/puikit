@@ -87,6 +87,9 @@ def main():
     hsl = lambda c: cfg['hsl'].replace('{h}', format(c[0], 'g')).replace('{s}', format(c[1], 'g')).replace('{l}', format(c[2], 'g'))
     theme = lambda t: {'id': 'theme_' + t['id'], 'title': t['name'], 'sub': money(cfg['theme']['usd']), 'cost': cfg['theme']['usd'], 'kind': cfg['theme']['kind'],
                        'swatch': [t['seed']] + [hsl(t[k]) for k in ('accent', 'accent2') if t.get(k)], 'wear': {'palette': t['id']}, 'page': {'fieldList': facts(t, page['theme'])}}
+    # A ground (Ripple) is a theme too: worn, it lays itself under the whole window; one the house gives is everybody's.
+    ground = lambda g: {'id': 'ground_' + g['id'], 'title': g['name'], 'sub': money(g['usd']), 'cost': g['usd'], 'kind': cfg['theme']['kind'],
+                        'swatch': g['swatch'], 'wear': {'ground': g['id']}, 'given': bool(g.get('given')), 'page': {'body': g['story']}}
     pft = lambda p: {'id': p['id'], 'title': p['name'], 'sub': money(p['priceUsd']), 'cost': p['priceUsd'], 'kind': cfg['pft']['kind'], 'meta': p.get('set'),
                      'sprite': {'sheet': pic + cfg['portrait'] + portraits['sheets'][p['sheet']], 'cols': portraits['cols'], 'index': p['index']},
                      'page': {'fieldList': facts(p, page['pft'])}}
@@ -116,7 +119,7 @@ def main():
     house = cfg['house']
     best = [s['looks'][0] for s in stores[:house['look']] if s['looks']]
     made.append(shop(house['id'], house['label'], house['tagline'], house['image'], best,
-                     [('theme', cfg['theme']['label'], [theme(t) for t in themes]), ('pft', cfg['pft']['label'], [pft(p) for p in pfts])]))
+                     [('theme', cfg['theme']['label'], [ground(g) for g in cfg.get('ground', {}).get('list', [])] + [theme(t) for t in themes]), ('pft', cfg['pft']['label'], [pft(p) for p in pfts])]))
     for s in stores:
         sid = 's_' + re.sub(r'^g_st_', '', s['id'])
         world = at(s['looks'][0], 'specs.provenance.worldId') if s['looks'] else None

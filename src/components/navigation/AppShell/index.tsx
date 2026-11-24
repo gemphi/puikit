@@ -9,6 +9,7 @@ import { Pressable } from '../../primitives/Pressable';
 import { Drawer } from '../../overlays/Drawer';
 import { Menu as MenuIcon } from 'lucide-react';
 import { ShellProvider } from './context';
+import { useLayoutRoot, usePuiTheme } from '../../../providers';
 import { ShellBrand } from './Brand';
 import { APPS, Rail } from './Rail';
 import { AppsList, GroupMenu, PageMenu, PhoneRail, PhoneTabs } from './Panel';
@@ -78,6 +79,9 @@ export const AppShell: React.FC<AppShellProps> = ({
   collapseKey,
   brand, groups, view, onView, rail, onRail, apps, appsLabel = 'Apps', appsIcon, foot = [], tabs, phoneRail, tools, right, side, onPreview, crumbs, headerRight, labels, children, className = '',
 }) => {
+  // The person's layout choices (feed, tabs, the window's ground) on the root, kept per person: every app with a
+  // shell hears them.
+  useLayoutRoot(usePuiTheme().userId);
   const L: AppShellLabels = { openMenu: 'Open the menu', closeMenu: 'Close the menu', menu: 'Menu', moreApps: 'More apps', fold: (l, o) => (o ? 'Fold ' : 'Open ') + l, ...labels };
   const footGroups = foot.filter((f): f is AppShellGroup => Array.isArray(f.items) && f.items.length > 0);
   const footLeaves = foot.filter((f) => !f.items?.length);

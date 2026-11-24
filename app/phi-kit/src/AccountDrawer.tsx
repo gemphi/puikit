@@ -7,6 +7,7 @@ import { accountsEnabled, signOut, useMe } from './auth';
 import { appUrl } from './data';
 import { FONTS, useFont } from './fonts';
 import { LOOKS, useLook } from './looks';
+import { SettingsView } from './settings';
 import { LABEL, USD, useWallet, type Coin } from './wallet';
 import { ProfileView } from './ProfileView';
 import words from './words.json';
@@ -62,6 +63,11 @@ export const AccountDrawer: React.FC<{ onProfile?: () => void; onLook?: (id: str
 
             <AccordionItem title={W.mode} open={!!shown.mode} onToggle={() => fold('mode')}>
               <TabList size="sm" variant="pills" aria-label={W.mode} activeId={theme} onChange={(v) => setTheme(v as typeof theme)} items={[{ id: 'light', label: W.light }, { id: 'dark', label: W.dark }, { id: 'system', label: W.system }]} />
+            </AccordionItem>
+
+            {/* The layout every app follows (prefs.json `shared`): the feed and the tabs, chosen by their pictures. */}
+            <AccordionItem title={W.layout} open={!!shown.layout} onToggle={() => fold('layout')}>
+              <SettingsView shared />
             </AccordionItem>
 
             <AccordionItem title={W.font} open={!!shown.font} onToggle={() => fold('font')}>

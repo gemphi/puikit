@@ -23,10 +23,13 @@ const compare = (a: unknown, b: unknown) => (
       : String(a).localeCompare(String(b), undefined, { numeric: true, sensitivity: 'base' })
 );
 
-export const layoutOf = (b: { kind: string; layout?: string; layoutSet?: string[] }) => ({
-  mode: (b.layout ?? LIST.default.layout) as ViewMode,
-  modes: (b.layoutSet ?? LIST.default.layoutSet) as ViewMode[],
-});
+/** A block's layout: its own, else the one the person chose for feeds in Settings (`feed`, prefs.json), else the
+ *  kit's. The person's choice is offered among the layouts even where the block's list leaves it out. */
+export const layoutOf = (b: { kind: string; layout?: string; layoutSet?: string[] }, chosen?: string) => {
+  const mode = (b.layout ?? chosen ?? LIST.default.layout) as ViewMode;
+  const modes = (b.layoutSet ?? LIST.default.layoutSet) as ViewMode[];
+  return { mode, modes: modes.includes(mode) ? modes : [mode, ...modes] };
+};
 
 /** The sorts: the data's own order first, then every named field a card carries. */
 export const sortsFor = (rows: GridRow[], named?: string[]): ListSort<GridRow>[] => {

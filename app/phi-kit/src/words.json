@@ -97,7 +97,8 @@
     "manage": "Open Phione",
     "open": "Open your account",
     "colour": "Colour",
-    "own": "The look's own"
+    "own": "The look's own",
+    "layout": "Layout"
   },
   "host": {
     "add": "Add a host",

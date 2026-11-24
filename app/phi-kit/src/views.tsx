@@ -1,7 +1,5 @@
 import React from 'react';
-import { LOOKS, useLook } from './looks';
-import { Box, Button, GradientLevelPicker, PalettePicker, RadiusPicker, Stack, Tag, TabList, Text, Title } from '@pui/components';
-import { usePuiTheme, type Theme } from '@pui/providers';
+import { Box, Button, Stack, Tag, Text, Title } from '@pui/components';
 import { APPS, appUrl } from './data';
 import { AccountPanel } from './AccountDialog';
 import { accountsEnabled } from './auth';
@@ -37,33 +35,6 @@ export const YouView: React.FC<{ profile?: ProfileSpec }> = ({ profile }) => {
       <Stack as="section" direction="column" gap={3}>
         <Title level={2} size="lg">Your apps</Title>
         <Stack direction="row" gap={2} wrap align="center">{APPS.filter((a) => a.built).map((a) => <Button key={a.key} variant="glass" href={appUrl(a.key)}>{a.name}</Button>)}</Stack>
-      </Stack>
-    </>
-  );
-};
-
-export const SettingsView: React.FC = () => {
-  const { theme, setTheme, density, setDensity } = usePuiTheme();
-  const [look, setLook] = useLook();
-  const seg = <T extends string | number>(cur: T, opts: [T, string][], set: (v: T) => void) => (
-    <TabList size="sm" variant="pills" activeId={String(cur)} onChange={(id) => { const o = opts.find(([v]) => String(v) === id); if (o) set(o[0]); }} items={opts.map(([v, l]) => ({ id: String(v), label: l }))} />
-  );
-  return (
-    <>
-      <Head title="Settings" sub="Applies to every Phiace app on this device." />
-      <Stack as="section" maxWidth="560px" direction="column" gap={2} surface="card">
-        <Title level={2} size="lg">Theme</Title>
-        {seg<string>(look.id, LOOKS.map((l) => [l.id, l.label] as [string, string]), setLook)}
-        <Title level={2} size="lg">Palette</Title>
-        <PalettePicker />
-        <Title level={2} size="lg">Gradients</Title>
-        <GradientLevelPicker />
-        <Title level={2} size="lg">Corners</Title>
-        <RadiusPicker />
-        <Title level={2} size="lg">Mode</Title>
-        {seg<Theme>(theme, [['light', 'Light'], ['dark', 'Dark'], ['system', 'System']], setTheme)}
-        <Title level={2} size="lg">Density</Title>
-        {seg<number>(density, [[0.9, 'Compact'], [1, 'Comfortable'], [1.15, 'Roomy']], setDensity)}
       </Stack>
     </>
   );

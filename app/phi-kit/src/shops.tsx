@@ -39,9 +39,11 @@ const filled = (b: Block, shop: Shop, held: Held): Block => {
   if (!Array.isArray(b.at)) return b;
   const { app, bag, bought, wear } = held;
   const has = (list: Line[], p: GridItem) => list.some((l) => l.id === p.id);
-  const worn = (p: GridItem) => has(bought, p) && wear.on(p.wear);
-  const stands = (p: GridItem) => (!has(bought, p) ? (has(bag, p) ? W.inbag : W.put) : !p.wear ? W.owned : worn(p) ? W.worn : W.wear);
-  const act = (it: GridItem) => { if (!has(bought, it) || !it.wear) toggleBag(app, shop.id, it); else if (worn(it)) wear.off(); else wear.put(it.wear); };
+  // A thing the house gives (`given`) is everybody's until it goes on sale.
+  const owns = (p: GridItem) => has(bought, p) || !!p.given;
+  const worn = (p: GridItem) => owns(p) && wear.on(p.wear);
+  const stands = (p: GridItem) => (!owns(p) ? (has(bag, p) ? W.inbag : W.put) : !p.wear ? W.owned : worn(p) ? W.worn : W.wear);
+  const act = (it: GridItem) => { if (!owns(it) || !it.wear) toggleBag(app, shop.id, it); else if (worn(it)) wear.off(); else wear.put(it.wear); };
   return { ...b, onAct: act,
     items: (b.at as number[]).map((i) => shop.product[i]).filter(Boolean).map((p) => ({ ...p, route: shop.id + '/' + p.id, selected: has(bag, p) || worn(p), action: stands(p) })) };
 };

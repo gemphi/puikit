@@ -1,5 +1,7 @@
 import React from 'react';
 import { Box, Button, ItemCard, Stack, Tag, Text } from '@pui/components';
+import { useLayout } from '@pui/providers';
+import { FEED } from '../prefs';
 import { appUrl, type Block } from '../data';
 import { ListView } from '../ListView';
 import type { Wear } from '../looks';
@@ -10,8 +12,9 @@ export type GridItem = { id?: string; kind?: string; route?: string; title: stri
   /** A card's picture when it is no file of its own: a cell of a sheet (`sprite`, a portrait), or colours (`swatch`: a
    *  theme's ground, then its accents). */
   sprite?: { sheet: string; cols: number; index: number }; swatch?: string[];
-  /** What the thing puts on once it is the viewer's (a theme: its palette). */
-  wear?: Wear;
+  /** What the thing puts on once it is the viewer's (a theme: its palette, or a ground). `given`: the house gives it
+   *  to everybody, priced, until it goes on sale (shop.json). */
+  wear?: Wear; given?: boolean;
   /** Optional parts, all drawn by GridExtra: a tinted head (`tone`, with `mark` a round mark of initials or a number), a tag
    *  at the title's end, a big figure, a meter (0 to 1; `split` for two shares), one more line, a list of points, and the
    *  lane and facet the card belongs to. */
@@ -32,6 +35,9 @@ const TILE_W = '18rem';
 export const Grid: React.FC<{ b: Block; onOpen: (it: GridItem) => void }> = ({ b, onOpen }) => {
   const [done, setDone] = React.useState<Record<number, boolean>>({});
   const [facet, setFacet] = React.useState<string>(b.facet?.[0] ?? '');
+  // The feed layout the person chose in Settings, which every app's grids open in.
+  const [feed] = useLayout(FEED.id, FEED.fallback);
+  const feedMode = FEED.options.find((o) => o.value === feed)?.mode;
   const all: GridRow[] = ((b.items || []) as GridItem[]).map((it, i) => ({ it, i }));
   const rows = all.filter((r) => inFacet([r.it], b.facet, facet).length > 0);
   const stop = (e: React.MouseEvent) => e.stopPropagation();
@@ -57,9 +63,9 @@ export const Grid: React.FC<{ b: Block; onOpen: (it: GridItem) => void }> = ({ b
   const more = b.more ? <More more={b.more} /> : null;
   // Lanes are their own layout (a pipeline by stage): no switch.
   if (b.laneSet) return <Stack direction="column" gap={3}>{tabs}{more}<LaneRow laneSet={b.laneSet} items={rows.map((r) => r.it)} card={(it, i) => card(it, i, false)} /></Stack>;
-  const { mode, modes } = layoutOf(b);
+  const { mode, modes } = layoutOf(b, feedMode);
   return (
-    <ListView<GridRow> rows={rows} keyOf={(r) => String(r.i)} text={textOf} sorts={sortsFor(all, b.sort)} facets={facetsFor(all, b.filter, b.facet ? ['facet'] : [])}
+    <ListView<GridRow> key={mode} rows={rows} keyOf={(r) => String(r.i)} text={textOf} sorts={sortsFor(all, b.sort)} facets={facetsFor(all, b.filter, b.facet ? ['facet'] : [])}
       mode={mode} modes={modes} toolbar={b.toolbar !== false} count={countOf} empty={LIST.empty} cols={4} minItemWidth={GRID_MIN}
       // Cards with pictures take the mosaic's sizes; cards of words alone keep their own height, so none stands half empty.
       mosaic={rows.some((r) => r.it.image)} tabs={tabs ?? undefined} lead={more ?? undefined}

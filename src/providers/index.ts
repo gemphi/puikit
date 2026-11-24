@@ -3,3 +3,4 @@ export * from './PuiProvider';
 export * from './themes';
 export * from './types';
 export * from './archetypes';
+export * from './layout';

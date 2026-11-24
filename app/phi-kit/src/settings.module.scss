@@ -1,0 +1,31 @@
+/* Settings: the live picture at the left, kept in view; the groups at the right. */
+.page { display: grid; grid-template-columns: minmax(16rem, 2fr) minmax(18rem, 3fr); gap: var(--phi-space-6, 1.5rem); align-items: start; }
+.live { position: sticky; top: 0; display: flex; flex-direction: column; gap: var(--phi-space-2, 0.5rem); }
+.groups { display: flex; flex-direction: column; gap: var(--phi-space-5, 1.25rem); min-width: 0; }
+@container (max-width: 760px) { .page { grid-template-columns: 1fr; } .live { position: static; } }
+
+/* A small window drawn as a choice lays it. Its parts are the theme's ink let into nothing, so it reads in every
+   look; a choice with its own colours (a look, a mode) lays them as its ground, side to side. */
+.mini {
+  --mini-ink: color-mix(in srgb, var(--phi-color-text-primary) 22%, transparent);
+  --mini-ink-soft: color-mix(in srgb, var(--phi-color-text-primary) 12%, transparent);
+  position: relative; width: 100%; height: 100%; display: flex; flex-direction: column; gap: 6%; padding: 7%;
+  background: var(--mini-ground, var(--phi-gradient-main, var(--phi-color-background)));
+}
+.dark { --mini-ink: rgba(255, 255, 255, 0.26); --mini-ink-soft: rgba(255, 255, 255, 0.12); }
+.light { --mini-ink: rgba(0, 0, 0, 0.18); --mini-ink-soft: rgba(0, 0, 0, 0.08); }
+.bar { flex: none; height: 6%; width: 38%; border-radius: 999px; background: var(--mini-ink); }
+.body { flex: 1; min-height: 0; display: flex; gap: 6%; }
+.side .body { flex-direction: row; }
+.top .body { flex-direction: column; }
+.tabs { flex: none; display: flex; gap: 4%; }
+.top .tabs { flex-direction: row; height: 9%; }
+.side .tabs { flex-direction: column; width: 22%; }
+.tab { flex: 1; border-radius: 999px; background: var(--mini-ink-soft); }
+.tab:first-child { background: var(--mini-ink); }
+.feed { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; gap: 6%; }
+.line { flex: none; height: 7%; border-radius: 999px; background: var(--mini-ink); }
+.line:nth-child(2n) { width: 70%; background: var(--mini-ink-soft); }
+.hero { flex: 1.4; border-radius: 10%/16%; background: var(--mini-ink-soft); }
+.cards { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6%; }
+.card { border-radius: 14%; background: var(--mini-ink); }
