@@ -24,6 +24,11 @@
     "text": "Text",
     "voice": "Voice"
   },
+  "call": {
+    "id": "call",
+    "label": "Lounge",
+    "topic": "A room to call in. Join, talk, share a screen."
+  },
   "icon": {
     "text": "hash",
     "voice": "volume",

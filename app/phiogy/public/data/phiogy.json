@@ -136,6 +136,20 @@
               "icon": "hash"
             }
           ]
+        },
+        {
+          "id": "v_acrobirds-voice",
+          "label": "Voice",
+          "icon": "volume",
+          "head": true,
+          "items": [
+            {
+              "id": "v_acrobirds-call",
+              "label": "Lounge",
+              "icon": "volume",
+              "crowd": "v_acrobirds-call"
+            }
+          ]
         }
       ]
     },
@@ -155,6 +169,20 @@
               "id": "v_bayc-lobby",
               "label": "lobby",
               "icon": "hash"
+            }
+          ]
+        },
+        {
+          "id": "v_bayc-voice",
+          "label": "Voice",
+          "icon": "volume",
+          "head": true,
+          "items": [
+            {
+              "id": "v_bayc-call",
+              "label": "Lounge",
+              "icon": "volume",
+              "crowd": "v_bayc-call"
             }
           ]
         }
@@ -178,6 +206,20 @@
               "icon": "hash"
             }
           ]
+        },
+        {
+          "id": "v_penguins-voice",
+          "label": "Voice",
+          "icon": "volume",
+          "head": true,
+          "items": [
+            {
+              "id": "v_penguins-call",
+              "label": "Lounge",
+              "icon": "volume",
+              "crowd": "v_penguins-call"
+            }
+          ]
         }
       ]
     },
@@ -197,6 +239,20 @@
               "id": "v_moonbirds-lobby",
               "label": "lobby",
               "icon": "hash"
+            }
+          ]
+        },
+        {
+          "id": "v_moonbirds-voice",
+          "label": "Voice",
+          "icon": "volume",
+          "head": true,
+          "items": [
+            {
+              "id": "v_moonbirds-call",
+              "label": "Lounge",
+              "icon": "volume",
+              "crowd": "v_moonbirds-call"
             }
           ]
         }

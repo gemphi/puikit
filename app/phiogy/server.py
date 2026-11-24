@@ -153,6 +153,12 @@ def main():
             entry = {'id': n['id'], 'label': n['name'], 'icon': icons[kind]}
             if kind == 'voice': entry['crowd'] = n['id']
             items.append(entry)
+        # A host Phiegg gave no voice nest gets one room to call in (`call`), so every host has a place for a call.
+        if groups and not any(e.get('crowd') for g in groups.values() for e in g['items']):
+            c = cfg['call']; rid = h['id'] + '-' + c['id']
+            rooms['room'][rid] = {'label': c['label'], 'space': h['name'], 'origin': ORIGIN, 'kind': 'voice', 'topic': c['topic'], 'member': [], 'message': []}
+            under(h['id'] + '-voice', heads['voice']).append({'id': rid, 'label': c['label'], 'icon': icons['voice'], 'crowd': rid})
+            made['room'] += 1
         sheet, cell = face(h['id'])
         if not groups: continue
         catalogue.append({'id': h['id'], 'label': h['name'], 'icon': icons['host'], 'members': h.get('members', 0), 'online': h.get('online', 0),
@@ -165,8 +171,11 @@ def main():
         r = village['room']; rid = v['id'] + '-' + r['id']
         rooms['room'][rid] = {'label': r['label'], 'space': v['label'], 'origin': ORIGIN, 'topic': r['topic'], 'link': v.get('x'), 'member': [], 'message': []}
         app['views'][rid] = {'title': '', 'origin': ORIGIN, 'blocks': [{'kind': 'chat', 'variant': 'room', 'app': app['app'], 'source': 'data/room.json', 'room': rid}]}
+        c = cfg['call']; cid = v['id'] + '-' + c['id']
+        rooms['room'][cid] = {'label': c['label'], 'space': v['label'], 'origin': ORIGIN, 'kind': 'voice', 'topic': c['topic'], 'member': [], 'message': []}
         app['nav'].append({'id': v['id'], 'label': v['label'], 'icon': icons['host'], 'origin': ORIGIN, 'items': [
-            {'id': v['id'] + '-text', 'label': heads['text'], 'icon': icons['text'], 'head': True, 'items': [{'id': rid, 'label': r['label'], 'icon': icons['text']}]}]})
+            {'id': v['id'] + '-text', 'label': heads['text'], 'icon': icons['text'], 'head': True, 'items': [{'id': rid, 'label': r['label'], 'icon': icons['text']}]},
+            {'id': v['id'] + '-voice', 'label': heads['voice'], 'icon': icons['voice'], 'head': True, 'items': [{'id': cid, 'label': c['label'], 'icon': icons['voice'], 'crowd': cid}]}]})
 
     # Collections: spaces of the catalogue, each begun from the template `collection.template` names, with the address
     # the collection keeps on X on its first room. Nobody is in one before they join it.
@@ -208,11 +217,22 @@ def main():
     for r in rooms['room'].values():
         if r.get('space'): wrote.setdefault(r['space'], []).extend([] if r.get('kind') == 'voice' else r.get('member', []))
     rooms['space'] = {}
+    def looks(m):
+        """What a person is told apart by in a space: their face (a cell of a sheet), their name and their handle."""
+        return {('face', m.get('sheet') or rooms['sheet']['src'], m.get('face')), ('name', m.get('name')), ('handle', m.get('handle'))}
     for label, first in wrote.items():
         size = span['least'] + fnv(label + '/space') % (span['most'] - span['least'] + 1)
         salt = fnv(label); near = circle.get(host_of[label]['id'], []) if label in host_of else []
         order = list(dict.fromkeys(first + sorted(near, key=lambda q: mark[q] ^ salt) + sorted(everyone, key=lambda q: mark[q] ^ salt)))
-        rooms['space'][label] = sorted(seat[q] for q in order[:max(size, len(set(first)))] if q in seat)
+        # No two people of one space share a face, a name or a handle: those who wrote are seated first, and anyone
+        # after them who looks or is called like somebody seated is passed over. Nobody's face or name is changed.
+        taken, chosen_here = set(), []
+        for q in (q for q in order if q in seat):
+            mark_of = looks(rooms['member'][seat[q]])
+            if len(chosen_here) >= max(size, len(set(first))): break
+            if q not in first and taken & mark_of: continue
+            taken |= mark_of; chosen_here.append(q)
+        rooms['space'][label] = sorted(seat[q] for q in chosen_here)
     for c in catalogue:
         at = rooms['space'].get(c['label'], [])
         c['members'] = max(c['members'], len(at))
