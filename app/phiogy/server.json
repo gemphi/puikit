@@ -385,5 +385,29 @@
     ],
     "from": 480,
     "until": 1320
-  }
+  },
+  "profile": {
+    "_": "What a person's profile carries from Phiegg: its counts (the word Phiogy names it by, and the field of Phiegg's person), how many of the pictures they posted, and their clubs.",
+    "count": [
+      [
+        "shot",
+        "postCount"
+      ],
+      [
+        "follower",
+        "followers"
+      ],
+      [
+        "following",
+        "following"
+      ],
+      [
+        "put",
+        "putCount"
+      ]
+    ],
+    "picture": 24
+  },
+  "key": "phiegg:",
+  "_key": "How a picture of Phiegg's own folder is named in Phiogy's files: this, then its path there."
 }
