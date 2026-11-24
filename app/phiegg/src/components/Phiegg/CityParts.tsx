@@ -14,6 +14,7 @@ import { EntityAvatar } from './EntityAvatar';
 import { StatGrid } from '@phi-kit/blocks/Stats';
 import { ListView } from './Views';
 import type { City, Club, World } from '../../types/phiegg';
+import { OpensPost } from './OpensPost';
 
 /**
  * What a city holds, as sections: About, Zones, Posts, PFTs, Hosts, Clubs, Rides, Gems and Links. The city's page, its
@@ -51,7 +52,7 @@ export const useCityParts = (w: World, opts: { facts?: boolean } = {}): SectionD
         // A world has a handful of zones: one readable row each, whatever the app's list mode (a slider of three is no list).
         <Stack direction="column" gap={2}>{w.cities.map((c) => (
           <ItemCard key={c.id} variant="flat" stackBelow="never" onClick={() => s.go('city', { cityId: c.id, worldId: w.id })}
-            media={mark ? <Avatar size="lg" src={mark} fit="contain" alt={c.name} colors={entityPalette(w.id)} /> : <EntityAvatar id={c.id} name={c.name} size="lg" />}
+            media={mark ? <OpensPost id={w.id} label={w.name}><Avatar size="lg" src={mark} fit="contain" alt={c.name} colors={entityPalette(w.id)} /></OpensPost> : <EntityAvatar id={c.id} name={c.name} size="lg" />}
             title={<Title level={4} size="md">{c.name}</Title>}
             meta={placesReady ? t('wdZoneLine', { vibe: c.vibe, n: fmt(c.population), places: placesIn(c) }) : t('wdCityCard', { vibe: c.vibe, n: fmt(c.population) })}
             actions={<Button variant="glass" onClick={() => s.go('city', { cityId: c.id, worldId: w.id })}>{t('visit')}</Button>} />))}

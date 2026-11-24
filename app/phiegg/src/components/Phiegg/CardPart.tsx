@@ -9,6 +9,7 @@ import { buyCoin, enterQuest, leaveQuest, sellCoin, useEconomy } from '../../lib
 import { buyLot, quote } from '../../lib/market';
 import { useNowValue } from '../../lib/liveValue';
 import type { PoolLot } from '../../types/phiegg';
+import { OpensPost } from './OpensPost';
 
 /** The parts a card may carry under or beside its face (data/card.json), the same on every layout:
  *  `figures`, declared fields (data/kinds.json) shown as label and value, or `{ label, value }` with a template;
@@ -61,7 +62,7 @@ export const DateArt: React.FC<PartProps & { date?: string; art?: string }> = ({
   return (
     <Stack direction="row" gap={3} align="center">
       {day && <Stack direction="column" align="center" gap={0} minWidth="3rem"><Title level={3} size="lg">{day.slice(8, 10)}</Title><Text size="xs" intent="muted">{site.months[Number(day.slice(5, 7)) - 1]}</Text></Stack>}
-      {src && <Frame ratio="4/3" width="6.5rem" rounded="md"><Image src={src} alt="" fit="cover" fill loading="lazy" /></Frame>}
+      {src && <Frame ratio="4/3" width="6.5rem" rounded="md"><OpensPost id={row.id} label={String(row.name ?? row.title ?? '')} fill><Image src={src} alt="" fit="cover" fill loading="lazy" /></OpensPost></Frame>}
     </Stack>);
 };
 

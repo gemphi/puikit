@@ -11,6 +11,7 @@ import { Tile } from '../../components/Phiegg/Tile';
 import { ListView } from '../../components/Phiegg/Views';
 import { Connected } from '../../components/Phiegg/Connected';
 import type { District, Place } from '../../types/phiegg';
+import { OpensPost } from '../../components/Phiegg/OpensPost';
 
 const kindLabel = (k: string) => (site as unknown as { placeKinds: Record<string, string> }).placeKinds[k] ?? k;
 type Row = Place & { district: District };
@@ -29,7 +30,7 @@ export const CityPage: React.FC = () => {
         <Button variant="glass" onClick={() => s.go('world', { worldId: world.id })}>{world.name}</Button>
       </Stack>
       <Tile image={worldImage(world)} tone={meta?.tone ?? world.tone} ratio="21/7" big title={city.name} sub={city.vibe + ' · ' + world.name}
-        depth={{ worldId: world.id, clubId: world.clubId, face: worldMark(world) && <Avatar size="xl" src={worldMark(world)} fit="contain" alt={world.name} colors={entityPalette(world.id)} /> }}
+        depth={{ worldId: world.id, clubId: world.clubId, face: worldMark(world) && <OpensPost id={world.id} label={world.name}><Avatar size="xl" src={worldMark(world)} fit="contain" alt={world.name} colors={entityPalette(world.id)} /></OpensPost> }}
         badges={<><Tag round size="sm">{t('residents', { n: fmt(city.population) })}</Tag><Tag round size="sm">{t('ctDistricts', { n: districts.length })}</Tag><Tag round size="sm">{t('ctPlaces', { n: rows.length })}</Tag></>} />
       {meta && <Text intent="secondary">{meta.desc}</Text>}
       <ListView<Row> rows={rows} keyOf={(p) => p.id} text={(p) => p.name + ' ' + p.desc + ' ' + p.district.name}

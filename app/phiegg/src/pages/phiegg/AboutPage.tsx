@@ -9,6 +9,8 @@ import { mediaUrl } from '../../lib/media';
 import { phieggStore } from '../../state/phieggStore';
 import { EntityAvatar } from '../../components/Phiegg/EntityAvatar';
 import styles from './AboutPage.module.scss';
+import { OpensPost } from '../../components/Phiegg/OpensPost';
+import { pictureId } from '../../lib/picturePost';
 
 type Tab = Parameters<ReturnType<typeof phieggStore.getState>['go']>[0];
 type Link = { label: string; tab: string };
@@ -33,7 +35,7 @@ export const AboutPage: React.FC = () => {
 
       {about.band.map((b, i) => (
         <Box as="section" key={b.id} className={`${styles.band} ${i % 2 ? styles.flip : ''}`}>
-          <Box className={styles.shot}><Picture src={mediaUrl(b.picture)} /></Box>
+          <Box className={styles.shot}><OpensPost id={pictureId(b.picture)} label={b.title} fill><Picture src={mediaUrl(b.picture)} /></OpensPost></Box>
           <Box className={styles.words}>
             <Title level={2} className={styles.heading}>{b.title}</Title>
             <Text as="p" className={styles.lede}>{b.body}</Text>

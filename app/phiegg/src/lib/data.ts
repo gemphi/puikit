@@ -217,6 +217,7 @@ export function storySets(uid: ID): Highlight[] {
 export const fmt = (n: number) =>
   n >= 1e6 ? (n / 1e6).toFixed(1).replace(/\.0$/, "") + "M" : n >= 1e4 ? Math.round(n / 1e3) + "k" : n >= 1e3 ? (n / 1e3).toFixed(1).replace(/\.0$/, "") + "k" : String(n);
 export const ago = (iso: string, now = Date.now()) => {
+  if (Number.isNaN(Date.parse(iso))) return ''; // a thing with no day of its own (a picture made a post) says none
   const h = Math.max(0, Math.round((now - Date.parse(iso)) / 36e5));
   return h < 1 ? t("now") : h < 24 ? `${h}h` : `${Math.round(h / 24)}d`;
 };
