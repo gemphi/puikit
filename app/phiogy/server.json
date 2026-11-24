@@ -18,7 +18,10 @@
     "gallery": "text",
     "voice": "voice",
     "stage": "voice",
-    "category": "head"
+    "category": "head",
+    "world": "text",
+    "city": "text",
+    "quest": "text"
   },
   "head": {
     "text": "Text",
@@ -32,7 +35,11 @@
   "icon": {
     "text": "hash",
     "voice": "volume",
-    "host": "users"
+    "host": "users",
+    "world": "globe",
+    "gallery": "image",
+    "stage": "mic",
+    "quest": "star"
   },
   "day": "Today",
   "presence": [

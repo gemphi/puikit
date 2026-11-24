@@ -125,31 +125,15 @@
       "origin": "phiegg",
       "items": [
         {
-          "id": "v_acrobirds-text",
-          "label": "Text",
-          "icon": "hash",
-          "head": true,
-          "items": [
-            {
-              "id": "v_acrobirds-lobby",
-              "label": "lobby",
-              "icon": "hash"
-            }
-          ]
+          "id": "v_acrobirds-lobby",
+          "label": "lobby",
+          "icon": "hash"
         },
         {
-          "id": "v_acrobirds-voice",
-          "label": "Voice",
+          "id": "v_acrobirds-call",
+          "label": "Lounge",
           "icon": "volume",
-          "head": true,
-          "items": [
-            {
-              "id": "v_acrobirds-call",
-              "label": "Lounge",
-              "icon": "volume",
-              "crowd": "v_acrobirds-call"
-            }
-          ]
+          "crowd": "v_acrobirds-call"
         }
       ]
     },
@@ -160,31 +144,15 @@
       "origin": "phiegg",
       "items": [
         {
-          "id": "v_bayc-text",
-          "label": "Text",
-          "icon": "hash",
-          "head": true,
-          "items": [
-            {
-              "id": "v_bayc-lobby",
-              "label": "lobby",
-              "icon": "hash"
-            }
-          ]
+          "id": "v_bayc-lobby",
+          "label": "lobby",
+          "icon": "hash"
         },
         {
-          "id": "v_bayc-voice",
-          "label": "Voice",
+          "id": "v_bayc-call",
+          "label": "Lounge",
           "icon": "volume",
-          "head": true,
-          "items": [
-            {
-              "id": "v_bayc-call",
-              "label": "Lounge",
-              "icon": "volume",
-              "crowd": "v_bayc-call"
-            }
-          ]
+          "crowd": "v_bayc-call"
         }
       ]
     },
@@ -195,31 +163,15 @@
       "origin": "phiegg",
       "items": [
         {
-          "id": "v_penguins-text",
-          "label": "Text",
-          "icon": "hash",
-          "head": true,
-          "items": [
-            {
-              "id": "v_penguins-lobby",
-              "label": "lobby",
-              "icon": "hash"
-            }
-          ]
+          "id": "v_penguins-lobby",
+          "label": "lobby",
+          "icon": "hash"
         },
         {
-          "id": "v_penguins-voice",
-          "label": "Voice",
+          "id": "v_penguins-call",
+          "label": "Lounge",
           "icon": "volume",
-          "head": true,
-          "items": [
-            {
-              "id": "v_penguins-call",
-              "label": "Lounge",
-              "icon": "volume",
-              "crowd": "v_penguins-call"
-            }
-          ]
+          "crowd": "v_penguins-call"
         }
       ]
     },
@@ -230,31 +182,15 @@
       "origin": "phiegg",
       "items": [
         {
-          "id": "v_moonbirds-text",
-          "label": "Text",
-          "icon": "hash",
-          "head": true,
-          "items": [
-            {
-              "id": "v_moonbirds-lobby",
-              "label": "lobby",
-              "icon": "hash"
-            }
-          ]
+          "id": "v_moonbirds-lobby",
+          "label": "lobby",
+          "icon": "hash"
         },
         {
-          "id": "v_moonbirds-voice",
-          "label": "Voice",
+          "id": "v_moonbirds-call",
+          "label": "Lounge",
           "icon": "volume",
-          "head": true,
-          "items": [
-            {
-              "id": "v_moonbirds-call",
-              "label": "Lounge",
-              "icon": "volume",
-              "crowd": "v_moonbirds-call"
-            }
-          ]
+          "crowd": "v_moonbirds-call"
         }
       ]
     }

@@ -4,7 +4,8 @@ A host of Phiegg (`app/phiegg/src/data/hosts.json`) is a community with nests (c
 categories) and what was said in each. This step brings every host into Phiogy's catalogue (`catalogue`, with the
 templates a new host starts from), where a person joins and leaves them; the ones `server.json` names are joined from
 the start. A joined host is a space
-on the rail, its nests the space's rooms under their own headings, its messages the rooms' streams, and everyone who
+on the rail, its nests the space's rooms as Phiegg keeps them, as Discord shows a server: its categories headings over
+their channels, a channel's own nests (a world's cities) its sub-channels, the rest at the top under no heading; its messages the rooms' streams, and everyone who
 wrote in them a person of the app with the portrait Phiegg deals them. Every person and agent of Phiegg comes with
 them, each linked to between `link.least` and `link.most` others: first those who share a host or a club with them,
 then the rest, in an order their ids decide, every link held by both ends. The links go to their own file
@@ -123,13 +124,22 @@ def main():
 
     for h in hosts['hosts']:
         nests = [n for n in hosts['nests'] if n['hostId'] == h['id']]
-        groups = {}   # heading id -> its entry, in the order first met
+        # The host's tree as Phiegg keeps it, as Discord shows a server: a category is a heading over its channels; a
+        # nest inside a channel (a world's cities) is that channel's sub-channel; a nest under neither stands at the
+        # top, under no heading. Parents before children, in Phiegg's order.
+        top, groups, entry_of = [], {}, {}   # the host's items in order; heading id -> its entry; nest id -> its entry
         def under(head_id, label):
             if head_id not in groups:
                 groups[head_id] = {'id': head_id, 'label': label, 'icon': icons['text'], 'head': True, 'items': []}
+                top.append(groups[head_id])
             return groups[head_id]['items']
+        by_id = {n['id']: n for n in nests}
+        def depth(n):
+            d = 0
+            while n.get('parentId') in by_id and d < 8: n = by_id[n['parentId']]; d += 1
+            return d
         category = {n['id']: n for n in nests if kinds.get(n['kind']) == 'head'}
-        for n in nests:
+        for n in sorted(nests, key=depth):
             kind = kinds.get(n['kind'])
             if kind not in ('text', 'voice'):
                 made['left'] += kind is None
@@ -148,21 +158,26 @@ def main():
                 {'id': m['id'], 'by': m['authorId'], 'day': cfg['day'], 'at': m['at'], 'text': m['text']} for m in said if m.get('text')]
             rooms['room'][n['id']] = room
             made['room'] += 1; made['message'] += len(room['message'])
-            parent = category.get(n.get('parentId'))
-            items = under(parent['id'], parent['name']) if parent else under(h['id'] + '-' + kind, heads[kind])
-            entry = {'id': n['id'], 'label': n['name'], 'icon': icons[kind]}
+            entry = {'id': n['id'], 'label': n['name'], 'icon': icons.get(n['kind'], icons[kind])}
             if kind == 'voice': entry['crowd'] = n['id']
-            items.append(entry)
-        # A host Phiegg gave no voice nest gets one room to call in (`call`), so every host has a place for a call.
-        if groups and not any(e.get('crowd') for g in groups.values() for e in g['items']):
+            entry_of[n['id']] = entry
+            parent = n.get('parentId')
+            if parent in category: under(parent, category[parent]['name']).append(entry)
+            elif parent in entry_of: entry_of[parent].setdefault('items', []).append(entry); made['sub'] = made.get('sub', 0) + 1
+            else: top.append(entry)
+        # A host Phiegg gave no voice nest gets one room to call in (`call`), at its top, so every host has a place for
+        # a call.
+        def calls(items):
+            return any(e.get('crowd') or calls(e.get('items', [])) for e in items)
+        if top and not calls(top):
             c = cfg['call']; rid = h['id'] + '-' + c['id']
             rooms['room'][rid] = {'label': c['label'], 'space': h['name'], 'origin': ORIGIN, 'kind': 'voice', 'topic': c['topic'], 'member': [], 'message': []}
-            under(h['id'] + '-voice', heads['voice']).append({'id': rid, 'label': c['label'], 'icon': icons['voice'], 'crowd': rid})
+            top.append({'id': rid, 'label': c['label'], 'icon': icons['voice'], 'crowd': rid})
             made['room'] += 1
         sheet, cell = face(h['id'])
-        if not groups: continue
+        if not top: continue
         catalogue.append({'id': h['id'], 'label': h['name'], 'icon': icons['host'], 'members': h.get('members', 0), 'online': h.get('online', 0),
-                          'mark': {'sheet': sheet, 'cols': portraits['cols'], 'index': cell}, 'items': list(groups.values())})
+                          'mark': {'sheet': sheet, 'cols': portraits['cols'], 'index': cell}, 'items': top})
         made['host'] += 1
 
     # The village: spaces for collections Phiegg has no host for. One room each, empty, and where the collection is on X.
@@ -173,9 +188,9 @@ def main():
         app['views'][rid] = {'title': '', 'origin': ORIGIN, 'blocks': [{'kind': 'chat', 'variant': 'room', 'app': app['app'], 'source': 'data/room.json', 'room': rid}]}
         c = cfg['call']; cid = v['id'] + '-' + c['id']
         rooms['room'][cid] = {'label': c['label'], 'space': v['label'], 'origin': ORIGIN, 'kind': 'voice', 'topic': c['topic'], 'member': [], 'message': []}
+        # One room and one to call in, under no heading: a space of one group, as a small Discord server is.
         app['nav'].append({'id': v['id'], 'label': v['label'], 'icon': icons['host'], 'origin': ORIGIN, 'items': [
-            {'id': v['id'] + '-text', 'label': heads['text'], 'icon': icons['text'], 'head': True, 'items': [{'id': rid, 'label': r['label'], 'icon': icons['text']}]},
-            {'id': v['id'] + '-voice', 'label': heads['voice'], 'icon': icons['voice'], 'head': True, 'items': [{'id': cid, 'label': c['label'], 'icon': icons['voice'], 'crowd': cid}]}]})
+            {'id': rid, 'label': r['label'], 'icon': icons['text']}, {'id': cid, 'label': c['label'], 'icon': icons['voice'], 'crowd': cid}]})
 
     # Collections: spaces of the catalogue, each begun from the template `collection.template` names, with the address
     # the collection keeps on X on its first room. Nobody is in one before they join it.
