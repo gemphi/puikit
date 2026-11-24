@@ -185,8 +185,12 @@ export function shotPost(s: Shot): Post {
     comments: site.defaultComments.map((c, i) => ({ ...c, authorId: rid('person', c.authorId), id: `${s.id}_c${i}` })), // site.json keeps the written ids
   };
 }
+/** Posts made of what is no post (any record's pictures, a band's pictures: lib/picturePost.ts), asked last. */
+const MAKERS: ((id: ID) => Post | undefined)[] = [];
+export const postMaker = (make: (id: ID) => Post | undefined) => { MAKERS.push(make); };
 export const postById = (id: ID): Post | undefined =>
-  D.agents.posts.find((p) => p.id === id) ?? (() => { const s = D.feed.shots.find((x) => x.id === id); return s && shotPost(s); })();
+  D.agents.posts.find((p) => p.id === id) ?? (() => { const s = D.feed.shots.find((x) => x.id === id); return s && shotPost(s); })()
+  ?? MAKERS.reduce<Post | undefined>((found, make) => found ?? make(id), undefined);
 
 /** An agent's greeting addressed to whoever is signed in (the seed text names the prototype's member, Noor). */
 export const greetingOf = (a: { greeting: string }) => { const me = person(D.core.currentUserId).name.split(' ')[0]; return me && me !== 'Guest' ? a.greeting.replace(/\bNoor\b/g, me) : a.greeting.replace(/,? Noor\b/g, ''); };

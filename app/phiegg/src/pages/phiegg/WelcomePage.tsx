@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Backdrop, Bands, Box, Button, Card, DataTable, Icon, Image, Label, Picture, Pressable, Rows, Showcase, SpriteImage, StageSlider, TabList, Text, Title, type ShowcaseSlide, type StageSlide } from '@pui/components';
+import { Backdrop, Bands, Box, FocusBand, Button, Card, DataTable, Icon, Image, Label, Picture, Rows, Showcase, SpriteImage, StageSlider, TabList, Text, Title, type ShowcaseSlide, type StageSlide } from '@pui/components';
 import { Tile } from '../../components/Phiegg/Tile';
 import { PersonAvatar } from '../../components/Phiegg/PersonAvatar';
 import { PageSections } from '../../components/Phiegg/PageSections';
@@ -7,6 +7,7 @@ import { Bookmark, Heart, MessageCircle, Share2, Sparkles, type LucideIcon } fro
 import { useStore } from '@pui/store';
 import { D, fmt, rideKind, rideSprite, t, worldMark, itemOf } from '../../lib/data';
 import { mediaUrl } from '../../lib/media';
+import { pictureId } from '../../lib/picturePost';
 import { phieggStore } from '../../state/phieggStore';
 import { AgentChat } from '../../components/Phiegg/AgentChat';
 import type { RideKind, World } from '../../types/phiegg';
@@ -99,23 +100,24 @@ export const WelcomePage: React.FC = () => {
         </Box>
       </Box>
 
-      {/* Step in: the line split across the band, the cities' posts floating round it. */}
-      <Box as="section" className={styles.step}>
+      {/* Step in: the line split across the band, the cities' posts floating round it. A picture pressed comes to the
+          middle, half the band, everything else stepping back but the arrows; pressed again it opens as a post. */}
+      <FocusBand className={styles.step} onOpen={(id) => s.openPost(id)} labels={{ close: t('close') }} items={[
+        ...(L.step.picture ?? []).slice(0, L.step.centre ? 5 : 6).map((src, i) => ({ id: pictureId(src), label: L.step.after,
+          className: `${styles.capsule} ${styles.upright} ${L.step.centre ? styles.around : ''}`, style: { '--i': i } as React.CSSProperties,
+          node: <Box as="span" className={styles.pill}><Image src={mediaUrl(src)} alt="" fit="contain" fill loading="lazy" /></Box> })),
+        ...(L.step.centre ? [{ id: pictureId(L.step.centre), label: L.step.after, className: `${styles.capsule} ${styles.upright} ${styles.centre}`, style: { '--i': 6 } as React.CSSProperties,
+          node: <Box as="span" className={styles.pill}><Image src={mediaUrl(L.step.centre)} alt="" fit="contain" fill loading="lazy" /></Box> }] : []),
+        ...(!L.step.picture ? pics.slice(6, 12).map((src, i) => ({ id: posts[i + 6].id, label: itemOf('world', posts[i + 6].worldId)?.name, className: styles.capsule,
+          style: { '--i': i } as React.CSSProperties, node: <Box as="span" className={styles.pill}><Image src={src} alt="" fit="cover" fill loading="lazy" /></Box> })) : []),
+      ]}>
         <Title level={2} className={styles.before}>{L.step.before}</Title>
-        {(L.step.picture ?? []).slice(0, L.step.centre ? 5 : 6).map((src, i) => (
-          <Box key={src} className={`${styles.capsule} ${styles.upright} ${L.step.centre ? styles.around : ''}`} style={{ '--i': i } as React.CSSProperties}>
-            <Box as="span" className={styles.pill}><Image src={mediaUrl(src)} alt="" fit="contain" fill loading="lazy" /></Box></Box>))}
-        {L.step.centre && <Box className={`${styles.capsule} ${styles.upright} ${styles.centre}`} style={{ '--i': 6 } as React.CSSProperties}>
-          <Box as="span" className={styles.pill}><Image src={mediaUrl(L.step.centre)} alt="" fit="contain" fill loading="lazy" /></Box></Box>}
-        {!L.step.picture && pics.slice(6, 12).map((src, i) => (
-          <Pressable key={src} className={styles.capsule} style={{ '--i': i } as React.CSSProperties} onClick={() => s.openPost(posts[i + 6].id)} aria-label={itemOf('world', posts[i + 6].worldId)?.name}>
-            <Box as="span" className={styles.pill}><Image src={src} alt="" fit="cover" fill loading="lazy" /></Box></Pressable>))}
         <Title level={2} className={styles.after}>{L.step.after}</Title>
         <Box className={styles.stepFoot}>
           <Text as="p" className={styles.lede}>{L.step.body}</Text>
           <Button variant="glass" onClick={() => s.go('worlds')}>{L.step.cta}</Button>
         </Box>
-      </Box>
+      </FocusBand>
 
       {L.gallery && <Box as="section" className={styles.gallery}>
         <Title level={2} className={styles.heading}>{L.gallery.title}</Title>

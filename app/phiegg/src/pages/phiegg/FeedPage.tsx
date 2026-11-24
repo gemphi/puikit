@@ -11,6 +11,7 @@ import { ShotCard } from '../../components/Phiegg/ShotCard';
 import { Composer } from '../../components/Phiegg/Overlays';
 import { PersonAvatar } from '../../components/Phiegg/PersonAvatar';
 import { EntityAvatar } from '../../components/Phiegg/EntityAvatar';
+import { OpensPost } from '../../components/Phiegg/OpensPost';
 import { Tile } from '../../components/Phiegg/Tile';
 import { entityColour, personColour } from '../../lib/colour';
 import type { Pool } from '../../types/phiegg';
@@ -56,8 +57,8 @@ export const FeedPage: React.FC = () => {
   posts.sort(kind === 'popular' ? (a, b) => b.likes - a.likes : (a, b) => b.createdAt.localeCompare(a.createdAt));
   const worlds = D.core.worlds.filter((w) => w.gallery?.length).sort((a, b) => b.visitorsNow - a.visitorsNow).slice(0, 5);
   const rail = [
-    ...hot.slice(0, 6).map(({ pool, N }) => ({ id: pool.id, thumb: <EntityAvatar id={pool.id} name={pool.name} size="lg" />, label: pool.name, sub: Math.round((N.supply ? N.sold / N.supply : 0) * 100) + '% sold', live: true, color: entityColour(pool.id), onClick: () => s.openStory(pool.id) })),
-    ...ids.map((id) => { const p = person(id); return { id, thumb: <PersonAvatar id={id} size="lg" />, label: p.handle, sub: p.isAgent ? 'Agent' : undefined, live: live.has(id), color: personColour(id), onClick: () => s.openStory(id) }; }),
+    ...hot.slice(0, 6).map(({ pool, N }) => ({ id: pool.id, thumb: <EntityAvatar id={pool.id} name={pool.name} size="lg" still />, label: pool.name, sub: Math.round((N.supply ? N.sold / N.supply : 0) * 100) + '% sold', live: true, color: entityColour(pool.id), onClick: () => s.openStory(pool.id) })),
+    ...ids.map((id) => { const p = person(id); return { id, thumb: <PersonAvatar id={id} size="lg" still />, label: p.handle, sub: p.isAgent ? 'Agent' : undefined, live: live.has(id), color: personColour(id), onClick: () => s.openStory(id) }; }),
   ];
   // Every third item is a live market moment, so the feed keeps moving with the pools.
   const items: React.ReactNode[] = []; posts.slice(0, n).forEach((p, i) => { items.push(<ShotCard key={p.id} post={p} />); if (i % 3 === 2 && hot.length) { const h = hot[(i / 3) % hot.length | 0]; items.push(<MarketMoment key={'m' + i} pool={h.pool} k={i} now={now} />); } });
@@ -89,7 +90,7 @@ export const FeedPage: React.FC = () => {
                 <ItemCard key={id} variant="flat" stackBelow="never" onClick={() => s.go('events')} media={<EntityAvatar id={e.id} name={e.title} size="md" />} title={e.title} meta={itemOf('world', e.worldId)?.name} />); })}</Stack>) },
             { id: 'worlds', title: t('fdWorlds'), hidden: !worlds.length, actions: <SeeAll label={t('fdWorlds')} onOpen={() => s.go('worlds')} />, content: (
               <Stack direction="column" gap={2}>{worlds.map((w) => { const m = worldMark(w); return (
-                <ItemCard key={w.id} variant="flat" stackBelow="never" onClick={() => s.go('world', { worldId: w.id })} media={m ? <Avatar size="md" src={m} fit="contain" alt="" colors={entityPalette(w.id)} /> : <Avatar size="md" src={worldThumb(w)} alt="" />}
+                <ItemCard key={w.id} variant="flat" stackBelow="never" onClick={() => s.go('world', { worldId: w.id })} media={<OpensPost id={w.id} label={w.name}>{m ? <Avatar size="md" src={m} fit="contain" alt="" colors={entityPalette(w.id)} /> : <Avatar size="md" src={worldThumb(w)} alt="" />}</OpensPost>}
                   title={w.name} meta={t('insideNow', { n: fmt(w.visitorsNow) })} />); })}</Stack>) },
             { id: 'agents', title: t('fdAgents'), actions: <SeeAll label={t('fdAgents')} onOpen={() => s.go('agents-hub')} />, content: (
               <Stack direction="column" gap={2}>{D.agents.agents.slice(0, 5).map((a) => (
