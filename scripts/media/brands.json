@@ -1,0 +1,31 @@
+{
+ "_": "The house's brands, as the folders of D:/Dowloads/Documents name them, each folder one brand with its own logo files (found 24 November 2026). `logo` is the file in that folder the brand is shown by, copied by app/phiegg/scripts/cities.py to public/brand/<slug>/logo.<ext> (kept out of git, sent to the server as every picture is). `shop` brands keep shops in the 16 main cities, one in a zone of each (the spaza family, Shopple, Paise); the others are listed as brands. Nothing is said of a brand that its folder does not show: its name, what kind of name it is, its logo.",
+ "root": "D:/Dowloads/Documents",
+ "origin": "brands",
+ "brands": [
+  {"name": "Spazaland", "folder": "Spazaland", "logo": "Logo_Assets/Spazaland ICON COLOR 45PX.svg", "shop": true},
+  {"name": "SpazaX", "folder": "SX", "logo": "Logo_Assets/SpazaX 45px icon color.svg", "shop": true},
+  {"name": "Spazastop", "folder": "SS", "logo": "Logo_Assets/spazastop icon 90px.svg", "shop": true},
+  {"name": "Spazalink", "folder": "SL", "logo": "Logo_Assets/Spazalink icon 90px.svg", "shop": true},
+  {"name": "Shopple", "folder": "SP", "logo": "Logo_Assets/icon 90px 2.svg", "shop": true},
+  {"name": "Paise", "folder": "paise", "logo": "Old_Assets_2021-09-15/Logo_Assets/Paise icon 90px black.svg", "shop": true},
+  {"name": "Addtract", "folder": "addtract", "logo": "ADDTRACT LOGO.png"},
+  {"name": "Centfy", "folder": "Centify", "logo": "Logo_Assets/Centfy logo 90px.svg"},
+  {"name": "Brickcent", "folder": "bc", "logo": "assets/Brickcent icon #1 color 90px.svg"},
+  {"name": "Owami", "folder": "owami", "logo": "Logo_Assets/logo_colors.png"},
+  {"name": "Youtip", "folder": "YT", "logo": "Logo_Assets/youtip blk  logo 90px.svg"},
+  {"name": "Bookipa", "folder": "BK", "logo": "Logo_Assets/Bookipa icon 90px.svg"},
+  {"name": "Blueplex", "folder": "BP", "logo": "Logo_Assets/Blueplex logo 90px.png"},
+  {"name": "Addsum", "folder": "AS", "logo": "Logo_Assets/Addsum col logo 90px.svg"},
+  {"name": "Artbeam", "folder": "AB", "logo": "Logos/90px/Artbeam Logo 90px.svg"},
+  {"name": "Altskills", "folder": "Altskills", "logo": "Logo_Assets/ALTSKILLS LOGO 90PX.png"},
+  {"name": "Fundalearn", "folder": "FL", "logo": "Logo_Assets/Fundalearn icon 1st option 90px.svg"},
+  {"name": "Finvise", "folder": "FV", "logo": "Logo_Assets/Finvise icon 90px.png"},
+  {"name": "Planetstar", "folder": "PS", "logo": "Logo_Assets/Planetstar Logo 90px.svg"},
+  {"name": "Obslect", "folder": "OL", "logo": "Logo_Assets/Obslect black logo on white 90px.svg"},
+  {"name": "Cyberpoint", "folder": "CP", "logo": "Cyberpoint icon opt 1 90px.svg"},
+  {"name": "Graphigem", "folder": "graphigem", "logo": "assets/logo.png"},
+  {"name": "Insuwa", "folder": "insuwa", "logo": "logo.png"},
+  {"name": "Centpool", "folder": "centpool", "logo": "Logo_large.PNG"}
+ ]
+}

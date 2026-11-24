@@ -4,7 +4,7 @@
    { "id": "switch", "label": "Switch", "icon": "Repeat", "place": "top", "kind": "@" },
    { "id": "panel", "label": "Panels", "icon": "Columns3", "place": "top", "columns": true },
    { "id": "center", "label": "Center", "icon": "Compass", "place": "center", "link": [ { "label": "pgWorlds", "path": "worlds" }, { "label": "pgHosts", "path": "hosts" }, { "label": "pgShows", "path": "shows" }, { "label": "pgEvents", "path": "events" } ] },
-   { "id": "market", "label": "Market", "icon": "Store", "place": "bottom", "link": [ { "label": "pgShops", "path": "shops" }, { "label": "pgPools", "path": "pools" }, { "label": "Coins", "path": "coins" }, { "label": "Quests", "path": "quests" } ] } ] },
+   { "id": "market", "label": "Market", "icon": "Store", "place": "bottom", "link": [ { "label": "pgShops", "path": "shops" }, { "label": "pgPools", "path": "pools" }, { "label": "Brands", "path": "brands" }, { "label": "Coins", "path": "coins" }, { "label": "Quests", "path": "quests" } ] } ] },
  "menu": {
   "shop": { "header": ["search", "cart", "account"], "headerPhone": ["cart", "account"] }
  },
@@ -14,13 +14,17 @@
    { "id": "panel", "label": "Panels", "icon": "Columns3", "place": "top", "columns": true },
    { "id": "center", "label": "Center", "icon": "Compass", "place": "center", "open": true, "parts": true, "sub": [
      { "id": "zones", "label": "Zones", "kind": "city", "where": { "id": "$cities.*.id" } },
-     { "id": "hosts", "label": "Hosts", "kind": "host", "where": { "worldId": "$id" } } ],
+     { "id": "hosts", "label": "Hosts", "kind": "host", "where": { "worldId": "$id" } },
+     { "id": "shops", "label": "Brands", "kind": "brandShop", "where": { "worldId": "$id" } } ],
     "link": [ { "label": "pgShows", "path": "shows" }, { "label": "pgEvents", "path": "events" } ] },
    { "id": "market", "label": "Market", "icon": "Store", "place": "bottom", "sub": [
      { "id": "shops", "label": "pgShops", "kind": "store", "where": { "clubId": "$clubId" } },
      { "id": "hosts", "label": "Hosts", "kind": "host", "where": { "clubId": "$clubId" }, "not": { "worldId": "$id" } } ],
     "link": [ { "label": "pgShops", "path": "shops" }, { "label": "pgPools", "path": "pools" }, { "label": "pgHosts", "path": "hosts" } ] } ] },
   "city": { "kind": "city", "param": "cityId", "up": { "path": "worlds" } },
+  "brand": { "kind": "brand", "param": "recordId", "up": { "path": "brands" }, "side": [ { "id": "shops", "label": "Shops", "icon": "Store", "place": "center", "kind": "brandShop", "where": { "brandId": "$id" } } ] },
+  "brandShop": { "kind": "brandShop", "param": "recordId", "up": { "path": "brands" } },
+  "brands": { "name": "Brands", "title": "{count} brands", "sub": "The house's brands, as their own folders name them; the shopping ones keep a shop in each of the 16 main cities.", "tab": [ { "id": "all", "label": "All", "kind": "brand" }, { "id": "shops", "label": "Shops", "kind": "brand", "where": { "shop": "true" } } ] },
   "club": { "kind": "club", "param": "clubId", "up": { "path": "explore", "name": "pgClubs" } },
   "show": { "kind": "show", "param": "showId", "up": { "path": "shows" } },
   "profile": { "param": "profileId", "record": ["agent", "person"], "up": { "path": "explore", "name": "pgCreators" } },
@@ -31,7 +35,8 @@
   "title": { "kind": "series", "param": "titleId", "up": { "path": "series" } },
   "asset": { "kind": ["egg", "sum", "profilePft", "ride", "jewel"], "param": "assetId" },
   "worlds": { "name": "pgWorlds", "title": "{count} worlds", "sub": "Every world on Phiegg: virtual cities, AR layers over real streets, and agentic worlds run by agent citizens.", "tab": [
-   { "id": "all", "label": "All", "kind": "world" }, { "id": "virtual", "label": "Virtual", "kind": "world", "where": { "kind": "virtual" } },
+   { "id": "all", "label": "All", "kind": "world" }, { "id": "cities", "label": "Cities", "kind": "world", "where": { "city.set": "cities" } }, { "id": "main", "label": "Main", "kind": "world", "where": { "city.rank": "main" } },
+   { "id": "virtual", "label": "Virtual", "kind": "world", "where": { "kind": "virtual" } },
    { "id": "ar", "label": "AR", "kind": "world", "where": { "kind": "ar" } }, { "id": "agentic", "label": "Agentic", "kind": "world", "where": { "kind": "agentic" } } ] },
   "shows": { "name": "pgShows", "title": "{shows.season} shows", "sub": "Every world walks a {shows.season} show: 64 looks, each on its own pose from a {shows.poses.length}-pose library.", "tab": [
    { "id": "all", "label": "All", "kind": "show" }, { "id": "virtual", "label": "Virtual", "kind": "show", "where": { "worldId.kind": "virtual" } },
