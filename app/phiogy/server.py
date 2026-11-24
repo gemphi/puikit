@@ -24,6 +24,8 @@ Nothing is decided here: which hosts, which nest kinds, the words and the presen
 """
 import io
 import json
+
+import talk
 import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -188,9 +190,24 @@ def main():
         app['views'][rid] = {'title': '', 'origin': ORIGIN, 'blocks': [{'kind': 'chat', 'variant': 'room', 'app': app['app'], 'source': 'data/room.json', 'room': rid}]}
         c = cfg['call']; cid = v['id'] + '-' + c['id']
         rooms['room'][cid] = {'label': c['label'], 'space': v['label'], 'origin': ORIGIN, 'kind': 'voice', 'topic': c['topic'], 'member': [], 'message': []}
-        # One room and one to call in, under no heading: a space of one group, as a small Discord server is.
-        app['nav'].append({'id': v['id'], 'label': v['label'], 'icon': icons['host'], 'origin': ORIGIN, 'items': [
-            {'id': rid, 'label': r['label'], 'icon': icons['text']}, {'id': cid, 'label': c['label'], 'icon': icons['voice'], 'crowd': cid}]})
+        # Its first room, then the template's rooms under their headings (as every collection's space has them), then
+        # the room to call in; and its mark from the portraits, so no host stands on the rail as a letter.
+        items = [{'id': rid, 'label': r['label'], 'icon': icons['text']}]
+        plan = next((t for t in cfg['template'] if t['id'] == village.get('template')), {'room': []})
+        heads = {}
+        for i, t in enumerate(x for x in plan['room'] if x.get('kind', 'text') == 'text'):
+            tid = '%s-%s' % (v['id'], i)
+            rooms['room'][tid] = {'label': t['label'], 'space': v['label'], 'origin': ORIGIN, 'member': [], 'message': []}
+            app['views'][tid] = {'title': '', 'origin': ORIGIN, 'blocks': [{'kind': 'chat', 'variant': 'room', 'app': app['app'], 'source': 'data/room.json', 'room': tid}]}
+            head = heads.get(t['head'])
+            if head is None:
+                head = heads[t['head']] = {'id': '%s-h%d' % (v['id'], len(heads)), 'label': t['head'], 'icon': icons['text'], 'head': True, 'items': []}
+                items.append(head)
+            head['items'].append({'id': tid, 'label': t['label'], 'icon': icons['text']})
+        items.append({'id': cid, 'label': c['label'], 'icon': icons['voice'], 'crowd': cid})
+        sheet, cell = face(v['id'])
+        app['nav'].append({'id': v['id'], 'label': v['label'], 'icon': icons['host'], 'origin': ORIGIN,
+                           'mark': {'sheet': sheet, 'cols': portraits['cols'], 'index': cell}, 'items': items})
 
     # Collections: spaces of the catalogue, each begun from the template `collection.template` names, with the address
     # the collection keeps on X on its first room. Nobody is in one before they join it.
@@ -258,13 +275,22 @@ def main():
     app['joined'] = [h['id'] for h in chosen]
     with io.open(os.path.join(HERE, *cfg['catalogue'].split('/')), 'w', encoding='utf-8', newline='') as f:
         f.write(json.dumps({'template': cfg['template'], 'host': catalogue}, separators=(',', ':'), ensure_ascii=False) + '\n')
-    write(app_path, app); write(room_path, rooms)
+    # The app's own places (Phiace, Makers) wear a mark from the portraits too, where they have none.
+    for n in app['nav']:
+        if n.get('id') != app.get('direct') and not n.get('mark'):
+            sheet, cell = face(n['id']); n['mark'] = {'sheet': sheet, 'cols': portraits['cols'], 'index': cell}
+    # What is said in every room: Phiegg's own comments (talk.py).
+    made['talk'] = talk.fill(rooms, cfg, fnv, os.path.join(HERE, cfg['source']))
+    write(app_path, app)
+    # The rooms, every message in them: written close, as the catalogue is, so the file stays small enough to keep.
+    with io.open(room_path, 'w', encoding='utf-8', newline='') as f:
+        f.write(json.dumps(rooms, separators=(',', ':'), ensure_ascii=False) + '\n')
     # The links, small: everyone once, in order, and for each the places in that order of those they are linked to.
     place = {p: i for i, p in enumerate(everyone)}
     with io.open(os.path.join(HERE, *link['file'].split('/')), 'w', encoding='utf-8', newline='') as f:
         f.write(json.dumps({'id': everyone, 'link': [sorted(place[q] for q in held[p]) for p in everyone]}, separators=(',', ':')) + '\n')
     sizes = sorted(len(v) for v in held.values())
-    print('hosts %(host)d, rooms %(room)d, messages %(message)d, people %(person)d; nests of a kind not brought: %(left)d' % made)
+    print('hosts %(host)d, rooms %(room)d, messages %(message)d and %(talk)d more said, people %(person)d; nests of a kind not brought: %(left)d' % made)
     print('links a person: least %d, middle %d, most %d' % (sizes[0], sizes[len(sizes) // 2], sizes[-1]))
     sizes = sorted(len(v) for v in rooms['space'].values())
     print('spaces %d; people in a space: least %d, middle %d, most %d' % (len(sizes), sizes[0], sizes[len(sizes) // 2], sizes[-1]))

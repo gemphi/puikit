@@ -111,7 +111,9 @@
         "label": "Moonbirds",
         "x": "https://x.com/moonbirds"
       }
-    ]
+    ],
+    "_": "Spaces for collections Phiegg has no host for: each its first room, the rooms of the template `template` names after it, and a room to call in; a mark from the portraits, as every host has.",
+    "template": "collection"
   },
   "collection": {
     "template": "collection",
@@ -371,5 +373,17 @@
         }
       ]
     }
-  ]
+  ],
+  "message": {
+    "_": "talk.py: every text room of a space says between least and most of Phiegg's comments, spread over these days, between these minutes of the day (from, until).",
+    "least": 16,
+    "most": 64,
+    "day": [
+      "Saturday",
+      "Sunday",
+      "Yesterday"
+    ],
+    "from": 480,
+    "until": 1320
+  }
 }
