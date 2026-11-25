@@ -1,0 +1,2053 @@
+# EPAC: every token and its traits, from the Drive sheet FINAL-NFT-NONPIXEL
+# (Google Sheet 1eVebdVesWhXMGXaxBNDwXHWpbiUZRfE7O1dU8Yrjcec, tabs EPAC:NON-PIXEL
+# and EPAC:PIXEL), read 25 November 2026. 1,024 tokens in each form. The
+# sheet calls its rarity column BACKGROUND / RARTIRY.
+number	form	rarity	char	hair	hat	accessory	hair_colour
+1	non-pixel	Epic	01	1	None	None	Shades of Brunette
+2	non-pixel	Common	02	1	Beanie	None	Shades of Blonde
+3	non-pixel	Legendary	03	1	None	Tattoo	Shades of Brunette
+4	non-pixel	Limited	04	1	None	None	Shades of Gray
+5	non-pixel	Rare	05	1	None	Reading Glasses	Shades of Orange
+6	non-pixel	Limited	06	1	None	Earrings	Shades of Pink
+7	non-pixel	Epic	07	1	None	None	Shades of Blonde
+8	non-pixel	Common	08	1	Graduation	None	Shades of Brunette
+9	non-pixel	Common	09	1	None	Test Tube	Shades of Orange
+10	non-pixel	Limited	10	1	Circus	None	Shades of Brunette
+11	non-pixel	Epic	11	1	None	None	Shades of Gray
+12	non-pixel	Common	12	1	None	None	Shades of Brunette
+13	non-pixel	Legendary	13	1	Captain	None	Shades of Blonde
+14	non-pixel	Limited	14	1	None	Funky Glasses	Shades of Purple
+15	non-pixel	Common	15	1	None	Earrings	Shades of Pink
+16	non-pixel	Limited	16	1	Hoodie	None	Shades of Red
+17	non-pixel	Limited	17	1	None	None	Shades of Brunette
+18	non-pixel	Epic	17	2	None	70s Glasses	Shades of Brunette
+19	non-pixel	SuperRare	04	2	None	Tattoo	Shades of Blonde
+20	non-pixel	Common	01	1	Detective	Beer	Shades of Brunette
+21	non-pixel	Common	01	1	Beanie	Scarf	Shades of Brunette
+22	non-pixel	Rare	15	2	None	Earrings	Shades of Red
+23	non-pixel	Common	12	1	Bucket	None	Shades of Blonde
+24	non-pixel	Limited	08	2	None	Necklace	Shades of Pink
+25	non-pixel	Limited	10	1	Cap	None	Shades of Brunette
+26	non-pixel	Common	11	1	Beret	None	Shades of Gray
+27	non-pixel	Legendary	09	1	Sombrero	None	Shades of Green
+28	non-pixel	Common	02	1	None	3D Glasses	Shades of Orange
+29	non-pixel	Limited	14	1	None	Necklace	Shades of Blue
+30	non-pixel	SuperRare	03	1	Police	Sunglasses	Shades of Brunette
+31	non-pixel	Common	05	2	None	Necklace	Shades of Brunette
+32	non-pixel	Limited	16	1	Bowler	None	Shades of Red
+33	non-pixel	SuperRare	13	1	Winter	None	Shades of Blonde
+34	non-pixel	Limited	06	1	None	Headphones	Shades of Pink
+35	non-pixel	Common	07	1	Boat	None	Shades of Blonde
+36	non-pixel	Common	08	3	None	None	Shades of Green
+37	non-pixel	Common	02	2	None	Mask	Shades of Pink
+38	non-pixel	Common	03	1	None	Earphones	Shades of Blonde
+39	non-pixel	Rare	04	1	None	None	Shades of Blue
+40	non-pixel	Limited	05	3	None	Bow	Shades of Blonde
+41	non-pixel	Common	09	2	Crown	None	Shades of Red
+42	non-pixel	Common	10	1	Chef	None	Shades of Purple
+43	non-pixel	Common	11	1	None	None	Shades of Green
+44	non-pixel	Rare	12	2	None	Goggles	Shades of Blue
+45	non-pixel	Common	13	1	None	None	Shades of Red
+46	non-pixel	Epic	14	1	None	None	Shades of Brunette
+47	non-pixel	Rare	15	2	Visor	Sunglasses	Shades of Blonde
+48	non-pixel	Limited	06	2	None	Earrings	Shades of Purple
+49	non-pixel	Common	07	2	None	None	Shades of Blonde
+50	non-pixel	Limited	16	2	None	Sunglasses	Shades of Green
+51	non-pixel	Common	17	1	None	Sunglasses	Shades of Blonde
+52	non-pixel	Legendary	01	2	None	Earphones	Shades of Pink
+53	non-pixel	Rare	02	2	Rugby	None	Shades of Blonde
+54	non-pixel	Common	03	2	Sombrero	None	Shades of Green
+55	non-pixel	Epic	04	3	None	Nose Ring	Shades of Blue
+56	non-pixel	Rare	05	4	None	Necklace	Shades of Red
+57	non-pixel	Common	06	3	None	Sunglasses	Shades of Gray
+58	non-pixel	Common	07	2	Veil	None	Shades of Blonde
+59	non-pixel	Common	08	1	Cap	Earrings	Shades of Helvetica
+60	non-pixel	Common	09	3	None	Microphone	Shades of Purple
+61	non-pixel	Common	10	2	None	None	Shades of Blonde
+62	non-pixel	Legendary	11	2	None	None	Shades of Red
+63	non-pixel	Common	12	3	None	None	Shades of Blonde
+64	non-pixel	Common	13	1	Bear	None	Shades of Blonde
+65	non-pixel	Limited	14	2	Round	None	Shades of Green
+66	non-pixel	Common	18	1	None	None	Shades of Green
+67	non-pixel	Common	18	1	Hoodie	None	Shades of Blue
+68	non-pixel	Common	18	1	None	None	Shades of Purple
+69	non-pixel	Common	19	1	None	Necklace	Shades of Helvetica
+70	non-pixel	Legendary	20	1	None	Necklace	Shades of Helvetica
+71	non-pixel	Limited	21	1	None	None	Shades of Helvetica
+72	non-pixel	Epic	22	1	None	Necklace	Shades of Blue
+73	non-pixel	Legendary	23	1	None	Reading Glasses	Shades of Purple
+74	non-pixel	Legendary	24	1	None	Earrings	Shades of Green
+75	non-pixel	Common	25	1	None	None	Shades of Brunette
+76	non-pixel	Limited	26	1	None	None	Shades of Gray
+77	non-pixel	Common	18	2	None	Broach	Shades of Blonde
+78	non-pixel	Common	27	1	None	None	Shades of Blonde
+79	non-pixel	Legendary	28	1	None	Earrings	Shades of Orange
+80	non-pixel	Common	29	1	None	None	Shades of Blonde
+81	non-pixel	Common	30	1	None	Reading Glasses	Shades of Orange
+82	non-pixel	Common	01	1	None	Sunglasses	Shades of Blonde
+83	non-pixel	SuperRare	01	1	Hoodie	None	Shades of Pink
+84	non-pixel	Epic	01	1	Beret	Sunglasses	Shades of Green
+85	non-pixel	Rare	01	1	None	Nose Ring	Shades of Gray
+86	non-pixel	Limited	01	1	None	Funky Glasses	Shades of Pink
+87	non-pixel	Common	01	1	None	Sunglasses	Shades of Gray
+88	non-pixel	Limited	01	1	Cap	Reading Glasses	Shades of Purple
+89	non-pixel	Common	01	1	Bucket	None	Shades of Orange
+90	non-pixel	Common	01	1	None	Sunglasses	Shades of Green
+91	non-pixel	SuperRare	01	1	Bowler	Mask	Shades of Purple
+92	non-pixel	Common	01	1	None	Sunglasses	Shades of Helvetica
+93	non-pixel	Limited	01	1	Round	None	Shades of Blonde
+94	non-pixel	Limited	01	1	Graduation	None	Shades of Red
+95	non-pixel	Common	01	2	None	None	Shades of Blonde
+96	non-pixel	Rare	01	2	None	3D Glasses	Shades of Blonde
+97	non-pixel	SuperRare	01	2	None	70s Glasses	Shades of Blonde
+98	non-pixel	Common	01	2	Cap	None	Shades of Green
+99	non-pixel	Limited	01	2	Top	None	Shades of Gray
+100	non-pixel	Epic	01	2	None	Reading Glasses	Shades of Pink
+101	non-pixel	Common	01	2	Sombrero	None	Shades of Gray
+102	non-pixel	Rare	01	2	Winter	None	Shades of Blue
+103	non-pixel	Limited	01	2	None	Goggles	Shades of Blonde
+104	non-pixel	Common	01	2	None	Reading Glasses	Shades of Green
+105	non-pixel	Rare	01	2	Visor	None	Shades of Purple
+106	non-pixel	Common	01	2	None		Shades of Helvetica
+107	non-pixel	Limited	01	2	None	None	Shades of Pink
+108	non-pixel	Common	01	2	None	Headphones	Shades of Pink
+109	non-pixel	Rare	01	2	None	Tattoo	Shades of Blue
+110	non-pixel	Limited	02	1	None	Sunglasses	Shades of Brunette
+111	non-pixel	SuperRare	02	2	None	Sunglasses	Shades of Pink
+112	non-pixel	Limited	02	1	None	Sunglasses	Shades of Brunette
+113	non-pixel	Common	02	2	Sombrero	Brow Ring	Shades of Brunette
+114	non-pixel	Rare	02	1	None	Sunglasses	Shades of Pink
+115	non-pixel	Epic	02	2	None	Earphones	Shades of Green
+116	non-pixel	Common	02	1	Hoodie	Brow Ring	Shades of Brunette
+117	non-pixel	Limited	02	2	None	Goggles	Shades of Gray
+118	non-pixel	Common	02	1	None	Headphones	Shades of Green
+119	non-pixel	Rare	02	2	Cap	None	Shades of Gray
+120	non-pixel	Common	02	1	Top	None	Shades of Gray
+121	non-pixel	Legendary	02	2	Beanie	Sunglasses	Shades of Red
+122	non-pixel	Common	02	1	Round	None	Shades of Red
+123	non-pixel	Common	02	2	None	Scarf	Shades of Blue
+124	non-pixel	SuperRare	02	1	Detective	None	Shades of Gray
+125	non-pixel	Common	02	2	None	None	Shades of Green
+126	non-pixel	Limited	02	1	Bowler	Reading Glasses	Shades of Blue
+127	non-pixel	Common	02	2	None	Funky Glasses	Shades of Purple
+128	non-pixel	Limited	02	1	Captain	None	Shades of Blonde
+129	non-pixel	Epic	02	2	None	Brow Ring	Shades of Helvetica
+130	non-pixel	Common	02	1	None	None	Shades of Green
+131	non-pixel	Epic	02	2	None	Brow Ring	Shades of Pink
+132	non-pixel	SuperRare	02	1	None	Earphones	Shades of Helvetica
+133	non-pixel	Limited	02	2	Sombrero	Brow Ring	Shades of Brunette
+134	non-pixel	Common	02	1	Boat	None	Shades of Pink
+135	non-pixel	Rare	02	2	Bear	None	Shades of Red
+136	non-pixel	Rare	02	1	None	Reading Glasses	Shades of Blue
+137	non-pixel	Limited	02	2	None	None	Shades of Blonde
+138	non-pixel	Common	03	1	Captain	Reading Glasses	Shades of Pink
+139	non-pixel	SuperRare	03	2	None	Sunglasses	Shades of Blonde
+140	non-pixel	Limited	03	1	Detective	Tattoo	Shades of Green
+141	non-pixel	Common	03	2	Cap	None	Shades of Pink
+142	non-pixel	Epic	03	1	None	Goggles	Shades of Gray
+143	non-pixel	Limited	03	2	None	Sunglasses	Shades of Blonde
+144	non-pixel	Common	03	1	Round	Tattoo	Shades of Red
+145	non-pixel	Limited	03	2	Bowler	None	Shades of Gray
+146	non-pixel	Common	03	1	Top	Reading Glasses	Shades of Gray
+147	non-pixel	Common	03	2	None	Funky Glasses	Shades of Red
+148	non-pixel	Legendary	03	1	None	70s Glasses	Shades of Blue
+149	non-pixel	Limited	03	2	Top	None	Shades of Gray
+150	non-pixel	Epic	03	1	None	Sunglasses	Shades of Orange
+151	non-pixel	Common	03	2	None	Reading Glasses	Shades of Blue
+152	non-pixel	Rare	03	1	Beanie	Tattoo	Shades of Green
+153	non-pixel	Common	03	2	Bucket	None	Shades of Blonde
+154	non-pixel	Limited	03	1	Bear	Tattoo	Shades of Red
+155	non-pixel	Rare	03	2	Sombrero	None	Shades of Green
+156	non-pixel	Common	03	1	Visor	Tattoo	Shades of Helvetica
+157	non-pixel	Limited	03	2	None	3D Glasses	Shades of Purple
+158	non-pixel	Rare	03	1	None	Sunglasses	Shades of Blonde
+159	non-pixel	Rare	03	2	Winter	Earphones	Shades of Helvetica
+160	non-pixel	Common	03	1	None	Earphones	Shades of Pink
+161	non-pixel	Limited	03	2	Boat	None	Shades of Brunette
+162	non-pixel	Rare	03	1	None	Tattoo	Shades of Brunette
+163	non-pixel	Common	03	2	Beret	None	Shades of Red
+164	non-pixel	Epic	03	2	None	Sunglasses	Shades of Blue
+165	non-pixel	Common	03	2	None	None	Shades of Blonde
+166	non-pixel	Rare	04	1	Graduation	None	Shades of Brunette
+167	non-pixel	Common	04	2	Bowler	Tattoo	Shades of Helvetica
+168	non-pixel	Common	04	3	Top	None	Shades of Green
+169	non-pixel	SuperRare	04	1	None	Monacle	Shades of Pink
+170	non-pixel	Common	04	2	Winter	Goggles	Shades of Pink
+171	non-pixel	Rare	04	3	Bear	Nose Ring	Shades of Orange
+172	non-pixel	Common	04	1	None	None	Shades of Brunette
+173	non-pixel	Common	04	2	None	Sunglasses	Shades of Blonde
+174	non-pixel	SuperRare	04	3	None	Sunglasses	Shades of Gray
+175	non-pixel	Common	04	1	Detective	Reading Glasses	Shades of Green
+176	non-pixel	Common	04	2	Chef	Earrings	Shades of Blue
+177	non-pixel	Epic	04	3	Bear	Sunglasses	Shades of Red
+178	non-pixel	Common	04	1	None	Necklace	Shades of Gray
+179	non-pixel	Common	04	2	None	Earrings	Shades of Red
+180	non-pixel	Limited	04	3	Top	Reading Glasses	Shades of Gray
+181	non-pixel	Rare	04	1	Bucket	Funky Glasses	Shades of Red
+182	non-pixel	Common	04	2	Visor	Reading Glasses	Shades of Brunette
+183	non-pixel	Rare	04	3	Beanie	Reading Glasses	Shades of Green
+184	non-pixel	Common	04	1	Cap	None	Shades of Blonde
+185	non-pixel	Limited	04	2	Rugby	3D Glasses	Shades of Orange
+186	non-pixel	Common	04	3	Captain	Nose Ring	Shades of Brunette
+187	non-pixel	Limited	04	1	Beret	70s Glasses	Shades of Green
+188	non-pixel	Epic	04	2	Sombrero	Sunglasses	Shades of Helvetica
+189	non-pixel	Limited	04	3	None	Nose Ring	Shades of Pink
+190	non-pixel	Legendary	04	1	Sombrero	None	Shades of Purple
+191	non-pixel	Common	04	2	Boat	Earrings	Shades of Purple
+192	non-pixel	Limited	04	3	Round	Sunglasses	Shades of Blonde
+193	non-pixel	Limited	04	3	None	Nose Ring	Shades of Brunette
+194	non-pixel	Common	05	1	None	Earrings	Shades of Blonde
+195	non-pixel	Common	05	2	Beanie	None	Shades of Pink
+196	non-pixel	Common	05	3	Winter	None	Shades of Pink
+197	non-pixel	Limited	05	4	Sombrero	None	Shades of Brunette
+198	non-pixel	Epic	05	1	None	Monacle	Shades of Brunette
+199	non-pixel	Limited	05	2	Bucket	Sunglasses	Shades of Green
+200	non-pixel	Rare	05	3	Boat	Sunglasses	Shades of Green
+201	non-pixel	Common	05	4	None	Necklace	Shades of Blonde
+202	non-pixel	Common	05	1	Graduation	None	Shades of Gray
+203	non-pixel	Common	05	2	Cap	Funky Glasses	Shades of Red
+204	non-pixel	Common	05	3	None	Sunglasses	Shades of Gray
+205	non-pixel	Common	05	4	Top	Goggles	Shades of Gray
+206	non-pixel	Common	05	1	None	Sunglasses	Shades of Blue
+207	non-pixel	Limited	05	2	Beret	70s Glasses	Shades of Blue
+208	non-pixel	SuperRare	05	3	Visor	Sunglasses	Shades of Orange
+209	non-pixel	Rare	05	4	None	Broach	Shades of Gray
+210	non-pixel	Limited	05	1	Captain	None	Shades of Purple
+211	non-pixel	Epic	05	2	Sombrero	None	Shades of Purple
+212	non-pixel	Limited	05	3	None	None	Shades of Green
+213	non-pixel	SuperRare	05	4	Bear	None	Shades of Green
+214	non-pixel	Common	05	1	None	None	Shades of Brunette
+215	non-pixel	Limited	05	2	Captain	3D Glasses	Shades of Blonde
+216	non-pixel	Rare	05	3	None	Reading Glasses	Shades of Helvetica
+217	non-pixel	Legendary	05	4	Round	None	Shades of Green
+218	non-pixel	Common	05	1	None	Reading Glasses	Shades of Blonde
+219	non-pixel	SuperRare	05	2	None	Sunglasses	Shades of Blue
+220	non-pixel	Common	05	3	None	None	Shades of Red
+221	non-pixel	Epic	05	4	None	Sunglasses	Shades of Pink
+222	non-pixel	SuperRare	06	1	Captain	None	Shades of Blonde
+223	non-pixel	Common	06	2	Winter	Funky Glasses	Shades of Orange
+224	non-pixel	Rare	06	3	None	Monacle	Shades of Brunette
+225	non-pixel	SuperRare	06	1	Beanie	Reading Glasses	Shades of Blonde
+226	non-pixel	Limited	06	2	Cap	None	Shades of Blonde
+227	non-pixel	Common	06	3	Captain	3D Glasses	Shades of Pink
+228	non-pixel	Epic	06	1	Bear	Sunglasses	Shades of Gray
+229	non-pixel	Common	06	2	None	Reading Glasses	Shades of Brunette
+230	non-pixel	Limited	06	3	None	None	Shades of Green
+231	non-pixel	Epic	06	1	None	Scarf	Shades of Gray
+232	non-pixel	Common	06	2	None	None	Shades of Green
+233	non-pixel	Rare	06	3	None	None	Shades of Red
+234	non-pixel	Limited	06	1	Graduation	Test Tube	Shades of Orange
+235	non-pixel	SuperRare	06	2	None	Sunglasses	Shades of Pink
+236	non-pixel	Common	06	3	Sombrero	Scarf	Shades of Blue
+237	non-pixel	Common	06	1	Bowler	Earphones	Shades of Green
+238	non-pixel	Common	06	2	Sombrero	None	Shades of Gray
+239	non-pixel	Common	06	3	None	Sunglasses	Shades of Green
+240	non-pixel	Rare	06	1	None	Earrings	Shades of Helvetica
+241	non-pixel	Common	06	2	Beret	None	Shades of Blue
+242	non-pixel	Legendary	06	3	Boat	Earrings	Shades of Purple
+243	non-pixel	Rare	06	1	Bucket	Sunglasses	Shades of Red
+244	non-pixel	Common	06	2	None	Goggles	Shades of Blonde
+245	non-pixel	Common	06	3	Detective	Sunglasses	Shades of Helvetica
+246	non-pixel	Common	06	1	Veil	None	Shades of Blue
+247	non-pixel	Common	06	2	Round	None	Shades of Brunette
+248	non-pixel	Rare	06	3	Visor	None	Shades of Brunette
+249	non-pixel	Epic	06	3	None	Reading Glasses	Shades of Blonde
+250	non-pixel	Limited	07	1	None	None	Shades of Brunette
+251	non-pixel	SuperRare	07	2	None	3D Glasses	Shades of Orange
+252	non-pixel	Common	07	1	None	Sunglasses	Shades of Pink
+253	non-pixel	Epic	07	2	None	Funky Glasses	Shades of Pink
+254	non-pixel	Common	07	1	Captain	Monacle	Shades of Blonde
+255	non-pixel	Rare	07	2	None	Sunglasses	Shades of Brunette
+256	non-pixel	Limited	07	1	Cap	None	Shades of Green
+257	non-pixel	Limited	07	2	Bowler	None	Shades of Green
+258	non-pixel	Common	07	1	Visor	None	Shades of Gray
+259	non-pixel	Rare	07	2	None	Sunglasses	Shades of Gray
+260	non-pixel	Common	07	1	Beret	Sunglasses	Shades of Red
+261	non-pixel	SuperRare	07	2	None	Earphones	Shades of Red
+262	non-pixel	Epic	07	1	None	Headphones	Shades of Blue
+263	non-pixel	Rare	07	2	Bear	Reading Glasses	Shades of Gray
+264	non-pixel	Common	07	1	Graduation	Mask	Shades of Orange
+265	non-pixel	Limited	07	2	Captain	70s Glasses	Shades of Blue
+266	non-pixel	Rare	07	1	Round	None	Shades of Green
+267	non-pixel	Common	07	2	None	None	Shades of Green
+268	non-pixel	Common	07	1	Beanie	Sunglasses	Shades of Purple
+269	non-pixel	Rare	07	2	Top	None	Shades of Purple
+270	non-pixel	Epic	07	1	None	Goggles	Shades of Helvetica
+271	non-pixel	Common	07	2	Winter	None	Shades of Helvetica
+272	non-pixel	Limited	07	1	Sombrero	Sunglasses	Shades of Blonde
+273	non-pixel	Common	07	2	None	Sunglasses	Shades of Pink
+274	non-pixel	SuperRare	07	1	None	Earrings	Shades of Brunette
+275	non-pixel	Limited	07	2	Detective	Earrings	Shades of Red
+276	non-pixel	Common	07	1	None	None	Shades of Blue
+277	non-pixel	Legendary	07	2	None	Reading Glasses	Shades of Blonde
+278	non-pixel	Rare	08	1	None	Sunglasses	Shades of Blonde
+279	non-pixel	Common	08	2	None	None	Shades of Brunette
+280	non-pixel	Common	08	3	Round	Reading Glasses	Shades of Blonde
+281	non-pixel	Limited	08	1	None	Reading Glasses	Shades of Green
+282	non-pixel	SuperRare	08	2	None	Goggles	Shades of Pink
+283	non-pixel	Epic	08	3	Beret	Necklace	Shades of Pink
+284	non-pixel	Common	08	1	None	Reading Glasses	Shades of Red
+285	non-pixel	Common	08	2	Beanie	Earrings	Shades of Blonde
+286	non-pixel	Rare	08	3	None	Earphones	Shades of Gray
+287	non-pixel	Common	08	1	Cap	Sunglasses	Shades of Gray
+288	non-pixel	Rare	08	2	Bowler	None	Shades of Gray
+289	non-pixel	Epic	08	3	None	Mask	Shades of Red
+290	non-pixel	Limited	08	1	Captain	Sunglasses	Shades of Orange
+291	non-pixel	Common	08	2	Sombrero	70s Glasses	Shades of Blue
+292	non-pixel	SuperRare	08	3	Captain	Sunglasses	Shades of Blue
+293	non-pixel	Common	08	1	Bear	Monacle	Shades of Green
+294	non-pixel	Limited	08	2	None	None	Shades of Green
+295	non-pixel	Limited	08	3	None	Headphones	Shades of Blonde
+296	non-pixel	Common	08	1	Visor	Sunglasses	Shades of Blonde
+297	non-pixel	Rare	08	2	None	Funky Glasses	Shades of Purple
+298	non-pixel	Epic	08	3	None	Sunglasses	Shades of Purple
+299	non-pixel	Common	08	1	None	None	Shades of Gray
+300	non-pixel	Common	08	2	None	Sunglasses	Shades of Helvetica
+301	non-pixel	Limited	08	3	Top	None	Shades of Helvetica
+302	non-pixel	SuperRare	08	2	Detective	None	Shades of Red
+303	non-pixel	Rare	08	3	None	3D Glasses	Shades of Brunette
+304	non-pixel	Limited	08	2	None	None	Shades of Blonde
+305	non-pixel	Legendary	08	3	Winter	None	Shades of Blue
+306	non-pixel	SuperRare	09	1	Bowler	3D Glasses	Shades of Blonde
+307	non-pixel	Common	09	2	Beret	Monacle	Shades of Brunette
+308	non-pixel	Limited	09	3	None	Sunglasses	Shades of Orange
+309	non-pixel	Limited	09	1	None	Reading Glasses	Shades of Brunette
+310	non-pixel	Common	09	2	None	Goggles	Shades of Blonde
+311	non-pixel	Epic	09	3	Beanie	None	Shades of Pink
+312	non-pixel	Rare	09	1	Captain	None	Shades of Gray
+313	non-pixel	Limited	09	2	Visor	None	Shades of Pink
+314	non-pixel	Common	09	3	None	Sunglasses	Shades of Green
+315	non-pixel	Limited	09	1	None	Sunglasses	Shades of Gray
+316	non-pixel	Common	09	2	Graduation	Funky Glasses	Shades of Blonde
+317	non-pixel	Rare	09	3	None	None	Shades of Red
+318	non-pixel	Rare	09	1	Top	Mask	Shades of Green
+319	non-pixel	Limited	09	2	Cap	Reading Glasses	Shades of Gray
+320	non-pixel	Common	09	3	Detective	Sunglasses	Shades of Gray
+321	non-pixel	Common	09	1	Hoodie	Earphones	Shades of Purple
+322	non-pixel	Epic	09	2	Captain	Sunglasses	Shades of Red
+323	non-pixel	SuperRare	09	3	None	None	Shades of Blue
+324	non-pixel	Epic	09	1	None	Sunglasses	Shades of Helvetica
+325	non-pixel	Rare	09	2	Winter	None	Shades of Blue
+326	non-pixel	Limited	09	3	None	Sunglasses	Shades of Green
+327	non-pixel	Common	09	1	None	None	Shades of Brunette
+328	non-pixel	Common	09	2	Round	Reading Glasses	Shades of Blonde
+329	non-pixel	SuperRare	09	3	Bucket	None	Shades of Blonde
+330	non-pixel	Common	09	2	None	70s Glasses	Shades of Purple
+331	non-pixel	Limited	09	3	Bear	Reading Glasses	Shades of Pink
+332	non-pixel	Common	09	2	None	Headphones	Shades of Blue
+333	non-pixel	Rare	09	3	Cap	Reading Glasses	Shades of Blonde
+334	non-pixel	SuperRare	10	2	Cap	Sunglasses	Shades of Helvetica
+335	non-pixel	Common	10	1	None	Funky Glasses	Shades of Red
+336	non-pixel	Epic	10	2	None	Reading Glasses	Shades of Purple
+337	non-pixel	Common	10	1	Visor	Mask	Shades of Orange
+338	non-pixel	Epic	10	2	Bucket	None	Shades of Blonde
+339	non-pixel	Common	10	1	Sombrero	Reading Glasses	Shades of Blonde
+340	non-pixel	Limited	10	2	None	Headphones	Shades of Brunette
+341	non-pixel	Common	10	1	None	None	Shades of Pink
+342	non-pixel	Common	10	2	Graduation	Sunglasses	Shades of Blonde
+343	non-pixel	Rare	10	1	Captain	Reading Glasses	Shades of Green
+344	non-pixel	Limited	10	2	Cap	Sunglasses	Shades of Helvetica
+345	non-pixel	SuperRare	10	1	Bowler	Sunglasses	Shades of Gray
+346	non-pixel	Common	10	2	Bear	Reading Glasses	Shades of Green
+347	non-pixel	Rare	10	1	Hoodie	Earphones	Shades of Gray
+348	non-pixel	Common	10	2	Captain	None	Shades of Gray
+349	non-pixel	Rare	10	1	Beanie	Sunglasses	Shades of Blue
+350	non-pixel	Epic	10	2	Round	None	Shades of Gray
+351	non-pixel	Common	10	1	None	None	Shades of Blonde
+352	non-pixel	Limited	10	2	None	70s Glasses	Shades of Blue
+353	non-pixel	Common	10	1	None	Funky Glasses	Shades of Green
+354	non-pixel	Legendary	10	2	None	Sunglasses	Shades of Orange
+355	non-pixel	SuperRare	10	1	Top	Goggles	Shades of Red
+356	non-pixel	Limited	10	2	None	Reading Glasses	Shades of Green
+357	non-pixel	Rare	10	1	Beret	None	Shades of Brunette
+358	non-pixel	Common	10	2	None	None	Shades of Blonde
+359	non-pixel	Limited	10	1	Winter	None	Shades of Pink
+360	non-pixel	Common	10	2	Detective	3D Glasses	Shades of Blue
+361	non-pixel	Rare	10	2	Cap	None	Shades of Blonde
+362	non-pixel	Common	11	2	Top	Earphones	Shades of Brunette
+363	non-pixel	SuperRare	11	2	Boat	None	Shades of Blonde
+364	non-pixel	Epic	11	1	Rugby	Monacle	Shades of Brunette
+365	non-pixel	Rare	11	2	None	70s Glasses	Shades of Pink
+366	non-pixel	Limited	11	1	Winter	Sunglasses	Shades of Blonde
+367	non-pixel	Common	11	2	Captain	Scarf	Shades of Blonde
+368	non-pixel	Limited	11	1	Graduation	None	Shades of Pink
+369	non-pixel	Common	11	2	None	Headphones	Shades of Green
+370	non-pixel	Common	11	1	Visor	Reading Glasses	Shades of Brunette
+371	non-pixel	SuperRare	11	2	Top	Reading Glasses	Shades of Gray
+372	non-pixel	Common	11	1	Round	Earphones	Shades of Green
+373	non-pixel	Epic	11	2	Hoodie	Sunglasses	Shades of Red
+374	non-pixel	Limited	11	1	Sombrero	Reading Glasses	Shades of Gray
+375	non-pixel	Common	11	2	Cap	None	Shades of Blue
+376	non-pixel	Rare	11	1	Cap	Reading Glasses	Shades of Red
+377	non-pixel	SuperRare	11	2	Chef	Goggles	Shades of Blonde
+378	non-pixel	Common	11	1	Captain	None	Shades of Blue
+379	non-pixel	Limited	11	2	Bear	None	Shades of Green
+380	non-pixel	Limited	11	1	Detective	Funky Glasses	Shades of Orange
+381	non-pixel	Common	11	2	Sombrero	3D Glasses	Shades of Purple
+382	non-pixel	Rare	11	1	None	Mask	Shades of Purple
+383	non-pixel	Limited	11	2	Bowler	None	Shades of Helvetica
+384	non-pixel	Common	11	1	None	None	Shades of Helvetica
+385	non-pixel	Rare	11	2	None	Sunglasses	Shades of Blonde
+386	non-pixel	Common	11	1	Bucket	None	Shades of Red
+387	non-pixel	Limited	11	2	None	Sunglasses	Shades of Brunette
+388	non-pixel	Common	11	1	None	None	Shades of Blue
+389	non-pixel	Rare	11	2	Beanie	Sunglasses	Shades of Blonde
+390	non-pixel	Limited	12	3	Detective	None	Shades of Brunette
+391	non-pixel	SuperRare	12	2	Beanie	Sunglasses	Shades of Blonde
+392	non-pixel	Limited	12	1	None	Earphones	Shades of Pink
+393	non-pixel	Common	12	3	None	Earrings	Shades of Pink
+394	non-pixel	Rare	12	2	None	None	Shades of Orange
+395	non-pixel	Epic	12	1	Captain	Earrings	Shades of Brunette
+396	non-pixel	Common	12	3	Boat	Reading Glasses	Shades of Green
+397	non-pixel	Limited	12	2	Visor	Sunglasses	Shades of Green
+398	non-pixel	Common	12	1	Sombrero	Monacle	Shades of Red
+399	non-pixel	Rare	12	3	None	Headphones	Shades of Gray
+400	non-pixel	Common	12	2	Chef	3D Glasses	Shades of Gray
+401	non-pixel	Legendary	12	1	Sombrero	Sunglasses	Shades of Blue
+402	non-pixel	Common	12	3	Beret	None	Shades of Red
+403	non-pixel	Common	12	2	None	None	Shades of Gray
+404	non-pixel	SuperRare	12	1	None	Reading Glasses	Shades of Green
+405	non-pixel	Common	12	3	None	Sunglasses	Shades of Gray
+406	non-pixel	Epic	12	2	Veil	Reading Glasses	Shades of Orange
+407	non-pixel	Common	12	1	Graduation	Earphones	Shades of Pink
+408	non-pixel	Limited	12	3	Captain	None	Shades of Blue
+409	non-pixel	Epic	12	2	Bear	None	Shades of Green
+410	non-pixel	Common	12	1	Cap	Mask	Shades of Helvetica
+411	non-pixel	Epic	12	3	None	Sunglasses	Shades of Blonde
+412	non-pixel	SuperRare	12	2	Bowler	None	Shades of Purple
+413	non-pixel	Limited	12	1	None	Scarf	Shades of Red
+414	non-pixel	Common	12	3	Winter	70s Glasses	Shades of Purple
+415	non-pixel	Rare	12	2	None	Earphones	Shades of Brunette
+416	non-pixel	Rare	12	3	None	Broach	Shades of Helvetica
+417	non-pixel	Limited	12	2	Round	None	Shades of Blonde
+418	non-pixel	Common	13	2	None	Goggles	Shades of Blue
+419	non-pixel	SuperRare	13	2	None	Headphones	Shades of Blue
+420	non-pixel	Limited	13	2	Bowler	Monacle	Shades of Gray
+421	non-pixel	Common	13	2	Visor	Reading Glasses	Shades of Orange
+422	non-pixel	Limited	13	1	None	None	Shades of Gray
+423	non-pixel	Epic	13	2	Sombrero	None	Shades of Green
+424	non-pixel	Common	13	1	Graduation	Reading Glasses	Shades of Red
+425	non-pixel	Limited	13	2	Beanie	Sunglasses	Shades of Green
+426	non-pixel	Common	13	1	None	Reading Glasses	Shades of Gray
+427	non-pixel	Common	13	2	Cap	Scarf	Shades of Purple
+428	non-pixel	SuperRare	13	1	Rugby	70s Glasses	Shades of Gray
+429	non-pixel	Limited	13	2	None	Reading Glasses	Shades of Purple
+430	non-pixel	Epic	13	1	None	None	Shades of Green
+431	non-pixel	Common	13	2	None	3D Glasses	Shades of Helvetica
+432	non-pixel	Rare	13	1	Top	None	Shades of Green
+433	non-pixel	Common	13	2	None	Funky Glasses	Shades of Helvetica
+434	non-pixel	Epic	13	1	None	Sunglasses	Shades of Brunette
+435	non-pixel	Rare	13	2	Chef	Sunglasses	Shades of Blonde
+436	non-pixel	Common	13	1	Beret	None	Shades of Brunette
+437	non-pixel	Limited	13	2	Top	None	Shades of Brunette
+438	non-pixel	Rare	13	1	Round	Earphones	Shades of Pink
+439	non-pixel	Rare	13	2	Cap	Earphones	Shades of Pink
+440	non-pixel	Common	13	1	Captain	None	Shades of Pink
+441	non-pixel	Limited	13	2	Sombrero	Sunglasses	Shades of Red
+442	non-pixel	Rare	13	1	None	Sunglasses	Shades of Orange
+443	non-pixel	Common	13	2	Detective	None	Shades of Blue
+444	non-pixel	Epic	13	1	Bucket	None	Shades of Brunette
+445	non-pixel	Common	13	2	None	None	Shades of Blonde
+446	non-pixel	Limited	14	2	None	Sunglasses	Shades of Blue
+447	non-pixel	Common	14	1	Sombrero	None	Shades of Green
+448	non-pixel	Common	14	2	Cap	None	Shades of Purple
+449	non-pixel	Rare	14	1	Top	Goggles	Shades of Blonde
+450	non-pixel	Common	14	2	None	Sunglasses	Shades of Orange
+451	non-pixel	Rare	14	1	None	70s Glasses	Shades of Pink
+452	non-pixel	Common	14	2	Captain	None	Shades of Blonde
+453	non-pixel	Common	14	1	Winter	Mask	Shades of Brunette
+454	non-pixel	SuperRare	14	2	Cap	None	Shades of Pink
+455	non-pixel	Common	14	1	Graduation	Sunglasses	Shades of Gray
+456	non-pixel	Common	14	2	Beanie	Reading Glasses	Shades of Blonde
+457	non-pixel	SuperRare	14	1	Bucket	None	Shades of Red
+458	non-pixel	Common	14	2	Top	3D Glasses	Shades of Gray
+459	non-pixel	Common	14	1	Bear	Sunglasses	Shades of Gray
+460	non-pixel	Limited	14	2	None	Headphones	Shades of Red
+461	non-pixel	Rare	14	1	Chef	Sunglasses	Shades of Orange
+462	non-pixel	Common	14	2	Captain	Earphones	Shades of Gray
+463	non-pixel	Rare	14	1	None	None	Shades of Green
+464	non-pixel	Common	14	2	None	None	Shades of Blonde
+465	non-pixel	Limited	14	1	Beret	Earphones	Shades of Helvetica
+466	non-pixel	Common	14	2	Sombrero	None	Shades of Green
+467	non-pixel	Limited	14	1	Visor	None	Shades of Red
+468	non-pixel	Epic	14	2	Detective	Reading Glasses	Shades of Helvetica
+469	non-pixel	Limited	14	1	None	Reading Glasses	Shades of Brunette
+470	non-pixel	Legendary	14	2	Rugby	Monacle	Shades of Blonde
+471	non-pixel	Common	14	1	None	None	Shades of Blue
+472	non-pixel	Rare	14	2	None	Sunglasses	Shades of Pink
+473	non-pixel	SuperRare	14	1	Bowler	Scarf	Shades of Blonde
+474	non-pixel	Common	15	1	Graduation	None	Shades of Red
+475	non-pixel	Common	15	2	None	70s Glasses	Shades of Blonde
+476	non-pixel	Common	15	1	Top	Monacle	Shades of Brunette
+477	non-pixel	Limited	15	2	Captain	3D Glasses	Shades of Orange
+478	non-pixel	Epic	15	1	Captain	None	Shades of Pink
+479	non-pixel	Limited	15	2	None	Headphones	Shades of Pink
+480	non-pixel	Rare	15	1	None	Goggles	Shades of Brunette
+481	non-pixel	Common	15	2	None	Earphones	Shades of Blonde
+482	non-pixel	Common	15	1	Bear	None	Shades of Green
+483	non-pixel	Common	15	2	Beret	None	Shades of Green
+484	non-pixel	Common	15	1	None	Funky Glasses	Shades of Gray
+485	non-pixel	Common	15	2	Boat	None	Shades of Gray
+486	non-pixel	Common	15	1	Graduation	None	Shades of Gray
+487	non-pixel	Limited	15	2	Sombrero	Reading Glasses	Shades of Gray
+488	non-pixel	SuperRare	15	1	Bucket	Reading Glasses	Shades of Blue
+489	non-pixel	Rare	15	2	None	None	Shades of Blue
+490	non-pixel	Limited	15	1	Cap	Necklace	Shades of Green
+491	non-pixel	Epic	15	2	Round	Scarf	Shades of Blonde
+492	non-pixel	Limited	15	1	None	Reading Glasses	Shades of Orange
+493	non-pixel	SuperRare	15	2	None	Reading Glasses	Shades of Green
+494	non-pixel	Limited	15	1	Sombrero	Sunglasses	Shades of Purple
+495	non-pixel	Limited	15	2	Bowler	Sunglasses	Shades of Purple
+496	non-pixel	Rare	15	1	Veil	Sunglasses	Shades of Helvetica
+497	non-pixel	Legendary	15	2	None	None	Shades of Helvetica
+498	non-pixel	Common	15	1	None	Mask	Shades of Blonde
+499	non-pixel	SuperRare	15	2	Captain	Broach	Shades of Brunette
+500	non-pixel	Common	15	1	Winter	None	Shades of Red
+501	non-pixel	Epic	15	1	None	None	Shades of Blue
+502	non-pixel	Common	15	2	None	Sunglasses	Shades of Blonde
+503	non-pixel	Common	16	1	None	None	Shades of Green
+504	non-pixel	Rare	16	2	None	70s Glasses	Shades of Red
+505	non-pixel	SuperRare	16	1	Top	Monacle	Shades of Orange
+506	non-pixel	Limited	16	2	Chef	Sunglasses	Shades of Brunette
+507	non-pixel	Common	16	1	None	Reading Glasses	Shades of Blonde
+508	non-pixel	Epic	16	2	Visor	3D Glasses	Shades of Blonde
+509	non-pixel	Common	16	1	None	None	Shades of Pink
+510	non-pixel	Limited	16	2	Rugby	Sunglasses	Shades of Brunette
+511	non-pixel	Epic	16	1	Detective	Funky Glasses	Shades of Blonde
+512	non-pixel	Common	16	2	Sombrero	None	Shades of Pink
+513	non-pixel	Rare	16	1	Beanie	None	Shades of Green
+514	non-pixel	Limited	16	2	Top	Sunglasses	Shades of Brunette
+515	non-pixel	SuperRare	16	1	Bucket	None	Shades of Gray
+516	non-pixel	Common	16	2	Graduation	Sunglasses	Shades of Green
+517	non-pixel	Common	16	1	Cap	None	Shades of Gray
+518	non-pixel	Common	16	2	Captain	Reading Glasses	Shades of Gray
+519	non-pixel	Common	16	1	Beret	Goggles	Shades of Blue
+520	non-pixel	Rare	16	2	None	Earphones	Shades of Gray
+521	non-pixel	Common	16	1	Sombrero	Sunglasses	Shades of Orange
+522	non-pixel	Legendary	16	2	Bear	None	Shades of Blue
+523	non-pixel	Rare	16	1	Captain	Earphones	Shades of Purple
+524	non-pixel	Common	16	2	Round	Sunglasses	Shades of Blonde
+525	non-pixel	Common	16	1	None	Headphones	Shades of Helvetica
+526	non-pixel	Common	16	2	Cap	Reading Glasses	Shades of Purple
+527	non-pixel	Common	16	1	Winter	None	Shades of Blonde
+528	non-pixel	Rare	16	2	None	None	Shades of Helvetica
+529	non-pixel	Epic	16	1	None	None	Shades of Blue
+530	non-pixel	Limited	16	2	Boat	Mask	Shades of Red
+531	non-pixel	SuperRare	16	2	None	Scarf	Shades of Blonde
+532	non-pixel	Common	17	1	Graduation	None	Shades of Blonde
+533	non-pixel	Limited	17	2	None	None	Shades of Blonde
+534	non-pixel	Common	17	1	None	Reading Glasses	Shades of Pink
+535	non-pixel	SuperRare	17	2	None	None	Shades of Pink
+536	non-pixel	Limited	17	1	None	Headphones	Shades of Brunette
+537	non-pixel	Epic	17	1	None	Headphones	Shades of Brunette
+538	non-pixel	Common	17	1	Sombrero	Sunglasses	Shades of Green
+539	non-pixel	Rare	17	2	None	Sunglasses	Shades of Green
+540	non-pixel	Common	17	1	None	None	Shades of Gray
+541	non-pixel	SuperRare	17	2	Cap	None	Shades of Green
+542	non-pixel	Epic	17	1	None	Reading Glasses	Shades of Red
+543	non-pixel	Rare	17	2	None	3D Glasses	Shades of Red
+544	non-pixel	Common	17	1	Hoodie	None	Shades of Blonde
+545	non-pixel	Limited	17	2	None	Goggles	Shades of Gray
+546	non-pixel	Rare	17	1	Captain	None	Shades of Blue
+547	non-pixel	Common	17	2	None	None	Shades of Blue
+548	non-pixel	Common	17	1	None	Sunglasses	Shades of Orange
+549	non-pixel	Rare	17	2	None	None	Shades of Blonde
+550	non-pixel	Limited	17	1	None	Sunglasses	Shades of Green
+551	non-pixel	Common	17	2	None	Mask	Shades of Green
+552	non-pixel	Limited	17	1	None	Scarf	Shades of Purple
+553	non-pixel	Common	17	2	None	None	Shades of Purple
+554	non-pixel	SuperRare	17	1	None	None	Shades of Helvetica
+555	non-pixel	Limited	17	2	None	None	Shades of Helvetica
+556	non-pixel	Common	17	1	None	Monacle	Shades of Orange
+557	non-pixel	Legendary	17	2	Chef	Funky Glasses	Shades of Brunette
+558	non-pixel	Rare	17	1	Boat	None	Shades of Pink
+559	non-pixel	Common	17	2	Bowler	None	Shades of Red
+560	non-pixel	Common	17	2	None	None	Shades of Blue
+561	non-pixel	Limited	19	2	None	None	Shades of Green
+562	non-pixel	SuperRare	19	1	Sombrero	None	Shades of Brunette
+563	non-pixel	Limited	19	2	None	Sunglasses	Shades of Orange
+564	non-pixel	Common	19	1	Detective	None	Shades of Blonde
+565	non-pixel	Common	19	2	None	Sunglasses	Shades of Blonde
+566	non-pixel	Rare	19	1	None	Funky Glasses	Shades of Pink
+567	non-pixel	Common	19	2	Graduation	Reading Glasses	Shades of Pink
+568	non-pixel	Rare	19	1	Bear	70s Glasses	Shades of Brunette
+569	non-pixel	Epic	19	2	None	Earrings	Shades of Blonde
+570	non-pixel	Limited	19	1	None	Reading Glasses	Shades of Green
+571	non-pixel	Common	19	2	Bucket	None	Shades of Green
+572	non-pixel	SuperRare	19	1	Visor	3D Glasses	Shades of Gray
+573	non-pixel	Common	19	2	None	Reading Glasses	Shades of Gray
+574	non-pixel	Limited	19	1	None	None	Shades of Red
+575	non-pixel	Limited	19	2	Beanie	None	Shades of Red
+576	non-pixel	Common	19	1	None	Goggles	Shades of Gray
+577	non-pixel	Rare	19	2	None	Mask	Shades of Gray
+578	non-pixel	Rare	19	1	None	Necklace	Shades of Blue
+579	non-pixel	Common	19	2	Cap	Sunglasses	Shades of Blue
+580	non-pixel	Common	19	1	None	Sunglasses	Shades of Orange
+581	non-pixel	Epic	19	2	None	Headphones	Shades of Blonde
+582	non-pixel	Common	19	1	None	Reading Glasses	Shades of Green
+583	non-pixel	Rare	19	2	None	Earphones	Shades of Green
+584	non-pixel	Limited	19	1	Boat	None	Shades of Purple
+585	non-pixel	Legendary	19	2	None	Scarf	Shades of Purple
+586	non-pixel	SuperRare	19	1	Boat	None	Shades of Purple
+587	non-pixel	Common	19	2	Winter	Broach	Shades of Red
+588	non-pixel	Limited	19	1	None	Monacle	Shades of Brunette
+589	non-pixel	Common	19	2	None	None	Shades of Pink
+590	non-pixel	Common	19	1	None	None	Shades of Blue
+591	non-pixel	Epic	19	2	None	None	Shades of Blonde
+592	non-pixel	Rare	20	2	None	Headphones	Shades of Helvetica
+593	non-pixel	Limited	20	1	Graduation	Sunglasses	Shades of Orange
+594	non-pixel	Common	20	2	None	Sunglasses	Shades of Brunette
+595	non-pixel	Limited	20	1	None	Earphones	Shades of Blonde
+596	non-pixel	Common	20	2	Bucket	Reading Glasses	Shades of Blonde
+597	non-pixel	Rare	20	1	None	None	Shades of Pink
+598	non-pixel	Rare	20	2	None	Reading Glasses	Shades of Pink
+599	non-pixel	Epic	20	1	Bear	None	Shades of Brunette
+600	non-pixel	Common	20	2	None	Sunglasses	Shades of Blonde
+601	non-pixel	Common	20	1	Beanie	None	Shades of Green
+602	non-pixel	Limited	20	2	None	Goggles	Shades of Green
+603	non-pixel	SuperRare	20	1	Round	None	Shades of Gray
+604	non-pixel	Epic	20	2	Cap	None	Shades of Gray
+605	non-pixel	Rare	20	1	Winter	Sunglasses	Shades of Red
+606	non-pixel	Limited	20	2	Captain	Funky Glasses	Shades of Red
+607	non-pixel	Common	20	1	None	Earphones	Shades of Gray
+608	non-pixel	Common	20	2	None	Mask	Shades of Gray
+609	non-pixel	SuperRare	20	1	Detective	Earrings	Shades of Blue
+610	non-pixel	Common	20	2	Visor	None	Shades of Blue
+611	non-pixel	Limited	20	1	None	None	Shades of Orange
+612	non-pixel	Common	20	2	Sombrero	Sunglasses	Shades of Blonde
+613	non-pixel	Rare	20	1	Cap	Monacle	Shades of Green
+614	non-pixel	SuperRare	20	2	Boat	None	Shades of Green
+615	non-pixel	Common	20	1	Top	None	Shades of Purple
+616	non-pixel	Epic	20	2	None	70s Glasses	Shades of Purple
+617	non-pixel	Common	20	1	Sombrero	Broach	Shades of Blonde
+618	non-pixel	Limited	20	2	Captain	Scarf	Shades of Pink
+619	non-pixel	Common	20	1	Chef	None	Shades of Brunette
+620	non-pixel	Limited	20	2	None	Reading Glasses	Shades of Red
+621	non-pixel	Common	20	1	None	Sunglasses	Shades of Blue
+622	non-pixel	Common	20	2	Veil	3D Glasses	Shades of Blonde
+623	non-pixel	Limited	21	2	None	None	Shades of Helvetica
+624	non-pixel	Epic	21	1	Sombrero	3D Glasses	Shades of Orange
+625	non-pixel	SuperRare	21	2	None	Sunglasses	Shades of Brunette
+626	non-pixel	Common	21	1	Detective	None	Shades of Blonde
+627	non-pixel	Limited	21	2	Chef	Earphones	Shades of Blonde
+628	non-pixel	Common	21	1	Winter	Reading Glasses	Shades of Pink
+629	non-pixel	Rare	21	2	None	Reading Glasses	Shades of Pink
+630	non-pixel	Epic	21	1	None	Headphones	Shades of Brunette
+631	non-pixel	Common	21	2	Rugby	None	Shades of Brunette
+632	non-pixel	Limited	21	1	Bowler	None	Shades of Green
+633	non-pixel	Common	21	2	Cap	Reading Glasses	Shades of Green
+634	non-pixel	Legendary	21	1	Bear	None	Shades of Gray
+635	non-pixel	SuperRare	21	2	None	Earphones	Shades of Gray
+636	non-pixel	Epic	21	1	Boat	Scarf	Shades of Red
+637	non-pixel	Rare	21	2	Beanie	None	Shades of Red
+638	non-pixel	Common	21	1	None	None	Shades of Gray
+639	non-pixel	Limited	21	2	Sombrero	None	Shades of Gray
+640	non-pixel	Common	21	1	None	Mask	Shades of Blue
+641	non-pixel	Rare	21	2	Round	Monacle	Shades of Blue
+642	non-pixel	Common	21	1	Captain	None	Shades of Orange
+643	non-pixel	SuperRare	21	2	Captain	None	Shades of Blonde
+644	non-pixel	Epic	21	1	Bucket	Funky Glasses	Shades of Green
+645	non-pixel	Rare	21	2	None	Sunglasses	Shades of Green
+646	non-pixel	Limited	21	1	Visor	None	Shades of Purple
+647	non-pixel	Common	21	2	None	Sunglasses	Shades of Purple
+648	non-pixel	Common	21	1	None	Sunglasses	Shades of Blonde
+649	non-pixel	Common	21	2	None	Sunglasses	Shades of Pink
+650	non-pixel	Common	21	1	Beret	Sunglasses	Shades of Brunette
+651	non-pixel	Rare	21	2	None	Reading Glasses	Shades of Red
+652	non-pixel	Common	21	1	Top	None	Shades of Blue
+653	non-pixel	Common	21	2	Cap	None	Shades of Blonde
+654	non-pixel	Limited	22	2	None	Funky Glasses	Shades of Green
+655	non-pixel	Common	22	1	Detective	None	Shades of Orange
+656	non-pixel	Limited	22	2	None	Mask	Shades of Brunette
+657	non-pixel	SuperRare	22	1	Winter	3D Glasses	Shades of Blonde
+658	non-pixel	Common	22	2	Beret	Sunglasses	Shades of Blonde
+659	non-pixel	Limited	22	1	None	Monacle	Shades of Pink
+660	non-pixel	Epic	22	2	None	Goggles	Shades of Pink
+661	non-pixel	Common	22	1	Cap	70s Glasses	Shades of Brunette
+662	non-pixel	Rare	22	2	None	Sunglasses	Shades of Blonde
+663	non-pixel	Limited	22	1	None	Sunglasses	Shades of Green
+664	non-pixel	Common	22	2	None	Reading Glasses	Shades of Green
+665	non-pixel	Rare	22	1	Top	Sunglasses	Shades of Gray
+666	non-pixel	Common	22	2	Captain	Sunglasses	Shades of Gray
+667	non-pixel	Limited	22	1	Graduation	None	Shades of Red
+668	non-pixel	Common	22	2	None	Sunglasses	Shades of Red
+669	non-pixel	Rare	22	1	Bucket	Earphones	Shades of Gray
+670	non-pixel	Limited	22	2	Bowler	None	Shades of Gray
+671	non-pixel	SuperRare	22	1	None	Headphones	Shades of Blue
+672	non-pixel	Limited	22	2	Chef	None	Shades of Helvetica
+673	non-pixel	Common	22	1	None	Reading Glasses	Shades of Orange
+674	non-pixel	Rare	22	2	Visor	Reading Glasses	Shades of Blonde
+675	non-pixel	Epic	22	1	None	Scarf	Shades of Green
+676	non-pixel	Common	22	2	Captain	None	Shades of Green
+677	non-pixel	Common	22	1	None	Sunglasses	Shades of Purple
+678	non-pixel	Common	22	2	None	None	Shades of Purple
+679	non-pixel	Rare	22	1	Beanie	None	Shades of Blonde
+680	non-pixel	Common	22	2	Cap	None	Shades of Pink
+681	non-pixel	Legendary	22	1	None	None	Shades of Brunette
+682	non-pixel	Common	22	2	Sombrero	None	Shades of Red
+683	non-pixel	Common	22	1	Boat	Earphones	Shades of Blue
+684	non-pixel	SuperRare	22	2	None	None	Shades of Blonde
+685	non-pixel	Common	23	2	None	None	Shades of Helvetica
+686	non-pixel	Rare	23	1	None	None	Shades of Brunette
+687	non-pixel	Common	23	2	Bear	Monacle	Shades of Orange
+688	non-pixel	Common	23	1	None	Reading Glasses	Shades of Blonde
+689	non-pixel	Common	23	2	Chef	None	Shades of Blonde
+690	non-pixel	Common	23	1	Captain	Earphones	Shades of Pink
+691	non-pixel	Epic	23	2	Bowler	Earphones	Shades of Pink
+692	non-pixel	SuperRare	23	1	Cap	Sunglasses	Shades of Brunette
+693	non-pixel	Limited	23	2	Visor	Necklace	Shades of Blonde
+694	non-pixel	Common	23	1	None	Sunglasses	Shades of Green
+695	non-pixel	Rare	23	2	Boat	None	Shades of Green
+696	non-pixel	Rare	23	1	None	3D Glasses	Shades of Gray
+697	non-pixel	Limited	23	2	None	Headphones	Shades of Gray
+698	non-pixel	Common	23	1	Beanie	Earrings	Shades of Red
+699	non-pixel	SuperRare	23	2	Winter	Sunglasses	Shades of Red
+700	non-pixel	Epic	23	1	Top	None	Shades of Gray
+701	non-pixel	Common	23	2	None	Sunglasses	Shades of Gray
+702	non-pixel	Limited	23	1	None	Funky Glasses	Shades of Blue
+703	non-pixel	Limited	23	2	Graduation	70s Glasses	Shades of Blue
+704	non-pixel	Common	23	1	Sombrero	Scarf	Shades of Orange
+705	non-pixel	Limited	23	2	None	None	Shades of Blonde
+706	non-pixel	Common	23	1	Bucket	Sunglasses	Shades of Green
+707	non-pixel	Common	23	2	None	Mask	Shades of Green
+708	non-pixel	SuperRare	23	1	Sombrero	None	Shades of Helvetica
+709	non-pixel	Limited	23	2	Beret	Sunglasses	Shades of Purple
+710	non-pixel	Epic	23	1	Captain	None	Shades of Blonde
+711	non-pixel	Common	23	2	Round	None	Shades of Pink
+712	non-pixel	Rare	23	1	None	Reading Glasses	Shades of Brunette
+713	non-pixel	Common	23	2	None	None	Shades of Red
+714	non-pixel	Limited	23	1	Veil	None	Shades of Blue
+715	non-pixel	Rare	23	2	Detective	Goggles	Shades of Blonde
+716	non-pixel	Common	24	2	Detective	None	Shades of Green
+717	non-pixel	Limited	24	1	Graduation	Earrings	Shades of Brunette
+718	non-pixel	Limited	24	2	Visor	Mask	Shades of Orange
+719	non-pixel	Limited	24	1	Captain	None	Shades of Blonde
+720	non-pixel	Common	24	2	Cap	Earphones	Shades of Blonde
+721	non-pixel	Epic	24	1	Bear	None	Shades of Pink
+722	non-pixel	Rare	24	2	Round	Sunglasses	Shades of Pink
+723	non-pixel	Common	24	1	Cap	None	Shades of Brunette
+724	non-pixel	SuperRare	24	2	None	None	Shades of Blonde
+725	non-pixel	Common	24	1	Beanie	Headphones	Shades of Green
+726	non-pixel	Rare	24	2	Beret	Sunglasses	Shades of Green
+727	non-pixel	Common	24	1	Veil	None	Shades of Gray
+728	non-pixel	Common	24	2	Top	None	Shades of Gray
+729	non-pixel	SuperRare	24	1	Bowler	Scarf	Shades of Red
+730	non-pixel	Common	24	2	None	None	Shades of Red
+731	non-pixel	Rare	24	1	Sombrero	None	Shades of Gray
+732	non-pixel	Common	24	2	None	Funky Glasses	Shades of Gray
+733	non-pixel	Common	24	1	None	Monacle	Shades of Blue
+734	non-pixel	Epic	24	2	None	Sunglasses	Shades of Helvetica
+735	non-pixel	Common	24	1	None	Reading Glasses	Shades of Orange
+736	non-pixel	Common	24	2	None	Goggles	Shades of Blonde
+737	non-pixel	SuperRare	24	1	None	Reading Glasses	Shades of Blue
+738	non-pixel	Common	24	2	None	Sunglasses	Shades of Helvetica
+739	non-pixel	Common	24	1	None	Sunglasses	Shades of Purple
+740	non-pixel	Limited	24	2	None	70s Glasses	Shades of Purple
+741	non-pixel	Rare	24	1	Bucket	Earphones	Shades of Blonde
+742	non-pixel	Limited	24	2	None	Sunglasses	Shades of Pink
+743	non-pixel	Rare	24	1	Captain	None	Shades of Brunette
+744	non-pixel	Limited	24	2	None	3D Glasses	Shades of Red
+745	non-pixel	Limited	24	1	None	Sunglasses	Shades of Blue
+746	non-pixel	Epic	24	2	Winter	Reading Glasses	Shades of Blonde
+747	non-pixel	Common	25	2	Captain	Earphones	Shades of Pink
+748	non-pixel	Epic	25	1	Visor	None	Shades of Orange
+749	non-pixel	Limited	25	2	Graduation	Earphones	Shades of Green
+750	non-pixel	Rare	25	1	None	Sunglasses	Shades of Blonde
+751	non-pixel	Common	25	2	Captain	Earrings	Shades of Brunette
+752	non-pixel	Rare	25	1	Cap	None	Shades of Pink
+753	non-pixel	SuperRare	25	2	None	Sunglasses	Shades of Blonde
+754	non-pixel	Common	25	1	Captain	Sunglasses	Shades of Brunette
+755	non-pixel	Common	25	2	None	Scarf	Shades of Pink
+756	non-pixel	Common	25	1	None	Reading Glasses	Shades of Green
+757	non-pixel	Limited	25	2	None	Necklace	Shades of Blonde
+758	non-pixel	Epic	25	1	Bowler	None	Shades of Gray
+759	non-pixel	Limited	25	2	Beret	Reading Glasses	Shades of Green
+760	non-pixel	Rare	25	1	None	Sunglasses	Shades of Red
+761	non-pixel	Common	25	2	Visor	Sunglasses	Shades of Gray
+762	non-pixel	Common	25	1	Veil	None	Shades of Gray
+763	non-pixel	Common	25	2	Top	None	Shades of Red
+764	non-pixel	Common	25	1	None	Sunglasses	Shades of Blue
+765	non-pixel	Common	25	2	None	Sunglasses	Shades of Gray
+766	non-pixel	Common	25	1	Bucket	None	Shades of Orange
+767	non-pixel	Limited	25	2	Sombrero	None	Shades of Helvetica
+768	non-pixel	SuperRare	25	1	Beanie	Monacle	Shades of Blue
+769	non-pixel	Rare	25	2	None	None	Shades of Blonde
+770	non-pixel	Limited	25	1	None	Sunglasses	Shades of Purple
+771	non-pixel	Epic	25	2	Beanie	Goggles	Shades of Green
+772	non-pixel	Limited	25	1	None	Funky Glasses	Shades of Blonde
+773	non-pixel	SuperRare	25	2	Cap	None	Shades of Purple
+774	non-pixel	Common	25	1	Cap	None	Shades of Green
+775	non-pixel	Limited	25	2	Sombrero	Reading Glasses	Shades of Red
+776	non-pixel	Rare	25	1	None	None	Shades of Blue
+777	non-pixel	Legendary	25	2	None	None	Shades of Blonde
+778	non-pixel	Limited	26	2	None	Earrings	Shades of Gray
+779	non-pixel	SuperRare	26	1	None	Sunglasses	Shades of Orange
+780	non-pixel	Limited	26	2	Bear	None	Shades of Green
+781	non-pixel	Epic	26	1	Veil	Sunglasses	Shades of Blonde
+782	non-pixel	SuperRare	26	2	None	Goggles	Shades of Brunette
+783	non-pixel	Common	26	1	None	3D Glasses	Shades of Pink
+784	non-pixel	Limited	26	2	Top	None	Shades of Blonde
+785	non-pixel	SuperRare	26	1	None	Monacle	Shades of Brunette
+786	non-pixel	Epic	26	2	Sombrero	None	Shades of Pink
+787	non-pixel	Common	26	1	Bowler	None	Shades of Green
+788	non-pixel	Epic	26	2	None	None	Shades of Blonde
+789	non-pixel	Common	26	1	None	Sunglasses	Shades of Gray
+790	non-pixel	Limited	26	2	Sombrero	Sunglasses	Shades of Green
+791	non-pixel	Limited	26	1	None	Sunglasses	Shades of Red
+792	non-pixel	Common	26	2	None	None	Shades of Gray
+793	non-pixel	Rare	26	1	Bucket	None	Shades of Green
+794	non-pixel	Rare	26	2	None	Scarf	Shades of Red
+795	non-pixel	Limited	26	1	None	None	Shades of Blue
+796	non-pixel	Common	26	2	Detective	None	Shades of Red
+797	non-pixel	Common	26	1	Boat	Mask	Shades of Orange
+798	non-pixel	Common	26	2	Winter	None	Shades of Helvetica
+799	non-pixel	Common	26	1	Graduation	Reading Glasses	Shades of Blue
+800	non-pixel	Rare	26	2	None	Mask	Shades of Blonde
+801	non-pixel	Common	26	1	None	None	Shades of Purple
+802	non-pixel	Legendary	26	2	Round	None	Shades of Green
+803	non-pixel	Rare	26	1	Detective	70s Glasses	Shades of Orange
+804	non-pixel	Common	26	2	Veil	None	Shades of Purple
+805	non-pixel	Common	26	1	Chef	Funky Glasses	Shades of Brunette
+806	non-pixel	Common	26	2	Chef	Earphones	Shades of Pink
+807	non-pixel	Common	26	1	Veil	Earrings	Shades of Blue
+808	non-pixel	Rare	26	2	Boat	None	Shades of Blonde
+809	non-pixel	Epic	18	1	Beanie	Earphones	Shades of Orange
+810	non-pixel	Limited	18	2	None	Funky Glasses	Shades of Orange
+811	non-pixel	SuperRare	18	1	None	None	Shades of Green
+812	non-pixel	Common	18	2	None	Monacle	Shades of Blonde
+813	non-pixel	Epic	18	1	Sombrero	None	Shades of Brunette
+814	non-pixel	Common	18	2	Captain	None	Shades of Pink
+815	non-pixel	Limited	18	1	Captain	None	Shades of Blonde
+816	non-pixel	Limited	18	2	None	Sunglasses	Shades of Brunette
+817	non-pixel	Limited	18	1	Visor	Earphones	Shades of Pink
+818	non-pixel	Common	18	2	None	Sunglasses	Shades of Green
+819	non-pixel	Rare	18	1	Captain	None	Shades of Brunette
+820	non-pixel	Common	18	2	None	Sunglasses	Shades of Gray
+821	non-pixel	SuperRare	18	1	None	Reading Glasses	Shades of Green
+822	non-pixel	Epic	18	2	Graduation	Necklace	Shades of Red
+823	non-pixel	Rare	18	1	Bowler	None	Shades of Gray
+824	non-pixel	Common	18	2	None	3D Glasses	Shades of Green
+825	non-pixel	Limited	18	1	Sombrero	Reading Glasses	Shades of Red
+826	non-pixel	Rare	18	2	None	Sunglasses	Shades of Blue
+827	non-pixel	Common	18	1	Cap	None	Shades of Red
+828	non-pixel	Common	18	2	None	Necklace	Shades of Gray
+829	non-pixel	Rare	18	1	None	Scarf	Shades of Helvetica
+830	non-pixel	Limited	18	2	Bear	Sunglasses	Shades of Blue
+831	non-pixel	Common	18	1	Cap	Reading Glasses	Shades of Gray
+832	non-pixel	Limited	18	2	None	None	Shades of Purple
+833	non-pixel	Common	18	1	None	Goggles	Shades of Green
+834	non-pixel	SuperRare	18	2	None	Sunglasses	Shades of Blonde
+835	non-pixel	Common	18	1	None	None	Shades of Purple
+836	non-pixel	Common	18	2	Bucket	None	Shades of Blue
+837	non-pixel	Legendary	18	1	None	Earrings	Shades of Pink
+838	non-pixel	Rare	18	2	Chef	70s Glasses	Shades of Brunette
+839	non-pixel	Common	18	1	None	Headphones	Shades of Blonde
+840	non-pixel	Common	27	2	Sombrero	None	Shades of Brunette
+841	non-pixel	Common	27	1	Veil	Sunglasses	Shades of Orange
+842	non-pixel	SuperRare	27	2	Graduation	Reading Glasses	Shades of Blonde
+843	non-pixel	Limited	27	1	Cap	None	Shades of Blonde
+844	non-pixel	Common	27	2	Beanie	None	Shades of Pink
+845	non-pixel	Common	27	1	Boat	None	Shades of Pink
+846	non-pixel	Rare	27	2	Chef	Earphones	Shades of Blonde
+847	non-pixel	Common	27	1	Visor	None	Shades of Brunette
+848	non-pixel	Rare	27	2	Round	None	Shades of Green
+849	non-pixel	Epic	27	1	Winter	Sunglasses	Shades of Green
+850	non-pixel	Limited	27	2	Top	None	Shades of Gray
+851	non-pixel	Common	27	1	Captain	None	Shades of Gray
+852	non-pixel	SuperRare	27	2	None	Reading Glasses	Shades of Red
+853	non-pixel	Common	27	1	Bucket	None	Shades of Red
+854	non-pixel	Limited	27	2	Cap	None	Shades of Gray
+855	non-pixel	Limited	27	1	None	Scarf	Shades of Gray
+856	non-pixel	Common	27	2	Bowler	Sunglasses	Shades of Blue
+857	non-pixel	Rare	27	1	Bowler	Sunglasses	Shades of Blue
+858	non-pixel	Epic	27	2	None	Headphones	Shades of Green
+859	non-pixel	Rare	27	1	None	3D Glasses	Shades of Green
+860	non-pixel	Common	27	2	Captain	None	Shades of Purple
+861	non-pixel	Limited	27	1	Beret	Necklace	Shades of Purple
+862	non-pixel	SuperRare	27	2	Bear	None	Shades of Helvetica
+863	non-pixel	Common	27	1	Sombrero	Earrings	Shades of Helvetica
+864	non-pixel	Epic	27	2	None	Sunglasses	Shades of Orange
+865	non-pixel	Legendary	27	1	Beanie	Goggles	Shades of Blonde
+866	non-pixel	Rare	27	2	None	Sunglasses	Shades of Pink
+867	non-pixel	Common	27	1	Detective	None	Shades of Brunette
+868	non-pixel	Limited	27	2	None	None	Shades of Blue
+869	non-pixel	Limited	27	1	None	Sunglasses	Shades of Red
+870	non-pixel	Common	27	2	Sombrero	Monacle	Shades of Blonde
+871	non-pixel	Limited	28	2	Round	None	Shades of Brunette
+872	non-pixel	Rare	28	1	Captain	Mask	Shades of Blonde
+873	non-pixel	Limited	28	2	None	Reading Glasses	Shades of Blonde
+874	non-pixel	Common	28	1	Visor	None	Shades of Pink
+875	non-pixel	Epic	28	2	Winter	None	Shades of Pink
+876	non-pixel	Common	28	1	Beret	None	Shades of Brunette
+877	non-pixel	Rare	28	2	Bowler	None	Shades of Blonde
+878	non-pixel	Rare	28	1	Bear	Sunglasses	Shades of Green
+879	non-pixel	Limited	28	2	Cap	None	Shades of Green
+880	non-pixel	Common	28	1	Beanie	Sunglasses	Shades of Gray
+881	non-pixel	Common	28	2	Veil	Reading Glasses	Shades of Gray
+882	non-pixel	Limited	28	1	Bucket	Earphones	Shades of Red
+883	non-pixel	Rare	28	2	None	Sunglasses	Shades of Red
+884	non-pixel	Epic	28	1	Sombrero	None	Shades of Gray
+885	non-pixel	Rare	28	2	Sombrero	None	Shades of Gray
+886	non-pixel	Limited	28	1	None	Goggles	Shades of Blue
+887	non-pixel	Common	28	2	Detective	Necklace	Shades of Blue
+888	non-pixel	Common	28	1	Graduation	Scarf	Shades of Orange
+889	non-pixel	SuperRare	28	2	None	Broach	Shades of Blonde
+890	non-pixel	Common	28	1	None	70s Glasses	Shades of Green
+891	non-pixel	Limited	28	2	Graduation	None	Shades of Green
+892	non-pixel	Common	28	1	Captain	Earrings	Shades of Purple
+893	non-pixel	SuperRare	28	2	None	Reading Glasses	Shades of Purple
+894	non-pixel	SuperRare	28	1	None	Headphones	Shades of Helvetica
+895	non-pixel	Common	28	2	None	3D Glasses	Shades of Helvetica
+896	non-pixel	Epic	28	1	Bowler	Sunglasses	Shades of Orange
+897	non-pixel	Common	28	2	Chef	None	Shades of Pink
+898	non-pixel	Limited	28	1	Cap	None	Shades of Brunette
+899	non-pixel	Common	28	2	None	Funky Glasses	Shades of Blue
+900	non-pixel	Common	28	1	None	Sunglasses	Shades of Red
+901	non-pixel	Common	28	2	Boat	None	Shades of Blonde
+902	non-pixel	Common	29	2	Beret	None	Shades of Blonde
+903	non-pixel	Limited	29	1	Winter	None	Shades of Orange
+904	non-pixel	Limited	29	2	Boat	Earphones	Shades of Brunette
+905	non-pixel	Epic	29	1	None	70s Glasses	Shades of Pink
+906	non-pixel	Common	29	2	None	Reading Glasses	Shades of Pink
+907	non-pixel	Rare	29	1	Bowler	3D Glasses	Shades of Brunette
+908	non-pixel	Common	29	2	None	None	Shades of Brunette
+909	non-pixel	Rare	29	1	None	Reading Glasses	Shades of Green
+910	non-pixel	Epic	29	2	Bucket	None	Shades of Green
+911	non-pixel	Common	29	1	None	Sunglasses	Shades of Gray
+912	non-pixel	Limited	29	2	Captain	None	Shades of Red
+913	non-pixel	Common	29	1	Detective	Goggles	Shades of Red
+914	non-pixel	Legendary	29	2	Beanie	Monacle	Shades of Gray
+915	non-pixel	SuperRare	29	1	None	Sunglasses	Shades of Gray
+916	non-pixel	Limited	29	2	None	Headphones	Shades of Blue
+917	non-pixel	Rare	29	1	Top	None	Shades of Blue
+918	non-pixel	Common	29	2	Sombrero	None	Shades of Blonde
+919	non-pixel	Limited	29	1	Captain	Sunglasses	Shades of Orange
+920	non-pixel	Common	29	2	Visor	Reading Glasses	Shades of Green
+921	non-pixel	Rare	29	1	None	None	Shades of Green
+922	non-pixel	Common	29	2	None	Sunglasses	Shades of Purple
+923	non-pixel	SuperRare	29	1	None	Sunglasses	Shades of Purple
+924	non-pixel	Epic	29	2	Graduation	None	Shades of Helvetica
+925	non-pixel	Rare	29	1	None	Funky Glasses	Shades of Helvetica
+926	non-pixel	Limited	29	2	Rugby	None	Shades of Brunette
+927	non-pixel	Common	29	1	Bear	None	Shades of Blonde
+928	non-pixel	Limited	29	2	Cap	None	Shades of Red
+929	non-pixel	Common	29	1	None	Sunglasses	Shades of Pink
+930	non-pixel	Common	29	1	None	Monacle	Shades of Blue
+931	non-pixel	SuperRare	29	2	Round	Mask	Shades of Blonde
+932	non-pixel	Common	30	1	Sombrero	Sunglasses	Shades of Blonde
+933	non-pixel	Epic	30	2	None	Sunglasses	Shades of Brunette
+934	non-pixel	Limited	30	1	None	Reading Glasses	Shades of Pink
+935	non-pixel	Common	30	2	None	None	Shades of Blonde
+936	non-pixel	SuperRare	30	1	None	70s Glasses	Shades of Brunette
+937	non-pixel	SuperRare	30	2	None	Reading Glasses	Shades of Pink
+938	non-pixel	Common	30	1	None	Headphones	Shades of Green
+939	non-pixel	Limited	30	2	Boat	3D Glasses	Shades of Brunette
+940	non-pixel	Limited	30	1	Top	None	Shades of Gray
+941	non-pixel	Common	30	2	Cap	None	Shades of Green
+942	non-pixel	Rare	30	1	Chef	None	Shades of Red
+943	non-pixel	Limited	30	2	None	Monacle	Shades of Gray
+944	non-pixel	Common	30	1	None	Sunglasses	Shades of Gray
+945	non-pixel	Rare	30	2	None	Goggles	Shades of Red
+946	non-pixel	Common	30	1	Top	None	Shades of Blue
+947	non-pixel	Limited	30	2	Detective	None	Shades of Gray
+948	non-pixel	Common	30	1	Hoodie	Sunglasses	Shades of Orange
+949	non-pixel	Rare	30	2	Captain	Sunglasses	Shades of Blue
+950	non-pixel	Epic	30	1	Sombrero	Sunglasses	Shades of Green
+951	non-pixel	SuperRare	30	2	None	Reading Glasses	Shades of Blonde
+952	non-pixel	Limited	30	1	Bowler	Mask	Shades of Purple
+953	non-pixel	Common	30	2	Rugby	None	Shades of Green
+954	non-pixel	Rare	30	1	Visor	None	Shades of Helvetica
+955	non-pixel	Epic	30	2	Beanie	None	Shades of Purple
+956	non-pixel	Common	30	1	None	Earphones	Shades of Blonde
+957	non-pixel	Limited	30	2	None	Earphones	Shades of Helvetica
+958	non-pixel	Common	30	1	None	Sunglasses	Shades of Brunette
+959	non-pixel	Rare	30	2	None	None	Shades of Pink
+960	non-pixel	Common	30	1	None	Scarf	Shades of Red
+961	non-pixel	Legendary	30	2	Bucket	None	Shades of Blue
+962	non-pixel	Common	30	2	Graduation	None	Shades of Blonde
+963	non-pixel	Common	31	1	None	Monacle	Shades of Blue
+964	non-pixel	Legendary	31	2	Sombrero	Mask	Shades of Red
+965	non-pixel	Common	31	1	Graduation	None	Shades of Brunette
+966	non-pixel	Rare	31	2	None	Earphones	Shades of Brunette
+967	non-pixel	Common	31	1	None	Sunglasses	Shades of Pink
+968	non-pixel	Rare	31	2	Beret	None	Shades of Blonde
+969	non-pixel	Limited	31	1	None	Reading Glasses	Shades of Brunette
+970	non-pixel	Common	31	2	None	Reading Glasses	Shades of Helvetica
+971	non-pixel	Epic	31	1	Detective	Earphones	Shades of Green
+972	non-pixel	SuperRare	31	2	None	Sunglasses	Shades of Purple
+973	non-pixel	Limited	31	1	Beanie	Sunglasses	Shades of Gray
+974	non-pixel	Common	31	2	None	Sunglasses	Shades of Blue
+975	non-pixel	Rare	31	1	None	3D Glasses	Shades of Red
+976	non-pixel	Rare	31	2	Sombrero	None	Shades of Green
+977	non-pixel	Limited	31	1	None	Scarf	Shades of Blonde
+978	non-pixel	Common	31	2	Captain	None	Shades of Orange
+979	non-pixel	SuperRare	31	1	None	Headphones	Shades of Green
+980	non-pixel	Limited	31	2	None	Funky Glasses	Shades of Gray
+981	non-pixel	Common	31	1	None	Sunglasses	Shades of Purple
+982	non-pixel	Limited	31	2	None	Goggles	Shades of Red
+983	non-pixel	Epic	31	1	None	Sunglasses	Shades of Blonde
+984	non-pixel	Common	31	2	Bowler	None	Shades of Gray
+985	non-pixel	Limited	31	1	None	Sunglasses	Shades of Helvetica
+986	non-pixel	Common	31	2	None	Reading Glasses	Shades of Green
+987	non-pixel	Common	31	1	Captain	None	Shades of Pink
+988	non-pixel	SuperRare	31	2	Bucket	None	Shades of Brunette
+989	non-pixel	Limited	31	1	Top	None	Shades of Brunette
+990	non-pixel	Epic	31	2	Cap	None	Shades of Pink
+991	non-pixel	Common	31	1	Winter	None	Shades of Blue
+992	non-pixel	Rare	31	2	Chef	None	Shades of Blonde
+993	non-pixel	Common	31	2	Cap	None	Shades of Blonde
+994	non-pixel	Limited	32	1	None	Sunglasses	Shades of Green
+995	non-pixel	Legendary	32	2	None	Reading Glasses	Shades of Red
+996	non-pixel	Common	32	1	None	Sunglasses	Shades of Blonde
+997	non-pixel	Limited	32	2	Cap	None	Shades of Blue
+998	non-pixel	Epic	32	1	None	Sunglasses	Shades of Brunette
+999	non-pixel	Rare	32	2	Top	Earphones	Shades of Blonde
+1000	non-pixel	Common	32	1	Graduation	None	Shades of Gray
+1001	non-pixel	Limited	32	2	Beanie	Monacle	Shades of Purple
+1002	non-pixel	Rare	32	1	Round	None	Shades of Gray
+1003	non-pixel	Common	32	2	Sombrero	None	Shades of Blue
+1004	non-pixel	Epic	32	1	Beret	None	Shades of Green
+1005	non-pixel	Common	32	2	None	None	Shades of Helvetica
+1006	non-pixel	Rare	32	1	None	Headphones	Shades of Purple
+1007	non-pixel	Common	32	2	None	70s Glasses	Shades of Orange
+1008	non-pixel	Common	32	1	None	Earphones	Shades of Helvetica
+1009	non-pixel	SuperRare	32	2	Detective	None	Shades of Pink
+1010	non-pixel	Common	32	1	Winter	Scarf	Shades of Brunette
+1011	non-pixel	Rare	32	2	Bowler	Broach	Shades of Green
+1012	non-pixel	Common	32	1	None	Sunglasses	Shades of Red
+1013	non-pixel	Common	32	2	Veil	None	Shades of Gray
+1014	non-pixel	SuperRare	32	1	Cap	None	Shades of Brunette
+1015	non-pixel	Common	32	2	None	Earrings	Shades of Gray
+1016	non-pixel	Common	32	1	None	Sunglasses	Shades of Blonde
+1017	non-pixel	SuperRare	32	2	None	Reading Glasses	Shades of Blue
+1018	non-pixel	Common	32	1	None	Sunglasses	Shades of Pink
+1019	non-pixel	Limited	32	2	None	3D Glasses	Shades of Green
+1020	non-pixel	Limited	32	1	Sombrero	None	Shades of Brunette
+1021	non-pixel	Rare	32	2	Captain	None	Shades of Orange
+1022	non-pixel	Epic	32	1	None	Reading Glasses	Shades of Red
+1023	non-pixel	Limited	32	2	None	Reading Glasses	Shades of Pink
+1024	non-pixel	Limited	32	2	Captain	None	Shades of Blonde
+1	pixel	Epic	01	1	None	None	Shades of Brunette
+2	pixel	Common	02	1	Beanie	None	Shades of Blonde
+3	pixel	Legendary	03	1	None	Tattoo	Shades of Brunette
+4	pixel	Limited	04	1	None	None	Shades of Gray
+5	pixel	Rare	05	1	None	Reading Glasses	Shades of Orange
+6	pixel	Limited	06	1	None	Earrings	Shades of Pink
+7	pixel	Epic	07	1	None	None	Shades of Blonde
+8	pixel	Common	08	1	Graduation	None	Shades of Brunette
+9	pixel	Common	09	1	None	Test Tube	Shades of Orange
+10	pixel	Limited	10	1	Circus	None	Shades of Brunette
+11	pixel	Epic	11	1	None	None	Shades of Gray
+12	pixel	Common	12	1	None	None	Shades of Brunette
+13	pixel	Legendary	13	1	Captain	None	Shades of Blonde
+14	pixel	Limited	14	1	None	Funky Glasses	Shades of Purple
+15	pixel	Common	15	1	None	Earrings	Shades of Pink
+16	pixel	Limited	16	1	Hoodie	None	Shades of Red
+17	pixel	Limited	17	1	None	None	Shades of Brunette
+18	pixel	Epic	17	2	None	70s Glasses	Shades of Brunette
+19	pixel	SuperRare	04	2	None	Tattoo	Shades of Blonde
+20	pixel	Common	01	1	Detective	Beer	Shades of Brunette
+21	pixel	Common	01	1	Beanie	Scarf	Shades of Brunette
+22	pixel	Rare	15	2	None	Earrings	Shades of Red
+23	pixel	Common	12	1	Bucket	None	Shades of Blonde
+24	pixel	Limited	08	2	None	Necklace	Shades of Pink
+25	pixel	Limited	10	1	Cap	None	Shades of Brunette
+26	pixel	Common	11	1	Beret	None	Shades of Gray
+27	pixel	Legendary	09	1	Sombrero	None	Shades of Green
+28	pixel	Common	02	1	None	3D Glasses	Shades of Orange
+29	pixel	Limited	14	1	None	Necklace	Shades of Blue
+30	pixel	SuperRare	03	1	Police	Sunglasses	Shades of Brunette
+31	pixel	Common	05	2	None	Necklace	Shades of Brunette
+32	pixel	Limited	16	1	Bowler	None	Shades of Red
+33	pixel	SuperRare	13	1	Winter	None	Shades of Blonde
+34	pixel	Limited	06	1	None	Headphones	Shades of Pink
+35	pixel	Common	07	1	Boat	None	Shades of Blonde
+36	pixel	Common	08	3	None	None	Shades of Green
+37	pixel	Common	02	2	None	Mask	Shades of Pink
+38	pixel	Common	03	1	None	Earphones	Shades of Blonde
+39	pixel	Rare	04	1	None	None	Shades of Blue
+40	pixel	Limited	05	3	None	Bow	Shades of Blonde
+41	pixel	Common	09	2	Crown	None	Shades of Red
+42	pixel	Common	10	1	Chef	None	Shades of Purple
+43	pixel	Common	11	1	None	None	Shades of Green
+44	pixel	Rare	12	2	None	Goggles	Shades of Blue
+45	pixel	Common	13	1	None	None	Shades of Red
+46	pixel	Epic	14	1	None	None	Shades of Brunette
+47	pixel	Rare	15	2	Visor	Sunglasses	Shades of Blonde
+48	pixel	Limited	06	2	None	Earrings	Shades of Purple
+49	pixel	Common	07	2	None	None	Shades of Blonde
+50	pixel	Limited	16	2	None	Sunglasses	Shades of Green
+51	pixel	Common	17	1	None	Sunglasses	Shades of Blonde
+52	pixel	Legendary	01	2	None	Earphones	Shades of Pink
+53	pixel	Rare	02	2	Rugby	None	Shades of Blonde
+54	pixel	Common	03	2	Sombrero	None	Shades of Green
+55	pixel	Epic	04	3	None	Nose Ring	Shades of Blue
+56	pixel	Rare	05	4	None	Necklace	Shades of Red
+57	pixel	Common	06	3	None	Sunglasses	Shades of Gray
+58	pixel	Common	07	2	Veil	None	Shades of Blonde
+59	pixel	Common	08	1	Cap	Earrings	Shades of Helvetica
+60	pixel	Common	09	3	None	Microphone	Shades of Purple
+61	pixel	Common	10	2	None	None	Shades of Blonde
+62	pixel	Legendary	11	2	None	None	Shades of Red
+63	pixel	Common	12	3	None	None	Shades of Blonde
+64	pixel	Common	13	1	Bear	None	Shades of Blonde
+65	pixel	Limited	14	2	Round	None	Shades of Green
+66	pixel	Common	18	1	None	None	Shades of Green
+67	pixel	Common	18	1	Hoodie	None	Shades of Blue
+68	pixel	Common	18	1	None	None	Shades of Purple
+69	pixel	Common	19	1	None	Necklace	Shades of Helvetica
+70	pixel	Legendary	20	1	None	Necklace	Shades of Helvetica
+71	pixel	Limited	21	1	None	None	Shades of Helvetica
+72	pixel	Epic	22	1	None	Necklace	Shades of Blue
+73	pixel	Legendary	23	1	None	Reading Glasses	Shades of Purple
+74	pixel	Legendary	24	1	None	Earrings	Shades of Green
+75	pixel	Common	25	1	None	None	Shades of Brunette
+76	pixel	Limited	26	1	None	None	Shades of Gray
+77	pixel	Common	18	2	None	Broach	Shades of Blonde
+78	pixel	Common	27	1	None	None	Shades of Blonde
+79	pixel	Legendary	28	1	None	Earrings	Shades of Orange
+80	pixel	Common	29	1	None	None	Shades of Blonde
+81	pixel	Common	30	1	None	Reading Glasses	Shades of Orange
+82	pixel	Common	01	1	None	Sunglasses	Shades of Blonde
+83	pixel	SuperRare	01	1	Hoodie	None	Shades of Pink
+84	pixel	Epic	01	1	Beret	Sunglasses	Shades of Green
+85	pixel	Rare	01	1	None	Nose Ring	Shades of Gray
+86	pixel	Limited	01	1	None	Funky Glasses	Shades of Pink
+87	pixel	Common	01	1	None	Sunglasses	Shades of Gray
+88	pixel	Limited	01	1	Cap	Reading Glasses	Shades of Purple
+89	pixel	Common	01	1	Bucket	None	Shades of Orange
+90	pixel	Common	01	1	None	Sunglasses	Shades of Green
+91	pixel	SuperRare	01	1	Bowler	Mask	Shades of Purple
+92	pixel	Common	01	1	None	Sunglasses	Shades of Helvetica
+93	pixel	Limited	01	1	Round	None	Shades of Blonde
+94	pixel	Limited	01	1	Graduation	None	Shades of Red
+95	pixel	Common	01	2	None	None	Shades of Blonde
+96	pixel	Rare	01	2	None	3D Glasses	Shades of Blonde
+97	pixel	SuperRare	01	2	None	70s Glasses	Shades of Blonde
+98	pixel	Common	01	2	Cap	None	Shades of Green
+99	pixel	Limited	01	2	Top	None	Shades of Gray
+100	pixel	Epic	01	2	None	Reading Glasses	Shades of Pink
+101	pixel	Common	01	2	Sombrero	None	Shades of Gray
+102	pixel	Rare	01	2	Winter	None	Shades of Blue
+103	pixel	Limited	01	2	None	Goggles	Shades of Blonde
+104	pixel	Common	01	2	None	Reading Glasses	Shades of Green
+105	pixel	Rare	01	2	Visor	None	Shades of Purple
+106	pixel	Common	01	2	None		Shades of Helvetica
+107	pixel	Limited	01	2	None	None	Shades of Pink
+108	pixel	Common	01	2	None	Headphones	Shades of Pink
+109	pixel	Rare	01	2	None	Tattoo	Shades of Blue
+110	pixel	Limited	02	1	None	Sunglasses	Shades of Brunette
+111	pixel	SuperRare	02	2	None	Sunglasses	Shades of Pink
+112	pixel	Limited	02	1	None	Sunglasses	Shades of Brunette
+113	pixel	Common	02	2	Sombrero	Brow Ring	Shades of Brunette
+114	pixel	Rare	02	1	None	Sunglasses	Shades of Pink
+115	pixel	Epic	02	2	None	Earphones	Shades of Green
+116	pixel	Common	02	1	Hoodie	Brow Ring	Shades of Brunette
+117	pixel	Limited	02	2	None	Goggles	Shades of Gray
+118	pixel	Common	02	1	None	Headphones	Shades of Green
+119	pixel	Rare	02	2	Cap	None	Shades of Gray
+120	pixel	Common	02	1	Top	None	Shades of Gray
+121	pixel	Legendary	02	2	Beanie	Sunglasses	Shades of Red
+122	pixel	Common	02	1	Round	None	Shades of Red
+123	pixel	Common	02	2	None	Scarf	Shades of Blue
+124	pixel	SuperRare	02	1	Detective	None	Shades of Gray
+125	pixel	Common	02	2	None	None	Shades of Green
+126	pixel	Limited	02	1	Bowler	Reading Glasses	Shades of Blue
+127	pixel	Common	02	2	None	Funky Glasses	Shades of Purple
+128	pixel	Limited	02	1	Captain	None	Shades of Blonde
+129	pixel	Epic	02	2	None	Brow Ring	Shades of Helvetica
+130	pixel	Common	02	1	None	None	Shades of Green
+131	pixel	Epic	02	2	None	Brow Ring	Shades of Pink
+132	pixel	SuperRare	02	1	None	Earphones	Shades of Helvetica
+133	pixel	Limited	02	2	Sombrero	Brow Ring	Shades of Brunette
+134	pixel	Common	02	1	Boat	None	Shades of Pink
+135	pixel	Rare	02	2	Bear	None	Shades of Red
+136	pixel	Rare	02	1	None	Reading Glasses	Shades of Blue
+137	pixel	Limited	02	2	None	None	Shades of Blonde
+138	pixel	Common	03	1	Captain	Reading Glasses	Shades of Pink
+139	pixel	SuperRare	03	2	None	Sunglasses	Shades of Blonde
+140	pixel	Limited	03	1	Detective	Tattoo	Shades of Green
+141	pixel	Common	03	2	Cap	None	Shades of Pink
+142	pixel	Epic	03	1	None	Goggles	Shades of Gray
+143	pixel	Limited	03	2	None	Sunglasses	Shades of Blonde
+144	pixel	Common	03	1	Round	Tattoo	Shades of Red
+145	pixel	Limited	03	2	Bowler	None	Shades of Gray
+146	pixel	Common	03	1	Top	Reading Glasses	Shades of Gray
+147	pixel	Common	03	2	None	Funky Glasses	Shades of Red
+148	pixel	Legendary	03	1	None	70s Glasses	Shades of Blue
+149	pixel	Limited	03	2	Top	None	Shades of Gray
+150	pixel	Epic	03	1	None	Sunglasses	Shades of Orange
+151	pixel	Common	03	2	None	Reading Glasses	Shades of Blue
+152	pixel	Rare	03	1	Beanie	Tattoo	Shades of Green
+153	pixel	Common	03	2	Bucket	None	Shades of Blonde
+154	pixel	Limited	03	1	Bear	Tattoo	Shades of Red
+155	pixel	Rare	03	2	Sombrero	None	Shades of Green
+156	pixel	Common	03	1	Visor	Tattoo	Shades of Helvetica
+157	pixel	Limited	03	2	None	3D Glasses	Shades of Purple
+158	pixel	Rare	03	1	None	Sunglasses	Shades of Blonde
+159	pixel	Rare	03	2	Winter	Earphones	Shades of Helvetica
+160	pixel	Common	03	1	None	Earphones	Shades of Pink
+161	pixel	Limited	03	2	Boat	None	Shades of Brunette
+162	pixel	Rare	03	1	None	Tattoo	Shades of Brunette
+163	pixel	Common	03	2	Beret	None	Shades of Red
+164	pixel	Epic	03	2	None	Sunglasses	Shades of Blue
+165	pixel	Common	03	2	None	None	Shades of Blonde
+166	pixel	Rare	04	1	Graduation	None	Shades of Brunette
+167	pixel	Common	04	2	Bowler	Tattoo	Shades of Helvetica
+168	pixel	Common	04	3	Top	None	Shades of Green
+169	pixel	SuperRare	04	1	None	Monacle	Shades of Pink
+170	pixel	Common	04	2	Winter	Goggles	Shades of Pink
+171	pixel	Rare	04	3	Bear	Nose Ring	Shades of Orange
+172	pixel	Common	04	1	None	None	Shades of Brunette
+173	pixel	Common	04	2	None	Sunglasses	Shades of Blonde
+174	pixel	SuperRare	04	3	None	Sunglasses	Shades of Gray
+175	pixel	Common	04	1	Detective	Reading Glasses	Shades of Green
+176	pixel	Common	04	2	Chef	Earrings	Shades of Blue
+177	pixel	Epic	04	3	Bear	Sunglasses	Shades of Red
+178	pixel	Common	04	1	None	Necklace	Shades of Gray
+179	pixel	Common	04	2	None	Earrings	Shades of Red
+180	pixel	Limited	04	3	Top	Reading Glasses	Shades of Gray
+181	pixel	Rare	04	1	Bucket	Funky Glasses	Shades of Red
+182	pixel	Common	04	2	Visor	Reading Glasses	Shades of Brunette
+183	pixel	Rare	04	3	Beanie	Reading Glasses	Shades of Green
+184	pixel	Common	04	1	Cap	None	Shades of Blonde
+185	pixel	Limited	04	2	Rugby	3D Glasses	Shades of Orange
+186	pixel	Common	04	3	Captain	Nose Ring	Shades of Brunette
+187	pixel	Limited	04	1	Beret	70s Glasses	Shades of Green
+188	pixel	Epic	04	2	Sombrero	Sunglasses	Shades of Helvetica
+189	pixel	Limited	04	3	None	Nose Ring	Shades of Pink
+190	pixel	Legendary	04	1	Sombrero	None	Shades of Purple
+191	pixel	Common	04	2	Boat	Earrings	Shades of Purple
+192	pixel	Limited	04	3	Round	Sunglasses	Shades of Blonde
+193	pixel	Limited	04	3	None	Nose Ring	Shades of Brunette
+194	pixel	Common	05	1	None	Earrings	Shades of Blonde
+195	pixel	Common	05	2	Beanie	None	Shades of Pink
+196	pixel	Common	05	3	Winter	None	Shades of Pink
+197	pixel	Limited	05	4	Sombrero	None	Shades of Brunette
+198	pixel	Epic	05	1	None	Monacle	Shades of Brunette
+199	pixel	Limited	05	2	Bucket	Sunglasses	Shades of Green
+200	pixel	Rare	05	3	Boat	Sunglasses	Shades of Green
+201	pixel	Common	05	4	None	Necklace	Shades of Blonde
+202	pixel	Common	05	1	Graduation	None	Shades of Gray
+203	pixel	Common	05	2	Cap	Funky Glasses	Shades of Red
+204	pixel	Common	05	3	None	Sunglasses	Shades of Gray
+205	pixel	Common	05	4	Top	Goggles	Shades of Gray
+206	pixel	Common	05	1	None	Sunglasses	Shades of Blue
+207	pixel	Limited	05	2	Beret	70s Glasses	Shades of Blue
+208	pixel	SuperRare	05	3	Visor	Sunglasses	Shades of Orange
+209	pixel	Rare	05	4	None	Broach	Shades of Gray
+210	pixel	Limited	05	1	Captain	None	Shades of Purple
+211	pixel	Epic	05	2	Sombrero	None	Shades of Purple
+212	pixel	Limited	05	3	None	None	Shades of Green
+213	pixel	SuperRare	05	4	Bear	None	Shades of Green
+214	pixel	Common	05	1	None	None	Shades of Brunette
+215	pixel	Limited	05	2	Captain	3D Glasses	Shades of Blonde
+216	pixel	Rare	05	3	None	Reading Glasses	Shades of Helvetica
+217	pixel	Legendary	05	4	Round	None	Shades of Green
+218	pixel	Common	05	1	None	Reading Glasses	Shades of Blonde
+219	pixel	SuperRare	05	2	None	Sunglasses	Shades of Blue
+220	pixel	Common	05	3	None	None	Shades of Red
+221	pixel	Epic	05	4	None	Sunglasses	Shades of Pink
+222	pixel	SuperRare	06	1	Captain	None	Shades of Blonde
+223	pixel	Common	06	2	Winter	Funky Glasses	Shades of Orange
+224	pixel	Rare	06	3	None	Monacle	Shades of Brunette
+225	pixel	SuperRare	06	1	Beanie	Reading Glasses	Shades of Blonde
+226	pixel	Limited	06	2	Cap	None	Shades of Blonde
+227	pixel	Common	06	3	Captain	3D Glasses	Shades of Pink
+228	pixel	Epic	06	1	Bear	Sunglasses	Shades of Gray
+229	pixel	Common	06	2	None	Reading Glasses	Shades of Brunette
+230	pixel	Limited	06	3	None	None	Shades of Green
+231	pixel	Epic	06	1	None	Scarf	Shades of Gray
+232	pixel	Common	06	2	None	None	Shades of Green
+233	pixel	Rare	06	3	None	None	Shades of Red
+234	pixel	Limited	06	1	Graduation	Test Tube	Shades of Orange
+235	pixel	SuperRare	06	2	None	Sunglasses	Shades of Pink
+236	pixel	Common	06	3	Sombrero	Scarf	Shades of Blue
+237	pixel	Common	06	1	Bowler	Earphones	Shades of Green
+238	pixel	Common	06	2	Sombrero	None	Shades of Gray
+239	pixel	Common	06	3	None	Sunglasses	Shades of Green
+240	pixel	Rare	06	1	None	Earrings	Shades of Helvetica
+241	pixel	Common	06	2	Beret	None	Shades of Blue
+242	pixel	Legendary	06	3	Boat	Earrings	Shades of Purple
+243	pixel	Rare	06	1	Bucket	Sunglasses	Shades of Red
+244	pixel	Common	06	2	None	Goggles	Shades of Blonde
+245	pixel	Common	06	3	Detective	Sunglasses	Shades of Helvetica
+246	pixel	Common	06	1	Veil	None	Shades of Blue
+247	pixel	Common	06	2	Round	None	Shades of Brunette
+248	pixel	Rare	06	3	Visor	None	Shades of Brunette
+249	pixel	Epic	06	3	None	Reading Glasses	Shades of Blonde
+250	pixel	Limited	07	1	None	None	Shades of Brunette
+251	pixel	SuperRare	07	2	None	3D Glasses	Shades of Orange
+252	pixel	Common	07	1	None	Sunglasses	Shades of Pink
+253	pixel	Epic	07	2	None	Funky Glasses	Shades of Pink
+254	pixel	Common	07	1	Captain	Monacle	Shades of Blonde
+255	pixel	Rare	07	2	None	Sunglasses	Shades of Brunette
+256	pixel	Limited	07	1	Cap	None	Shades of Green
+257	pixel	Limited	07	2	Bowler	None	Shades of Green
+258	pixel	Common	07	1	Visor	None	Shades of Gray
+259	pixel	Rare	07	2	None	Sunglasses	Shades of Gray
+260	pixel	Common	07	1	Beret	Sunglasses	Shades of Red
+261	pixel	SuperRare	07	2	None	Earphones	Shades of Red
+262	pixel	Epic	07	1	None	Headphones	Shades of Blue
+263	pixel	Rare	07	2	Bear	Reading Glasses	Shades of Gray
+264	pixel	Common	07	1	Graduation	Mask	Shades of Orange
+265	pixel	Limited	07	2	Captain	70s Glasses	Shades of Blue
+266	pixel	Rare	07	1	Round	None	Shades of Green
+267	pixel	Common	07	2	None	None	Shades of Green
+268	pixel	Common	07	1	Beanie	Sunglasses	Shades of Purple
+269	pixel	Rare	07	2	Top	None	Shades of Purple
+270	pixel	Epic	07	1	None	Goggles	Shades of Helvetica
+271	pixel	Common	07	2	Winter	None	Shades of Helvetica
+272	pixel	Limited	07	1	Sombrero	Sunglasses	Shades of Blonde
+273	pixel	Common	07	2	None	Sunglasses	Shades of Pink
+274	pixel	SuperRare	07	1	None	Earrings	Shades of Brunette
+275	pixel	Limited	07	2	Detective	Earrings	Shades of Red
+276	pixel	Common	07	1	None	None	Shades of Blue
+277	pixel	Legendary	07	2	None	Reading Glasses	Shades of Blonde
+278	pixel	Rare	08	1	None	Sunglasses	Shades of Blonde
+279	pixel	Common	08	2	None	None	Shades of Brunette
+280	pixel	Common	08	3	Round	Reading Glasses	Shades of Blonde
+281	pixel	Limited	08	1	None	Reading Glasses	Shades of Green
+282	pixel	SuperRare	08	2	None	Goggles	Shades of Pink
+283	pixel	Epic	08	3	Beret	Necklace	Shades of Pink
+284	pixel	Common	08	1	None	Reading Glasses	Shades of Red
+285	pixel	Common	08	2	Beanie	Earrings	Shades of Blonde
+286	pixel	Rare	08	3	None	Earphones	Shades of Gray
+287	pixel	Common	08	1	Cap	Sunglasses	Shades of Gray
+288	pixel	Rare	08	2	Bowler	None	Shades of Gray
+289	pixel	Epic	08	3	None	Mask	Shades of Red
+290	pixel	Limited	08	1	Captain	Sunglasses	Shades of Orange
+291	pixel	Common	08	2	Sombrero	70s Glasses	Shades of Blue
+292	pixel	SuperRare	08	3	Captain	Sunglasses	Shades of Blue
+293	pixel	Common	08	1	Bear	Monacle	Shades of Green
+294	pixel	Limited	08	2	None	None	Shades of Green
+295	pixel	Limited	08	3	None	Headphones	Shades of Blonde
+296	pixel	Common	08	1	Visor	Sunglasses	Shades of Blonde
+297	pixel	Rare	08	2	None	Funky Glasses	Shades of Purple
+298	pixel	Epic	08	3	None	Sunglasses	Shades of Purple
+299	pixel	Common	08	1	None	None	Shades of Gray
+300	pixel	Common	08	2	None	Sunglasses	Shades of Helvetica
+301	pixel	Limited	08	3	Top	None	Shades of Helvetica
+302	pixel	SuperRare	08	2	Detective	None	Shades of Red
+303	pixel	Rare	08	3	None	3D Glasses	Shades of Brunette
+304	pixel	Limited	08	2	None	None	Shades of Blonde
+305	pixel	Legendary	08	3	Winter	None	Shades of Blue
+306	pixel	SuperRare	09	1	Bowler	3D Glasses	Shades of Blonde
+307	pixel	Common	09	2	Beret	Monacle	Shades of Brunette
+308	pixel	Limited	09	3	None	Sunglasses	Shades of Orange
+309	pixel	Limited	09	1	None	Reading Glasses	Shades of Brunette
+310	pixel	Common	09	2	None	Goggles	Shades of Blonde
+311	pixel	Epic	09	3	Beanie	None	Shades of Pink
+312	pixel	Rare	09	1	Captain	None	Shades of Gray
+313	pixel	Limited	09	2	Visor	None	Shades of Pink
+314	pixel	Common	09	3	None	Sunglasses	Shades of Green
+315	pixel	Limited	09	1	None	Sunglasses	Shades of Gray
+316	pixel	Common	09	2	Graduation	Funky Glasses	Shades of Blonde
+317	pixel	Rare	09	3	None	None	Shades of Red
+318	pixel	Rare	09	1	Top	Mask	Shades of Green
+319	pixel	Limited	09	2	Cap	Reading Glasses	Shades of Gray
+320	pixel	Common	09	3	Detective	Sunglasses	Shades of Gray
+321	pixel	Common	09	1	Hoodie	Earphones	Shades of Purple
+322	pixel	Epic	09	2	Captain	Sunglasses	Shades of Red
+323	pixel	SuperRare	09	3	None	None	Shades of Blue
+324	pixel	Epic	09	1	None	Sunglasses	Shades of Helvetica
+325	pixel	Rare	09	2	Winter	None	Shades of Blue
+326	pixel	Limited	09	3	None	Sunglasses	Shades of Green
+327	pixel	Common	09	1	None	None	Shades of Brunette
+328	pixel	Common	09	2	Round	Reading Glasses	Shades of Blonde
+329	pixel	SuperRare	09	3	Bucket	None	Shades of Blonde
+330	pixel	Common	09	2	None	70s Glasses	Shades of Purple
+331	pixel	Limited	09	3	Bear	Reading Glasses	Shades of Pink
+332	pixel	Common	09	2	None	Headphones	Shades of Blue
+333	pixel	Rare	09	3	Cap	Reading Glasses	Shades of Blonde
+334	pixel	SuperRare	10	2	Cap	Sunglasses	Shades of Helvetica
+335	pixel	Common	10	1	None	Funky Glasses	Shades of Red
+336	pixel	Epic	10	2	None	Reading Glasses	Shades of Purple
+337	pixel	Common	10	1	Visor	Mask	Shades of Orange
+338	pixel	Epic	10	2	Bucket	None	Shades of Blonde
+339	pixel	Common	10	1	Sombrero	Reading Glasses	Shades of Blonde
+340	pixel	Limited	10	2	None	Headphones	Shades of Brunette
+341	pixel	Common	10	1	None	None	Shades of Pink
+342	pixel	Common	10	2	Graduation	Sunglasses	Shades of Blonde
+343	pixel	Rare	10	1	Captain	Reading Glasses	Shades of Green
+344	pixel	Limited	10	2	Cap	Sunglasses	Shades of Helvetica
+345	pixel	SuperRare	10	1	Bowler	Sunglasses	Shades of Gray
+346	pixel	Common	10	2	Bear	Reading Glasses	Shades of Green
+347	pixel	Rare	10	1	Hoodie	Earphones	Shades of Gray
+348	pixel	Common	10	2	Captain	None	Shades of Gray
+349	pixel	Rare	10	1	Beanie	Sunglasses	Shades of Blue
+350	pixel	Epic	10	2	Round	None	Shades of Gray
+351	pixel	Common	10	1	None	None	Shades of Blonde
+352	pixel	Limited	10	2	None	70s Glasses	Shades of Blue
+353	pixel	Common	10	1	None	Funky Glasses	Shades of Green
+354	pixel	Legendary	10	2	None	Sunglasses	Shades of Orange
+355	pixel	SuperRare	10	1	Top	Goggles	Shades of Red
+356	pixel	Limited	10	2	None	Reading Glasses	Shades of Green
+357	pixel	Rare	10	1	Beret	None	Shades of Brunette
+358	pixel	Common	10	2	None	None	Shades of Blonde
+359	pixel	Limited	10	1	Winter	None	Shades of Pink
+360	pixel	Common	10	2	Detective	3D Glasses	Shades of Blue
+361	pixel	Rare	10	2	Cap	None	Shades of Blonde
+362	pixel	Common	11	2	Top	Earphones	Shades of Brunette
+363	pixel	SuperRare	11	2	Boat	None	Shades of Blonde
+364	pixel	Epic	11	1	Rugby	Monacle	Shades of Brunette
+365	pixel	Rare	11	2	None	70s Glasses	Shades of Pink
+366	pixel	Limited	11	1	Winter	Sunglasses	Shades of Blonde
+367	pixel	Common	11	2	Captain	Scarf	Shades of Blonde
+368	pixel	Limited	11	1	Graduation	None	Shades of Pink
+369	pixel	Common	11	2	None	Headphones	Shades of Green
+370	pixel	Common	11	1	Visor	Reading Glasses	Shades of Brunette
+371	pixel	SuperRare	11	2	Top	Reading Glasses	Shades of Gray
+372	pixel	Common	11	1	Round	Earphones	Shades of Green
+373	pixel	Epic	11	2	Hoodie	Sunglasses	Shades of Red
+374	pixel	Limited	11	1	Sombrero	Reading Glasses	Shades of Gray
+375	pixel	Common	11	2	Cap	None	Shades of Blue
+376	pixel	Rare	11	1	Cap	Reading Glasses	Shades of Red
+377	pixel	SuperRare	11	2	Chef	Goggles	Shades of Blonde
+378	pixel	Common	11	1	Captain	None	Shades of Blue
+379	pixel	Limited	11	2	Bear	None	Shades of Green
+380	pixel	Limited	11	1	Detective	Funky Glasses	Shades of Orange
+381	pixel	Common	11	2	Sombrero	3D Glasses	Shades of Purple
+382	pixel	Rare	11	1	None	Mask	Shades of Purple
+383	pixel	Limited	11	2	Bowler	None	Shades of Helvetica
+384	pixel	Common	11	1	None	None	Shades of Helvetica
+385	pixel	Rare	11	2	None	Sunglasses	Shades of Blonde
+386	pixel	Common	11	1	Bucket	None	Shades of Red
+387	pixel	Limited	11	2	None	Sunglasses	Shades of Brunette
+388	pixel	Common	11	1	None	None	Shades of Blue
+389	pixel	Rare	11	2	Beanie	Sunglasses	Shades of Blonde
+390	pixel	Limited	12	3	Detective	None	Shades of Brunette
+391	pixel	SuperRare	12	2	Beanie	Sunglasses	Shades of Blonde
+392	pixel	Limited	12	1	None	Earphones	Shades of Pink
+393	pixel	Common	12	3	None	Earrings	Shades of Pink
+394	pixel	Rare	12	2	None	None	Shades of Orange
+395	pixel	Epic	12	1	Captain	Earrings	Shades of Brunette
+396	pixel	Common	12	3	Boat	Reading Glasses	Shades of Green
+397	pixel	Limited	12	2	Visor	Sunglasses	Shades of Green
+398	pixel	Common	12	1	Sombrero	Monacle	Shades of Red
+399	pixel	Rare	12	3	None	Headphones	Shades of Gray
+400	pixel	Common	12	2	Chef	3D Glasses	Shades of Gray
+401	pixel	Legendary	12	1	Sombrero	Sunglasses	Shades of Blue
+402	pixel	Common	12	3	Beret	None	Shades of Red
+403	pixel	Common	12	2	None	None	Shades of Gray
+404	pixel	SuperRare	12	1	None	Reading Glasses	Shades of Green
+405	pixel	Common	12	3	None	Sunglasses	Shades of Gray
+406	pixel	Epic	12	2	Veil	Reading Glasses	Shades of Orange
+407	pixel	Common	12	1	Graduation	Earphones	Shades of Pink
+408	pixel	Limited	12	3	Captain	None	Shades of Blue
+409	pixel	Epic	12	2	Bear	None	Shades of Green
+410	pixel	Common	12	1	Cap	Mask	Shades of Helvetica
+411	pixel	Epic	12	3	None	Sunglasses	Shades of Blonde
+412	pixel	SuperRare	12	2	Bowler	None	Shades of Purple
+413	pixel	Limited	12	1	None	Scarf	Shades of Red
+414	pixel	Common	12	3	Winter	70s Glasses	Shades of Purple
+415	pixel	Rare	12	2	None	Earphones	Shades of Brunette
+416	pixel	Rare	12	3	None	Broach	Shades of Helvetica
+417	pixel	Limited	12	2	Round	None	Shades of Blonde
+418	pixel	Common	13	2	None	Goggles	Shades of Blue
+419	pixel	SuperRare	13	2	None	Headphones	Shades of Blue
+420	pixel	Limited	13	2	Bowler	Monacle	Shades of Gray
+421	pixel	Common	13	2	Visor	Reading Glasses	Shades of Orange
+422	pixel	Limited	13	1	None	None	Shades of Gray
+423	pixel	Epic	13	2	Sombrero	None	Shades of Green
+424	pixel	Common	13	1	Graduation	Reading Glasses	Shades of Red
+425	pixel	Limited	13	2	Beanie	Sunglasses	Shades of Green
+426	pixel	Common	13	1	None	Reading Glasses	Shades of Gray
+427	pixel	Common	13	2	Cap	Scarf	Shades of Purple
+428	pixel	SuperRare	13	1	Rugby	70s Glasses	Shades of Gray
+429	pixel	Limited	13	2	None	Reading Glasses	Shades of Purple
+430	pixel	Epic	13	1	None	None	Shades of Green
+431	pixel	Common	13	2	None	3D Glasses	Shades of Helvetica
+432	pixel	Rare	13	1	Top	None	Shades of Green
+433	pixel	Common	13	2	None	Funky Glasses	Shades of Helvetica
+434	pixel	Epic	13	1	None	Sunglasses	Shades of Brunette
+435	pixel	Rare	13	2	Chef	Sunglasses	Shades of Blonde
+436	pixel	Common	13	1	Beret	None	Shades of Brunette
+437	pixel	Limited	13	2	Top	None	Shades of Brunette
+438	pixel	Rare	13	1	Round	Earphones	Shades of Pink
+439	pixel	Rare	13	2	Cap	Earphones	Shades of Pink
+440	pixel	Common	13	1	Captain	None	Shades of Pink
+441	pixel	Limited	13	2	Sombrero	Sunglasses	Shades of Red
+442	pixel	Rare	13	1	None	Sunglasses	Shades of Orange
+443	pixel	Common	13	2	Detective	None	Shades of Blue
+444	pixel	Epic	13	1	Bucket	None	Shades of Brunette
+445	pixel	Common	13	2	None	None	Shades of Blonde
+446	pixel	Limited	14	2	None	Sunglasses	Shades of Blue
+447	pixel	Common	14	1	Sombrero	None	Shades of Green
+448	pixel	Common	14	2	Cap	None	Shades of Purple
+449	pixel	Rare	14	1	Top	Goggles	Shades of Blonde
+450	pixel	Common	14	2	None	Sunglasses	Shades of Orange
+451	pixel	Rare	14	1	None	70s Glasses	Shades of Pink
+452	pixel	Common	14	2	Captain	None	Shades of Blonde
+453	pixel	Common	14	1	Winter	Mask	Shades of Brunette
+454	pixel	SuperRare	14	2	Cap	None	Shades of Pink
+455	pixel	Common	14	1	Graduation	Sunglasses	Shades of Gray
+456	pixel	Common	14	2	Beanie	Reading Glasses	Shades of Blonde
+457	pixel	SuperRare	14	1	Bucket	None	Shades of Red
+458	pixel	Common	14	2	Top	3D Glasses	Shades of Gray
+459	pixel	Common	14	1	Bear	Sunglasses	Shades of Gray
+460	pixel	Limited	14	2	None	Headphones	Shades of Red
+461	pixel	Rare	14	1	Chef	Sunglasses	Shades of Orange
+462	pixel	Common	14	2	Captain	Earphones	Shades of Gray
+463	pixel	Rare	14	1	None	None	Shades of Green
+464	pixel	Common	14	2	None	None	Shades of Blonde
+465	pixel	Limited	14	1	Beret	Earphones	Shades of Helvetica
+466	pixel	Common	14	2	Sombrero	None	Shades of Green
+467	pixel	Limited	14	1	Visor	None	Shades of Red
+468	pixel	Epic	14	2	Detective	Reading Glasses	Shades of Helvetica
+469	pixel	Limited	14	1	None	Reading Glasses	Shades of Brunette
+470	pixel	Legendary	14	2	Rugby	Monacle	Shades of Blonde
+471	pixel	Common	14	1	None	None	Shades of Blue
+472	pixel	Rare	14	2	None	Sunglasses	Shades of Pink
+473	pixel	SuperRare	14	1	Bowler	Scarf	Shades of Blonde
+474	pixel	Common	15	1	Graduation	None	Shades of Red
+475	pixel	Common	15	2	None	70s Glasses	Shades of Blonde
+476	pixel	Common	15	1	Top	Monacle	Shades of Brunette
+477	pixel	Limited	15	2	Captain	3D Glasses	Shades of Orange
+478	pixel	Epic	15	1	Captain	None	Shades of Pink
+479	pixel	Limited	15	2	None	Headphones	Shades of Pink
+480	pixel	Rare	15	1	None	Goggles	Shades of Brunette
+481	pixel	Common	15	2	None	Earphones	Shades of Blonde
+482	pixel	Common	15	1	Bear	None	Shades of Green
+483	pixel	Common	15	2	Beret	None	Shades of Green
+484	pixel	Common	15	1	None	Funky Glasses	Shades of Gray
+485	pixel	Common	15	2	Boat	None	Shades of Gray
+486	pixel	Common	15	1	Graduation	None	Shades of Gray
+487	pixel	Limited	15	2	Sombrero	Reading Glasses	Shades of Gray
+488	pixel	SuperRare	15	1	Bucket	Reading Glasses	Shades of Blue
+489	pixel	Rare	15	2	None	None	Shades of Blue
+490	pixel	Limited	15	1	Cap	Necklace	Shades of Green
+491	pixel	Epic	15	2	Round	Scarf	Shades of Blonde
+492	pixel	Limited	15	1	None	Reading Glasses	Shades of Orange
+493	pixel	SuperRare	15	2	None	Reading Glasses	Shades of Green
+494	pixel	Limited	15	1	Sombrero	Sunglasses	Shades of Purple
+495	pixel	Limited	15	2	Bowler	Sunglasses	Shades of Purple
+496	pixel	Rare	15	1	Veil	Sunglasses	Shades of Helvetica
+497	pixel	Legendary	15	2	None	None	Shades of Helvetica
+498	pixel	Common	15	1	None	Mask	Shades of Blonde
+499	pixel	SuperRare	15	2	Captain	Broach	Shades of Brunette
+500	pixel	Common	15	1	Winter	None	Shades of Red
+501	pixel	Epic	15	1	None	None	Shades of Blue
+502	pixel	Common	15	2	None	Sunglasses	Shades of Blonde
+503	pixel	Common	16	1	None	None	Shades of Green
+504	pixel	Rare	16	2	None	70s Glasses	Shades of Red
+505	pixel	SuperRare	16	1	Top	Monacle	Shades of Orange
+506	pixel	Limited	16	2	Chef	Sunglasses	Shades of Brunette
+507	pixel	Common	16	1	None	Reading Glasses	Shades of Blonde
+508	pixel	Epic	16	2	Visor	3D Glasses	Shades of Blonde
+509	pixel	Common	16	1	None	None	Shades of Pink
+510	pixel	Limited	16	2	Rugby	Sunglasses	Shades of Brunette
+511	pixel	Epic	16	1	Detective	Funky Glasses	Shades of Blonde
+512	pixel	Common	16	2	Sombrero	None	Shades of Pink
+513	pixel	Rare	16	1	Beanie	None	Shades of Green
+514	pixel	Limited	16	2	Top	Sunglasses	Shades of Brunette
+515	pixel	SuperRare	16	1	Bucket	None	Shades of Gray
+516	pixel	Common	16	2	Graduation	Sunglasses	Shades of Green
+517	pixel	Common	16	1	Cap	None	Shades of Gray
+518	pixel	Common	16	2	Captain	Reading Glasses	Shades of Gray
+519	pixel	Common	16	1	Beret	Goggles	Shades of Blue
+520	pixel	Rare	16	2	None	Earphones	Shades of Gray
+521	pixel	Common	16	1	Sombrero	Sunglasses	Shades of Orange
+522	pixel	Legendary	16	2	Bear	None	Shades of Blue
+523	pixel	Rare	16	1	Captain	Earphones	Shades of Purple
+524	pixel	Common	16	2	Round	Sunglasses	Shades of Blonde
+525	pixel	Common	16	1	None	Headphones	Shades of Helvetica
+526	pixel	Common	16	2	Cap	Reading Glasses	Shades of Purple
+527	pixel	Common	16	1	Winter	None	Shades of Blonde
+528	pixel	Rare	16	2	None	None	Shades of Helvetica
+529	pixel	Epic	16	1	None	None	Shades of Blue
+530	pixel	Limited	16	2	Boat	Mask	Shades of Red
+531	pixel	SuperRare	16	2	None	Scarf	Shades of Blonde
+532	pixel	Common	17	1	Graduation	None	Shades of Blonde
+533	pixel	Limited	17	2	None	None	Shades of Blonde
+534	pixel	Common	17	1	None	Reading Glasses	Shades of Pink
+535	pixel	SuperRare	17	2	None	None	Shades of Pink
+536	pixel	Limited	17	1	None	Headphones	Shades of Brunette
+537	pixel	Epic	17	1	None	Headphones	Shades of Brunette
+538	pixel	Common	17	1	Sombrero	Sunglasses	Shades of Green
+539	pixel	Rare	17	2	None	Sunglasses	Shades of Green
+540	pixel	Common	17	1	None	None	Shades of Gray
+541	pixel	SuperRare	17	2	Cap	None	Shades of Green
+542	pixel	Epic	17	1	None	Reading Glasses	Shades of Red
+543	pixel	Rare	17	2	None	3D Glasses	Shades of Red
+544	pixel	Common	17	1	Hoodie	None	Shades of Blonde
+545	pixel	Limited	17	2	None	Goggles	Shades of Gray
+546	pixel	Rare	17	1	Captain	None	Shades of Blue
+547	pixel	Common	17	2	None	None	Shades of Blue
+548	pixel	Common	17	1	None	Sunglasses	Shades of Orange
+549	pixel	Rare	17	2	None	None	Shades of Blonde
+550	pixel	Limited	17	1	None	Sunglasses	Shades of Green
+551	pixel	Common	17	2	None	Mask	Shades of Green
+552	pixel	Limited	17	1	None	Scarf	Shades of Purple
+553	pixel	Common	17	2	None	None	Shades of Purple
+554	pixel	SuperRare	17	1	None	None	Shades of Helvetica
+555	pixel	Limited	17	2	None	None	Shades of Helvetica
+556	pixel	Common	17	1	None	Monacle	Shades of Orange
+557	pixel	Legendary	17	2	Chef	Funky Glasses	Shades of Brunette
+558	pixel	Rare	17	1	Boat	None	Shades of Pink
+559	pixel	Common	17	2	Bowler	None	Shades of Red
+560	pixel	Common	17	2	None	None	Shades of Blue
+561	pixel	Limited	19	2	None	None	Shades of Green
+562	pixel	SuperRare	19	1	Sombrero	None	Shades of Brunette
+563	pixel	Limited	19	2	None	Sunglasses	Shades of Orange
+564	pixel	Common	19	1	Detective	None	Shades of Blonde
+565	pixel	Common	19	2	None	Sunglasses	Shades of Blonde
+566	pixel	Rare	19	1	None	Funky Glasses	Shades of Pink
+567	pixel	Common	19	2	Graduation	Reading Glasses	Shades of Pink
+568	pixel	Rare	19	1	Bear	70s Glasses	Shades of Brunette
+569	pixel	Epic	19	2	None	Earrings	Shades of Blonde
+570	pixel	Limited	19	1	None	Reading Glasses	Shades of Green
+571	pixel	Common	19	2	Bucket	None	Shades of Green
+572	pixel	SuperRare	19	1	Visor	3D Glasses	Shades of Gray
+573	pixel	Common	19	2	None	Reading Glasses	Shades of Gray
+574	pixel	Limited	19	1	None	None	Shades of Red
+575	pixel	Limited	19	2	Beanie	None	Shades of Red
+576	pixel	Common	19	1	None	Goggles	Shades of Gray
+577	pixel	Rare	19	2	None	Mask	Shades of Gray
+578	pixel	Rare	19	1	None	Necklace	Shades of Blue
+579	pixel	Common	19	2	Cap	Sunglasses	Shades of Blue
+580	pixel	Common	19	1	None	Sunglasses	Shades of Orange
+581	pixel	Epic	19	2	None	Headphones	Shades of Blonde
+582	pixel	Common	19	1	None	Reading Glasses	Shades of Green
+583	pixel	Rare	19	2	None	Earphones	Shades of Green
+584	pixel	Limited	19	1	Boat	None	Shades of Purple
+585	pixel	Legendary	19	2	None	Scarf	Shades of Purple
+586	pixel	SuperRare	19	1	Boat	None	Shades of Purple
+587	pixel	Common	19	2	Winter	Broach	Shades of Red
+588	pixel	Limited	19	1	None	Monacle	Shades of Brunette
+589	pixel	Common	19	2	None	None	Shades of Pink
+590	pixel	Common	19	1	None	None	Shades of Blue
+591	pixel	Epic	19	2	None	None	Shades of Blonde
+592	pixel	Rare	20	2	None	Headphones	Shades of Helvetica
+593	pixel	Limited	20	1	Graduation	Sunglasses	Shades of Orange
+594	pixel	Common	20	2	None	Sunglasses	Shades of Brunette
+595	pixel	Limited	20	1	None	Earphones	Shades of Blonde
+596	pixel	Common	20	2	Bucket	Reading Glasses	Shades of Blonde
+597	pixel	Rare	20	1	None	None	Shades of Pink
+598	pixel	Rare	20	2	None	Reading Glasses	Shades of Pink
+599	pixel	Epic	20	1	Bear	None	Shades of Brunette
+600	pixel	Common	20	2	None	Sunglasses	Shades of Blonde
+601	pixel	Common	20	1	Beanie	None	Shades of Green
+602	pixel	Limited	20	2	None	Goggles	Shades of Green
+603	pixel	SuperRare	20	1	Round	None	Shades of Gray
+604	pixel	Epic	20	2	Cap	None	Shades of Gray
+605	pixel	Rare	20	1	Winter	Sunglasses	Shades of Red
+606	pixel	Limited	20	2	Captain	Funky Glasses	Shades of Red
+607	pixel	Common	20	1	None	Earphones	Shades of Gray
+608	pixel	Common	20	2	None	Mask	Shades of Gray
+609	pixel	SuperRare	20	1	Detective	Earrings	Shades of Blue
+610	pixel	Common	20	2	Visor	None	Shades of Blue
+611	pixel	Limited	20	1	None	None	Shades of Orange
+612	pixel	Common	20	2	Sombrero	Sunglasses	Shades of Blonde
+613	pixel	Rare	20	1	Cap	Monacle	Shades of Green
+614	pixel	SuperRare	20	2	Boat	None	Shades of Green
+615	pixel	Common	20	1	Top	None	Shades of Purple
+616	pixel	Epic	20	2	None	70s Glasses	Shades of Purple
+617	pixel	Common	20	1	Sombrero	Broach	Shades of Blonde
+618	pixel	Limited	20	2	Captain	Scarf	Shades of Pink
+619	pixel	Common	20	1	Chef	None	Shades of Brunette
+620	pixel	Limited	20	2	None	Reading Glasses	Shades of Red
+621	pixel	Common	20	1	None	Sunglasses	Shades of Blue
+622	pixel	Common	20	2	Veil	3D Glasses	Shades of Blonde
+623	pixel	Limited	21	2	None	None	Shades of Helvetica
+624	pixel	Epic	21	1	Sombrero	3D Glasses	Shades of Orange
+625	pixel	SuperRare	21	2	None	Sunglasses	Shades of Brunette
+626	pixel	Common	21	1	Detective	None	Shades of Blonde
+627	pixel	Limited	21	2	Chef	Earphones	Shades of Blonde
+628	pixel	Common	21	1	Winter	Reading Glasses	Shades of Pink
+629	pixel	Rare	21	2	None	Reading Glasses	Shades of Pink
+630	pixel	Epic	21	1	None	Headphones	Shades of Brunette
+631	pixel	Common	21	2	Rugby	None	Shades of Brunette
+632	pixel	Limited	21	1	Bowler	None	Shades of Green
+633	pixel	Common	21	2	Cap	Reading Glasses	Shades of Green
+634	pixel	Legendary	21	1	Bear	None	Shades of Gray
+635	pixel	SuperRare	21	2	None	Earphones	Shades of Gray
+636	pixel	Epic	21	1	Boat	Scarf	Shades of Red
+637	pixel	Rare	21	2	Beanie	None	Shades of Red
+638	pixel	Common	21	1	None	None	Shades of Gray
+639	pixel	Limited	21	2	Sombrero	None	Shades of Gray
+640	pixel	Common	21	1	None	Mask	Shades of Blue
+641	pixel	Rare	21	2	Round	Monacle	Shades of Blue
+642	pixel	Common	21	1	Captain	None	Shades of Orange
+643	pixel	SuperRare	21	2	Captain	None	Shades of Blonde
+644	pixel	Epic	21	1	Bucket	Funky Glasses	Shades of Green
+645	pixel	Rare	21	2	None	Sunglasses	Shades of Green
+646	pixel	Limited	21	1	Visor	None	Shades of Purple
+647	pixel	Common	21	2	None	Sunglasses	Shades of Purple
+648	pixel	Common	21	1	None	Sunglasses	Shades of Blonde
+649	pixel	Common	21	2	None	Sunglasses	Shades of Pink
+650	pixel	Common	21	1	Beret	Sunglasses	Shades of Brunette
+651	pixel	Rare	21	2	None	Reading Glasses	Shades of Red
+652	pixel	Common	21	1	Top	None	Shades of Blue
+653	pixel	Common	21	2	Cap	None	Shades of Blonde
+654	pixel	Limited	22	2	None	Funky Glasses	Shades of Green
+655	pixel	Common	22	1	Detective	None	Shades of Orange
+656	pixel	Limited	22	2	None	Mask	Shades of Brunette
+657	pixel	SuperRare	22	1	Winter	3D Glasses	Shades of Blonde
+658	pixel	Common	22	2	Beret	Sunglasses	Shades of Blonde
+659	pixel	Limited	22	1	None	Monacle	Shades of Pink
+660	pixel	Epic	22	2	None	Goggles	Shades of Pink
+661	pixel	Common	22	1	Cap	70s Glasses	Shades of Brunette
+662	pixel	Rare	22	2	None	Sunglasses	Shades of Blonde
+663	pixel	Limited	22	1	None	Sunglasses	Shades of Green
+664	pixel	Common	22	2	None	Reading Glasses	Shades of Green
+665	pixel	Rare	22	1	Top	Sunglasses	Shades of Gray
+666	pixel	Common	22	2	Captain	Sunglasses	Shades of Gray
+667	pixel	Limited	22	1	Graduation	None	Shades of Red
+668	pixel	Common	22	2	None	Sunglasses	Shades of Red
+669	pixel	Rare	22	1	Bucket	Earphones	Shades of Gray
+670	pixel	Limited	22	2	Bowler	None	Shades of Gray
+671	pixel	SuperRare	22	1	None	Headphones	Shades of Blue
+672	pixel	Limited	22	2	Chef	None	Shades of Helvetica
+673	pixel	Common	22	1	None	Reading Glasses	Shades of Orange
+674	pixel	Rare	22	2	Visor	Reading Glasses	Shades of Blonde
+675	pixel	Epic	22	1	None	Scarf	Shades of Green
+676	pixel	Common	22	2	Captain	None	Shades of Green
+677	pixel	Common	22	1	None	Sunglasses	Shades of Purple
+678	pixel	Common	22	2	None	None	Shades of Purple
+679	pixel	Rare	22	1	Beanie	None	Shades of Blonde
+680	pixel	Common	22	2	Cap	None	Shades of Pink
+681	pixel	Legendary	22	1	None	None	Shades of Brunette
+682	pixel	Common	22	2	Sombrero	None	Shades of Red
+683	pixel	Common	22	1	Boat	Earphones	Shades of Blue
+684	pixel	SuperRare	22	2	None	None	Shades of Blonde
+685	pixel	Common	23	2	None	None	Shades of Helvetica
+686	pixel	Rare	23	1	None	None	Shades of Brunette
+687	pixel	Common	23	2	Bear	Monacle	Shades of Orange
+688	pixel	Common	23	1	None	Reading Glasses	Shades of Blonde
+689	pixel	Common	23	2	Chef	None	Shades of Blonde
+690	pixel	Common	23	1	Captain	Earphones	Shades of Pink
+691	pixel	Epic	23	2	Bowler	Earphones	Shades of Pink
+692	pixel	SuperRare	23	1	Cap	Sunglasses	Shades of Brunette
+693	pixel	Limited	23	2	Visor	Necklace	Shades of Blonde
+694	pixel	Common	23	1	None	Sunglasses	Shades of Green
+695	pixel	Rare	23	2	Boat	None	Shades of Green
+696	pixel	Rare	23	1	None	3D Glasses	Shades of Gray
+697	pixel	Limited	23	2	None	Headphones	Shades of Gray
+698	pixel	Common	23	1	Beanie	Earrings	Shades of Red
+699	pixel	SuperRare	23	2	Winter	Sunglasses	Shades of Red
+700	pixel	Epic	23	1	Top	None	Shades of Gray
+701	pixel	Common	23	2	None	Sunglasses	Shades of Gray
+702	pixel	Limited	23	1	None	Funky Glasses	Shades of Blue
+703	pixel	Limited	23	2	Graduation	70s Glasses	Shades of Blue
+704	pixel	Common	23	1	Sombrero	Scarf	Shades of Orange
+705	pixel	Limited	23	2	None	None	Shades of Blonde
+706	pixel	Common	23	1	Bucket	Sunglasses	Shades of Green
+707	pixel	Common	23	2	None	Mask	Shades of Green
+708	pixel	SuperRare	23	1	Sombrero	None	Shades of Helvetica
+709	pixel	Limited	23	2	Beret	Sunglasses	Shades of Purple
+710	pixel	Epic	23	1	Captain	None	Shades of Blonde
+711	pixel	Common	23	2	Round	None	Shades of Pink
+712	pixel	Rare	23	1	None	Reading Glasses	Shades of Brunette
+713	pixel	Common	23	2	None	None	Shades of Red
+714	pixel	Limited	23	1	Veil	None	Shades of Blue
+715	pixel	Rare	23	2	Detective	Goggles	Shades of Blonde
+716	pixel	Common	24	2	Detective	None	Shades of Green
+717	pixel	Limited	24	1	Graduation	Earrings	Shades of Brunette
+718	pixel	Limited	24	2	Visor	Mask	Shades of Orange
+719	pixel	Limited	24	1	Captain	None	Shades of Blonde
+720	pixel	Common	24	2	Cap	Earphones	Shades of Blonde
+721	pixel	Epic	24	1	Bear	None	Shades of Pink
+722	pixel	Rare	24	2	Round	Sunglasses	Shades of Pink
+723	pixel	Common	24	1	Cap	None	Shades of Brunette
+724	pixel	SuperRare	24	2	None	None	Shades of Blonde
+725	pixel	Common	24	1	Beanie	Headphones	Shades of Green
+726	pixel	Rare	24	2	Beret	Sunglasses	Shades of Green
+727	pixel	Common	24	1	Veil	None	Shades of Gray
+728	pixel	Common	24	2	Top	None	Shades of Gray
+729	pixel	SuperRare	24	1	Bowler	Scarf	Shades of Red
+730	pixel	Common	24	2	None	None	Shades of Red
+731	pixel	Rare	24	1	Sombrero	None	Shades of Gray
+732	pixel	Common	24	2	None	Funky Glasses	Shades of Gray
+733	pixel	Common	24	1	None	Monacle	Shades of Blue
+734	pixel	Epic	24	2	None	Sunglasses	Shades of Helvetica
+735	pixel	Common	24	1	None	Reading Glasses	Shades of Orange
+736	pixel	Common	24	2	None	Goggles	Shades of Blonde
+737	pixel	SuperRare	24	1	None	Reading Glasses	Shades of Blue
+738	pixel	Common	24	2	None	Sunglasses	Shades of Helvetica
+739	pixel	Common	24	1	None	Sunglasses	Shades of Purple
+740	pixel	Limited	24	2	None	70s Glasses	Shades of Purple
+741	pixel	Rare	24	1	Bucket	Earphones	Shades of Blonde
+742	pixel	Limited	24	2	None	Sunglasses	Shades of Pink
+743	pixel	Rare	24	1	Captain	None	Shades of Brunette
+744	pixel	Limited	24	2	None	3D Glasses	Shades of Red
+745	pixel	Limited	24	1	None	Sunglasses	Shades of Blue
+746	pixel	Epic	24	2	Winter	Reading Glasses	Shades of Blonde
+747	pixel	Common	25	2	Captain	Earphones	Shades of Pink
+748	pixel	Epic	25	1	Visor	None	Shades of Orange
+749	pixel	Limited	25	2	Graduation	Earphones	Shades of Green
+750	pixel	Rare	25	1	None	Sunglasses	Shades of Blonde
+751	pixel	Common	25	2	Captain	Earrings	Shades of Brunette
+752	pixel	Rare	25	1	Cap	None	Shades of Pink
+753	pixel	SuperRare	25	2	None	Sunglasses	Shades of Blonde
+754	pixel	Common	25	1	Captain	Sunglasses	Shades of Brunette
+755	pixel	Common	25	2	None	Scarf	Shades of Pink
+756	pixel	Common	25	1	None	Reading Glasses	Shades of Green
+757	pixel	Limited	25	2	None	Necklace	Shades of Blonde
+758	pixel	Epic	25	1	Bowler	None	Shades of Gray
+759	pixel	Limited	25	2	Beret	Reading Glasses	Shades of Green
+760	pixel	Rare	25	1	None	Sunglasses	Shades of Red
+761	pixel	Common	25	2	Visor	Sunglasses	Shades of Gray
+762	pixel	Common	25	1	Veil	None	Shades of Gray
+763	pixel	Common	25	2	Top	None	Shades of Red
+764	pixel	Common	25	1	None	Sunglasses	Shades of Blue
+765	pixel	Common	25	2	None	Sunglasses	Shades of Gray
+766	pixel	Common	25	1	Bucket	None	Shades of Orange
+767	pixel	Limited	25	2	Sombrero	None	Shades of Helvetica
+768	pixel	SuperRare	25	1	Beanie	Monacle	Shades of Blue
+769	pixel	Rare	25	2	None	None	Shades of Blonde
+770	pixel	Limited	25	1	None	Sunglasses	Shades of Purple
+771	pixel	Epic	25	2	Beanie	Goggles	Shades of Green
+772	pixel	Limited	25	1	None	Funky Glasses	Shades of Blonde
+773	pixel	SuperRare	25	2	Cap	None	Shades of Purple
+774	pixel	Common	25	1	Cap	None	Shades of Green
+775	pixel	Limited	25	2	Sombrero	Reading Glasses	Shades of Red
+776	pixel	Rare	25	1	None	None	Shades of Blue
+777	pixel	Legendary	25	2	None	None	Shades of Blonde
+778	pixel	Limited	26	2	None	Earrings	Shades of Gray
+779	pixel	SuperRare	26	1	None	Sunglasses	Shades of Orange
+780	pixel	Limited	26	2	Bear	None	Shades of Green
+781	pixel	Epic	26	1	Veil	Sunglasses	Shades of Blonde
+782	pixel	SuperRare	26	2	None	Goggles	Shades of Brunette
+783	pixel	Common	26	1	None	3D Glasses	Shades of Pink
+784	pixel	Limited	26	2	Top	None	Shades of Blonde
+785	pixel	SuperRare	26	1	None	Monacle	Shades of Brunette
+786	pixel	Epic	26	2	Sombrero	None	Shades of Pink
+787	pixel	Common	26	1	Bowler	None	Shades of Green
+788	pixel	Epic	26	2	None	None	Shades of Blonde
+789	pixel	Common	26	1	None	Sunglasses	Shades of Gray
+790	pixel	Limited	26	2	Sombrero	Sunglasses	Shades of Green
+791	pixel	Limited	26	1	None	Sunglasses	Shades of Red
+792	pixel	Common	26	2	None	None	Shades of Gray
+793	pixel	Rare	26	1	Bucket	None	Shades of Green
+794	pixel	Rare	26	2	None	Scarf	Shades of Red
+795	pixel	Limited	26	1	None	None	Shades of Blue
+796	pixel	Common	26	2	Detective	None	Shades of Red
+797	pixel	Common	26	1	Boat	Mask	Shades of Orange
+798	pixel	Common	26	2	Winter	None	Shades of Helvetica
+799	pixel	Common	26	1	Graduation	Reading Glasses	Shades of Blue
+800	pixel	Rare	26	2	None	Mask	Shades of Blonde
+801	pixel	Common	26	1	None	None	Shades of Purple
+802	pixel	Legendary	26	2	Round	None	Shades of Green
+803	pixel	Rare	26	1	Detective	70s Glasses	Shades of Orange
+804	pixel	Common	26	2	Veil	None	Shades of Purple
+805	pixel	Common	26	1	Chef	Funky Glasses	Shades of Brunette
+806	pixel	Common	26	2	Chef	Earphones	Shades of Pink
+807	pixel	Common	26	1	Veil	Earrings	Shades of Blue
+808	pixel	Rare	26	2	Boat	None	Shades of Blonde
+809	pixel	Epic	18	1	Beanie	Earphones	Shades of Orange
+810	pixel	Limited	18	2	None	Funky Glasses	Shades of Orange
+811	pixel	SuperRare	18	1	None	None	Shades of Green
+812	pixel	Common	18	2	None	Monacle	Shades of Blonde
+813	pixel	Epic	18	1	Sombrero	None	Shades of Brunette
+814	pixel	Common	18	2	Captain	None	Shades of Pink
+815	pixel	Limited	18	1	Captain	None	Shades of Blonde
+816	pixel	Limited	18	2	None	Sunglasses	Shades of Brunette
+817	pixel	Limited	18	1	Visor	Earphones	Shades of Pink
+818	pixel	Common	18	2	None	Sunglasses	Shades of Green
+819	pixel	Rare	18	1	Captain	None	Shades of Brunette
+820	pixel	Common	18	2	None	Sunglasses	Shades of Gray
+821	pixel	SuperRare	18	1	None	Reading Glasses	Shades of Green
+822	pixel	Epic	18	2	Graduation	Necklace	Shades of Red
+823	pixel	Rare	18	1	Bowler	None	Shades of Gray
+824	pixel	Common	18	2	None	3D Glasses	Shades of Green
+825	pixel	Limited	18	1	Sombrero	Reading Glasses	Shades of Red
+826	pixel	Rare	18	2	None	Sunglasses	Shades of Blue
+827	pixel	Common	18	1	Cap	None	Shades of Red
+828	pixel	Common	18	2	None	Necklace	Shades of Gray
+829	pixel	Rare	18	1	None	Scarf	Shades of Helvetica
+830	pixel	Limited	18	2	Bear	Sunglasses	Shades of Blue
+831	pixel	Common	18	1	Cap	Reading Glasses	Shades of Gray
+832	pixel	Limited	18	2	None	None	Shades of Purple
+833	pixel	Common	18	1	None	Goggles	Shades of Green
+834	pixel	SuperRare	18	2	None	Sunglasses	Shades of Blonde
+835	pixel	Common	18	1	None	None	Shades of Purple
+836	pixel	Common	18	2	Bucket	None	Shades of Blue
+837	pixel	Legendary	18	1	None	Earrings	Shades of Pink
+838	pixel	Rare	18	2	Chef	70s Glasses	Shades of Brunette
+839	pixel	Common	18	1	None	Headphones	Shades of Blonde
+840	pixel	Common	27	2	Sombrero	None	Shades of Brunette
+841	pixel	Common	27	1	Veil	Sunglasses	Shades of Orange
+842	pixel	SuperRare	27	2	Graduation	Reading Glasses	Shades of Blonde
+843	pixel	Limited	27	1	Cap	None	Shades of Blonde
+844	pixel	Common	27	2	Beanie	None	Shades of Pink
+845	pixel	Common	27	1	Boat	None	Shades of Pink
+846	pixel	Rare	27	2	Chef	Earphones	Shades of Blonde
+847	pixel	Common	27	1	Visor	None	Shades of Brunette
+848	pixel	Rare	27	2	Round	None	Shades of Green
+849	pixel	Epic	27	1	Winter	Sunglasses	Shades of Green
+850	pixel	Limited	27	2	Top	None	Shades of Gray
+851	pixel	Common	27	1	Captain	None	Shades of Gray
+852	pixel	SuperRare	27	2	None	Reading Glasses	Shades of Red
+853	pixel	Common	27	1	Bucket	None	Shades of Red
+854	pixel	Limited	27	2	Cap	None	Shades of Gray
+855	pixel	Limited	27	1	None	Scarf	Shades of Gray
+856	pixel	Common	27	2	Bowler	Sunglasses	Shades of Blue
+857	pixel	Rare	27	1	Bowler	Sunglasses	Shades of Blue
+858	pixel	Epic	27	2	None	Headphones	Shades of Green
+859	pixel	Rare	27	1	None	3D Glasses	Shades of Green
+860	pixel	Common	27	2	Captain	None	Shades of Purple
+861	pixel	Limited	27	1	Beret	Necklace	Shades of Purple
+862	pixel	SuperRare	27	2	Bear	None	Shades of Helvetica
+863	pixel	Common	27	1	Sombrero	Earrings	Shades of Helvetica
+864	pixel	Epic	27	2	None	Sunglasses	Shades of Orange
+865	pixel	Legendary	27	1	Beanie	Goggles	Shades of Blonde
+866	pixel	Rare	27	2	None	Sunglasses	Shades of Pink
+867	pixel	Common	27	1	Detective	None	Shades of Brunette
+868	pixel	Limited	27	2	None	None	Shades of Blue
+869	pixel	Limited	27	1	None	Sunglasses	Shades of Red
+870	pixel	Common	27	2	Sombrero	Monacle	Shades of Blonde
+871	pixel	Limited	28	2	Round	None	Shades of Brunette
+872	pixel	Rare	28	1	Captain	Mask	Shades of Blonde
+873	pixel	Limited	28	2	None	Reading Glasses	Shades of Blonde
+874	pixel	Common	28	1	Visor	None	Shades of Pink
+875	pixel	Epic	28	2	Winter	None	Shades of Pink
+876	pixel	Common	28	1	Beret	None	Shades of Brunette
+877	pixel	Rare	28	2	Bowler	None	Shades of Blonde
+878	pixel	Rare	28	1	Bear	Sunglasses	Shades of Green
+879	pixel	Limited	28	2	Cap	None	Shades of Green
+880	pixel	Common	28	1	Beanie	Sunglasses	Shades of Gray
+881	pixel	Common	28	2	Veil	Reading Glasses	Shades of Gray
+882	pixel	Limited	28	1	Bucket	Earphones	Shades of Red
+883	pixel	Rare	28	2	None	Sunglasses	Shades of Red
+884	pixel	Epic	28	1	Sombrero	None	Shades of Gray
+885	pixel	Rare	28	2	Sombrero	None	Shades of Gray
+886	pixel	Limited	28	1	None	Goggles	Shades of Blue
+887	pixel	Common	28	2	Detective	Necklace	Shades of Blue
+888	pixel	Common	28	1	Graduation	Scarf	Shades of Orange
+889	pixel	SuperRare	28	2	None	Broach	Shades of Blonde
+890	pixel	Common	28	1	None	70s Glasses	Shades of Green
+891	pixel	Limited	28	2	Graduation	None	Shades of Green
+892	pixel	Common	28	1	Captain	Earrings	Shades of Purple
+893	pixel	SuperRare	28	2	None	Reading Glasses	Shades of Purple
+894	pixel	SuperRare	28	1	None	Headphones	Shades of Helvetica
+895	pixel	Common	28	2	None	3D Glasses	Shades of Helvetica
+896	pixel	Epic	28	1	Bowler	Sunglasses	Shades of Orange
+897	pixel	Common	28	2	Chef	None	Shades of Pink
+898	pixel	Limited	28	1	Cap	None	Shades of Brunette
+899	pixel	Common	28	2	None	Funky Glasses	Shades of Blue
+900	pixel	Common	28	1	None	Sunglasses	Shades of Red
+901	pixel	Common	28	2	Boat	None	Shades of Blonde
+902	pixel	Common	29	2	Beret	None	Shades of Blonde
+903	pixel	Limited	29	1	Winter	None	Shades of Orange
+904	pixel	Limited	29	2	Boat	Earphones	Shades of Brunette
+905	pixel	Epic	29	1	None	70s Glasses	Shades of Pink
+906	pixel	Common	29	2	None	Reading Glasses	Shades of Pink
+907	pixel	Rare	29	1	Bowler	3D Glasses	Shades of Brunette
+908	pixel	Common	29	2	None	None	Shades of Brunette
+909	pixel	Rare	29	1	None	Reading Glasses	Shades of Green
+910	pixel	Epic	29	2	Bucket	None	Shades of Green
+911	pixel	Common	29	1	None	Sunglasses	Shades of Gray
+912	pixel	Limited	29	2	Captain	None	Shades of Red
+913	pixel	Common	29	1	Detective	Goggles	Shades of Red
+914	pixel	Legendary	29	2	Beanie	Monacle	Shades of Gray
+915	pixel	SuperRare	29	1	None	Sunglasses	Shades of Gray
+916	pixel	Limited	29	2	None	Headphones	Shades of Blue
+917	pixel	Rare	29	1	Top	None	Shades of Blue
+918	pixel	Common	29	2	Sombrero	None	Shades of Blonde
+919	pixel	Limited	29	1	Captain	Sunglasses	Shades of Orange
+920	pixel	Common	29	2	Visor	Reading Glasses	Shades of Green
+921	pixel	Rare	29	1	None	None	Shades of Green
+922	pixel	Common	29	2	None	Sunglasses	Shades of Purple
+923	pixel	SuperRare	29	1	None	Sunglasses	Shades of Purple
+924	pixel	Epic	29	2	Graduation	None	Shades of Helvetica
+925	pixel	Rare	29	1	None	Funky Glasses	Shades of Helvetica
+926	pixel	Limited	29	2	Rugby	None	Shades of Brunette
+927	pixel	Common	29	1	Bear	None	Shades of Blonde
+928	pixel	Limited	29	2	Cap	None	Shades of Red
+929	pixel	Common	29	1	None	Sunglasses	Shades of Pink
+930	pixel	Common	29	1	None	Monacle	Shades of Blue
+931	pixel	SuperRare	29	2	Round	Mask	Shades of Blonde
+932	pixel	Common	30	1	Sombrero	Sunglasses	Shades of Blonde
+933	pixel	Epic	30	2	None	Sunglasses	Shades of Brunette
+934	pixel	Limited	30	1	None	Reading Glasses	Shades of Pink
+935	pixel	Common	30	2	None	None	Shades of Blonde
+936	pixel	SuperRare	30	1	None	70s Glasses	Shades of Brunette
+937	pixel	SuperRare	30	2	None	Reading Glasses	Shades of Pink
+938	pixel	Common	30	1	None	Headphones	Shades of Green
+939	pixel	Limited	30	2	Boat	3D Glasses	Shades of Brunette
+940	pixel	Limited	30	1	Top	None	Shades of Gray
+941	pixel	Common	30	2	Cap	None	Shades of Green
+942	pixel	Rare	30	1	Chef	None	Shades of Red
+943	pixel	Limited	30	2	None	Monacle	Shades of Gray
+944	pixel	Common	30	1	None	Sunglasses	Shades of Gray
+945	pixel	Rare	30	2	None	Goggles	Shades of Red
+946	pixel	Common	30	1	Top	None	Shades of Blue
+947	pixel	Limited	30	2	Detective	None	Shades of Gray
+948	pixel	Common	30	1	Hoodie	Sunglasses	Shades of Orange
+949	pixel	Rare	30	2	Captain	Sunglasses	Shades of Blue
+950	pixel	Epic	30	1	Sombrero	Sunglasses	Shades of Green
+951	pixel	SuperRare	30	2	None	Reading Glasses	Shades of Blonde
+952	pixel	Limited	30	1	Bowler	Mask	Shades of Purple
+953	pixel	Common	30	2	Rugby	None	Shades of Green
+954	pixel	Rare	30	1	Visor	None	Shades of Helvetica
+955	pixel	Epic	30	2	Beanie	None	Shades of Purple
+956	pixel	Common	30	1	None	Earphones	Shades of Blonde
+957	pixel	Limited	30	2	None	Earphones	Shades of Helvetica
+958	pixel	Common	30	1	None	Sunglasses	Shades of Brunette
+959	pixel	Rare	30	2	None	None	Shades of Pink
+960	pixel	Common	30	1	None	Scarf	Shades of Red
+961	pixel	Legendary	30	2	Bucket	None	Shades of Blue
+962	pixel	Common	30	2	Graduation	None	Shades of Blonde
+963	pixel	Common	31	1	None	Monacle	Shades of Blue
+964	pixel	Legendary	31	2	Sombrero	Mask	Shades of Red
+965	pixel	Common	31	1	Graduation	None	Shades of Brunette
+966	pixel	Rare	31	2	None	Earphones	Shades of Brunette
+967	pixel	Common	31	1	None	Sunglasses	Shades of Pink
+968	pixel	Rare	31	2	Beret	None	Shades of Blonde
+969	pixel	Limited	31	1	None	Reading Glasses	Shades of Brunette
+970	pixel	Common	31	2	None	Reading Glasses	Shades of Helvetica
+971	pixel	Epic	31	1	Detective	Earphones	Shades of Green
+972	pixel	SuperRare	31	2	None	Sunglasses	Shades of Purple
+973	pixel	Limited	31	1	Beanie	Sunglasses	Shades of Gray
+974	pixel	Common	31	2	None	Sunglasses	Shades of Blue
+975	pixel	Rare	31	1	None	3D Glasses	Shades of Red
+976	pixel	Rare	31	2	Sombrero	None	Shades of Green
+977	pixel	Limited	31	1	None	Scarf	Shades of Blonde
+978	pixel	Common	31	2	Captain	None	Shades of Orange
+979	pixel	SuperRare	31	1	None	Headphones	Shades of Green
+980	pixel	Limited	31	2	None	Funky Glasses	Shades of Gray
+981	pixel	Common	31	1	None	Sunglasses	Shades of Purple
+982	pixel	Limited	31	2	None	Goggles	Shades of Red
+983	pixel	Epic	31	1	None	Sunglasses	Shades of Blonde
+984	pixel	Common	31	2	Bowler	None	Shades of Gray
+985	pixel	Limited	31	1	None	Sunglasses	Shades of Helvetica
+986	pixel	Common	31	2	None	Reading Glasses	Shades of Green
+987	pixel	Common	31	1	Captain	None	Shades of Pink
+988	pixel	SuperRare	31	2	Bucket	None	Shades of Brunette
+989	pixel	Limited	31	1	Top	None	Shades of Brunette
+990	pixel	Epic	31	2	Cap	None	Shades of Pink
+991	pixel	Common	31	1	Winter	None	Shades of Blue
+992	pixel	Rare	31	2	Chef	None	Shades of Blonde
+993	pixel	Common	31	2	Cap	None	Shades of Blonde
+994	pixel	Limited	32	1	None	Sunglasses	Shades of Green
+995	pixel	Legendary	32	2	None	Reading Glasses	Shades of Red
+996	pixel	Common	32	1	None	Sunglasses	Shades of Blonde
+997	pixel	Limited	32	2	Cap	None	Shades of Blue
+998	pixel	Epic	32	1	None	Sunglasses	Shades of Brunette
+999	pixel	Rare	32	2	Top	Earphones	Shades of Blonde
+1000	pixel	Common	32	1	Graduation	None	Shades of Gray
+1001	pixel	Limited	32	2	Beanie	Monacle	Shades of Purple
+1002	pixel	Rare	32	1	Round	None	Shades of Gray
+1003	pixel	Common	32	2	Sombrero	None	Shades of Blue
+1004	pixel	Epic	32	1	Beret	None	Shades of Green
+1005	pixel	Common	32	2	None	None	Shades of Helvetica
+1006	pixel	Rare	32	1	None	Headphones	Shades of Purple
+1007	pixel	Common	32	2	None	70s Glasses	Shades of Orange
+1008	pixel	Common	32	1	None	Earphones	Shades of Helvetica
+1009	pixel	SuperRare	32	2	Detective	None	Shades of Pink
+1010	pixel	Common	32	1	Winter	Scarf	Shades of Brunette
+1011	pixel	Rare	32	2	Bowler	Broach	Shades of Green
+1012	pixel	Common	32	1	None	Sunglasses	Shades of Red
+1013	pixel	Common	32	2	Veil	None	Shades of Gray
+1014	pixel	SuperRare	32	1	Cap	None	Shades of Brunette
+1015	pixel	Common	32	2	None	Earrings	Shades of Gray
+1016	pixel	Common	32	1	None	Sunglasses	Shades of Blonde
+1017	pixel	SuperRare	32	2	None	Reading Glasses	Shades of Blue
+1018	pixel	Common	32	1	None	Sunglasses	Shades of Pink
+1019	pixel	Limited	32	2	None	3D Glasses	Shades of Green
+1020	pixel	Limited	32	1	Sombrero	None	Shades of Brunette
+1021	pixel	Rare	32	2	Captain	None	Shades of Orange
+1022	pixel	Epic	32	1	None	Reading Glasses	Shades of Red
+1023	pixel	Limited	32	2	None	Reading Glasses	Shades of Pink
+1024	pixel	Limited	32	2	Captain	None	Shades of Blonde
