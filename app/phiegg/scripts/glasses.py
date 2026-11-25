@@ -2,7 +2,8 @@
 """Draw Phiegg's glasses on the shape of the squarest Phi font.
 
 The frames are built on the capital O of Phi-Hard Light, the squarest Phi font, read from the font file: each frame
-as thick as the O's stroke, its corners cut as the O's are, and the lens inside it cut the same way. Two of them
+as thick as the O's stroke, its corners as large as the O's and rounded as the photographed pair's are, the lens
+inside it rounded the same way. Two of them
 stand as far apart as two letters do, a bridge between them as thick as a stroke with an arch over the nose, and a hinge at each frame's outer top
 corner. What the font cannot say (the canvas, how much wider than the letter a frame stands, the bridge's arch, the
 hinges, the colours of the pair photographed on 25 November 2026) is art/glasses.tsv.
@@ -76,17 +77,26 @@ def box(points):
     return min(xs), min(ys), max(xs), max(ys)
 
 
-def cut(x0, y0, x1, y1, c):
-    """A rectangle with its corners cut as Phi-Hard cuts its own: eight sides, each corner cut c across."""
-    return [(x0 + c, y0), (x1 - c, y0), (x1, y0 + c), (x1, y1 - c), (x1 - c, y1), (x0 + c, y1), (x0, y1 - c), (x0, y0 + c)]
+def rounded(x0, y0, x1, y1, r, taper=0.0):
+    """A frame or a lens as the photographed pair has them: a rectangle with round corners, r across, narrowing
+    smoothly toward its foot by `taper` of its width at each side."""
+    corners = [((x1 - r, y0 + r), -90, 0), ((x1 - r, y1 - r), 0, 90), ((x0 + r, y1 - r), 90, 180), ((x0 + r, y0 + r), 180, 270)]
+    points = []
+    for (cx, cy), a0, a1 in corners:
+        for n in range(STEPS + 1):
+            a = math.radians(a0 + (a1 - a0) * n / STEPS)
+            points.append((cx + r * math.cos(a), cy + r * math.sin(a)))
+    middle, wide, high = (x0 + x1) / 2, x1 - x0, y1 - y0
+    return [(middle + (x - middle) * (1 - 2 * taper * (y - y0) / high), y) for x, y in points]
 
 
 def build(font_path):
     """The glasses in pixels: the frames' outlines and lenses, the bridge, the hinges, and the measures they came from.
 
     Phi-Hard's O is tall and its counter a slit (its strokes are heavy down the sides, light across), so a lens is not
-    the counter as it stands: what the frames take from the letter is its stroke, as thick as the frame, and its cut
-    corners, as large as the O's, at the proportion of the photographed pair (art/glasses.tsv)."""
+    the counter as it stands: what the frames take from the letter is its stroke, as thick as the frame, and the size
+    of its corners, rounded as the photographed pair's are (the user, 25 November 2026), at that pair's proportion
+    (art/glasses.tsv)."""
     t = table(os.path.join(ART, 'glasses.tsv'))
     size = {k: float(v) for k, v in t['size'].items()}
     font = TTFont(font_path)
@@ -107,15 +117,20 @@ def build(font_path):
     bridge = gap * size['bridge'] * k
     left = (size['width'] - (frame_w * 2 + bridge)) / 2
     top = (size['height'] - high) / 2
+    # Round corners, as the pair's are: as large across as the O's cut,
+    # so many times over (art/glasses.tsv), the lens's a stroke less.
+    r = c * size['round']
     frames = []
     for x in (left, left + frame_w + bridge):
-        frames.append((cut(x, top, x + frame_w, top + high, c), cut(x + s, top + s, x + frame_w - s, top + high - s, max(c - s * 0.4, s * 0.25))))
+        lens = rounded(x + s, top + s, x + frame_w - s, top + high - s, max(r - s * 0.7, s * 0.35), size['taper'])
+        frames.append((rounded(x, top, x + frame_w, top + high, r, size['taper']), lens))
     # The bridge: across the frames' cut corners at their top, a stroke
     # thick, down to the arch over the nose, as wide as the frames are apart.
-    bx0, bx1 = left + frame_w - c, left + frame_w + bridge + c
-    middle, arch = (bx0 + bx1) / 2, size['arch'] * high
+    # It sits a little under the frames' tops, between their round corners.
+    bx0, bx1 = left + frame_w - r * 0.6, left + frame_w + bridge + r * 0.6
+    middle, arch, brow = (bx0 + bx1) / 2, size['arch'] * high, top + s * 0.35
     half = bridge / 2 + s * 0.15
-    shape = [(bx0, top), (bx1, top), (bx1, top + arch), (middle + half, top + arch)]
+    shape = [(bx0, brow), (bx1, brow), (bx1, top + arch), (middle + half, top + arch)]
     for n in range(25):
         a = math.pi * n / 24
         shape.append((middle + half * math.cos(a), top + arch - (arch - s) * math.sin(a)))
