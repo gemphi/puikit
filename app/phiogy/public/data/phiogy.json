@@ -349,6 +349,20 @@
       ]
     }
   ],
+  "side": [
+    {
+      "id": "get",
+      "label": "Get Phiogy",
+      "icon": "box",
+      "items": [
+        {
+          "id": "download",
+          "label": "Phiogy for Windows",
+          "icon": "box"
+        }
+      ]
+    }
+  ],
   "views": {
     "lora": {
       "title": "",
@@ -687,6 +701,24 @@
           "app": "phiogy",
           "source": "data/room.json",
           "room": "v_moonbirds-2"
+        }
+      ]
+    },
+    "download": {
+      "title": "Phiogy for Windows",
+      "sub": "The app that carries the calls, on your desk.",
+      "blocks": [
+        {
+          "kind": "hero",
+          "heading": "Phiogy for Windows",
+          "subtitle": "The same rooms, people and calls as here, in a window of its own.",
+          "body": "Phiogy on your desk is on the same server as this page: your hosts, your rooms and every call meet here and there alike. Unzip it anywhere and open phiogy.exe; nothing is installed. It needs Windows 10 or 11 and a graphics card with DirectX 11.",
+          "actions": [
+            {
+              "label": "Download for Windows",
+              "href": "https://phiegg.com/cdn/phiogy/phiogy-windows.zip"
+            }
+          ]
         }
       ]
     }

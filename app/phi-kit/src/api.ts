@@ -21,6 +21,10 @@ const BASE = ((import.meta.env.VITE_PHI_API as string | undefined) || '').replac
 export const hasApi = BASE !== '';
 /** Where a path of the API is, for what does not go through fetch (an event stream). */
 export const apiUrl = (path: string) => BASE + path;
+/** Where the line calls are on: VITE_PHI_CALL (phiegg.com/wrt, which every Phiogy window and page shares), else the
+ * API's own `/call`. A room's line is its store's key under it. */
+const CALL = ((import.meta.env.VITE_PHI_CALL as string | undefined) || BASE + '/call').replace(/\/$/, '');
+export const callUrl = (store: string) => CALL + '/' + store.split('/').map(encodeURIComponent).join('/');
 
 const req = async <T>(method: string, path: string, body?: unknown): Promise<T | undefined> => {
   if (!hasApi) return undefined;
@@ -37,10 +41,12 @@ const req = async <T>(method: string, path: string, body?: unknown): Promise<T |
 };
 /** Like apiPost but keeps the server's error ({ error, message }) instead of collapsing it to undefined. */
 export type ApiResult<T> = { ok: true; body: T } | { ok: false; status: number; error: string; message: string };
-export const apiSend = async <T>(method: string, path: string, body?: unknown): Promise<ApiResult<T>> => {
+export const apiSend = <T>(method: string, path: string, body?: unknown) => sendTo<T>(method, BASE + path, body);
+/** Ask an address of Phiora's (the API, or the call line where that has its own place) and hear the answer. */
+export const sendTo = async <T>(method: string, url: string, body?: unknown): Promise<ApiResult<T>> => {
   if (!hasApi) return { ok: false, status: 0, error: 'no_api', message: 'No Phiora API configured.' };
   try {
-    const r = await fetch(BASE + path, { method, credentials: 'include', headers: body === undefined ? undefined : { 'Content-Type': 'application/json' }, body: body === undefined ? undefined : JSON.stringify(body) });
+    const r = await fetch(url, { method, credentials: 'include', headers: body === undefined ? undefined : { 'Content-Type': 'application/json' }, body: body === undefined ? undefined : JSON.stringify(body) });
     const txt = await r.text(); const j = txt ? JSON.parse(txt) : undefined;
     return r.ok ? { ok: true, body: j as T } : { ok: false, status: r.status, error: j?.error ?? 'error', message: j?.message ?? 'Request failed (' + r.status + ').' };
   } catch { return { ok: false, status: 0, error: 'network', message: 'Can’t reach Phiora.' }; }

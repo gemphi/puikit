@@ -59,6 +59,11 @@ echo "PHI_CALL_KEY=$(openssl rand -hex 32)" >> .env; echo "PHI_CALL_LINE=http://
 sudo docker compose up -d --build phiora && sudo docker compose up -d phiogy
 ```
 The line shares Phiora's network, so start it again whenever Phiora is recreated (`up -d --force-recreate phiogy`).
+
+Every Phiogy window and page meets on this one line at `https://phiegg.com/wrt/<app>/<room>`: Caddy's `(wrt)` snippet
+(imported by the phiegg.com site, beside `(cdn)`) rewrites it to Phiora's `/api/call/<app>/<room>` and passes the event
+stream on as it comes. The desktop Phiogy is on it by default (`data/app.tsv` `server`); a web build is on it with
+`VITE_PHI_CALL=/wrt` (section 8), and without that setting on `/api/call`, the same line.
 For callers on different networks, a relay: `sudo apt-get install coturn`, then
 `bash ../deploy/relay/setup.sh <domain> ~/gemphi/puikit/app/.env` (writes `PHI_CALL_ICE`), restart both services, and
 let UDP 3478, TCP 3478 and UDP 49152-49407 in through the host's firewall.
@@ -68,8 +73,8 @@ An app with no package of its own is the one app (`app/phi`) under its key; `bui
 so it is built where the source is and sent. In Git Bash keep the three paths from being rewritten:
 ```sh
 cd app/phi
-MSYS2_ENV_CONV_EXCL='PHI_BASE;VITE_PHI_API;VITE_PHI_APPS_BASE' PHI_BASE=/phiogy/ VITE_PHI_API=/api VITE_PHI_APPS_BASE=/ \
-  npx vite build --outDir <out>/phiogy --emptyOutDir
+MSYS2_ENV_CONV_EXCL='PHI_BASE;VITE_PHI_API;VITE_PHI_APPS_BASE;VITE_PHI_CALL' PHI_BASE=/phiogy/ VITE_PHI_API=/api \
+  VITE_PHI_APPS_BASE=/ VITE_PHI_CALL=/wrt npx vite build --outDir <out>/phiogy --emptyOutDir
 cp -r ../phiogy/public/. <out>/phiogy/
 ```
 Send `<out>/phiogy` to the server's `app/dist-all/phiogy` (world-readable) and `app/phiogy/public` to the same place

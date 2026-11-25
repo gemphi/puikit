@@ -7,7 +7,7 @@
  * (`peer.ts`); the line only introduces them. With no API there is no line and a call stays on its own page.
  */
 import { useEffect, useState, useSyncExternalStore } from 'react';
-import { apiSend, apiUrl, hasApi } from './api';
+import { callUrl, hasApi, sendTo } from './api';
 
 /** Someone in a call: the page they are on, and who Phiora says they are. */
 export type Caller = { peer: string; name: string; handle: string | null };
@@ -33,11 +33,11 @@ const IDLE: LineState = { roster: [], ice: [], joined: false, fault: false };
 
 const open = (store: string): Line => {
   const peer = crypto.randomUUID();
-  const path = '/call/' + store.split('/').map(encodeURIComponent).join('/');
+  const url = callUrl(store);
   let state = IDLE;
   const subs = new Set<() => void>(); const ears = new Set<(from: string, signal: Signal) => void>();
   const set = (next: Partial<LineState>) => { state = { ...state, ...next }; subs.forEach((f) => f()); };
-  const stream = new EventSource(apiUrl(path + '?peer=' + peer), { withCredentials: true });
+  const stream = new EventSource(url + '?peer=' + peer, { withCredentials: true });
   const ready = new Promise<void>((ok) => stream.addEventListener('open', () => ok(), { once: true }));
   // What waits to be posted: whether to be in the call, and the signals, sent together once the last post is back.
   let want: boolean | undefined; let waiting: { to: string; signal: Signal }[] = []; let busy = false;
@@ -45,7 +45,7 @@ const open = (store: string): Line => {
     if (busy) return; busy = true; await ready;
     while (want !== undefined || waiting.length) {
       const body = { peer, join: want, send: waiting }; want = undefined; waiting = [];
-      const r = await apiSend('POST', path, body);
+      const r = await sendTo('POST', url, body);
       if (!r.ok && body.join) set({ joined: false, fault: true });
     }
     busy = false;
