@@ -4,7 +4,8 @@ import { Spinner, Tag, Text } from '@pui/components';
 import { PhiShell } from '@phi-kit/PhiShell';
 import { appMeta } from '@phi-kit/data';
 import { Block, type GridItem } from '@phi-kit/blocks';
-import { Head, ItemPanel, SettingsView, YouView } from '@phi-kit/views';
+import { Head, ItemPanel, YouView } from '@phi-kit/views';
+import { SettingsView } from '@phi-kit/settings';
 import { useDB } from './data';
 import { PAGE, detail } from './pages';
 
