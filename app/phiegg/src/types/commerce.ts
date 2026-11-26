@@ -62,7 +62,7 @@ export interface Cast {
 }
 export interface CastsData { casts: Cast[] }
 // ── Sales (data/sales.json): OpenSea-style activity on pieces and looks ──
-export interface SaleEvent { id: ID; event: 'mint' | 'list' | 'offer' | 'sale' | 'transfer'; itemKind: 'piece' | 'look'; itemId: ID; fromId?: ID; toId?: ID; priceUsd: number; at: string }
+export interface SaleEvent { id: ID; event: 'mint' | 'list' | 'offer' | 'sale' | 'transfer' | 'swap' | 'bid' | 'cancel' | 'price'; itemKind: 'piece' | 'look'; itemId: ID; fromId?: ID; toId?: ID; /** A swap: the item the new holder gave for it. */ forItemId?: ID; priceUsd: number; at: string }
 export interface SalesData { sales: SaleEvent[] }
 /** The same ledger for the kinds the sales ledger does not cover (data/trail.json): EGG items, SUMs, profile PFTs, rides, jewels. */
 export interface TrailEvent extends Omit<SaleEvent, 'itemKind'> { itemKind: string }

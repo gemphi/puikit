@@ -11,6 +11,7 @@ import { fileURLToPath } from 'node:url';
 
 const DATA = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'data');
 const read = (f) => JSON.parse(readFileSync(join(DATA, f), 'utf8'));
+const MIN_EVENTS = 16;                           // events an item has at least: its page reads as OpenSea's activity does
 const FLOOR = 8;                                  // holders an item has at least
 const END = Date.parse('2026-11-20T00:00:00Z');   // nothing is written after this day
 const day = 864e5;
@@ -19,22 +20,41 @@ const hash = (s) => { let h = 2166136261; for (let i = 0; i < s.length; i++) { h
 // A seeded run of numbers in [0, 1) for one item, so its story is the same on every run.
 const rndOf = (seed) => { let x = hash(seed) || 1; return () => { x ^= x << 13; x >>>= 0; x ^= x >>> 17; x ^= x << 5; x >>>= 0; return x / 4294967296; }; };
 
+// What happens around a sale on a marketplace, besides the sale: listing it, changing the price, taking the listing
+// down, bids and offers on it. None of them moves the item, so the holders and the owner stay as the hops made them.
+// It draws from a run of its own, so the sales, transfers and owners written before are the same as they were.
+const AROUND = ['list', 'bid', 'price', 'cancel', 'offer'];
+function around(ev, count, rnd, pick, owner, price, from, to) {
+  for (let n = count; n < MIN_EVENTS; n++) {
+    const at = new Date(from + rnd() * Math.max(day, to - from)).toISOString(); const kind = AROUND[n % AROUND.length];
+    if (kind === 'list') ev('list', { fromId: owner, priceUsd: Math.round(price * (1 + rnd() * 0.25)), at });
+    else if (kind === 'bid') ev('bid', { fromId: pick(), priceUsd: Math.round(price * (0.7 + rnd() * 0.25)), at });
+    else if (kind === 'price') ev('price', { fromId: owner, priceUsd: Math.round(price * (0.85 + rnd() * 0.3)), at });
+    else if (kind === 'cancel') ev('cancel', { fromId: owner, priceUsd: Math.round(price), at });
+    else ev('offer', { fromId: pick(), toId: owner, priceUsd: Math.round(price * (0.75 + rnd() * 0.2)), at });
+  }
+}
 const doc = read('sales.json'); const ls = read('ls.json'); const stores = read('stores.json');
 const kept = doc.sales.filter((x) => !String(x.id).startsWith('lg_'));
-const people = [...new Set(kept.flatMap((x) => [x.fromId, x.toId]).filter(Boolean))].sort();
+// The people a ledger draws from are the ones the first looks' events name: looks added later by shop-depth.mjs (depth)
+// do not add to them, so the stories already written do not move when a shop gets more looks.
+const depthIds = new Set([...ls.looks, ...stores.stores.flatMap((s) => s.looks)].filter((l) => l.depth).map((l) => l.id));
+const people = [...new Set(kept.filter((x) => !depthIds.has(x.itemId)).flatMap((x) => [x.fromId, x.toId]).filter(Boolean))].sort();
 
 const byItem = new Map();
 for (const x of kept) { if (!byItem.has(x.itemId)) byItem.set(x.itemId, []); byItem.get(x.itemId).push(x); }
 const looks = [...ls.looks, ...stores.stores.flatMap((s) => s.looks)];
 const items = [
   ...looks.map((l) => ({ kind: 'look', id: l.id, usd: l.usd ?? l.floor ?? 120, by: l.specs?.provenance?.designerId, minted: l.mintDate })),
-  ...[...byItem.entries()].filter(([, rows]) => rows[0].itemKind === 'piece').map(([id]) => ({ kind: 'piece', id, usd: 0 })),
+  // Every piece of every club has a ledger, not only the ones with a first event: a page with no trail is a page with nothing on it.
+  ...read('club.json').pieces.map((p) => ({ kind: 'piece', id: p.id, usd: 0, by: p.creatorId })),
 ];
 
 const added = [];
 for (const it of items) {
   const rows = (byItem.get(it.id) ?? []).slice().sort((a, b) => a.at.localeCompare(b.at));
   const rnd = rndOf(it.id); const pick = () => people[Math.floor(rnd() * people.length)];
+  const more = rndOf('around:' + it.id); const pick2 = () => people[Math.floor(more() * people.length)]; const t0 = Math.max(Date.parse('2026-06-01'), END - 150 * day);
   let k = 0; const ev = (event, extra) => added.push({ id: `lg_${it.id}_${k++}`, event, itemKind: it.kind, itemId: it.id, ...extra });
   const held = new Set(rows.map((x) => x.toId).filter(Boolean));
   let owner = [...rows].reverse().find((x) => x.toId && x.event !== 'offer')?.toId;
@@ -50,9 +70,13 @@ for (const it of items) {
     let buyer = pick(); for (let n = 0; held.has(buyer) && n < 64; n++) buyer = pick();
     const at = new Date(Math.min(t, END + h * 36e5)).toISOString();
     if (rnd() < 0.2) ev('offer', { fromId: buyer, toId: owner, priceUsd: Math.round(price * 0.92), at: new Date(Date.parse(at) - 6 * 36e5).toISOString() });
-    ev(rnd() < 0.85 ? 'sale' : 'transfer', { fromId: owner, toId: buyer, priceUsd: Math.round(price), at });
+    const moved = rnd() < 0.85 ? 'sale' : 'transfer';
+    // Some of the hands it changed without a price were a swap: it was traded for another look of the buyer's.
+    if (moved === 'transfer' && more() < 0.6) ev('swap', { fromId: owner, toId: buyer, priceUsd: 0, forItemId: items[Math.floor(more() * items.length)].id, at });
+    else ev(moved, { fromId: owner, toId: buyer, priceUsd: Math.round(price), at });
     owner = buyer; held.add(buyer);
   }
+  around(ev, rows.length + k, more, pick2, owner, price, t0, END);
 }
 
 doc.sales = [...kept, ...added].sort((a, b) => b.at.localeCompare(a.at));
@@ -73,6 +97,7 @@ const things = [
 const trail = [];
 for (const it of things) {
   const rnd = rndOf('trail:' + it.id); const pick = () => people[Math.floor(rnd() * people.length)];
+  const more = rndOf('around:' + it.id); const pick2 = () => people[Math.floor(more() * people.length)];
   let k = 0; const ev = (event, extra) => trail.push({ id: `tr_${it.id}_${k++}`, event, itemKind: it.kind, itemId: it.id, ...extra });
   const base = Math.max(1, it.usd || 20); const span = (120 + rnd() * 280) * day; const step = span / (FLOOR + 1); let t = END - span;
   const iso = () => new Date(Math.min(t, END)).toISOString(); const fresh = (held) => { let b = pick(); for (let n = 0; held.has(b) && n < 64; n++) b = pick(); return b; };
@@ -80,6 +105,7 @@ for (const it of things) {
     // Nobody holds it: it is listed, and people bid.
     const lister = pick(); ev('list', { fromId: lister, priceUsd: Math.round(base), at: iso() }); const held = new Set([lister]);
     for (let h = 1; h < FLOOR; h++) { t += step * (0.7 + rnd() * 0.6); const b = fresh(held); held.add(b); ev('offer', { fromId: b, priceUsd: Math.round(base * (0.7 + rnd() * 0.28)), at: iso() }); }
+    around(ev, k, more, pick2, lister, base, END - span, END);
     continue;
   }
   // The hands it passed through, the last of them the holder its record names (a SUM names none).
@@ -92,9 +118,12 @@ for (const it of things) {
     t += step * (0.7 + rnd() * 0.6); const last = h === chain.length - 1;
     price = last ? base : Math.max(1, price * (0.95 + rnd() * 0.22));
     if (rnd() < 0.2) ev('offer', { fromId: chain[h], toId: owner, priceUsd: Math.round(price * 0.92), at: new Date(Math.min(t, END) - 6 * 36e5).toISOString() });
-    ev(rnd() < 0.85 ? 'sale' : 'transfer', { fromId: owner, toId: chain[h], priceUsd: Math.round(price), at: iso() });
+    const moved = rnd() < 0.85 ? 'sale' : 'transfer';
+    if (moved === 'transfer' && more() < 0.6) ev('swap', { fromId: owner, toId: chain[h], priceUsd: 0, forItemId: things[Math.floor(more() * things.length)].id, at: iso() });
+    else ev(moved, { fromId: owner, toId: chain[h], priceUsd: Math.round(price), at: iso() });
     owner = chain[h];
   }
+  around(ev, k, more, pick2, owner, price, END - span, END);
 }
 trail.sort((a, b) => b.at.localeCompare(a.at));
 writeFileSync(join(DATA, 'trail.json'), JSON.stringify({ sales: trail }));

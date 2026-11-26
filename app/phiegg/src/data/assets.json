@@ -11517,7 +11517,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Fashion District of Forest: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_forest_entertainment_land",
@@ -11536,7 +11537,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Entertainment District of Forest: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_forest_social_land",
@@ -11555,7 +11557,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Social District of Forest: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_desert_fashion_land",
@@ -11574,7 +11577,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Fashion District of Desert: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_desert_entertainment_land",
@@ -11593,7 +11597,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Entertainment District of Desert: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_desert_social_land",
@@ -11612,7 +11617,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Social District of Desert: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_peep_city_fashion_land",
@@ -11631,7 +11637,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Fashion District of Peep City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_peep_city_entertainment_land",
@@ -11650,7 +11657,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Entertainment District of Peep City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_peep_city_social_land",
@@ -11669,7 +11677,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Social District of Peep City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_lace_city_fashion_land",
@@ -11688,7 +11697,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Fashion District of Lace City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_lace_city_entertainment_land",
@@ -11707,7 +11717,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Entertainment District of Lace City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_lace_city_social_land",
@@ -11726,7 +11737,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Social District of Lace City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_skim_city_fashion_land",
@@ -11745,7 +11757,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Fashion District of Skim City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_skim_city_entertainment_land",
@@ -11764,7 +11777,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Entertainment District of Skim City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_skim_city_social_land",
@@ -11783,7 +11797,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Social District of Skim City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_naim_city_fashion_land",
@@ -11802,7 +11817,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Fashion District of Naim City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_naim_city_entertainment_land",
@@ -11821,7 +11837,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Entertainment District of Naim City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_naim_city_social_land",
@@ -11840,7 +11857,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Social District of Naim City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_swamp_fashion_land",
@@ -11859,7 +11877,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Fashion District of Swamp: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_swamp_entertainment_land",
@@ -11878,7 +11897,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Entertainment District of Swamp: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_swamp_social_land",
@@ -11897,7 +11917,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Social District of Swamp: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_loon_city_fashion_land",
@@ -11916,7 +11937,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Fashion District of Loon City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_loon_city_entertainment_land",
@@ -11935,7 +11957,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Entertainment District of Loon City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_loon_city_social_land",
@@ -11954,7 +11977,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Social District of Loon City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_lava_city_fashion_land",
@@ -11973,7 +11997,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Fashion District of Lava City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_lava_city_entertainment_land",
@@ -11992,7 +12017,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Entertainment District of Lava City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_lava_city_social_land",
@@ -12011,7 +12037,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Social District of Lava City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_wand_city_fashion_land",
@@ -12030,7 +12057,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Fashion District of Wand City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_wand_city_entertainment_land",
@@ -12049,7 +12077,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Entertainment District of Wand City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_wand_city_social_land",
@@ -12068,7 +12097,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Social District of Wand City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_acro_city_fashion_land",
@@ -12087,7 +12117,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Fashion District of Acro City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_acro_city_entertainment_land",
@@ -12106,7 +12137,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Entertainment District of Acro City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_acro_city_social_land",
@@ -12125,7 +12157,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Social District of Acro City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_warp_city_fashion_land",
@@ -12144,7 +12177,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Fashion District of Warp City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_warp_city_entertainment_land",
@@ -12163,7 +12197,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Entertainment District of Warp City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_warp_city_social_land",
@@ -12182,7 +12217,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Social District of Warp City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_once_city_fashion_land",
@@ -12201,7 +12237,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Fashion District of Once City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_once_city_entertainment_land",
@@ -12220,7 +12257,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Entertainment District of Once City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_once_city_social_land",
@@ -12239,7 +12277,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Social District of Once City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_city_ruins_fashion_land",
@@ -12258,7 +12297,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Fashion District of City Ruins: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_city_ruins_entertainment_land",
@@ -12277,7 +12317,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Entertainment District of City Ruins: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_city_ruins_social_land",
@@ -12296,7 +12337,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Social District of City Ruins: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_roid_city_fashion_land",
@@ -12315,7 +12357,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Fashion District of Roid City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_roid_city_entertainment_land",
@@ -12334,7 +12377,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Entertainment District of Roid City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_roid_city_social_land",
@@ -12353,7 +12397,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Social District of Roid City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_bozo_city_fashion_land",
@@ -12372,7 +12417,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Fashion District of Bozo City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_bozo_city_entertainment_land",
@@ -12391,7 +12437,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Entertainment District of Bozo City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   },
   {
    "id": "egg_bozo_city_social_land",
@@ -12410,7 +12457,8 @@
    "sizeM2": 960,
    "yieldDay": 1.4,
    "desc": "A plot in the Social District of Bozo City: build a shop, rent it or sell it on.",
-   "priceUsd": 600.0
+   "priceUsd": 600,
+   "nestId": "n_col_bold"
   }
  ],
  "sums": [

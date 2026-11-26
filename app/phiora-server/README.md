@@ -49,6 +49,7 @@ The API uses singular names: `/app/<key>`, `/item/theme`, `/item/<id>/theme`, `/
 | `POST /shop/offer {lookId,usd}` | at/above floor → paid and owned now; below → pending |
 | `POST /shop/sell {lookId}` | sell an owned look back at floor |
 | `GET /tree` · `GET /tree?kind=a,b` · `GET /tree/info` | every record of every kind (or only those kinds), public, plus Phiora's live records (designer themes): `{ at, loadedAt, live, sources: [{ kind, rows, live? }] }`; the counts. Clients build the items model and the relations index with phi-kit (`kinds.ts`, `relations.ts`) |
+| `GET /tree?kind=a&where=field:value&limit=N` | the same, narrowed: only the rows whose field is that value (give `where` more than once and all must hold), and only the last N rows of each kind (at most 5000). A client asks for one room's messages (`kind=message&where=room:app/lobby&limit=200`), the requests that name a person, or one record by its `ref`, not for every record |
 | `GET /tree/item/<kind>/<id>` | one record with where it came from (files or the API), whether it was edited, its owner, whether **you** may change it, and its last 20 changes |
 | `POST /tree/item {kind,fields}` | create a record (signed in; you own it). The id is made for you: md5, always; the `slug` comes from the name |
 | `PATCH /tree/item/<kind>/<id> {set?,unset?}` · `DELETE …` | change or delete a record: its owner, the person it is or names (founder, owner, creator, author, user, holder), or an editor (`PHI_EDITORS`). Guests never. The id never changes; 32 KB per record; 30 changes a minute per user |

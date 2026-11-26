@@ -13,7 +13,7 @@ import { modelFromEnv } from './model.mjs';
 import { AuthError, checkEmail, checkPassword, checkSignup, hashPassword, publicMe, throttle, verifyPassword } from './auth.mjs';
 import { mailerFromEnv, resetMail, verifyMail } from './mail.mjs';
 import { ItemError, activityOf, addActivity, setTheme, themes } from './items.mjs';
-import { normalizeSources, seedItems, themeRows, treeOf } from './tree.mjs';
+import { narrowOf, normalizeSources, seedItems, themeRows, treeOf } from './tree.mjs';
 import { APP_KINDS, appList, composeApp } from './apps.mjs';
 import { rowsOf } from './rows.mjs';
 import { RecordError, createRecord, deleteRecord, readRecord, updateRecord } from './records.mjs';
@@ -190,7 +190,7 @@ export function createPhiora({
         const stored = (await store.itemSources()) ?? { sources: [], loadedAt: null };
         const kinds = (searchParams.get('kind') || '').split(',').map((x) => x.trim()).filter(Boolean);
         const idmap = (await store.global('items.idmap')) ?? {};
-        return send(res, 200, treeOf(stored, [{ kind: 'theme', rows: themeRows(await themes(store), catalog, idmap) }], kinds));
+        return send(res, 200, treeOf(stored, [{ kind: 'theme', rows: themeRows(await themes(store), catalog, idmap) }], kinds, narrowOf(searchParams)));
       }
 
       // Designer themes are public: anyone may read what a look is.
