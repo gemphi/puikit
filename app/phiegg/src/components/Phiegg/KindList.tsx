@@ -18,10 +18,11 @@ import { postTile } from './ShotCard';
 import { EntityAvatar } from './EntityAvatar';
 import { LookImage } from './LookImage';
 import { DateArt, hasParts, Parts, type PartDecl } from './CardPart';
+import { CoinCard } from './CoinCard';
 import type { Pool, PoolLot, Post, ShopLook, Tone } from '../../types/phiegg';
 
 /** How a kind's card is drawn (data/card.json): a layout, that layout's options, and how often its live values move. */
-type CardDecl = PartDecl & { layout?: string; face?: 'look'; color?: string; tick?: number; cols?: number; ratio?: string; title?: string; sub?: string; aside?: string; mark?: string; flag?: { field: string; label: string };
+type CardDecl = PartDecl & { layout?: string; face?: 'look'; mosaic?: boolean; color?: string; tick?: number; cols?: number; ratio?: string; title?: string; sub?: string; aside?: string; mark?: string; flag?: { field: string; label: string };
   tone?: string; club?: string; world?: string; person?: string; path?: string;
   /** A tile's own picture (paths tried in order), floor grid and size; the words on it; the values listed under it. */
   image?: string[]; grid?: boolean; big?: boolean; animate?: boolean; badge?: string[]; tag?: string;
@@ -72,6 +73,8 @@ const LAYOUT: Record<string, React.FC<CardProps>> = {
         title={title} meta={fill(kind, row, decl.sub)} aside={end ? <Tag minimal round size="sm">{end}</Tag> : undefined}
         >{parts ? <Stack direction="column" gap={2}><Parts kind={kind} row={row} decl={decl} /></Stack> : undefined}</ItemCard>);
   },
+  /** A coin: a bank card with its round coin laid on it (CoinCard), what can be done with it under. */
+  coin: ({ kind, row, decl, open }) => <CoinCard kind={kind} row={row} decl={decl} open={open} />,
   /** A post or a reel: its first slide. */
   post: ({ row, open }) => { const x = as<Post>(row); return <Tile {...postTile(x)} ratio="4/5" title={x.slides[0]?.title} sub={x.caption} onClick={open} />; },
   /** A sale: the look sold, its price and day. */
@@ -177,7 +180,7 @@ export const KindList: React.FC<{ kind: string; rows: ItemRow[]; label?: string 
   const table = [...(live.table ? tableFor<ItemRow>(kind) : base.table), ...(live.table ?? [])];
   return (
     <Now.Provider value={now}>
-      <ListView<ItemRow> rows={rows} keyOf={(r) => r.id} text={(r) => wordsOf(kind, r)} onRow={open} cols={decl.cols}
+      <ListView<ItemRow> rows={rows} keyOf={(r) => r.id} text={(r) => wordsOf(kind, r)} onRow={open} cols={decl.cols} mosaic={decl.mosaic}
         slider={decl.slider ? (shown) => shown.length > 0 && <KindSlider key={shown.length} kind={kind} rows={shown} label={label ?? kindLabel(kind)} /> : undefined}
         facets={live.facets ?? base.facets} sorts={live.sorts ?? base.sorts} table={table.length ? table : undefined}
         render={(r) => <KindCard kind={kind} row={r} />} />

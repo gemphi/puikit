@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-70 -70 140 140" stroke-linecap="round" stroke-linejoin="round">
+  <!-- OGY, the coin of Phiogy: a ring O, a spark at its shoulder, the letters under it. Paint is currentColor; scripts/coins/strike.mjs raises it. -->
+  <circle cx="0" cy="-12" r="33" fill="none" stroke="currentColor" stroke-width="22"/>
+  <path d="M52 -62 L55 -53 L64 -50 L55 -47 L52 -38 L49 -47 L40 -50 L49 -53 Z" fill="currentColor" stroke="currentColor" stroke-width="2"/>
+  <text x="0" y="62" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="26" letter-spacing="3" fill="currentColor" stroke="currentColor" stroke-width="2">OGY</text>
+</svg>

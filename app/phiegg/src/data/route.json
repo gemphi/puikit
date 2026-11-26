@@ -56,7 +56,7 @@
   "casts": { "name": "pgCasts", "title": "Casts", "sub": "Shows, rehearsals and talks, live and played back.", "tab": [{ "id": "all", "label": "All", "kind": "cast" }] },
   "quests": { "title": "Quests", "sub": "Challenges across the 64 worlds. Rewards pay out in club coins.", "tab": [{ "id": "all", "label": "All", "kind": "quest" }] },
   "play": { "title": "Sponsored quests", "sub": "Quests sponsored by clubs. Play, win coin rewards, climb the front row.", "tab": [{ "id": "all", "label": "All", "kind": "quest", "where": { "kind": "sponsored" } }] },
-  "coins": { "title": "Coins", "sub": "Every club has a coin. PHI is the platform coin.", "tab": [{ "id": "all", "label": "All", "kind": "coin" }] },
+  "coins": { "title": "Coins", "sub": "Every club has a coin. PHI, $UM and $EGG are the platform's; OGY is earned in Phiogy, never bought.", "tab": [{ "id": "all", "label": "All", "kind": "coin" }] },
   "pools": { "name": "pgPools", "title": "Pools", "sub": "Every store line, club drop and fashion show is a pool: the centre of your PFTs. Live prices, stats, quests and swaps.", "tab": [
    { "id": "all", "label": "All", "kind": "pool" }, { "id": "pft", "label": "PFTs", "kind": "pool", "where": { "kind": "pft" } }, { "id": "show", "label": "Show drop", "kind": "pool", "where": { "kind": "show" } },
    { "id": "drop", "label": "Club drop", "kind": "pool", "where": { "kind": "drop" } }, { "id": "collection", "label": "Store", "kind": "pool", "where": { "kind": "collection" } } ] },

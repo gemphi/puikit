@@ -3,3 +3,4 @@ export * from './header'; // CardHeader
 export * from './body'; // CardBody
 export * from './footer'; // CardFooter
 export * from './image'; // CardImage
+export * from './bank'; // BankCard

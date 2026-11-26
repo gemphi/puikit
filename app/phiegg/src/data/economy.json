@@ -1,6 +1,54 @@
 {
   "coins": [
     {
+      "id": "coin_egg",
+      "symbol": "EGG",
+      "name": "$EGG",
+      "tone": "neutral",
+      "price": 0.25,
+      "change24h": 0.2,
+      "holders": 31800,
+      "platform": true,
+      "role": "the pound-E token: what an egg earns and a SUM is made of",
+      "image": "coins/EGG.svg",
+      "card": [
+        "#5d2d19",
+        "#c19233"
+      ]
+    },
+    {
+      "id": "coin_sum",
+      "symbol": "SUM",
+      "name": "$UM",
+      "tone": "accent",
+      "price": 6,
+      "change24h": 0.8,
+      "holders": 12400,
+      "platform": true,
+      "role": "the dollar-letter token: a pool's balance, settled in $UM",
+      "image": "coins/SUM.svg",
+      "card": [
+        "#654a06",
+        "#c2d30d"
+      ]
+    },
+    {
+      "id": "coin_ogy",
+      "symbol": "OGY",
+      "name": "Phiogy Coin",
+      "tone": "accent",
+      "price": 0.05,
+      "change24h": 0,
+      "holders": 64000,
+      "platform": true,
+      "role": "earned, not bought: quests and what you do in Phiogy pay it; themes, grounds and effects take it",
+      "image": "coins/OGY.svg",
+      "card": [
+        "#105648",
+        "#229cb4"
+      ]
+    },
+    {
       "id": "coin_opal",
       "symbol": "OPAL",
       "name": "Maison Opal Coin",
@@ -8,7 +56,12 @@
       "tone": "accent",
       "price": 4.34,
       "change24h": 6.8,
-      "holders": 564
+      "holders": 564,
+      "image": "coins/OPAL.svg",
+      "card": [
+        "#56153e",
+        "#b42d51"
+      ]
     },
     {
       "id": "coin_swan",
@@ -18,7 +71,12 @@
       "tone": "neutral",
       "price": 3.49,
       "change24h": 1.5,
-      "holders": 2458
+      "holders": 2458,
+      "image": "coins/SWAN.svg",
+      "card": [
+        "#283843",
+        "#54618c"
+      ]
     },
     {
       "id": "coin_vlr",
@@ -28,7 +86,12 @@
       "tone": "ink",
       "price": 7.88,
       "change24h": -1.6,
-      "holders": 6080
+      "holders": 6080,
+      "image": "coins/VLR.svg",
+      "card": [
+        "#302348",
+        "#814a96"
+      ]
     },
     {
       "id": "coin_lynx",
@@ -38,7 +101,12 @@
       "tone": "sage",
       "price": 3.25,
       "change24h": 14.1,
-      "holders": 6181
+      "holders": 6181,
+      "image": "coins/LYNX.svg",
+      "card": [
+        "#214a34",
+        "#449c8d"
+      ]
     },
     {
       "id": "coin_chrb",
@@ -48,7 +116,12 @@
       "tone": "neutral",
       "price": 2.34,
       "change24h": -14.8,
-      "holders": 6512
+      "holders": 6512,
+      "image": "coins/CHRB.svg",
+      "card": [
+        "#293642",
+        "#565f8a"
+      ]
     },
     {
       "id": "coin_gilt",
@@ -58,7 +131,12 @@
       "tone": "accent",
       "price": 8.91,
       "change24h": 8.5,
-      "holders": 1822
+      "holders": 1822,
+      "image": "coins/GILT.svg",
+      "card": [
+        "#56151a",
+        "#b4552d"
+      ]
     },
     {
       "id": "coin_orst6",
@@ -68,7 +146,12 @@
       "tone": "neutral",
       "price": 8.72,
       "change24h": 20.5,
-      "holders": 4861
+      "holders": 4861,
+      "image": "coins/ORST6.svg",
+      "card": [
+        "#262447",
+        "#6a4c94"
+      ]
     },
     {
       "id": "coin_safo7",
@@ -78,7 +161,12 @@
       "tone": "ink",
       "price": 5.5,
       "change24h": -2,
-      "holders": 1379
+      "holders": 1379,
+      "image": "coins/SAFO7.svg",
+      "card": [
+        "#27204b",
+        "#72439d"
+      ]
     },
     {
       "id": "coin_qumo8",
@@ -88,7 +176,12 @@
       "tone": "accent",
       "price": 3.01,
       "change24h": -2.3,
-      "holders": 4127
+      "holders": 4127,
+      "image": "coins/QUMO8.svg",
+      "card": [
+        "#562015",
+        "#b4752d"
+      ]
     },
     {
       "id": "coin_lara9",
@@ -98,7 +191,12 @@
       "tone": "sage",
       "price": 5,
       "change24h": -3.9,
-      "holders": 7853
+      "holders": 7853,
+      "image": "coins/LARA9.svg",
+      "card": [
+        "#1b5026",
+        "#39a778"
+      ]
     },
     {
       "id": "coin_nemu0",
@@ -108,7 +206,12 @@
       "tone": "neutral",
       "price": 6.22,
       "change24h": 10,
-      "holders": 7309
+      "holders": 7309,
+      "image": "coins/NEMU0.svg",
+      "card": [
+        "#233148",
+        "#494997"
+      ]
     },
     {
       "id": "coin_sacr1",
@@ -118,7 +221,12 @@
       "tone": "ink",
       "price": 1.42,
       "change24h": 16.1,
-      "holders": 6244
+      "holders": 6244,
+      "image": "coins/SACR1.svg",
+      "card": [
+        "#38214a",
+        "#94469b"
+      ]
     },
     {
       "id": "coin_coko2",
@@ -128,7 +236,12 @@
       "tone": "accent",
       "price": 3.35,
       "change24h": -9.1,
-      "holders": 8408
+      "holders": 8408,
+      "image": "coins/COKO2.svg",
+      "card": [
+        "#591227",
+        "#ba3026"
+      ]
     },
     {
       "id": "coin_rosw3",
@@ -138,7 +251,12 @@
       "tone": "sage",
       "price": 6.75,
       "change24h": -8.8,
-      "holders": 8551
+      "holders": 8551,
+      "image": "coins/ROSW3.svg",
+      "card": [
+        "#1e4d44",
+        "#3f8fa2"
+      ]
     },
     {
       "id": "coin_modo4",
@@ -148,7 +266,12 @@
       "tone": "neutral",
       "price": 6.39,
       "change24h": -6.4,
-      "holders": 1423
+      "holders": 1423,
+      "image": "coins/MODO4.svg",
+      "card": [
+        "#293342",
+        "#56588a"
+      ]
     },
     {
       "id": "coin_prow5",
@@ -158,7 +281,12 @@
       "tone": "ink",
       "price": 6.01,
       "change24h": 14.9,
-      "holders": 8775
+      "holders": 8775,
+      "image": "coins/PROW5.svg",
+      "card": [
+        "#282348",
+        "#704997"
+      ]
     },
     {
       "id": "coin_sasi6",
@@ -168,7 +296,12 @@
       "tone": "accent",
       "price": 0.35,
       "change24h": -8.5,
-      "holders": 7355
+      "holders": 7355,
+      "image": "coins/SASI6.svg",
+      "card": [
+        "#58131f",
+        "#b84528"
+      ]
     },
     {
       "id": "coin_tuly7",
@@ -178,7 +311,12 @@
       "tone": "sage",
       "price": 2.17,
       "change24h": 20.4,
-      "holders": 915
+      "holders": 915,
+      "image": "coins/TULY7.svg",
+      "card": [
+        "#214e1d",
+        "#3ea35c"
+      ]
     },
     {
       "id": "coin_plha8",
@@ -188,7 +326,12 @@
       "tone": "neutral",
       "price": 6.23,
       "change24h": -2,
-      "holders": 2204
+      "holders": 2204,
+      "image": "coins/PLHA8.svg",
+      "card": [
+        "#272744",
+        "#68528e"
+      ]
     },
     {
       "id": "coin_ivpe9",
@@ -198,7 +341,12 @@
       "tone": "ink",
       "price": 7.26,
       "change24h": 21,
-      "holders": 5972
+      "holders": 5972,
+      "image": "coins/IVPE9.svg",
+      "card": [
+        "#1c234f",
+        "#543ba5"
+      ]
     },
     {
       "id": "coin_sihe0",
@@ -208,7 +356,12 @@
       "tone": "accent",
       "price": 0.02,
       "change24h": -13.8,
-      "holders": 6970
+      "holders": 6970,
+      "image": "coins/SIHE0.svg",
+      "card": [
+        "#59122d",
+        "#bb2528"
+      ]
     },
     {
       "id": "coin_peti1",
@@ -218,7 +371,12 @@
       "tone": "sage",
       "price": 6.26,
       "change24h": -9.8,
-      "holders": 8946
+      "holders": 8946,
+      "image": "coins/PETI1.svg",
+      "card": [
+        "#1c4f2f",
+        "#3ba589"
+      ]
     },
     {
       "id": "coin_vest2",
@@ -228,7 +386,12 @@
       "tone": "neutral",
       "price": 2.73,
       "change24h": 9.7,
-      "holders": 6652
+      "holders": 6652,
+      "image": "coins/VEST2.svg",
+      "card": [
+        "#233a48",
+        "#4a5d96"
+      ]
     },
     {
       "id": "coin_gifo3",
@@ -238,7 +401,12 @@
       "tone": "ink",
       "price": 2.18,
       "change24h": 21.3,
-      "holders": 3837
+      "holders": 3837,
+      "image": "coins/GIFO3.svg",
+      "card": [
+        "#1e1d4e",
+        "#643da4"
+      ]
     },
     {
       "id": "coin_emmo4",
@@ -248,7 +416,12 @@
       "tone": "accent",
       "price": 8.36,
       "change24h": 1.7,
-      "holders": 4251
+      "holders": 4251,
+      "image": "coins/EMMO4.svg",
+      "card": [
+        "#551625",
+        "#b1402f"
+      ]
     },
     {
       "id": "coin_frra5",
@@ -258,7 +431,12 @@
       "tone": "sage",
       "price": 7.01,
       "change24h": 7.5,
-      "holders": 2644
+      "holders": 2644,
+      "image": "coins/FRRA5.svg",
+      "card": [
+        "#204b43",
+        "#438d9d"
+      ]
     },
     {
       "id": "coin_ormu6",
@@ -268,7 +446,12 @@
       "tone": "neutral",
       "price": 1.9,
       "change24h": 15.5,
-      "holders": 2766
+      "holders": 2766,
+      "image": "coins/ORMU6.svg",
+      "card": [
+        "#243747",
+        "#4b5895"
+      ]
     },
     {
       "id": "coin_sacr7",
@@ -278,7 +461,12 @@
       "tone": "ink",
       "price": 5.77,
       "change24h": 2.3,
-      "holders": 8368
+      "holders": 8368,
+      "image": "coins/SACR7.svg",
+      "card": [
+        "#3c1f4c",
+        "#9f419e"
+      ]
     },
     {
       "id": "coin_quko8",
@@ -288,7 +476,12 @@
       "tone": "accent",
       "price": 4.36,
       "change24h": 24.5,
-      "holders": 5198
+      "holders": 5198,
+      "image": "coins/QUKO8.svg",
+      "card": [
+        "#571d14",
+        "#b6702b"
+      ]
     },
     {
       "id": "coin_lasw9",
@@ -298,7 +491,12 @@
       "tone": "sage",
       "price": 1.43,
       "change24h": 18.9,
-      "holders": 6008
+      "holders": 6008,
+      "image": "coins/LASW9.svg",
+      "card": [
+        "#1b503a",
+        "#38a8a3"
+      ]
     },
     {
       "id": "coin_nedo0",
@@ -308,7 +506,12 @@
       "tone": "neutral",
       "price": 0.74,
       "change24h": 2.1,
-      "holders": 5547
+      "holders": 5547,
+      "image": "coins/NEDO0.svg",
+      "card": [
+        "#243a47",
+        "#4c5e94"
+      ]
     },
     {
       "id": "coin_saow1",
@@ -318,7 +521,12 @@
       "tone": "ink",
       "price": 6.02,
       "change24h": -9.3,
-      "holders": 7565
+      "holders": 7565,
+      "image": "coins/SAOW1.svg",
+      "card": [
+        "#2e1f4d",
+        "#8340a0"
+      ]
     },
     {
       "id": "coin_cosi2",
@@ -328,7 +536,12 @@
       "tone": "accent",
       "price": 3.03,
       "change24h": 1.5,
-      "holders": 6813
+      "holders": 6813,
+      "image": "coins/COSI2.svg",
+      "card": [
+        "#561527",
+        "#b43a2d"
+      ]
     },
     {
       "id": "coin_roly3",
@@ -338,7 +551,12 @@
       "tone": "sage",
       "price": 4.52,
       "change24h": 11,
-      "holders": 7039
+      "holders": 7039,
+      "image": "coins/ROLY3.svg",
+      "card": [
+        "#204c40",
+        "#42959e"
+      ]
     },
     {
       "id": "coin_moha4",
@@ -348,7 +566,12 @@
       "tone": "neutral",
       "price": 5.24,
       "change24h": -3.9,
-      "holders": 2995
+      "holders": 2995,
+      "image": "coins/MOHA4.svg",
+      "card": [
+        "#243847",
+        "#4b5a95"
+      ]
     },
     {
       "id": "coin_prpe5",
@@ -358,7 +581,12 @@
       "tone": "ink",
       "price": 8.94,
       "change24h": 13.2,
-      "holders": 7430
+      "holders": 7430,
+      "image": "coins/PRPE5.svg",
+      "card": [
+        "#20274b",
+        "#57439d"
+      ]
     },
     {
       "id": "coin_sahe6",
@@ -368,7 +596,12 @@
       "tone": "accent",
       "price": 1.37,
       "change24h": -0.9,
-      "holders": 6094
+      "holders": 6094,
+      "image": "coins/SAHE6.svg",
+      "card": [
+        "#591230",
+        "#bb252d"
+      ]
     },
     {
       "id": "coin_tuti7",
@@ -378,7 +611,12 @@
       "tone": "sage",
       "price": 4.27,
       "change24h": 10.6,
-      "holders": 2737
+      "holders": 2737,
+      "image": "coins/TUTI7.svg",
+      "card": [
+        "#1c4f45",
+        "#3b93a5"
+      ]
     },
     {
       "id": "coin_plst8",
@@ -388,7 +626,12 @@
       "tone": "neutral",
       "price": 3.41,
       "change24h": 24.1,
-      "holders": 1109
+      "holders": 1109,
+      "image": "coins/PLST8.svg",
+      "card": [
+        "#242447",
+        "#664b95"
+      ]
     },
     {
       "id": "coin_ivfo9",
@@ -398,7 +641,12 @@
       "tone": "ink",
       "price": 2.53,
       "change24h": 16.4,
-      "holders": 4961
+      "holders": 4961,
+      "image": "coins/IVFO9.svg",
+      "card": [
+        "#232848",
+        "#5b4997"
+      ]
     },
     {
       "id": "coin_simo0",
@@ -408,7 +656,12 @@
       "tone": "accent",
       "price": 5.37,
       "change24h": 4.2,
-      "holders": 9041
+      "holders": 9041,
+      "image": "coins/SIMO0.svg",
+      "card": [
+        "#5a111b",
+        "#bc4824"
+      ]
     },
     {
       "id": "coin_pera1",
@@ -418,7 +671,12 @@
       "tone": "sage",
       "price": 6.69,
       "change24h": 4.1,
-      "holders": 8101
+      "holders": 8101,
+      "image": "coins/PERA1.svg",
+      "card": [
+        "#1c4f26",
+        "#3ba577"
+      ]
     },
     {
       "id": "coin_vemu2",
@@ -428,7 +686,12 @@
       "tone": "neutral",
       "price": 1.25,
       "change24h": -7.1,
-      "holders": 5890
+      "holders": 5890,
+      "image": "coins/VEMU2.svg",
+      "card": [
+        "#232a48",
+        "#564997"
+      ]
     },
     {
       "id": "coin_gicr3",
@@ -438,7 +701,12 @@
       "tone": "ink",
       "price": 1.78,
       "change24h": -12.9,
-      "holders": 6158
+      "holders": 6158,
+      "image": "coins/GICR3.svg",
+      "card": [
+        "#362348",
+        "#8d4a96"
+      ]
     },
     {
       "id": "coin_emko4",
@@ -448,7 +716,12 @@
       "tone": "accent",
       "price": 3.04,
       "change24h": 3.4,
-      "holders": 3656
+      "holders": 3656,
+      "image": "coins/EMKO4.svg",
+      "card": [
+        "#561527",
+        "#b43a2d"
+      ]
     },
     {
       "id": "coin_frsw5",
@@ -458,7 +731,12 @@
       "tone": "sage",
       "price": 8.78,
       "change24h": 18.5,
-      "holders": 2132
+      "holders": 2132,
+      "image": "coins/FRSW5.svg",
+      "card": [
+        "#204c28",
+        "#429e76"
+      ]
     },
     {
       "id": "coin_ordo6",
@@ -468,7 +746,12 @@
       "tone": "neutral",
       "price": 4.75,
       "change24h": 9.1,
-      "holders": 5338
+      "holders": 5338,
+      "image": "coins/ORDO6.svg",
+      "card": [
+        "#253f46",
+        "#4f6b92"
+      ]
     },
     {
       "id": "coin_saow7",
@@ -478,7 +761,12 @@
       "tone": "ink",
       "price": 3.7,
       "change24h": -8.2,
-      "holders": 8023
+      "holders": 8023,
+      "image": "coins/SAOW7.svg",
+      "card": [
+        "#321c4f",
+        "#903ba5"
+      ]
     },
     {
       "id": "coin_qusi8",
@@ -488,7 +776,12 @@
       "tone": "accent",
       "price": 0.38,
       "change24h": 23.3,
-      "holders": 4937
+      "holders": 4937,
+      "image": "coins/QUSI8.svg",
+      "card": [
+        "#5b1d10",
+        "#bf7522"
+      ]
     },
     {
       "id": "coin_laly9",
@@ -498,7 +791,12 @@
       "tone": "sage",
       "price": 7.53,
       "change24h": 0.2,
-      "holders": 8830
+      "holders": 8830,
+      "image": "coins/LALY9.svg",
+      "card": [
+        "#1c4f36",
+        "#3ba597"
+      ]
     },
     {
       "id": "coin_neha0",
@@ -508,7 +806,12 @@
       "tone": "neutral",
       "price": 1.92,
       "change24h": 19.3,
-      "holders": 5452
+      "holders": 5452,
+      "image": "coins/NEHA0.svg",
+      "card": [
+        "#273e45",
+        "#516b90"
+      ]
     },
     {
       "id": "coin_sape1",
@@ -518,7 +821,12 @@
       "tone": "ink",
       "price": 5.29,
       "change24h": 17.2,
-      "holders": 7554
+      "holders": 7554,
+      "image": "coins/SAPE1.svg",
+      "card": [
+        "#252348",
+        "#6a4a96"
+      ]
     },
     {
       "id": "coin_cohe2",
@@ -528,7 +836,12 @@
       "tone": "accent",
       "price": 3.38,
       "change24h": 10.6,
-      "holders": 884
+      "holders": 884,
+      "image": "coins/COHE2.svg",
+      "card": [
+        "#571437",
+        "#b72a3f"
+      ]
     },
     {
       "id": "coin_roti3",
@@ -538,7 +851,12 @@
       "tone": "sage",
       "price": 8.95,
       "change24h": 16,
-      "holders": 7194
+      "holders": 7194,
+      "image": "coins/ROTI3.svg",
+      "card": [
+        "#1f4d3a",
+        "#40a09d"
+      ]
     },
     {
       "id": "coin_most4",
@@ -548,7 +866,12 @@
       "tone": "neutral",
       "price": 7.76,
       "change24h": 10.3,
-      "holders": 3233
+      "holders": 3233,
+      "image": "coins/MOST4.svg",
+      "card": [
+        "#283743",
+        "#545f8c"
+      ]
     },
     {
       "id": "coin_prfo5",
@@ -558,7 +881,12 @@
       "tone": "ink",
       "price": 3.54,
       "change24h": 10.1,
-      "holders": 1751
+      "holders": 1751,
+      "image": "coins/PRFO5.svg",
+      "card": [
+        "#1f264c",
+        "#55419f"
+      ]
     },
     {
       "id": "coin_samo6",
@@ -568,7 +896,12 @@
       "tone": "accent",
       "price": 0.05,
       "change24h": -8.1,
-      "holders": 6499
+      "holders": 6499,
+      "image": "coins/SAMO6.svg",
+      "card": [
+        "#5a111d",
+        "#bc4224"
+      ]
     },
     {
       "id": "coin_tura7",
@@ -578,7 +911,12 @@
       "tone": "sage",
       "price": 1.04,
       "change24h": 12.6,
-      "holders": 3225
+      "holders": 3225,
+      "image": "coins/TURA7.svg",
+      "card": [
+        "#1c4f3c",
+        "#3ba5a5"
+      ]
     },
     {
       "id": "coin_plmu8",
@@ -588,7 +926,12 @@
       "tone": "neutral",
       "price": 1.26,
       "change24h": 8.7,
-      "holders": 4681
+      "holders": 4681,
+      "image": "coins/PLMU8.svg",
+      "card": [
+        "#233948",
+        "#4a5b96"
+      ]
     },
     {
       "id": "coin_ivcr9",
@@ -598,7 +941,12 @@
       "tone": "ink",
       "price": 4.46,
       "change24h": -3,
-      "holders": 5616
+      "holders": 5616,
+      "image": "coins/IVCR9.svg",
+      "card": [
+        "#302249",
+        "#84479a"
+      ]
     },
     {
       "id": "coin_siko0",
@@ -608,7 +956,12 @@
       "tone": "accent",
       "price": 5.39,
       "change24h": -6,
-      "holders": 780
+      "holders": 780,
+      "image": "coins/SIKO0.svg",
+      "card": [
+        "#5b101d",
+        "#bf4122"
+      ]
     },
     {
       "id": "coin_pesw1",
@@ -618,7 +971,12 @@
       "tone": "sage",
       "price": 7.79,
       "change24h": 16.6,
-      "holders": 2923
+      "holders": 2923,
+      "image": "coins/PESW1.svg",
+      "card": [
+        "#1c4f3a",
+        "#3aa6a1"
+      ]
     },
     {
       "id": "coin_vedo2",
@@ -628,7 +986,12 @@
       "tone": "neutral",
       "price": 6.43,
       "change24h": 1.2,
-      "holders": 6795
+      "holders": 6795,
+      "image": "coins/VEDO2.svg",
+      "card": [
+        "#243447",
+        "#4c5294"
+      ]
     },
     {
       "id": "coin_phi",
@@ -638,7 +1001,13 @@
       "tone": "ink",
       "price": 1.62,
       "change24h": 3.4,
-      "holders": 48210
+      "holders": 48210,
+      "image": "coins/PHI.svg",
+      "card": [
+        "#1e1c4f",
+        "#663ba5"
+      ],
+      "platform": true
     },
     {
       "id": "coin_ombre",
@@ -648,7 +1017,12 @@
       "tone": "ink",
       "price": 6.01,
       "change24h": 5.3,
-      "holders": 639
+      "holders": 639,
+      "image": "coins/JAVIS.svg",
+      "card": [
+        "#3b204c",
+        "#9e429e"
+      ]
     },
     {
       "id": "coin_deer",
@@ -658,7 +1032,12 @@
       "tone": "sage",
       "price": 1.22,
       "change24h": -4.6,
-      "holders": 178
+      "holders": 178,
+      "image": "coins/DEER.svg",
+      "card": [
+        "#204b2b",
+        "#439d7b"
+      ]
     },
     {
       "id": "coin_ponte",
@@ -668,7 +1047,12 @@
       "tone": "accent",
       "price": 6.4,
       "change24h": 8.8,
-      "holders": 168
+      "holders": 168,
+      "image": "coins/REYE.svg",
+      "card": [
+        "#561615",
+        "#b5602c"
+      ]
     },
     {
       "id": "coin_ohhc",
@@ -678,7 +1062,12 @@
       "tone": "ink",
       "price": 1.52,
       "change24h": -3,
-      "holders": 170
+      "holders": 170,
+      "image": "coins/OHHC.svg",
+      "card": [
+        "#26214a",
+        "#6f469b"
+      ]
     },
     {
       "id": "coin_bp",
@@ -688,7 +1077,12 @@
       "tone": "accent",
       "price": 6.45,
       "change24h": -4.6,
-      "holders": 887
+      "holders": 887,
+      "image": "coins/BPUP.svg",
+      "card": [
+        "#591512",
+        "#bb6425"
+      ]
     },
     {
       "id": "coin_epac",
@@ -698,7 +1092,12 @@
       "tone": "sage",
       "price": 7.52,
       "change24h": 5,
-      "holders": 841
+      "holders": 841,
+      "image": "coins/EPAC.svg",
+      "card": [
+        "#1f4d3c",
+        "#40a0a0"
+      ]
     },
     {
       "id": "coin_calder",
@@ -708,7 +1107,12 @@
       "tone": "ink",
       "price": 1.67,
       "change24h": 1,
-      "holders": 472
+      "holders": 472,
+      "image": "coins/CALDR.svg",
+      "card": [
+        "#212b4a",
+        "#50469b"
+      ]
     },
     {
       "id": "coin_venus",
@@ -718,7 +1122,12 @@
       "tone": "accent",
       "price": 7.14,
       "change24h": -0.1,
-      "holders": 421
+      "holders": 421,
+      "image": "coins/VENUS.svg",
+      "card": [
+        "#5c1032",
+        "#c0212e"
+      ]
     },
     {
       "id": "coin_halomodels",
@@ -728,7 +1137,12 @@
       "tone": "sage",
       "price": 7.69,
       "change24h": 4.4,
-      "holders": 181
+      "holders": 181,
+      "image": "coins/HALO.svg",
+      "card": [
+        "#1e4d44",
+        "#3f8fa2"
+      ]
     },
     {
       "id": "coin_nova",
@@ -738,7 +1152,12 @@
       "tone": "accent",
       "price": 5.47,
       "change24h": 0.3,
-      "holders": 620
+      "holders": 620,
+      "image": "coins/NOVA.svg",
+      "card": [
+        "#591236",
+        "#ba263a"
+      ]
     },
     {
       "id": "coin_velvetlip",
@@ -748,7 +1167,12 @@
       "tone": "accent",
       "price": 7.79,
       "change24h": 6.9,
-      "holders": 684
+      "holders": 684,
+      "image": "coins/VLIP.svg",
+      "card": [
+        "#5c1810",
+        "#c06e21"
+      ]
     },
     {
       "id": "coin_wondrous",
@@ -758,7 +1182,12 @@
       "tone": "accent",
       "price": 2.47,
       "change24h": 1.1,
-      "holders": 174
+      "holders": 174,
+      "image": "coins/WNDR.svg",
+      "card": [
+        "#5a1911",
+        "#be6e23"
+      ]
     },
     {
       "id": "coin_skylane",
@@ -768,7 +1197,12 @@
       "tone": "sage",
       "price": 7.69,
       "change24h": -4.5,
-      "holders": 746
+      "holders": 746,
+      "image": "coins/SKYL.svg",
+      "card": [
+        "#214a2f",
+        "#449c82"
+      ]
     },
     {
       "id": "coin_hoverhouse",
@@ -778,7 +1212,12 @@
       "tone": "ink",
       "price": 8.72,
       "change24h": -2,
-      "holders": 633
+      "holders": 633,
+      "image": "coins/HOVR.svg",
+      "card": [
+        "#24204c",
+        "#6d429e"
+      ]
     },
     {
       "id": "coin_verbum",
@@ -788,7 +1227,12 @@
       "tone": "ink",
       "price": 7.3,
       "change24h": -1.3,
-      "holders": 522
+      "holders": 522,
+      "image": "coins/VRBM.svg",
+      "card": [
+        "#21224a",
+        "#62449c"
+      ]
     },
     {
       "id": "coin_inkwell",
@@ -798,7 +1242,12 @@
       "tone": "neutral",
       "price": 2.93,
       "change24h": -1.3,
-      "holders": 404
+      "holders": 404,
+      "image": "coins/INKW.svg",
+      "card": [
+        "#273844",
+        "#52608e"
+      ]
     },
     {
       "id": "coin_syntax",
@@ -808,7 +1257,12 @@
       "tone": "accent",
       "price": 2.49,
       "change24h": 2.3,
-      "holders": 846
+      "holders": 846,
+      "image": "coins/SYNX.svg",
+      "card": [
+        "#591236",
+        "#ba263a"
+      ]
     },
     {
       "id": "coin_naimroyal",
@@ -818,7 +1272,12 @@
       "tone": "accent",
       "price": 6.38,
       "change24h": 3.5,
-      "holders": 545
+      "holders": 545,
+      "image": "coins/NAIM.svg",
+      "card": [
+        "#5a1123",
+        "#be3523"
+      ]
     },
     {
       "id": "coin_loraland",
@@ -828,7 +1287,12 @@
       "tone": "accent",
       "price": 7.51,
       "change24h": 0.2,
-      "holders": 174
+      "holders": 174,
+      "image": "coins/LORA.svg",
+      "card": [
+        "#58133c",
+        "#b8284a"
+      ]
     },
     {
       "id": "coin_chatty",
@@ -838,7 +1302,12 @@
       "tone": "sage",
       "price": 3.21,
       "change24h": 0,
-      "holders": 476
+      "holders": 476,
+      "image": "coins/CHAT.svg",
+      "card": [
+        "#214a40",
+        "#46919b"
+      ]
     },
     {
       "id": "coin_bozo",
@@ -848,7 +1317,12 @@
       "tone": "accent",
       "price": 8.16,
       "change24h": 7,
-      "holders": 276
+      "holders": 276,
+      "image": "coins/BOZO.svg",
+      "card": [
+        "#5a112e",
+        "#bc2429"
+      ]
     },
     {
       "id": "coin_skim",
@@ -858,7 +1332,12 @@
       "tone": "sage",
       "price": 8.74,
       "change24h": 7.1,
-      "holders": 857
+      "holders": 857,
+      "image": "coins/SKIM.svg",
+      "card": [
+        "#214a25",
+        "#469b6c"
+      ]
     },
     {
       "id": "coin_loon",
@@ -868,7 +1347,12 @@
       "tone": "ink",
       "price": 5.85,
       "change24h": -3.3,
-      "holders": 769
+      "holders": 769,
+      "image": "coins/LOON.svg",
+      "card": [
+        "#35214a",
+        "#8e469b"
+      ]
     },
     {
       "id": "coin_wand",
@@ -878,7 +1362,12 @@
       "tone": "ink",
       "price": 4.58,
       "change24h": -4.8,
-      "holders": 381
+      "holders": 381,
+      "image": "coins/WAND.svg",
+      "card": [
+        "#2c2249",
+        "#7a4899"
+      ]
     },
     {
       "id": "coin_once",
@@ -888,7 +1377,12 @@
       "tone": "neutral",
       "price": 4.56,
       "change24h": 4.2,
-      "holders": 369
+      "holders": 369,
+      "image": "coins/ONCE.svg",
+      "card": [
+        "#294042",
+        "#56748a"
+      ]
     },
     {
       "id": "coin_gx_delphine_atelier",
@@ -898,7 +1392,12 @@
       "tone": "accent",
       "price": 6.47,
       "change24h": -3.1,
-      "holders": 713
+      "holders": 713,
+      "image": "coins/DELAT.svg",
+      "card": [
+        "#57141b",
+        "#b6502b"
+      ]
     },
     {
       "id": "coin_gx_rosewood_mill",
@@ -908,7 +1407,12 @@
       "tone": "sage",
       "price": 2.01,
       "change24h": 3.2,
-      "holders": 446
+      "holders": 446,
+      "image": "coins/ROSMI.svg",
+      "card": [
+        "#1c4f1d",
+        "#3aa664"
+      ]
     },
     {
       "id": "coin_gx_marigold_society",
@@ -918,7 +1422,12 @@
       "tone": "neutral",
       "price": 6.29,
       "change24h": -4.5,
-      "holders": 755
+      "holders": 755,
+      "image": "coins/MARSO.svg",
+      "card": [
+        "#274145",
+        "#517190"
+      ]
     },
     {
       "id": "coin_gx_garnet_society",
@@ -928,7 +1437,12 @@
       "tone": "ink",
       "price": 4.46,
       "change24h": 1,
-      "holders": 396
+      "holders": 396,
+      "image": "coins/GARSO.svg",
+      "card": [
+        "#3a214a",
+        "#99469b"
+      ]
     },
     {
       "id": "coin_gx_calla_atelier",
@@ -938,7 +1452,12 @@
       "tone": "accent",
       "price": 6.62,
       "change24h": -0.6,
-      "holders": 394
+      "holders": 394,
+      "image": "coins/CALAT.svg",
+      "card": [
+        "#5a111e",
+        "#be3f23"
+      ]
     },
     {
       "id": "coin_gx_moss_row",
@@ -948,7 +1467,12 @@
       "tone": "sage",
       "price": 1.54,
       "change24h": 4.4,
-      "holders": 398
+      "holders": 398,
+      "image": "coins/MOSRO.svg",
+      "card": [
+        "#1c4f3c",
+        "#3aa6a4"
+      ]
     },
     {
       "id": "coin_gx_fennel_atelier",
@@ -958,7 +1482,12 @@
       "tone": "neutral",
       "price": 6.52,
       "change24h": 0.2,
-      "holders": 551
+      "holders": 551,
+      "image": "coins/FENAT.svg",
+      "card": [
+        "#232b48",
+        "#554a96"
+      ]
     },
     {
       "id": "coin_gx_vesper_atelier",
@@ -968,7 +1497,12 @@
       "tone": "ink",
       "price": 2.83,
       "change24h": 1.1,
-      "holders": 328
+      "holders": 328,
+      "image": "coins/VESAT.svg",
+      "card": [
+        "#1c2a4f",
+        "#463ba5"
+      ]
     },
     {
       "id": "coin_gx_juniper_maison",
@@ -978,7 +1512,12 @@
       "tone": "accent",
       "price": 1.56,
       "change24h": -4,
-      "holders": 341
+      "holders": 341,
+      "image": "coins/JUNMA.svg",
+      "card": [
+        "#582013",
+        "#b97727"
+      ]
     },
     {
       "id": "coin_gx_dune_salon",
@@ -988,7 +1527,12 @@
       "tone": "sage",
       "price": 6.56,
       "change24h": -2.3,
-      "holders": 203
+      "holders": 203,
+      "image": "coins/DUNSA.svg",
+      "card": [
+        "#204c41",
+        "#42929e"
+      ]
     },
     {
       "id": "coin_gx_linden_row",
@@ -998,7 +1542,12 @@
       "tone": "neutral",
       "price": 2.12,
       "change24h": -2.7,
-      "holders": 368
+      "holders": 368,
+      "image": "coins/LINRO.svg",
+      "card": [
+        "#2a3241",
+        "#585889"
+      ]
     },
     {
       "id": "coin_gx_briar_row",
@@ -1008,7 +1557,12 @@
       "tone": "ink",
       "price": 7.6,
       "change24h": 7.6,
-      "holders": 814
+      "holders": 814,
+      "image": "coins/BRIRO.svg",
+      "card": [
+        "#3d1d4e",
+        "#a43da2"
+      ]
     },
     {
       "id": "coin_gx_linden_maison",
@@ -1018,7 +1572,12 @@
       "tone": "accent",
       "price": 1.1,
       "change24h": 3.2,
-      "holders": 172
+      "holders": 172,
+      "image": "coins/LINMA.svg",
+      "card": [
+        "#5a1211",
+        "#be5e23"
+      ]
     },
     {
       "id": "coin_gx_petal_works",
@@ -1028,7 +1587,12 @@
       "tone": "sage",
       "price": 2.74,
       "change24h": 1.9,
-      "holders": 412
+      "holders": 412,
+      "image": "coins/PETWO.svg",
+      "card": [
+        "#214a25",
+        "#449c6d"
+      ]
     },
     {
       "id": "coin_gx_dune_mill",
@@ -1038,7 +1602,12 @@
       "tone": "neutral",
       "price": 7.65,
       "change24h": -0.7,
-      "holders": 880
+      "holders": 880,
+      "image": "coins/DUNMI.svg",
+      "card": [
+        "#2a2942",
+        "#6b568a"
+      ]
     },
     {
       "id": "coin_gx_bramble_salon",
@@ -1048,7 +1617,12 @@
       "tone": "ink",
       "price": 7.99,
       "change24h": -4.2,
-      "holders": 580
+      "holders": 580,
+      "image": "coins/BRASA.svg",
+      "card": [
+        "#232a48",
+        "#564997"
+      ]
     },
     {
       "id": "coin_gx_umber_maison",
@@ -1058,7 +1632,12 @@
       "tone": "accent",
       "price": 8.54,
       "change24h": 7.7,
-      "holders": 845
+      "holders": 845,
+      "image": "coins/UMBMA.svg",
+      "card": [
+        "#5a1411",
+        "#bc6124"
+      ]
     },
     {
       "id": "coin_gx_quill_works",
@@ -1068,7 +1647,12 @@
       "tone": "sage",
       "price": 6.51,
       "change24h": -4.5,
-      "holders": 421
+      "holders": 421,
+      "image": "coins/QUIWO.svg",
+      "card": [
+        "#1d4e27",
+        "#3ea377"
+      ]
     },
     {
       "id": "coin_gx_sorrel_guild",
@@ -1078,7 +1662,12 @@
       "tone": "neutral",
       "price": 1.67,
       "change24h": -4.7,
-      "holders": 719
+      "holders": 719,
+      "image": "coins/SORGU.svg",
+      "card": [
+        "#233b48",
+        "#4a6096"
+      ]
     },
     {
       "id": "coin_gx_delphine_collective",
@@ -1088,7 +1677,12 @@
       "tone": "ink",
       "price": 8.99,
       "change24h": -3.5,
-      "holders": 488
+      "holders": 488,
+      "image": "coins/DELCO.svg",
+      "card": [
+        "#2b204c",
+        "#7c429e"
+      ]
     },
     {
       "id": "coin_gx_fable_works",
@@ -1098,7 +1692,12 @@
       "tone": "accent",
       "price": 7.11,
       "change24h": 7.6,
-      "holders": 286
+      "holders": 286,
+      "image": "coins/FABWO.svg",
+      "card": [
+        "#591213",
+        "#bb5a25"
+      ]
     },
     {
       "id": "coin_gx_ember_works",
@@ -1108,7 +1707,12 @@
       "tone": "sage",
       "price": 2.1,
       "change24h": 8.4,
-      "holders": 388
+      "holders": 388,
+      "image": "coins/EMBWO.svg",
+      "card": [
+        "#1c4f42",
+        "#3a99a6"
+      ]
     },
     {
       "id": "coin_gx_dune_row",
@@ -1118,7 +1722,12 @@
       "tone": "neutral",
       "price": 2.53,
       "change24h": 4,
-      "holders": 657
+      "holders": 657,
+      "image": "coins/DUNRO.svg",
+      "card": [
+        "#252f46",
+        "#544f92"
+      ]
     },
     {
       "id": "coin_gx_bramble_house",
@@ -1128,7 +1737,12 @@
       "tone": "ink",
       "price": 3.35,
       "change24h": 3.6,
-      "holders": 576
+      "holders": 576,
+      "image": "coins/BRAHO.svg",
+      "card": [
+        "#302348",
+        "#814a96"
+      ]
     },
     {
       "id": "coin_gx_xanthe_mill",
@@ -1138,7 +1752,12 @@
       "tone": "accent",
       "price": 5.23,
       "change24h": 1.4,
-      "holders": 490
+      "holders": 490,
+      "image": "coins/XANMI.svg",
+      "card": [
+        "#562315",
+        "#b57c2c"
+      ]
     },
     {
       "id": "coin_gx_thistle_salon",
@@ -1148,7 +1767,12 @@
       "tone": "sage",
       "price": 4.18,
       "change24h": 3.2,
-      "holders": 784
+      "holders": 784,
+      "image": "coins/THISA.svg",
+      "card": [
+        "#1b5028",
+        "#39a77b"
+      ]
     },
     {
       "id": "coin_gx_calla_society",
@@ -1158,7 +1782,12 @@
       "tone": "neutral",
       "price": 7.09,
       "change24h": 8.4,
-      "holders": 298
+      "holders": 298,
+      "image": "coins/CALSO.svg",
+      "card": [
+        "#282c43",
+        "#60538d"
+      ]
     },
     {
       "id": "coin_gx_amber_salon",
@@ -1168,7 +1797,12 @@
       "tone": "ink",
       "price": 8.13,
       "change24h": -1,
-      "holders": 733
+      "holders": 733,
+      "image": "coins/AMBSA.svg",
+      "card": [
+        "#281e4d",
+        "#783fa2"
+      ]
     },
     {
       "id": "coin_gx_cobalt_studio",
@@ -1178,7 +1812,12 @@
       "tone": "accent",
       "price": 5.75,
       "change24h": 3.2,
-      "holders": 311
+      "holders": 311,
+      "image": "coins/COBST.svg",
+      "card": [
+        "#552216",
+        "#b2772e"
+      ]
     },
     {
       "id": "coin_gx_delphine_salon",
@@ -1188,7 +1827,12 @@
       "tone": "sage",
       "price": 5.63,
       "change24h": -4.3,
-      "holders": 325
+      "holders": 325,
+      "image": "coins/DELSA.svg",
+      "card": [
+        "#1b5034",
+        "#39a795"
+      ]
     },
     {
       "id": "coin_gx_cordelia_row",
@@ -1198,7 +1842,12 @@
       "tone": "neutral",
       "price": 4.11,
       "change24h": 8.4,
-      "holders": 571
+      "holders": 571,
+      "image": "coins/CORRO.svg",
+      "card": [
+        "#283143",
+        "#56548c"
+      ]
     },
     {
       "id": "coin_gx_ivory_house",
@@ -1208,7 +1857,12 @@
       "tone": "ink",
       "price": 6.92,
       "change24h": 4.9,
-      "holders": 232
+      "holders": 232,
+      "image": "coins/IVOHO.svg",
+      "card": [
+        "#1f294d",
+        "#4d40a0"
+      ]
     },
     {
       "id": "coin_gx_amber_parlour",
@@ -1218,7 +1872,12 @@
       "tone": "accent",
       "price": 8.59,
       "change24h": -1.1,
-      "holders": 258
+      "holders": 258,
+      "image": "coins/AMBPA.svg",
+      "card": [
+        "#5a1148",
+        "#be235e"
+      ]
     },
     {
       "id": "coin_gx_calla_mill",
@@ -1228,7 +1887,12 @@
       "tone": "sage",
       "price": 1.95,
       "change24h": 6.6,
-      "holders": 745
+      "holders": 745,
+      "image": "coins/CALMI.svg",
+      "card": [
+        "#204b32",
+        "#439d8a"
+      ]
     },
     {
       "id": "coin_gx_willow_parlour",
@@ -1238,7 +1902,12 @@
       "tone": "neutral",
       "price": 1.58,
       "change24h": 8.3,
-      "holders": 335
+      "holders": 335,
+      "image": "coins/WILPA.svg",
+      "card": [
+        "#263545",
+        "#505691"
+      ]
     },
     {
       "id": "coin_gx_amber_atelier",
@@ -1248,7 +1917,12 @@
       "tone": "ink",
       "price": 2.74,
       "change24h": 4.2,
-      "holders": 894
+      "holders": 894,
+      "image": "coins/AMBAT.svg",
+      "card": [
+        "#2b2249",
+        "#79479a"
+      ]
     },
     {
       "id": "coin_gx_delphine_house",
@@ -1258,7 +1932,12 @@
       "tone": "accent",
       "price": 2.81,
       "change24h": -0.3,
-      "holders": 284
+      "holders": 284,
+      "image": "coins/DELHO.svg",
+      "card": [
+        "#5a113a",
+        "#bc2442"
+      ]
     },
     {
       "id": "coin_gx_quill_house",
@@ -1268,7 +1947,12 @@
       "tone": "sage",
       "price": 6.5,
       "change24h": 1.8,
-      "holders": 442
+      "holders": 442,
+      "image": "coins/QUIHO.svg",
+      "card": [
+        "#1b5033",
+        "#38a894"
+      ]
     },
     {
       "id": "coin_gx_juniper_studio",
@@ -1278,7 +1962,12 @@
       "tone": "neutral",
       "price": 6.66,
       "change24h": 7.8,
-      "holders": 552
+      "holders": 552,
+      "image": "coins/JUNST.svg",
+      "card": [
+        "#273845",
+        "#515e90"
+      ]
     },
     {
       "id": "coin_gx_fable_row",
@@ -1288,7 +1977,12 @@
       "tone": "ink",
       "price": 8.24,
       "change24h": 6.1,
-      "holders": 376
+      "holders": 376,
+      "image": "coins/FABRO.svg",
+      "card": [
+        "#20284b",
+        "#54439d"
+      ]
     },
     {
       "id": "coin_gx_saffron_mill",
@@ -1298,7 +1992,12 @@
       "tone": "accent",
       "price": 4.54,
       "change24h": 7,
-      "holders": 867
+      "holders": 867,
+      "image": "coins/SAFMI.svg",
+      "card": [
+        "#551616",
+        "#b15f2f"
+      ]
     },
     {
       "id": "coin_gx_lumen_maison",
@@ -1308,7 +2007,12 @@
       "tone": "sage",
       "price": 1.42,
       "change24h": 5.8,
-      "holders": 540
+      "holders": 540,
+      "image": "coins/LUMMA.svg",
+      "card": [
+        "#1f4c42",
+        "#41919f"
+      ]
     },
     {
       "id": "coin_gx_fable_guild",
@@ -1318,7 +2022,12 @@
       "tone": "neutral",
       "price": 1.7,
       "change24h": 4.2,
-      "holders": 341
+      "holders": 341,
+      "image": "coins/FABGU.svg",
+      "card": [
+        "#253146",
+        "#4d4d93"
+      ]
     },
     {
       "id": "coin_gx_wren_house",
@@ -1328,7 +2037,12 @@
       "tone": "ink",
       "price": 5.01,
       "change24h": 8.8,
-      "holders": 194
+      "holders": 194,
+      "image": "coins/WREHO.svg",
+      "card": [
+        "#1c284f",
+        "#4a3ba5"
+      ]
     },
     {
       "id": "coin_gx_cordelia_mill",
@@ -1338,7 +2052,12 @@
       "tone": "accent",
       "price": 3.16,
       "change24h": 4.7,
-      "holders": 355
+      "holders": 355,
+      "image": "coins/CORMI.svg",
+      "card": [
+        "#5a1d11",
+        "#bc7524"
+      ]
     },
     {
       "id": "coin_gx_garnet_guild",
@@ -1348,7 +2067,12 @@
       "tone": "sage",
       "price": 7.17,
       "change24h": -4.6,
-      "holders": 843
+      "holders": 843,
+      "image": "coins/GARGU.svg",
+      "card": [
+        "#1b503f",
+        "#38a3a8"
+      ]
     },
     {
       "id": "coin_gx_azalea_row",
@@ -1358,7 +2082,12 @@
       "tone": "neutral",
       "price": 6.75,
       "change24h": 0.6,
-      "holders": 758
+      "holders": 758,
+      "image": "coins/AZARO.svg",
+      "card": [
+        "#282744",
+        "#6a528e"
+      ]
     },
     {
       "id": "coin_gx_kestrel_row",
@@ -1368,7 +2097,12 @@
       "tone": "ink",
       "price": 1.74,
       "change24h": 5.6,
-      "holders": 615
+      "holders": 615,
+      "image": "coins/KESRO.svg",
+      "card": [
+        "#2c2249",
+        "#7a4899"
+      ]
     },
     {
       "id": "coin_gx_foxglove_mill",
@@ -1378,7 +2112,12 @@
       "tone": "accent",
       "price": 6.62,
       "change24h": -4.3,
-      "holders": 791
+      "holders": 791,
+      "image": "coins/FOXMI.svg",
+      "card": [
+        "#571442",
+        "#b72a56"
+      ]
     },
     {
       "id": "coin_gx_calla_works",
@@ -1388,7 +2127,12 @@
       "tone": "sage",
       "price": 7.39,
       "change24h": 7.3,
-      "holders": 598
+      "holders": 598,
+      "image": "coins/CALWO.svg",
+      "card": [
+        "#1b503f",
+        "#38a3a8"
+      ]
     },
     {
       "id": "coin_gx_calla_salon",
@@ -1398,7 +2142,12 @@
       "tone": "neutral",
       "price": 8.57,
       "change24h": 6.3,
-      "holders": 553
+      "holders": 553,
+      "image": "coins/CALSA.svg",
+      "card": [
+        "#283243",
+        "#53548d"
+      ]
     },
     {
       "id": "coin_gx_lumen_works",
@@ -1408,7 +2157,12 @@
       "tone": "ink",
       "price": 7.44,
       "change24h": 6.4,
-      "holders": 607
+      "holders": 607,
+      "image": "coins/LUMWO.svg",
+      "card": [
+        "#1f1e4d",
+        "#653fa2"
+      ]
     },
     {
       "id": "coin_gx_quill_guild",
@@ -1418,7 +2172,12 @@
       "tone": "accent",
       "price": 3.11,
       "change24h": 1.8,
-      "holders": 263
+      "holders": 263,
+      "image": "coins/QUIGU.svg",
+      "card": [
+        "#581339",
+        "#b92742"
+      ]
     }
   ],
   "quests": [

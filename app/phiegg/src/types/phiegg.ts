@@ -207,7 +207,9 @@ export interface Show {
 export interface ShowsData { season: string; poses: Pose[]; shows: Show[] }
 
 // ── Economy: coins, pools, quests ──────────────────────────────
-export interface Coin { id: ID; symbol: string; name: string; clubId: ID | null; tone: Tone; price: number; change24h: number; holders: number }
+export interface Coin { id: ID; symbol: string; name: string; clubId: ID | null; tone: Tone; price: number; change24h: number; holders: number;
+  /** The round coin (public/coins), and the two colours of the card beside it; a platform coin (OGY, $UM, $EGG) says what it is for. */
+  image?: string; card?: [string, string]; platform?: boolean; role?: string }
 /** Liquidity behind a pool: a PHI / club-coin pair that takes USD stakes. */
 export interface Liquidity { id: ID; name: string; pair: [string, string]; tone: Tone; tvl: number; apr: number; stakers: number; poolId?: ID }
 export interface Quest { id: ID; title: string; worldId: ID; sponsorClubId: ID; tone: Tone; reward: number; rewardCoin: string; entrants: number; progress: number; endsAt: ISODate; kind: 'sponsored' | 'open' }

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="HOVR"><defs>
+<linearGradient id="rim" x1=".12" y1=".05" x2=".88" y2=".95"><stop offset="0" stop-color="#d0cdea"/><stop offset=".5" stop-color="#857ec9"/><stop offset="1" stop-color="#322c68"/></linearGradient>
+<linearGradient id="bevel" x1=".88" y1=".95" x2=".12" y2=".05"><stop offset="0" stop-color="#d0cdea"/><stop offset=".55" stop-color="#857ec9"/><stop offset="1" stop-color="#322c68"/></linearGradient>
+<radialGradient id="face" cx=".36" cy=".3" r=".95"><stop offset="0" stop-color="#aea9db"/><stop offset=".55" stop-color="#7168c0"/><stop offset="1" stop-color="#3f3885"/></radialGradient>
+<linearGradient id="gf" gradientUnits="userSpaceOnUse" x1="0" y1="64" x2="0" y2="-64"><stop offset="0" stop-color="#dddbf0"/><stop offset=".55" stop-color="#938ccf"/><stop offset="1" stop-color="#352f6f"/></linearGradient>
+<linearGradient id="glare" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".45" stop-color="#fff" stop-opacity=".08"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<filter id="soft" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="7"/></filter><filter id="fine"><feGaussianBlur stdDeviation="1.2"/></filter>
+<clipPath id="disc"><circle cx="128" cy="122" r="101"/></clipPath></defs>
+<ellipse cx="128" cy="238" rx="84" ry="9" fill="#000" opacity=".3" filter="url(#soft)"/>
+<circle cx="128" cy="122" r="118" fill="url(#rim)"/>
+<circle cx="128" cy="122" r="116.5" fill="none" stroke="#322c68" stroke-width="3" stroke-dasharray="1.6 2.4" opacity=".55"/>
+<circle cx="128" cy="122" r="111" fill="url(#bevel)"/>
+<circle cx="128" cy="122" r="104" fill="#322c68" opacity=".5"/>
+<circle cx="128" cy="122" r="101" fill="url(#face)"/>
+<circle cx="128" cy="122" r="90" fill="none" stroke="#1f1b41" stroke-opacity=".38" stroke-width="2.2" transform="translate(1.2 1.4)"/><circle cx="128" cy="122" r="90" fill="none" stroke="#aea9db" stroke-width="2"/>
+<g transform="translate(128 122)"><g stroke-linecap="round" stroke-linejoin="round"><g transform="translate(8.5 10.5)"><text x="0" y="18.2" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="52" fill="#28225e" stroke="#28225e" stroke-width="3">HOVR</text></g><g transform="translate(6.8 8.4)"><text x="0" y="18.2" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="52" fill="#2e276d" stroke="#2e276d" stroke-width="3">HOVR</text></g><g transform="translate(5.1 6.300000000000001)"><text x="0" y="18.2" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="52" fill="#352d7c" stroke="#352d7c" stroke-width="3">HOVR</text></g><g transform="translate(3.4 4.2)"><text x="0" y="18.2" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="52" fill="#3b328b" stroke="#3b328b" stroke-width="3">HOVR</text></g><g transform="translate(1.7 2.1)"><text x="0" y="18.2" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="52" fill="#41379a" stroke="#41379a" stroke-width="3">HOVR</text></g><text x="0" y="18.2" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="52" fill="url(#gf)" stroke="url(#gf)" stroke-width="3">HOVR</text></g></g>
+<g clip-path="url(#disc)"><path d="M0 0 L256 0 L0 256 Z" fill="url(#glare)"/></g>
+<path d="M44 70 A92 92 0 0 1 150 18" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="3.5" stroke-linecap="round" filter="url(#fine)"/>
+<path d="M214 176 A92 92 0 0 1 118 226" fill="none" stroke="#fff" stroke-opacity=".18" stroke-width="3" stroke-linecap="round" filter="url(#fine)"/>
+</svg>

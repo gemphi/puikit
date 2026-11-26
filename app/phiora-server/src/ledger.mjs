@@ -1,9 +1,11 @@
 // Server-owned wallet. Same coins, rates and fee as app/phi-kit/src/wallet.ts so the client's
 // optimistic update and the server's answer agree; the server's answer always wins.
-export const COINS = ['usd', 'egg', 'sum', 'eth'];
-export const USD = { usd: 1, egg: 0.25, sum: 6, eth: 3200 };
-export const LABEL = { usd: 'USD', egg: '$EGG', sum: '$UM', eth: 'ETH' };
-export const START = { usd: 2500, egg: 12000, sum: 140, eth: 0.42 };
+// OGY is Phiogy's coin: earned (quests, what a person does), spent (themes, grounds, effects), never swapped or bought.
+export const COINS = ['usd', 'egg', 'sum', 'eth', 'ogy'];
+export const EARNED_ONLY = ['ogy'];
+export const USD = { usd: 1, egg: 0.25, sum: 6, eth: 3200, ogy: 0.05 };
+export const LABEL = { usd: 'USD', egg: '$EGG', sum: '$UM', eth: 'ETH', ogy: 'OGY' };
+export const START = { usd: 2500, egg: 12000, sum: 140, eth: 0.42, ogy: 500 };
 export const FEE = 0.003;
 const HISTORY_MAX = 200;
 /** Demo faucet: total USD-equivalent a user may receive through /wallet/earn. */
@@ -17,6 +19,8 @@ const round = (v) => Math.round(v * 1e8) / 1e8;
 
 export const ensureWallet = (u) => {
   if (!u.wallet) u.wallet = { ...START };
+  // A wallet made before a coin was added gets that coin's start.
+  for (const c of COINS) if (typeof u.wallet[c] !== 'number') u.wallet[c] = START[c];
   if (!u.history) u.history = [];
   if (!u.owned) u.owned = {};
   if (typeof u.earned !== 'number') u.earned = 0;
@@ -29,6 +33,7 @@ export const quote = (amt, from, to, fee = FEE) => (amt * USD[from] / USD[to]) *
 export function swap(u, { amt, from, to }) {
   ensureWallet(u); amt = num(amt);
   if (!isCoin(from) || !isCoin(to) || from === to) throw new LedgerError('bad_pair', 'Pick two different coins.');
+  if (EARNED_ONLY.includes(from) || EARNED_ONLY.includes(to)) throw new LedgerError('earned_only', LABEL.ogy + ' is earned and spent, not swapped.');
   if (!(amt > 0) || !Number.isFinite(amt)) throw new LedgerError('bad_amount', 'Amount must be positive.');
   if (amt > u.wallet[from] + 1e-9) throw new LedgerError('insufficient', 'Not enough ' + LABEL[from] + '.');
   const got = quote(amt, from, to);

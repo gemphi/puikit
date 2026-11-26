@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "data:deepen": "node scripts/deepen-data.mjs",
+    "data:coins": "node scripts/coin-art.mjs",
     "data:brands": "node scripts/brands.mjs && node scripts/hosts-casts.mjs",
     "data:check": "node scripts/catalog.mjs && node scripts/check-relations.mjs",
     "data:audit": "node scripts/audit-data.mjs",

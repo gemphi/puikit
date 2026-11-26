@@ -13,7 +13,7 @@
    "figures": [{ "label": "lsColFloor", "value": "{live.floor}" }, { "label": "lsColVol", "value": "{live.vol}" }, { "label": "lsColValue", "value": "{live.total}" }] },
   "quest": { "layout": "tile", "ratio": "16/8", "animate": true, "title": "{title}", "sub": "{worldId}", "badge": ["{reward} {rewardCoin}"], "tone": "tone", "club": "sponsorClubId", "world": "worldId",
    "progress": { "field": "progress", "note": "Sponsored by {sponsorClubId}" }, "figures": ["reward", "entrants", "endsAt"], "act": "quest" },
-  "coin": { "layout": "row", "mark": "clubId", "title": "{symbol}", "sub": "{name}", "aside": "{price} · {change24h}", "figures": ["holders"], "act": "coin" },
+  "coin": { "layout": "coin", "mosaic": false, "cols": 3, "act": "coin" },
   "store": { "layout": "tile", "ratio": "5/4", "title": "{name}", "sub": "{tagline}", "badge": ["{looks.length} looks"], "tone": "clubId.tone", "club": "clubId" },
   "cast": { "layout": "tile", "ratio": "5/4", "title": "{title}", "sub": "{kind} · {worldId}", "badge": ["{plays} plays"], "flag": { "field": "live", "label": "live" }, "tone": "worldId.tone", "club": "clubId", "world": "worldId" },
   "feedPost": { "layout": "post" },

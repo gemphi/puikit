@@ -148,3 +148,9 @@
 | `Pressable` (cards, nav) | Clickable cards and menu rows | `card`, `column`, `current`, `accent` |
 | `Td` (intent) | Coloured and numeric cells | `intent`, `numeric` |
 
+
+## Round 33 additions
+| Component | Description | Props & Features |
+|:---|:---|:---|
+| `BankCard` | A bank card face from any two colours: weave, light, ring, chip and contactless (`display/card/bank/chip.svg`, `contactless.svg`), a picture laid on its right | `from`, `to`, `art`, `label`, `title`, `number`, `note`, `name`, `value`, `change` ({ text, up }), `onClick` |
+| `Text` (size) | Size from the parent's stylesheet | `size="inherit"` |
