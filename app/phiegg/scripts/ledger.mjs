@@ -23,16 +23,29 @@ const rndOf = (seed) => { let x = hash(seed) || 1; return () => { x ^= x << 13; 
 // What happens around a sale on a marketplace, besides the sale: listing it, changing the price, taking the listing
 // down, bids and offers on it. None of them moves the item, so the holders and the owner stay as the hops made them.
 // It draws from a run of its own, so the sales, transfers and owners written before are the same as they were.
+// A listing is the doing of whoever held the item that day (`hands`: who took it and when, the oldest first); a price
+// change and a cancelled listing follow a listing, by the same holder, while they still hold it. A bid or an offer
+// comes from anybody but the holder of the day.
 const AROUND = ['list', 'bid', 'price', 'cancel', 'offer'];
-function around(ev, count, rnd, pick, owner, price, from, to) {
-  for (let n = count; n < MIN_EVENTS; n++) {
-    const at = new Date(from + rnd() * Math.max(day, to - from)).toISOString(); const kind = AROUND[n % AROUND.length];
-    if (kind === 'list') ev('list', { fromId: owner, priceUsd: Math.round(price * (1 + rnd() * 0.25)), at });
-    else if (kind === 'bid') ev('bid', { fromId: pick(), priceUsd: Math.round(price * (0.7 + rnd() * 0.25)), at });
-    else if (kind === 'price') ev('price', { fromId: owner, priceUsd: Math.round(price * (0.85 + rnd() * 0.3)), at });
-    else if (kind === 'cancel') ev('cancel', { fromId: owner, priceUsd: Math.round(price), at });
-    else ev('offer', { fromId: pick(), toId: owner, priceUsd: Math.round(price * (0.75 + rnd() * 0.2)), at });
-  }
+const MOVE = new Set(['mint', 'sale', 'transfer', 'swap']);
+const iso = (ms) => new Date(ms).toISOString();
+// Another item than this one, for a swap: nothing is traded for itself.
+const otherOf = (list, rnd, id) => { const i = Math.floor(rnd() * list.length); return (list[i].id === id ? list[(i + 1) % list.length] : list[i]).id; };
+function around(ev, count, rnd, pick, hands, price, from, to) {
+  const first = hands[0].at; const span = Math.max(day, to - Math.max(from, first));
+  const when = () => Math.max(from, first) + rnd() * span;
+  const tenure = (at) => { let i = 0; while (i + 1 < hands.length && hands[i + 1].at <= at) i++; return { who: hands[i].who, end: Math.max(at, hands[i + 1]?.at ?? to) }; };
+  const other = (who) => { let b = pick(); for (let n = 0; b === who && n < 8; n++) b = pick(); return b; };
+  let open = null;   // the listing a price change or a cancel belongs to
+  const listing = () => { const at = when(); return { at, ...tenure(at) }; };
+  const KIND = {
+    list: () => { open = listing(); ev('list', { fromId: open.who, priceUsd: Math.round(price * (1 + rnd() * 0.25)), at: iso(open.at) }); },
+    bid: () => { const at = when(); ev('bid', { fromId: other(tenure(at).who), priceUsd: Math.round(price * (0.7 + rnd() * 0.25)), at: iso(at) }); },
+    price: () => { open ??= listing(); ev('price', { fromId: open.who, priceUsd: Math.round(price * (0.85 + rnd() * 0.3)), at: iso(open.at + rnd() * 0.5 * (open.end - open.at)) }); },
+    cancel: () => { open ??= listing(); ev('cancel', { fromId: open.who, priceUsd: Math.round(price), at: iso(open.at + (0.5 + rnd() * 0.45) * (open.end - open.at)) }); open = null; },
+    offer: () => { const at = when(); const who = tenure(at).who; ev('offer', { fromId: other(who), toId: who, priceUsd: Math.round(price * (0.75 + rnd() * 0.2)), at: iso(at) }); },
+  };
+  for (let n = count; n < MIN_EVENTS; n++) KIND[AROUND[n % AROUND.length]]();
 }
 const doc = read('sales.json'); const ls = read('ls.json'); const stores = read('stores.json');
 const kept = doc.sales.filter((x) => !String(x.id).startsWith('lg_'));
@@ -58,9 +71,10 @@ for (const it of items) {
   let k = 0; const ev = (event, extra) => added.push({ id: `lg_${it.id}_${k++}`, event, itemKind: it.kind, itemId: it.id, ...extra });
   const held = new Set(rows.map((x) => x.toId).filter(Boolean));
   let owner = [...rows].reverse().find((x) => x.toId && x.event !== 'offer')?.toId;
+  const hands = rows.filter((x) => x.toId && MOVE.has(x.event)).map((x) => ({ who: x.toId, at: Date.parse(x.at) }));
   let price = [...rows].reverse().find((x) => x.priceUsd)?.priceUsd || it.usd || 120;
   let t = rows.length ? Date.parse(rows[rows.length - 1].at) : Math.min(END - 60 * day, Date.parse(it.minted ?? '2026-08-01'));
-  if (!owner) { owner = it.by ?? pick(); ev('mint', { toId: owner, priceUsd: 0, at: new Date(t).toISOString() }); held.add(owner); }
+  if (!owner) { owner = it.by ?? pick(); ev('mint', { toId: owner, priceUsd: 0, at: new Date(t).toISOString() }); held.add(owner); hands.push({ who: owner, at: t }); }
   const hops = Math.max(0, FLOOR - held.size);
   // The time left is shared between the hops; an item whose ledger already reaches the last day moves by the hour.
   const step = hops ? Math.max(36e5, (END - t) / (hops + 1)) : 0;
@@ -72,11 +86,12 @@ for (const it of items) {
     if (rnd() < 0.2) ev('offer', { fromId: buyer, toId: owner, priceUsd: Math.round(price * 0.92), at: new Date(Date.parse(at) - 6 * 36e5).toISOString() });
     const moved = rnd() < 0.85 ? 'sale' : 'transfer';
     // Some of the hands it changed without a price were a swap: it was traded for another look of the buyer's.
-    if (moved === 'transfer' && more() < 0.6) ev('swap', { fromId: owner, toId: buyer, priceUsd: 0, forItemId: items[Math.floor(more() * items.length)].id, at });
+    if (moved === 'transfer' && more() < 0.6) ev('swap', { fromId: owner, toId: buyer, priceUsd: 0, forItemId: otherOf(items, more, it.id), at });
     else ev(moved, { fromId: owner, toId: buyer, priceUsd: Math.round(price), at });
-    owner = buyer; held.add(buyer);
+    owner = buyer; held.add(buyer); hands.push({ who: buyer, at: Date.parse(at) });
   }
-  around(ev, rows.length + k, more, pick2, owner, price, t0, END);
+  if (!hands.length) hands.push({ who: owner, at: t0 });
+  around(ev, rows.length + k, more, pick2, hands.sort((a, b) => a.at - b.at), price, t0, END);
 }
 
 doc.sales = [...kept, ...added].sort((a, b) => b.at.localeCompare(a.at));
@@ -100,12 +115,12 @@ for (const it of things) {
   const more = rndOf('around:' + it.id); const pick2 = () => people[Math.floor(more() * people.length)];
   let k = 0; const ev = (event, extra) => trail.push({ id: `tr_${it.id}_${k++}`, event, itemKind: it.kind, itemId: it.id, ...extra });
   const base = Math.max(1, it.usd || 20); const span = (120 + rnd() * 280) * day; const step = span / (FLOOR + 1); let t = END - span;
-  const iso = () => new Date(Math.min(t, END)).toISOString(); const fresh = (held) => { let b = pick(); for (let n = 0; held.has(b) && n < 64; n++) b = pick(); return b; };
+  const now = () => new Date(Math.min(t, END)).toISOString(); const fresh = (held) => { let b = pick(); for (let n = 0; held.has(b) && n < 64; n++) b = pick(); return b; };
   if (!it.holder && !it.open) {
     // Nobody holds it: it is listed, and people bid.
-    const lister = pick(); ev('list', { fromId: lister, priceUsd: Math.round(base), at: iso() }); const held = new Set([lister]);
-    for (let h = 1; h < FLOOR; h++) { t += step * (0.7 + rnd() * 0.6); const b = fresh(held); held.add(b); ev('offer', { fromId: b, priceUsd: Math.round(base * (0.7 + rnd() * 0.28)), at: iso() }); }
-    around(ev, k, more, pick2, lister, base, END - span, END);
+    const lister = pick(); ev('list', { fromId: lister, priceUsd: Math.round(base), at: now() }); const held = new Set([lister]);
+    for (let h = 1; h < FLOOR; h++) { t += step * (0.7 + rnd() * 0.6); const b = fresh(held); held.add(b); ev('offer', { fromId: b, priceUsd: Math.round(base * (0.7 + rnd() * 0.28)), at: now() }); }
+    around(ev, k, more, pick2, [{ who: lister, at: END - span }], base, END - span, END);
     continue;
   }
   // The hands it passed through, the last of them the holder its record names (a SUM names none).
@@ -113,17 +128,17 @@ for (const it of things) {
   for (let h = 0; h < FLOOR - (it.holder ? 1 : 0); h++) { const b = fresh(held); held.add(b); chain.push(b); }
   if (it.holder) chain.push(it.holder);
   let price = base * (0.55 + rnd() * 0.3); let owner = chain[0];
-  ev('mint', { toId: owner, priceUsd: 0, at: iso() });
+  ev('mint', { toId: owner, priceUsd: 0, at: now() }); const hands = [{ who: owner, at: Math.min(t, END) }];
   for (let h = 1; h < chain.length; h++) {
     t += step * (0.7 + rnd() * 0.6); const last = h === chain.length - 1;
     price = last ? base : Math.max(1, price * (0.95 + rnd() * 0.22));
     if (rnd() < 0.2) ev('offer', { fromId: chain[h], toId: owner, priceUsd: Math.round(price * 0.92), at: new Date(Math.min(t, END) - 6 * 36e5).toISOString() });
     const moved = rnd() < 0.85 ? 'sale' : 'transfer';
-    if (moved === 'transfer' && more() < 0.6) ev('swap', { fromId: owner, toId: chain[h], priceUsd: 0, forItemId: things[Math.floor(more() * things.length)].id, at: iso() });
-    else ev(moved, { fromId: owner, toId: chain[h], priceUsd: Math.round(price), at: iso() });
-    owner = chain[h];
+    if (moved === 'transfer' && more() < 0.6) ev('swap', { fromId: owner, toId: chain[h], priceUsd: 0, forItemId: otherOf(things, more, it.id), at: now() });
+    else ev(moved, { fromId: owner, toId: chain[h], priceUsd: Math.round(price), at: now() });
+    owner = chain[h]; hands.push({ who: owner, at: Math.min(t, END) });
   }
-  around(ev, k, more, pick2, owner, price, END - span, END);
+  around(ev, k, more, pick2, hands, price, END - span, END);
 }
 trail.sort((a, b) => b.at.localeCompare(a.at));
 writeFileSync(join(DATA, 'trail.json'), JSON.stringify({ sales: trail }));
