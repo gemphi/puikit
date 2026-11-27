@@ -62,7 +62,8 @@ export const Grid: React.FC<{ b: Block; onOpen: (it: GridItem) => void }> = ({ b
   const tabs = b.facet ? <Facet list={b.facet} value={facet} onChange={setFacet} /> : null;
   const more = b.more ? <More more={b.more} /> : null;
   // A lineup is faces standing in a row (`variant: "lineup"`): no switch, no cards.
-  if (b.variant === 'lineup') return <Lineup items={rows.map((r) => r.it)} onOpen={onOpen} />;
+  // `shape: "figure"`: whole standing figures on a clear ground (mannequins), no round frame.
+  if (b.variant === 'lineup') return <Lineup items={rows.map((r) => r.it)} onOpen={onOpen} figure={b.shape === 'figure'} />;
   // Lanes are their own layout (a pipeline by stage): no switch.
   if (b.laneSet) return <Stack direction="column" gap={3}>{tabs}{more}<LaneRow laneSet={b.laneSet} items={rows.map((r) => r.it)} card={(it, i) => card(it, i, false)} /></Stack>;
   const { mode, modes } = layoutOf(b, feedMode);

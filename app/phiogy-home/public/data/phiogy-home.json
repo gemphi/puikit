@@ -2,8 +2,8 @@
  "app": "phiogy-home",
  "start": "home",
  "bare": true,
- "width": "76rem",
- "_": "phiogy.com: the landing page. The people and hosts rows come from app/phiogy/public/data (room.json, host.json); the pictures are fresh captures of the web Phiogy (phiogy/shot/ in the media store).",
+ "width": "80rem",
+ "_": "phiogy.com, laid the way Discord lays its home: a top bar, a split hero with figures standing round the app, site cards that take turns, a band of running words, the call to come in with a lineup of figures, the footer. Pictures: fresh captures of the web Phiogy (media store phiogy/shot/) and the mannequins of Phiegg's home page (phiegg:home/dress/).",
  "nav": [
   {
    "id": "home",
@@ -16,12 +16,40 @@
    "title": "",
    "blocks": [
     {
+     "kind": "bar",
+     "items": [
+      {
+       "label": "Download",
+       "href": "https://phiegg.com/cdn/phiogy/phiogy-windows.zip"
+      },
+      {
+       "label": "Phiogy on the web",
+       "app": "phiogy"
+      },
+      {
+       "label": "Phiegg",
+       "href": "https://phiegg.com/"
+      },
+      {
+       "label": "Phiace",
+       "href": "https://phiace.ai/"
+      }
+     ],
+     "action": {
+      "label": "Open Phiogy",
+      "app": "phiogy"
+     }
+    },
+    {
      "kind": "hero",
-     "variant": "wide",
-     "ratio": "16/10",
+     "variant": "split",
+     "heading": "Your club, all in one place",
+     "body": "Phiogy is where clubs and their people hang out: rooms to write in, rooms to talk in, calls with camera and screen, and everyone one tap away.",
      "image": "cdn:phiogy/shot/room.webp",
-     "heading": "phiogy",
-     "subtitle": "Where your club hangs out: rooms to write in, rooms to talk in, and everyone one tap away.",
+     "figures": [
+      "phiegg:home/dress/dress-01-pose-01-phantom-gold.webp",
+      "phiegg:home/dress/dress-03-pose-02-orange-peel.webp"
+     ],
      "actions": [
       {
        "label": "Download for Windows",
@@ -35,181 +63,48 @@
     },
     {
      "kind": "hero",
+     "variant": "card",
      "heading": "A home for every club",
      "body": "Each club and company keeps a host of its own, with text rooms, voice rooms and its people. Join the hosts you follow, or make yours in a minute.",
-     "image": "cdn:phiogy/shot/host.webp",
-     "variant": "card"
+     "image": "cdn:phiogy/shot/host.webp"
     },
     {
      "kind": "hero",
+     "variant": "card",
      "heading": "Drop in and talk",
      "body": "Voice rooms are always open. Walk into the Lounge, see who is there, and start talking; nothing is kept.",
      "image": "cdn:phiogy/shot/voice.webp",
-     "flip": true,
-     "variant": "card"
+     "flip": true
     },
     {
      "kind": "hero",
+     "variant": "card",
      "heading": "Everyone is one tap away",
      "body": "Every face opens a profile: who they are, what they make and where they hang out. Message them, follow them, ask them to be friends.",
-     "image": "cdn:phiogy/shot/direct.webp",
-     "variant": "card"
+     "image": "cdn:phiogy/shot/direct.webp"
     },
     {
      "kind": "hero",
+     "variant": "card",
      "heading": "Find your people",
      "body": "Search anyone by name and start a conversation, or a call with camera, microphone and screen for up to 8 people.",
      "image": "cdn:phiogy/shot/people.webp",
-     "flip": true,
-     "variant": "card"
+     "flip": true
     },
     {
-     "kind": "grid",
-     "title": "Say hi to the village",
-     "toolbar": false,
+     "kind": "marquee",
      "items": [
-      {
-       "title": "Lora Vale",
-       "sub": "Host of Lora Land",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-00.webp",
-        "cols": 8,
-        "index": 1
-       }
-      },
-      {
-       "title": "Kairo Finch",
-       "sub": "World builder",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-00.webp",
-        "cols": 8,
-        "index": 9
-       }
-      },
-      {
-       "title": "Mina Okoro",
-       "sub": "Club lead, Bold Pups",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-00.webp",
-        "cols": 8,
-        "index": 18
-       }
-      },
-      {
-       "title": "Tavi Rune",
-       "sub": "Designer",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-00.webp",
-        "cols": 8,
-        "index": 27
-       }
-      },
-      {
-       "title": "Sol Adeyemi",
-       "sub": "Engineer",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-00.webp",
-        "cols": 8,
-        "index": 36
-       }
-      },
-      {
-       "title": "Wren Calloway",
-       "sub": "Member",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-00.webp",
-        "cols": 8,
-        "index": 44
-       }
-      },
-      {
-       "title": "Inès Valcourt",
-       "sub": "Member",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-03.webp",
-        "cols": 8,
-        "index": 62
-       }
-      }
-     ],
-     "variant": "lineup"
-    },
-    {
-     "kind": "grid",
-     "title": "Hosts to join",
-     "toolbar": false,
-     "items": [
-      {
-       "title": "Opal Atelier",
-       "sub": "#front-row, #drops, looks",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-06.webp",
-        "cols": 8,
-        "index": 2
-       }
-      },
-      {
-       "title": "The Swan Salon",
-       "sub": "#foyer, Swan Lake Pavilion, Lounge",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-07.webp",
-        "cols": 8,
-        "index": 48
-       }
-      },
-      {
-       "title": "Lynx Lab",
-       "sub": "#general, Lumen Mesa, Lounge",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-02.webp",
-        "cols": 8,
-        "index": 12
-       }
-      },
-      {
-       "title": "Runway Commons",
-       "sub": "#commons, Lounge",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-02.webp",
-        "cols": 8,
-        "index": 17
-       }
-      },
-      {
-       "title": "Chrome Cherubs Host",
-       "sub": "#welcome, #rules, #announcements",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-06.webp",
-        "cols": 8,
-        "index": 7
-       }
-      },
-      {
-       "title": "Gilt Gazelles Host",
-       "sub": "#welcome, #rules, #announcements",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-02.webp",
-        "cols": 8,
-        "index": 53
-       }
-      },
-      {
-       "title": "Orchid Stags Host",
-       "sub": "#welcome, #rules, #announcements",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-06.webp",
-        "cols": 8,
-        "index": 7
-       }
-      }
-     ],
-     "variant": "lineup"
+      "talk",
+      "call",
+      "share",
+      "make",
+      "hang out"
+     ]
     },
     {
      "kind": "hero",
      "variant": "wide",
-     "heading": "Come hang out",
-     "subtitle": "Phiogy for Windows, or straight in your browser on a Mac. Unzip it and open phiogy.exe: nothing to install. Windows 10 or 11, with DirectX 11.",
+     "heading": "That is the end of the page. Come hang out.",
      "actions": [
       {
        "label": "Download for Windows",
@@ -218,6 +113,99 @@
       {
        "label": "Open Phiogy in your browser",
        "app": "phiogy"
+      }
+     ]
+    },
+    {
+     "kind": "grid",
+     "variant": "lineup",
+     "shape": "figure",
+     "toolbar": false,
+     "items": [
+      {
+       "title": "",
+       "image": "phiegg:home/dress/dress-01-pose-01-violet-rain.webp"
+      },
+      {
+       "title": "",
+       "image": "phiegg:home/dress/dress-03-pose-01-bubblegum.webp"
+      },
+      {
+       "title": "",
+       "image": "phiegg:home/dress/dress-03-pose-02-ice.webp"
+      },
+      {
+       "title": "",
+       "image": "phiegg:home/dress/dress-01-pose-01-beach-day.webp"
+      },
+      {
+       "title": "",
+       "image": "phiegg:home/dress/dress-03-pose-03-watermelon.webp"
+      },
+      {
+       "title": "",
+       "image": "phiegg:home/dress/dress-03-pose-01-night-sky.webp"
+      },
+      {
+       "title": "",
+       "image": "phiegg:home/dress/dress-03-pose-02-camo.webp"
+      }
+     ]
+    },
+    {
+     "kind": "footer",
+     "body": "The village of creators: clubs, their rooms and their people, on your desk and in your browser.",
+     "columns": [
+      {
+       "title": "Phiogy",
+       "items": [
+        {
+         "label": "Download for Windows",
+         "href": "https://phiegg.com/cdn/phiogy/phiogy-windows.zip"
+        },
+        {
+         "label": "Open in your browser",
+         "app": "phiogy"
+        }
+       ]
+      },
+      {
+       "title": "Phiace",
+       "items": [
+        {
+         "label": "Phiegg",
+         "href": "https://phiegg.com/"
+        },
+        {
+         "label": "Phiace",
+         "href": "https://phiace.ai/"
+        },
+        {
+         "label": "Phipad",
+         "href": "https://phipad.com/"
+        },
+        {
+         "label": "Phisum",
+         "href": "https://phisum.com/"
+        }
+       ]
+      },
+      {
+       "title": "Worlds",
+       "items": [
+        {
+         "label": "Bold Pups",
+         "href": "https://boldpups.xyz/"
+        },
+        {
+         "label": "Epic Pods",
+         "href": "https://epicpods.xyz/"
+        },
+        {
+         "label": "Bozo City",
+         "href": "https://bozo.city/"
+        }
+       ]
       }
      ]
     }

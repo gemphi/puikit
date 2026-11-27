@@ -102,8 +102,8 @@ export const More: React.FC<{ more: { label: string; view?: string; href?: strin
 
 /** A grid's `variant: "lineup"`: its faces stand side by side on the theme's sweep (kit.module.scss .lineup), each
  *  a round picture (its sprite or file) with its name and line, no card round it. */
-export const Lineup: React.FC<{ items: GridItem[]; onOpen: (it: GridItem) => void }> = ({ items, onOpen }) => (
-  <div className={s.lineup}>
+export const Lineup: React.FC<{ items: GridItem[]; onOpen: (it: GridItem) => void; figure?: boolean }> = ({ items, onOpen, figure }) => (
+  <div className={figure ? s.lineup + ' ' + s.lineupFigures : s.lineup}>
     {items.map((it, i) => (
       <button key={i} type="button" className={s.lineupFace} onClick={() => onOpen(it)} style={{ background: 'none', border: 0, color: 'inherit', font: 'inherit', cursor: 'pointer' }}>
         <span className={s.lineupPic}>

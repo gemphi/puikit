@@ -11,6 +11,7 @@ import { Stats } from '../blocks/Stats';
 import { Swap } from '../blocks/Swap';
 import { Table } from '../blocks/Table';
 import { Terminal } from '../blocks/Terminal';
+import { Marquee, SiteBar, SiteFooter } from '../blocks/Site';
 import { Feed } from './feed';
 import { Product } from './product';
 import { Query } from './query';
@@ -26,13 +27,16 @@ export type ModuleView = React.FC<ModuleProps>;
  */
 const MODULE: Record<string, ModuleView> = {
   agent: ({ b }) => <Agent b={b} />,
+  bar: ({ b }) => <SiteBar b={b} />,
   chat: ({ b }) => <Chat b={b} />,
   faq: ({ b }) => <Faq b={b} />,
   feed: Feed,
   figure: ({ b }) => <Figure b={b} />,
+  footer: ({ b }) => <SiteFooter b={b} />,
   form: ({ b }) => <Form b={b} />,
   grid: Grid,
   hero: ({ b }) => <Hero b={b} />,
+  marquee: ({ b }) => <Marquee b={b} />,
   news: ({ b }) => <News b={b} />,
   product: ({ b }) => <Product b={b} />,
   prose: ({ b }) => <Prose b={b} />,

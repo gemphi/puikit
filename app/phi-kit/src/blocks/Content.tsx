@@ -3,6 +3,7 @@ import React from 'react';
 import { Button, Divider, Frame, Image, Stack, Tag, Text, Title } from '@pui/components';
 import { appUrl, assetUrl, type Block } from '../data';
 import s from '../kit.module.scss';
+import { HeroSplit } from './Site';
 
 /** The ways in a hero offers, the same in every variant. */
 const heroActions = (b: Block) => (Array.isArray(b.actions) && b.actions.length ? (
@@ -24,7 +25,7 @@ const HeroCard: React.FC<{ b: Block }> = ({ b }) => (
 
 /** Hero band for an app's Home view. `variant: "wide"` is a product page's: the name, one line and the ways in,
  *  centred, then its picture across the page. */
-export const Hero: React.FC<{ b: Block }> = ({ b }) => (b.variant === 'card' ? <HeroCard b={b} /> : b.variant === 'wide' ? (
+export const Hero: React.FC<{ b: Block }> = ({ b }) => (b.variant === 'split' ? <HeroSplit b={b} actions={heroActions(b)} /> : b.variant === 'card' ? <HeroCard b={b} /> : b.variant === 'wide' ? (
   <Stack direction="column" gap={6} align="center" paddingY={6}>
     <Stack direction="column" gap={3} align="center">
       <Title level={1} size="3xl" align="center">{b.heading}</Title>
