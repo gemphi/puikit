@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card, CardBody, ChatComposer, Drawer, DrawerClosingContext, Icon, Input, Modal, ProgressBar, Rows, Stack, Tag, Text, Textarea, Title, TabList, Toast, CommentThread } from '@pui/components';
+import { Button, Card, CardBody, ChatComposer, Drawer, DrawerClosingContext, FullScreen, Icon, Input, Modal, ProgressBar, Rows, Stack, Tag, Text, Textarea, Title, TabList, Toast, CommentThread } from '@pui/components';
 import { useStore } from '@pui/store';
-import { ChevronLeft, ChevronRight, Pause, Play, Send } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ExternalLink, Pause, Play, Send } from 'lucide-react';
 import { D, fmt, person, postById, postsBy, site, storySets, t, itemOf } from '../../lib/data';
 import { useThreadFor } from '../../lib/lazy';
 import { phieggStore } from '../../state/phieggStore';
@@ -33,20 +33,21 @@ const Story: React.FC = () => {
   useEffect(() => { if (el >= storyMs) s.storyStep(1); }, [el]);
   if (!o) return null;
   const f = o.frames[o.idx]; const p = person(o.uid); const segs = o.frames.filter((x) => x.setK === f.setK); const pool = itemOf('pool', o.uid);
+  // A show plays full screen, over the whole app (the kit's FullScreen): the story fills the screen with its progress
+  // over it, the arrows and the keys step through it, play/pause and the drop are its buttons, a reply comes up from the foot.
+  const name = pool ? pool.name : p.name;
   return (
-    <Modal isOpen onClose={s.close} size="sm" title={pool ? <Stack direction="row" gap={2} align="center"><EntityAvatar id={pool.id} name={pool.name} size="sm" /><Stack direction="column" gap={0}><Text size="sm" weight="bold">{pool.name}</Text><Text size="xs" intent="muted">{f.set}</Text></Stack></Stack> : <PersonLine id={p.id} sub={f.set} size="sm" />}>
-      <Stack direction="column" gap={3}>
+    <FullScreen label={name + ' · ' + f.set} onClose={s.close} closeLabel={t('close')} onPrev={() => s.storyStep(-1)} onNext={() => s.storyStep(1)} prevLabel={t('prev')} nextLabel={t('next')}
+      actions={[
+        { id: 'pause', label: t('pause'), icon: <Icon icon={o.paused ? Play : Pause} size="sm" />, active: o.paused, onClick: () => s.pause(!o.paused) },
+        ...(pool ? [{ id: 'open', label: t('plOpen'), icon: <Icon icon={ExternalLink} size="sm" />, onClick: () => s.go('pool', { poolId: pool.id }) }] : []),
+      ]}
+      media={<Stack direction="column" gap={2} style={{ height: '100%', width: 'min(100%, calc((100dvh - 2rem) * 9 / 16))', margin: '0 auto', justifyContent: 'center' }}>
         <Stack direction="row" gap={1}>{segs.map((x) => <Stack key={x.i} grow={1}><ProgressBar value={x.i < f.i ? 1 : x.i === f.i ? el / storyMs : 0} size="sm" animate={false} /></Stack>)}</Stack>
         <Tile key={o.idx} animate tone={f.tone} ratio="9/16" big depth={pool ? { clubId: pool.clubId, worldId: pool.worldId, entityId: pool.id, entityName: pool.name } : { personId: o.uid }} title={f.title} sub={f.caption} onClick={() => s.storyStep(1)} />
-        {pool && <Button variant="glass" onClick={() => s.go('pool', { poolId: pool.id })}>{t('plOpen')}</Button>}
-        <Stack direction="row" gap={2} justify="center">
-          <Button variant="glass" icon={<Icon icon={ChevronLeft} size="sm" />} onClick={() => s.storyStep(-1)} aria-label={t('prev')} />
-          <Button variant="glass" icon={<Icon icon={o.paused ? Play : Pause} size="sm" />} onClick={() => s.pause(!o.paused)} aria-label={t('pause')} />
-          <Button variant="glass" icon={<Icon icon={ChevronRight} size="sm" />} onClick={() => s.storyStep(1)} aria-label={t('next')} />
-        </Stack>
-        <Composer placeholder={t('reply', { name: p.name })} onSend={(v) => p.isAgent ? s.openChat(p.id, v) : (s.close(), s.flash(t('replySent', { name: p.name })))} />
-      </Stack>
-    </Modal>
+      </Stack>}>
+      <Composer placeholder={t('reply', { name: p.name })} onSend={(v) => p.isAgent ? s.openChat(p.id, v) : (s.close(), s.flash(t('replySent', { name: p.name })))} />
+    </FullScreen>
   );
 };
 
