@@ -1,20 +1,23 @@
 import React from 'react';
-import { Accordion, AccordionItem, Carousel, Drawer } from '@pui/components';
-import { ChevronLeft, ChevronRight, GalleryHorizontal, GalleryVertical, Gavel, Heart, MessageCircle, Share2, ShoppingBag, SlidersHorizontal } from 'lucide-react';
+import { Accordion, AccordionItem, Box, Button, Carousel, Drawer, Frame, Image, Pressable, Stack } from '@pui/components';
+import { ChevronLeft, ChevronRight, GalleryHorizontal, GalleryVertical, Gavel, Heart, MessageCircle, Share2, ShoppingBag } from 'lucide-react';
 import { assetUrl, currentAppKey, type Block } from '../data';
 import { toggleBag, useBag } from '../bag';
 import { CommentsPanel } from '../RecordSheet';
 import words from '../words.json';
 import s from '../kit.module.scss';
-import type { GridItem } from './Grid';
+import { Grid, type GridItem } from './Grid';
+import { FieldList } from './GridExtra';
+import { StatGrid } from './Stats';
 
 /**
  * One card of a grid opened over the page it is on, never a page of its own (#/<kind>/<id> draws it over the grid's
  * page): the picture large with arrows either side, the strip of its own group (its `facet`, a club) under it or
  * upright beside it, the whole window on a tap, and a column of folding sections: its traits as tiles with how many
  * share each, its standing,
- * and any of `offers`, `trail`, `owners`, `sales` its data carries, then the cards related to it, filtered by any of
- * its facts. Keys: arrows step, F full screen, Esc closes. Everything it shows is the grid's own data.
+ * and any of `offers`, `trail`, `owners`, `sales` its data carries, then the cards related to it in the kit's own Grid
+ * (its header, filters and sort, as every grid has them). Keys: arrows step, F the whole window. Everything it shows
+ * is the grid's own data.
  */
 type Row = [string, string];
 type Extra = Record<'offers' | 'trail' | 'owners' | 'sales', Row[] | undefined>;
@@ -36,13 +39,6 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
   // Every section folds (the kit's Accordion, as the account drawer and the sidebars fold).
   const [opened, setOpened] = React.useState<Record<string, boolean>>({ facts: true, related: true });
   const fold = (id: string) => setOpened((o) => ({ ...o, [id]: !o[id] }));
-  // Related's filters stay behind their icon until asked for.
-  const [filtering, setFiltering] = React.useState(false);
-  // Related starts as its own group (by the fact that names it, or the facet), when another card is in it.
-  const [match, setMatch] = React.useState<string[]>(() => {
-    if (!it.facet || !list.some((x, i) => i !== at && x.facet === it.facet)) return [];
-    const own = (it.fields ?? []).find(([, v]) => v === it.facet); return own ? [own[0]] : ['facet'];
-  });
   const open = (x?: GridItem) => { if (x) go('#/' + x.kind + '/' + x.id); };
 
   // How many of the grid share each fact, and each card's standing (the rarer its facts, the higher).
@@ -81,10 +77,9 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
     window.addEventListener('keydown', key); return () => window.removeEventListener('keydown', key);
   });
 
-  // The cards related to it: those sharing every fact picked below (its group by default), nearest first.
+  // The cards related to it: the rest of its group, which the shared Grid below pages, filters and sorts.
   const facts: Row[] = it.fields ?? [];
-  const related = React.useMemo(() => list.filter((x, i) => i !== at && match.every((m) => (m === 'facet' ? x.facet === it.facet : (x.fields ?? []).some(([k, v]) => k === m && v === facts.find(([fk]) => fk === m)?.[1])))).slice(0, 24),
-    [list, at, match, it.facet, facts]);
+  const related = React.useMemo(() => group.filter(([, i]) => i !== at).map(([x]) => x), [group, at]);
   const extra = it as unknown as Extra;
   // The sections, each from the card's own data: its facts, its standing, and any lists it carries.
   const sections: { id: string; label: string; rows: Row[] }[] = [
@@ -92,71 +87,58 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
     { id: 'stats', label: W.tab.stats, rows: [[W.rank, '#' + rank[at] + ' / ' + list.length.toLocaleString('en-US')], [W.facts, String(facts.length)], [W.rarest, rarest(facts, share)]] },
     ...(['offers', 'trail', 'owners', 'sales'] as const).filter((k) => extra[k]?.length).map((k) => ({ id: k, label: W.tab[k], rows: extra[k] ?? [] })),
   ];
-  const toggle = (m: string) => setMatch((x) => (x.includes(m) ? x.filter((y) => y !== m) : [...x, m]));
   const pic = (x: GridItem) => (x.image ? assetUrl(x.image) : undefined);
 
-  const uprightToggle = <button type="button" className={s.sheetIcon} aria-label={upright ? W.stripAcross : W.stripUpright} title={upright ? W.stripAcross : W.stripUpright} onClick={() => setUpright((u) => !u)}>{upright ? <GalleryHorizontal size={18} /> : <GalleryVertical size={18} />}</button>;
-  // The strip: a card's own pictures, or its group round it.
-  const thumbs = gallery.length ? gallery.map((g, i) => (
-    <button key={g} type="button" className={i === shot ? s.thumb + ' ' + s.thumbOn : s.thumb} aria-current={i === shot} aria-label={it.title + ' ' + (i + 1)} onClick={() => { setDir(Math.sign(i - shot)); setShot(i); }}><img src={assetUrl(g)} alt="" loading="lazy" /></button>
-  )) : strip.map(([x, i]) => (
-    <button key={x.id ?? i} type="button" className={i === at ? s.thumb + ' ' + s.thumbOn : s.thumb} aria-label={x.title} aria-current={i === at} onClick={() => { setDir(Math.sign(i - at)); open(x); }}>
-      {pic(x) ? <img src={pic(x)} alt="" loading="lazy" /> : <span>{x.title.replace(/^.*#/, '#')}</span>}
-    </button>
-  ));
+  const uprightToggle = <Button variant="icon" aria-label={upright ? W.stripAcross : W.stripUpright} title={upright ? W.stripAcross : W.stripUpright} onClick={() => setUpright((u) => !u)} icon={upright ? <GalleryHorizontal size={18} /> : <GalleryVertical size={18} />} />;
+  // The strip: a card's own pictures, or its group round it; each a kit Pressable holding a kit picture.
+  const thumb = (key: string, src: string | undefined, label: string, on: boolean, act: () => void) => (
+    <Pressable key={key} rounded="md" pad="none" selected={on} aria-label={label} aria-current={on} onClick={act}>
+      <Frame ratio="1/1" rounded="md">{src ? <Image src={src} alt="" fit="cover" fill loading="lazy" /> : null}</Frame>
+    </Pressable>
+  );
+  const thumbs = gallery.length
+    ? gallery.map((g, i) => thumb(g, assetUrl(g), it.title + ' ' + (i + 1), i === shot, () => { setDir(Math.sign(i - shot)); setShot(i); }))
+    : strip.map(([x, i]) => thumb(x.id ?? String(i), pic(x), x.title, i === at, () => { setDir(Math.sign(i - at)); open(x); }));
+  const src = gallery.length ? assetUrl(gallery[shot]) : pic(it);
 
+  // Built from the kit's own parts only (Drawer, Stack, Frame, Image, Button, Pressable, Carousel, Accordion, the
+  // stats grid, FieldList, Grid), so the person's Settings (theme, surface, corners, spacing) reach every piece.
   return (
-    // The kit's Drawer, as Phiegg's record drawer: its title, expand to the full window and close are its own.
     <Drawer isOpen onClose={close} position="right" size="xl" title={it.sub ? it.title + ' · ' + it.sub : it.title}
       expandable expanded={full} onExpandedChange={setFull} expandLabel={W.full} collapseLabel={W.fit}>
-      <div className={upright ? s.sheetBody + ' ' + s.sheetUpright : s.sheetBody}>
-        <div className={s.sheetStage}>
-          {/* The strip of its group above the picture, the picture taking the rest of the column. */}
-          {upright ? <div ref={stripRef} className={s.strip} role="list">{uprightToggle}{thumbs}</div>
-            : <div ref={stripRef} className={s.strip}>{uprightToggle}<Carousel slidesPerView={STRIP_SLIDES} gap={1} labels={{ prev: words.view.prev, next: words.view.next }}>{thumbs}</Carousel></div>}
-          <div className={s.stagePic}>
-            {(() => { const src = gallery.length ? assetUrl(gallery[shot]) : pic(it); const slide = dir > 0 ? s.slideNext : dir < 0 ? s.slidePrev : '';
-              return src ? <img key={src} className={slide} src={src} alt={it.title} /> : <span className={s.stageNone}>{it.title}</span>; })()}
-            <button type="button" className={s.stageArrow + ' ' + s.stagePrev} aria-label={words.view.prev} disabled={first} onClick={() => step(-1)}><ChevronLeft size={28} /></button>
-            <button type="button" className={s.stageArrow + ' ' + s.stageNext} aria-label={words.view.next} disabled={last} onClick={() => step(1)}><ChevronRight size={28} /></button>
-            {/* The actions stand over the picture's right edge, a column of icons, as a short-video app lays them. */}
-            <ItemActions it={it} />
-          </div>
-        </div>
-        <aside className={s.sheetSide}>
+      <Stack direction="row" gap={6} wrap align="start">
+        <Stack direction={upright ? 'row' : 'column'} gap={3} flex="1 1 24rem" minWidth="0" className={s.sheetStick}>
+          {/* The strip of its group above the picture (upright: beside it). */}
+          <Stack ref={stripRef} direction={upright ? 'column' : 'row'} gap={2} align="center" minWidth="0">
+            {uprightToggle}
+            {upright ? thumbs : <Box flex="1" minWidth="0"><Carousel slidesPerView={STRIP_SLIDES} gap={1} labels={{ prev: words.view.prev, next: words.view.next }}>{thumbs}</Carousel></Box>}
+          </Stack>
+          <Stack direction="row" gap={2} align="center" flex="1" minWidth="0">
+            <Button variant="glass" aria-label={words.view.prev} disabled={first} onClick={() => step(-1)} icon={<ChevronLeft size={22} />} />
+            <Box flex="1" minWidth="0" className={s.sheetPicture}>
+              <Frame ratio={b.ratio ?? '1/1'} rounded="lg">{src ? <Image key={src} className={dir > 0 ? s.slideNext : dir < 0 ? s.slidePrev : ''} src={src} alt={it.title} fit="contain" fill /> : null}</Frame>
+              {/* The actions over the picture's right edge, a column of icons, as a short-video app lays them. */}
+              <ItemActions it={it} />
+            </Box>
+            <Button variant="glass" aria-label={words.view.next} disabled={last} onClick={() => step(1)} icon={<ChevronRight size={22} />} />
+          </Stack>
+        </Stack>
+        <Box flex="1 1 24rem" minWidth="0">
           <Accordion>
             {sections.map((sec) => (
-              <div key={sec.id} id={'sheet-' + sec.id}>
-                <AccordionItem title={sec.label} open={!!opened[sec.id]} onToggle={() => fold(sec.id)}>
-                  {/* Traits as tiles, the way a marketplace shows a token's traits: its name, its value, how many share it. */}
-                  {sec.id === 'facts' ? <div className={s.traitGrid}>{facts.map(([k, v]) => <div key={k} className={s.trait}><span>{k}</span><strong>{v}</strong>{share1(k, v) ? <em>{share1(k, v)}</em> : null}</div>)}</div>
-                    : <div className={s.sheetRows}>{sec.rows.map(([k, v]) => <div key={k} className={s.sheetRow}><span>{k}</span><strong>{v}</strong></div>)}</div>}
-                </AccordionItem>
-              </div>
-            ))}
-            <div id="sheet-related">
-              <AccordionItem title={W.related} open={!!opened.related} onToggle={() => fold('related')}>
-          <div className={s.relatedHead}>
-            {/* The filters behind one icon, as every grid's header keeps them; it shows how many are on. */}
-            <button type="button" className={s.sheetIcon} aria-label={words.list.filter} title={words.list.filter} aria-expanded={filtering} onClick={() => setFiltering((f) => !f)}><SlidersHorizontal size={18} />{match.length ? <span className={s.filterCount}>{match.length}</span> : null}</button>
-            {filtering ? <div className={s.chips}>
-              {/* Its group as a chip of its own, unless one of its facts already says it (Club · BPSC). */}
-              {it.facet && !facts.some(([, v]) => v === it.facet) ? <button type="button" className={match.includes('facet') ? s.chip + ' ' + s.chipOn : s.chip} onClick={() => toggle('facet')}>{it.facet}</button> : null}
-              {facts.map(([k, v]) => <button key={k} type="button" className={match.includes(k) ? s.chip + ' ' + s.chipOn : s.chip} onClick={() => toggle(k)}>{k} · {v}</button>)}
-            </div> : null}
-          </div>
-          <div className={s.relatedGrid}>
-            {related.map((x) => (
-              <button key={x.id} type="button" className={s.relatedCard} onClick={() => open(x)} aria-label={x.title}>
-                {pic(x) ? <img src={pic(x)} alt="" loading="lazy" /> : null}<span>{x.title.replace(/^.*#/, '#')}</span>
-              </button>
-            ))}
-          </div>
+              <AccordionItem key={sec.id} title={sec.label} open={!!opened[sec.id]} onToggle={() => fold(sec.id)}>
+                {/* Traits as the kit's stats grid (name, value, how many share it), as a marketplace shows them. */}
+                {sec.id === 'facts' ? <StatGrid size="sm" items={facts.map(([k, v]) => ({ label: k, value: v, sub: share1(k, v) || undefined }))} />
+                  : <FieldList list={sec.rows} />}
               </AccordionItem>
-            </div>
+            ))}
+            <AccordionItem title={W.related} open={!!opened.related} onToggle={() => fold('related')}>
+              {/* Related is the kit's own Grid, the same as the collection's: its header, its filters, its sort. */}
+              <Grid b={{ ...b, title: undefined, items: related, layout: 'grid', layoutSet: ['grid', 'list'], pageSize: 24, cols: 4, minItemWidth: '7rem', cardFields: 0, more: undefined }} onOpen={open} />
+            </AccordionItem>
           </Accordion>
-        </aside>
-      </div>
+        </Box>
+      </Stack>
     </Drawer>
   );
 };
@@ -188,9 +170,7 @@ const ItemActions: React.FC<{ it: GridItem }> = ({ it }) => {
         [MessageCircle, A.comment, false, () => setTalk(true), talk],
         [Share2, shared ? A.shared : A.share, false, share, shared],
       ] as const).map(([Icon, label, off, act, on]) => (
-        <button key={label} type="button" className={on ? s.sheetAct + ' ' + s.sheetActOn : s.sheetAct} aria-label={label} title={label} aria-pressed={on} disabled={off} onClick={act}>
-          <span className={s.sheetActIcon}><Icon size={22} /></span>
-        </button>
+        <Button key={label} variant={on ? 'primary' : 'glass'} aria-label={label} title={label} aria-pressed={on} disabled={off} onClick={act} icon={<Icon size={20} />} />
       ))}
       {it.id ? <CommentsPanel kind={it.kind ?? 'item'} id={it.id} title={it.title} open={talk} onClose={() => setTalk(false)} /> : null}
     </div>
