@@ -17,6 +17,7 @@ import { AssetSheet } from './components/Phiegg/AssetSheet';
 import { WatchSheet } from './components/Phiegg/WatchSheet';
 import { PlacePage } from './components/Phiegg/Commerce';
 import { useListedLook } from './components/Shell/Appearance';
+import { chosenAppearance } from '@phi-kit/appearance';
 import {
   AgentsHubPage, ClubPage, CollectionPage, ListPage, CreatePage, ExplorePage, FeedPage, HostPage, JoinPage,
   MessagesPage, PhipadPage, ProfilePage, ShowPage, WorldPage, ShopPage, PoolPage, SeriesPage, LeaguePage, CityPage, SearchPage, RecentPage, StudioPage, RidesPage, WelcomePage, PostPage, AboutPage,
@@ -78,7 +79,8 @@ export const App: React.FC = () => {
   const ap = s.appearance;
   // The appearance gradient drives the puikit gradient system (providers/palette.ts) for every surface.
   const { gradientLevel, setGradientLevel, borderRadius, setBorderRadius } = usePuiTheme();
-  useEffect(() => { if (gradientLevel !== ap.gradient) setGradientLevel(ap.gradient as GradientLevel); }, [ap.gradient]);
+  // A theme picked in Settings sets its own gradient (the card it was picked from); Phiegg's old setting yields to it.
+  useEffect(() => { if (!chosenAppearance() && gradientLevel !== ap.gradient) setGradientLevel(ap.gradient as GradientLevel); }, [ap.gradient]);
   // The appearance radius drives the puikit radius scale, so every --phi-radius-* token (cards, decks, tabs, buttons) follows it.
   // A change of default (site.json appearance.rev) moves a saved appearance still on the old default once.
   useEffect(() => {

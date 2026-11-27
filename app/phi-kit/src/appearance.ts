@@ -26,11 +26,13 @@ const CHOSEN = 'phi-appearance-chosen';
 export const chosenAppearance = () => { try { return window.localStorage.getItem(CHOSEN) === '1'; } catch { return false; } };
 const choose = () => { try { window.localStorage.setItem(CHOSEN, '1'); } catch { /* storage blocked: the choice still holds for this visit */ } };
 
-/** The theme a person wears (by its palette) and the way to pick one. */
+/** The theme a person wears (by its palette) and the way to pick one. The card a person clicks is what the site
+ *  becomes: every card is its theme's colours as a strong gradient on its dark ground, so the pick sets the palette,
+ *  dark and the vivid gradient together (Mode and Surface can change them after). */
 export function useThemeChoice(): [ThemeChoice | undefined, (id: string) => void] {
-  const { paletteId, setPaletteId } = usePuiTheme();
+  const { paletteId, setPaletteId, setTheme, setGradientLevel } = usePuiTheme();
   const id = typeof paletteId === 'string' ? paletteId : (paletteId as SeedPalette | undefined)?.id;
-  return [THEMES.find((t) => t.id === id), (next: string) => { choose(); setPaletteId(next); }];
+  return [THEMES.find((t) => t.id === id), (next: string) => { choose(); setPaletteId(next); setTheme('dark'); setGradientLevel('vivid'); }];
 }
 
 /** The surface a person wears (by its style) and the way to pick one: its style and its gradient level together. */

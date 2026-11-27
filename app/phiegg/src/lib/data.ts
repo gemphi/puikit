@@ -222,8 +222,9 @@ export const ago = (iso: string, now = Date.now()) => {
   return h < 1 ? t("now") : h < 24 ? `${h}h` : `${Math.round(h / 24)}d`;
 };
 
-/** Public path of a world's generated default image (assets/worlds → public/worlds). */
-export const worldImage = (w?: { image?: string }) => (w && w.image ? mediaUrl(w.image.replace(/^assets\//, '')) : undefined);
+/** A world's own picture (a real render, `assets/world/<slug>/...`), else undefined, and it is drawn live in the theme's
+ *  colours: `assets/worlds/` holds only flat renders of the old scene, one fixed colour with bars on its hills. */
+export const worldImage = (w?: { image?: string }) => (w && w.image && !/^assets\/worlds\//.test(w.image) ? mediaUrl(w.image.replace(/^assets\//, '')) : undefined);
 /** A world's picture for a card: its own small render when it has views (never the large file), else its scene. */
 export const worldThumb = (w?: World) => (w?.gallery?.length ? mediaUrl(w.gallery[0].sm) : worldImage(w));
 /** A world's own mark (public/cities/<slug>/logo.webp), when it has one. */

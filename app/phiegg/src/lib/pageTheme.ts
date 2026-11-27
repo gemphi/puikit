@@ -2,9 +2,11 @@
 // background and outfit of a profile PFT) swaps the whole app palette to it through puikit `setPaletteOverride`,
 // and closing it puts back whatever was under it: a sheet over a themed profile returns to the profile's theme,
 // and the last one closed returns to the user's own palette. Nothing is saved: the override never touches preferences.
+// A theme the person picked in Settings wins: their pages keep it, never a PFT's colours.
 import { useEffect } from 'react';
 import { usePuiTheme } from '@pui/hooks';
 import { paletteFromHex, type GradientLevel, type SeedPalette } from '@pui/providers';
+import { chosenAppearance } from '@phi-kit/appearance';
 
 type Entry = { key: symbol; palette: SeedPalette; level: GradientLevel };
 const stack: Entry[] = [];
@@ -12,7 +14,7 @@ const stack: Entry[] = [];
 export function usePageTheme(hex?: string | null, accent2?: string | null, level: GradientLevel = 'vivid', id = 'page') {
   const { setPaletteOverride } = usePuiTheme();
   useEffect(() => {
-    if (!hex) return undefined;
+    if (!hex || chosenAppearance()) return undefined;
     const e: Entry = { key: Symbol(id), palette: paletteFromHex(hex, id, accent2), level };
     stack.push(e); setPaletteOverride(e.palette, e.level);
     return () => {
