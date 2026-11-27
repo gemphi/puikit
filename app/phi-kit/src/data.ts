@@ -19,6 +19,8 @@ export type View = { title: string; sub?: string; blocks: Block[] };
 export type AppData = { app: string; start?: string; bare?: boolean;
   /** A bare page's column width (a product page: "72rem"); unset, the page runs the window's width. */
   width?: string; nav: NavItem[];
+  /** A bare app's blocks round every page of it (a site's top bar, its footer), written once. */
+  top?: Block[]; foot?: Block[];
   /** The file that holds the app's people (their names, pictures and presence), for menu entries that name one (`who`). */
   people?: string;
   /** The catalogue of hosts a person joins, leaves and makes (the hosts they are in become groups of the menu), and the

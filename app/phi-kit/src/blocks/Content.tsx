@@ -1,14 +1,12 @@
 
 import React from 'react';
-import { Button, Divider, Frame, Image, Stack, Tag, Text, Title } from '@pui/components';
-import { appUrl, assetUrl, type Block } from '../data';
+import { Divider, Frame, Image, Stack, Tag, Text, Title } from '@pui/components';
+import { assetUrl, type Block } from '../data';
 import s from '../kit.module.scss';
-import { HeroSplit } from './Site';
+import { HeroSplit, Ways } from './Site';
 
-/** The ways in a hero offers, the same in every variant. */
-const heroActions = (b: Block) => (Array.isArray(b.actions) && b.actions.length ? (
-  <Stack direction="row" gap={2} wrap align="center">{b.actions.map((a: any, i: number) => <Button key={i} variant="glass" href={a.app ? appUrl(a.app) : a.href || ('#/' + a.view)}>{a.label}</Button>)}</Stack>
-) : null);
+/** The ways in a hero offers, the same in every variant (Site.tsx's Ways: an `off` one cannot be pressed). */
+const heroActions = (b: Block) => <Ways items={b.actions} />;
 
 /** `variant: "card"`: a site card (kit.module.scss .siteCard), its picture in a panel of the theme's sweep and its
  *  words beside it; `flip` puts the words first. */
@@ -30,9 +28,7 @@ export const Hero: React.FC<{ b: Block }> = ({ b }) => (b.variant === 'split' ? 
     <Stack direction="column" gap={3} align="center">
       <Title level={1} size="3xl" align="center">{b.heading}</Title>
       {b.subtitle ? <Text size="xl" intent="secondary" maxWidth="40ch" align="center">{b.subtitle}</Text> : null}
-      {Array.isArray(b.actions) && b.actions.length ? (
-        <Stack direction="row" gap={2} wrap align="center" justify="center">{b.actions.map((a: any, i: number) => <Button key={i} variant="glass" href={a.app ? appUrl(a.app) : a.href || ('#/' + a.view)}>{a.label}</Button>)}</Stack>
-      ) : null}
+      <Ways items={b.actions} justify="center" />
     </Stack>
     {/* The picture in a panel of the theme's sweep, as a site card holds it. */}
     {b.image ? <div className={s.siteCardPanel} style={{ width: '100%' }}><img src={assetUrl(b.image)} alt="" /></div> : null}
@@ -45,9 +41,7 @@ export const Hero: React.FC<{ b: Block }> = ({ b }) => (b.variant === 'split' ? 
     <Title level={1} size="3xl">{b.heading}</Title>
     {b.subtitle ? <Text size="lg" intent="secondary">{b.subtitle}</Text> : null}
     {b.body ? <Text intent="secondary" maxWidth="64ch">{b.body}</Text> : null}
-    {Array.isArray(b.actions) && b.actions.length ? (
-      <Stack direction="row" gap={2} wrap align="center">{b.actions.map((a: any, i: number) => <Button key={i} variant="glass" href={a.app ? appUrl(a.app) : a.href || ('#/' + a.view)}>{a.label}</Button>)}</Stack>
-    ) : null}
+    {heroActions(b)}
   </Stack>
   {b.flip ? null : heroPicture(b)}
   </Stack>

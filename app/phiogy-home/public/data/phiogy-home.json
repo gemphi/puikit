@@ -3,7 +3,7 @@
  "start": "home",
  "bare": true,
  "width": "80rem",
- "_": "phiogy.com, laid the way Discord lays its home: a top bar, a split hero with figures standing round the app, site cards that take turns, a band of running words, the call to come in with a lineup of figures, the footer. Pictures: fresh captures of the web Phiogy (media store phiogy/shot/) and the mannequins of Phiegg's home page (phiegg:home/dress/).",
+ "_": "phiogy.com, laid the way Discord lays its site: a top bar and a footer round every page (`top`, `foot`), the home (a split hero with figures standing round the app, site cards that take turns, a band of running words, the call to come in, a lineup), and the pages its links lead to: download, support (Phiogy's own help file), docs, news, about and the policies. The Windows download is `off` until it opens again. Pictures: fresh captures of the web Phiogy (media store phiogy/shot/) and the mannequins of Phiegg's home page (phiegg:home/dress/).",
  "nav": [
   {
    "id": "home",
@@ -16,31 +16,6 @@
    "title": "",
    "blocks": [
     {
-     "kind": "bar",
-     "items": [
-      {
-       "label": "Download",
-       "href": "https://phiegg.com/cdn/phiogy/phiogy-windows.zip"
-      },
-      {
-       "label": "Phiogy on the web",
-       "app": "phiogy"
-      },
-      {
-       "label": "Phiegg",
-       "href": "https://phiegg.com/"
-      },
-      {
-       "label": "Phiace",
-       "href": "https://phiace.ai/"
-      }
-     ],
-     "action": {
-      "label": "Open Phiogy",
-      "app": "phiogy"
-     }
-    },
-    {
      "kind": "hero",
      "variant": "split",
      "heading": "Your club, all in one place",
@@ -52,8 +27,8 @@
      ],
      "actions": [
       {
-       "label": "Download for Windows",
-       "href": "https://phiegg.com/cdn/phiogy/phiogy-windows.zip"
+       "label": "Download for Windows - soon",
+       "off": true
       },
       {
        "label": "Open Phiogy in your browser",
@@ -107,8 +82,8 @@
      "heading": "That is the end of the page. Come hang out.",
      "actions": [
       {
-       "label": "Download for Windows",
-       "href": "https://phiegg.com/cdn/phiogy/phiogy-windows.zip"
+       "label": "Download for Windows - soon",
+       "off": true
       },
       {
        "label": "Open Phiogy in your browser",
@@ -151,65 +126,331 @@
        "image": "phiegg:home/dress/dress-03-pose-02-camo.webp"
       }
      ]
+    }
+   ]
+  },
+  "download": {
+   "title": "",
+   "blocks": [
+    {
+     "kind": "hero",
+     "variant": "wide",
+     "heading": "Get Phiogy",
+     "subtitle": "The Windows app opens for download again soon. Until then, everything is in your browser.",
+     "actions": [
+      {
+       "label": "Download for Windows - soon",
+       "off": true
+      },
+      {
+       "label": "Open Phiogy in your browser",
+       "app": "phiogy"
+      }
+     ],
+     "image": "cdn:phiogy/shot/room.webp"
     },
     {
-     "kind": "footer",
-     "body": "The village of creators: clubs, their rooms and their people, on your desk and in your browser.",
-     "columns": [
+     "kind": "faq",
+     "items": [
       {
-       "title": "Phiogy",
-       "items": [
-        {
-         "label": "Download for Windows",
-         "href": "https://phiegg.com/cdn/phiogy/phiogy-windows.zip"
-        },
-        {
-         "label": "Open in your browser",
-         "app": "phiogy"
-        }
-       ]
+       "q": "What does the Windows app need?",
+       "a": "Windows 10 or 11 and a graphics card with DirectX 11."
       },
       {
-       "title": "Phiace",
-       "items": [
-        {
-         "label": "Phiegg",
-         "href": "https://phiegg.com/"
-        },
-        {
-         "label": "Phiace",
-         "href": "https://phiace.ai/"
-        },
-        {
-         "label": "Phipad",
-         "href": "https://phipad.com/"
-        },
-        {
-         "label": "Phisum",
-         "href": "https://phisum.com/"
-        }
-       ]
+       "q": "Is anything installed?",
+       "a": "No. Phiogy is a folder you keep where you like, with phiogy.exe and its asset folder beside it."
       },
       {
-       "title": "Worlds",
-       "items": [
-        {
-         "label": "Bold Pups",
-         "href": "https://boldpups.xyz/"
-        },
-        {
-         "label": "Epic Pods",
-         "href": "https://epicpods.xyz/"
-        },
-        {
-         "label": "Bozo City",
-         "href": "https://bozo.city/"
-        }
-       ]
+       "q": "Is there a Mac app?",
+       "a": "Not yet. Open Phiogy in your browser: your hosts, rooms and calls are the same there."
+      }
+     ]
+    }
+   ]
+  },
+  "help": {
+   "title": "",
+   "blocks": [
+    {
+     "kind": "help",
+     "source": "phiogy:data/help.json"
+    }
+   ]
+  },
+  "docs": {
+   "title": "",
+   "blocks": [
+    {
+     "kind": "help",
+     "source": "data/docs.json"
+    }
+   ]
+  },
+  "news": {
+   "title": "News",
+   "blocks": [
+    {
+     "kind": "news",
+     "items": [
+      {
+       "date": "27 November 2026",
+       "tag": "Teams",
+       "title": "Work sync",
+       "body": "A team's machines join its server when their people sign in on Phiogy for Windows. An administrator connects each one once, then picks the files to copy, newest first."
+      },
+      {
+       "date": "27 November 2026",
+       "tag": "Site",
+       "title": "phiogy.com grows up",
+       "body": "Support, docs, news and the policies, a tap from the top bar and the footer, on a phone as well as a desk."
+      }
+     ]
+    }
+   ]
+  },
+  "about": {
+   "title": "About",
+   "blocks": [
+    {
+     "kind": "prose",
+     "lead": "Phiogy is where clubs and their people hang out: rooms to write in, rooms to talk in, calls with camera and screen, and everyone one tap away.",
+     "sections": [
+      {
+       "title": "Part of Phiace",
+       "body": "Phiogy is one of Phiace's apps, with Phiegg, Phipad and Phisum. One account opens all of them."
+      },
+      {
+       "title": "One server",
+       "body": "It runs on Phiora, the same server as phiegg.com, so a host, a room or a call is the same in the Windows app and in the browser."
+      },
+      {
+       "title": "For teams",
+       "body": "Work sync lets a team keep the files it needs on its own server, chosen by its administrators."
+      }
+     ]
+    }
+   ]
+  },
+  "terms": {
+   "title": "Terms",
+   "blocks": [
+    {
+     "kind": "prose",
+     "lead": "A plain summary while the full terms are written.",
+     "sections": [
+      {
+       "title": "Using Phiogy",
+       "body": "Use Phiogy lawfully, and follow the guidelines in every host and room you are in."
+      },
+      {
+       "title": "Your account",
+       "body": "Keep your password to yourself. One account opens every Phi app."
+      },
+      {
+       "title": "Teams",
+       "body": "On a team's machines, Work sync copies the files its administrators pick to the team's server. The team decides what is kept."
+      }
+     ]
+    }
+   ]
+  },
+  "privacy": {
+   "title": "Privacy",
+   "blocks": [
+    {
+     "kind": "prose",
+     "lead": "What Phiogy keeps, in plain words.",
+     "sections": [
+      {
+       "title": "Your account",
+       "body": "Your handle, your name and your password. An email only if you add one: it is how a forgotten password comes back."
+      },
+      {
+       "title": "Calls",
+       "body": "The microphone and camera are used only while you are in a call."
+      },
+      {
+       "title": "Work sync",
+       "body": "On a team's machine, nothing is copied until an administrator connects it. Until a file is picked, the server sees only its name, size and dates."
+      }
+     ]
+    }
+   ]
+  },
+  "guidelines": {
+   "title": "Guidelines",
+   "blocks": [
+    {
+     "kind": "prose",
+     "lead": "How we keep Phiogy a good place to hang out.",
+     "sections": [
+      {
+       "title": "Be kind",
+       "body": "Talk to people the way you would want to be talked to. No harassment, threats or hate."
+      },
+      {
+       "title": "Respect privacy",
+       "body": "Do not share someone's messages, pictures or files without asking them."
+      },
+      {
+       "title": "Keep it legal",
+       "body": "Nothing unlawful, in a room, a call or a file."
+      },
+      {
+       "title": "Tell someone",
+       "body": "When something is wrong in a host, tell its administrators."
       }
      ]
     }
    ]
   }
- }
+ },
+ "top": [
+  {
+   "kind": "bar",
+   "items": [
+    {
+     "label": "Download",
+     "view": "download"
+    },
+    {
+     "label": "Discover",
+     "app": "phiogy"
+    },
+    {
+     "label": "Safety",
+     "view": "help/safety"
+    },
+    {
+     "label": "Support",
+     "view": "help"
+    },
+    {
+     "label": "Docs",
+     "view": "docs"
+    },
+    {
+     "label": "Developers",
+     "view": "docs/server"
+    },
+    {
+     "label": "News",
+     "view": "news"
+    }
+   ],
+   "action": {
+    "label": "Open Phiogy",
+    "app": "phiogy"
+   }
+  }
+ ],
+ "foot": [
+  {
+   "kind": "footer",
+   "body": "The village of creators: clubs, their rooms and their people, on your desk and in your browser.",
+   "columns": [
+    {
+     "title": "Product",
+     "items": [
+      {
+       "label": "Download",
+       "view": "download"
+      },
+      {
+       "label": "Open in your browser",
+       "app": "phiogy"
+      },
+      {
+       "label": "Phiegg",
+       "href": "https://phiegg.com/"
+      }
+     ]
+    },
+    {
+     "title": "Company",
+     "items": [
+      {
+       "label": "About",
+       "view": "about"
+      },
+      {
+       "label": "News",
+       "view": "news"
+      },
+      {
+       "label": "Phiace",
+       "href": "https://phiace.ai/"
+      },
+      {
+       "label": "Phipad",
+       "href": "https://phipad.com/"
+      },
+      {
+       "label": "Phisum",
+       "href": "https://phisum.com/"
+      }
+     ]
+    },
+    {
+     "title": "Resources",
+     "items": [
+      {
+       "label": "Support",
+       "view": "help"
+      },
+      {
+       "label": "Docs",
+       "view": "docs"
+      },
+      {
+       "label": "Safety",
+       "view": "help/safety"
+      },
+      {
+       "label": "Developers",
+       "view": "docs/server"
+      },
+      {
+       "label": "Work sync",
+       "view": "docs/join"
+      }
+     ]
+    },
+    {
+     "title": "Policies",
+     "items": [
+      {
+       "label": "Terms",
+       "view": "terms"
+      },
+      {
+       "label": "Privacy",
+       "view": "privacy"
+      },
+      {
+       "label": "Guidelines",
+       "view": "guidelines"
+      }
+     ]
+    },
+    {
+     "title": "Worlds",
+     "items": [
+      {
+       "label": "Bold Pups",
+       "href": "https://boldpups.xyz/"
+      },
+      {
+       "label": "Epic Pods",
+       "href": "https://epicpods.xyz/"
+      },
+      {
+       "label": "Bozo City",
+       "href": "https://bozo.city/"
+      }
+     ]
+    }
+   ]
+  }
+ ]
 }

@@ -1,0 +1,273 @@
+{
+ "_": "phiogy.com's docs centre (phi-kit module/help.tsx, the help centre's shape): how Phiogy is set up and run, Work sync for teams, and the server underneath.",
+ "title": "Phiogy docs",
+ "lead": "How Phiogy is set up and run: the Windows app, Work sync for teams, and the server underneath. Search, or pick an area.",
+ "find": "Search the docs",
+ "unfound": "Nothing in the docs holds that. Try fewer words.",
+ "articles": "{n} articles",
+ "count": [
+  "No articles",
+  "One article",
+  "Two articles",
+  "Three articles",
+  "Four articles",
+  "Five articles",
+  "Six articles",
+  "Seven articles",
+  "Eight articles",
+  "Nine articles",
+  "Ten articles",
+  "Eleven articles",
+  "Twelve articles",
+  "Thirteen articles",
+  "Fourteen articles",
+  "Fifteen articles",
+  "Sixteen articles"
+ ],
+ "open": "Open it in Phiogy",
+ "desk": "In Phiogy for Windows",
+ "back": "Docs",
+ "steps": "How",
+ "related": "More in {section}",
+ "robot": {
+  "home": "cdn:phiogy/robot/robot-wave.svg",
+  "section": "cdn:phiogy/robot/robot-point.svg",
+  "article": "cdn:phiogy/robot/robot-stand.svg",
+  "unfound": "cdn:phiogy/robot/robot-think.svg",
+  "empty": "cdn:phiogy/robot/robot-empty.svg",
+  "done": "cdn:phiogy/robot/robot-cheer.svg"
+ },
+ "category": [
+  {
+   "id": "get",
+   "label": "Get Phiogy",
+   "lead": "On your desk or in your browser.",
+   "section": [
+    "desk",
+    "web"
+   ]
+  },
+  {
+   "id": "work",
+   "label": "Work sync",
+   "lead": "A team's files on its own server.",
+   "section": [
+    "join",
+    "admin"
+   ]
+  },
+  {
+   "id": "dev",
+   "label": "Developers",
+   "lead": "The server, the sites and the calls.",
+   "section": [
+    "server",
+    "site",
+    "call"
+   ]
+  }
+ ],
+ "section": [
+  {
+   "id": "desk",
+   "label": "Phiogy for Windows",
+   "icon": "cdn:phiogy/icon/monitor.svg",
+   "lead": "The Windows app: getting it, what it needs, where it connects.",
+   "article": [
+    {
+     "id": "get",
+     "title": "Get the app",
+     "lead": "Phiogy for Windows is a folder you keep, not an installer. Its download opens again soon.",
+     "step": [
+      "Download phiogy-windows.zip from the Download page once it opens.",
+      "Unzip it where you like: the Phiogy folder holds phiogy.exe, README.txt and the asset folder.",
+      "Keep the asset folder beside phiogy.exe.",
+      "Open phiogy.exe and sign in with your Phiace account."
+     ]
+    },
+    {
+     "id": "need",
+     "title": "What it needs",
+     "lead": "Windows 10 or 11 and a graphics card with DirectX 11.",
+     "step": [
+      "The first start can take half a minute while Windows checks the new program; later starts are quick.",
+      "Calls use the microphone and camera only while you are in a call."
+     ]
+    },
+    {
+     "id": "where",
+     "title": "Where it connects",
+     "lead": "The app meets the same server as phiegg.com: your hosts, rooms and calls are the same in the app and in the browser.",
+     "step": [
+      "Accounts and data: phiegg.com/api.",
+      "Calls: phiegg.com/wrt.",
+      "Pictures and downloads: phiegg.com/cdn."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "web",
+   "label": "Phiogy in your browser",
+   "icon": "cdn:phiogy/icon/flag.svg",
+   "lead": "Rooms, calls, hosts and friends with nothing to download.",
+   "article": [
+    {
+     "id": "open",
+     "title": "Open Phiogy in your browser",
+     "lead": "Rooms, calls, hosts and friends run in the browser; a few things, such as Work sync, are only in the Windows app.",
+     "step": [
+      "Go to phiogy.com and press Open Phiogy.",
+      "Sign in, or make an account: one account opens every Phi app."
+     ]
+    },
+    {
+     "id": "mac",
+     "title": "On a Mac",
+     "lead": "There is no Mac app yet.",
+     "step": [
+      "Open Phiogy in your browser: your hosts, rooms and calls are the same there."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "join",
+   "label": "For the team",
+   "icon": "cdn:phiogy/icon/users.svg",
+   "lead": "What Work sync does on your machine, and what it never takes.",
+   "article": [
+    {
+     "id": "what",
+     "title": "What Work sync does",
+     "lead": "Work sync copies the files your team needs from your machine to your team's server.",
+     "step": [
+      "Once you sign in on Phiogy for Windows, your machine joins your team's server. No code is needed.",
+      "Nothing is copied until an administrator connects your machine.",
+      "After that, only the files an administrator picks are copied.",
+      "The Work sync drawer in Phiogy shows what it is doing."
+     ]
+    },
+    {
+     "id": "never",
+     "title": "What it never takes",
+     "lead": "Only the folders your administrator chose are looked at: Documents, Downloads and Videos to begin with.",
+     "step": [
+      "Files over 200 MB are left out.",
+      "Until a file is picked, the server sees only its name, size and dates."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "admin",
+   "label": "For administrators",
+   "icon": "cdn:phiogy/icon/key.svg",
+   "lead": "Connect machines, pick files, pause or take one off.",
+   "article": [
+    {
+     "id": "connect",
+     "title": "Connect a machine",
+     "lead": "Pressing Connect is your consent, given once; from then on the machine syncs by itself.",
+     "step": [
+      "Sign in on phiegg.com as an administrator and open phiegg.com/work.",
+      "Find the machine by its person and name.",
+      "Press Connect, then Sync now."
+     ]
+    },
+    {
+     "id": "pick",
+     "title": "Pick the files",
+     "lead": "Only the files you tick are copied to the server.",
+     "step": [
+      "Press Open on a machine.",
+      "Under On this machine, newest first, tick the files to copy.",
+      "Press Sync selected. Each file shows under Files, with a Download link, once it is on the server."
+     ]
+    },
+    {
+     "id": "invite",
+     "title": "Invite someone first",
+     "lead": "A person you name beforehand joins already connected.",
+     "step": [
+      "Under Invite a machine, write their handle or email and press Invite.",
+      "When they sign in on Phiogy for Windows, their machine joins and starts syncing."
+     ]
+    },
+    {
+     "id": "pause",
+     "title": "Pause or take a machine off",
+     "lead": "Only administrators start, pause or end a machine's sync.",
+     "step": [
+      "Press Pause to stop taking files, and Resume to start again.",
+      "Press Take off to end the machine's access: its key stops working."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "server",
+   "label": "The server",
+   "icon": "cdn:phiogy/icon/host.svg",
+   "lead": "Phiora: the one server under every Phi app.",
+   "article": [
+    {
+     "id": "phiora",
+     "title": "Phiora",
+     "lead": "Phiogy, Phiegg and the other Phi apps share one server, Phiora, at phiegg.com/api.",
+     "step": [
+      "Accounts are shared: one sign-in for every app.",
+      "An app's menus and pages come from Phiora, or from the app's own data file when Phiora has none."
+     ]
+    },
+    {
+     "id": "machine",
+     "title": "The work machines API",
+     "lead": "How a machine and the administrators talk to Phiora about Work sync.",
+     "step": [
+      "POST /machine/consent: a signed-in person's machine joins.",
+      "POST /machine/beat: the machine says it is there and hears its folders.",
+      "POST /machine/index: the machine lists its files; the server answers with the ones it wants.",
+      "PUT /machine/file: the machine sends one file.",
+      "GET /machine and GET /machine/<id>/listing: what administrators read; POST /machine/<id>/pick chooses the files."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "site",
+   "label": "Sites as data",
+   "icon": "cdn:phiogy/icon/ticket.svg",
+   "lead": "A site is one data file of pages and blocks.",
+   "article": [
+    {
+     "id": "file",
+     "title": "A site is a data file",
+     "lead": "phiogy.com is one JSON file: its pages, each a list of blocks, with a top bar and a footer round every page.",
+     "step": [
+      "Blocks are the kit's: bar, hero, marquee, grid, help, prose, news, faq and footer.",
+      "A link names a page of the site (view), another app (app) or an address (href); off shows it without leading anywhere.",
+      "These docs are a help block reading their own file."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "call",
+   "label": "Calls",
+   "icon": "cdn:phiogy/icon/phone.svg",
+   "lead": "How a call is set up.",
+   "article": [
+    {
+     "id": "run",
+     "title": "How calls run",
+     "lead": "Calls go between the people in them over WebRTC, met through the line at phiegg.com/wrt.",
+     "step": [
+      "Up to 8 people with camera, microphone and screen.",
+      "The microphone and camera are used only while you are in a call."
+     ]
+    }
+   ]
+  }
+ ]
+}

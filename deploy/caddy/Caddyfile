@@ -104,6 +104,9 @@ phiecs.com, www.phiecs.com {
 # The landing is the root itself: the page finds its app by the domain (registry `domain`), not by a /<key>/.
 phiogy.com {
 	rewrite / /phiogy-home/
+	# The landing's own pages (its views in phiogy-home.json) are paths of the domain: phiogy.com/help/safety opens it there.
+	@page path_regexp ^/(download|help|docs|news|about|terms|privacy|guidelines)(/.*)?$
+	rewrite @page /phiogy-home/
 	import cdn
 	import wrt
 	import app

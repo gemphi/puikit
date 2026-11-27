@@ -114,11 +114,16 @@ export const PhiApp: React.FC<{ appKey: string }> = ({ appKey }) => {
   // `width` keeps a bare page in one centred column (a product page), its blocks spaced like the shell's.
   // A card of the app's own data opens over the page it is on, never as a page of its own.
   const sheet = held ? <ItemSheet b={held.b} list={held.list} at={held.at} go={go} close={() => go('#/' + tab)} /> : null;
-  if (data?.bare) return (
-    <Box as="main" style={{ minHeight: '100vh', padding: 'clamp(1rem, 3vw, 2.5rem)' }}>
-      {data.width ? <Stack direction="column" gap={8} style={{ maxWidth: data.width, margin: '0 auto' }}>{page}</Stack> : page}
-      {sheet}
-    </Box>);
+  // Its `top` and `foot` stand round every page of it; the column is a container, so its parts lay themselves out by
+  // the width they have (one column on a phone).
+  if (data?.bare) {
+    const framed = <>{(data.top ?? []).map((b, i) => <Block key={'top' + i} b={b} onOpen={openItem} />)}{page}{(data.foot ?? []).map((b, i) => <Block key={'foot' + i} b={b} onOpen={openItem} />)}</>;
+    return (
+      <Box as="main" style={{ minHeight: '100vh', padding: 'clamp(1rem, 3vw, 2.5rem)' }}>
+        {data.width ? <Stack direction="column" gap={8} style={{ maxWidth: data.width, margin: '0 auto', containerType: 'inline-size' }}>{framed}</Stack> : framed}
+        {sheet}
+      </Box>);
+  }
 
   return (
     <PhiShell app={app} nav={nav} side={data?.side} view={cur} onView={go} onRecord={openItem} account={account} people={shown} right={open ? <ItemPanel it={open} onClose={() => setOpen(null)} /> : null}>
