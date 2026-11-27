@@ -172,7 +172,8 @@ MSYS2_ENV_CONV_EXCL='PHI_BASE;VITE_PHI_API;VITE_PHI_MEDIA' PHI_BASE=/boldpups/ V
 ```
 
 Then add `location /boldpups/` and `location /epicpods/` rows to `dist-all/nginx.conf` (like `/phiogy/`) and
-`docker compose restart web`. The pictures are keys of the media store: send the new Bold Pups pictures with
+`docker compose restart web`. The pictures and the two world faces (`fonts/Boldland-Regular.woff2`,
+`fonts/Graphigem-Regular.woff2`) are keys of the media store: send them and the new Bold Pups pictures with
 `PHI_CDN_SSH=ubuntu@13.63.125.132 PHI_CDN_KEY=<key file> scripts/media/sync.sh server`. The server already has
 `collections/hhoc` and `collections/bold-ape-epic-club` (the Epic Pods art) under `/srv/phi-cdn`.
 
