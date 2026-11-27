@@ -536,7 +536,7 @@
     "config": true,
     "look": "muse",
     "mode": "light",
-    "font": "pill-open",
+    "font": "boldland",
     "heading": "Boldland"
   },
   {
@@ -570,7 +570,7 @@
     "config": true,
     "look": "spacex",
     "mode": "dark",
-    "font": "pill-open",
+    "font": "graphigem",
     "heading": "Graphigem"
   },
   {

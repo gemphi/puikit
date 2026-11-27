@@ -129,3 +129,61 @@
 .lineupFigures .lineupFace:nth-child(even) { transform: none; }
 .lineupFigures .lineupPic { aspect-ratio: 3 / 4; border-radius: 0; overflow: visible; }
 .lineupFigures .lineupPic img { object-fit: contain !important; }
+
+/* A card opened over its page (blocks/ItemSheet.tsx): the picture with arrows either side and the strip of its group
+   under it (or upright beside it), a column of tabs at the side, full screen on a tap. The theme's gradients only,
+   no shadows; it covers the page rather than leaving it. */
+.sheet { position: fixed; inset: 0; z-index: 60; display: flex; flex-direction: column; color: var(--phi-color-text-primary);
+  background: linear-gradient(160deg, color-mix(in srgb, var(--phi-color-primary) 22%, var(--phi-color-background)) 0%,
+    var(--phi-color-background) 55%, color-mix(in srgb, var(--phi-color-accent-2, var(--phi-color-primary)) 16%, var(--phi-color-background)) 100%);
+  animation: sheetIn 0.18s ease; container-type: inline-size; }
+@keyframes sheetIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.sheetBar { display: flex; align-items: center; gap: 12px; padding: 10px 16px; }
+.sheetTitle { font-family: var(--phi-font-heading); font-size: 20px; font-weight: var(--phi-font-weight-medium); }
+.sheetSub { color: var(--phi-color-text-secondary); font-size: 14px; }
+.sheetGap { flex: 1; }
+.sheetIcon, .stageArrow { display: grid; place-items: center; width: 40px; height: 40px; border: 0; border-radius: var(--phi-radius-full); cursor: pointer; color: inherit;
+  background: color-mix(in srgb, var(--phi-color-text-primary) 10%, transparent); }
+.sheetIcon:hover, .stageArrow:hover { background: color-mix(in srgb, var(--phi-color-primary) 30%, transparent); }
+.sheetBody { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(12px, 2cqi, 28px); padding: 0 clamp(12px, 2cqi, 28px) 16px; }
+.sheetStage { min-height: 0; display: flex; flex-direction: column; gap: 12px; }
+.stagePic { position: relative; flex: 1; min-height: 0; display: grid; place-items: center; border-radius: var(--phi-radius-lg); overflow: hidden;
+  background: radial-gradient(80% 70% at 50% 40%, color-mix(in srgb, var(--phi-color-primary) 26%, transparent), transparent 70%);
+  img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: var(--phi-radius-md); } }
+.stageNone { font-family: var(--phi-font-heading); font-size: 40px; color: var(--phi-color-text-secondary); }
+.stageArrow { position: absolute; top: 50%; transform: translateY(-50%); width: 52px; height: 52px; }
+.stageArrow:disabled { opacity: 0.25; cursor: default; }
+.stagePrev { left: 12px; } .stageNext { right: 12px; }
+.strip { display: flex; gap: 8px; padding: 4px 2px 6px; min-width: 0; }
+.strip > * { flex: 1; min-width: 0; }
+.sheetActions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.thumb { flex: none; width: 100%; aspect-ratio: 1; padding: 0; border: 0; border-radius: var(--phi-radius-md); overflow: hidden; cursor: pointer; opacity: 0.62;
+  background: color-mix(in srgb, var(--phi-color-text-primary) 8%, transparent); color: inherit; font-size: 11px;
+  img { width: 100%; height: 100%; object-fit: cover; } }
+.thumb:hover { opacity: 1; }
+.thumbOn { opacity: 1; outline: 2px solid var(--phi-color-primary); outline-offset: 2px; }
+.sheetUpright .sheetStage { flex-direction: row-reverse; }
+.sheetUpright .strip { flex-direction: column; flex: none; overflow-y: auto; width: 76px; scrollbar-width: none; }
+.sheetUpright .strip::-webkit-scrollbar { display: none; }
+.sheetUpright .thumb { width: 64px; }
+.sheetSide { min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; scrollbar-width: thin; }
+.sheetRows { display: flex; flex-direction: column; }
+.sheetRow { display: flex; justify-content: space-between; gap: 12px; padding: 8px 2px; border-bottom: 1px solid color-mix(in srgb, var(--phi-color-border) 60%, transparent); font-size: 14px;
+  span { color: var(--phi-color-text-secondary); } strong { font-weight: var(--phi-font-weight-medium); text-align: right; } }
+.relatedHead { display: flex; flex-direction: column; gap: 8px; strong { font-family: var(--phi-font-heading); font-size: 16px; } }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { border: 0; border-radius: var(--phi-radius-full); padding: 5px 10px; font: inherit; font-size: 12px; cursor: pointer; color: inherit;
+  background: color-mix(in srgb, var(--phi-color-text-primary) 9%, transparent); }
+.chipOn { background: color-mix(in srgb, var(--phi-color-primary) 55%, transparent); }
+.relatedGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 8px; }
+.relatedCard { display: flex; flex-direction: column; gap: 4px; padding: 0; border: 0; background: none; color: inherit; font: inherit; font-size: 11px; cursor: pointer; text-align: center;
+  img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--phi-radius-md); } }
+/* Full screen: the picture takes the window, the side folds away, and the strip rides over the picture's lower half. */
+.sheetFull .sheetBody { grid-template-columns: 1fr; padding: 0; }
+.sheetFull .sheetSide { display: none; }
+.sheetFull .sheetStage { position: relative; }
+.sheetFull .stagePic { border-radius: 0; }
+.sheetFull .strip { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); max-width: min(90%, 760px); padding: 8px; border-radius: var(--phi-radius-lg);
+  background: color-mix(in srgb, var(--phi-color-background) 55%, transparent); backdrop-filter: blur(12px); }
+.sheetFull.sheetUpright .strip { left: 16px; top: 50%; bottom: auto; transform: translateY(-50%); max-height: 80%; }
+@container (max-width: 820px) { .sheetBody { grid-template-columns: 1fr; overflow-y: auto; } .sheetStage { min-height: 60vh; } }

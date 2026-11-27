@@ -21,6 +21,10 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const MEDIA = path.join(ROOT, 'media/phi-media');
 const core = JSON.parse(fs.readFileSync(path.join(ROOT, 'app/phiegg/src/data/core.json'), 'utf8'));
+// The Bold Cities: each a land type and a world of the club, with its renders in Phiegg's public folder.
+const boldCities = JSON.parse(fs.readFileSync(path.join(ROOT, 'scripts/media/bold-cities.json'), 'utf8')).cities;
+const PHIEGG_PUBLIC = path.join(ROOT, 'app/phiegg/public');
+const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const fmt = (n) => n.toLocaleString('en-US');
 /** The kind every collection's tokens are, in Phiora and in every path. */
 const KIND = 'token';
@@ -83,9 +87,21 @@ const build = (key) => {
     { label: spec.stat.traits, value: String(traits.length), sub: traits.join(', ') },
     { label: spec.stat.pictured, value: fmt(pictured.length), progress: pictured.length / tokens.length },
   ];
+  // The club's other worlds (its cities): a card each, kind `world`, its renders as the gallery its sheet steps through.
+  const worlds = core.worlds.filter((w) => w.clubId === spec.club && w.id !== world?.id).map((w) => {
+    const bc = boldCities.find((c) => c.name === w.name);
+    const dir = 'world/' + slug(w.name) + '/view';
+    const views = fs.existsSync(path.join(PHIEGG_PUBLIC, dir)) ? fs.readdirSync(path.join(PHIEGG_PUBLIC, dir)).filter((f) => f.endsWith('-1280.webp')).sort((a, b) => (a.startsWith('three') ? -1 : b.startsWith('three') ? 1 : a.localeCompare(b))) : [];
+    const pics = views.map((f) => 'phiegg:' + dir + '/' + f);
+    const land = bc?.land ?? w.tags?.find((x) => x !== 'bold city') ?? '';
+    return { kind: 'world', id: w.id, route: 'world/' + w.id, title: w.name, sub: land, body: w.description, image: pics[0], gallery: pics,
+      facet: land, fields: [[spec.world?.land ?? 'Land', land], ...(bc ? [[spec.world?.number ?? 'Number', bc.n + ' of ' + boldCities.length]] : []),
+        ...(w.cities ?? []).map((c, i) => [(spec.world?.district ?? 'District') + ' ' + (i + 1), c.name + ' · ' + c.vibe])] };
+  }).filter((w) => w.image);
   const fill = {
     $tokens: 'data/token.json', $teaser: teaser, $hero: teaser[0]?.image, $stats: stats, $facets: [spec.all, ...facetValues], $traits: traits,
     $cities: (world?.cities ?? []).map((c) => ({ title: c.name, body: c.vibe + '.' })),
+    $worlds: worlds, $featured: (spec.featured ?? []).map((id) => worlds.find((w) => w.id === id)).filter(Boolean),
   };
   const words = (s) => s.replace(/\{n\}/g, fmt(tokens.length)).replace(/\{(club|world)\.(\w+)\}/g, (_, o, f) => String((o === 'club' ? club : world)?.[f] ?? ''));
   const walk = (v) => (typeof v === 'string' ? (v in fill ? fill[v] : words(v)) : Array.isArray(v) ? v.map(walk) : v && typeof v === 'object' ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, walk(x)])) : v);

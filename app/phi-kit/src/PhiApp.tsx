@@ -11,7 +11,8 @@ import { Friends, useFriendEntry } from './friends';
 import words from './words.json';
 import { PhiShell } from './PhiShell';
 import { Block, type GridItem } from './blocks';
-import { Head, ItemPage, ItemPanel, ownItem } from './views';
+import { Head, ItemPanel, ownItem } from './views';
+import { ItemSheet } from './blocks/ItemSheet';
 import { SettingsView } from './settings';
 import { Profile, useMine, buildAccountNav } from './Profile';
 import { AppLanding } from './AppLanding';
@@ -83,7 +84,6 @@ export const PhiApp: React.FC<{ appKey: string }> = ({ appKey }) => {
   else if (cur === '_friends') page = <Friends app={appKey} people={people} go={go} />;
   else if (err) page = <Text intent="secondary" maxWidth="60ch" marginTop={2}>{err}</Text>;
   else if (!data) page = <Spinner />;
-  else if (held) page = <ItemPage found={held} go={go} />;
   else if (!v) page = <Text intent="secondary" maxWidth="60ch" marginTop={2}>Nothing here yet.</Text>;
   else page = (
     <>
@@ -94,14 +94,18 @@ export const PhiApp: React.FC<{ appKey: string }> = ({ appKey }) => {
 
   // A page that is the whole app (`"bare": true`), a show or a lookbook: no rail and no bar, the page alone.
   // `width` keeps a bare page in one centred column (a product page), its blocks spaced like the shell's.
+  // A card of the app's own data opens over the page it is on, never as a page of its own.
+  const sheet = held ? <ItemSheet b={held.b} list={held.list} at={held.at} go={go} close={() => go('#/' + held.view)} /> : null;
   if (data?.bare) return (
     <Box as="main" style={{ minHeight: '100vh', padding: 'clamp(1rem, 3vw, 2.5rem)' }}>
       {data.width ? <Stack direction="column" gap={8} style={{ maxWidth: data.width, margin: '0 auto' }}>{page}</Stack> : page}
+      {sheet}
     </Box>);
 
   return (
     <PhiShell app={app} nav={nav} side={data?.side} view={cur} onView={go} onRecord={openItem} account={account} people={people} right={open ? <ItemPanel it={open} onClose={() => setOpen(null)} /> : null}>
       {page}
+      {sheet}
       {record && !held ? <RecordSheet kind={record.kind} id={record.id} onClose={() => go('#/' + cur)} go={go} formFor={formFor} /> : null}
     </PhiShell>
   );

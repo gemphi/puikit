@@ -241,7 +241,17 @@
   },
   "item": {
     "back": "Back",
-    "share": "{p} of {name} have it"
+    "share": "{p} of {name} have it",
+    "full": "Full screen",
+    "fit": "Leave full screen",
+    "stripUpright": "Strip upright",
+    "stripAcross": "Strip across",
+    "rank": "Rank",
+    "facts": "Traits",
+    "rarest": "Rarest trait",
+    "related": "Related",
+    "tab": { "facts": "Traits", "stats": "Stats", "offers": "Offers", "trail": "Trail", "owners": "Owners", "sales": "Sales" },
+    "act": { "bag": "Add to bag", "inBag": "In the bag", "offer": "Make an offer", "like": "Like", "liked": "Liked", "comment": "Comment", "share": "Share", "shared": "Link copied" }
   },
   "near": {
     "connect": "Connect a NEAR wallet",

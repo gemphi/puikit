@@ -46,8 +46,13 @@
         "icon": "grid"
       },
       {
-        "id": "lore",
-        "label": "Lore",
+        "id": "clubs",
+        "label": "Clubs",
+        "icon": "map"
+      },
+      {
+        "id": "about",
+        "label": "About",
         "icon": "file"
       }
     ],
@@ -68,8 +73,8 @@
                 "view": "collection"
               },
               {
-                "label": "Read the lore",
-                "view": "lore"
+                "label": "About the pack",
+                "view": "about"
               }
             ]
           },
@@ -91,6 +96,22 @@
             "more": {
               "label": "See all {n}",
               "view": "collection"
+            }
+          },
+          {
+            "kind": "grid",
+            "title": "Four of the sixteen clubs",
+            "items": "$featured",
+            "toolbar": false,
+            "layout": "grid",
+            "ratio": "16/10",
+            "mosaic": false,
+            "cardFields": 0,
+            "cols": 4,
+            "minItemWidth": "14rem",
+            "more": {
+              "label": "See all 16 clubs",
+              "view": "clubs"
             }
           }
         ]
@@ -121,17 +142,116 @@
           }
         ]
       },
-      "lore": {
-        "title": "{world.name}",
-        "sub": "{world.description}",
+      "clubs": {
+        "title": "The 16 clubs",
+        "sub": "The pack lives across the sixteen Bold Cities, one club to a city: each its own land, from the Forest to Bozo City, with its districts for shows, games and gathering. Open one to walk its views.",
         "blocks": [
           {
+            "kind": "grid",
+            "items": "$worlds",
+            "filter": [
+              "Land"
+            ],
+            "sort": [
+              "title"
+            ],
+            "layout": "grid",
+            "layoutSet": [
+              "grid",
+              "list"
+            ],
+            "ratio": "16/10",
+            "mosaic": false,
+            "cardFields": 0,
+            "cols": 4,
+            "minItemWidth": "15rem"
+          }
+        ]
+      },
+      "about": {
+        "title": "About Bold Pups",
+        "sub": "{club.tagline}",
+        "blocks": [
+          {
+            "kind": "hero",
+            "variant": "card",
+            "heading": "The pack",
+            "body": "{club.description}",
+            "image": "$hero"
+          },
+          {
+            "kind": "stats",
+            "items": "$stats"
+          },
+          {
+            "kind": "grid",
+            "title": "What a pup gets",
+            "toolbar": false,
+            "layout": "grid",
+            "mosaic": false,
+            "cols": 3,
+            "minItemWidth": "16rem",
+            "items": [
+              {
+                "title": "A place in the pack",
+                "body": "Each pup is a membership of Bold Pups: its host in Phiogy, its rooms to write and talk in, and its calls with camera and screen."
+              },
+              {
+                "title": "Sixteen cities to live in",
+                "body": "The Bold Cities are sixteen lands, from the Forest and the Desert to Once City and Bozo City; every club of the pack keeps one."
+              },
+              {
+                "title": "Shows on the Orbit runway",
+                "body": "Pups walk the runway on Pup Orbit: shows, poses and renders of the pack in its looks."
+              },
+              {
+                "title": "Fetch quests and pool parties",
+                "body": "Play fetch quests across the rings and gather for the Friday howl in Howl Arena."
+              },
+              {
+                "title": "A share of the pack fund",
+                "body": "The pool behind the pack: every pup holds a share of the pack fund."
+              },
+              {
+                "title": "Traits that count",
+                "body": "Ten traits a pup, from fur to expression; open any pup to see how many of the 10,000 share each one."
+              }
+            ]
+          },
+          {
             "kind": "prose",
-            "lead": "{club.description}",
+            "lead": "{world.description}",
             "sections": "$cities"
+          },
+          {
+            "kind": "grid",
+            "title": "The clubs",
+            "items": "$featured",
+            "toolbar": false,
+            "layout": "grid",
+            "ratio": "16/10",
+            "mosaic": false,
+            "cardFields": 0,
+            "cols": 4,
+            "minItemWidth": "14rem",
+            "more": {
+              "label": "See all 16 clubs",
+              "view": "clubs"
+            }
           }
         ]
       }
     }
+  },
+  "featured": [
+    "w_once_city",
+    "w_bozo_city",
+    "w_wand_city",
+    "w_acro_city"
+  ],
+  "world": {
+    "land": "Land",
+    "number": "City",
+    "district": "District"
   }
 }

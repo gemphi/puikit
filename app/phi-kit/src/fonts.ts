@@ -22,6 +22,9 @@ export const FONTS: FontChoice[] = [
   { id: 'serif', label: 'Phi-Serif', family: 'Phi-Serif' },
   { id: 'chatty', label: 'Chatty Whims', family: 'Chatty Whims' },
   { id: 'spark', label: "Lora's Spark", family: "Lora's Spark" },
+  // A world's own faces (world-fonts.css), for its site: Bold Land's two display faces.
+  { id: 'boldland', label: 'Boldland', family: 'Boldland' },
+  { id: 'graphigem', label: 'Graphigem', family: 'Graphigem' },
 ];
 
 const KEY = 'phi-font';

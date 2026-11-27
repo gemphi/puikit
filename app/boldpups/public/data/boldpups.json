@@ -13,8 +13,13 @@
    "icon": "grid"
   },
   {
-   "id": "lore",
-   "label": "Lore",
+   "id": "clubs",
+   "label": "Clubs",
+   "icon": "map"
+  },
+  {
+   "id": "about",
+   "label": "About",
    "icon": "file"
   }
  ],
@@ -35,8 +40,8 @@
        "view": "collection"
       },
       {
-       "label": "Read the lore",
-       "view": "lore"
+       "label": "About the pack",
+       "view": "about"
       }
      ]
     },
@@ -173,6 +178,191 @@
       "label": "See all 10,000",
       "view": "collection"
      }
+    },
+    {
+     "kind": "grid",
+     "title": "Four of the sixteen clubs",
+     "items": [
+      {
+       "kind": "world",
+       "id": "w_once_city",
+       "route": "world/w_once_city",
+       "title": "Once City",
+       "sub": "Modern City",
+       "body": "Tall, contemporary buildings and sleek urban architecture.",
+       "image": "phiegg:world/once-city/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/once-city/view/three-quarter-1280.webp",
+        "phiegg:world/once-city/view/close-up-1-1280.webp",
+        "phiegg:world/once-city/view/close-up-2-1280.webp",
+        "phiegg:world/once-city/view/close-up-3-1280.webp",
+        "phiegg:world/once-city/view/close-up-4-1280.webp",
+        "phiegg:world/once-city/view/front-1280.webp",
+        "phiegg:world/once-city/view/side-1280.webp",
+        "phiegg:world/once-city/view/top-1280.webp"
+       ],
+       "facet": "Modern City",
+       "fields": [
+        [
+         "Land",
+         "Modern City"
+        ],
+        [
+         "City",
+         "13 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      },
+      {
+       "kind": "world",
+       "id": "w_bozo_city",
+       "route": "world/w_bozo_city",
+       "title": "Bozo City",
+       "sub": "Village",
+       "body": "Low buildings around a town square, made for gathering.",
+       "image": "phiegg:world/bozo-city/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/bozo-city/view/three-quarter-1280.webp",
+        "phiegg:world/bozo-city/view/close-up-1-1280.webp",
+        "phiegg:world/bozo-city/view/close-up-2-1280.webp",
+        "phiegg:world/bozo-city/view/close-up-3-1280.webp",
+        "phiegg:world/bozo-city/view/close-up-4-1280.webp",
+        "phiegg:world/bozo-city/view/front-1280.webp",
+        "phiegg:world/bozo-city/view/side-1280.webp",
+        "phiegg:world/bozo-city/view/top-1280.webp"
+       ],
+       "facet": "Village",
+       "fields": [
+        [
+         "Land",
+         "Village"
+        ],
+        [
+         "City",
+         "16 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      },
+      {
+       "kind": "world",
+       "id": "w_wand_city",
+       "route": "world/w_wand_city",
+       "title": "Wand City",
+       "sub": "Crystal Caves",
+       "body": "Bright, reflective crystals, underground and in the open.",
+       "image": "phiegg:world/wand-city/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/wand-city/view/three-quarter-1280.webp",
+        "phiegg:world/wand-city/view/close-up-1-1280.webp",
+        "phiegg:world/wand-city/view/close-up-2-1280.webp",
+        "phiegg:world/wand-city/view/close-up-3-1280.webp",
+        "phiegg:world/wand-city/view/close-up-4-1280.webp",
+        "phiegg:world/wand-city/view/front-1280.webp",
+        "phiegg:world/wand-city/view/side-1280.webp",
+        "phiegg:world/wand-city/view/top-1280.webp"
+       ],
+       "facet": "Crystal Caves",
+       "fields": [
+        [
+         "Land",
+         "Crystal Caves"
+        ],
+        [
+         "City",
+         "10 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      },
+      {
+       "kind": "world",
+       "id": "w_acro_city",
+       "route": "world/w_acro_city",
+       "title": "Acro City",
+       "sub": "Floating Island",
+       "body": "Land held high in the air, joined by bridges and platforms.",
+       "image": "phiegg:world/acro-city/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/acro-city/view/three-quarter-1280.webp",
+        "phiegg:world/acro-city/view/close-up-1-1280.webp",
+        "phiegg:world/acro-city/view/close-up-2-1280.webp",
+        "phiegg:world/acro-city/view/close-up-3-1280.webp",
+        "phiegg:world/acro-city/view/close-up-4-1280.webp",
+        "phiegg:world/acro-city/view/front-1280.webp",
+        "phiegg:world/acro-city/view/side-1280.webp",
+        "phiegg:world/acro-city/view/top-1280.webp"
+       ],
+       "facet": "Floating Island",
+       "fields": [
+        [
+         "Land",
+         "Floating Island"
+        ],
+        [
+         "City",
+         "11 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      }
+     ],
+     "toolbar": false,
+     "layout": "grid",
+     "ratio": "16/10",
+     "mosaic": false,
+     "cardFields": 0,
+     "cols": 4,
+     "minItemWidth": "14rem",
+     "more": {
+      "label": "See all 16 clubs",
+      "view": "clubs"
+     }
     }
    ]
   },
@@ -217,13 +407,781 @@
     }
    ]
   },
-  "lore": {
-   "title": "Pup Orbit",
-   "sub": "A moon park with rings to fetch across, a kennel city in a crater and an arena that only plays howls.",
+  "clubs": {
+   "title": "The 16 clubs",
+   "sub": "The pack lives across the sixteen Bold Cities, one club to a city: each its own land, from the Forest to Bozo City, with its districts for shows, games and gathering. Open one to walk its views.",
    "blocks": [
     {
+     "kind": "grid",
+     "items": [
+      {
+       "kind": "world",
+       "id": "w_forest",
+       "route": "world/w_forest",
+       "title": "Forest",
+       "sub": "Forest",
+       "body": "Dense foliage, tall and varied trees, evergreen and sunny scapes, natural flora.",
+       "image": "phiegg:world/forest/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/forest/view/three-quarter-1280.webp",
+        "phiegg:world/forest/view/close-up-1-1280.webp",
+        "phiegg:world/forest/view/close-up-2-1280.webp",
+        "phiegg:world/forest/view/close-up-3-1280.webp",
+        "phiegg:world/forest/view/close-up-4-1280.webp",
+        "phiegg:world/forest/view/front-1280.webp",
+        "phiegg:world/forest/view/side-1280.webp",
+        "phiegg:world/forest/view/top-1280.webp"
+       ],
+       "facet": "Forest",
+       "fields": [
+        [
+         "Land",
+         "Forest"
+        ],
+        [
+         "City",
+         "1 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      },
+      {
+       "kind": "world",
+       "id": "w_desert",
+       "route": "world/w_desert",
+       "title": "Desert",
+       "sub": "Desert",
+       "body": "An arid, sandy landscape of large, sweeping dunes.",
+       "image": "phiegg:world/desert/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/desert/view/three-quarter-1280.webp",
+        "phiegg:world/desert/view/close-up-1-1280.webp",
+        "phiegg:world/desert/view/close-up-2-1280.webp",
+        "phiegg:world/desert/view/close-up-3-1280.webp",
+        "phiegg:world/desert/view/close-up-4-1280.webp",
+        "phiegg:world/desert/view/front-1280.webp",
+        "phiegg:world/desert/view/side-1280.webp",
+        "phiegg:world/desert/view/top-1280.webp"
+       ],
+       "facet": "Desert",
+       "fields": [
+        [
+         "Land",
+         "Desert"
+        ],
+        [
+         "City",
+         "2 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      },
+      {
+       "kind": "world",
+       "id": "w_peep_city",
+       "route": "world/w_peep_city",
+       "title": "Peep City",
+       "sub": "Grasslands",
+       "body": "Open fields and rolling hills with few large obstructions.",
+       "image": "phiegg:world/peep-city/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/peep-city/view/three-quarter-1280.webp",
+        "phiegg:world/peep-city/view/close-up-1-1280.webp",
+        "phiegg:world/peep-city/view/close-up-2-1280.webp",
+        "phiegg:world/peep-city/view/close-up-3-1280.webp",
+        "phiegg:world/peep-city/view/close-up-4-1280.webp",
+        "phiegg:world/peep-city/view/front-1280.webp",
+        "phiegg:world/peep-city/view/side-1280.webp",
+        "phiegg:world/peep-city/view/top-1280.webp"
+       ],
+       "facet": "Grasslands",
+       "fields": [
+        [
+         "Land",
+         "Grasslands"
+        ],
+        [
+         "City",
+         "3 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      },
+      {
+       "kind": "world",
+       "id": "w_lace_city",
+       "route": "world/w_lace_city",
+       "title": "Lace City",
+       "sub": "Arctic",
+       "body": "Snowy, icy, frozen terrain, made for cold-weather looks.",
+       "image": "phiegg:world/lace-city/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/lace-city/view/three-quarter-1280.webp",
+        "phiegg:world/lace-city/view/close-up-1-1280.webp",
+        "phiegg:world/lace-city/view/close-up-2-1280.webp",
+        "phiegg:world/lace-city/view/close-up-3-1280.webp",
+        "phiegg:world/lace-city/view/close-up-4-1280.webp",
+        "phiegg:world/lace-city/view/front-1280.webp",
+        "phiegg:world/lace-city/view/side-1280.webp",
+        "phiegg:world/lace-city/view/top-1280.webp"
+       ],
+       "facet": "Arctic",
+       "fields": [
+        [
+         "Land",
+         "Arctic"
+        ],
+        [
+         "City",
+         "4 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      },
+      {
+       "kind": "world",
+       "id": "w_skim_city",
+       "route": "world/w_skim_city",
+       "title": "Skim City",
+       "sub": "Water Scene",
+       "body": "Deep blue water and the open sea, home of the ships and yachts.",
+       "image": "phiegg:world/skim-city/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/skim-city/view/three-quarter-1280.webp",
+        "phiegg:world/skim-city/view/close-up-1-1280.webp",
+        "phiegg:world/skim-city/view/close-up-2-1280.webp",
+        "phiegg:world/skim-city/view/close-up-3-1280.webp",
+        "phiegg:world/skim-city/view/close-up-4-1280.webp",
+        "phiegg:world/skim-city/view/front-1280.webp",
+        "phiegg:world/skim-city/view/side-1280.webp",
+        "phiegg:world/skim-city/view/top-1280.webp"
+       ],
+       "facet": "Water Scene",
+       "fields": [
+        [
+         "Land",
+         "Water Scene"
+        ],
+        [
+         "City",
+         "5 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      },
+      {
+       "kind": "world",
+       "id": "w_naim_city",
+       "route": "world/w_naim_city",
+       "title": "Naim City",
+       "sub": "Tropical Beach",
+       "body": "Sandy shores, clear shallow water and coastal plants.",
+       "image": "phiegg:world/naim-city/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/naim-city/view/three-quarter-1280.webp",
+        "phiegg:world/naim-city/view/close-up-1-1280.webp",
+        "phiegg:world/naim-city/view/close-up-2-1280.webp",
+        "phiegg:world/naim-city/view/close-up-3-1280.webp",
+        "phiegg:world/naim-city/view/close-up-4-1280.webp",
+        "phiegg:world/naim-city/view/front-1280.webp",
+        "phiegg:world/naim-city/view/side-1280.webp",
+        "phiegg:world/naim-city/view/top-1280.webp"
+       ],
+       "facet": "Tropical Beach",
+       "fields": [
+        [
+         "Land",
+         "Tropical Beach"
+        ],
+        [
+         "City",
+         "6 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      },
+      {
+       "kind": "world",
+       "id": "w_swamp",
+       "route": "world/w_swamp",
+       "title": "Swamp",
+       "sub": "Swamp",
+       "body": "Murky water, dense low flora and tangled roots.",
+       "image": "phiegg:world/swamp/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/swamp/view/three-quarter-1280.webp",
+        "phiegg:world/swamp/view/close-up-1-1280.webp",
+        "phiegg:world/swamp/view/close-up-2-1280.webp",
+        "phiegg:world/swamp/view/close-up-3-1280.webp",
+        "phiegg:world/swamp/view/close-up-4-1280.webp",
+        "phiegg:world/swamp/view/front-1280.webp",
+        "phiegg:world/swamp/view/side-1280.webp",
+        "phiegg:world/swamp/view/top-1280.webp"
+       ],
+       "facet": "Swamp",
+       "fields": [
+        [
+         "Land",
+         "Swamp"
+        ],
+        [
+         "City",
+         "7 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      },
+      {
+       "kind": "world",
+       "id": "w_loon_city",
+       "route": "world/w_loon_city",
+       "title": "Loon City",
+       "sub": "Coral Reef",
+       "body": "A wide, detailed world under the water.",
+       "image": "phiegg:world/loon-city/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/loon-city/view/three-quarter-1280.webp",
+        "phiegg:world/loon-city/view/close-up-1-1280.webp",
+        "phiegg:world/loon-city/view/close-up-2-1280.webp",
+        "phiegg:world/loon-city/view/close-up-3-1280.webp",
+        "phiegg:world/loon-city/view/close-up-4-1280.webp",
+        "phiegg:world/loon-city/view/front-1280.webp",
+        "phiegg:world/loon-city/view/side-1280.webp",
+        "phiegg:world/loon-city/view/top-1280.webp"
+       ],
+       "facet": "Coral Reef",
+       "fields": [
+        [
+         "Land",
+         "Coral Reef"
+        ],
+        [
+         "City",
+         "8 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      },
+      {
+       "kind": "world",
+       "id": "w_lava_city",
+       "route": "world/w_lava_city",
+       "title": "Lava City",
+       "sub": "Lava Scene",
+       "body": "Dark rock, flowing magma, ash and smoking vents, the backdrop for the roids.",
+       "image": "phiegg:world/lava-city/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/lava-city/view/three-quarter-1280.webp",
+        "phiegg:world/lava-city/view/close-up-1-1280.webp",
+        "phiegg:world/lava-city/view/close-up-2-1280.webp",
+        "phiegg:world/lava-city/view/close-up-3-1280.webp",
+        "phiegg:world/lava-city/view/close-up-4-1280.webp",
+        "phiegg:world/lava-city/view/front-1280.webp",
+        "phiegg:world/lava-city/view/side-1280.webp",
+        "phiegg:world/lava-city/view/top-1280.webp"
+       ],
+       "facet": "Lava Scene",
+       "fields": [
+        [
+         "Land",
+         "Lava Scene"
+        ],
+        [
+         "City",
+         "9 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      },
+      {
+       "kind": "world",
+       "id": "w_wand_city",
+       "route": "world/w_wand_city",
+       "title": "Wand City",
+       "sub": "Crystal Caves",
+       "body": "Bright, reflective crystals, underground and in the open.",
+       "image": "phiegg:world/wand-city/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/wand-city/view/three-quarter-1280.webp",
+        "phiegg:world/wand-city/view/close-up-1-1280.webp",
+        "phiegg:world/wand-city/view/close-up-2-1280.webp",
+        "phiegg:world/wand-city/view/close-up-3-1280.webp",
+        "phiegg:world/wand-city/view/close-up-4-1280.webp",
+        "phiegg:world/wand-city/view/front-1280.webp",
+        "phiegg:world/wand-city/view/side-1280.webp",
+        "phiegg:world/wand-city/view/top-1280.webp"
+       ],
+       "facet": "Crystal Caves",
+       "fields": [
+        [
+         "Land",
+         "Crystal Caves"
+        ],
+        [
+         "City",
+         "10 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      },
+      {
+       "kind": "world",
+       "id": "w_acro_city",
+       "route": "world/w_acro_city",
+       "title": "Acro City",
+       "sub": "Floating Island",
+       "body": "Land held high in the air, joined by bridges and platforms.",
+       "image": "phiegg:world/acro-city/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/acro-city/view/three-quarter-1280.webp",
+        "phiegg:world/acro-city/view/close-up-1-1280.webp",
+        "phiegg:world/acro-city/view/close-up-2-1280.webp",
+        "phiegg:world/acro-city/view/close-up-3-1280.webp",
+        "phiegg:world/acro-city/view/close-up-4-1280.webp",
+        "phiegg:world/acro-city/view/front-1280.webp",
+        "phiegg:world/acro-city/view/side-1280.webp",
+        "phiegg:world/acro-city/view/top-1280.webp"
+       ],
+       "facet": "Floating Island",
+       "fields": [
+        [
+         "Land",
+         "Floating Island"
+        ],
+        [
+         "City",
+         "11 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      },
+      {
+       "kind": "world",
+       "id": "w_warp_city",
+       "route": "world/w_warp_city",
+       "title": "Warp City",
+       "sub": "Moonscape",
+       "body": "Moon-grey, cratered and quiet, with low gravity.",
+       "image": "phiegg:world/warp-city/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/warp-city/view/three-quarter-1280.webp",
+        "phiegg:world/warp-city/view/close-up-1-1280.webp",
+        "phiegg:world/warp-city/view/close-up-2-1280.webp",
+        "phiegg:world/warp-city/view/close-up-3-1280.webp",
+        "phiegg:world/warp-city/view/close-up-4-1280.webp",
+        "phiegg:world/warp-city/view/front-1280.webp",
+        "phiegg:world/warp-city/view/side-1280.webp",
+        "phiegg:world/warp-city/view/top-1280.webp"
+       ],
+       "facet": "Moonscape",
+       "fields": [
+        [
+         "Land",
+         "Moonscape"
+        ],
+        [
+         "City",
+         "12 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      },
+      {
+       "kind": "world",
+       "id": "w_once_city",
+       "route": "world/w_once_city",
+       "title": "Once City",
+       "sub": "Modern City",
+       "body": "Tall, contemporary buildings and sleek urban architecture.",
+       "image": "phiegg:world/once-city/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/once-city/view/three-quarter-1280.webp",
+        "phiegg:world/once-city/view/close-up-1-1280.webp",
+        "phiegg:world/once-city/view/close-up-2-1280.webp",
+        "phiegg:world/once-city/view/close-up-3-1280.webp",
+        "phiegg:world/once-city/view/close-up-4-1280.webp",
+        "phiegg:world/once-city/view/front-1280.webp",
+        "phiegg:world/once-city/view/side-1280.webp",
+        "phiegg:world/once-city/view/top-1280.webp"
+       ],
+       "facet": "Modern City",
+       "fields": [
+        [
+         "Land",
+         "Modern City"
+        ],
+        [
+         "City",
+         "13 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      },
+      {
+       "kind": "world",
+       "id": "w_city_ruins",
+       "route": "world/w_city_ruins",
+       "title": "City Ruins",
+       "sub": "City Ruins",
+       "body": "The old Bold City: ancient, weathered stone and the remains of its buildings.",
+       "image": "phiegg:world/city-ruins/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/city-ruins/view/three-quarter-1280.webp",
+        "phiegg:world/city-ruins/view/close-up-1-1280.webp",
+        "phiegg:world/city-ruins/view/close-up-2-1280.webp",
+        "phiegg:world/city-ruins/view/close-up-3-1280.webp",
+        "phiegg:world/city-ruins/view/close-up-4-1280.webp",
+        "phiegg:world/city-ruins/view/front-1280.webp",
+        "phiegg:world/city-ruins/view/side-1280.webp",
+        "phiegg:world/city-ruins/view/top-1280.webp"
+       ],
+       "facet": "City Ruins",
+       "fields": [
+        [
+         "Land",
+         "City Ruins"
+        ],
+        [
+         "City",
+         "14 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      },
+      {
+       "kind": "world",
+       "id": "w_roid_city",
+       "route": "world/w_roid_city",
+       "title": "Roid City",
+       "sub": "Cyberpunk",
+       "body": "Dense streets, wet roads and bright neon signs.",
+       "image": "phiegg:world/roid-city/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/roid-city/view/three-quarter-1280.webp",
+        "phiegg:world/roid-city/view/close-up-2-1280.webp",
+        "phiegg:world/roid-city/view/close-up-4-1280.webp",
+        "phiegg:world/roid-city/view/front-1280.webp",
+        "phiegg:world/roid-city/view/side-1280.webp",
+        "phiegg:world/roid-city/view/top-1280.webp"
+       ],
+       "facet": "Cyberpunk",
+       "fields": [
+        [
+         "Land",
+         "Cyberpunk"
+        ],
+        [
+         "City",
+         "15 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      },
+      {
+       "kind": "world",
+       "id": "w_bozo_city",
+       "route": "world/w_bozo_city",
+       "title": "Bozo City",
+       "sub": "Village",
+       "body": "Low buildings around a town square, made for gathering.",
+       "image": "phiegg:world/bozo-city/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/bozo-city/view/three-quarter-1280.webp",
+        "phiegg:world/bozo-city/view/close-up-1-1280.webp",
+        "phiegg:world/bozo-city/view/close-up-2-1280.webp",
+        "phiegg:world/bozo-city/view/close-up-3-1280.webp",
+        "phiegg:world/bozo-city/view/close-up-4-1280.webp",
+        "phiegg:world/bozo-city/view/front-1280.webp",
+        "phiegg:world/bozo-city/view/side-1280.webp",
+        "phiegg:world/bozo-city/view/top-1280.webp"
+       ],
+       "facet": "Village",
+       "fields": [
+        [
+         "Land",
+         "Village"
+        ],
+        [
+         "City",
+         "16 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      }
+     ],
+     "filter": [
+      "Land"
+     ],
+     "sort": [
+      "title"
+     ],
+     "layout": "grid",
+     "layoutSet": [
+      "grid",
+      "list"
+     ],
+     "ratio": "16/10",
+     "mosaic": false,
+     "cardFields": 0,
+     "cols": 4,
+     "minItemWidth": "15rem"
+    }
+   ]
+  },
+  "about": {
+   "title": "About Bold Pups",
+   "sub": "A pack of 10,000 pups with somewhere to be.",
+   "blocks": [
+    {
+     "kind": "hero",
+     "variant": "card",
+     "heading": "The pack",
+     "body": "Bold Pups is a pool of 10,000 utility PFTs: each pup is a membership, a walk on the Orbit runway and a share of the pack fund. Pups swap, play fetch quests and throw the loudest pool parties on the moon.",
+     "image": "cdn:token/boldpups-17.webp"
+    },
+    {
+     "kind": "stats",
+     "items": [
+      {
+       "label": "Pups",
+       "value": "10,000"
+      },
+      {
+       "label": "BPSC",
+       "value": "8,000",
+       "sub": "80.0%"
+      },
+      {
+       "label": "HHOC",
+       "value": "2,000",
+       "sub": "20.0%"
+      },
+      {
+       "label": "Traits",
+       "value": "10",
+       "sub": "Background, Character, Hair style, Fur, Hair colour, Outfit, Glasses, Hat, Expression, Club"
+      },
+      {
+       "label": "Pictures online",
+       "value": "4,399",
+       "progress": 0.4399
+      }
+     ]
+    },
+    {
+     "kind": "grid",
+     "title": "What a pup gets",
+     "toolbar": false,
+     "layout": "grid",
+     "mosaic": false,
+     "cols": 3,
+     "minItemWidth": "16rem",
+     "items": [
+      {
+       "title": "A place in the pack",
+       "body": "Each pup is a membership of Bold Pups: its host in Phiogy, its rooms to write and talk in, and its calls with camera and screen."
+      },
+      {
+       "title": "Sixteen cities to live in",
+       "body": "The Bold Cities are sixteen lands, from the Forest and the Desert to Once City and Bozo City; every club of the pack keeps one."
+      },
+      {
+       "title": "Shows on the Orbit runway",
+       "body": "Pups walk the runway on Pup Orbit: shows, poses and renders of the pack in its looks."
+      },
+      {
+       "title": "Fetch quests and pool parties",
+       "body": "Play fetch quests across the rings and gather for the Friday howl in Howl Arena."
+      },
+      {
+       "title": "A share of the pack fund",
+       "body": "The pool behind the pack: every pup holds a share of the pack fund."
+      },
+      {
+       "title": "Traits that count",
+       "body": "Ten traits a pup, from fur to expression; open any pup to see how many of the 10,000 share each one."
+      }
+     ]
+    },
+    {
      "kind": "prose",
-     "lead": "Bold Pups is a pool of 10,000 utility PFTs: each pup is a membership, a walk on the Orbit runway and a share of the pack fund. Pups swap, play fetch quests and throw the loudest pool parties on the moon.",
+     "lead": "A moon park with rings to fetch across, a kennel city in a crater and an arena that only plays howls.",
      "sections": [
       {
        "title": "Kennel Crater",
@@ -238,6 +1196,191 @@
        "body": "Shows, races and the Friday howl."
       }
      ]
+    },
+    {
+     "kind": "grid",
+     "title": "The clubs",
+     "items": [
+      {
+       "kind": "world",
+       "id": "w_once_city",
+       "route": "world/w_once_city",
+       "title": "Once City",
+       "sub": "Modern City",
+       "body": "Tall, contemporary buildings and sleek urban architecture.",
+       "image": "phiegg:world/once-city/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/once-city/view/three-quarter-1280.webp",
+        "phiegg:world/once-city/view/close-up-1-1280.webp",
+        "phiegg:world/once-city/view/close-up-2-1280.webp",
+        "phiegg:world/once-city/view/close-up-3-1280.webp",
+        "phiegg:world/once-city/view/close-up-4-1280.webp",
+        "phiegg:world/once-city/view/front-1280.webp",
+        "phiegg:world/once-city/view/side-1280.webp",
+        "phiegg:world/once-city/view/top-1280.webp"
+       ],
+       "facet": "Modern City",
+       "fields": [
+        [
+         "Land",
+         "Modern City"
+        ],
+        [
+         "City",
+         "13 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      },
+      {
+       "kind": "world",
+       "id": "w_bozo_city",
+       "route": "world/w_bozo_city",
+       "title": "Bozo City",
+       "sub": "Village",
+       "body": "Low buildings around a town square, made for gathering.",
+       "image": "phiegg:world/bozo-city/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/bozo-city/view/three-quarter-1280.webp",
+        "phiegg:world/bozo-city/view/close-up-1-1280.webp",
+        "phiegg:world/bozo-city/view/close-up-2-1280.webp",
+        "phiegg:world/bozo-city/view/close-up-3-1280.webp",
+        "phiegg:world/bozo-city/view/close-up-4-1280.webp",
+        "phiegg:world/bozo-city/view/front-1280.webp",
+        "phiegg:world/bozo-city/view/side-1280.webp",
+        "phiegg:world/bozo-city/view/top-1280.webp"
+       ],
+       "facet": "Village",
+       "fields": [
+        [
+         "Land",
+         "Village"
+        ],
+        [
+         "City",
+         "16 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      },
+      {
+       "kind": "world",
+       "id": "w_wand_city",
+       "route": "world/w_wand_city",
+       "title": "Wand City",
+       "sub": "Crystal Caves",
+       "body": "Bright, reflective crystals, underground and in the open.",
+       "image": "phiegg:world/wand-city/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/wand-city/view/three-quarter-1280.webp",
+        "phiegg:world/wand-city/view/close-up-1-1280.webp",
+        "phiegg:world/wand-city/view/close-up-2-1280.webp",
+        "phiegg:world/wand-city/view/close-up-3-1280.webp",
+        "phiegg:world/wand-city/view/close-up-4-1280.webp",
+        "phiegg:world/wand-city/view/front-1280.webp",
+        "phiegg:world/wand-city/view/side-1280.webp",
+        "phiegg:world/wand-city/view/top-1280.webp"
+       ],
+       "facet": "Crystal Caves",
+       "fields": [
+        [
+         "Land",
+         "Crystal Caves"
+        ],
+        [
+         "City",
+         "10 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      },
+      {
+       "kind": "world",
+       "id": "w_acro_city",
+       "route": "world/w_acro_city",
+       "title": "Acro City",
+       "sub": "Floating Island",
+       "body": "Land held high in the air, joined by bridges and platforms.",
+       "image": "phiegg:world/acro-city/view/three-quarter-1280.webp",
+       "gallery": [
+        "phiegg:world/acro-city/view/three-quarter-1280.webp",
+        "phiegg:world/acro-city/view/close-up-1-1280.webp",
+        "phiegg:world/acro-city/view/close-up-2-1280.webp",
+        "phiegg:world/acro-city/view/close-up-3-1280.webp",
+        "phiegg:world/acro-city/view/close-up-4-1280.webp",
+        "phiegg:world/acro-city/view/front-1280.webp",
+        "phiegg:world/acro-city/view/side-1280.webp",
+        "phiegg:world/acro-city/view/top-1280.webp"
+       ],
+       "facet": "Floating Island",
+       "fields": [
+        [
+         "Land",
+         "Floating Island"
+        ],
+        [
+         "City",
+         "11 of 16"
+        ],
+        [
+         "District 1",
+         "Fashion District · Shops and runway shows"
+        ],
+        [
+         "District 2",
+         "Entertainment District · Concerts, art and games"
+        ],
+        [
+         "District 3",
+         "Social District · Cafes, parks and plazas"
+        ]
+       ]
+      }
+     ],
+     "toolbar": false,
+     "layout": "grid",
+     "ratio": "16/10",
+     "mosaic": false,
+     "cardFields": 0,
+     "cols": 4,
+     "minItemWidth": "14rem",
+     "more": {
+      "label": "See all 16 clubs",
+      "view": "clubs"
+     }
     }
    ]
   }

@@ -21,7 +21,7 @@ const linkTarget = (f: FieldSpec | undefined, field: string) => f?.kind ?? (/Id$
 
 /** The comments for a record, as a panel that slides in from the right of the sheet when the chat button is tapped.
  *  Reads live (kind `comment`, pointing at this record) and posts a new comment back to Phiora. */
-const CommentsPanel: React.FC<{ kind: string; id: string; title: string; open: boolean; onClose: () => void }> = ({ kind, id, title, open, onClose }) => {
+export const CommentsPanel: React.FC<{ kind: string; id: string; title: string; open: boolean; onClose: () => void }> = ({ kind, id, title, open, onClose }) => {
   const me = useMe();
   const [rows, setRows] = React.useState<Row[] | null>(null);
   const [draft, setDraft] = React.useState('');
