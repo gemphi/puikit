@@ -103,7 +103,6 @@
           {
             "kind": "grid",
             "source": "$tokens",
-            "facet": "$facets",
             "filter": "$traits",
             "sort": [
               "title"

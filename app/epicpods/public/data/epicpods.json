@@ -203,15 +203,6 @@
     {
      "kind": "grid",
      "source": "data/token.json",
-     "facet": [
-      "All",
-      "Common",
-      "Limited",
-      "Rare",
-      "Epic",
-      "SuperRare",
-      "Legendary"
-     ],
      "filter": [
       "Rarity",
       "Character",

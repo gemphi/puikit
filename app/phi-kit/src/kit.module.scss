@@ -136,8 +136,9 @@
 .sheetIcon, .stageArrow { display: grid; place-items: center; width: 40px; height: 40px; border: 0; border-radius: var(--phi-radius-full); cursor: pointer; color: inherit;
   background: color-mix(in srgb, var(--phi-color-text-primary) 10%, transparent); }
 .sheetIcon:hover, .stageArrow:hover { background: color-mix(in srgb, var(--phi-color-primary) 30%, transparent); }
-.sheetBody { flex: 1; min-height: 0; height: 100%; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(12px, 2cqi, 28px); padding: 0 clamp(12px, 2cqi, 28px) 16px; }
-.sheetStage { min-height: 0; display: flex; flex-direction: column; gap: 12px; }
+.sheetBody { display: grid; align-items: start; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(12px, 2cqi, 28px); padding: 0 clamp(12px, 2cqi, 28px) 16px; }
+/* One scrollbar, the drawer's: the picture stays in view while the sections beside it scroll past. */
+.sheetStage { position: sticky; top: 0; height: calc(100vh - 120px); display: flex; flex-direction: column; gap: 12px; }
 .stagePic { position: relative; flex: 1; min-height: 0; display: grid; place-items: center; border-radius: var(--phi-radius-lg); overflow: hidden;
   background: radial-gradient(80% 70% at 50% 40%, color-mix(in srgb, var(--phi-color-primary) 26%, transparent), transparent 70%);
   img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: var(--phi-radius-md); } }
@@ -162,7 +163,13 @@
 .sheetUpright .strip { flex-direction: column; flex: none; overflow-y: auto; width: 76px; scrollbar-width: none; }
 .sheetUpright .strip::-webkit-scrollbar { display: none; }
 .sheetUpright .thumb { width: 64px; }
-.sheetSide { min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; scrollbar-width: thin; }
+.sheetSide { display: flex; flex-direction: column; gap: 6px; }
+.traitGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+.trait { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border-radius: var(--phi-radius-md); text-align: center;
+  background: color-mix(in srgb, var(--phi-color-primary) 12%, transparent);
+  span { font-size: 11px; color: var(--phi-color-text-secondary); } strong { font-size: 14px; font-weight: var(--phi-font-weight-medium); } em { font-style: normal; font-size: 11px; color: var(--phi-color-text-muted); } }
+.filterCount { margin-left: 4px; font-size: 11px; }
+.relatedHead { flex-direction: row !important; flex-wrap: wrap; align-items: center; }
 .sheetRows { display: flex; flex-direction: column; }
 .sheetRow { display: flex; justify-content: space-between; gap: 12px; padding: 5px 2px; border-bottom: 1px solid color-mix(in srgb, var(--phi-color-border) 60%, transparent); font-size: 14px;
   span { color: var(--phi-color-text-secondary); } strong { font-weight: var(--phi-font-weight-medium); text-align: right; } }

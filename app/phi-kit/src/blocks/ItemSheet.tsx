@@ -1,6 +1,6 @@
 import React from 'react';
-import { Accordion, AccordionItem, Carousel, Drawer, TabList } from '@pui/components';
-import { ChevronLeft, ChevronRight, GalleryHorizontal, GalleryVertical, Gavel, Heart, MessageCircle, Share2, ShoppingBag } from 'lucide-react';
+import { Accordion, AccordionItem, Carousel, Drawer } from '@pui/components';
+import { ChevronLeft, ChevronRight, GalleryHorizontal, GalleryVertical, Gavel, Heart, MessageCircle, Share2, ShoppingBag, SlidersHorizontal } from 'lucide-react';
 import { assetUrl, currentAppKey, type Block } from '../data';
 import { toggleBag, useBag } from '../bag';
 import { CommentsPanel } from '../RecordSheet';
@@ -11,7 +11,8 @@ import type { GridItem } from './Grid';
 /**
  * One card of a grid opened over the page it is on, never a page of its own (#/<kind>/<id> draws it over the grid's
  * page): the picture large with arrows either side, the strip of its own group (its `facet`, a club) under it or
- * upright beside it, full screen on a tap, and a column of tabs: its facts with how many share each, its standing,
+ * upright beside it, the whole window on a tap, and a column of folding sections: its traits as tiles with how many
+ * share each, its standing,
  * and any of `offers`, `trail`, `owners`, `sales` its data carries, then the cards related to it, filtered by any of
  * its facts. Keys: arrows step, F full screen, Esc closes. Everything it shows is the grid's own data.
  */
@@ -32,11 +33,11 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
   const [shot, setShot] = React.useState(0);
   React.useEffect(() => setShot(0), [at]);
   const [upright, setUpright] = React.useState(false);
-  const [tab, setTab] = React.useState('facts');
-  // Every section folds (the kit's Accordion, as the account drawer and the sidebars fold); a tab opens its own.
+  // Every section folds (the kit's Accordion, as the account drawer and the sidebars fold).
   const [opened, setOpened] = React.useState<Record<string, boolean>>({ facts: true, related: true });
   const fold = (id: string) => setOpened((o) => ({ ...o, [id]: !o[id] }));
-  const pickTab = (id: string) => { setTab(id); setOpened((o) => ({ ...o, [id]: true })); requestAnimationFrame(() => document.getElementById('sheet-' + id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })); };
+  // Related's filters stay behind their icon until asked for.
+  const [filtering, setFiltering] = React.useState(false);
   // Related starts as its own group (by the fact that names it, or the facet), when another card is in it.
   const [match, setMatch] = React.useState<string[]>(() => {
     if (!it.facet || !list.some((x, i) => i !== at && x.facet === it.facet)) return [];
@@ -54,7 +55,7 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
     return { share: n, rank: r };
   }, [list]);
   // How many share a fact says something only of a large set (a collection), not of a handful.
-  const pct = (k: string, v: string) => (list.length < SHARE_FROM ? '' : ' · ' + ((100 * (share[k + '\u0000' + v] ?? 0)) / list.length).toFixed(1) + '%');
+  const share1 = (k: string, v: string) => (list.length < SHARE_FROM ? '' : ((100 * (share[k + '\u0000' + v] ?? 0)) / list.length).toFixed(1) + '%');
 
   // Its own group (same `facet`) for the strip, a window round it so ten thousand cards stay light.
   const group = React.useMemo(() => list.map((x, i) => [x, i] as const).filter(([x]) => !it.facet || x.facet === it.facet), [list, it.facet]);
@@ -87,11 +88,10 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
   const extra = it as unknown as Extra;
   // The sections, each from the card's own data: its facts, its standing, and any lists it carries.
   const sections: { id: string; label: string; rows: Row[] }[] = [
-    { id: 'facts', label: W.tab.facts, rows: facts.map(([k, v]) => [k, v + pct(k, v)] as Row) },
+    { id: 'facts', label: W.tab.facts, rows: facts },
     { id: 'stats', label: W.tab.stats, rows: [[W.rank, '#' + rank[at] + ' / ' + list.length.toLocaleString('en-US')], [W.facts, String(facts.length)], [W.rarest, rarest(facts, share)]] },
     ...(['offers', 'trail', 'owners', 'sales'] as const).filter((k) => extra[k]?.length).map((k) => ({ id: k, label: W.tab[k], rows: extra[k] ?? [] })),
   ];
-  const tabs = [...sections.map(({ id, label }) => ({ id, label })), { id: 'related', label: W.related }];
   const toggle = (m: string) => setMatch((x) => (x.includes(m) ? x.filter((y) => y !== m) : [...x, m]));
   const pic = (x: GridItem) => (x.image ? assetUrl(x.image) : undefined);
 
@@ -124,24 +124,26 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
           </div>
         </div>
         <aside className={s.sheetSide}>
-          {/* The kit's tabs across the top of the column, each opening its section and bringing it into view. */}
-          <TabList size="sm" variant="pills" place="start" aria-label={it.title} activeId={tab} onChange={(id) => pickTab(String(id))} items={tabs} />
           <Accordion>
             {sections.map((sec) => (
               <div key={sec.id} id={'sheet-' + sec.id}>
                 <AccordionItem title={sec.label} open={!!opened[sec.id]} onToggle={() => fold(sec.id)}>
-                  <div className={s.sheetRows}>{sec.rows.map(([k, v]) => <div key={k} className={s.sheetRow}><span>{k}</span><strong>{v}</strong></div>)}</div>
+                  {/* Traits as tiles, the way a marketplace shows a token's traits: its name, its value, how many share it. */}
+                  {sec.id === 'facts' ? <div className={s.traitGrid}>{facts.map(([k, v]) => <div key={k} className={s.trait}><span>{k}</span><strong>{v}</strong>{share1(k, v) ? <em>{share1(k, v)}</em> : null}</div>)}</div>
+                    : <div className={s.sheetRows}>{sec.rows.map(([k, v]) => <div key={k} className={s.sheetRow}><span>{k}</span><strong>{v}</strong></div>)}</div>}
                 </AccordionItem>
               </div>
             ))}
             <div id="sheet-related">
               <AccordionItem title={W.related} open={!!opened.related} onToggle={() => fold('related')}>
           <div className={s.relatedHead}>
-            <div className={s.chips}>
+            {/* The filters behind one icon, as every grid's header keeps them; it shows how many are on. */}
+            <button type="button" className={s.sheetIcon} aria-label={words.list.filter} title={words.list.filter} aria-expanded={filtering} onClick={() => setFiltering((f) => !f)}><SlidersHorizontal size={18} />{match.length ? <span className={s.filterCount}>{match.length}</span> : null}</button>
+            {filtering ? <div className={s.chips}>
               {/* Its group as a chip of its own, unless one of its facts already says it (Club · BPSC). */}
               {it.facet && !facts.some(([, v]) => v === it.facet) ? <button type="button" className={match.includes('facet') ? s.chip + ' ' + s.chipOn : s.chip} onClick={() => toggle('facet')}>{it.facet}</button> : null}
               {facts.map(([k, v]) => <button key={k} type="button" className={match.includes(k) ? s.chip + ' ' + s.chipOn : s.chip} onClick={() => toggle(k)}>{k} · {v}</button>)}
-            </div>
+            </div> : null}
           </div>
           <div className={s.relatedGrid}>
             {related.map((x) => (

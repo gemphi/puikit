@@ -373,11 +373,6 @@
     {
      "kind": "grid",
      "source": "data/token.json",
-     "facet": [
-      "All",
-      "BPSC",
-      "HHOC"
-     ],
      "filter": [
       "Background",
       "Character",
