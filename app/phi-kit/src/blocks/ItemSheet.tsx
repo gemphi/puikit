@@ -1,6 +1,6 @@
 import React from 'react';
-import { Accordion, AccordionItem, Carousel, TabRail } from '@pui/components';
-import { ArrowLeft, ChevronLeft, ChevronRight, GalleryHorizontal, GalleryVertical, Gavel, Heart, Maximize2, MessageCircle, Minimize2, Share2, ShoppingBag } from 'lucide-react';
+import { Accordion, AccordionItem, Carousel, Drawer, TabList } from '@pui/components';
+import { ChevronLeft, ChevronRight, GalleryHorizontal, GalleryVertical, Gavel, Heart, MessageCircle, Share2, ShoppingBag } from 'lucide-react';
 import { assetUrl, currentAppKey, type Block } from '../data';
 import { toggleBag, useBag } from '../bag';
 import { CommentsPanel } from '../RecordSheet';
@@ -25,7 +25,8 @@ const STRIP_SLIDES = 12;
 
 export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (hash: string) => void; close: () => void }> = ({ b, list, at, go, close }) => {
   const it = list[at];
-  const [full, setFull] = React.useState(false);
+  // Open at the window's full size, picture and column half and half; the drawer's own button shrinks it.
+  const [full, setFull] = React.useState(true);
   // A card with pictures of its own (`gallery`: a city's views) steps through them; any other through its group.
   const gallery: string[] = (it as GridItem & { gallery?: string[] }).gallery ?? [];
   const [shot, setShot] = React.useState(0);
@@ -74,7 +75,7 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
     const key = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
       if (e.key === 'ArrowLeft') step(-1); else if (e.key === 'ArrowRight') step(1);
-      else if (e.key === 'Escape') (full ? setFull(false) : close()); else if (e.key === 'f') setFull((f) => !f);
+      else if (e.key === 'f') setFull((f) => !f);
     };
     window.addEventListener('keydown', key); return () => window.removeEventListener('keydown', key);
   });
@@ -94,6 +95,7 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
   const toggle = (m: string) => setMatch((x) => (x.includes(m) ? x.filter((y) => y !== m) : [...x, m]));
   const pic = (x: GridItem) => (x.image ? assetUrl(x.image) : undefined);
 
+  const uprightToggle = <button type="button" className={s.sheetIcon} aria-label={upright ? W.stripAcross : W.stripUpright} title={upright ? W.stripAcross : W.stripUpright} onClick={() => setUpright((u) => !u)}>{upright ? <GalleryHorizontal size={18} /> : <GalleryVertical size={18} />}</button>;
   // The strip: a card's own pictures, or its group round it.
   const thumbs = gallery.length ? gallery.map((g, i) => (
     <button key={g} type="button" className={i === shot ? s.thumb + ' ' + s.thumbOn : s.thumb} aria-current={i === shot} aria-label={it.title + ' ' + (i + 1)} onClick={() => { setDir(Math.sign(i - shot)); setShot(i); }}><img src={assetUrl(g)} alt="" loading="lazy" /></button>
@@ -104,20 +106,14 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
   ));
 
   return (
-    <div className={[s.sheet, full ? s.sheetFull : '', upright ? s.sheetUpright : ''].join(' ')} role="dialog" aria-modal="true" aria-label={it.title}>
-      <div className={s.sheetBar}>
-        <button type="button" className={s.sheetIcon} aria-label={W.back} onClick={close}><ArrowLeft size={20} /></button>
-        <strong className={s.sheetTitle}>{it.title}</strong>
-        {it.sub ? <span className={s.sheetSub}>{it.sub}</span> : null}
-        <span className={s.sheetGap} />
-        <button type="button" className={s.sheetIcon} aria-label={upright ? W.stripAcross : W.stripUpright} onClick={() => setUpright((u) => !u)}>{upright ? <GalleryHorizontal size={20} /> : <GalleryVertical size={20} />}</button>
-        <button type="button" className={s.sheetIcon} aria-label={full ? W.fit : W.full} onClick={() => setFull((f) => !f)}>{full ? <Minimize2 size={20} /> : <Maximize2 size={20} />}</button>
-      </div>
-      <div className={s.sheetBody}>
+    // The kit's Drawer, as Phiegg's record drawer: its title, expand to the full window and close are its own.
+    <Drawer isOpen onClose={close} position="right" size="xl" title={it.sub ? it.title + ' · ' + it.sub : it.title}
+      expandable expanded={full} onExpandedChange={setFull} expandLabel={W.full} collapseLabel={W.fit}>
+      <div className={upright ? s.sheetBody + ' ' + s.sheetUpright : s.sheetBody}>
         <div className={s.sheetStage}>
           {/* The strip of its group above the picture, the picture taking the rest of the column. */}
-          {upright ? <div ref={stripRef} className={s.strip} role="list">{thumbs}</div>
-            : <div ref={stripRef} className={s.strip}><Carousel slidesPerView={STRIP_SLIDES} gap={1} labels={{ prev: words.view.prev, next: words.view.next }}>{thumbs}</Carousel></div>}
+          {upright ? <div ref={stripRef} className={s.strip} role="list">{uprightToggle}{thumbs}</div>
+            : <div ref={stripRef} className={s.strip}>{uprightToggle}<Carousel slidesPerView={STRIP_SLIDES} gap={1} labels={{ prev: words.view.prev, next: words.view.next }}>{thumbs}</Carousel></div>}
           <div className={s.stagePic}>
             {(() => { const src = gallery.length ? assetUrl(gallery[shot]) : pic(it); const slide = dir > 0 ? s.slideNext : dir < 0 ? s.slidePrev : '';
               return src ? <img key={src} className={slide} src={src} alt={it.title} /> : <span className={s.stageNone}>{it.title}</span>; })()}
@@ -128,8 +124,8 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
           </div>
         </div>
         <aside className={s.sheetSide}>
-          {/* The kit's TabRail, as Phiegg's record sheet holds its sections: the tabs on top, each opening its section. */}
-          <TabRail aria-label={it.title} activeId={tab} onChange={(id) => pickTab(String(id))} items={tabs}>
+          {/* The kit's tabs across the top of the column, each opening its section and bringing it into view. */}
+          <TabList size="sm" variant="pills" place="start" aria-label={it.title} activeId={tab} onChange={(id) => pickTab(String(id))} items={tabs} />
           <Accordion>
             {sections.map((sec) => (
               <div key={sec.id} id={'sheet-' + sec.id}>
@@ -157,10 +153,9 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
               </AccordionItem>
             </div>
           </Accordion>
-          </TabRail>
         </aside>
       </div>
-    </div>
+    </Drawer>
   );
 };
 
