@@ -23,11 +23,12 @@ export function migrateLook(): void {
   } catch { /* storage blocked: defaults apply anyway */ }
 }
 
-/** Current look (matched on style) and a setter that switches style + brand together. */
+/** Current look (matched on style and brand, so two looks of one style, Jingle and Phiogy, stay apart) and a setter
+ *  that switches style + brand together. */
 export function useLook(): [Look, (id: string) => void] {
-  const { themeStyle, setThemeStyle, setBrandId, setPaletteId, setGradientLevel, setBorderRadius, setTheme } = usePuiTheme();
+  const { themeStyle, brandId, setThemeStyle, setBrandId, setPaletteId, setGradientLevel, setBorderRadius, setTheme } = usePuiTheme();
   const [, setGround] = useLayout('ground');
-  const cur = LOOKS.find((l) => l.style === themeStyle) ?? DEFAULT_LOOK;
+  const cur = LOOKS.find((l) => l.style === themeStyle && l.brand === brandId) ?? LOOKS.find((l) => l.style === themeStyle) ?? DEFAULT_LOOK;
   const set = (id: string) => {
     const l = LOOKS.find((x) => x.id === id); if (!l) return;
     setThemeStyle(l.style); setBrandId(l.brand); setPaletteId(l.palette); setGradientLevel(l.gradient); setBorderRadius(RADIUS_PRESETS[l.radius]);

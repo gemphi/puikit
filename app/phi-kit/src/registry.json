@@ -488,7 +488,7 @@
     "name": "Phiogy",
     "tagline": "The village of creators, AI, art and crypto",
     "desc": "Phiogy is a village: the home of creators, AI, art and crypto. Every collection and company keeps a space here, with rooms to write and talk in, calls, and every member's profile and connections one tap away.",
-    "color": "#7c5cff",
+    "color": "#2f6bff",
     "port": 3118,
     "built": true,
     "icon": [
@@ -500,7 +500,7 @@
       }
     ],
     "config": true,
-    "look": "jingle",
+    "look": "phiogy",
     "mode": "dark",
     "font": "soft"
   },
@@ -571,7 +571,7 @@
     "name": "phiogy",
     "tagline": "Your people, your rooms and your calls, in one window",
     "desc": "The phiogy.com landing page: what Phiogy is, its calls, rooms and hosts, and the download.",
-    "color": "#7c5cff",
+    "color": "#2f6bff",
     "port": 3125,
     "built": true,
     "icon": [
@@ -583,7 +583,7 @@
       }
     ],
     "config": true,
-    "look": "jingle",
+    "look": "phiogy",
     "mode": "dark",
     "font": "pill-open",
     "domain": "phiogy.com"

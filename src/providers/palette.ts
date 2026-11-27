@@ -33,6 +33,8 @@ export interface SeedPalette {
   lightAccent?: HSL | null;
   /** Second accent — the other end of every two-colour gradient. */
   accent2: HSL;
+  /** Third accent, the middle of a three-colour sweep (Jingle's window); the first turned 48° round the wheel when absent. */
+  accent3?: HSL;
   source?: string;
 }
 
@@ -67,6 +69,7 @@ export const PALETTES: SeedPalette[] = [
   { id: 'phantom-sunset', name: 'Phantom Sunset', seed: '#312A25', accent: [24.0, 27.8, 57.6], accent2: [350.3, 100.0, 50.2], source: 'Boldland' },
   { id: 'phantom-black', name: 'Phantom Black', seed: '#2B2B2B', accent: [0.0, 0.0, 58.0], accent2: [40.0, 0.0, 58.0], source: 'Boldland' },
   { id: 'grape', name: 'Grape', seed: '#2F3324', accent: [74.4, 33.3, 53.5], accent2: [271.1, 51.4, 43.5], source: 'Boldland' },
+  { id: 'phiogy', name: 'Phiogy', seed: '#0F1E46', lightSeed: '#E8F0FF', accent: [222, 92, 60], lightAccent: [222, 88, 52], accent2: [196, 90, 56], accent3: [212, 88, 52], source: 'Phiogy blue' },
 ];
 
 export const paletteOf = (id: string | null | undefined): SeedPalette | undefined => PALETTES.find((p) => p.id === id);
@@ -126,7 +129,7 @@ export function paletteColors(p: SeedPalette, isDark: boolean): PaletteColors {
   const seed = hexToHsl(p.seed);
   const accent: HSL = isDark ? p.accent : p.lightAccent ?? shift(p.accent, -4);
   const accent2: HSL = isDark ? p.accent2 : shift(p.accent2, -4);
-  const accent3: HSL = shift(accent, 0, 0, 48);
+  const accent3: HSL = p.accent3 ? (isDark ? p.accent3 : shift(p.accent3, -4)) : shift(accent, 0, 0, 48);
   if (isDark) {
     // The seed is the panel tone (Blender-style); the page sits below it, raised surfaces above it.
     const [h, s, l] = seed;

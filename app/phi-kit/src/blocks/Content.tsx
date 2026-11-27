@@ -18,6 +18,8 @@ export const Hero: React.FC<{ b: Block }> = ({ b }) => (b.variant === 'wide' ? (
   </Stack>
 ) : (
   <Stack direction="row" gap={6} padding={8} rounded="lg" background="gradient-sidebar" wrap align="center">
+  {/* `flip` puts the picture first, so rows of a page can take turns (a product page's features). */}
+  {b.flip ? heroPicture(b) : null}
   <Stack direction="column" gap={3} flex="1 1 22rem" minWidth="0">
     <Title level={1} size="3xl">{b.heading}</Title>
     {b.subtitle ? <Text size="lg" intent="secondary">{b.subtitle}</Text> : null}
@@ -26,10 +28,15 @@ export const Hero: React.FC<{ b: Block }> = ({ b }) => (b.variant === 'wide' ? (
       <Stack direction="row" gap={2} wrap align="center">{b.actions.map((a: any, i: number) => <Button key={i} variant="glass" href={a.app ? appUrl(a.app) : a.href || ('#/' + a.view)}>{a.label}</Button>)}</Stack>
     ) : null}
   </Stack>
-  {/* `ratio` keeps a picture's own shape (a square portrait: "1/1"). */}
-  {b.image ? <Frame ratio={b.ratio ?? '16/10'} rounded="lg" width="min(100%, 26rem)" flex="0 1 26rem"><Image src={assetUrl(b.image)} alt="" fit="cover" fill /></Frame> : null}
+  {b.flip ? null : heroPicture(b)}
   </Stack>
 ));
+
+/** A hero's picture: `ratio` keeps its own shape (a square portrait: "1/1"), `pictureWidth` how wide it may grow
+ *  (a screenshot wants more than a portrait). */
+const heroPicture = (b: Block) => (b.image ? (
+  <Frame ratio={b.ratio ?? '16/10'} rounded="lg" width={`min(100%, ${b.pictureWidth ?? '26rem'})`} flex={`0 1 ${b.pictureWidth ?? '26rem'}`}><Image src={assetUrl(b.image)} alt="" fit="cover" fill /></Frame>
+) : null);
 
 /** Dated news / announcement list. */
 export const News: React.FC<{ b: Block }> = ({ b }) => (

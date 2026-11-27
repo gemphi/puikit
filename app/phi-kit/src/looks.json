@@ -107,6 +107,22 @@
         "#ffb14a",
         "#7a3df0"
       ]
+    },
+    {
+      "id": "phiogy",
+      "label": "Phiogy",
+      "style": "jingle",
+      "brand": "phiogy",
+      "palette": "phiogy",
+      "gradient": "flat",
+      "radius": "medium",
+      "mode": "dark",
+      "note": "Phiogy blue: one sweep of its blues under the whole window, the kit's plain light over it",
+      "swatch": [
+        "#0f1e46",
+        "#2f6bff",
+        "#1fb5e8"
+      ]
     }
   ]
 }

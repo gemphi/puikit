@@ -2,8 +2,8 @@
  "app": "phiogy-home",
  "start": "home",
  "bare": true,
- "width": "72rem",
- "_": "phiogy.com: the landing page. The people and hosts rows come from app/phiogy/public/data (room.json, host.json); the pictures are the desktop app's own screenshots (phikit/crates/appkit/app/phiogy/doc) in the media store at phiogy/shot/.",
+ "width": "76rem",
+ "_": "phiogy.com: the landing page. The people and hosts rows come from app/phiogy/public/data (room.json, host.json); the pictures are fresh captures of the web Phiogy (phiogy/shot/ in the media store).",
  "nav": [
   {
    "id": "home",
@@ -18,56 +18,58 @@
     {
      "kind": "hero",
      "variant": "wide",
-     "ratio": "1042/721",
+     "ratio": "16/10",
      "image": "cdn:phiogy/shot/room.webp",
      "heading": "phiogy",
-     "subtitle": "Your people, your rooms and your calls, in one window.",
+     "subtitle": "Where your club hangs out: rooms to write in, rooms to talk in, and everyone one tap away.",
      "actions": [
       {
        "label": "Download for Windows",
        "href": "https://phiegg.com/cdn/phiogy/phiogy-windows.zip"
       },
       {
-       "label": "On a Mac, open it in the browser",
+       "label": "Open Phiogy in your browser",
        "app": "phiogy"
       }
      ]
     },
     {
-     "kind": "grid",
-     "title": "Everything in one window",
-     "toolbar": false,
-     "layout": "grid",
-     "cols": 2,
-     "minItemWidth": "22rem",
-     "ratio": "1042/721",
-     "mosaic": false,
-     "items": [
-      {
-       "title": "Call anyone",
-       "body": "Ring a friend, or open the call in any voice room: up to 8 people, with camera, microphone and screen.",
-       "image": "cdn:phiogy/shot/call.webp"
-      },
-      {
-       "title": "Rooms to write and talk in",
-       "body": "Every host has its text rooms and its voice rooms, the way a club already talks.",
-       "image": "cdn:phiogy/shot/room.webp"
-      },
-      {
-       "title": "A host for every club",
-       "body": "Join the hosts you follow, or make your own with its rooms ready.",
-       "image": "cdn:phiogy/shot/host.webp"
-      },
-      {
-       "title": "Find anyone",
-       "body": "Search people by name, ask them to be friends and start a conversation.",
-       "image": "cdn:phiogy/shot/people.webp"
-      }
-     ]
+     "kind": "hero",
+     "heading": "A home for every club",
+     "body": "Each club and company keeps a host of its own, with text rooms, voice rooms and its people. Join the hosts you follow, or make yours in a minute.",
+     "image": "cdn:phiogy/shot/host.webp",
+     "ratio": "16/10",
+     "pictureWidth": "40rem"
+    },
+    {
+     "kind": "hero",
+     "heading": "Drop in and talk",
+     "body": "Voice rooms are always open. Walk into the Lounge, see who is there, and start talking; nothing is kept.",
+     "image": "cdn:phiogy/shot/voice.webp",
+     "ratio": "16/10",
+     "pictureWidth": "40rem",
+     "flip": true
+    },
+    {
+     "kind": "hero",
+     "heading": "Everyone is one tap away",
+     "body": "Every face opens a profile: who they are, what they make and where they hang out. Message them, follow them, ask them to be friends.",
+     "image": "cdn:phiogy/shot/direct.webp",
+     "ratio": "16/10",
+     "pictureWidth": "40rem"
+    },
+    {
+     "kind": "hero",
+     "heading": "Find your people",
+     "body": "Search anyone by name and start a conversation, or a call with camera, microphone and screen for up to 8 people.",
+     "image": "cdn:phiogy/shot/people.webp",
+     "ratio": "16/10",
+     "pictureWidth": "40rem",
+     "flip": true
     },
     {
      "kind": "grid",
-     "title": "The people",
+     "title": "Say hi to the village",
      "toolbar": false,
      "layout": "tile",
      "mosaic": false,
@@ -160,6 +162,24 @@
         "sheet": "phiegg:portraits/sheet-10.webp",
         "cols": 8,
         "index": 58
+       }
+      },
+      {
+       "title": "Ava Duarte",
+       "sub": "Member",
+       "sprite": {
+        "sheet": "phiegg:portraits/sheet-07.webp",
+        "cols": 8,
+        "index": 39
+       }
+      },
+      {
+       "title": "Lora's Spark",
+       "sub": "Monochrome muse",
+       "sprite": {
+        "sheet": "phiegg:portraits/sheet-04.webp",
+        "cols": 8,
+        "index": 21
        }
       }
      ]
@@ -260,21 +280,39 @@
         "cols": 8,
         "index": 23
        }
+      },
+      {
+       "title": "Neon Muses Host",
+       "sub": "#welcome, #rules, #announcements",
+       "sprite": {
+        "sheet": "phiegg:portraits/sheet-06.webp",
+        "cols": 8,
+        "index": 8
+       }
+      },
+      {
+       "title": "Saffron Cranes Host",
+       "sub": "#welcome, #rules, #announcements",
+       "sprite": {
+        "sheet": "phiegg:portraits/sheet-05.webp",
+        "cols": 8,
+        "index": 59
+       }
       }
      ]
     },
     {
      "kind": "hero",
-     "heading": "Get Phiogy",
-     "subtitle": "On Windows today. On a Mac, in the browser.",
-     "body": "Unzip it anywhere and open phiogy.exe: nothing is installed. It needs Windows 10 or 11 and a graphics card with DirectX 11. A Mac build is on the way; until then a Mac opens the same rooms and calls in the browser.",
+     "variant": "wide",
+     "heading": "Come hang out",
+     "subtitle": "Phiogy for Windows, or straight in your browser on a Mac. Unzip it and open phiogy.exe: nothing to install. Windows 10 or 11, with DirectX 11.",
      "actions": [
       {
        "label": "Download for Windows",
        "href": "https://phiegg.com/cdn/phiogy/phiogy-windows.zip"
       },
       {
-       "label": "On a Mac, open it in the browser",
+       "label": "Open Phiogy in your browser",
        "app": "phiogy"
       }
      ]
