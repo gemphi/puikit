@@ -30,8 +30,8 @@
     {
      "kind": "hero",
      "heading": "bold pups",
-     "subtitle": "A pack of 10,000 pups with somewhere to be.",
-     "body": "Bold Pups is a pool of 10,000 utility PFTs: each pup is a membership, a walk on the Orbit runway and a share of the pack fund. Pups swap, play fetch quests and throw the loudest pool parties on the moon.",
+     "subtitle": "A den of 10,000 fox pups with somewhere to be.",
+     "body": "Bold Pups is a pool of 10,000 utility PFTs: each fox pup is a membership, a walk on the Orbit runway and a share of the den fund. Pups swap, forage on scavenger hunts and throw the loudest pool parties on the moon.",
      "image": "cdn:token/boldpups-17.webp",
      "ratio": "1/1",
      "actions": [
@@ -40,7 +40,7 @@
        "view": "collection"
       },
       {
-       "label": "About the pack",
+       "label": "About the den",
        "view": "about"
       }
      ]
@@ -76,7 +76,7 @@
     },
     {
      "kind": "grid",
-     "title": "Meet the pack",
+     "title": "Meet the den",
      "items": [
       {
        "kind": "token",
@@ -368,7 +368,7 @@
   },
   "collection": {
    "title": "The collection",
-   "sub": "Every pup, all 10,000 of them, in both clubs: Bold Pups Space Club and HHOC. Filter by any trait, or search a number.",
+   "sub": "Every fox pup, all 10,000 of them, in both clubs: Bold Pups Space Club and HHOC. Filter by any trait, or search a number.",
    "blocks": [
     {
      "kind": "grid",
@@ -404,7 +404,7 @@
   },
   "clubs": {
    "title": "The 16 clubs",
-   "sub": "The pack lives across the sixteen Bold Cities, one club to a city: each its own land, from the Forest to Bozo City, with its districts for shows, games and gathering. Open one to walk its views.",
+   "sub": "The den spreads across the sixteen Bold Cities, one club to a city: each its own land, from the Forest to Bozo City, with its districts for shows, games and gathering. Open one to walk its views.",
    "blocks": [
     {
      "kind": "grid",
@@ -1101,13 +1101,13 @@
   },
   "about": {
    "title": "About Bold Pups",
-   "sub": "A pack of 10,000 pups with somewhere to be.",
+   "sub": "A den of 10,000 fox pups with somewhere to be.",
    "blocks": [
     {
      "kind": "hero",
      "variant": "card",
-     "heading": "The pack",
-     "body": "Bold Pups is a pool of 10,000 utility PFTs: each pup is a membership, a walk on the Orbit runway and a share of the pack fund. Pups swap, play fetch quests and throw the loudest pool parties on the moon.",
+     "heading": "The den",
+     "body": "Bold Pups is a pool of 10,000 utility PFTs: each fox pup is a membership, a walk on the Orbit runway and a share of the den fund. Pups swap, forage on scavenger hunts and throw the loudest pool parties on the moon.",
      "image": "cdn:token/boldpups-17.webp"
     },
     {
@@ -1149,24 +1149,24 @@
      "minItemWidth": "16rem",
      "items": [
       {
-       "title": "A place in the pack",
+       "title": "A place in the den",
        "body": "Each pup is a membership of Bold Pups: its host in Phiogy, its rooms to write and talk in, and its calls with camera and screen."
       },
       {
        "title": "Sixteen cities to live in",
-       "body": "The Bold Cities are sixteen lands, from the Forest and the Desert to Once City and Bozo City; every club of the pack keeps one."
+       "body": "The Bold Cities are sixteen lands, from the Forest and the Desert to Once City and Bozo City; every club of the den keeps one."
       },
       {
        "title": "Shows on the Orbit runway",
-       "body": "Pups walk the runway on Pup Orbit: shows, poses and renders of the pack in its looks."
+       "body": "Pups walk the runway on Pup Orbit: shows, poses and renders of the den in its looks."
       },
       {
-       "title": "Fetch quests and pool parties",
-       "body": "Play fetch quests across the rings and gather for the Friday howl in Howl Arena."
+       "title": "Scavenger hunts and pool parties",
+       "body": "Forage on scavenger hunts across the rings and gather for the Friday howl in Howl Arena."
       },
       {
-       "title": "A share of the pack fund",
-       "body": "The pool behind the pack: every pup holds a share of the pack fund."
+       "title": "A share of the den fund",
+       "body": "The pool behind the den: every fox pup holds a share of the den fund."
       },
       {
        "title": "Traits that count",

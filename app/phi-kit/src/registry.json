@@ -514,21 +514,21 @@
   {
     "key": "boldpups",
     "name": "bold pups",
-    "tagline": "10,000 pups with somewhere to be",
-    "desc": "The Bold Pups collection: 10,000 pups in two clubs, Bold Pups Space Club and HHOC, every one with its traits and its own page.",
+    "tagline": "10,000 fox pups with somewhere to be",
+    "desc": "The Bold Pups collection: 10,000 fox pups in two clubs, Bold Pups Space Club and HHOC, every one with its traits and its own page.",
     "color": "#26a64d",
     "port": 3123,
     "built": true,
     "icon": [
       {
-        "d": "M18 42a9 9 0 1 0 18 0a9 9 0 1 0 -18 0ZM33 27a9 9 0 1 0 18 0a9 9 0 1 0 -18 0ZM49 27a9 9 0 1 0 18 0a9 9 0 1 0 -18 0ZM64 42a9 9 0 1 0 18 0a9 9 0 1 0 -18 0Z",
+        "d": "M13.3 15.0Q14.0 8.0 19.3 12.5L34.7 25.5Q40.0 30.0 47.0 30.0L53.0 30.0Q60.0 30.0 65.3 25.5L80.7 12.5Q86.0 8.0 86.7 15.0L89.3 43.0Q90.0 50.0 85.2 55.1L54.8 86.9Q50.0 92.0 45.2 86.9L14.8 55.1Q10.0 50.0 10.7 43.0Z",
         "fill": "currentColor",
         "stroke": "none",
         "sw": 0
       },
       {
-        "d": "M38 56h24a14 14 0 0 1 0 28h-24a14 14 0 0 1 0-28Z",
-        "fill": "currentColor",
+        "d": "M31 52a5 5 0 0 1 10 0v2a5 5 0 0 1 -10 0ZM59 52a5 5 0 0 1 10 0v2a5 5 0 0 1 -10 0ZM44 80h12a6 6 0 0 1 -12 0Z",
+        "fill": "var(--color-bg)",
         "stroke": "none",
         "sw": 0
       }
