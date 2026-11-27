@@ -29,6 +29,9 @@ const FALLBACK = '-apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto
 
 /** What an app reads in until a person picks: the look's own face, unless the app names one at mount. */
 let fallbackId = 'theme';
+/** A world's own display face for headings (the app's `heading`): it stays whichever reading face is picked, and the
+ *  reading face covers any letter it lacks. */
+let headingFamily: string | undefined;
 
 const read = (): string => {
   try { return window.localStorage.getItem(KEY) ?? fallbackId; } catch { return fallbackId; }
@@ -42,14 +45,15 @@ export function applyFont(id: string): void {
     root.removeProperty('--phi-font-family');
     root.removeProperty('--phi-font-heading');
     match(true);
-    return;
+  } else {
+    const stack = `"${family}", ${FALLBACK}`;
+    root.setProperty('--phi-font-family', stack);
+    root.setProperty('--phi-font-heading', stack);
+    // The looks ask Phifing's emphasis at 600, where its Regular answers (paired by darkness, phi-fonts.css). Every
+    // other face keeps its own Regular at 400 for emphasis, as before.
+    match(family.startsWith('Phifing'));
   }
-  const stack = `"${family}", ${FALLBACK}`;
-  root.setProperty('--phi-font-family', stack);
-  root.setProperty('--phi-font-heading', stack);
-  // The looks ask Phifing's emphasis at 600, where its Regular answers (paired by darkness, phi-fonts.css). Every
-  // other face keeps its own Regular at 400 for emphasis, as before.
-  match(family.startsWith('Phifing'));
+  if (headingFamily) root.setProperty('--phi-font-heading', `"${headingFamily}", var(--phi-font-family)`);
 }
 
 function match(phifing: boolean): void {
@@ -59,8 +63,9 @@ function match(phifing: boolean): void {
 }
 
 /** Put the saved choice back on boot; with nothing saved, the app's own default (`defaultId`), else the look's face. */
-export const applySavedFont = (defaultId?: string): void => {
+export const applySavedFont = (defaultId?: string, heading?: string): void => {
   fallbackId = FONTS.some((f) => f.id === defaultId) ? defaultId! : 'theme';
+  headingFamily = heading;
   applyFont(read());
 };
 

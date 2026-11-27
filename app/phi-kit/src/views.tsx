@@ -1,6 +1,8 @@
 import React from 'react';
 import { Box, Button, Stack, Tag, Text, Title } from '@pui/components';
-import { APPS, appUrl } from './data';
+import { APPS, appUrl, type AppData } from './data';
+import words from './words.json';
+import { countOf } from './blocks/GridList';
 import { AccountPanel } from './AccountDialog';
 import { accountsEnabled } from './auth';
 import { useWallet, fmt, LABEL, USD, type Coin } from './wallet';
@@ -35,6 +37,51 @@ export const YouView: React.FC<{ profile?: ProfileSpec }> = ({ profile }) => {
       <Stack as="section" direction="column" gap={3}>
         <Title level={2} size="lg">Your apps</Title>
         <Stack direction="row" gap={2} wrap align="center">{APPS.filter((a) => a.built).map((a) => <Button key={a.key} variant="glass" href={appUrl(a.key)}>{a.name}</Button>)}</Stack>
+      </Stack>
+    </>
+  );
+};
+
+/** A card of the app's own data with a `kind` and `id` (a token of a collection), found by its record address
+ *  (#/<kind>/<id>), with the grid it is one of. */
+export const ownItem = (views: AppData['views'], kind: string, id: string) => {
+  for (const [view, v] of Object.entries(views)) {
+    for (const b of v.blocks) {
+      const list = (b.items ?? []) as GridItem[];
+      const at = list.findIndex((it) => it.kind === kind && it.id === id);
+      if (at >= 0) return { view, b, list, at };
+    }
+  }
+  return null;
+};
+
+/** One card as its own page: its picture large, its facts beside it, each with how many of the grid share it (the
+ *  rarity of a trait), and the way back and to its neighbours. */
+export const ItemPage: React.FC<{ found: NonNullable<ReturnType<typeof ownItem>>; go: (hash: string) => void }> = ({ found, go }) => {
+  const { view, b, list, at } = found;
+  const it = list[at];
+  const share = React.useMemo(() => {
+    const n: Record<string, number> = {};
+    for (const x of list) for (const [k, v] of x.fields ?? []) n[k + '\u0000' + v] = (n[k + '\u0000' + v] ?? 0) + 1;
+    return n;
+  }, [list]);
+  const pct = (k: string, v: string) => ((100 * (share[k + '\u0000' + v] ?? 0)) / list.length).toFixed(1) + '%';
+  const near = (d: number) => list[at + d];
+  const to = (x?: GridItem) => (x ? () => go('#/' + x.kind + '/' + x.id) : undefined);
+  return (
+    <>
+      <Stack direction="row" gap={2} wrap align="center">
+        <Button variant="glass" onClick={() => go('#/' + view)}>{words.item.back}</Button>
+        <Button variant="glass" disabled={!near(-1)} onClick={to(near(-1))}>{words.view.prev}</Button>
+        <Button variant="glass" disabled={!near(1)} onClick={to(near(1))}>{words.view.next}</Button>
+      </Stack>
+      <Stack direction="row" gap={6} wrap align="start">
+        <Box flex="1 1 22rem" maxWidth="36rem">{cardPicture(it, false, b.ratio ?? '1/1') ?? null}</Box>
+        <Stack direction="column" gap={3} flex="1 1 20rem" minWidth="0">
+          <Head title={it.title} sub={it.sub} />
+          {it.body ? <Text intent="secondary">{it.body}</Text> : null}
+          {it.fields?.length ? <FieldList list={it.fields} note={([k, v]) => words.item.share.replace('{p}', pct(k, v)).replace('{name}', countOf(list.length))} /> : null}
+        </Stack>
       </Stack>
     </>
   );

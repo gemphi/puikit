@@ -1,0 +1,18 @@
+/* World faces, for a world's headings only (an app's `heading` in registry.json): Bold Land's two display faces,
+   from Boldlandmain and Graphigemmain. The files are keys of the media store (media/phi-media/fonts, sent by
+   scripts/media/sync.sh), served at /cdn/ by every world's domain and by the dev host. They carry letters, digits and
+   a little punctuation; the reading face behind them covers the rest (a hyphen, a slash). */
+@font-face {
+  font-family: "Boldland";
+  src: url('/cdn/fonts/Boldland-Regular.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Graphigem";
+  src: url('/cdn/fonts/Graphigem-Regular.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}

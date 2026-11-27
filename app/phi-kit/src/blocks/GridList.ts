@@ -14,7 +14,9 @@ export const LIST = words.list;
 export type GridRow = { it: GridItem; i: number };
 
 const label = (f: string) => (LIST.field as Record<string, string>)[f] ?? f;
-const valueOf = (r: GridRow, f: string): unknown => (r.it as Record<string, unknown>)[f];
+/** A card's value for a field: its own key, else the fact of that name in its `fields` (a token's traits), so a
+ *  block filters and sorts by any fact its cards list. */
+const valueOf = (r: GridRow, f: string): unknown => (r.it as Record<string, unknown>)[f] ?? r.it.fields?.find(([k]) => k === f)?.[1];
 const has = (v: unknown) => v != null && v !== '';
 /** Numbers by size, words by the alphabet (digits in them by size), a card without the field last. */
 const compare = (a: unknown, b: unknown) => (
@@ -49,5 +51,5 @@ export const facetsFor = (rows: GridRow[], named?: string[], skip: string[] = []
 );
 
 /** What the search reads of a card. */
-export const textOf = ({ it }: GridRow) => [it.title, it.sub, it.body, it.meta, it.tag, it.note, it.value].filter(Boolean).join(' ');
+export const textOf = ({ it }: GridRow) => [it.title, it.sub, it.body, it.meta, it.tag, it.note, it.value, it.id].filter(Boolean).join(' ');
 export const countOf = (n: number) => (n === 1 ? LIST.one : LIST.many.replace('{n}', n.toLocaleString('en-US')));

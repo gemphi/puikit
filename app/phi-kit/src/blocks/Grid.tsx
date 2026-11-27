@@ -44,7 +44,7 @@ export const Grid: React.FC<{ b: Block; onOpen: (it: GridItem) => void }> = ({ b
 
   const card = (it: GridItem, i: number, list: boolean) => (
     <ItemCard key={i} layout={list ? 'auto' : 'vertical'} onClick={() => onOpen(it)} selected={it.selected}
-      media={cardPicture(it, list)}
+      media={cardPicture(it, list, b.ratio)}
       title={it.title} meta={it.sub} aside={cardTag(it)}
       actions={it.action ? (
         it.app || it.href
@@ -54,7 +54,7 @@ export const Grid: React.FC<{ b: Block; onOpen: (it: GridItem) => void }> = ({ b
       {it.body ? <Text as="p" size="sm" intent="secondary">{it.body}</Text> : null}
       {it.chipList?.length ? <Stack direction="row" gap={1} wrap>{it.chipList.map((c) => <Button key={c} variant="glass" onClick={(e) => { stop(e); b.onChip?.(it, c); }}><Text as="span" size="xs" mono>{c}</Text></Button>)}</Stack> : null}
       {it.meta ? <Text as="span" size="xs" intent="muted" mono>{it.meta}</Text> : null}
-      {it.fields?.length ? <Stack direction="row" gap={1} wrap>{it.fields.slice(0, 3).map(([k, v]) => <Tag key={k} minimal round size="sm">{k} · {v}</Tag>)}</Stack> : null}
+      {it.fields?.length && b.cardFields !== 0 ? <Stack direction="row" gap={1} wrap>{it.fields.slice(0, b.cardFields ?? 3).map(([k, v]) => <Tag key={k} minimal round size="sm">{k} · {v}</Tag>)}</Stack> : null}
       <CardExtra it={it} />
     </ItemCard>
   );
@@ -66,9 +66,10 @@ export const Grid: React.FC<{ b: Block; onOpen: (it: GridItem) => void }> = ({ b
   const { mode, modes } = layoutOf(b, feedMode);
   return (
     <ListView<GridRow> key={mode} rows={rows} keyOf={(r) => String(r.i)} text={textOf} sorts={sortsFor(all, b.sort)} facets={facetsFor(all, b.filter, b.facet ? ['facet'] : [])}
-      mode={mode} modes={modes} toolbar={b.toolbar !== false} count={countOf} empty={LIST.empty} cols={4} minItemWidth={GRID_MIN}
+      mode={mode} modes={modes} toolbar={b.toolbar !== false} count={countOf} empty={LIST.empty} cols={b.cols ?? 4} minItemWidth={b.minItemWidth ?? GRID_MIN}
       // Cards with pictures take the mosaic's sizes; cards of words alone keep their own height, so none stands half empty.
-      mosaic={rows.some((r) => r.it.image)} tabs={tabs ?? undefined} lead={more ?? undefined}
+      // `mosaic: false` keeps every picture card one size (a collection of portraits); `pageSize` pages a long one.
+      mosaic={b.mosaic ?? rows.some((r) => r.it.image)} pageSize={b.pageSize} tabs={tabs ?? undefined} lead={more ?? undefined}
       render={(r, m) => card(r.it, r.i, m === 'list')}
       // Tile: one sideways row of cards a fixed width.
       slider={(list) => <Box scroll="x" paddingBottom={2}><Stack direction="row" gap={3} align="stretch">{list.map((r) => <Box key={r.i} width={TILE_W} flex="none">{card(r.it, r.i, false)}</Box>)}</Stack></Box>}

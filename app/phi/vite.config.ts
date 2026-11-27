@@ -11,8 +11,10 @@ const appFiles = (): Plugin => ({
     server.middlewares.use((req, res, next) => {
       const url = decodeURIComponent((req.url ?? '').split('?')[0]);
       const m = url.match(/^\/([\w-]+)\/(.+)$/);
-      const file = m && path.resolve(__dirname, '..', m[1], 'public', m[2]);
-      if (!file || !file.startsWith(path.resolve(__dirname, '..')) || !fs.existsSync(file) || !fs.statSync(file).isFile()) return next();
+      // /cdn/<key> is the media store (media/phi-media), as phiegg.com/cdn is on the server.
+      const root = m?.[1] === 'cdn' ? path.resolve(__dirname, '../../media/phi-media') : path.resolve(__dirname, '..');
+      const file = m && (m[1] === 'cdn' ? path.resolve(root, m[2]) : path.resolve(root, m[1], 'public', m[2]));
+      if (!file || !file.startsWith(root) || !fs.existsSync(file) || !fs.statSync(file).isFile()) return next();
       res.setHeader('content-type', ({ '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml' } as Record<string, string>)[path.extname(file)] ?? 'application/octet-stream');
       fs.createReadStream(file).pipe(res);
     });

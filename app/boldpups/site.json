@@ -1,0 +1,138 @@
+{
+  "_": "The Bold Pups site (boldpups.xyz) as data. scripts/world-site.mjs fills the placeholders ($tokens, $teaser, $stats, $cities, {club.x}, {world.x}, {n}) from the trait sheet, Phiegg's club and world records and the media store, and writes public/data/boldpups.json. Edit here, then run: node scripts/world-site.mjs boldpups",
+  "key": "boldpups",
+  "club": "c_bp",
+  "sheet": "media/incoming/bpwc",
+  "token": {
+    "kind": "pup",
+    "number": "Number",
+    "title": "Bold Pup #{n}",
+    "sub": "Club",
+    "facet": "Club",
+    "lead": "picture"
+  },
+  "field": {
+    "g": "Glasses",
+    "Hair Colour": "Hair colour",
+    "Char": "Character",
+    "Hair": "Hair style"
+  },
+  "drop": [
+    "Number"
+  ],
+  "picture": {
+    "by": "Club",
+    "BPSC": "collections/bold-pups/images/{n5}.webp",
+    "HHOC": "collections/hhoc/images/{n5}.webp"
+  },
+  "teaser": 8,
+  "stat": {
+    "total": "Pups",
+    "traits": "Traits",
+    "pictured": "Pictures online"
+  },
+  "all": "All",
+  "app": {
+    "app": "boldpups",
+    "start": "home",
+    "nav": [
+      {
+        "id": "home",
+        "label": "Home",
+        "icon": "home"
+      },
+      {
+        "id": "collection",
+        "label": "Collection",
+        "icon": "grid"
+      },
+      {
+        "id": "lore",
+        "label": "Lore",
+        "icon": "file"
+      }
+    ],
+    "views": {
+      "home": {
+        "title": "",
+        "blocks": [
+          {
+            "kind": "hero",
+            "heading": "bold pups",
+            "subtitle": "{club.tagline}",
+            "body": "{club.description}",
+            "image": "$hero",
+            "ratio": "1/1",
+            "actions": [
+              {
+                "label": "See all {n}",
+                "view": "collection"
+              },
+              {
+                "label": "Read the lore",
+                "view": "lore"
+              }
+            ]
+          },
+          {
+            "kind": "stats",
+            "items": "$stats"
+          },
+          {
+            "kind": "grid",
+            "title": "Meet the pack",
+            "items": "$teaser",
+            "toolbar": false,
+            "layout": "grid",
+            "ratio": "1/1",
+            "mosaic": false,
+            "cardFields": 0,
+            "cols": 4,
+            "minItemWidth": "12rem",
+            "more": {
+              "label": "See all {n}",
+              "view": "collection"
+            }
+          }
+        ]
+      },
+      "collection": {
+        "title": "The collection",
+        "sub": "Every pup, all {n} of them, in both clubs: Bold Pups Space Club and HHOC. Filter by any trait, or search a number.",
+        "blocks": [
+          {
+            "kind": "grid",
+            "source": "$tokens",
+            "facet": "$facets",
+            "filter": "$traits",
+            "sort": [
+              "title"
+            ],
+            "layout": "grid",
+            "layoutSet": [
+              "grid",
+              "list"
+            ],
+            "ratio": "1/1",
+            "mosaic": false,
+            "pageSize": 48,
+            "cardFields": 0,
+            "cols": 6,
+            "minItemWidth": "11rem"
+          }
+        ]
+      },
+      "lore": {
+        "title": "{world.name}",
+        "sub": "{world.description}",
+        "blocks": [
+          {
+            "kind": "prose",
+            "lead": "{club.description}",
+            "sections": "$cities"
+          }
+        ]
+      }
+    }
+  }
+}

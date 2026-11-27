@@ -11,7 +11,7 @@ import { Friends, useFriendEntry } from './friends';
 import words from './words.json';
 import { PhiShell } from './PhiShell';
 import { Block, type GridItem } from './blocks';
-import { Head, ItemPanel } from './views';
+import { Head, ItemPage, ItemPanel, ownItem } from './views';
 import { SettingsView } from './settings';
 import { Profile, useMine, buildAccountNav } from './Profile';
 import { AppLanding } from './AppLanding';
@@ -53,7 +53,9 @@ export const PhiApp: React.FC<{ appKey: string }> = ({ appKey }) => {
   const views = data?.views ?? {};
   // A record route (#/round/<id>): a second segment on a name that is not one of this app's pages.
   const record = route.seg1 && !views[route.seg0] && !shops.owns(route.seg0) ? { kind: route.seg0, id: route.seg1 } : null;
-  const tab = record ? (lastTab.current || start) : (route.seg0 || start);
+  // A record the app's own data holds (a token of one of its grids) is a page of its own; any other is Phiora's.
+  const held = record ? ownItem(views, record.kind, record.id) : null;
+  const tab = record ? (held?.view ?? (lastTab.current || start)) : (route.seg0 || start);
   if (!record) lastTab.current = tab;
   const cur = tab;
   const go = (x: string) => { const h = x.replace(/^#/, ''); window.location.hash = h.startsWith('/') ? h : '/' + h; setOpen(null); };
@@ -81,6 +83,7 @@ export const PhiApp: React.FC<{ appKey: string }> = ({ appKey }) => {
   else if (cur === '_friends') page = <Friends app={appKey} people={people} go={go} />;
   else if (err) page = <Text intent="secondary" maxWidth="60ch" marginTop={2}>{err}</Text>;
   else if (!data) page = <Spinner />;
+  else if (held) page = <ItemPage found={held} go={go} />;
   else if (!v) page = <Text intent="secondary" maxWidth="60ch" marginTop={2}>Nothing here yet.</Text>;
   else page = (
     <>
@@ -95,7 +98,7 @@ export const PhiApp: React.FC<{ appKey: string }> = ({ appKey }) => {
   return (
     <PhiShell app={app} nav={nav} side={data?.side} view={cur} onView={go} onRecord={openItem} account={account} people={people} right={open ? <ItemPanel it={open} onClose={() => setOpen(null)} /> : null}>
       {page}
-      {record ? <RecordSheet kind={record.kind} id={record.id} onClose={() => go('#/' + cur)} go={go} formFor={formFor} /> : null}
+      {record && !held ? <RecordSheet kind={record.kind} id={record.id} onClose={() => go('#/' + cur)} go={go} formFor={formFor} /> : null}
     </PhiShell>
   );
 };

@@ -43,12 +43,14 @@ export const cardPicture = (it: GridItem, list: boolean, wide = '16/9'): React.R
   return cardHead(it);
 };
 
-/** A record's facts, one a row: what it is called, and what the record holds there. */
-export const FieldList: React.FC<{ list: [string, string][] }> = ({ list }) => (
+/** A record's facts, one a row: what it is called, and what the record holds there; `note` adds a line under the
+ *  value (how many share it). */
+export const FieldList: React.FC<{ list: [string, string][]; note?: (f: [string, string]) => string }> = ({ list, note }) => (
   <Stack direction="column" gap={1}>
     {list.map(([k, v]) => (
       <Stack key={k} direction="row" justify="between" gap={3} paddingY={1} className={s.fieldRow}>
-        <Text as="span" size="sm" intent="muted">{k}</Text><Text as="span" size="sm" weight="medium" align="right">{v}</Text>
+        <Text as="span" size="sm" intent="muted">{k}</Text>
+        <Stack direction="column" align="end"><Text as="span" size="sm" weight="medium" align="right">{v}</Text>{note ? <Text as="span" size="xs" intent="muted">{note([k, v])}</Text> : null}</Stack>
       </Stack>))}
   </Stack>
 );

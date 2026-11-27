@@ -237,5 +237,9 @@
     "download": "Download",
     "open": "Open in a new tab",
     "strip": "Pictures"
+  },
+  "item": {
+    "back": "Back",
+    "share": "{p} of {name} have it"
   }
 }

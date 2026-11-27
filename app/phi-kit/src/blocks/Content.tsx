@@ -26,7 +26,8 @@ export const Hero: React.FC<{ b: Block }> = ({ b }) => (b.variant === 'wide' ? (
       <Stack direction="row" gap={2} wrap align="center">{b.actions.map((a: any, i: number) => <Button key={i} variant="glass" href={a.app ? appUrl(a.app) : a.href || ('#/' + a.view)}>{a.label}</Button>)}</Stack>
     ) : null}
   </Stack>
-  {b.image ? <Frame ratio="16/10" rounded="lg" width="min(100%, 26rem)" flex="0 1 26rem"><Image src={assetUrl(b.image)} alt="" fit="cover" fill /></Frame> : null}
+  {/* `ratio` keeps a picture's own shape (a square portrait: "1/1"). */}
+  {b.image ? <Frame ratio={b.ratio ?? '16/10'} rounded="lg" width="min(100%, 26rem)" flex="0 1 26rem"><Image src={assetUrl(b.image)} alt="" fit="cover" fill /></Frame> : null}
   </Stack>
 ));
 

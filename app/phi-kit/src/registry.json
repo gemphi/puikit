@@ -503,5 +503,67 @@
     "look": "jingle",
     "mode": "dark",
     "font": "soft"
+  },
+  {
+    "key": "boldpups",
+    "name": "bold pups",
+    "tagline": "10,000 pups with somewhere to be",
+    "desc": "The Bold Pups collection: 10,000 pups in two clubs, Bold Pups Space Club and HHOC, every one with its traits and its own page.",
+    "color": "#26a64d",
+    "port": 3123,
+    "built": true,
+    "icon": [
+      {
+        "d": "M18 42a9 9 0 1 0 18 0a9 9 0 1 0 -18 0ZM33 27a9 9 0 1 0 18 0a9 9 0 1 0 -18 0ZM49 27a9 9 0 1 0 18 0a9 9 0 1 0 -18 0ZM64 42a9 9 0 1 0 18 0a9 9 0 1 0 -18 0Z",
+        "fill": "currentColor",
+        "stroke": "none",
+        "sw": 0
+      },
+      {
+        "d": "M38 56h24a14 14 0 0 1 0 28h-24a14 14 0 0 1 0-28Z",
+        "fill": "currentColor",
+        "stroke": "none",
+        "sw": 0
+      }
+    ],
+    "config": true,
+    "look": "muse",
+    "mode": "light",
+    "font": "pill-open",
+    "heading": "Boldland"
+  },
+  {
+    "key": "epicpods",
+    "name": "epic pods",
+    "tagline": "1,024 members of the club built from escape pods",
+    "desc": "The Epic Pods AC collection: 1,024 members from Common to Legendary, every one with its traits and its own page.",
+    "color": "#b53717",
+    "port": 3124,
+    "built": true,
+    "icon": [
+      {
+        "d": "M50 12a24 24 0 0 1 24 24v30a24 24 0 0 1-48 0v-30a24 24 0 0 1 24-24Z",
+        "fill": "none",
+        "stroke": "currentColor",
+        "sw": 8
+      },
+      {
+        "d": "M40 40a10 10 0 1 0 20 0a10 10 0 1 0 -20 0Z",
+        "fill": "currentColor",
+        "stroke": "none",
+        "sw": 0
+      },
+      {
+        "d": "M40 88h20a5 5 0 0 1 0 10h-20a5 5 0 0 1 0-10Z",
+        "fill": "currentColor",
+        "stroke": "none",
+        "sw": 0
+      }
+    ],
+    "config": true,
+    "look": "spacex",
+    "mode": "dark",
+    "font": "pill-open",
+    "heading": "Graphigem"
   }
 ]
