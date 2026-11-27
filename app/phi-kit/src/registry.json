@@ -544,11 +544,11 @@
     "mode": "light",
     "font": "boldlook",
     "heading": "BoldLook",
-    "logo": "Bold Pups Logo"
+    "logo": "World Logo"
   },
   {
     "key": "epicpods",
-    "name": "epic pods",
+    "name": "EPIC PODS",
     "tagline": "1,024 members of the club built from escape pods",
     "desc": "The Epic Pods AC collection: 1,024 members from Common to Legendary, every one with its traits and its own page.",
     "color": "#b53717",
@@ -575,10 +575,11 @@
       }
     ],
     "config": true,
-    "look": "apple",
-    "mode": "dark",
+    "look": "muse",
+    "mode": "light",
     "font": "chatty",
-    "heading": "Chatty Whims"
+    "heading": "Chatty Whims",
+    "logo": "World Logo"
   },
   {
     "key": "phiogy-home",

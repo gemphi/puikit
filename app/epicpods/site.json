@@ -62,7 +62,7 @@
           {
             "kind": "hero",
             "variant": "split",
-            "heading": "epic pods",
+            "heading": "EPIC PODS",
             "body": "{club.tagline} {world.description}",
             "image": "cdn:epicpods/group/epicus-group-03.webp",
             "figures": [

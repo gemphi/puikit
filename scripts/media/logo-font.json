@@ -1,11 +1,11 @@
 {
-  "_": "Bold Pups' logo face: heavy, upright letters drawn on a grid of 1000 units (cap 700, stroke 150), each corner [x, y, radius]. Outer contours run clockwise, counters the other way. scripts/media/logo-font.py builds media/phi-media/fonts/<file>.woff2 from this; lower case draws the same letters, so the name is capitals whatever is typed.",
-  "family": "Bold Pups Logo",
-  "file": "BoldPupsLogo",
+  "_": "The world sites' logo face (BOLD PUPS, EPIC PODS): heavy, upright letters drawn on a grid of 1000 units (cap 700, stroke 150), each corner [x, y, radius]. Outer contours run clockwise, counters the other way. scripts/media/logo-font.py builds media/phi-media/fonts/<file>.woff2 from this; lower case draws the same letters, so the name is capitals whatever is typed.",
+  "family": "World Logo",
+  "file": "WorldLogo",
   "upm": 1000,
   "ascent": 800,
   "descent": 200,
-  "side": 40,
+  "side": 22,
   "space": 220,
   "glyphs": {
     "B": { "width": 480, "contours": [
@@ -33,6 +33,15 @@
     ] },
     "S": { "width": 470, "contours": [
       [[0, 0, 60], [0, 190, 0], [150, 190, 0], [150, 150, 0], [320, 150, 30], [320, 275, 30], [0, 275, 140], [0, 700, 140], [470, 700, 60], [470, 510, 0], [320, 510, 0], [320, 550, 0], [150, 550, 30], [150, 425, 30], [470, 425, 140], [470, 0, 140]]
+    ] },
+    "E": { "width": 450, "contours": [
+      [[0, 0, 0], [0, 700, 0], [450, 700, 0], [450, 550, 0], [150, 550, 0], [150, 425, 0], [400, 425, 0], [400, 275, 0], [150, 275, 0], [150, 150, 0], [450, 150, 0], [450, 0, 0]]
+    ] },
+    "I": { "width": 150, "contours": [
+      [[0, 0, 0], [0, 700, 0], [150, 700, 0], [150, 0, 0]]
+    ] },
+    "C": { "width": 470, "contours": [
+      [[0, 0, 170], [0, 700, 170], [470, 700, 60], [470, 520, 0], [320, 520, 0], [320, 550, 30], [150, 550, 40], [150, 150, 40], [320, 150, 30], [320, 180, 0], [470, 180, 0], [470, 0, 60]]
     ] }
   }
 }

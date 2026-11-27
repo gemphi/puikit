@@ -37,18 +37,18 @@ function recordOf(id: string, s: S, page: boolean, own: boolean): ProfileRecord 
   const posts = postsBy(p.id); const sets = storySets(p.id); const st = statsOfPerson(p.id); const sales = salesOfPerson(p.id);
   const clubs = p.clubIds.map((c) => itemOf('club', c)).filter((c): c is NonNullable<typeof c> => !!c);
 
-  // The tabs are the person's relations (lib/relations.ts), the ones the profile leads with first, then the fullest.
+  // The tabs are the person's relations, an icon each and no totals (the user's ask, 2026-11-27); (lib/relations.ts), the ones the profile leads with first, then the fullest.
   // Their shots are every post they wrote (postsBy), shown as the app's list; the other relations as picture cards.
   const SHOTS = SITE.profileTabs[0];
   const groups = relationGroups('person', p.id, s).filter((g) => g.id !== SHOTS);
   const rank = (g: { id: string; items: unknown[] }) => { const i = SITE.profileTabs.indexOf(g.id); return i >= 0 ? -1e6 + i : -g.items.length; };
   const panes: ProfilePane[] = [
-    ...(posts.length ? [{ id: SHOTS, label: SHOTS, icon: glyph(SHOTS), count: fmt(posts.length), body: () => <Shots posts={posts} s={s} cols={page ? 3 : 2} /> }] : []),
-    ...[...groups].sort((a, b) => rank(a) - rank(b)).map((g) => ({ id: g.id, label: String(g.label), icon: g.icon, count: fmt(g.items.length), body: () => <RelationList groups={[g]} max={page ? 12 : 6} {...listLabels()} /> })),
+    ...(posts.length ? [{ id: SHOTS, label: SHOTS, icon: glyph(SHOTS), body: () => <Shots posts={posts} s={s} cols={page ? 3 : 2} /> }] : []),
+    ...[...groups].sort((a, b) => rank(a) - rank(b)).map((g) => ({ id: g.id, label: String(g.label), icon: g.icon, body: () => <RelationList groups={[g]} max={page ? 12 : 6} {...listLabels()} /> })),
   ];
   // What a person holds, likes and is credited in: relations kept outside the record's own fields.
   for (const x of SITE.profileTabsMore) panes.push({ id: x, label: x, icon: glyph(x), body: () => <ProfileTab id={p.id} tab={x as 'Likes'} /> });
-  if (sales.length) panes.push({ id: 'sales', label: t('colSales'), icon: <Icon icon={Receipt} size="xs" />, count: fmt(sales.length), body: () => <Activity rows={sales} s={s} /> });
+  if (sales.length) panes.push({ id: 'sales', label: t('colSales'), icon: <Icon icon={Receipt} size="xs" />, body: () => <Activity rows={sales} s={s} /> });
   if (ag) panes.push({ id: 'ask', label: t('prAsk'), icon: <Icon icon={Sparkles} size="xs" />, body: () => (
     <Stack direction="column" gap={2} align="start"><Text size="sm">{ag.askHint}</Text>
       {ag.prompts.map((q) => <Button key={q} variant="glass" onClick={() => s.openChat(ag.id, q)}>{q}</Button>)}

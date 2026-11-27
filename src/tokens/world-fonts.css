@@ -39,10 +39,10 @@
   font-style: normal;
   font-display: swap;
 }
-/* Bold Pups' logo face: heavy capitals drawn for the name (scripts/media/logo-font.json, built by logo-font.py). */
+/* The world sites' logo face: heavy capitals drawn for their names (BOLD PUPS, EPIC PODS) (scripts/media/logo-font.json, built by logo-font.py). */
 @font-face {
-  font-family: "Bold Pups Logo";
-  src: url('/cdn/fonts/BoldPupsLogo.woff2') format('woff2');
+  font-family: "World Logo";
+  src: url('/cdn/fonts/WorldLogo.woff2') format('woff2');
   font-weight: 100 900;
   font-style: normal;
   font-display: block;
