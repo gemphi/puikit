@@ -31,17 +31,17 @@ The last column is what public DNS answered on 27 November 2026 (GoDaddy holds a
 | phiecs.com | CNAME | `www` | `phiecs.com.` | done |
 | phiace.ai | A | `@` | `13.63.125.132` | done (live since 2026-11-02) |
 | phiace.ai | CNAME | `www` | `phiace.ai.` | done |
-| boldpups.xyz | A | `@` | `13.63.125.132` | **to fix**: it still answers GoDaddy's parking addresses `76.223.105.230` and `13.248.243.5`. Delete those two A records ("Parked") so only `13.63.125.132` is left |
+| boldpups.xyz | A | `@` | `13.63.125.132` | done (GoDaddy's parked records gone, 2026-11-27) |
 | boldpups.xyz | CNAME | `www` | `boldpups.xyz.` | done (follows the apex) |
 | epicpods.xyz | A | `@` | `13.63.125.132` | done (the request said `.xyx`; the domain is `.xyz`) |
 | epicpods.xyz | CNAME | `www` | `epicpods.xyz.` | done |
-| phiegg.com | A | `cdn` | `13.63.125.132` | **to add**: `cdn.phiegg.com`, the media store at its own address |
-| phiegg.com | A | `ora` | `13.63.125.132` | **to add**: `ora.phiegg.com`, Phiora's API at its own address |
+| phiegg.com | A | `cdn` | `13.63.125.132` | done |
+| phiegg.com | A | `ora` | `13.63.125.132` | done (2026-11-27) |
 
 Later on 27 November the user added phisum.com, cdn.phiogy.com and four city domains. Public DNS then answered:
-phisum.com, cdn.phiogy.com, cdn.phiegg.com and bozo.city (each with `www`) point here, done. **To fix:** once.city
-and wand.city still answer GoDaddy's parking addresses (`3.33.130.190`, `15.197.148.33`); acro.city and
-ora.phiegg.com have no records; boldpups.xyz still has the two parked records beside ours.
+phisum.com, cdn.phiogy.com, cdn.phiegg.com and bozo.city (each with `www`) point here, done. Later the same day
+boldpups.xyz, once.city, wand.city and ora.phiegg.com did too, and went live. **To add:** acro.city (and `www`) has
+no records; its block waits in `deploy/caddy/waiting.caddy`.
 
 If the registrar cannot put a CNAME on `www`, use an A record to `13.63.125.132` there too.
 Check each before touching Caddy: `nslookup boldpups.xyz` (or `dig +short boldpups.xyz`) must answer
@@ -58,13 +58,15 @@ Optional, once all resolve: a CAA record on each apex, `0 issue "letsencrypt.org
 | phiegg.com | Phiegg (`/phiegg/`), web Phiogy (`/phiogy/`), `/cdn/`, `/wrt/` | `dist-all/phiegg` | live |
 | phiace.ai | Phiace (`/phiace/`) | `dist-all/phiace` | live |
 | phiber.ai | Phiber (`/phiber/`) | `dist-all/phiber` | live |
-| phipad.com | Phipad (`/phipad/`); phipad.xyz then sends here | `dist-all/phipad` | to add |
-| phiogy.com | the landing page at `/` (config app `phiogy-home`, its registry `domain`), the web Phiogy at `/phiogy/`, with `/wrt/` and `/cdn/` so calls, pictures and the download stay on the same site | `dist-all/phiogy-home`, `dist-all/phiogy` | landing built locally, not sent |
-| phiecs.com | no Phiecs page exists yet: send it to phiace.ai until one does (a config app like Bold Pups, one data file) | — | to add |
-| boldpups.xyz | the Bold Pups site (`/boldpups/`), with `/cdn/` for the pictures | `dist-all/boldpups` | built locally, not sent |
-| epicpods.xyz | the Epic Pods site (`/epicpods/`), with `/cdn/` | `dist-all/epicpods` | built locally, not sent |
-| cdn.phiegg.com | `/srv/phi-cdn` at the root (the same files as phiegg.com/cdn) | — | to add |
-| ora.phiegg.com | Phiora's API at the root (`/app/phiegg` is `phiegg.com/api/app/phiegg`) | — | to add |
+| phipad.com | Phipad (`/phipad/`); phipad.xyz then sends here | `dist-all/phipad` | live |
+| phiogy.com | the landing page at `/` (config app `phiogy-home`, its registry `domain`), the web Phiogy at `/phiogy/`, with `/wrt/` and `/cdn/` so calls, pictures and the download stay on the same site | `dist-all/phiogy-home`, `dist-all/phiogy` | live |
+| phiecs.com | no Phiecs page exists yet: sent to phiace.ai until one does (a config app like Bold Pups, one data file) | — | live (redirect) |
+| boldpups.xyz | the Bold Pups site (`/boldpups/`), with `/cdn/` for the pictures | `dist-all/boldpups` | live |
+| epicpods.xyz | the Epic Pods site (`/epicpods/`), with `/cdn/` | `dist-all/epicpods` | live |
+| cdn.phiegg.com | `/srv/phi-cdn` at the root (the same files as phiegg.com/cdn) | — | live |
+| ora.phiegg.com | Phiora's API at the root (`/app/phiegg` is `phiegg.com/api/app/phiegg`) | — | live |
+| once.city, wand.city, bozo.city | their Bold City in Phiegg (`/phiegg/world/w_<name>_city`) | — | live |
+| acro.city | its Bold City in Phiegg (`w_acro_city`) | — | waits for DNS |
 
 ## 3. Caddy site blocks to add
 
