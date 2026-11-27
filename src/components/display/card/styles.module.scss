@@ -40,7 +40,10 @@
 .paddingLg > .header, .paddingLg > .body, .paddingLg > .footer {
   padding: var(--phi-card-pad-top) var(--phi-card-pad-right) var(--phi-card-pad-top) var(--phi-card-pad-left);
 }
-.paddingSm > :last-child, .paddingMd > :last-child, .paddingLg > :last-child { padding-block-end: var(--phi-card-pad-bottom); }
+/* The foot goes to the last role child of a composed card only (its card has no padding of its own); on a plain card
+   the card's own bottom padding is the foot, and a second one under the last child left a band of nothing under
+   every card in a grid. */
+:is(.paddingSm, .paddingMd, .paddingLg):has(> .header, > .body, > .footer) > :last-child { padding-block-end: var(--phi-card-pad-bottom); }
 
 /* A flat card drops the shadow and the lift, never the surface: a row, a fact, a stat is still a card. */
 /* It is a row or a fact, so its content sits close: one small inset all round, never the deep foot of a standing card
