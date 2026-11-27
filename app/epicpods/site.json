@@ -61,11 +61,14 @@
         "blocks": [
           {
             "kind": "hero",
+            "variant": "split",
             "heading": "epic pods",
-            "subtitle": "{club.tagline}",
-            "body": "{world.description}",
-            "image": "$hero",
-            "ratio": "1/1",
+            "body": "{club.tagline} {world.description}",
+            "image": "cdn:epicpods/group/epicus-group-03.webp",
+            "figures": [
+              "cdn:epicpods/group/female-epic-07-group.webp",
+              "cdn:epicpods/group/male-epic-03-group.webp"
+            ],
             "actions": [
               {
                 "label": "See all {n}",
@@ -76,6 +79,90 @@
                 "view": "lore"
               }
             ]
+          },
+          {
+            "kind": "hero",
+            "variant": "card",
+            "heading": "Robots on the runway",
+            "body": "The Epicus crew in chrome, posed in front of the bubble cars they race between the pods.",
+            "image": "cdn:epicpods/group/epicus-group-01.webp"
+          },
+          {
+            "kind": "hero",
+            "variant": "card",
+            "heading": "Four of a kind",
+            "body": "Boldroids and Epics stand together: two robots, two pods, one teal stripe.",
+            "image": "cdn:epicpods/group/boldroid-epics-group-02.webp",
+            "flip": true
+          },
+          {
+            "kind": "hero",
+            "variant": "card",
+            "heading": "Pink hour",
+            "body": "The pink line arrives across the floral floor, last light on the hood.",
+            "image": "cdn:epicpods/group/epicus-group-04.webp"
+          },
+          {
+            "kind": "hero",
+            "variant": "card",
+            "heading": "The red line",
+            "body": "Gloss red robots and the Epics who ride with them.",
+            "image": "cdn:epicpods/group/boldroid-epics-group-03.webp",
+            "flip": true
+          },
+          {
+            "kind": "hero",
+            "variant": "card",
+            "heading": "Green light",
+            "body": "A wave from the green crew before the start.",
+            "image": "cdn:epicpods/group/epicus-group-02.webp"
+          },
+          {
+            "kind": "hero",
+            "variant": "card",
+            "heading": "Silver season",
+            "body": "Chrome and camo: the silver four from low down.",
+            "image": "cdn:epicpods/group/boldroid-epics-group-04.webp",
+            "flip": true
+          },
+          {
+            "kind": "marquee",
+            "items": [
+              "train",
+              "race",
+              "trade",
+              "pose",
+              "gather"
+            ]
+          },
+          {
+            "kind": "grid",
+            "title": "Every Epic, every outfit",
+            "toolbar": false,
+            "items": [
+              {
+                "title": "Epic 05",
+                "image": "cdn:epicpods/group/epic-05-group.webp"
+              },
+              {
+                "title": "Female Epic 07",
+                "image": "cdn:epicpods/group/female-epic-07-group.webp"
+              },
+              {
+                "title": "Male Epic 01",
+                "image": "cdn:epicpods/group/male-epic-01-group.webp"
+              },
+              {
+                "title": "Male Epic 03",
+                "image": "cdn:epicpods/group/male-epic-03-group.webp"
+              }
+            ],
+            "layout": "grid",
+            "ratio": "4/5",
+            "mosaic": false,
+            "cardFields": 0,
+            "cols": 4,
+            "minItemWidth": "13rem"
           },
           {
             "kind": "stats",
@@ -96,6 +183,21 @@
               "label": "See all {n}",
               "view": "collection"
             }
+          },
+          {
+            "kind": "hero",
+            "variant": "wide",
+            "heading": "1,024 pods. Pick yours.",
+            "actions": [
+              {
+                "label": "See all {n}",
+                "view": "collection"
+              },
+              {
+                "label": "Read the lore",
+                "view": "lore"
+              }
+            ]
           }
         ]
       },
