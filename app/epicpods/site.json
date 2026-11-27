@@ -21,6 +21,9 @@
   "drop": [
     "NUMBER"
   ],
+  "correct": {
+    "Monacle": "Monocle"
+  },
   "picture": {
     "by": null,
     "all": "collections/bold-ape-epic-club/images/{n5}.webp"

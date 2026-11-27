@@ -60,7 +60,8 @@ const build = (key) => {
 
   const tokens = rows.filter((r) => /^\d+$/.test(r[t.number])).map((r) => {
     const n = String(Number(r[t.number]));
-    const fields = head.filter((h) => !spec.drop.includes(h) && r[h]).map((h) => [name(h), r[h]]);
+    // `correct` mends the sheet's typos by value (Mohca: Mocha), so the Drive's own file stays as it is.
+    const fields = head.filter((h) => !spec.drop.includes(h) && r[h]).map((h) => [name(h), spec.correct?.[r[h]] ?? r[h]]);
     const fact = (f) => fields.find(([k]) => k === name(f) || k === f)?.[1];
     const rule = spec.picture.by ? spec.picture[r[spec.picture.by]] : spec.picture.all;
     const pic = rule?.replace('{n5}', n.padStart(5, '0'));

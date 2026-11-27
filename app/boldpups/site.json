@@ -19,6 +19,9 @@
   "drop": [
     "Number"
   ],
+  "correct": {
+    "Mohca": "Mocha"
+  },
   "picture": {
     "by": "Club",
     "BPSC": "collections/bold-pups/images/{n5}.webp",
