@@ -1,8 +1,8 @@
 # /etc/caddy/Caddyfile on the server (EC2 13.63.125.132): HTTPS for every domain, then nginx on :8080 (app/dist-all)
 # and Phiora behind it. This file is the source; app/DOMAINS.md says how it goes up (back up, validate, restart at a
 # quiet time, never reload). A site is listed only once its name answers 13.63.125.132, so Caddy never asks for a
-# certificate it cannot get. Still to add when their DNS points here: boldpups.xyz (drop GoDaddy's parked records),
-# once.city, wand.city, acro.city, ora.phiegg.com.
+# certificate it cannot get. The sites still waiting for their DNS (boldpups.xyz, once.city, wand.city, acro.city,
+# ora.phiegg.com) stand ready in waiting.caddy, checked together with this file by `caddy validate`.
 
 # Pictures, media records, downloads and the library's files, one key each (scripts/media/sync.sh server):
 # /srv/phi-cdn/<key>. A file that is there is cached; a picture for a year, a record or a zip for 5 minutes.
