@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Spinner, Text } from '@pui/components';
+import { Box, Spinner, Stack, Text } from '@pui/components';
 import { appMeta, loadApp, type AppData } from './data';
 import { resolvePulls } from './pulls';
 import { loadPeople, type People } from './people';
@@ -93,7 +93,11 @@ export const PhiApp: React.FC<{ appKey: string }> = ({ appKey }) => {
   );
 
   // A page that is the whole app (`"bare": true`), a show or a lookbook: no rail and no bar, the page alone.
-  if (data?.bare) return <Box as="main" style={{ minHeight: '100vh', padding: 'clamp(1rem, 3vw, 2.5rem)' }}>{page}</Box>;
+  // `width` keeps a bare page in one centred column (a product page), its blocks spaced like the shell's.
+  if (data?.bare) return (
+    <Box as="main" style={{ minHeight: '100vh', padding: 'clamp(1rem, 3vw, 2.5rem)' }}>
+      {data.width ? <Stack direction="column" gap={8} style={{ maxWidth: data.width, margin: '0 auto' }}>{page}</Stack> : page}
+    </Box>);
 
   return (
     <PhiShell app={app} nav={nav} side={data?.side} view={cur} onView={go} onRecord={openItem} account={account} people={people} right={open ? <ItemPanel it={open} onClose={() => setOpen(null)} /> : null}>

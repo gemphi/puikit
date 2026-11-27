@@ -3,18 +3,18 @@ import React from 'react';
 import { Button, Divider, Frame, Image, Stack, Tag, Text, Title } from '@pui/components';
 import { appUrl, assetUrl, type Block } from '../data';
 
-/** Hero band for an app's Home view. `variant: "wide"` is a landing's: its picture across the whole page, the words
- *  and the ways in under it. */
+/** Hero band for an app's Home view. `variant: "wide"` is a product page's: the name, one line and the ways in,
+ *  centred, then its picture across the page. */
 export const Hero: React.FC<{ b: Block }> = ({ b }) => (b.variant === 'wide' ? (
-  <Stack direction="column" gap={4}>
-    {b.image ? <Frame ratio="21/9" rounded="lg" width="100%"><Image src={assetUrl(b.image)} alt="" fit="cover" fill /></Frame> : null}
-    <Stack direction="column" gap={2}>
-      <Title level={1} size="3xl">{b.heading}</Title>
-      {b.subtitle ? <Text size="lg" intent="secondary" maxWidth="64ch">{b.subtitle}</Text> : null}
+  <Stack direction="column" gap={6} align="center" paddingY={6}>
+    <Stack direction="column" gap={3} align="center">
+      <Title level={1} size="3xl" align="center">{b.heading}</Title>
+      {b.subtitle ? <Text size="xl" intent="secondary" maxWidth="40ch" align="center">{b.subtitle}</Text> : null}
       {Array.isArray(b.actions) && b.actions.length ? (
-        <Stack direction="row" gap={2} wrap align="center">{b.actions.map((a: any, i: number) => <Button key={i} variant="glass" href={a.app ? appUrl(a.app) : a.href || ('#/' + a.view)}>{a.label}</Button>)}</Stack>
+        <Stack direction="row" gap={2} wrap align="center" justify="center">{b.actions.map((a: any, i: number) => <Button key={i} variant="glass" href={a.app ? appUrl(a.app) : a.href || ('#/' + a.view)}>{a.label}</Button>)}</Stack>
       ) : null}
     </Stack>
+    {b.image ? <Frame ratio={b.ratio ?? '21/9'} rounded="lg" width="100%"><Image src={assetUrl(b.image)} alt="" fit="cover" fill /></Frame> : null}
   </Stack>
 ) : (
   <Stack direction="row" gap={6} padding={8} rounded="lg" background="gradient-sidebar" wrap align="center">

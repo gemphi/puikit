@@ -19,22 +19,24 @@ flowchart LR
 
 Use TTL 300 while setting up, then raise it to 3600. There is no IPv6 address, so add no AAAA records.
 
-| Domain | Type | Name (host) | Value | Notes |
+The last column is what public DNS answered on 27 November 2026 (GoDaddy holds all of them).
+
+| Domain | Type | Name (host) | Value | On 27 Nov |
 |---|---|---|---|---|
-| phipad.com | A | `@` | `13.63.125.132` | new; becomes Phipad's main address |
-| phipad.com | CNAME | `www` | `phipad.com.` | |
-| phiogy.com | A | `@` | `13.63.125.132` | new; the web Phiogy |
-| phiogy.com | CNAME | `www` | `phiogy.com.` | |
-| phiecs.com | A | `@` | `13.63.125.132` | new |
-| phiecs.com | CNAME | `www` | `phiecs.com.` | |
-| phiace.ai | A | `@` | `13.63.125.132` | live since 2026-11-02: check it is still there |
-| phiace.ai | CNAME | `www` | `phiace.ai.` | live: check only |
-| boldpups.xyz | A | `@` | `13.63.125.132` | new; the Bold Pups world site |
-| boldpups.xyz | CNAME | `www` | `boldpups.xyz.` | |
-| epicpods.xyz | A | `@` | `13.63.125.132` | new; the Epic Pods world site (the request said `.xyx`; the domain is `.xyz`) |
-| epicpods.xyz | CNAME | `www` | `epicpods.xyz.` | |
-| phiegg.com | A | `cdn` | `13.63.125.132` | `cdn.phiegg.com`: the media store at its own address |
-| phiegg.com | A | `ora` | `13.63.125.132` | `ora.phiegg.com`: Phiora's API at its own address |
+| phipad.com | A | `@` | `13.63.125.132` | done |
+| phipad.com | CNAME | `www` | `phipad.com.` | done |
+| phiogy.com | A | `@` | `13.63.125.132` | done |
+| phiogy.com | CNAME | `www` | `phiogy.com.` | done |
+| phiecs.com | A | `@` | `13.63.125.132` | done |
+| phiecs.com | CNAME | `www` | `phiecs.com.` | done |
+| phiace.ai | A | `@` | `13.63.125.132` | done (live since 2026-11-02) |
+| phiace.ai | CNAME | `www` | `phiace.ai.` | done |
+| boldpups.xyz | A | `@` | `13.63.125.132` | **to fix**: it still answers GoDaddy's parking addresses `76.223.105.230` and `13.248.243.5`. Delete those two A records ("Parked") so only `13.63.125.132` is left |
+| boldpups.xyz | CNAME | `www` | `boldpups.xyz.` | done (follows the apex) |
+| epicpods.xyz | A | `@` | `13.63.125.132` | done (the request said `.xyx`; the domain is `.xyz`) |
+| epicpods.xyz | CNAME | `www` | `epicpods.xyz.` | done |
+| phiegg.com | A | `cdn` | `13.63.125.132` | **to add**: `cdn.phiegg.com`, the media store at its own address |
+| phiegg.com | A | `ora` | `13.63.125.132` | **to add**: `ora.phiegg.com`, Phiora's API at its own address |
 
 If the registrar cannot put a CNAME on `www`, use an A record to `13.63.125.132` there too.
 Check each before touching Caddy: `nslookup boldpups.xyz` (or `dig +short boldpups.xyz`) must answer
@@ -52,7 +54,7 @@ Optional, once all resolve: a CAA record on each apex, `0 issue "letsencrypt.org
 | phiace.ai | Phiace (`/phiace/`) | `dist-all/phiace` | live |
 | phiber.ai | Phiber (`/phiber/`) | `dist-all/phiber` | live |
 | phipad.com | Phipad (`/phipad/`); phipad.xyz then sends here | `dist-all/phipad` | to add |
-| phiogy.com | web Phiogy (`/phiogy/`), with `/wrt/` and `/cdn/` so calls and pictures stay on the same site | `dist-all/phiogy` | to add |
+| phiogy.com | the landing page at `/` (config app `phiogy-home`, its registry `domain`), the web Phiogy at `/phiogy/`, with `/wrt/` and `/cdn/` so calls, pictures and the download stay on the same site | `dist-all/phiogy-home`, `dist-all/phiogy` | landing built locally, not sent |
 | phiecs.com | no Phiecs page exists yet: send it to phiace.ai until one does (a config app like Bold Pups, one data file) | — | to add |
 | boldpups.xyz | the Bold Pups site (`/boldpups/`), with `/cdn/` for the pictures | `dist-all/boldpups` | built locally, not sent |
 | epicpods.xyz | the Epic Pods site (`/epicpods/`), with `/cdn/` | `dist-all/epicpods` | built locally, not sent |
@@ -105,7 +107,8 @@ www.phipad.com {
 	redir https://phipad.com{uri} 301
 }
 phiogy.com {
-	redir / /phiogy/ 302
+	# The landing is the root itself: the page finds its app by the domain (registry `domain`), not by a /<key>/.
+	rewrite / /phiogy-home/
 	import cdn
 	import wrt
 	import app
@@ -203,3 +206,45 @@ Then add `location /boldpups/` and `location /epicpods/` rows to `dist-all/nginx
   download page links there), and phiogy.com becomes the address to share.
 - **Later.** `api.` and `wrt.` subdomains are not needed while each site proxies its own `/api` and `/wrt`.
   A scheduled Postgres backup (`pg_dump` to S3 nightly) is still missing and matters more than any new name.
+
+## 5. phiogy.com: what to set so it takes calls and can be downloaded
+
+Checked on 27 November 2026: phiogy.com and www.phiogy.com already answer `13.63.125.132`; coturn runs on the
+server with the right public address (`external-ip=13.63.125.132/172.31.3.102`, ports 49152-49407, realm phiegg.com)
+and `.env` already gives callers `turn:phiegg.com:3478` over UDP and TCP; the Windows build is on the server. A
+connection test from outside to TCP 3478 failed, so the relay is not reachable yet.
+
+**You (AWS console, EC2, the instance's security group, Inbound rules), add three rules, source `0.0.0.0/0`:**
+
+| Type | Protocol | Port range | What for |
+|---|---|---|---|
+| Custom UDP | UDP | `3478` | the relay (TURN), for callers behind home routers and phone networks |
+| Custom TCP | TCP | `3478` | the relay over TCP, for networks that block UDP |
+| Custom UDP | UDP | `49152-49407` | the relayed sound and picture themselves |
+
+Leave 22, 80 and 443 as they are. Without these, a call works only when both people are on networks that let
+WebRTC through directly; with them, any two people can call.
+
+**You (GoDaddy):** nothing more for phiogy.com. Optionally the no-mail records: TXT `@` `v=spf1 -all` and TXT `_dmarc`
+`v=DMARC1; p=reject;`.
+
+**Me, on your word, on the server:**
+1. `.env`: add `https://phiogy.com` to `PHI_ORIGINS` (it is set), then `docker compose up -d phiora`.
+2. Build the landing (`app/phiogy-home`) and the web Phiogy as config apps (`DEPLOY.md` section 8; the landing with
+   `PHI_BASE=/phiogy-home/`), send both to `dist-all`, add `location /phiogy-home/` to `dist-all/nginx.conf`,
+   `docker compose restart web`.
+3. Send the landing's pictures (`media/phi-media/phiogy/shot/`) with `scripts/media/sync.sh server`.
+4. The phiogy.com block in section 3 (root to the landing, `/cdn/`, `/wrt/`, the rest to nginx), validated on a copy
+   first, then `systemctl restart caddy` at a quiet time.
+5. Test: open phiogy.com, press Download for Windows, open the web Phiogy on two networks (one a phone hotspot) and
+   call between them.
+
+**Where the downloads are**
+
+| Build | File on the server | Address | State |
+|---|---|---|---|
+| Windows (zip, `phiogy.exe`, nothing installed; Windows 10 or 11, DirectX 11) | `/srv/phi-cdn/phiogy/phiogy-windows.zip` (19 MB, 25 Nov) | `https://phiegg.com/cdn/phiogy/phiogy-windows.zip`, and `https://phiogy.com/cdn/phiogy/phiogy-windows.zip` once the block is in | live on phiegg.com |
+| Mac | `/srv/phi-cdn/phiogy/phiogy-mac.zip` when there is one | `https://phiogy.com/cdn/phiogy/phiogy-mac.zip` | **not built**: it must be built on a Mac (`phikit/crates/appkit/app/phiogy/RUN.md`, macOS) and signed with an Apple Developer ID to open on other Macs. Until then the landing's Mac button opens the web Phiogy |
+
+A new Windows build is copied over the same file (no script sends it yet: it went up by hand on 25 Nov); the `cdn` snippet caches zips
+for 5 minutes, so people get it within minutes under the same link.
