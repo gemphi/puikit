@@ -5,8 +5,10 @@
 //   GET  /call/<app>/<room>?peer=<id>   the room's line, an event stream. Its first event is who is in the call
 //                                       (`{ roster: [{ peer, name, handle }], ice }`); a new roster follows each time
 //                                       someone joins or leaves, and `{ from, signal }` when a caller sends this peer one.
-//   POST /call/<app>/<room>             `{ peer, join?: boolean, send?: [{ to, signal }] }` from a peer whose line is
-//                                       open: join or leave the call, and pass signals to others who are in it.
+//   POST /call/<app>/<room>             `{ peer, join?: boolean, send?: [{ to, signal }], typing?: boolean }` from a
+//                                       peer whose line is open: join or leave the call, pass signals to others who
+//                                       are in it, and say to every other page on the line that it is writing
+//                                       (`{ typing: { peer, name, handle, on } }`), call or no call.
 //
 // A peer is one open page, named by the page itself; it belongs to whoever opened its line, and only they may speak
 // for it. Closing the line (the page goes away) leaves the call. Nothing is stored: a restart empties every room.
@@ -96,5 +98,7 @@ export async function callRoute(route, { calls, fail, pathname, readBody, req, r
     const to = x && room.get(x.to);
     if (me.joined && to?.joined && x.signal && typeof x.signal === 'object') tell(to, { from: body.peer, signal: x.signal });
   }
+  // Writing is told to every other page that has the room open, whether in the call or not.
+  if (typeof body.typing === 'boolean') room.forEach((p, peer) => { if (peer !== body.peer) tell(p, { typing: { peer: body.peer, name: me.name, handle: me.handle, on: body.typing } }); });
   return send(res, 200, { roster: rosterOf(room) });
 }

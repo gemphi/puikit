@@ -214,6 +214,8 @@ def main():
         if p not in known:
             rooms['member'].append(member(p)); known.add(p); made['person'] += 1
     rooms['link'] = link['file'].split('public/', 1)[-1]
+    # How the hosts are governed: written by hand (`server.json` `rights`), named here for the room block to read.
+    if cfg.get('rights'): rooms['role'] = cfg['rights']['file'].split('public/', 1)[-1]
     # Friends: the ones named, then people who write in the hosts the viewer is in, in an order their ids decide; the
     # next few of those have asked and wait for an answer.
     fr = cfg['friend']

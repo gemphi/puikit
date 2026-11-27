@@ -1,11 +1,17 @@
 import React from 'react';
 import { Button, ChatBubble, ChatComposer, Divider, Input, Link, Pressable, Stack, Tag, Text } from '@pui/components';
 import { Heart, Pin, PinOff, Reply, Search } from 'lucide-react';
+import type { ChatSuggestion } from '@pui/components';
+import { Said } from '../mention';
+import { PollMaker, PollView, type Poll } from '../poll';
+import { KeepMenu } from '../keep';
+import { useTyping } from '../typing';
 import { persisted } from '../api';
 import { iconOf } from '../icons';
 import { Face, type Member, type People } from '../people';
 import { Shot, type Seen } from './RoomShot';
 import words from '../words.json';
+import talk from '../talk.json';
 
 const W = words.room;
 export const say = (s: string, k: string, v: string) => s.replace('{' + k + '}', v);
@@ -14,7 +20,7 @@ export const say = (s: string, k: string, v: string) => s.replace('{' + k + '}',
 type Mark = { icon: string; n: number };
 /** One message. `day` is the day it was said, as the stream's line reads it; `reply` the id of the one it answers;
  *  `pin` keeps it among the room's pinned. */
-export type Message = { id: string; by: string; day?: string; at: string; text?: string; image?: string[]; mark?: Mark[]; reply?: string; pin?: boolean };
+export type Message = { id: string; by: string; day?: string; at: string; text?: string; image?: string[]; mark?: Mark[]; reply?: string; pin?: boolean; poll?: Poll };
 
 /** What the viewer wrote, which reactions they gave and what they pinned or unpinned, kept like every user document
  *  (Phiora, or this device). A room's own are under `<app>/<room>`. */
@@ -66,19 +72,22 @@ export const RoomStream: React.FC<{
   lead?: React.ReactNode;
   /** Where the room's subject lives elsewhere (its collection's own page), offered beside the topic. */
   link?: string;
-}> = ({ file, label, topic, message, store, mine, onWho, find = null, onFind, lead, link }) => {
+  /** The room's id, whether the viewer may write and pin in it (`role.tsx`), and what the composer offers for `@`. */
+  room?: string; canWrite?: boolean; canPin?: boolean; suggest?: (word: string) => ChatSuggestion[];
+}> = ({ file, label, topic, message, store, mine, onWho, find = null, onFind, lead, link, room = '', canWrite = true, canPin = true, suggest }) => {
   const sent = SENT.use(); const given = GIVEN.use();
   const { all, pinned, pin } = useMessages(message, store);
   const [answer, setAnswer] = React.useState<string | null>(null);
+  const typing = useTyping(store);
   React.useEffect(() => setAnswer(null), [store]);
   const member = (id: string): Member | undefined => file.member.find((m) => m.id === id);
   const nameOf = (id: string) => (id === file.me ? mine : member(id)?.name ?? '');
   // Every picture posted in the room, in order: what the viewer steps through when one is opened.
   const seen: Seen[] = all.flatMap((x) => (x.image ?? []).map((src) => ({ src, name: nameOf(x.by), when: [x.day, x.at].filter(Boolean).join(' '), face: <Face file={file} m={member(x.by)} /> })));
-  const send = (text: string) => {
+  const send = (text: string, poll?: Poll) => {
     const at = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    SENT.set({ ...sent, [store]: [...(sent[store] ?? []), { id: 'm' + Date.now(), by: file.me, day: W.today, at, text, ...(answer ? { reply: answer } : {}) }] });
-    setAnswer(null);
+    SENT.set({ ...sent, [store]: [...(sent[store] ?? []), { id: 'm' + Date.now(), by: file.me, day: W.today, at, ...(text ? { text } : {}), ...(poll ? { poll } : {}), ...(answer ? { reply: answer } : {}) }] });
+    setAnswer(null); typing.stop();
   };
   const give = (id: string, icon: string) => { const k = store + '/' + id + '/' + icon; GIVEN.set({ ...given, [k]: !given[k] }); };
   const markOf = (x: Message): (Mark & { on: boolean })[] => {
@@ -99,9 +108,13 @@ export const RoomStream: React.FC<{
           <Button variant="icon" aria-label={W.reply} title={W.reply} aria-pressed={answer === x.id} onClick={() => setAnswer(answer === x.id ? null : x.id)}><Reply size={15} /></Button>
           <Button variant="icon" aria-label={W.like} title={W.like} aria-pressed={!!given[store + '/' + x.id + '/heart']} onClick={() => give(x.id, 'heart')}><Heart size={15} /></Button>
         </>}
-        more={<Button variant="glass" iconLeft={kept ? PinOff : Pin} onClick={() => pin(x)}>{kept ? W.unpin : W.pin}</Button>}>
+        more={<Stack direction="column" gap={2}>
+          {canPin && <Button variant="glass" iconLeft={kept ? PinOff : Pin} onClick={() => pin(x)}>{kept ? W.unpin : W.pin}</Button>}
+          <KeepMenu store={store} room={room} label={label} id={x.id} name={nameOf(x.by)} text={x.text ?? x.poll?.question ?? W.media} />
+        </Stack>}>
         <Stack direction="column" gap={2}>
-          {x.text && <Text as="span" size="sm">{x.text}</Text>}
+          {x.text && <Said text={x.text} file={file} onWho={onWho} />}
+          {x.poll && <PollView poll={x.poll} id={store + '/' + x.id} />}
           {x.image?.length ? <Shot list={x.image} alt={nameOf(x.by)} all={seen} label={say(words.view.room, 'room', label)} /> : null}
           {marks.length ? (
             <Stack direction="row" gap={1} wrap>
@@ -131,7 +144,11 @@ export const RoomStream: React.FC<{
       </Stack>
       <Stack direction="column" gap={1}>
         {answered && <Stack direction="row"><Tag icon={<Reply size={12} />} onRemove={() => setAnswer(null)}>{say(W.answer, 'name', nameOf(answered.by))}</Tag></Stack>}
-        <ChatComposer onSend={send} placeholder={say(W.write, 'room', label)} />
+        {typing.said && <Text size="xs" intent="muted" role="status">{typing.said}</Text>}
+        {canWrite
+          ? <ChatComposer onSend={(text) => send(text)} placeholder={say(W.write, 'room', label)} onDraft={typing.poke} suggest={suggest} suggestLabel={talk.mention.list}
+              tools={<PollMaker onPost={(poll) => send('', poll)} />} />
+          : <Text size="sm" intent="muted" role="status">{talk.role.readOnly.replace('{room}', label)}</Text>}
       </Stack>
     </Stack>
   );

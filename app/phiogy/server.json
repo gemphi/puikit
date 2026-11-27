@@ -409,5 +409,9 @@
     "picture": 24
   },
   "key": "phiegg:",
-  "_key": "How a picture of Phiegg's own folder is named in Phiogy's files: this, then its path there."
+  "_key": "How a picture of Phiegg's own folder is named in Phiogy's files: this, then its path there.",
+  "rights": {
+    "_": "The file that says how hosts are governed (roles, rooms only some roles use, invites), written by hand, named in room.json as `role`.",
+    "file": "public/data/role.json"
+  }
 }

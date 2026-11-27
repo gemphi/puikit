@@ -27,6 +27,8 @@ const files = new Map<string, Promise<HostFile>>();
 
 /** A room of a host the viewer made, by its id (the room block asks when the app's own file has no such room). */
 export const madeRoom = (app: string, id: string): MadeRoom | undefined => (MADE.get()[app] ?? []).map((m) => m.room[id]).find(Boolean);
+/** Whether the viewer made the host of that name: it is theirs (`role.tsx`). */
+export const madeHost = (app: string, space: string): boolean => (MADE.get()[app] ?? []).some((m) => m.group.label === space);
 
 /**
  * An app's hosts: the catalogue, the ones the viewer is in (as menu groups for the rail), and joining, leaving and

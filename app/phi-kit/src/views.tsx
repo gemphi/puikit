@@ -48,16 +48,12 @@ export const ownItem = (views: AppData['views'], kind: string, id: string) => {
   let found: { view: string; b: AppData['views'][string]['blocks'][number]; list: GridItem[]; at: number } | null = null;
   for (const [view, v] of Object.entries(views)) {
     for (const b of v.blocks) {
-      const list = (b.items ?? []) as GridItem[];
+      const list = (Array.isArray(b.items) ? b.items : []) as GridItem[];
       const at = list.findIndex((it) => it.kind === kind && it.id === id);
       if (at >= 0 && (!found || list.length > found.list.length)) found = { view, b, list, at };
     }
   }
   return found;
-};
-    }
-  }
-  return null;
 };
 
 export const ItemPanel: React.FC<{ it: GridItem; onClose: () => void }> = ({ it, onClose }) => (

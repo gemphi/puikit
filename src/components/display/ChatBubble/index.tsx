@@ -63,6 +63,10 @@ export const ChatBubble = ({ side = 'them', avatar, name, time, actions, more, m
   </Box>
 );
 
+/** What a composer offers for the word being written (a mention): what it reads, a line under it, what it puts in
+ *  the word's place, and what leads it (a face). */
+export type ChatSuggestion = { key: string; label: string; sub?: string; insert: string; lead?: React.ReactNode };
+
 export type ChatComposerProps = {
   /** What was written, sent with Enter or the button; the box clears itself. */
   onSend: (text: string) => void;
@@ -71,19 +75,52 @@ export type ChatComposerProps = {
   sendLabel?: string;
   autoFocus?: boolean;
   className?: string;
+  /** Told of the draft as it changes, and of nothing once it is sent (someone is writing). */
+  onDraft?: (text: string) => void;
+  /** What to offer for the last word of the draft: a list over the box, picked with a press, or the arrows and Enter
+   *  or Tab; Escape puts it away. */
+  suggest?: (word: string) => ChatSuggestion[];
+  /** The list's name for assistive tech. */
+  suggestLabel?: string;
+  /** More to do with a message, before the send button (a poll). */
+  tools?: React.ReactNode;
 };
 
 /**
  * Where a message is written, the same under every chat, comment thread and reply: the box and its send button on the
- * kit's one surface, so the foot of a thread is lit like the thread above it.
+ * kit's one surface, so the foot of a thread is lit like the thread above it. What it offers for the word being
+ * written stands over it on the kit's floating ground.
  */
-export const ChatComposer = ({ onSend, placeholder, sendLabel = 'Send', autoFocus, className }: ChatComposerProps) => {
+export const ChatComposer = ({ onSend, placeholder, sendLabel = 'Send', autoFocus, className, onDraft, suggest, suggestLabel, tools }: ChatComposerProps) => {
   const [draft, setDraft] = useState('');
-  const send = () => { const text = draft.trim(); if (!text) return; onSend(text); setDraft(''); };
+  const [pick, setPick] = useState(0);
+  const [shut, setShut] = useState(false);
+  const word = draft.split(/\s/).pop() ?? '';
+  const offer = suggest && !shut && word ? suggest(word) : [];
+  const change = (text: string) => { setDraft(text); setPick(0); setShut(false); onDraft?.(text); };
+  const take = (x: ChatSuggestion) => change(draft.slice(0, draft.length - word.length) + x.insert + ' ');
+  const send = () => { const text = draft.trim(); if (!text) return; onSend(text); setDraft(''); onDraft?.(''); };
+  const key = (e: React.KeyboardEvent) => {
+    if (offer.length && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) { e.preventDefault(); setPick((pick + (e.key === 'ArrowDown' ? 1 : offer.length - 1)) % offer.length); return; }
+    if (offer.length && (e.key === 'Enter' || e.key === 'Tab')) { e.preventDefault(); take(offer[pick]); return; }
+    if (offer.length && e.key === 'Escape') { setShut(true); return; }
+    if (e.key === 'Enter') send();
+  };
   return (
     <Box className={cn(styles.composer, 'phi-region', className)}>
-      <Input autoFocus={autoFocus} value={draft} placeholder={placeholder} aria-label={placeholder ?? sendLabel}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDraft(e.target.value)} onKeyDown={(e: React.KeyboardEvent) => e.key === 'Enter' && send()} />
+      {offer.length > 0 && (
+        <Box role="listbox" aria-label={suggestLabel} className={styles.suggest}>
+          {offer.map((x, i) => (
+            <Box key={x.key} role="option" aria-selected={i === pick} className={cn(styles.option, i === pick && styles.picked)}
+              onMouseDown={(e: React.MouseEvent) => { e.preventDefault(); take(x); }}>
+              {x.lead}
+              <Text as="span" size="sm" weight="medium">{x.label}</Text>
+              {x.sub && <Text as="span" size="xs" intent="muted">{x.sub}</Text>}
+            </Box>))}
+        </Box>)}
+      <Input flex="1 1 auto" autoFocus={autoFocus} value={draft} placeholder={placeholder} aria-label={placeholder ?? sendLabel}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => change(e.target.value)} onKeyDown={key} />
+      {tools}
       <Button variant="glass" icon={<Send size={16} />} aria-label={sendLabel} title={sendLabel} onClick={send} />
     </Box>
   );
