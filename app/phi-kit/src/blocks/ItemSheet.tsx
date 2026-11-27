@@ -1,5 +1,5 @@
 import React from 'react';
-import { Accordion, AccordionItem, Button, Carousel, TabList } from '@pui/components';
+import { Accordion, AccordionItem, Carousel, TabList } from '@pui/components';
 import { ArrowLeft, ChevronLeft, ChevronRight, GalleryHorizontal, GalleryVertical, Gavel, Heart, Maximize2, MessageCircle, Minimize2, Share2, ShoppingBag } from 'lucide-react';
 import { assetUrl, currentAppKey, type Block } from '../data';
 import { toggleBag, useBag } from '../bag';
@@ -21,7 +21,7 @@ const W = words.item;
 const STRIP = 40;
 const SHARE_FROM = 50;
 /** The strip's slides (the kit's Carousel: snapping, arrows, no scrollbar; it reads one count). */
-const STRIP_SLIDES = 8;
+const STRIP_SLIDES = 12;
 
 export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (hash: string) => void; close: () => void }> = ({ b, list, at, go, close }) => {
   const it = list[at];
@@ -61,7 +61,12 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
   // From just before it, so the card that is open stands at the start of the strip.
   const from = Math.max(0, here - 2);
   const strip = group.slice(from, from + STRIP);
-  const step = (d: number) => (gallery.length ? setShot((x) => Math.min(gallery.length - 1, Math.max(0, x + d))) : open(group[here + d]?.[0]));
+  // Which way the picture slides in: from the side the person steps toward, like a drawer.
+  const [dir, setDir] = React.useState(0);
+  const step = (d: number) => { setDir(d); if (gallery.length) setShot((x) => Math.min(gallery.length - 1, Math.max(0, x + d))); else open(group[here + d]?.[0]); };
+  const stripRef = React.useRef<HTMLDivElement>(null);
+  // The strip glides to keep the open card in view.
+  React.useEffect(() => { stripRef.current?.querySelector('[aria-current="true"]')?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }); }, [at, shot]);
   const first = gallery.length ? shot <= 0 : here <= 0;
   const last = gallery.length ? shot >= gallery.length - 1 : here >= group.length - 1;
 
@@ -91,9 +96,9 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
 
   // The strip: a card's own pictures, or its group round it.
   const thumbs = gallery.length ? gallery.map((g, i) => (
-    <button key={g} type="button" className={i === shot ? s.thumb + ' ' + s.thumbOn : s.thumb} aria-current={i === shot} aria-label={it.title + ' ' + (i + 1)} onClick={() => setShot(i)}><img src={assetUrl(g)} alt="" loading="lazy" /></button>
+    <button key={g} type="button" className={i === shot ? s.thumb + ' ' + s.thumbOn : s.thumb} aria-current={i === shot} aria-label={it.title + ' ' + (i + 1)} onClick={() => { setDir(Math.sign(i - shot)); setShot(i); }}><img src={assetUrl(g)} alt="" loading="lazy" /></button>
   )) : strip.map(([x, i]) => (
-    <button key={x.id ?? i} type="button" className={i === at ? s.thumb + ' ' + s.thumbOn : s.thumb} aria-label={x.title} aria-current={i === at} onClick={() => open(x)}>
+    <button key={x.id ?? i} type="button" className={i === at ? s.thumb + ' ' + s.thumbOn : s.thumb} aria-label={x.title} aria-current={i === at} onClick={() => { setDir(Math.sign(i - at)); open(x); }}>
       {pic(x) ? <img src={pic(x)} alt="" loading="lazy" /> : <span>{x.title.replace(/^.*#/, '#')}</span>}
     </button>
   ));
@@ -111,16 +116,17 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
       <div className={s.sheetBody}>
         <div className={s.sheetStage}>
           <div className={s.stagePic}>
-            {gallery.length ? <img src={assetUrl(gallery[shot])} alt={it.title} /> : pic(it) ? <img src={pic(it)} alt={it.title} /> : <span className={s.stageNone}>{it.title}</span>}
+            {(() => { const src = gallery.length ? assetUrl(gallery[shot]) : pic(it); const slide = dir > 0 ? s.slideNext : dir < 0 ? s.slidePrev : '';
+              return src ? <img key={src} className={slide} src={src} alt={it.title} /> : <span className={s.stageNone}>{it.title}</span>; })()}
             <button type="button" className={s.stageArrow + ' ' + s.stagePrev} aria-label={words.view.prev} disabled={first} onClick={() => step(-1)}><ChevronLeft size={28} /></button>
             <button type="button" className={s.stageArrow + ' ' + s.stageNext} aria-label={words.view.next} disabled={last} onClick={() => step(1)}><ChevronRight size={28} /></button>
+            {/* The actions stand over the picture's right edge, a column of icons, as a short-video app lays them. */}
+            <ItemActions it={it} />
           </div>
-          {upright ? <div className={s.strip} role="list">{thumbs}</div>
-            : <div className={s.strip}><Carousel slidesPerView={STRIP_SLIDES} gap={2} labels={{ prev: words.view.prev, next: words.view.next }}>{thumbs}</Carousel></div>}
-          <ItemActions it={it} />
+          {upright ? <div ref={stripRef} className={s.strip} role="list">{thumbs}</div>
+            : <div ref={stripRef} className={s.strip}><Carousel slidesPerView={STRIP_SLIDES} gap={1} labels={{ prev: words.view.prev, next: words.view.next }}>{thumbs}</Carousel></div>}
         </div>
         <aside className={s.sheetSide}>
-          <TabList size="sm" variant="pills" aria-label={it.title} activeId={tab} onChange={(id) => pickTab(String(id))} items={tabs} />
           <Accordion>
             {sections.map((sec) => (
               <div key={sec.id} id={'sheet-' + sec.id}>
@@ -148,6 +154,8 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
               </AccordionItem>
             </div>
           </Accordion>
+          {/* The tabs at the column's foot, always in reach: each opens its section and brings it into view. */}
+          <div className={s.sheetTabs}><TabList size="sm" variant="pills" aria-label={it.title} activeId={tab} onChange={(id) => pickTab(String(id))} items={tabs} /></div>
         </aside>
       </div>
     </div>
@@ -155,7 +163,8 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
 };
 
 /** The five things a person does with any card, the same in every app (as a record's sheet has them): put it in the
- *  bag (when it has a price), offer on it, like it, talk about it, share it. */
+ *  kit's bag (as Phiegg's shop does), offer on it (when it has a price), like it, talk about it, share it. Icons only;
+ *  each says what it does to a screen reader and on hover. */
 const ItemActions: React.FC<{ it: GridItem }> = ({ it }) => {
   const app = currentAppKey();
   const { bag } = useBag(app);
@@ -173,11 +182,17 @@ const ItemActions: React.FC<{ it: GridItem }> = ({ it }) => {
   const A = W.act;
   return (
     <div className={s.sheetActions}>
-      <Button variant="glass" iconLeft={ShoppingBag} disabled={!it.cost} onClick={() => toggleBag(app, it.kind ?? 'item', it)}>{inBag ? A.inBag : A.bag}</Button>
-      <Button variant="glass" iconLeft={Gavel} disabled={!it.cost}>{A.offer}</Button>
-      <Button variant="glass" iconLeft={Heart} aria-pressed={liked} onClick={like}>{liked ? A.liked : A.like}</Button>
-      <Button variant="glass" iconLeft={MessageCircle} onClick={() => setTalk(true)}>{A.comment}</Button>
-      <Button variant="glass" iconLeft={Share2} onClick={share}>{shared ? A.shared : A.share}</Button>
+      {([
+        [ShoppingBag, inBag ? A.inBag : A.bag, false, () => toggleBag(app, it.kind ?? 'item', it), inBag],
+        [Gavel, A.offer, !it.cost, () => undefined, false],
+        [Heart, liked ? A.liked : A.like, false, like, liked],
+        [MessageCircle, A.comment, false, () => setTalk(true), talk],
+        [Share2, shared ? A.shared : A.share, false, share, shared],
+      ] as const).map(([Icon, label, off, act, on]) => (
+        <button key={label} type="button" className={on ? s.sheetAct + ' ' + s.sheetActOn : s.sheetAct} aria-label={label} title={label} aria-pressed={on} disabled={off} onClick={act}>
+          <span className={s.sheetActIcon}><Icon size={22} /></span>
+        </button>
+      ))}
       {it.id ? <CommentsPanel kind={it.kind ?? 'item'} id={it.id} title={it.title} open={talk} onClose={() => setTalk(false)} /> : null}
     </div>
   );
