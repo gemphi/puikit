@@ -43,6 +43,8 @@ export default defineConfig({
       'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
       'react/jsx-runtime': path.resolve(__dirname, './node_modules/react/jsx-runtime'),
       'lucide-react': path.resolve(__dirname, './node_modules/lucide-react'),
+      // NEAR Connect, the wallet sign-in the near module (phi-kit/src/module/near.tsx) loads: installed in the host only.
+      '@hot-labs/near-connect': path.resolve(__dirname, './node_modules/@hot-labs/near-connect'),
     },
     dedupe: ['react', 'react-dom', 'lucide-react'],
   },

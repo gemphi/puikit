@@ -10,7 +10,7 @@ Applications and workbenches for Phient UI (`@pui/components`), structured accor
 
 A module has a singular name and lives once in `phi-kit/src/module`. An app turns one on by naming it in its config, e.g. `{ "kind": "feed", "pull": { "kind": "shot" } }`, and never keeps its own copy. Code that only one app needs still lands in core, or that app contributes it with `registerModule`.
 
-Apps with their own code (`phiegg`, `phione`, `phipad`, `phidao`) still run on their own ports until they move onto the host.
+Apps with their own code (`phiegg`, `phione`, `phidao`) still run on their own ports until they move onto the host.
 
 ---
 
@@ -21,7 +21,7 @@ Apps with their own code (`phiegg`, `phione`, `phipad`, `phidao`) still run on t
 | [`uaia`](./uaia) | `3005` | **UAIA (`uaiagency.org`)**: Unified Artificial Intelligence Agency — 16-page regulatory-body site on the `uaia` brand theme. |
 | [`phiegg`](./phiegg) | `3101` | **Phiegg**: feed, explore, worlds, SS26 shows, series & films, hosts & nests, agents, quests/coins/pools, League, events, Phipad, Laura's Spark shop. Apple theme by default, puikit-only markup; every card is a three-layer `DepthMedia` (scene → look → photo). Replaces the `phiegg-v2` draft. |
 | [`phiegg-v1`](./phiegg-v1) | `3101` | **Phiegg v1**: the earlier social app (feed, clubs, Laura's Spark shop). Shares port 3101 with `phiegg` — run one at a time. |
-| [`phipad`](./phipad) | `3102` | **Phipad**: the Phiegg accelerator — funding tracks and the application pipeline by stage. Organic theme, phi-kit shell. |
+| [`phipad`](./phipad) | host `/phipad/` | **Phipad** (phipad.com): the accelerator for virtual worlds — cohorts, tracks, Demo Day, the teams by stage and the application. A config app on the host. |
 | [`phient`](./phient) | `3103` | **Phient**: Your digital human across Phiace. Organic theme, phi-kit shell. |
 | [`phihub`](./phihub) | `3104` | **Phihub**: The code home of Phiace. Organic theme, phi-kit shell. |
 | [`phiace`](./phiace) | `3105` | **Phiace**: Personal assistants and personas. Organic theme, phi-kit shell. |
@@ -32,7 +32,7 @@ Apps with their own code (`phiegg`, `phione`, `phipad`, `phidao`) still run on t
 | [`phinux`](./phinux) | `3110` | **Phinux**: Open-source trading. Organic theme, phi-kit shell. |
 | [`phiret`](./phiret) | `3111` | **Phiret**: The real estate council. Organic theme, phi-kit shell. |
 | [`phidao`](./phidao) | `3112` | **Phidao**: The members platform. Organic theme, phi-kit shell. |
-| [`phisum`](./phisum) | `3113` | **Phisum**: The fund and the $UM token. Organic theme, phi-kit shell. |
+| [`phisum`](./phisum) | host `/phisum/` | **Phisum** (phisum.com): the virtual world fund — 100T EGG for teams, cohort by cohort through Phipad; EGG on NEAR (`NEAR-PLAN.md`). A config app on the host. |
 | [`phiapp`](./phiapp) | `3114` | **Phiapp**: the shared app every Phi app is configured on; the landing and demo (the site's root opens it) and the home of the shared tests (`app/phiapp/test`). |
 | [`phiogy`](./phiogy) | `3118` | **Phiogy**: talk and community - direct messages, spaces with channels, pictures and reactions, the member profile beside the stream. A config app on the host (`/phiogy/`), the chat block's `room` variant; Gradient look, Phi-Soft face. |
 | [`phione`](./phione) | `3115` | **Phione** (formerly the Phiegg cockpit): console of the Phient platform — core ontology, platform agents and their verbs, workforce, API docs. Reads the Python Phient API (`VITE_PHIADK_API`, gemphi/phient `phiadk.phiapi`, port 8000); sample data without it. |
@@ -99,7 +99,7 @@ npm test
 
 ## Phiace apps (Organic theme)
 
-Every `phi*` app is a full 8-page app: **Home, News, About, FAQ** plus its domain pages, all ending with You + Settings. `phiegg`, `phipad` and `phidao` are bespoke (their own `src/pages`); the rest render from `public/data/<key>.json` (nav + views + blocks) through `phi-kit`'s `PhiApp`. Block kinds: hero, news, prose, faq, chat, grid, table, terminal, swap, stats.
+Every `phi*` app is a full 8-page app: **Home, News, About, FAQ** plus its domain pages, all ending with You + Settings. `phiegg` and `phidao` are bespoke (their own `src/pages`); the rest render from `public/data/<key>.json` (nav + views + blocks) through `phi-kit`'s `PhiApp`. Block kinds: hero, news, prose, faq, chat, grid, table, terminal, swap, stats; the host adds near (NEAR sign-in and the EGG balance).
 
 
 Every `phi*` app is a thin Vite wrapper around `phi-kit` plus one data file:

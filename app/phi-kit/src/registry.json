@@ -19,8 +19,8 @@
   {
     "key": "phipad",
     "name": "Phipad",
-    "tagline": "The accelerator for clubs building worlds",
-    "desc": "Phipad accelerates clubs building worlds: apply, incubate with mentors, get funded from track pools, and launch on Phiegg.",
+    "tagline": "The accelerator for virtual worlds",
+    "desc": "Phipad runs the cohorts of Phisum, the virtual world fund: teams building worlds apply, build for twelve weeks with mentors and Phiegg's players, and show their worlds at Demo Day.",
     "color": "#7a8a5e",
     "port": 3102,
     "built": true,
@@ -43,7 +43,11 @@
         "stroke": "currentColor",
         "sw": 8
       }
-    ]
+    ],
+    "config": true,
+    "look": "muse",
+    "mode": "light",
+    "font": "phifing-4"
   },
   {
     "key": "phient",
@@ -365,8 +369,8 @@
   {
     "key": "phisum",
     "name": "Phisum",
-    "tagline": "The fund and the $UM token",
-    "desc": "Phisum is the main fund and its token, $UM. It backs teams building Phiace cities, runs speedrun cohorts and holds the Phidao treasury. $UM and $EGG interchange in Phidao.",
+    "tagline": "The virtual world fund",
+    "desc": "Phisum sets aside 100T EGG, the Phiegg world's token, for teams building virtual worlds, and puts it into them cohort by cohort through Phipad. EGG is planned as a NEAR token.",
     "color": "#728157",
     "port": 3113,
     "built": true,
@@ -385,7 +389,10 @@
         "sw": 5.5
       }
     ],
-    "config": true
+    "config": true,
+    "look": "apple",
+    "mode": "light",
+    "font": "phifing-4"
   },
   {
     "key": "phione",
