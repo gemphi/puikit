@@ -536,8 +536,8 @@
     "config": true,
     "look": "muse",
     "mode": "light",
-    "font": "boldland",
-    "heading": "Boldland"
+    "font": "boldlook",
+    "heading": "BoldLook"
   },
   {
     "key": "epicpods",
@@ -571,7 +571,7 @@
     "look": "spacex",
     "mode": "dark",
     "font": "graphigem",
-    "heading": "Graphigem"
+    "heading": "Bold Cube"
   },
   {
     "key": "phiogy-home",

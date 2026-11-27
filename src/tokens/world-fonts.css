@@ -16,3 +16,26 @@
   font-style: normal;
   font-display: swap;
 }
+/* Bold Pups' face from the Drive (BoldLook, Regular and Bold) and Epic Pods' block face (Bold Cube, "The Boldest
+   Bold"): Bold Cube has no # - &, which the reading face behind it draws. */
+@font-face {
+  font-family: "BoldLook";
+  src: url('/cdn/fonts/BoldLook-Regular.woff2') format('woff2');
+  font-weight: 100 549;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "BoldLook";
+  src: url('/cdn/fonts/BoldLook-Bold.woff2') format('woff2');
+  font-weight: 550 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Bold Cube";
+  src: url('/cdn/fonts/BoldCube-Regular.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}

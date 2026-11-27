@@ -106,8 +106,8 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
   return (
     <Drawer isOpen onClose={close} position="right" size="xl" title={it.sub ? it.title + ' · ' + it.sub : it.title}
       expandable expanded={full} onExpandedChange={setFull} expandLabel={W.full} collapseLabel={W.fit}>
-      <Stack direction="row" gap={6} wrap align="start">
-        <Stack direction={upright ? 'row' : 'column'} gap={3} flex="1 1 24rem" minWidth="0" className={s.sheetStick}>
+      <Stack direction="row" gap={3} wrap align="start">
+        <Stack direction={upright ? 'row' : 'column'} gap={2} flex="1 1 24rem" minWidth="0" className={s.sheetStick}>
           {/* The strip of its group above the picture (upright: beside it). */}
           <Stack ref={stripRef} direction={upright ? 'column' : 'row'} gap={2} align="center" minWidth="0">
             {uprightToggle}

@@ -25,6 +25,9 @@ export const FONTS: FontChoice[] = [
   // A world's own faces (world-fonts.css), for its site: Bold Land's two display faces.
   { id: 'boldland', label: 'Boldland', family: 'Boldland' },
   { id: 'graphigem', label: 'Graphigem', family: 'Graphigem' },
+  // Bold Pups' and Epic Pods' faces from the Drive.
+  { id: 'boldlook', label: 'BoldLook', family: 'BoldLook' },
+  { id: 'boldcube', label: 'Bold Cube', family: 'Bold Cube' },
 ];
 
 const KEY = 'phi-font';
