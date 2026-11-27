@@ -5,7 +5,7 @@
   "sheet": "media/incoming/bpwc",
   "token": {
     "number": "Number",
-    "title": "Bold Pup #{n}",
+    "title": "BOLD PUP #{n}",
     "sub": "Club",
     "facet": "Club",
     "lead": "picture"
@@ -65,7 +65,7 @@
         "blocks": [
           {
             "kind": "hero",
-            "heading": "bold pups",
+            "heading": "BOLD PUPS",
             "subtitle": "{club.tagline}",
             "body": "{club.description}",
             "image": "$hero",
@@ -121,7 +121,7 @@
       },
       "collection": {
         "title": "The collection",
-        "sub": "Every fox pup, all {n} of them, in both clubs: Bold Pups Space Club and HHOC. Filter by any trait, or search a number.",
+        "sub": "Every fox pup, all {n} of them, in both clubs: BOLD PUPS Space Club and HHOC. Filter by any trait, or search a number.",
         "blocks": [
           {
             "kind": "grid",
@@ -171,7 +171,7 @@
         ]
       },
       "about": {
-        "title": "About Bold Pups",
+        "title": "About BOLD PUPS",
         "sub": "{club.tagline}",
         "blocks": [
           {
@@ -196,7 +196,7 @@
             "items": [
               {
                 "title": "A place in the den",
-                "body": "Each pup is a membership of Bold Pups: its host in Phiogy, its rooms to write and talk in, and its calls with camera and screen."
+                "body": "Each pup is a membership of BOLD PUPS: its host in Phiogy, its rooms to write and talk in, and its calls with camera and screen."
               },
               {
                 "title": "Sixteen cities to live in",
@@ -217,6 +217,82 @@
               {
                 "title": "Traits that count",
                 "body": "Ten traits a pup, from fur to expression; open any pup to see how many of the 10,000 share each one."
+              }
+            ]
+          },
+          {
+            "kind": "grid",
+            "title": "The team",
+            "toolbar": false,
+            "layout": "grid",
+            "ratio": "1/1",
+            "mosaic": false,
+            "cols": 4,
+            "minItemWidth": "13rem",
+            "items": [
+              {
+                "kind": "token",
+                "id": "boldpups-1075",
+                "title": "Rusty Vale",
+                "sub": "Creative Director",
+                "body": "Sets the look of the den: every fur, coat and colourway goes past Rusty.",
+                "image": "cdn:token/boldpups-1075.webp"
+              },
+              {
+                "kind": "token",
+                "id": "boldpups-1625",
+                "title": "Juniper Ash",
+                "sub": "Art Director",
+                "body": "Keeps ten thousand portraits one family, from line weight to light.",
+                "image": "cdn:token/boldpups-1625.webp"
+              },
+              {
+                "kind": "token",
+                "id": "boldpups-2878",
+                "title": "Kit Marlowe",
+                "sub": "Lead Illustrator",
+                "body": "Drew the first pup and still inks the hardest hair.",
+                "image": "cdn:token/boldpups-2878.webp"
+              },
+              {
+                "kind": "token",
+                "id": "boldpups-5619",
+                "title": "Ember Quill",
+                "sub": "Lore Writer",
+                "body": "Writes the stories of the sixteen cities and who lives where.",
+                "image": "cdn:token/boldpups-5619.webp"
+              },
+              {
+                "kind": "token",
+                "id": "boldpups-7272",
+                "title": "Sable Finch",
+                "sub": "Community Lead",
+                "body": "Runs the rooms, the calls and the Friday howl.",
+                "image": "cdn:token/boldpups-7272.webp"
+              },
+              {
+                "kind": "token",
+                "id": "boldpups-7821",
+                "title": "Tod Hollis",
+                "sub": "Head of Clubs",
+                "body": "Looks after BPSC, HHOC and every club that joins the den.",
+                "image": "cdn:token/boldpups-7821.webp"
+              },
+              {
+                "kind": "token",
+                "id": "boldpups-9170",
+                "title": "Vixen Ray",
+                "sub": "Producer",
+                "body": "Turns ideas into drops, shows and runway nights on the Orbit.",
+                "image": "cdn:token/boldpups-9170.webp"
+              },
+              {
+                "kind": "token",
+                "id": "boldpups-9719",
+                "title": "Fennec Rowe",
+                "sub": "Den Keeper",
+                "body": "Keeps the fund, the books and the lights of the den on.",
+                "image": "cdn:token/boldpups-9719.webp"
               }
             ]
           },

@@ -69,9 +69,11 @@ function match(phifing: boolean): void {
 }
 
 /** Put the saved choice back on boot; with nothing saved, the app's own default (`defaultId`), else the look's face. */
-export const applySavedFont = (defaultId?: string, heading?: string): void => {
+export const applySavedFont = (defaultId?: string, heading?: string, logo?: string): void => {
   fallbackId = FONTS.some((f) => f.id === defaultId) ? defaultId! : 'theme';
   headingFamily = heading;
+  // The app's logo face (its `logo`): the brand's name alone wears it, whatever face is picked for reading.
+  if (logo) document.documentElement.style.setProperty('--phi-font-logo', `"${logo}", var(--phi-font-heading)`);
   applyFont(read());
 };
 

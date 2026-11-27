@@ -63,7 +63,8 @@
 .brand { display: flex; align-items: center; gap: var(--phi-space-2); min-width: 0; cursor: pointer; padding: var(--phi-space-1) var(--phi-space-2); border-radius: var(--phi-radius-sm); }
 /* A long name ends in an ellipsis, which needs the box to clip; the room above and below (taken back by the margin, so
    the row keeps its height) keeps the clip clear of a letter's tail or rise: g, y, p in any face. */
-.brandName { margin: -0.5em 0; padding: 0.5em 0; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* An app's logo face (--phi-font-logo, its `logo` in the registry) wears the name; without one, the shell's face. */
+.brandName { font-family: var(--phi-font-logo, inherit); margin: -0.5em 0; padding: 0.5em 0; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 /* The logo in black and white: the theme's own ink, never the app's colour. */
 .brandGlyph { display: inline-flex; align-items: center; justify-content: center; flex: none; color: var(--phi-color-text-primary); filter: grayscale(1); }
 .pin { flex: none; display: grid; place-items: center; width: var(--pui-shell-control); height: var(--pui-shell-control); border-radius: var(--phi-radius-sm); color: var(--phi-color-text-secondary); cursor: pointer; }

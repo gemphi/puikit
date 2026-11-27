@@ -5,6 +5,8 @@ export type IconPath = { d: string; tf?: string; fill: string; stroke: string; s
 export type AppMeta = { look?: string; mode?: 'light' | 'dark'; /** The face the app reads in until a person picks one (an id from fonts.ts). */ font?: string;
   /** A world's own display face for its headings alone (a family in phi-fonts.css); the text keeps the reading face. */
   heading?: string;
+  /** The app's logo face, for its name in the brand alone (a family in world-fonts.css). */
+  logo?: string;
   /** The domain whose root is this app (phiogy.com): there the address has no /<key>/ of its own. */
   domain?: string; key: string; name: string; tagline: string; desc: string; color: string; port: number; built: boolean; config?: boolean; icon: IconPath[] };
 export type NavItem = { id: string; label: string; icon: string; /** A person of the app (an id in its `people` file): the entry shows their picture and presence in place of the icon. */ who?: string;

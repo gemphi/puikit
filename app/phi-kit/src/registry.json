@@ -513,22 +513,28 @@
   },
   {
     "key": "boldpups",
-    "name": "bold pups",
+    "name": "BOLD PUPS",
     "tagline": "10,000 fox pups with somewhere to be",
-    "desc": "The Bold Pups collection: 10,000 fox pups in two clubs, Bold Pups Space Club and HHOC, every one with its traits and its own page.",
+    "desc": "The BOLD PUPS collection: 10,000 fox pups in two clubs, BOLD PUPS Space Club and HHOC, every one with its traits and its own page.",
     "color": "#26a64d",
     "port": 3123,
     "built": true,
     "icon": [
       {
-        "d": "M13.3 15.0Q14.0 8.0 19.3 12.5L34.7 25.5Q40.0 30.0 47.0 30.0L53.0 30.0Q60.0 30.0 65.3 25.5L80.7 12.5Q86.0 8.0 86.7 15.0L89.3 43.0Q90.0 50.0 85.2 55.1L54.8 86.9Q50.0 92.0 45.2 86.9L14.8 55.1Q10.0 50.0 10.7 43.0Z",
+        "d": "M8.4 29.0Q8.0 26.0 10.5 27.7L30.7 41.7Q34.0 44.0 38.0 44.0L62.0 44.0Q66.0 44.0 69.3 41.7L89.5 27.7Q92.0 26.0 91.6 29.0L88.5 54.0Q88.0 58.0 90.8 60.8L95.6 65.6Q97.0 67.0 95.1 67.5L87.9 69.3Q85.0 70.0 82.9 72.1L70.2 84.8Q66.0 89.0 60.4 91.1L54.7 93.2Q50.0 95.0 45.3 93.2L39.6 91.1Q34.0 89.0 29.8 84.8L17.1 72.1Q15.0 70.0 12.1 69.3L4.9 67.5Q3.0 67.0 4.4 65.6L9.2 60.8Q12.0 58.0 11.5 54.0Z",
         "fill": "currentColor",
         "stroke": "none",
         "sw": 0
       },
       {
-        "d": "M31 52a5 5 0 0 1 10 0v2a5 5 0 0 1 -10 0ZM59 52a5 5 0 0 1 10 0v2a5 5 0 0 1 -10 0ZM44 80h12a6 6 0 0 1 -12 0Z",
-        "fill": "var(--color-bg)",
+        "d": "M38 48C35 30 43 16 50 5C57 16 65 30 62 48ZM27 47C25 34 28 25 34 16C36 27 40 35 44 47ZM56 47C60 35 64 27 66 16C72 25 75 34 73 47Z",
+        "fill": "currentColor",
+        "stroke": "none",
+        "sw": 0
+      },
+      {
+        "d": "M48 13C43 23 43 33 46 42C45.5 33 46 23 48 13ZM33 58a4 4 0 0 1 8 0v1a4 4 0 0 1 -8 0ZM59 58a4 4 0 0 1 8 0v1a4 4 0 0 1 -8 0ZM44.5 74Q50 72.5 55.5 74Q53.5 79.5 50 81Q46.5 79.5 44.5 74Z",
+        "fill": "var(--phi-color-background)",
         "stroke": "none",
         "sw": 0
       }
@@ -537,7 +543,8 @@
     "look": "muse",
     "mode": "light",
     "font": "boldlook",
-    "heading": "BoldLook"
+    "heading": "BoldLook",
+    "logo": "Bold Pups Logo"
   },
   {
     "key": "epicpods",
@@ -570,8 +577,8 @@
     "config": true,
     "look": "spacex",
     "mode": "dark",
-    "font": "graphigem",
-    "heading": "Bold Cube"
+    "font": "chatty",
+    "heading": "Chatty Whims"
   },
   {
     "key": "phiogy-home",

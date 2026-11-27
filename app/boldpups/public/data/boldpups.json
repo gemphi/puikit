@@ -29,9 +29,9 @@
    "blocks": [
     {
      "kind": "hero",
-     "heading": "bold pups",
+     "heading": "BOLD PUPS",
      "subtitle": "A den of 10,000 fox pups with somewhere to be.",
-     "body": "Bold Pups is a pool of 10,000 utility PFTs: each fox pup is a membership, a walk on the Orbit runway and a share of the den fund. Pups swap, forage on scavenger hunts and throw the loudest pool parties on the moon.",
+     "body": "BOLD PUPS is a pool of 10,000 utility PFTs: each fox pup is a membership, a walk on the Orbit runway and a share of the den fund. Pups swap, forage on scavenger hunts and throw the loudest pool parties on the moon.",
      "image": "cdn:token/boldpups-17.webp",
      "ratio": "1/1",
      "actions": [
@@ -84,7 +84,7 @@
        "route": "token/boldpups-17",
        "collection": "boldpups",
        "number": 17,
-       "title": "Bold Pup #17",
+       "title": "BOLD PUP #17",
        "sub": "HHOC",
        "facet": "HHOC",
        "image": "cdn:token/boldpups-17.webp"
@@ -95,7 +95,7 @@
        "route": "token/boldpups-1350",
        "collection": "boldpups",
        "number": 1350,
-       "title": "Bold Pup #1350",
+       "title": "BOLD PUP #1350",
        "sub": "BPSC",
        "facet": "BPSC",
        "image": "cdn:token/boldpups-1350.webp"
@@ -106,7 +106,7 @@
        "route": "token/boldpups-1900",
        "collection": "boldpups",
        "number": 1900,
-       "title": "Bold Pup #1900",
+       "title": "BOLD PUP #1900",
        "sub": "HHOC",
        "facet": "HHOC",
        "image": "cdn:token/boldpups-1900.webp"
@@ -117,7 +117,7 @@
        "route": "token/boldpups-4257",
        "collection": "boldpups",
        "number": 4257,
-       "title": "Bold Pup #4257",
+       "title": "BOLD PUP #4257",
        "sub": "HHOC",
        "facet": "HHOC",
        "image": "cdn:token/boldpups-4257.webp"
@@ -128,7 +128,7 @@
        "route": "token/boldpups-6998",
        "collection": "boldpups",
        "number": 6998,
-       "title": "Bold Pup #6998",
+       "title": "BOLD PUP #6998",
        "sub": "HHOC",
        "facet": "HHOC",
        "image": "cdn:token/boldpups-6998.webp"
@@ -139,7 +139,7 @@
        "route": "token/boldpups-7547",
        "collection": "boldpups",
        "number": 7547,
-       "title": "Bold Pup #7547",
+       "title": "BOLD PUP #7547",
        "sub": "BPSC",
        "facet": "BPSC",
        "image": "cdn:token/boldpups-7547.webp"
@@ -150,7 +150,7 @@
        "route": "token/boldpups-8480",
        "collection": "boldpups",
        "number": 8480,
-       "title": "Bold Pup #8480",
+       "title": "BOLD PUP #8480",
        "sub": "HHOC",
        "facet": "HHOC",
        "image": "cdn:token/boldpups-8480.webp"
@@ -161,7 +161,7 @@
        "route": "token/boldpups-9445",
        "collection": "boldpups",
        "number": 9445,
-       "title": "Bold Pup #9445",
+       "title": "BOLD PUP #9445",
        "sub": "BPSC",
        "facet": "BPSC",
        "image": "cdn:token/boldpups-9445.webp"
@@ -368,7 +368,7 @@
   },
   "collection": {
    "title": "The collection",
-   "sub": "Every fox pup, all 10,000 of them, in both clubs: Bold Pups Space Club and HHOC. Filter by any trait, or search a number.",
+   "sub": "Every fox pup, all 10,000 of them, in both clubs: BOLD PUPS Space Club and HHOC. Filter by any trait, or search a number.",
    "blocks": [
     {
      "kind": "grid",
@@ -1100,14 +1100,14 @@
    ]
   },
   "about": {
-   "title": "About Bold Pups",
+   "title": "About BOLD PUPS",
    "sub": "A den of 10,000 fox pups with somewhere to be.",
    "blocks": [
     {
      "kind": "hero",
      "variant": "card",
      "heading": "The den",
-     "body": "Bold Pups is a pool of 10,000 utility PFTs: each fox pup is a membership, a walk on the Orbit runway and a share of the den fund. Pups swap, forage on scavenger hunts and throw the loudest pool parties on the moon.",
+     "body": "BOLD PUPS is a pool of 10,000 utility PFTs: each fox pup is a membership, a walk on the Orbit runway and a share of the den fund. Pups swap, forage on scavenger hunts and throw the loudest pool parties on the moon.",
      "image": "cdn:token/boldpups-17.webp"
     },
     {
@@ -1150,7 +1150,7 @@
      "items": [
       {
        "title": "A place in the den",
-       "body": "Each pup is a membership of Bold Pups: its host in Phiogy, its rooms to write and talk in, and its calls with camera and screen."
+       "body": "Each pup is a membership of BOLD PUPS: its host in Phiogy, its rooms to write and talk in, and its calls with camera and screen."
       },
       {
        "title": "Sixteen cities to live in",
@@ -1171,6 +1171,82 @@
       {
        "title": "Traits that count",
        "body": "Ten traits a pup, from fur to expression; open any pup to see how many of the 10,000 share each one."
+      }
+     ]
+    },
+    {
+     "kind": "grid",
+     "title": "The team",
+     "toolbar": false,
+     "layout": "grid",
+     "ratio": "1/1",
+     "mosaic": false,
+     "cols": 4,
+     "minItemWidth": "13rem",
+     "items": [
+      {
+       "kind": "token",
+       "id": "boldpups-1075",
+       "title": "Rusty Vale",
+       "sub": "Creative Director",
+       "body": "Sets the look of the den: every fur, coat and colourway goes past Rusty.",
+       "image": "cdn:token/boldpups-1075.webp"
+      },
+      {
+       "kind": "token",
+       "id": "boldpups-1625",
+       "title": "Juniper Ash",
+       "sub": "Art Director",
+       "body": "Keeps ten thousand portraits one family, from line weight to light.",
+       "image": "cdn:token/boldpups-1625.webp"
+      },
+      {
+       "kind": "token",
+       "id": "boldpups-2878",
+       "title": "Kit Marlowe",
+       "sub": "Lead Illustrator",
+       "body": "Drew the first pup and still inks the hardest hair.",
+       "image": "cdn:token/boldpups-2878.webp"
+      },
+      {
+       "kind": "token",
+       "id": "boldpups-5619",
+       "title": "Ember Quill",
+       "sub": "Lore Writer",
+       "body": "Writes the stories of the sixteen cities and who lives where.",
+       "image": "cdn:token/boldpups-5619.webp"
+      },
+      {
+       "kind": "token",
+       "id": "boldpups-7272",
+       "title": "Sable Finch",
+       "sub": "Community Lead",
+       "body": "Runs the rooms, the calls and the Friday howl.",
+       "image": "cdn:token/boldpups-7272.webp"
+      },
+      {
+       "kind": "token",
+       "id": "boldpups-7821",
+       "title": "Tod Hollis",
+       "sub": "Head of Clubs",
+       "body": "Looks after BPSC, HHOC and every club that joins the den.",
+       "image": "cdn:token/boldpups-7821.webp"
+      },
+      {
+       "kind": "token",
+       "id": "boldpups-9170",
+       "title": "Vixen Ray",
+       "sub": "Producer",
+       "body": "Turns ideas into drops, shows and runway nights on the Orbit.",
+       "image": "cdn:token/boldpups-9170.webp"
+      },
+      {
+       "kind": "token",
+       "id": "boldpups-9719",
+       "title": "Fennec Rowe",
+       "sub": "Den Keeper",
+       "body": "Keeps the fund, the books and the lights of the den on.",
+       "image": "cdn:token/boldpups-9719.webp"
       }
      ]
     },

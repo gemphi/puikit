@@ -18,9 +18,9 @@ import { DEFAULT_GRADIENT, DEFAULT_LOOK, LOOKS, migrateLook } from './looks';
  *  Settings / Appearance and the font in the header menu.
  *  PhiSvg dresses the page in the kit's SVG grounds in the looks that wear them.
  *  AccountLinks finishes emailed account links (?phi_verify / ?phi_reset) in whichever app they land on. */
-export const mountWith = (node: React.ReactNode, lookId?: string, mode: 'light' | 'dark' = 'dark', fontId?: string, heading?: string) => {
+export const mountWith = (node: React.ReactNode, lookId?: string, mode: 'light' | 'dark' = 'dark', fontId?: string, heading?: string, logo?: string) => {
   migrateLook();
-  applySavedFont(fontId, heading);
+  applySavedFont(fontId, heading, logo);
   const look = LOOKS.find((l) => l.id === lookId);
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
@@ -32,5 +32,5 @@ export const mountWith = (node: React.ReactNode, lookId?: string, mode: 'light' 
 /** Data-driven app (nav + views + blocks from public/data/<key>.json). */
 export const mountPhiApp = (appKey: string) => {
   const app = appMeta(appKey);
-  mountWith(<PhiApp appKey={appKey} />, app?.look, app?.mode, app?.font, app?.heading);
+  mountWith(<PhiApp appKey={appKey} />, app?.look, app?.mode, app?.font, app?.heading, app?.logo);
 };
