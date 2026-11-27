@@ -24,8 +24,8 @@ type Extra = Record<'offers' | 'trail' | 'owners' | 'sales', Row[] | undefined>;
 const W = words.item;
 const STRIP = 40;
 const SHARE_FROM = 50;
-/** The strip's slides (the kit's Carousel: snapping, arrows, no scrollbar; it reads one count). */
-const STRIP_SLIDES = 12;
+/** A thumbnail's width in the strip (the kit's Carousel `slideWidth`: the same at every screen width). */
+const STRIP_THUMB = '3.25rem';
 
 export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (hash: string) => void; close: () => void }> = ({ b, list, at, go, close }) => {
   const it = list[at];
@@ -93,7 +93,7 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
   // The strip: a card's own pictures, or its group round it; each a kit Pressable holding a kit picture.
   const thumb = (key: string, src: string | undefined, label: string, on: boolean, act: () => void) => (
     <Pressable key={key} rounded="md" pad="none" selected={on} aria-label={label} aria-current={on} onClick={act}>
-      <Frame ratio="1/1" rounded="md">{src ? <Image src={src} alt="" fit="cover" fill loading="lazy" /> : null}</Frame>
+      <Frame ratio="1/1" rounded="md" width={STRIP_THUMB}>{src ? <Image src={src} alt="" fit="cover" fill loading="lazy" /> : null}</Frame>
     </Pressable>
   );
   const thumbs = gallery.length
@@ -111,7 +111,7 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
           {/* The strip of its group above the picture (upright: beside it). */}
           <Stack ref={stripRef} direction={upright ? 'column' : 'row'} gap={2} align="center" minWidth="0">
             {uprightToggle}
-            {upright ? thumbs : <Box flex="1" minWidth="0"><Carousel slidesPerView={STRIP_SLIDES} gap={1} labels={{ prev: words.view.prev, next: words.view.next }}>{thumbs}</Carousel></Box>}
+            {upright ? thumbs : <Box flex="1" minWidth="0"><Carousel slideWidth={STRIP_THUMB} gap={1} labels={{ prev: words.view.prev, next: words.view.next }}>{thumbs}</Carousel></Box>}
           </Stack>
           <Stack direction="row" gap={2} align="center" flex="1" minWidth="0">
             <Button variant="glass" aria-label={words.view.prev} disabled={first} onClick={() => step(-1)} icon={<ChevronLeft size={22} />} />
