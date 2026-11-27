@@ -50,9 +50,9 @@ flowchart TB
 
 - **Uploads from a page.** A `POST /upload` that takes a file from a signed-in person, writes it under a key in
   `/srv/phi-cdn` (later S3), and records it as an item with its owner.
-- **Tokens as records.** The Bold Pups and Epic Pods tokens are files served beside each app, not records of kinds
-  `pup` and `pod`. Seeding them as kinds through `tree.json` would give each token an owner, a change log and
-  `/tree/rows?kind=pup&where=Club:HHOC`. The kit's `source` could then name that route instead of the file.
+- **Tokens as records.** The Bold Pups and Epic Pods tokens (kind `token`, see below) are files served beside each
+  app, not yet records. Seeding them through `tree.json` would give each token an owner, a change log and
+  `/tree/rows?kind=token&where=collection:boldpups`. The kit's `source` could then name that route instead of the file.
 - **Backups.** The server has no scheduled `pg_dump`, and no crontab entry.
 - **Email**, **a chat model** and **editors** (`RESEND_API_KEY`, `PHI_MODEL_*`, `PHI_EDITORS` in `.env`).
 - **The Python engine.** `docker-compose.yml` also defines `phiadk` (the FastAPI engine over the same database,
@@ -64,3 +64,90 @@ flowchart TB
 
 `npm test` runs 75 tests. On this Windows machine 72 pass. The other three fail only when they try to delete their
 temporary folder while SQLite still holds it open (`EPERM` in `rmSync`); what they check passes before that point.
+
+## Kinds and their paths (audited 27 November 2026)
+
+The rule: a kind has one name, and that name is every path to it.
+
+| Where | Shape | Example |
+|---|---|---|
+| Phiora | `items.kind`, `/tree/item/<kind>/<id>`, `/tree/rows?kind=<kind>` | `token` |
+| Data file | `<app>/…/data/<kind>.json`, an array of rows (singular file name) | `app/boldpups/public/data/token.json` |
+| Seed and lookup | one `tree.json` row and one `source.json` entry: `{ kind, file: kind }` | `{ "kind": "token", "file": "token" }` |
+| Address | `#/<kind>/<id>` (the record route every app has) | `#/token/boldpups-9570` |
+| Picture | the media store's `<kind>/<id>.webp` | `cdn:token/boldpups-9570.webp` |
+| Id | one of its kind across every app (prefixed by the app where rows from several apps meet) | `boldpups-9570` |
+
+`token` follows the rule since this audit: Bold Pups and Epic Pods tokens are kind `token`, ids `<app>-<n>`, at
+those paths. `scripts/world-site.mjs` hard-links each picture from where the importer put it
+(`collections/<slug>/images/`) to `token/<id>.webp`. They are not seeded into Phiora yet.
+
+Today only three of Phiora's 47 kinds match their file: `series`, `ride` and `jewel`. The rest sit in lists under
+other names (`person` in `core.json` `users` and in `agents.json` `agents`; `room` in `messages.json` `voiceRooms`;
+`profilePft` in `assets.json` `profiles`; `nest` in both `hosts.json` and `collections.json`) or in plural files
+(`hosts.json`, `stores.json`, `pools.json`). Phiegg's lookup (`source.json`) and Phiora's seed (`tree.json`) also
+disagree. `story`, `proposal`, `delegate` and `kindSpec` are seeded but cannot be looked up; `agent`, `brand`,
+`brandShop`, `feedPost`, `pft`, `rental` and `shade` can be looked up but are never seeded. `profilePft` and `token`
+are the same thing (a collection's token) under two names.
+
+| Kind | Phiora seed (`tree.json`) | Phiegg lookup (`source.json`) | |
+|---|---|---|---|
+| `person` | core.json users; agents.json agents | core.users |  |
+| `club` | core.json clubs | core.clubs |  |
+| `world` | core.json worlds | core.worlds |  |
+| `city` | core.json worlds.*.cities | core.worlds.*.cities |  |
+| `host` | hosts.json hosts | hosts.hosts |  |
+| `nest` | hosts.json nests; collections.json collections | hosts.nests |  |
+| `show` | shows.json shows | shows.shows |  |
+| `pose` | shows.json poses | shows.poses |  |
+| `series` | series.json series | series.series | matches |
+| `story` | stories.json stories | — |  |
+| `quest` | economy.json quests | economy.quests |  |
+| `coin` | economy.json coins | economy.coins |  |
+| `liquidity` | economy.json liquidity | economy.liquidity |  |
+| `event` | events.json events | events.events |  |
+| `store` | stores.json stores; ls.json store | derived.store; stores.stores |  |
+| `look` | stores.json stores.*.looks; ls.json looks | derived.store.*.looks |  |
+| `pool` | stores.json stores.*.pools; ls.json pools; pools.json pools | pools.pools |  |
+| `lot` | pools.json lots | pools.lots |  |
+| `poolQuest` | pools.json quests | pools.quests |  |
+| `metric` | pools.json metrics | pools.metrics |  |
+| `piece` | club.json pieces | club.pieces |  |
+| `role` | roles.json types | roles.types |  |
+| `roleCategory` | roles.json categories | roles.categories |  |
+| `egg` | assets.json eggs | assets.eggs |  |
+| `sum` | assets.json sums | assets.sums |  |
+| `profilePft` | assets.json profiles | assets.profiles |  |
+| `ride` | ride.json list | ride.list | matches |
+| `jewel` | jewel.json list | jewel.list | matches |
+| `cast` | casts.json casts | casts.casts |  |
+| `sale` | sales.json sales; trail.json sales | sales.sales |  |
+| `shot` | feed.json shots | feed.shots |  |
+| `post` | agents.json posts | agents.posts |  |
+| `room` | messages.json voiceRooms | messages.voiceRooms |  |
+| `conversation` | messages.json conversations | messages.conversations |  |
+| `moment` | feed.json moments | feed.moments |  |
+| `track` | phipad.json tracks | phipad.tracks |  |
+| `application` | phipad.json applications | phipad.applications |  |
+| `proposal` | dao.json proposals | — |  |
+| `delegate` | dao.json delegates | — |  |
+| `kindSpec` | kinds.json (map) | — |  |
+| `agent` | — | agents.agents |  |
+| `brand` | — | core.brands |  |
+| `brandShop` | — | core.brands.*.shops |  |
+| `feedPost` | — | derived.feedPost |  |
+| `pft` | — | derived.pft |  |
+| `rental` | — | derived.rental |  |
+| `shade` | — | derived.shade |  |
+| `token` | — (not seeded) | — | app/<key>/public/data/token.json, #/token/<id>, cdn token/<id>.webp |
+
+**To bring every kind into line** (not started; it rewrites Phiegg's data files, which other sessions are editing):
+1. One file a kind: `app/phiegg/src/data/<kind>.json` holding that kind's rows as an array. Rows found in two places
+   (`person`, `store`, `look`, `pool`, `nest`, `sale`) are merged into the one file first.
+2. `profilePft` becomes `token` (ids `phiegg-<n>` or the collection's own), so Phiegg and the world sites share one
+   kind. `agent` becomes `person` rows with a role, or a kind of its own in `agent.json`, not both.
+3. `tree.json` and `source.json` shrink to the list of kinds (the file is the kind), so they can no longer disagree.
+4. The readers follow: Phiegg's `lib/data.ts`, the scripts that write data (`pools.mjs` and its 11 files),
+   Phiogy's `room.json`/`host.json` (kinds `member`, `room`, `host`), and Phiora's seed.
+5. Media keys move to `<kind>/<id>.<ext>` the same way (`worlds/…` to `world/<id>`, `collections/<slug>/images` to
+   `token/<id>`), with Caddy's `/cdn/` serving both names until every link is moved.

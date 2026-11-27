@@ -3,7 +3,7 @@
 //
 // app/<key>/site.json holds the whole app as data with placeholders; this fills them and writes
 // app/<key>/public/data/<key>.json, the file the one host (app/phi) runs as /<key>/ (or at its own domain).
-//   $tokens   every token of the trait sheet, a card each (picture, number, club, traits as `fields`): written to
+//   $tokens   every token of the trait sheet (kind `token`, id `<key>-<n>`, picture `token/<id>.webp`), a card each (picture, number, club, traits as `fields`): written to
 //             public/data/token.json, which the block names as its `source` (so the app document stays small)
 //   $teaser   `teaser` tokens with pictures, spread over the collection
 //   $hero     the first teaser's picture
@@ -22,6 +22,15 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const MEDIA = path.join(ROOT, 'media/phi-media');
 const core = JSON.parse(fs.readFileSync(path.join(ROOT, 'app/phiegg/src/data/core.json'), 'utf8'));
 const fmt = (n) => n.toLocaleString('en-US');
+/** The kind every collection's tokens are, in Phiora and in every path. */
+const KIND = 'token';
+/** A picture the importer made (media/phi-media/collections/...) at the token's own key, as a hard link: no copy on
+ *  disk, and sync.sh sends it like any file. */
+const publish = (from, to) => {
+  const dest = path.join(MEDIA, to);
+  if (!fs.existsSync(dest)) { fs.mkdirSync(path.dirname(dest), { recursive: true }); fs.linkSync(path.join(MEDIA, from), dest); }
+  return to;
+};
 
 const readSheet = (where) => {
   const at = path.join(ROOT, where);
@@ -51,11 +60,15 @@ const build = (key) => {
     const fact = (f) => fields.find(([k]) => k === name(f) || k === f)?.[1];
     const rule = spec.picture.by ? spec.picture[r[spec.picture.by]] : spec.picture.all;
     const pic = rule?.replace('{n5}', n.padStart(5, '0'));
-    const item = { kind: t.kind, id: n, route: t.kind + '/' + n, title: t.title.replace('{n}', n), sub: fact(t.sub), facet: fact(t.facet), fields };
-    if (pic && fs.existsSync(path.join(MEDIA, pic))) item.image = 'cdn:' + pic;
+    // One name everywhere: the kind is the file (data/<kind>.json), the address (#/<kind>/<id>), Phiora's
+    // /tree/item/<kind>/<id> and the picture's key (<kind>/<id>.webp); the id carries the app, so ids stay one of a
+    // kind across collections.
+    const id = key + '-' + n;
+    const item = { kind: KIND, id, route: KIND + '/' + id, collection: key, number: Number(n), title: t.title.replace('{n}', n), sub: fact(t.sub), facet: fact(t.facet), fields };
+    if (pic && fs.existsSync(path.join(MEDIA, pic))) item.image = 'cdn:' + publish(pic, KIND + '/' + id + '.webp');
     return item;
   // By number; `token.lead: "picture"` puts the tokens whose picture is online first (until every picture is there).
-  }).sort((a, b) => (t.lead === 'picture' ? Number(!a.image) - Number(!b.image) : 0) || Number(a.id) - Number(b.id));
+  }).sort((a, b) => (t.lead === 'picture' ? Number(!a.image) - Number(!b.image) : 0) || a.number - b.number);
 
   const pictured = tokens.filter((x) => x.image);
   const step = Math.max(1, Math.floor(pictured.length / spec.teaser));

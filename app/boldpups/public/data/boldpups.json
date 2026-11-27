@@ -27,7 +27,7 @@
      "heading": "bold pups",
      "subtitle": "A pack of 10,000 pups with somewhere to be.",
      "body": "Bold Pups is a pool of 10,000 utility PFTs: each pup is a membership, a walk on the Orbit runway and a share of the pack fund. Pups swap, play fetch quests and throw the loudest pool parties on the moon.",
-     "image": "cdn:collections/hhoc/images/00017.webp",
+     "image": "cdn:token/boldpups-17.webp",
      "ratio": "1/1",
      "actions": [
       {
@@ -74,76 +74,92 @@
      "title": "Meet the pack",
      "items": [
       {
-       "kind": "pup",
-       "id": "17",
-       "route": "pup/17",
+       "kind": "token",
+       "id": "boldpups-17",
+       "route": "token/boldpups-17",
+       "collection": "boldpups",
+       "number": 17,
        "title": "Bold Pup #17",
        "sub": "HHOC",
        "facet": "HHOC",
-       "image": "cdn:collections/hhoc/images/00017.webp"
+       "image": "cdn:token/boldpups-17.webp"
       },
       {
-       "kind": "pup",
-       "id": "1350",
-       "route": "pup/1350",
+       "kind": "token",
+       "id": "boldpups-1350",
+       "route": "token/boldpups-1350",
+       "collection": "boldpups",
+       "number": 1350,
        "title": "Bold Pup #1350",
        "sub": "BPSC",
        "facet": "BPSC",
-       "image": "cdn:collections/bold-pups/images/01350.webp"
+       "image": "cdn:token/boldpups-1350.webp"
       },
       {
-       "kind": "pup",
-       "id": "1900",
-       "route": "pup/1900",
+       "kind": "token",
+       "id": "boldpups-1900",
+       "route": "token/boldpups-1900",
+       "collection": "boldpups",
+       "number": 1900,
        "title": "Bold Pup #1900",
        "sub": "HHOC",
        "facet": "HHOC",
-       "image": "cdn:collections/hhoc/images/01900.webp"
+       "image": "cdn:token/boldpups-1900.webp"
       },
       {
-       "kind": "pup",
-       "id": "4257",
-       "route": "pup/4257",
+       "kind": "token",
+       "id": "boldpups-4257",
+       "route": "token/boldpups-4257",
+       "collection": "boldpups",
+       "number": 4257,
        "title": "Bold Pup #4257",
        "sub": "HHOC",
        "facet": "HHOC",
-       "image": "cdn:collections/hhoc/images/04257.webp"
+       "image": "cdn:token/boldpups-4257.webp"
       },
       {
-       "kind": "pup",
-       "id": "6998",
-       "route": "pup/6998",
+       "kind": "token",
+       "id": "boldpups-6998",
+       "route": "token/boldpups-6998",
+       "collection": "boldpups",
+       "number": 6998,
        "title": "Bold Pup #6998",
        "sub": "HHOC",
        "facet": "HHOC",
-       "image": "cdn:collections/hhoc/images/06998.webp"
+       "image": "cdn:token/boldpups-6998.webp"
       },
       {
-       "kind": "pup",
-       "id": "7547",
-       "route": "pup/7547",
+       "kind": "token",
+       "id": "boldpups-7547",
+       "route": "token/boldpups-7547",
+       "collection": "boldpups",
+       "number": 7547,
        "title": "Bold Pup #7547",
        "sub": "BPSC",
        "facet": "BPSC",
-       "image": "cdn:collections/bold-pups/images/07547.webp"
+       "image": "cdn:token/boldpups-7547.webp"
       },
       {
-       "kind": "pup",
-       "id": "8480",
-       "route": "pup/8480",
+       "kind": "token",
+       "id": "boldpups-8480",
+       "route": "token/boldpups-8480",
+       "collection": "boldpups",
+       "number": 8480,
        "title": "Bold Pup #8480",
        "sub": "HHOC",
        "facet": "HHOC",
-       "image": "cdn:collections/hhoc/images/08480.webp"
+       "image": "cdn:token/boldpups-8480.webp"
       },
       {
-       "kind": "pup",
-       "id": "9445",
-       "route": "pup/9445",
+       "kind": "token",
+       "id": "boldpups-9445",
+       "route": "token/boldpups-9445",
+       "collection": "boldpups",
+       "number": 9445,
        "title": "Bold Pup #9445",
        "sub": "BPSC",
        "facet": "BPSC",
-       "image": "cdn:collections/bold-pups/images/09445.webp"
+       "image": "cdn:token/boldpups-9445.webp"
       }
      ],
      "toolbar": false,

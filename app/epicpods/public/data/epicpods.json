@@ -27,7 +27,7 @@
      "heading": "epic pods",
      "subtitle": "An athletic club built from escape pods.",
      "body": "A ring of docked escape pods: tracks in zero gravity, a market in the cargo bays and a stadium in the biggest pod.",
-     "image": "cdn:collections/bold-ape-epic-club/images/00001.webp",
+     "image": "cdn:token/epicpods-1.webp",
      "ratio": "1/1",
      "actions": [
       {
@@ -94,76 +94,92 @@
      "title": "Meet the club",
      "items": [
       {
-       "kind": "pod",
-       "id": "1",
-       "route": "pod/1",
+       "kind": "token",
+       "id": "epicpods-1",
+       "route": "token/epicpods-1",
+       "collection": "epicpods",
+       "number": 1,
        "title": "Epic Pod #1",
        "sub": "Epic",
        "facet": "Epic",
-       "image": "cdn:collections/bold-ape-epic-club/images/00001.webp"
+       "image": "cdn:token/epicpods-1.webp"
       },
       {
-       "kind": "pod",
-       "id": "128",
-       "route": "pod/128",
+       "kind": "token",
+       "id": "epicpods-128",
+       "route": "token/epicpods-128",
+       "collection": "epicpods",
+       "number": 128,
        "title": "Epic Pod #128",
        "sub": "Limited",
        "facet": "Limited",
-       "image": "cdn:collections/bold-ape-epic-club/images/00128.webp"
+       "image": "cdn:token/epicpods-128.webp"
       },
       {
-       "kind": "pod",
-       "id": "255",
-       "route": "pod/255",
+       "kind": "token",
+       "id": "epicpods-255",
+       "route": "token/epicpods-255",
+       "collection": "epicpods",
+       "number": 255,
        "title": "Epic Pod #255",
        "sub": "Rare",
        "facet": "Rare",
-       "image": "cdn:collections/bold-ape-epic-club/images/00255.webp"
+       "image": "cdn:token/epicpods-255.webp"
       },
       {
-       "kind": "pod",
-       "id": "383",
-       "route": "pod/383",
+       "kind": "token",
+       "id": "epicpods-383",
+       "route": "token/epicpods-383",
+       "collection": "epicpods",
+       "number": 383,
        "title": "Epic Pod #383",
        "sub": "Limited",
        "facet": "Limited",
-       "image": "cdn:collections/bold-ape-epic-club/images/00383.webp"
+       "image": "cdn:token/epicpods-383.webp"
       },
       {
-       "kind": "pod",
-       "id": "510",
-       "route": "pod/510",
+       "kind": "token",
+       "id": "epicpods-510",
+       "route": "token/epicpods-510",
+       "collection": "epicpods",
+       "number": 510,
        "title": "Epic Pod #510",
        "sub": "Limited",
        "facet": "Limited",
-       "image": "cdn:collections/bold-ape-epic-club/images/00510.webp"
+       "image": "cdn:token/epicpods-510.webp"
       },
       {
-       "kind": "pod",
-       "id": "638",
-       "route": "pod/638",
+       "kind": "token",
+       "id": "epicpods-638",
+       "route": "token/epicpods-638",
+       "collection": "epicpods",
+       "number": 638,
        "title": "Epic Pod #638",
        "sub": "Common",
        "facet": "Common",
-       "image": "cdn:collections/bold-ape-epic-club/images/00638.webp"
+       "image": "cdn:token/epicpods-638.webp"
       },
       {
-       "kind": "pod",
-       "id": "766",
-       "route": "pod/766",
+       "kind": "token",
+       "id": "epicpods-766",
+       "route": "token/epicpods-766",
+       "collection": "epicpods",
+       "number": 766,
        "title": "Epic Pod #766",
        "sub": "Common",
        "facet": "Common",
-       "image": "cdn:collections/bold-ape-epic-club/images/00766.webp"
+       "image": "cdn:token/epicpods-766.webp"
       },
       {
-       "kind": "pod",
-       "id": "893",
-       "route": "pod/893",
+       "kind": "token",
+       "id": "epicpods-893",
+       "route": "token/epicpods-893",
+       "collection": "epicpods",
+       "number": 893,
        "title": "Epic Pod #893",
        "sub": "SuperRare",
        "facet": "SuperRare",
-       "image": "cdn:collections/bold-ape-epic-club/images/00893.webp"
+       "image": "cdn:token/epicpods-893.webp"
       }
      ],
      "toolbar": false,
