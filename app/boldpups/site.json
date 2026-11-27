@@ -5,7 +5,7 @@
   "sheet": "media/incoming/bpwc",
   "token": {
     "number": "Number",
-    "title": "BOLD PUP #{n}",
+    "title": "BOLDPUPS #{n}",
     "sub": "Club",
     "facet": "Club",
     "lead": "picture"
@@ -65,8 +65,7 @@
         "blocks": [
           {
             "kind": "hero",
-            "heading": "BOLD PUPS",
-            "subtitle": "{club.tagline}",
+            "heading": "{club.tagline}",
             "body": "{club.description}",
             "image": "$hero",
             "ratio": "1/1",
@@ -121,7 +120,7 @@
       },
       "collection": {
         "title": "The collection",
-        "sub": "Every fox pup, all {n} of them, in both clubs: BOLD PUPS Space Club and HHOC. Filter by any trait, or search a number.",
+        "sub": "Every fox pup, all {n} of them, in both clubs: BOLDPUPS Space Club and HHOC. Filter by any trait, or search a number.",
         "blocks": [
           {
             "kind": "grid",
@@ -171,7 +170,7 @@
         ]
       },
       "about": {
-        "title": "About BOLD PUPS",
+        "title": "About BOLDPUPS",
         "sub": "{club.tagline}",
         "blocks": [
           {
@@ -196,7 +195,7 @@
             "items": [
               {
                 "title": "A place in the den",
-                "body": "Each pup is a membership of BOLD PUPS: its host in Phiogy, its rooms to write and talk in, and its calls with camera and screen."
+                "body": "Each pup is a membership of BOLDPUPS: its host in Phiogy, its rooms to write and talk in, and its calls with camera and screen."
               },
               {
                 "title": "Sixteen cities to live in",

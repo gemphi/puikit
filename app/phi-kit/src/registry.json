@@ -513,9 +513,9 @@
   },
   {
     "key": "boldpups",
-    "name": "BOLD PUPS",
+    "name": "BOLDPUPS",
     "tagline": "10,000 fox pups with somewhere to be",
-    "desc": "The BOLD PUPS collection: 10,000 fox pups in two clubs, BOLD PUPS Space Club and HHOC, every one with its traits and its own page.",
+    "desc": "The BOLDPUPS collection: 10,000 fox pups in two clubs, BOLDPUPS Space Club and HHOC, every one with its traits and its own page.",
     "color": "#26a64d",
     "port": 3123,
     "built": true,
@@ -548,7 +548,7 @@
   },
   {
     "key": "epicpods",
-    "name": "EPIC PODS",
+    "name": "EPICPODS",
     "tagline": "1,024 members of the club built from escape pods",
     "desc": "The Epic Pods AC collection: 1,024 members from Common to Legendary, every one with its traits and its own page.",
     "color": "#b53717",

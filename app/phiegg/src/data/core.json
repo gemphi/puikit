@@ -34941,7 +34941,7 @@
   },
   {
    "id": "c_bp",
-   "name": "BOLD PUPS",
+   "name": "BOLDPUPS",
    "ticker": "BPUP",
    "tone": "accent",
    "supply": 10000,
@@ -34953,7 +34953,7 @@
    "status": "live",
    "route": "direct",
    "tagline": "A den of 10,000 fox pups with somewhere to be.",
-   "description": "BOLD PUPS is a pool of 10,000 utility PFTs: each fox pup is a membership, a walk on the Orbit runway and a share of the den fund. Pups swap, forage on scavenger hunts and throw the loudest pool parties on the moon.",
+   "description": "BOLDPUPS is a pool of 10,000 utility PFTs: each fox pup is a membership, a walk on the Orbit runway and a share of the den fund. Pups swap, forage on scavenger hunts and throw the loudest pool parties on the moon.",
    "tags": [
     "pfp",
     "community",

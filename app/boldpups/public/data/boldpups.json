@@ -29,9 +29,8 @@
    "blocks": [
     {
      "kind": "hero",
-     "heading": "BOLD PUPS",
-     "subtitle": "A den of 10,000 fox pups with somewhere to be.",
-     "body": "BOLD PUPS is a pool of 10,000 utility PFTs: each fox pup is a membership, a walk on the Orbit runway and a share of the den fund. Pups swap, forage on scavenger hunts and throw the loudest pool parties on the moon.",
+     "heading": "A den of 10,000 fox pups with somewhere to be.",
+     "body": "BOLDPUPS is a pool of 10,000 utility PFTs: each fox pup is a membership, a walk on the Orbit runway and a share of the den fund. Pups swap, forage on scavenger hunts and throw the loudest pool parties on the moon.",
      "image": "cdn:token/boldpups-17.webp",
      "ratio": "1/1",
      "actions": [
@@ -84,7 +83,7 @@
        "route": "token/boldpups-17",
        "collection": "boldpups",
        "number": 17,
-       "title": "BOLD PUP #17",
+       "title": "BOLDPUPS #17",
        "sub": "HHOC",
        "facet": "HHOC",
        "image": "cdn:token/boldpups-17.webp"
@@ -95,7 +94,7 @@
        "route": "token/boldpups-1350",
        "collection": "boldpups",
        "number": 1350,
-       "title": "BOLD PUP #1350",
+       "title": "BOLDPUPS #1350",
        "sub": "BPSC",
        "facet": "BPSC",
        "image": "cdn:token/boldpups-1350.webp"
@@ -106,7 +105,7 @@
        "route": "token/boldpups-1900",
        "collection": "boldpups",
        "number": 1900,
-       "title": "BOLD PUP #1900",
+       "title": "BOLDPUPS #1900",
        "sub": "HHOC",
        "facet": "HHOC",
        "image": "cdn:token/boldpups-1900.webp"
@@ -117,7 +116,7 @@
        "route": "token/boldpups-4257",
        "collection": "boldpups",
        "number": 4257,
-       "title": "BOLD PUP #4257",
+       "title": "BOLDPUPS #4257",
        "sub": "HHOC",
        "facet": "HHOC",
        "image": "cdn:token/boldpups-4257.webp"
@@ -128,7 +127,7 @@
        "route": "token/boldpups-6998",
        "collection": "boldpups",
        "number": 6998,
-       "title": "BOLD PUP #6998",
+       "title": "BOLDPUPS #6998",
        "sub": "HHOC",
        "facet": "HHOC",
        "image": "cdn:token/boldpups-6998.webp"
@@ -139,7 +138,7 @@
        "route": "token/boldpups-7547",
        "collection": "boldpups",
        "number": 7547,
-       "title": "BOLD PUP #7547",
+       "title": "BOLDPUPS #7547",
        "sub": "BPSC",
        "facet": "BPSC",
        "image": "cdn:token/boldpups-7547.webp"
@@ -150,7 +149,7 @@
        "route": "token/boldpups-8480",
        "collection": "boldpups",
        "number": 8480,
-       "title": "BOLD PUP #8480",
+       "title": "BOLDPUPS #8480",
        "sub": "HHOC",
        "facet": "HHOC",
        "image": "cdn:token/boldpups-8480.webp"
@@ -161,7 +160,7 @@
        "route": "token/boldpups-9445",
        "collection": "boldpups",
        "number": 9445,
-       "title": "BOLD PUP #9445",
+       "title": "BOLDPUPS #9445",
        "sub": "BPSC",
        "facet": "BPSC",
        "image": "cdn:token/boldpups-9445.webp"
@@ -368,7 +367,7 @@
   },
   "collection": {
    "title": "The collection",
-   "sub": "Every fox pup, all 10,000 of them, in both clubs: BOLD PUPS Space Club and HHOC. Filter by any trait, or search a number.",
+   "sub": "Every fox pup, all 10,000 of them, in both clubs: BOLDPUPS Space Club and HHOC. Filter by any trait, or search a number.",
    "blocks": [
     {
      "kind": "grid",
@@ -1100,14 +1099,14 @@
    ]
   },
   "about": {
-   "title": "About BOLD PUPS",
+   "title": "About BOLDPUPS",
    "sub": "A den of 10,000 fox pups with somewhere to be.",
    "blocks": [
     {
      "kind": "hero",
      "variant": "card",
      "heading": "The den",
-     "body": "BOLD PUPS is a pool of 10,000 utility PFTs: each fox pup is a membership, a walk on the Orbit runway and a share of the den fund. Pups swap, forage on scavenger hunts and throw the loudest pool parties on the moon.",
+     "body": "BOLDPUPS is a pool of 10,000 utility PFTs: each fox pup is a membership, a walk on the Orbit runway and a share of the den fund. Pups swap, forage on scavenger hunts and throw the loudest pool parties on the moon.",
      "image": "cdn:token/boldpups-17.webp"
     },
     {
@@ -1150,7 +1149,7 @@
      "items": [
       {
        "title": "A place in the den",
-       "body": "Each pup is a membership of BOLD PUPS: its host in Phiogy, its rooms to write and talk in, and its calls with camera and screen."
+       "body": "Each pup is a membership of BOLDPUPS: its host in Phiogy, its rooms to write and talk in, and its calls with camera and screen."
       },
       {
        "title": "Sixteen cities to live in",
