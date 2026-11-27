@@ -1,0 +1,129 @@
+# /etc/caddy/Caddyfile on the server (EC2 13.63.125.132): HTTPS for every domain, then nginx on :8080 (app/dist-all)
+# and Phiora behind it. This file is the source; app/DOMAINS.md says how it goes up (back up, validate, restart at a
+# quiet time, never reload). A site is listed only once its name answers 13.63.125.132, so Caddy never asks for a
+# certificate it cannot get. Still to add when their DNS points here: boldpups.xyz (drop GoDaddy's parked records),
+# once.city, wand.city, acro.city, ora.phiegg.com.
+
+# Pictures, media records, downloads and the library's files, one key each (scripts/media/sync.sh server):
+# /srv/phi-cdn/<key>. A file that is there is cached; a picture for a year, a record or a zip for 5 minutes.
+(cdn-files) {
+	root * /srv/phi-cdn
+	@record {
+		path *.json
+		file
+	}
+	@picture {
+		not path *.json *.zip
+		file
+	}
+	@download {
+		path *.zip
+		file
+	}
+	header @record Cache-Control "public, max-age=300"
+	header @picture Cache-Control "public, max-age=31536000"
+	header @download Cache-Control "public, max-age=300"
+	header Access-Control-Allow-Origin *
+	file_server
+}
+# The media store at /cdn/ on any site that shows its pictures.
+(cdn) {
+	handle_path /cdn/* {
+		import cdn-files
+	}
+}
+# The call line: <site>/wrt/<app>/<room> is Phiora's /api/call/<app>/<room>, its event stream passed on as it comes.
+(wrt) {
+	handle_path /wrt/* {
+		rewrite * /api/call{path}
+		reverse_proxy 127.0.0.1:8080 {
+			flush_interval -1
+		}
+	}
+}
+# Everything else: nginx, which serves every app's build at /<key>/ and Phiora at /api/.
+(app) {
+	encode gzip
+	reverse_proxy 127.0.0.1:8080
+}
+
+phiegg.com {
+	redir / /phiegg/ 302
+	import cdn
+	import wrt
+	import app
+}
+www.phiegg.com {
+	redir https://phiegg.com{uri} 301
+}
+cdn.phiegg.com {
+	import cdn-files
+}
+
+phiber.ai {
+	redir / /phiber/ 302
+	import app
+}
+www.phiber.ai {
+	redir https://phiber.ai{uri} 301
+}
+
+phiace.ai {
+	redir / /phiace/ 302
+	import app
+}
+www.phiace.ai {
+	redir https://phiace.ai{uri} 301
+}
+
+phipad.com {
+	redir / /phipad/ 302
+	import cdn
+	import app
+}
+www.phipad.com, phipad.xyz, www.phipad.xyz {
+	redir https://phipad.com{uri} 301
+}
+
+phisum.com {
+	redir / /phisum/ 302
+	import cdn
+	import app
+}
+www.phisum.com {
+	redir https://phisum.com{uri} 301
+}
+
+# No Phiecs page yet: Phiace until there is one.
+phiecs.com, www.phiecs.com {
+	redir https://phiace.ai/phiace/ 302
+}
+
+# The landing is the root itself: the page finds its app by the domain (registry `domain`), not by a /<key>/.
+phiogy.com {
+	rewrite / /phiogy-home/
+	import cdn
+	import wrt
+	import app
+}
+www.phiogy.com {
+	redir https://phiogy.com{uri} 301
+}
+# Phiogy's content: downloads (phiogy/), the shared library's files by hash (lib/), the same store as phiegg.com/cdn.
+cdn.phiogy.com {
+	import cdn-files
+}
+
+epicpods.xyz {
+	redir / /epicpods/ 302
+	import cdn
+	import app
+}
+www.epicpods.xyz {
+	redir https://epicpods.xyz{uri} 301
+}
+
+# A city's domain opens its world in Phiegg (the Bold City of that name).
+bozo.city, www.bozo.city {
+	redir https://phiegg.com/phiegg/world/w_bozo_city 302
+}

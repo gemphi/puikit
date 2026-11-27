@@ -38,6 +38,11 @@ The last column is what public DNS answered on 27 November 2026 (GoDaddy holds a
 | phiegg.com | A | `cdn` | `13.63.125.132` | **to add**: `cdn.phiegg.com`, the media store at its own address |
 | phiegg.com | A | `ora` | `13.63.125.132` | **to add**: `ora.phiegg.com`, Phiora's API at its own address |
 
+Later on 27 November the user added phisum.com, cdn.phiogy.com and four city domains. Public DNS then answered:
+phisum.com, cdn.phiogy.com, cdn.phiegg.com and bozo.city (each with `www`) point here, done. **To fix:** once.city
+and wand.city still answer GoDaddy's parking addresses (`3.33.130.190`, `15.197.148.33`); acro.city and
+ora.phiegg.com have no records; boldpups.xyz still has the two parked records beside ours.
+
 If the registrar cannot put a CNAME on `www`, use an A record to `13.63.125.132` there too.
 Check each before touching Caddy: `nslookup boldpups.xyz` (or `dig +short boldpups.xyz`) must answer
 `13.63.125.132`. Caddy asks Let's Encrypt for a certificate as soon as a block is loaded, and a name that does not
@@ -62,6 +67,9 @@ Optional, once all resolve: a CAA record on each apex, `0 issue "letsencrypt.org
 | ora.phiegg.com | Phiora's API at the root (`/app/phiegg` is `phiegg.com/api/app/phiegg`) | — | to add |
 
 ## 3. Caddy site blocks to add
+
+The whole file, with every block below and the new names, is `puikit/deploy/caddy/Caddyfile`: that file is what goes
+to `/etc/caddy/Caddyfile`. It validated on the server's Caddy on 27 November (`Valid configuration`).
 
 Two edits to `/etc/caddy/Caddyfile`. First, the inside of the `cdn` snippet becomes its own snippet (`cdn-files`),
 so phiegg.com/cdn and cdn.phiegg.com share one set of cache rules. Caddy reads a snippet only if it comes before its
@@ -248,3 +256,26 @@ WebRTC through directly; with them, any two people can call.
 
 A new Windows build is copied over the same file (no script sends it yet: it went up by hand on 25 Nov); the `cdn` snippet caches zips
 for 5 minutes, so people get it within minutes under the same link.
+
+## 6. cdn.phiogy.com: content and sync, modelled on Discord's CDN
+
+Read from Discord's developer docs (Reference: Image Formatting, CDN Endpoints, Signed Attachment CDN URLs,
+Uploading Files; Message: the Attachment object), 27 November 2026. What Discord does, and the Phiogy version.
+It follows the kind rule (a kind's name is its path) and `phikit/crates/appkit/app/phiogy/SHARED-LIBRARY.md`
+section 4 (files kept once, by their hash).
+
+| Discord | Phiogy (cdn.phiogy.com) |
+|---|---|
+| One CDN host, a path per resource: `avatars/<user>/<hash>.png`, `icons/<guild>/<hash>.png`, `emojis/<id>.png` | One host, a path per kind: `person/<id>/<hash>.webp`, `host/<id>/<hash>.webp`, `asset/<sha256>.<ext>` (the library's files; SHARED-LIBRARY calls the folder `lib/`, which should become `asset/` to match the kind) |
+| The hash in the path changes when the picture changes, so a URL never goes stale and is cached for good | The same: a file's name is its sha256, so `Cache-Control: max-age=31536000` holds (the `cdn-files` rules already do this for pictures) |
+| Format by extension; `?size=` any power of two, 16 to 4096 | Format by extension; sizes made once at upload as `<hash>-<size>.webp` for 64, 256 and 1024, since Caddy cannot resize. Ask for `?size=` later if an image service is added |
+| Attachments `attachments/<channel>/<attachment>/<filename>`, signed with `ex` (expiry), `is` (issued) and `hm` (HMAC) | Room files `attachment/<room>/<id>/<filename>?ex=&is=&hm=`, signed by Phiora with a key in `.env`. Caddy checks each request with `forward_auth` against Phiora (`/api/file/check`) before serving the file, so a link from a private room stops working after its expiry |
+| Public things (avatars, icons, emoji) are not signed and never expire | Public things (people's faces, hosts' marks, approved library assets, downloads) are plain paths |
+| Upload: `multipart/form-data`, `files[n]` parts plus `payload_json` with `attachments: [{ id, filename, description }]`; 20 MiB a file by default, 25 MiB a request | `POST /file` to Phiora in the same shape: `files[n]` and `payload_json`; it stores each file under its hash, makes the sizes, and answers attachment records. Limits by role: 25 MB for members, more for the team's library |
+| Attachment object: `id`, `filename`, `title`, `description` (alt text), `content_type`, `size`, `url`, `proxy_url`, `height`, `width`, `duration_secs`, `waveform`, `flags` | Kind `attachment` in Phiora's `items`, the same fields plus `hash`, `room` and `owner`; library files are kind `asset` with their `state` (draft, in review, approved) |
+| Clients refresh expired attachment links on their own | Phiogy asks Phiora's change log (`/tree/change?after=<seq>`) for what is new, fetches a file only when opened, keeps it in a local cache by hash, and asks for a fresh signed link when one has expired |
+
+**Built today:** the store (`/srv/phi-cdn`), its cache rules, and cdn.phiogy.com serving it (section 3's file:
+`deploy/caddy/Caddyfile`). The Windows download is at `cdn.phiogy.com/phiogy/phiogy-windows.zip` once it is live.
+**Not built:** `POST /file`, the sizes, signing and `/api/file/check`, the `attachment` and `asset` kinds, the change
+log's `after=`, and the `lib/` to `asset/` rename.
