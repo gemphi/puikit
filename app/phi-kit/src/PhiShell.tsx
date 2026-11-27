@@ -1,11 +1,9 @@
-import { AppShell, type AppShellGroup, type AppShellLeaf, Avatar, Button, Stack, TabList, Text, columnStore, useColumnEntries } from '@pui/components';
-import { usePuiTheme } from '@pui/providers';
+import { AppShell, type AppShellGroup, type AppShellLeaf, Avatar, columnStore, useColumnEntries } from '@pui/components';
 import React from 'react';
-import { Columns3, Eye, EyeOff, Moon, Sun, User, Settings } from 'lucide-react';
+import { Columns3, Eye, EyeOff, User, Settings } from 'lucide-react';
 import { APPS, appUrl, assetUrl, type AppMeta, type NavItem } from './data';
 import type { GridItem } from './blocks/Grid';
 import { AppGlyph, NavIcon } from './icons';
-import { LOOKS, useLook } from './looks';
 import { Face, READ, crowdOf, waitingIn, type People } from './people';
 import { VoiceBar, VoiceLine, useInside } from './voice';
 import { AccountDrawer } from './AccountDrawer';
@@ -84,26 +82,11 @@ export const PhiShell: React.FC<ShellProps> = ({ app, nav, side = [], view, onVi
       groups={toGroups(nav, { app: app.key, people, joined, read, go: onView })} view={view} onView={pick} side={{ label: app.name, groups: sideGroups }}
       apps={apps} appsLabel="Apps"
       foot={foot}
-      tools={<><VoiceBar go={(store) => onView(store.slice(app.key.length + 1))} /><LookSwitch /></>} right={right} onPreview={(leafId, p) => pulled(leafId, p.id)}
+      tools={<VoiceBar go={(store) => onView(store.slice(app.key.length + 1))} />} right={right} onPreview={(leafId, p) => pulled(leafId, p.id)}
       headerRight={<AccountDrawer onProfile={() => onView('_you')} />}
     >
       {children}
       <VoiceLine />
     </AppShell>
-  );
-};
-
-/** The look (Apple, SpaceX, Organic) and light or dark, one tap away in every app; Settings has the fine controls. */
-const LookSwitch: React.FC = () => {
-  const [look, setLook] = useLook();
-  const { isDark, setTheme } = usePuiTheme();
-  return (
-    <Stack direction="column" gap={1} paddingX={2} paddingBottom={2}>
-      <Stack direction="row" gap={1} align="center" justify="between">
-        <Text as="span" size="xs" intent="muted">Look</Text>
-        <Button variant="glass" onClick={() => setTheme(isDark ? 'light' : 'dark')} iconLeft={isDark ? Sun : Moon}>{isDark ? 'Light' : 'Dark'}</Button>
-      </Stack>
-      <TabList size="sm" variant="pills" aria-label="Look" activeId={look.id} onChange={setLook} items={LOOKS.map((l) => ({ id: l.id, label: l.label }))} />
-    </Stack>
   );
 };

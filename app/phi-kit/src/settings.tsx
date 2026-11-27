@@ -1,7 +1,7 @@
 import React from 'react';
-import { Box, ChoiceRow, GradientLevelPicker, PalettePicker, Player, RadiusPicker, Stack, Text } from '@pui/components';
+import { Box, ChoiceRow, Player, RadiusPicker, Stack, Text } from '@pui/components';
 import { useLayout, usePuiTheme, type Theme } from '@pui/providers';
-import { LOOKS, useLook } from './looks';
+import { SURFACES, THEMES, useSurface, useThemeChoice } from './appearance';
 import { PREFS, type Mini as MiniSpec, type PrefGroup, type PrefOption } from './prefs';
 import { Head } from './views';
 import css from './settings.module.scss';
@@ -31,22 +31,25 @@ const pictured = (options: PrefOption[]) => options.map((o) => ({ value: o.value
 
 /** One group of Settings, by what it sets: its options as pictures where they have them. */
 const Group: React.FC<{ g: PrefGroup }> = ({ g }) => {
-  const { theme, setTheme, density, setDensity } = usePuiTheme();
-  const [look, setLook] = useLook();
+  const { theme, setTheme, density, setDensity, isDark } = usePuiTheme();
+  const [pick, setPick] = useThemeChoice();
+  const [surface, setSurface] = useSurface();
   const [value, setValue] = useLayout(g.id, g.fallback ?? '');
   const titled = (node: React.ReactNode) => <Stack direction="column" gap={2}><Text size="md" weight="medium">{g.label}</Text>{node}</Stack>;
   switch (g.kind) {
-    case 'look':
-      return <ChoiceRow label={g.label} showLabel minWidth="9rem" value={look.id} onChange={setLook} limit={LOOKS.length}
-        options={LOOKS.map((l) => ({ value: l.id, label: l.label, picture: { preview: <Mini mini={{ swatch: l.swatch, dark: l.mode === 'dark' }} /> } }))} />;
+    // A theme is its colours, drawn in the mode that is on; a surface is how the parts are laid.
+    case 'theme':
+      return <ChoiceRow label={g.label} showLabel minWidth="8rem" value={pick?.id ?? ''} onChange={setPick} limit={THEMES.length}
+        options={THEMES.map((x) => ({ value: x.id, label: x.label, picture: { preview: <Mini mini={{ swatch: x.swatch, dark: isDark }} /> } }))} />;
+    case 'surface':
+      return <ChoiceRow label={g.label} showLabel minWidth="8rem" value={surface?.id ?? ''} onChange={setSurface} limit={SURFACES.length}
+        options={SURFACES.map((x) => ({ value: x.id, label: x.label, picture: { preview: <Mini mini={{ swatch: x.swatch, dark: isDark }} /> } }))} />;
     case 'mode':
       return <ChoiceRow label={g.label} showLabel minWidth="9rem" value={theme} onChange={(v) => setTheme(v as Theme)} options={pictured(g.options ?? [])} />;
     case 'layout':
       return <ChoiceRow label={g.label} showLabel minWidth="9rem" value={value} onChange={setValue} options={pictured(g.options ?? [])} />;
     case 'density':
       return <ChoiceRow label={g.label} showLabel value={String(density)} onChange={(v) => setDensity(Number(v))} options={pictured(g.options ?? [])} />;
-    case 'palette': return titled(<PalettePicker />);
-    case 'gradient': return titled(<GradientLevelPicker />);
     case 'radius': return titled(<RadiusPicker />);
     default: return null;
   }

@@ -26,7 +26,7 @@
 /* The face: sharp, a step inside the ground, held large until the pointer comes. */
 .face {
   inset: 6% 8% 10% 6%; border-radius: calc(var(--phi-radius-shape, var(--phi-radius-lg)) * 0.75);
-  box-shadow: var(--phi-shadow-3); overflow: hidden;
+  overflow: hidden;
   > * { transform: scale(1.14); transition: transform var(--pui-player-time) var(--pui-player-ease); }
 }
 

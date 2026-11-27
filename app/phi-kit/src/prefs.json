@@ -1,19 +1,25 @@
 {
-  "_": "Settings, the same in every Phi app: its groups in order, each a choice a person makes once for every app. `kind` says what a group sets: `look` (looks.json), `mode` (light, dark, the system's), `layout` (a choice kept by the kit's useLayout under `id` and put on the root, which every app's parts answer), or one of the kit's own pickers (`palette`, `gradient`, `radius`, `density`). An option's `mini` is its picture: a small window drawn as the choice lays it (`tabs` top or side, `feed` headings, partial or full, `swatch` its colours, `dark`). `mode` on a feed option is the list layout a feed opens in (ListView). `shared`: shown also inside an app's own Appearance (Phiegg's), under its rows.",
+  "_": "Settings, the same in every Phi app: its groups in order, each a choice a person makes once for every app. `kind` says what a group sets: `theme` (the colours, theme.json), `mode` (dark, light, auto: the system's), `surface` (how the parts are laid, surface.json), `radius` and `density` (the kit's corners and spacing), or `layout` (a choice kept by the kit's useLayout under `id` and put on the root, which every app's parts answer). An option's `mini` is its picture: a small window drawn as the choice lays it (`tabs` top or side, `feed` headings, partial or full, `swatch` its colours, `dark`). `mode` on a feed option is the list layout a feed opens in (ListView). `shared`: shown also inside an app's own Appearance (Phiegg's, the account's), under its rows; `replaces` names the rows of an app's own Appearance a shared group stands for, which that app then leaves out.",
   "head": {
     "title": "Settings",
     "sub": "Choose how every Phiace app looks and is laid out. Applies to every app on this device."
   },
   "groups": [
     {
-      "id": "look",
-      "kind": "look",
-      "label": "Theme"
+      "id": "theme",
+      "kind": "theme",
+      "label": "Theme",
+      "shared": true,
+      "replaces": [
+        "look",
+        "palette",
+        "accent"
+      ]
     },
     {
       "id": "mode",
       "kind": "mode",
-      "label": "Light",
+      "label": "Mode",
       "options": [
         {
           "value": "dark",
@@ -38,7 +44,7 @@
         },
         {
           "value": "system",
-          "label": "As the system",
+          "label": "Auto",
           "mini": {
             "swatch": [
               "#000000",
@@ -47,7 +53,49 @@
             "split": true
           }
         }
+      ],
+      "shared": true,
+      "replaces": [
+        "mode"
       ]
+    },
+    {
+      "id": "surface",
+      "kind": "surface",
+      "label": "Surface",
+      "shared": true,
+      "replaces": [
+        "gradient"
+      ]
+    },
+    {
+      "id": "radius",
+      "kind": "radius",
+      "label": "Corners",
+      "shared": true,
+      "replaces": [
+        "radius"
+      ]
+    },
+    {
+      "id": "density",
+      "kind": "density",
+      "label": "Spacing",
+      "options": [
+        {
+          "value": "0.9",
+          "label": "Compact"
+        },
+        {
+          "value": "1",
+          "label": "Comfortable"
+        },
+        {
+          "value": "1.15",
+          "label": "Roomy"
+        }
+      ],
+      "shared": true
     },
     {
       "id": "feed",
@@ -104,40 +152,6 @@
         }
       ],
       "shared": true
-    },
-    {
-      "id": "palette",
-      "kind": "palette",
-      "label": "Palette"
-    },
-    {
-      "id": "gradient",
-      "kind": "gradient",
-      "label": "Gradients"
-    },
-    {
-      "id": "radius",
-      "kind": "radius",
-      "label": "Corners"
-    },
-    {
-      "id": "density",
-      "kind": "density",
-      "label": "Density",
-      "options": [
-        {
-          "value": "0.9",
-          "label": "Compact"
-        },
-        {
-          "value": "1",
-          "label": "Comfortable"
-        },
-        {
-          "value": "1.15",
-          "label": "Roomy"
-        }
-      ]
     }
   ]
 }

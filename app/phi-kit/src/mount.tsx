@@ -9,6 +9,8 @@ import { appMeta } from './data';
 import { PhiApp } from './PhiApp';
 import { AccountLinks } from './AccountDialog';
 import { applySavedFont } from './fonts';
+// The themes (theme.json) join the kit's palettes before the first paint, so a saved theme is there when it is read.
+import './appearance';
 import { DEFAULT_GRADIENT, DEFAULT_LOOK, LOOKS, migrateLook } from './looks';
 
 /** Boot a Phi app: the SpaceX look (rocket-interior style + brand), dark by default, unless the app names its own look

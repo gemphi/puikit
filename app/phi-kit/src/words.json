@@ -98,7 +98,8 @@
     "open": "Open your account",
     "colour": "Colour",
     "own": "The look's own",
-    "layout": "Layout"
+    "layout": "Layout",
+    "appearance": "Appearance"
   },
   "host": {
     "add": "Add a host",
