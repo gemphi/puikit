@@ -38,41 +38,35 @@
      "heading": "A home for every club",
      "body": "Each club and company keeps a host of its own, with text rooms, voice rooms and its people. Join the hosts you follow, or make yours in a minute.",
      "image": "cdn:phiogy/shot/host.webp",
-     "ratio": "16/10",
-     "pictureWidth": "40rem"
+     "variant": "card"
     },
     {
      "kind": "hero",
      "heading": "Drop in and talk",
      "body": "Voice rooms are always open. Walk into the Lounge, see who is there, and start talking; nothing is kept.",
      "image": "cdn:phiogy/shot/voice.webp",
-     "ratio": "16/10",
-     "pictureWidth": "40rem",
-     "flip": true
+     "flip": true,
+     "variant": "card"
     },
     {
      "kind": "hero",
      "heading": "Everyone is one tap away",
      "body": "Every face opens a profile: who they are, what they make and where they hang out. Message them, follow them, ask them to be friends.",
      "image": "cdn:phiogy/shot/direct.webp",
-     "ratio": "16/10",
-     "pictureWidth": "40rem"
+     "variant": "card"
     },
     {
      "kind": "hero",
      "heading": "Find your people",
      "body": "Search anyone by name and start a conversation, or a call with camera, microphone and screen for up to 8 people.",
      "image": "cdn:phiogy/shot/people.webp",
-     "ratio": "16/10",
-     "pictureWidth": "40rem",
-     "flip": true
+     "flip": true,
+     "variant": "card"
     },
     {
      "kind": "grid",
      "title": "Say hi to the village",
      "toolbar": false,
-     "layout": "tile",
-     "mosaic": false,
      "items": [
       {
        "title": "Lora Vale",
@@ -136,60 +130,14 @@
         "cols": 8,
         "index": 62
        }
-      },
-      {
-       "title": "Zara Okafor",
-       "sub": "Member",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-10.webp",
-        "cols": 8,
-        "index": 51
-       }
-      },
-      {
-       "title": "Kai Moreau",
-       "sub": "Member",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-08.webp",
-        "cols": 8,
-        "index": 33
-       }
-      },
-      {
-       "title": "Noor Hale",
-       "sub": "Member",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-10.webp",
-        "cols": 8,
-        "index": 58
-       }
-      },
-      {
-       "title": "Ava Duarte",
-       "sub": "Member",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-07.webp",
-        "cols": 8,
-        "index": 39
-       }
-      },
-      {
-       "title": "Lora's Spark",
-       "sub": "Monochrome muse",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-04.webp",
-        "cols": 8,
-        "index": 21
-       }
       }
-     ]
+     ],
+     "variant": "lineup"
     },
     {
      "kind": "grid",
      "title": "Hosts to join",
      "toolbar": false,
-     "layout": "tile",
-     "mosaic": false,
      "items": [
       {
        "title": "Opal Atelier",
@@ -253,53 +201,9 @@
         "cols": 8,
         "index": 7
        }
-      },
-      {
-       "title": "Sable Foxes Host",
-       "sub": "#welcome, #rules, #announcements",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-06.webp",
-        "cols": 8,
-        "index": 19
-       }
-      },
-      {
-       "title": "Quartz Moths Host",
-       "sub": "#welcome, #rules, #announcements",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-04.webp",
-        "cols": 8,
-        "index": 17
-       }
-      },
-      {
-       "title": "Lace Ravens Host",
-       "sub": "#welcome, #rules, #announcements",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-04.webp",
-        "cols": 8,
-        "index": 23
-       }
-      },
-      {
-       "title": "Neon Muses Host",
-       "sub": "#welcome, #rules, #announcements",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-06.webp",
-        "cols": 8,
-        "index": 8
-       }
-      },
-      {
-       "title": "Saffron Cranes Host",
-       "sub": "#welcome, #rules, #announcements",
-       "sprite": {
-        "sheet": "phiegg:portraits/sheet-05.webp",
-        "cols": 8,
-        "index": 59
-       }
       }
-     ]
+     ],
+     "variant": "lineup"
     },
     {
      "kind": "hero",

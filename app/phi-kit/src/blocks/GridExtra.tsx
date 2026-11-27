@@ -99,3 +99,20 @@ export const inFacet = (items: GridItem[], list: string[] | undefined, value: st
 export const More: React.FC<{ more: { label: string; view?: string; href?: string } }> = ({ more }) => (
   <Stack direction="row" justify="end"><Button variant="glass" href={more.href || '#/' + more.view}>{more.label}</Button></Stack>
 );
+
+/** A grid's `variant: "lineup"`: its faces stand side by side on the theme's sweep (kit.module.scss .lineup), each
+ *  a round picture (its sprite or file) with its name and line, no card round it. */
+export const Lineup: React.FC<{ items: GridItem[]; onOpen: (it: GridItem) => void }> = ({ items, onOpen }) => (
+  <div className={s.lineup}>
+    {items.map((it, i) => (
+      <button key={i} type="button" className={s.lineupFace} onClick={() => onOpen(it)} style={{ background: 'none', border: 0, color: 'inherit', font: 'inherit', cursor: 'pointer' }}>
+        <span className={s.lineupPic}>
+          {it.sprite ? <SpriteImage sprite={{ src: assetUrl(it.sprite.sheet), cols: it.sprite.cols, index: it.sprite.index }} alt={it.title} />
+            : it.image ? <Image src={assetUrl(it.image)} alt={it.title} fit="cover" fill loading="lazy" /> : null}
+        </span>
+        <span className={s.lineupName}>{it.title}</span>
+        {it.sub ? <span className={s.lineupSub}>{it.sub}</span> : null}
+      </button>
+    ))}
+  </div>
+);

@@ -5,7 +5,7 @@ import { FEED } from '../prefs';
 import { appUrl, type Block } from '../data';
 import { ListView } from '../ListView';
 import type { Wear } from '../looks';
-import { CardExtra, Facet, LaneRow, More, cardPicture, cardTag, inFacet } from './GridExtra';
+import { CardExtra, Facet, LaneRow, Lineup, More, cardPicture, cardTag, inFacet } from './GridExtra';
 import { LIST, countOf, facetsFor, layoutOf, sortsFor, textOf, type GridRow } from './GridList';
 
 export type GridItem = { id?: string; kind?: string; route?: string; title: string; sub?: string; body?: string; action?: string; done?: string; app?: string; href?: string; cost?: number; meta?: string; image?: string; fields?: [string, string][];
@@ -61,6 +61,8 @@ export const Grid: React.FC<{ b: Block; onOpen: (it: GridItem) => void }> = ({ b
 
   const tabs = b.facet ? <Facet list={b.facet} value={facet} onChange={setFacet} /> : null;
   const more = b.more ? <More more={b.more} /> : null;
+  // A lineup is faces standing in a row (`variant: "lineup"`): no switch, no cards.
+  if (b.variant === 'lineup') return <Lineup items={rows.map((r) => r.it)} onOpen={onOpen} />;
   // Lanes are their own layout (a pipeline by stage): no switch.
   if (b.laneSet) return <Stack direction="column" gap={3}>{tabs}{more}<LaneRow laneSet={b.laneSet} items={rows.map((r) => r.it)} card={(it, i) => card(it, i, false)} /></Stack>;
   const { mode, modes } = layoutOf(b, feedMode);

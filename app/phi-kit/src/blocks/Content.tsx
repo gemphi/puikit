@@ -2,10 +2,29 @@
 import React from 'react';
 import { Button, Divider, Frame, Image, Stack, Tag, Text, Title } from '@pui/components';
 import { appUrl, assetUrl, type Block } from '../data';
+import s from '../kit.module.scss';
+
+/** The ways in a hero offers, the same in every variant. */
+const heroActions = (b: Block) => (Array.isArray(b.actions) && b.actions.length ? (
+  <Stack direction="row" gap={2} wrap align="center">{b.actions.map((a: any, i: number) => <Button key={i} variant="glass" href={a.app ? appUrl(a.app) : a.href || ('#/' + a.view)}>{a.label}</Button>)}</Stack>
+) : null);
+
+/** `variant: "card"`: a site card (kit.module.scss .siteCard), its picture in a panel of the theme's sweep and its
+ *  words beside it; `flip` puts the words first. */
+const HeroCard: React.FC<{ b: Block }> = ({ b }) => (
+  <section className={b.flip ? s.siteCard + ' ' + s.siteCardFlip : s.siteCard}>
+    <div className={s.siteCardPanel}>{b.image ? <img src={assetUrl(b.image)} alt="" loading="lazy" /> : null}</div>
+    <div className={s.siteCardWords}>
+      <h2 className={s.siteCardTitle}>{b.heading}</h2>
+      {b.body ? <p className={s.siteCardBody}>{b.body}</p> : null}
+      {heroActions(b)}
+    </div>
+  </section>
+);
 
 /** Hero band for an app's Home view. `variant: "wide"` is a product page's: the name, one line and the ways in,
  *  centred, then its picture across the page. */
-export const Hero: React.FC<{ b: Block }> = ({ b }) => (b.variant === 'wide' ? (
+export const Hero: React.FC<{ b: Block }> = ({ b }) => (b.variant === 'card' ? <HeroCard b={b} /> : b.variant === 'wide' ? (
   <Stack direction="column" gap={6} align="center" paddingY={6}>
     <Stack direction="column" gap={3} align="center">
       <Title level={1} size="3xl" align="center">{b.heading}</Title>
@@ -14,7 +33,8 @@ export const Hero: React.FC<{ b: Block }> = ({ b }) => (b.variant === 'wide' ? (
         <Stack direction="row" gap={2} wrap align="center" justify="center">{b.actions.map((a: any, i: number) => <Button key={i} variant="glass" href={a.app ? appUrl(a.app) : a.href || ('#/' + a.view)}>{a.label}</Button>)}</Stack>
       ) : null}
     </Stack>
-    {b.image ? <Frame ratio={b.ratio ?? '21/9'} rounded="lg" width="100%"><Image src={assetUrl(b.image)} alt="" fit="cover" fill /></Frame> : null}
+    {/* The picture in a panel of the theme's sweep, as a site card holds it. */}
+    {b.image ? <div className={s.siteCardPanel} style={{ width: '100%' }}><img src={assetUrl(b.image)} alt="" /></div> : null}
   </Stack>
 ) : (
   <Stack direction="row" gap={6} padding={8} rounded="lg" background="gradient-sidebar" wrap align="center">
