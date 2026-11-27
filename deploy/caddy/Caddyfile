@@ -49,6 +49,8 @@
 
 phiegg.com {
 	redir / /phiegg/ 302
+	# Work sync's admin page at its short address (phiegg.com/work), for the team.
+	redir /work /phiegg/work 302
 	import cdn
 	import wrt
 	import app
