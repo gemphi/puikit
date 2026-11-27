@@ -3,7 +3,7 @@
  "start": "home",
  "bare": true,
  "width": "80rem",
- "_": "phiogy.com, laid the way Discord lays its site: a top bar and a footer round every page (`top`, `foot`), the home (a split hero with figures standing round the app, site cards that take turns, a band of running words, the call to come in, a lineup), and the pages its links lead to: download, support (Phiogy's own help file), docs, news, about and the policies. The Windows download is `off` until it opens again. Pictures: fresh captures of the web Phiogy (media store phiogy/shot/) and the mannequins of Phiegg's home page (phiegg:home/dress/).",
+ "_": "phiogy.com, laid the way Discord lays its site: a top bar and a footer round every page (`top`, `foot`), the home (a split hero with figures standing round the app, site cards that take turns, a band of running words, the call to come in, a lineup), and the pages its links lead to: support (Phiogy's own help file), docs, news, about and the policies. Pictures: fresh captures of the web Phiogy (media store phiogy/shot/) and the mannequins of Phiegg's home page (phiegg:home/dress/).",
  "nav": [
   {
    "id": "home",
@@ -26,10 +26,6 @@
       "phiegg:home/dress/dress-03-pose-02-orange-peel.webp"
      ],
      "actions": [
-      {
-       "label": "Download for Windows - soon",
-       "off": true
-      },
       {
        "label": "Open Phiogy in your browser",
        "app": "phiogy"
@@ -82,10 +78,6 @@
      "heading": "That is the end of the page. Come hang out.",
      "actions": [
       {
-       "label": "Download for Windows - soon",
-       "off": true
-      },
-      {
        "label": "Open Phiogy in your browser",
        "app": "phiogy"
       }
@@ -124,45 +116,6 @@
       {
        "title": "",
        "image": "phiegg:home/dress/dress-03-pose-02-camo.webp"
-      }
-     ]
-    }
-   ]
-  },
-  "download": {
-   "title": "",
-   "blocks": [
-    {
-     "kind": "hero",
-     "variant": "wide",
-     "heading": "Get Phiogy",
-     "subtitle": "The Windows app opens for download again soon. Until then, everything is in your browser.",
-     "actions": [
-      {
-       "label": "Download for Windows - soon",
-       "off": true
-      },
-      {
-       "label": "Open Phiogy in your browser",
-       "app": "phiogy"
-      }
-     ],
-     "image": "cdn:phiogy/shot/room.webp"
-    },
-    {
-     "kind": "faq",
-     "items": [
-      {
-       "q": "What does the Windows app need?",
-       "a": "Windows 10 or 11 and a graphics card with DirectX 11."
-      },
-      {
-       "q": "Is anything installed?",
-       "a": "No. Phiogy is a folder you keep where you like, with phiogy.exe and its asset folder beside it."
-      },
-      {
-       "q": "Is there a Mac app?",
-       "a": "Not yet. Open Phiogy in your browser: your hosts, rooms and calls are the same there."
       }
      ]
     }
@@ -310,10 +263,6 @@
    "kind": "bar",
    "items": [
     {
-     "label": "Download",
-     "view": "download"
-    },
-    {
      "label": "Discover",
      "app": "phiogy"
     },
@@ -352,10 +301,6 @@
     {
      "title": "Product",
      "items": [
-      {
-       "label": "Download",
-       "view": "download"
-      },
       {
        "label": "Open in your browser",
        "app": "phiogy"
@@ -409,10 +354,6 @@
       {
        "label": "Developers",
        "view": "docs/server"
-      },
-      {
-       "label": "Work sync",
-       "view": "docs/join"
       }
      ]
     },
