@@ -1,5 +1,5 @@
 import React from 'react';
-import { Accordion, AccordionItem, Carousel, TabList } from '@pui/components';
+import { Accordion, AccordionItem, Carousel, TabRail } from '@pui/components';
 import { ArrowLeft, ChevronLeft, ChevronRight, GalleryHorizontal, GalleryVertical, Gavel, Heart, Maximize2, MessageCircle, Minimize2, Share2, ShoppingBag } from 'lucide-react';
 import { assetUrl, currentAppKey, type Block } from '../data';
 import { toggleBag, useBag } from '../bag';
@@ -115,6 +115,9 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
       </div>
       <div className={s.sheetBody}>
         <div className={s.sheetStage}>
+          {/* The strip of its group above the picture, the picture taking the rest of the column. */}
+          {upright ? <div ref={stripRef} className={s.strip} role="list">{thumbs}</div>
+            : <div ref={stripRef} className={s.strip}><Carousel slidesPerView={STRIP_SLIDES} gap={1} labels={{ prev: words.view.prev, next: words.view.next }}>{thumbs}</Carousel></div>}
           <div className={s.stagePic}>
             {(() => { const src = gallery.length ? assetUrl(gallery[shot]) : pic(it); const slide = dir > 0 ? s.slideNext : dir < 0 ? s.slidePrev : '';
               return src ? <img key={src} className={slide} src={src} alt={it.title} /> : <span className={s.stageNone}>{it.title}</span>; })()}
@@ -123,10 +126,10 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
             {/* The actions stand over the picture's right edge, a column of icons, as a short-video app lays them. */}
             <ItemActions it={it} />
           </div>
-          {upright ? <div ref={stripRef} className={s.strip} role="list">{thumbs}</div>
-            : <div ref={stripRef} className={s.strip}><Carousel slidesPerView={STRIP_SLIDES} gap={1} labels={{ prev: words.view.prev, next: words.view.next }}>{thumbs}</Carousel></div>}
         </div>
         <aside className={s.sheetSide}>
+          {/* The kit's TabRail, as Phiegg's record sheet holds its sections: the tabs on top, each opening its section. */}
+          <TabRail aria-label={it.title} activeId={tab} onChange={(id) => pickTab(String(id))} items={tabs}>
           <Accordion>
             {sections.map((sec) => (
               <div key={sec.id} id={'sheet-' + sec.id}>
@@ -154,8 +157,7 @@ export const ItemSheet: React.FC<{ b: Block; list: GridItem[]; at: number; go: (
               </AccordionItem>
             </div>
           </Accordion>
-          {/* The tabs at the column's foot, always in reach: each opens its section and brings it into view. */}
-          <div className={s.sheetTabs}><TabList size="sm" variant="pills" aria-label={it.title} activeId={tab} onChange={(id) => pickTab(String(id))} items={tabs} /></div>
+          </TabRail>
         </aside>
       </div>
     </div>

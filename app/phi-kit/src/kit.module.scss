@@ -145,7 +145,7 @@
 .sheetIcon, .stageArrow { display: grid; place-items: center; width: 40px; height: 40px; border: 0; border-radius: var(--phi-radius-full); cursor: pointer; color: inherit;
   background: color-mix(in srgb, var(--phi-color-text-primary) 10%, transparent); }
 .sheetIcon:hover, .stageArrow:hover { background: color-mix(in srgb, var(--phi-color-primary) 30%, transparent); }
-.sheetBody { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(12px, 2cqi, 28px); padding: 0 clamp(12px, 2cqi, 28px) 16px; }
+.sheetBody { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(320px, 1fr); gap: clamp(12px, 2cqi, 28px); padding: 0 clamp(12px, 2cqi, 28px) 16px; }
 .sheetStage { min-height: 0; display: flex; flex-direction: column; gap: 12px; }
 .stagePic { position: relative; flex: 1; min-height: 0; display: grid; place-items: center; border-radius: var(--phi-radius-lg); overflow: hidden;
   background: radial-gradient(80% 70% at 50% 40%, color-mix(in srgb, var(--phi-color-primary) 26%, transparent), transparent 70%);
@@ -162,14 +162,12 @@
 .sheetActIcon { display: grid; place-items: center; width: 46px; height: 46px; border-radius: var(--phi-radius-full);
   background: color-mix(in srgb, var(--phi-color-background) 55%, transparent); backdrop-filter: blur(10px); }
 .sheetActOn .sheetActIcon { background: color-mix(in srgb, var(--phi-color-primary) 70%, transparent); }
-.sheetTabs { position: sticky; bottom: 0; padding: 8px 0 2px; display: flex; justify-content: center;
-  background: linear-gradient(180deg, transparent, var(--phi-color-background) 40%); }
 .thumb { flex: none; width: 100%; aspect-ratio: 1; padding: 0; border: 0; border-radius: var(--phi-radius-md); overflow: hidden; cursor: pointer; opacity: 0.62;
   background: color-mix(in srgb, var(--phi-color-text-primary) 8%, transparent); color: inherit; font-size: 11px;
   img { width: 100%; height: 100%; object-fit: cover; } }
 .thumb:hover { opacity: 1; }
 .thumbOn { opacity: 1; outline: 2px solid var(--phi-color-primary); outline-offset: 2px; }
-.sheetUpright .sheetStage { flex-direction: row-reverse; }
+.sheetUpright .sheetStage { flex-direction: row; }
 .sheetUpright .strip { flex-direction: column; flex: none; overflow-y: auto; width: 76px; scrollbar-width: none; }
 .sheetUpright .strip::-webkit-scrollbar { display: none; }
 .sheetUpright .thumb { width: 64px; }
@@ -186,13 +184,10 @@
 .relatedCard { display: flex; flex-direction: column; gap: 4px; padding: 0; border: 0; background: none; color: inherit; font: inherit; font-size: 11px; cursor: pointer; text-align: center;
   img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--phi-radius-md); } }
 /* Full screen: the picture takes the window, the side folds away, and the strip rides over the picture's lower half. */
-.sheetFull .sheetBody { grid-template-columns: 1fr; padding: 0; }
-.sheetFull .sheetSide { display: none; }
-.sheetFull .sheetStage { position: relative; }
-.sheetFull .stagePic { border-radius: 0; }
-.sheetFull .strip { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); max-width: min(90%, 760px); padding: 8px; border-radius: var(--phi-radius-lg);
-  background: color-mix(in srgb, var(--phi-color-background) 55%, transparent); backdrop-filter: blur(12px); }
-.sheetFull.sheetUpright .strip { left: 16px; top: 50%; bottom: auto; transform: translateY(-50%); max-height: 80%; }
+/* Full screen: the picture takes the window's height, and the sections go down under it, scrolled to. */
+.sheetFull .sheetBody { grid-template-columns: 1fr; overflow-y: auto; }
+.sheetFull .sheetStage { height: calc(100vh - 72px); flex: none; }
+.sheetFull .sheetSide { overflow: visible; }
 @container (max-width: 820px) { .sheetBody { grid-template-columns: 1fr; overflow-y: auto; } .sheetStage { min-height: 60vh; } }
 /* The picture slides in from the side it was stepped toward, as a drawer slides. */
 .slideNext { animation: slideNext 0.28s cubic-bezier(0.22, 1, 0.36, 1); }

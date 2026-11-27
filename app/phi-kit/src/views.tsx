@@ -43,11 +43,18 @@ export const YouView: React.FC<{ profile?: ProfileSpec }> = ({ profile }) => {
 /** A card of the app's own data with a `kind` and `id` (a token of a collection), found by its record address
  *  (#/<kind>/<id>), with the grid it is one of. */
 export const ownItem = (views: AppData['views'], kind: string, id: string) => {
+  // A card shown in several grids (a teaser on Home and the whole collection) opens with the largest of them, so its
+  // facts, its standing and its strip come from the whole set.
+  let found: { view: string; b: AppData['views'][string]['blocks'][number]; list: GridItem[]; at: number } | null = null;
   for (const [view, v] of Object.entries(views)) {
     for (const b of v.blocks) {
       const list = (b.items ?? []) as GridItem[];
       const at = list.findIndex((it) => it.kind === kind && it.id === id);
-      if (at >= 0) return { view, b, list, at };
+      if (at >= 0 && (!found || list.length > found.list.length)) found = { view, b, list, at };
+    }
+  }
+  return found;
+};
     }
   }
   return null;

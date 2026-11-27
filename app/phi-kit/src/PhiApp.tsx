@@ -56,7 +56,8 @@ export const PhiApp: React.FC<{ appKey: string }> = ({ appKey }) => {
   const record = route.seg1 && !views[route.seg0] && !shops.owns(route.seg0) ? { kind: route.seg0, id: route.seg1 } : null;
   // A record the app's own data holds (a token of one of its grids) is a page of its own; any other is Phiora's.
   const held = record ? ownItem(views, record.kind, record.id) : null;
-  const tab = record ? (held?.view ?? (lastTab.current || start)) : (route.seg0 || start);
+  // A card opens over the page it was opened from (or, reached by its address, the grid that holds it).
+  const tab = record ? (lastTab.current || held?.view || start) : (route.seg0 || start);
   if (!record) lastTab.current = tab;
   const cur = tab;
   const go = (x: string) => { const h = x.replace(/^#/, ''); window.location.hash = h.startsWith('/') ? h : '/' + h; setOpen(null); };
@@ -95,7 +96,7 @@ export const PhiApp: React.FC<{ appKey: string }> = ({ appKey }) => {
   // A page that is the whole app (`"bare": true`), a show or a lookbook: no rail and no bar, the page alone.
   // `width` keeps a bare page in one centred column (a product page), its blocks spaced like the shell's.
   // A card of the app's own data opens over the page it is on, never as a page of its own.
-  const sheet = held ? <ItemSheet b={held.b} list={held.list} at={held.at} go={go} close={() => go('#/' + held.view)} /> : null;
+  const sheet = held ? <ItemSheet b={held.b} list={held.list} at={held.at} go={go} close={() => go('#/' + tab)} /> : null;
   if (data?.bare) return (
     <Box as="main" style={{ minHeight: '100vh', padding: 'clamp(1rem, 3vw, 2.5rem)' }}>
       {data.width ? <Stack direction="column" gap={8} style={{ maxWidth: data.width, margin: '0 auto' }}>{page}</Stack> : page}
