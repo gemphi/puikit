@@ -1,5 +1,6 @@
 {
   "_": "Where the finished assets are on Google Drive. The Drive connector can read these but cannot move thousands of images, so download these folders as zips into Downloads (or sync them with Drive for desktop), then run import_collections.py --images.",
+  "sharedDrive": "0ACSM0Tuc8YvkUk9PVA",
   "collections": {
     "epac": {
       "name": "EPAC",
