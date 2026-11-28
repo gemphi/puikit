@@ -2119,7 +2119,7 @@
       {
        "head": "Where they differ",
        "list": [
-        "Not a difference: a room's messages, likes, pins and polls are the same in both. What you write in one shows in the other within a few seconds.",
+        "Not a difference: a room's messages, likes and pins are the same in both. What you write in one shows in the other within a few seconds. Polls show only on the web.",
         "Only Phiogy for Windows has menus on a call's tiles and buttons: Focus, Stop watching, turning one person down, and choosing your microphone, sound out, camera and screen.",
         "Phiogy for Windows keeps a Calls tab beside each room you called in.",
         "On the web, opening another room leaves a call. In Phiogy for Windows the call goes on.",
