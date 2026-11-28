@@ -1,0 +1,7 @@
+{
+  "_": "The platform coins: their records in data/economy.json and the metal each is struck in (hue, saturation, brightness). Their glyphs are scripts/coins/glyph/<symbol>.svg. Club coins are not here: their metal comes from their tone and name (metal.mjs).",
+  "OGY": { "id": "coin_ogy", "name": "Phiogy Coin", "tone": "accent", "price": 0.05, "change24h": 0, "holders": 64000, "platform": true, "role": "earned, not bought: quests and what you do in Phiogy pay it; themes, grounds and effects take it", "metal": [168, 68, 0] },
+  "SUM": { "id": "coin_sum", "name": "$UM", "tone": "accent", "price": 6, "change24h": 0.8, "holders": 12400, "platform": true, "role": "the dollar-letter token: a pool's balance, settled in $UM", "metal": [43, 88, 2] },
+  "EGG": { "id": "coin_egg", "name": "$EGG", "tone": "neutral", "price": 0.25, "change24h": 0.2, "holders": 31800, "platform": true, "role": "the pound-E token: what an egg earns and a SUM is made of", "metal": [18, 58, 6] },
+  "PHI": { "platform": true }
+}

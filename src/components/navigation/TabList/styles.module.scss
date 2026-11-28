@@ -139,3 +139,41 @@
   backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur);
   border-radius: var(--phi-radius-md); padding: var(--phi-space-1, 0.25rem);
 }
+
+/* Rail: the tabs as a bar standing at the side of what they head (a record's page, a full-screen view), which stands
+   it at the left, clear of the content. One column on the page's glass; each tab an icon over its word, the one that
+   is on wearing the stronger light. Taller than its room, it scrolls inside itself. */
+.rail {
+  flex-direction: column; align-items: stretch; gap: var(--phi-space-1, 0.25rem); width: fit-content; max-width: none;
+  max-height: var(--pui-rail-max, 100%); overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain;
+  padding: var(--phi-space-1, 0.25rem); border-radius: var(--phi-radius-lg); mask-image: none;
+  backdrop-filter: var(--phi-glass-blur); -webkit-backdrop-filter: var(--phi-glass-blur);
+  .tab {
+    /* A tab with no icon is its word alone, as tall as any control, so the bar never packs its words together. */
+    flex-direction: column; justify-content: center; gap: 0.125rem; min-width: 3.5rem; min-height: var(--phi-control-height-md, 2.75rem);
+    padding: var(--phi-space-1, 0.25rem) var(--phi-space-2, 0.5rem);
+    border-bottom: 0; border-radius: var(--phi-radius-md); background-image: none;
+    font-size: var(--phi-font-size-xs, 0.75rem); font-weight: var(--phi-font-weight-semibold); opacity: 1;
+    &:hover:not([aria-disabled='true']):not([aria-selected='true']) { background-image: var(--phi-control-ground); }
+  }
+  .icon { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: var(--phi-radius-full); overflow: hidden; background-image: var(--phi-surface); }
+  .active { background-image: var(--phi-control-ground-strong); }
+  .active .icon { background-image: var(--phi-surface-strong, var(--phi-surface)); }
+}
+/* Every screen: a tab that has an icon is its icon alone (its word is still read out, and comes up beside the rail
+   on hover or focus, .railTip), so the bar takes little of the width and shows no numbers. */
+.rail .tab:has(.icon) { min-width: 0; padding: var(--phi-space-1, 0.25rem); }
+.rail .tab:has(.icon) .word { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.railTip {
+  position: fixed; z-index: 1000; transform: translateY(-50%); pointer-events: none; white-space: nowrap;
+  padding: var(--phi-space-1, 0.25rem) var(--phi-space-2, 0.5rem); border-radius: var(--phi-radius-md);
+  background-image: var(--phi-surface-strong, var(--phi-surface)); background-color: var(--phi-color-background);
+  color: var(--phi-color-text); font-size: var(--phi-font-size-xs, 0.75rem); font-weight: var(--phi-font-weight-semibold);
+}
+
+/* TabRail: the rail at the left of what its tabs show, a gap between; the rail is held in view while the content
+   scrolls by, and scrolls inside itself when it is taller than the screen. */
+.beside { display: flex; align-items: flex-start; gap: var(--phi-gap); min-width: 0; }
+.held { position: sticky; top: var(--phi-space-2, 0.5rem); z-index: 2; flex: none; display: flex; --pui-rail-max: calc(100dvh - 8rem); }
+.shown { flex: 1 1 auto; min-width: 0; }
+@media (max-width: 640px) { .beside { gap: var(--phi-space-2, 0.5rem); } }

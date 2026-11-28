@@ -30,10 +30,11 @@ const hue = (hex: string) => { const n = parseInt(hex.slice(1), 16); const r = (
 const near = (a: string, b: string) => { const x = hue(a), y = hue(b); const dh = Math.min(Math.abs(x.h - y.h), 360 - Math.abs(x.h - y.h)) / 180;
   return dh * dh * (x.s > 0.15 && y.s > 0.15 ? 3 : 0.4) + (x.s - y.s) ** 2 + (x.l - y.l) ** 2 * 1.4; };
 
-/** The parent layer: the linked world's scene, else the club's first world, else one from the pool. */
+/** The parent layer: the linked world's own picture, else the club's first world's; a world with none is drawn
+ *  (undefined here), never given another world's picture. Only a card tied to no world takes one from the pool. */
 export function sceneFor(seed: string, worldId?: ID | null, clubId?: ID | null): string | undefined {
   const w = itemOf('world', worldId) ?? itemOf('world', itemOf('club', clubId)?.worldIds?.[0]);
-  return worldImage(w) ?? pick(WORLD_IMAGES, 'w' + seed);
+  return w ? worldImage(w) : pick(WORLD_IMAGES, 'w' + seed);
 }
 
 /**

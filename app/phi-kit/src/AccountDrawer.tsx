@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Accordion, AccordionItem, Avatar, Button, Drawer, PalettePicker, Pressable, Stack, TabList, Text } from '@pui/components';
-import { usePuiTheme } from '@pui/providers';
+import { Accordion, AccordionItem, Avatar, Button, Drawer, Pressable, Stack, Text } from '@pui/components';
 import { LogIn, LogOut, User, UserCog } from 'lucide-react';
 import { AccountDialog } from './AccountDialog';
 import { accountsEnabled, signOut, useMe } from './auth';
 import { appUrl } from './data';
 import { FONTS, useFont } from './fonts';
-import { LOOKS, useLook } from './looks';
+import { SettingsView } from './settings';
 import { LABEL, USD, useWallet, type Coin } from './wallet';
 import { ProfileView } from './ProfileView';
 import words from './words.json';
@@ -18,16 +17,15 @@ const usd = (n: number) => n.toLocaleString('en-US', { style: 'currency', curren
 
 /**
  * The account drawer: the one thing the header's right-hand button opens, the same in every app, because the account
- * belongs to Phione, not to the app. Its parts — wallet, look, mode, font, account — are glass accordions, the same
- * expandable pane as the sidebar's groups, so one fold pattern runs through the whole app. An app may say where its
- * own profile page is (`onProfile`) and pick a look its own way (`onLook`); everything else is shared.
+ * belongs to Phione, not to the app. Its parts — wallet, appearance (the one Settings every app shares: theme, mode,
+ * surface, corners, spacing, layout), font, account — are glass accordions, the same expandable pane as the sidebar's
+ * groups, so one fold pattern runs through the whole app. An app may say where its own profile page is (`onProfile`).
  */
-export const AccountDrawer: React.FC<{ onProfile?: () => void; onLook?: (id: string) => void }> = ({ onProfile, onLook }) => {
-  const me = useMe(); const w = useWallet(); const [look, setLook] = useLook(); const [font, setFont] = useFont();
-  const { theme, setTheme } = usePuiTheme();
+export const AccountDrawer: React.FC<{ onProfile?: () => void }> = ({ onProfile }) => {
+  const me = useMe(); const w = useWallet(); const [font, setFont] = useFont();
   const [open, setOpen] = useState(false); const [account, setAccount] = useState(false);
-  // Which sections are folded open; the look is open first, the rest a tap away. Several may be open at once.
-  const [shown, setShown] = useState<Record<string, boolean>>({ look: true, colour: true });
+  // Which sections are folded open; the appearance is open first, the rest a tap away. Several may be open at once.
+  const [shown, setShown] = useState<Record<string, boolean>>({ appearance: true });
   const fold = (k: string) => setShown((s) => ({ ...s, [k]: !s[k] }));
   const name = me && !me.guest ? me.name : W.guest;
   const initials = name.split(/\s+/).map((x) => x[0]).join('').slice(0, 2).toUpperCase();
@@ -52,16 +50,9 @@ export const AccountDrawer: React.FC<{ onProfile?: () => void; onLook?: (id: str
               </Stack>
             </AccordionItem>
 
-            <AccordionItem title={W.look} open={!!shown.look} onToggle={() => fold('look')}>
-              <TabList size="sm" variant="pills" aria-label={W.look} activeId={look.id} onChange={(id) => (onLook ?? setLook)(id)} items={LOOKS.map((l) => ({ id: l.id, label: l.label }))} />
-            </AccordionItem>
-
-            <AccordionItem title={W.colour} open={!!shown.colour} onToggle={() => fold('colour')}>
-              <PalettePicker noneLabel={W.own} />
-            </AccordionItem>
-
-            <AccordionItem title={W.mode} open={!!shown.mode} onToggle={() => fold('mode')}>
-              <TabList size="sm" variant="pills" aria-label={W.mode} activeId={theme} onChange={(v) => setTheme(v as typeof theme)} items={[{ id: 'light', label: W.light }, { id: 'dark', label: W.dark }, { id: 'system', label: W.system }]} />
+            {/* Settings every app shares (prefs.json `shared`), once: theme, mode, surface, corners, spacing, layout. */}
+            <AccordionItem title={W.appearance} open={!!shown.appearance} onToggle={() => fold('appearance')}>
+              <SettingsView shared />
             </AccordionItem>
 
             <AccordionItem title={W.font} open={!!shown.font} onToggle={() => fold('font')}>

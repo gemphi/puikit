@@ -20,12 +20,13 @@ export const useShell = () => useContext(Shell);
  * What a page wears behind the whole shell: its picture across the screen, under the header, the sidebar and the
  * content. Blurred by default, so an entity page takes its picture's colour and every surface above reads as glass;
  * `sharp` keeps the picture as it is (a welcome scene); `soft` blurs it only a little, so a profile's opening screen
- * still shows its banner. Outside a shell it draws nothing.
+ * still shows its banner; `opening` shows the picture as it is when the page opens and brings that soft blur over it
+ * as the page scrolls (the page says how far: --pui-hero-p on the stage, 0 to 1). Outside a shell it draws nothing.
  */
-export const Backdrop: React.FC<{ children: React.ReactNode; sharp?: boolean; soft?: boolean }> = ({ children, sharp, soft }) => {
+export const Backdrop: React.FC<{ children: React.ReactNode; sharp?: boolean; soft?: boolean; opening?: boolean }> = ({ children, sharp, soft, opening }) => {
   const { stage } = useShell();
   const [host, setHost] = useState<HTMLElement | null>(null);
   useEffect(() => { setHost(stage ?? null); }, [stage]);
   if (!host) return null;
-  return createPortal(<Box className={cn(styles.backdrop, sharp ? styles.sharp : soft ? styles.soft : styles.blurred)}><Box className={styles.picture}>{children}</Box></Box>, host);
+  return createPortal(<Box className={cn(styles.backdrop, opening ? styles.opening : sharp ? styles.sharp : soft ? styles.soft : styles.blurred)}><Box className={styles.picture}>{children}</Box>{opening && <Box className={cn(styles.picture, styles.veil)}>{children}</Box>}</Box>, host);
 };

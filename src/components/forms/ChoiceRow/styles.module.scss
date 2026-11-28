@@ -17,3 +17,5 @@
   &:focus-visible { outline: 2px solid var(--phi-color-text-primary); outline-offset: -2px; }
 }
 .on { color: var(--phi-color-text-primary); background: var(--phi-control-ground-strong), var(--phi-control-ground); font-weight: var(--phi-font-weight-semibold, 600); }
+/* An option chosen by its picture: the picture over its name, centred, the card a share of the theme's corner. */
+.pictured { flex-direction: column; align-items: stretch; justify-content: flex-start; gap: var(--phi-space-2, 0.5rem); padding: var(--phi-space-2, 0.5rem); min-height: 0; text-align: center; border-radius: var(--phi-radius-shape, var(--phi-radius-md)); }

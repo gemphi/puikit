@@ -14,7 +14,7 @@ export type TextIntent =
   /** The colour of what holds it. */
   | 'inherit';
 
-export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
+export type TextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'inherit';
 export type TextWeight = 'normal' | 'medium' | 'semibold' | 'bold' | 'inherit';
 export type TextAlign = 'left' | 'center' | 'right';
 

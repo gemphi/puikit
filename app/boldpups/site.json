@@ -1,0 +1,334 @@
+{
+  "_": "The Bold Pups site (boldpups.xyz) as data. scripts/world-site.mjs fills the placeholders ($tokens, $teaser, $stats, $cities, {club.x}, {world.x}, {n}) from the trait sheet, Phiegg's club and world records and the media store, and writes public/data/boldpups.json. Edit here, then run: node scripts/world-site.mjs boldpups",
+  "key": "boldpups",
+  "club": "c_bp",
+  "sheet": "media/incoming/bpwc",
+  "token": {
+    "number": "Number",
+    "title": "BOLDPUPS #{n}",
+    "sub": "Club",
+    "facet": "Club",
+    "lead": "picture"
+  },
+  "field": {
+    "g": "Glasses",
+    "Hair Colour": "Hair colour",
+    "Char": "Character",
+    "Hair": "Hair style"
+  },
+  "drop": [
+    "Number"
+  ],
+  "correct": {
+    "Mohca": "Mocha"
+  },
+  "picture": {
+    "by": "Club",
+    "BPSC": "collections/bold-pups/images/{n5}.webp",
+    "HHOC": "collections/hhoc/images/{n5}.webp"
+  },
+  "teaser": 8,
+  "stat": {
+    "total": "Pups",
+    "traits": "Traits",
+    "pictured": "Pictures online"
+  },
+  "all": "All",
+  "app": {
+    "app": "boldpups",
+    "start": "home",
+    "nav": [
+      {
+        "id": "home",
+        "label": "Home",
+        "icon": "home"
+      },
+      {
+        "id": "collection",
+        "label": "Collection",
+        "icon": "grid"
+      },
+      {
+        "id": "clubs",
+        "label": "Clubs",
+        "icon": "map"
+      },
+      {
+        "id": "about",
+        "label": "About",
+        "icon": "file"
+      }
+    ],
+    "views": {
+      "home": {
+        "title": "",
+        "blocks": [
+          {
+            "kind": "hero",
+            "heading": "{club.tagline}",
+            "body": "{club.description}",
+            "image": "$hero",
+            "ratio": "1/1",
+            "actions": [
+              {
+                "label": "See all {n}",
+                "view": "collection"
+              },
+              {
+                "label": "About the den",
+                "view": "about"
+              }
+            ]
+          },
+          {
+            "kind": "stats",
+            "items": "$stats"
+          },
+          {
+            "kind": "grid",
+            "title": "Meet the den",
+            "items": "$teaser",
+            "toolbar": false,
+            "layout": "grid",
+            "ratio": "1/1",
+            "mosaic": false,
+            "cardFields": 0,
+            "cols": 4,
+            "minItemWidth": "12rem",
+            "more": {
+              "label": "See all {n}",
+              "view": "collection"
+            }
+          },
+          {
+            "kind": "grid",
+            "title": "Four of the sixteen clubs",
+            "items": "$featured",
+            "toolbar": false,
+            "layout": "grid",
+            "ratio": "16/10",
+            "mosaic": false,
+            "cardFields": 0,
+            "cols": 4,
+            "minItemWidth": "14rem",
+            "more": {
+              "label": "See all 16 clubs",
+              "view": "clubs"
+            }
+          }
+        ]
+      },
+      "collection": {
+        "title": "The collection",
+        "sub": "Every fox pup, all {n} of them, in both clubs: BOLDPUPS Space Club and HHOC. Filter by any trait, or search a number.",
+        "blocks": [
+          {
+            "kind": "grid",
+            "source": "$tokens",
+            "filter": "$traits",
+            "sort": [
+              "title"
+            ],
+            "layout": "grid",
+            "layoutSet": [
+              "grid",
+              "list"
+            ],
+            "ratio": "1/1",
+            "mosaic": false,
+            "pageSize": 48,
+            "cardFields": 0,
+            "cols": 6,
+            "minItemWidth": "11rem"
+          }
+        ]
+      },
+      "clubs": {
+        "title": "The 16 clubs",
+        "sub": "The den spreads across the sixteen Bold Cities, one club to a city: each its own land, from the Forest to Bozo City, with its districts for shows, games and gathering. Open one to walk its views.",
+        "blocks": [
+          {
+            "kind": "grid",
+            "items": "$worlds",
+            "filter": [
+              "Land"
+            ],
+            "sort": [
+              "title"
+            ],
+            "layout": "grid",
+            "layoutSet": [
+              "grid",
+              "list"
+            ],
+            "ratio": "16/10",
+            "mosaic": false,
+            "cardFields": 0,
+            "cols": 4,
+            "minItemWidth": "15rem"
+          }
+        ]
+      },
+      "about": {
+        "title": "About BOLDPUPS",
+        "sub": "{club.tagline}",
+        "blocks": [
+          {
+            "kind": "hero",
+            "variant": "card",
+            "heading": "The den",
+            "body": "{club.description}",
+            "image": "$hero"
+          },
+          {
+            "kind": "stats",
+            "items": "$stats"
+          },
+          {
+            "kind": "grid",
+            "title": "What a pup gets",
+            "toolbar": false,
+            "layout": "grid",
+            "mosaic": false,
+            "cols": 3,
+            "minItemWidth": "16rem",
+            "items": [
+              {
+                "title": "A place in the den",
+                "body": "Each pup is a membership of BOLDPUPS: its host in Phiogy, its rooms to write and talk in, and its calls with camera and screen."
+              },
+              {
+                "title": "Sixteen cities to live in",
+                "body": "The Bold Cities are sixteen lands, from the Forest and the Desert to Once City and Bozo City; every club of the den keeps one."
+              },
+              {
+                "title": "Shows on the Orbit runway",
+                "body": "Pups walk the runway on Pup Orbit: shows, poses and renders of the den in its looks."
+              },
+              {
+                "title": "Scavenger hunts and pool parties",
+                "body": "Forage on scavenger hunts across the rings and gather for the Friday howl in Howl Arena."
+              },
+              {
+                "title": "A share of the den fund",
+                "body": "The pool behind the den: every fox pup holds a share of the den fund."
+              },
+              {
+                "title": "Traits that count",
+                "body": "Ten traits a pup, from fur to expression; open any pup to see how many of the 10,000 share each one."
+              }
+            ]
+          },
+          {
+            "kind": "grid",
+            "title": "The team",
+            "toolbar": false,
+            "layout": "grid",
+            "ratio": "1/1",
+            "mosaic": false,
+            "cols": 4,
+            "minItemWidth": "13rem",
+            "items": [
+              {
+                "kind": "token",
+                "id": "boldpups-1075",
+                "title": "Rusty Vale",
+                "sub": "Creative Director",
+                "body": "Sets the look of the den: every fur, coat and colourway goes past Rusty.",
+                "image": "cdn:token/boldpups-1075.webp"
+              },
+              {
+                "kind": "token",
+                "id": "boldpups-1625",
+                "title": "Juniper Ash",
+                "sub": "Art Director",
+                "body": "Keeps ten thousand portraits one family, from line weight to light.",
+                "image": "cdn:token/boldpups-1625.webp"
+              },
+              {
+                "kind": "token",
+                "id": "boldpups-2878",
+                "title": "Kit Marlowe",
+                "sub": "Lead Illustrator",
+                "body": "Drew the first pup and still inks the hardest hair.",
+                "image": "cdn:token/boldpups-2878.webp"
+              },
+              {
+                "kind": "token",
+                "id": "boldpups-5619",
+                "title": "Ember Quill",
+                "sub": "Lore Writer",
+                "body": "Writes the stories of the sixteen cities and who lives where.",
+                "image": "cdn:token/boldpups-5619.webp"
+              },
+              {
+                "kind": "token",
+                "id": "boldpups-7272",
+                "title": "Sable Finch",
+                "sub": "Community Lead",
+                "body": "Runs the rooms, the calls and the Friday howl.",
+                "image": "cdn:token/boldpups-7272.webp"
+              },
+              {
+                "kind": "token",
+                "id": "boldpups-7821",
+                "title": "Tod Hollis",
+                "sub": "Head of Clubs",
+                "body": "Looks after BPSC, HHOC and every club that joins the den.",
+                "image": "cdn:token/boldpups-7821.webp"
+              },
+              {
+                "kind": "token",
+                "id": "boldpups-9170",
+                "title": "Vixen Ray",
+                "sub": "Producer",
+                "body": "Turns ideas into drops, shows and runway nights on the Orbit.",
+                "image": "cdn:token/boldpups-9170.webp"
+              },
+              {
+                "kind": "token",
+                "id": "boldpups-9719",
+                "title": "Fennec Rowe",
+                "sub": "Den Keeper",
+                "body": "Keeps the fund, the books and the lights of the den on.",
+                "image": "cdn:token/boldpups-9719.webp"
+              }
+            ]
+          },
+          {
+            "kind": "prose",
+            "lead": "{world.description}",
+            "sections": "$cities"
+          },
+          {
+            "kind": "grid",
+            "title": "The clubs",
+            "items": "$featured",
+            "toolbar": false,
+            "layout": "grid",
+            "ratio": "16/10",
+            "mosaic": false,
+            "cardFields": 0,
+            "cols": 4,
+            "minItemWidth": "14rem",
+            "more": {
+              "label": "See all 16 clubs",
+              "view": "clubs"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "featured": [
+    "w_once_city",
+    "w_bozo_city",
+    "w_wand_city",
+    "w_acro_city"
+  ],
+  "world": {
+    "land": "Land",
+    "number": "City",
+    "district": "District"
+  }
+}

@@ -73,3 +73,6 @@
 @media (prefers-reduced-motion: reduce) {
   .track { scroll-behavior: auto; }
 }
+
+/* A fixed slide width (`slideWidth`): every slide keeps it at every screen width, a strip of thumbnails. */
+.fixed .slide { flex: 0 0 var(--carousel-slide-width); }

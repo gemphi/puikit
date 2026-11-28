@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '../../primitives/Button';
 import { Pressable } from '../../primitives/Pressable';
@@ -8,6 +8,7 @@ import { Text } from '../../primitives/Text';
 import { Title } from '../../primitives/Title';
 import { ShownTitle, useTitleShown } from '../ShownTitle';
 import { columnStore, dragWidth, useColumnEntries } from '../Columns/store';
+import { useShell } from '../../navigation/AppShell/context';
 import styles from './styles.module.scss';
 
 /** One column of an entity page. A column with a `width` sits at the side; the one without is the middle and grows. */
@@ -31,7 +32,8 @@ export type EntityLayoutProps = {
   backdrop?: React.ReactNode;
   /** A profile's opening (a club, a world, a shop): the first screen is the backdrop alone with the name at its foot
    *  and the page's tabs centred under it; scrolling brings the record's own square card to the centre and the rest
-   *  after it, the tabs held at the top. */
+   *  after it, the tabs held at the top. How far the first screen has scrolled away is --pui-hero-p (0 to 1) on the
+   *  page and on the shell's stage: the card grows by it to the width of the columns, the backdrop blurs by it. */
   hero?: EntityHero;
 };
 
@@ -86,11 +88,27 @@ export const EntityLayout: React.FC<EntityLayoutProps> = ({ title, sub, action, 
     : alone ? 'minmax(0, 1fr)' : anyFolded ? `minmax(${c.minWidth ?? '16rem'}, ${middle * 2}fr)` : `var(--pui-entity-middle, minmax(${c.minWidth ?? '16rem'}, ${middle}fr))`).join(' ');
   // The middle column (no width) comes first on a narrow page (styles).
   const side = (c: EntityColumn) => (!c.width ? styles.middle : '');
+  // A profile's opening: how far its first screen has scrolled away, 0 to 1, said to the page and the shell's stage.
+  const pageRef = useRef<HTMLElement>(null); const headRef = useRef<HTMLElement>(null); const { stage } = useShell(); const opens = !!hero;
+  useEffect(() => {
+    const page = pageRef.current; if (!opens || !page) return;
+    let scroller: HTMLElement | null = page.parentElement;
+    while (scroller && !/auto|scroll/.test(getComputedStyle(scroller).overflowY)) scroller = scroller.parentElement;
+    if (!scroller) return;
+    let frame = 0; const from = scroller;
+    const say = () => { frame = 0; const far = headRef.current?.offsetHeight || 1; const p = Math.min(1, Math.max(0, from.scrollTop / far)).toFixed(3);
+      page.style.setProperty('--pui-hero-p', p); stage?.style.setProperty('--pui-hero-p', p); };
+    const onScroll = () => { if (!frame) frame = requestAnimationFrame(say); };
+    // A profile opens on its first screen, wherever the page before it was scrolled to.
+    from.scrollTo({ top: 0, behavior: 'instant' });
+    say(); from.addEventListener('scroll', onScroll, { passive: true }); window.addEventListener('resize', onScroll);
+    return () => { cancelAnimationFrame(frame); from.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); stage?.style.removeProperty('--pui-hero-p'); };
+  }, [opens, stage]);
   return (
-    <Box className={[styles.page, hero ? styles.withHero : ''].join(' ')}>
+    <Box ref={pageRef} className={[styles.page, hero ? styles.withHero : ''].join(' ')}>
       {backdrop}
       {hero ? (<>
-        <Box as="header" className={styles.hero}>
+        <Box as="header" ref={headRef} className={styles.hero}>
           <Title level={1} className={styles.title}>{title}</Title>
           {sub && <Text intent="secondary" className={styles.sub}>{sub}</Text>}
         </Box>

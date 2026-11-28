@@ -1,7 +1,7 @@
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, render } from '@testing-library/react';
-import { TabList } from './index';
+import { TabList, TabPlace, TabRail } from './index';
 
 describe('TabList', () => {
   const items = [{ id: 'a', label: 'Maison Opal' }, { id: 'b', label: 'Satin Swans', count: 4 }, { id: 'c', label: 'Off', disabled: true }];
@@ -48,5 +48,34 @@ describe('TabList', () => {
   it('gives the Tab key the first tab when none is on', () => {
     const { getAllByRole } = render(<TabList items={items} />);
     expect(getAllByRole('tab').map((x) => x.tabIndex)).toEqual([0, -1, -1]);
+  });
+
+  it('stands as a rail when asked, and when what holds it says so, with the same tabs', () => {
+    const onChange = vi.fn();
+    const { getByRole, getAllByRole, unmount } = render(<TabList items={items} activeId="a" place="rail" onChange={onChange} aria-label="Clubs" />);
+    const rail = getByRole('tablist', { name: 'Clubs' });
+    expect(rail.dataset.place).toBe('rail');
+    expect(rail.getAttribute('aria-orientation')).toBe('vertical');
+    fireEvent.click(getAllByRole('tab')[1]);
+    expect(onChange).toHaveBeenCalledWith('b');
+    unmount();
+    // A page writes its tabs as a row; the layout that holds them (a record's page) makes them the rail.
+    const held = render(<TabPlace.Provider value="rail"><TabList items={items} activeId="a" variant="pills" place="center" /></TabPlace.Provider>);
+    expect(held.getByRole('tablist').dataset.place).toBe('rail');
+    expect(held.getAllByRole('tab')[0].getAttribute('aria-selected')).toBe('true');
+  });
+
+  it('TabRail stands the rail beside what the tab shows, and leaves it out for one tab', () => {
+    const onChange = vi.fn();
+    const { getByRole, getAllByRole, queryByRole, rerender } = render(<TabRail items={items} activeId="b" onChange={onChange} aria-label="Clubs"><p>swans</p></TabRail>);
+    expect(getByRole('tablist', { name: 'Clubs' }).dataset.place).toBe('rail');
+    expect(getByRole('tabpanel', { name: 'Satin Swans' }).textContent).toBe('swans');
+    // The rail comes before what it shows: it stands at the left.
+    expect(getByRole('tablist').compareDocumentPosition(getByRole('tabpanel')) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    fireEvent.click(getAllByRole('tab')[0]);
+    expect(onChange).toHaveBeenCalledWith('a');
+    rerender(<TabRail items={items.slice(0, 1)} activeId="a"><p>opal</p></TabRail>);
+    expect(queryByRole('tablist')).toBeNull();
+    expect(getByRole('tabpanel').textContent).toBe('opal');
   });
 });

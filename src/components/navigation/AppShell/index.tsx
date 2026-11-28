@@ -9,6 +9,7 @@ import { Pressable } from '../../primitives/Pressable';
 import { Drawer } from '../../overlays/Drawer';
 import { Menu as MenuIcon } from 'lucide-react';
 import { ShellProvider } from './context';
+import { useLayoutRoot, usePuiTheme } from '../../../providers';
 import { ShellBrand } from './Brand';
 import { APPS, Rail } from './Rail';
 import { AppsList, GroupMenu, PageMenu, PhoneRail, PhoneTabs } from './Panel';
@@ -44,7 +45,9 @@ export type AppShellProps = {
   right?: React.ReactNode;
   /** A second sidebar at the right edge, the same rail and menus as the left one: what the page that is open offers
    *  (switch to another, its centre, its market). It starts as icons only; an icon opens its menu beside it. */
-  side?: { label: string; groups: AppShellGroup[] };
+  side?: { label: string; groups: AppShellGroup[];
+    /** The group whose menu is open when a page opens (a world's centre); none, and the sidebar opens as icons. */
+    on?: string };
   /** A pulled record under a menu entry was picked. */
   onPreview?: (leafId: string, preview: AppShellPreview) => void;
   /** Where you are, when the app knows more than the menu does (an entity's own trail); the menu's trail otherwise. */
@@ -76,6 +79,9 @@ export const AppShell: React.FC<AppShellProps> = ({
   collapseKey,
   brand, groups, view, onView, rail, onRail, apps, appsLabel = 'Apps', appsIcon, foot = [], tabs, phoneRail, tools, right, side, onPreview, crumbs, headerRight, labels, children, className = '',
 }) => {
+  // The person's layout choices (feed, tabs, the window's ground) on the root, kept per person: every app with a
+  // shell hears them.
+  useLayoutRoot(usePuiTheme().userId);
   const L: AppShellLabels = { openMenu: 'Open the menu', closeMenu: 'Close the menu', menu: 'Menu', moreApps: 'More apps', fold: (l, o) => (o ? 'Fold ' : 'Open ') + l, ...labels };
   const footGroups = foot.filter((f): f is AppShellGroup => Array.isArray(f.items) && f.items.length > 0);
   const footLeaves = foot.filter((f) => !f.items?.length);
@@ -99,7 +105,7 @@ export const AppShell: React.FC<AppShellProps> = ({
   // its page keeps that menu open (the person just asked for it).
   const lastKey = React.useRef(collapseKey); const keep = React.useRef(false);
   React.useEffect(() => {
-    if (collapseKey && collapseKey !== lastKey.current) { if (!keep.current) setOpen(false); setSideRail(''); setDrawer(false); }
+    if (collapseKey && collapseKey !== lastKey.current) { if (!keep.current) setOpen(false); setSideRail(side?.on ?? ''); setDrawer(false); }
     keep.current = false; lastKey.current = collapseKey;
   }, [collapseKey]); // eslint-disable-line react-hooks/exhaustive-deps
   const go = (id: string) => { onView(id); setDrawer(false); };
@@ -111,7 +117,7 @@ export const AppShell: React.FC<AppShellProps> = ({
     setRail(g.id);
   };
   // The right sidebar keeps its own open menu: closed (icons only) until one is picked, and again on the same icon.
-  const [sideRail, setSideRail] = React.useState(''); const sideGroup = side?.groups.find((g) => g.id === sideRail);
+  const [sideRail, setSideRail] = React.useState(side?.on ?? ''); const sideGroup = side?.groups.find((g) => g.id === sideRail);
   const pickSide = (g: AppShellGroup) => { const leaf = leafOf(g); if (leaf) { go(leaf.id); setSideRail(''); return; } if (g.to) go(g.to); setSideRail(g.id === sideRail ? '' : g.id); };
   // The phone's bar: an icon opens its own group's menu in the drawer, and closes it again; a page group goes there.
   const phoneGroups = (phoneRail ?? []).map((id) => allGroups.find((g) => g.id === id)).filter((g): g is AppShellGroup => !!g);

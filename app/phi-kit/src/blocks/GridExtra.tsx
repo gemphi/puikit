@@ -43,12 +43,14 @@ export const cardPicture = (it: GridItem, list: boolean, wide = '16/9'): React.R
   return cardHead(it);
 };
 
-/** A record's facts, one a row: what it is called, and what the record holds there. */
-export const FieldList: React.FC<{ list: [string, string][] }> = ({ list }) => (
+/** A record's facts, one a row: what it is called, and what the record holds there; `note` adds a line under the
+ *  value (how many share it). */
+export const FieldList: React.FC<{ list: [string, string][]; note?: (f: [string, string]) => string }> = ({ list, note }) => (
   <Stack direction="column" gap={1}>
     {list.map(([k, v]) => (
       <Stack key={k} direction="row" justify="between" gap={3} paddingY={1} className={s.fieldRow}>
-        <Text as="span" size="sm" intent="muted">{k}</Text><Text as="span" size="sm" weight="medium" align="right">{v}</Text>
+        <Text as="span" size="sm" intent="muted">{k}</Text>
+        <Stack direction="column" align="end"><Text as="span" size="sm" weight="medium" align="right">{v}</Text>{note ? <Text as="span" size="xs" intent="muted">{note([k, v])}</Text> : null}</Stack>
       </Stack>))}
   </Stack>
 );
@@ -96,4 +98,21 @@ export const inFacet = (items: GridItem[], list: string[] | undefined, value: st
 /** The link from a short grid to the full page (`more: { label, view }`). */
 export const More: React.FC<{ more: { label: string; view?: string; href?: string } }> = ({ more }) => (
   <Stack direction="row" justify="end"><Button variant="glass" href={more.href || '#/' + more.view}>{more.label}</Button></Stack>
+);
+
+/** A grid's `variant: "lineup"`: its faces stand side by side on the theme's sweep (kit.module.scss .lineup), each
+ *  a round picture (its sprite or file) with its name and line, no card round it. */
+export const Lineup: React.FC<{ items: GridItem[]; onOpen: (it: GridItem) => void; figure?: boolean }> = ({ items, onOpen, figure }) => (
+  <div className={figure ? s.lineup + ' ' + s.lineupFigures : s.lineup}>
+    {items.map((it, i) => (
+      <button key={i} type="button" className={s.lineupFace} onClick={() => onOpen(it)} style={{ background: 'none', border: 0, color: 'inherit', font: 'inherit', cursor: 'pointer' }}>
+        <span className={s.lineupPic}>
+          {it.sprite ? <SpriteImage sprite={{ src: assetUrl(it.sprite.sheet), cols: it.sprite.cols, index: it.sprite.index }} alt={it.title} />
+            : it.image ? <Image src={assetUrl(it.image)} alt={it.title} fit="cover" fill loading="lazy" /> : null}
+        </span>
+        <span className={s.lineupName}>{it.title}</span>
+        {it.sub ? <span className={s.lineupSub}>{it.sub}</span> : null}
+      </button>
+    ))}
+  </div>
 );

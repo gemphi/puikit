@@ -188,6 +188,11 @@
    "list": "sales"
   },
   {
+   "kind": "sale",
+   "file": "trail",
+   "list": "sales"
+  },
+  {
    "kind": "shot",
    "file": "feed",
    "list": "shots"

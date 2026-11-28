@@ -39,13 +39,17 @@ export const RoomHead: React.FC<{
   onCall: (video: boolean) => void;
   /** The id of the column beside the stream, when it can be shown and hidden. */
   side?: string;
-}> = ({ file, label, store, pinned, nameOf, finding, onFind, onCall, side }) => {
+  /** Whether the viewer may call here (`role.tsx`). */
+  canCall?: boolean;
+  /** More of the room's own: its host's settings, its mute. */
+  tools?: React.ReactNode;
+}> = ({ file, label, store, pinned, nameOf, finding, onFind, onCall, side, canCall = true, tools }) => {
   const open = useColumnEntries().find((c) => c.id === side)?.open !== false;
   const caller = useCaller(store);
   return (
     <>
-      {!caller && <Button variant="icon" aria-label={W.call} title={W.call} onClick={() => onCall(false)}><Phone size={15} /></Button>}
-      {!caller && <Button variant="icon" aria-label={W.videocall} title={W.videocall} onClick={() => onCall(true)}><Video size={15} /></Button>}
+      {!caller && canCall && <Button variant="icon" aria-label={W.call} title={W.call} onClick={() => onCall(false)}><Phone size={15} /></Button>}
+      {!caller && canCall && <Button variant="icon" aria-label={W.videocall} title={W.videocall} onClick={() => onCall(true)}><Video size={15} /></Button>}
       <Button variant="icon" aria-label={say(W.find, 'room', label)} title={say(W.find, 'room', label)} aria-pressed={finding} onClick={onFind}><Search size={15} /></Button>
       <Popover portal placement="bottom-end" trigger={<Button variant="icon" aria-label={W.pins} title={W.pins}><Pin size={15} /></Button>}>
         <Stack direction="column" gap={1} minWidth="14rem" maxWidth="22rem">
@@ -55,6 +59,7 @@ export const RoomHead: React.FC<{
             : <Text as="span" size="sm" intent="muted">{W.unpinned}</Text>}
         </Stack>
       </Popover>
+      {tools}
       {side && <Button variant="icon" aria-label={W.beside} title={W.beside} aria-pressed={open} onClick={() => columnStore.toggle(side)}><Users size={15} /></Button>}
     </>
   );

@@ -3,7 +3,7 @@
  "rule": [
   { "from": "^logos/(.+)\\.svg$", "to": "worlds/$1/logo.svg" },
   { "from": "^world/", "to": "worlds/" },
-  { "from": "^(items|rides|jewels|portraits|welcome|logo)/", "to": "assets/$&" },
+  { "from": "^(items|rides|jewels|portraits|welcome|logo|coins)/", "to": "assets/$&" },
   { "from": "^worlds/", "to": "assets/scenes/" }
  ]
 }

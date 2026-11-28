@@ -14,13 +14,15 @@ import { EntityAvatar } from './EntityAvatar';
 import { StatGrid } from '@phi-kit/blocks/Stats';
 import { ListView } from './Views';
 import type { City, Club, World } from '../../types/phiegg';
+import { OpensPost } from './OpensPost';
 
 /**
  * What a city holds, as sections: About, Zones, Posts, PFTs, Hosts, Clubs, Rides, Gems and Links. The city's page, its
  * full-screen sheet and the sheet of a post made in it all show these same sections, so a city reads the same wherever
- * it is opened; a section with nothing in it is hidden.
+ * it is opened; a section with nothing in it is hidden. `facts: false` leaves the figures out of About (the world's
+ * page shows them as its Status).
  */
-export const useCityParts = (w: World): SectionDef[] => {
+export const useCityParts = (w: World, opts: { facts?: boolean } = {}): SectionDef[] => {
   const s = useStore(phieggStore); const placesReady = !!usePlaces();
   const club = itemOf('club', w.clubId);
   const nest = s.nests.find((n) => n.kind === 'world' && n.worldId === w.id);
@@ -43,14 +45,14 @@ export const useCityParts = (w: World): SectionDef[] => {
       { id: 'about', title: t('wdAbout'), expandable: true, content: (
         <Stack direction="column" gap={3}>
           <Text size="md">{w.description}</Text>
-          <StatGrid size="sm" items={facts.map(([label, value]) => ({ label, value }))} />
+          {opts.facts !== false && <StatGrid size="sm" items={facts.map(([label, value]) => ({ label, value }))} />}
           {w.tags?.length ? <Stack direction="row" gap={1} wrap>{w.tags.map((x) => <Tag key={x} minimal round size="sm">{x}</Tag>)}</Stack> : null}
         </Stack>) },
       { id: 'zones', title: t('wdCities'), hint: String(w.cities.length), expandable: true, actions: <Button variant="glass" iconLeft={Plus} onClick={() => s.openNest(hostId, nest?.id ?? null, 'city')}>{t('nestCity')}</Button>, content: (
         // A world has a handful of zones: one readable row each, whatever the app's list mode (a slider of three is no list).
         <Stack direction="column" gap={2}>{w.cities.map((c) => (
           <ItemCard key={c.id} variant="flat" stackBelow="never" onClick={() => s.go('city', { cityId: c.id, worldId: w.id })}
-            media={mark ? <Avatar size="lg" src={mark} fit="contain" alt={c.name} colors={entityPalette(w.id)} /> : <EntityAvatar id={c.id} name={c.name} size="lg" />}
+            media={mark ? <OpensPost id={w.id} label={w.name}><Avatar size="lg" src={mark} fit="contain" alt={c.name} colors={entityPalette(w.id)} /></OpensPost> : <EntityAvatar id={c.id} name={c.name} size="lg" />}
             title={<Title level={4} size="md">{c.name}</Title>}
             meta={placesReady ? t('wdZoneLine', { vibe: c.vibe, n: fmt(c.population), places: placesIn(c) }) : t('wdCityCard', { vibe: c.vibe, n: fmt(c.population) })}
             actions={<Button variant="glass" onClick={() => s.go('city', { cityId: c.id, worldId: w.id })}>{t('visit')}</Button>} />))}

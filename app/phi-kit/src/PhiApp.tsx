@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Spinner, Text } from '@pui/components';
+import { Box, Spinner, Stack, Text } from '@pui/components';
 import { appMeta, loadApp, type AppData } from './data';
 import { resolvePulls } from './pulls';
 import { loadPeople, type People } from './people';
@@ -8,10 +8,18 @@ import { Shops, useShops } from './shops';
 import { Bag } from './bag';
 import { FindPeople, directWith, useDirect } from './direct';
 import { Friends, useFriendEntry } from './friends';
+import { Inbox, inboxOf, unreadOf, useNotice } from './notice';
+import { Saved } from './keep';
+import { InvitePage } from './invite';
+import { useRoles } from './role';
+import { useStatus } from './status';
 import words from './words.json';
+import talk from './talk.json';
 import { PhiShell } from './PhiShell';
 import { Block, type GridItem } from './blocks';
-import { Head, SettingsView, ItemPanel } from './views';
+import { Head, ItemPanel, ownItem } from './views';
+import { ItemSheet } from './blocks/ItemSheet';
+import { SettingsView } from './settings';
 import { Profile, useMine, buildAccountNav } from './Profile';
 import { AppLanding } from './AppLanding';
 import { RecordSheet } from './RecordSheet';
@@ -45,14 +53,25 @@ export const PhiApp: React.FC<{ appKey: string }> = ({ appKey }) => {
   const shops = useShops(data);
   // The direct list: friends first, what the app's data wrote, then the way to find anyone and the conversations the
   // viewer began.
+  // The viewer as their status says, wherever the shell draws them.
+  const shown = useStatus(people);
   const friends = useFriendEntry(appKey, people);
+  // The inbox (mentions and replies, counting the unread) and saved messages follow friends, in an app with rooms.
+  const notice = useNotice(); const roles = useRoles(appKey, people);
+  const rooms = people as Parameters<typeof inboxOf>[1] | null;
+  const inbox = rooms?.room ? [{ id: '_inbox', label: talk.notice.inbox, icon: 'bell', count: unreadOf(inboxOf(appKey, rooms, notice), notice) || undefined }, { id: '_saved', label: talk.keep.list, icon: 'bookmark' }] : [];
   const direct = useDirect(appKey, people, data?.nav.find((n) => n.id === data.direct)?.items ?? []);
-  const own = (data?.nav ?? []).map((n) => (data?.direct && n.id === data.direct ? { ...n, items: [friends, ...(n.items ?? []), ...direct] } : n));
+  const own = (data?.nav ?? []).map((n) => (data?.direct && n.id === data.direct ? { ...n, items: [friends, ...inbox, ...(n.items ?? []), ...direct] } : n));
   const nav = data ? [...(data.start ? own : [WELCOME, ...own]), ...hosts.nav, ...(hosts.on ? [{ id: '_hosts', label: words.host.add, icon: 'plus' }] : []), ...shops.nav, ...(shops.on ? [{ id: '_shops', label: words.shop.add, icon: 'compass' }] : [])] : [];
   const views = data?.views ?? {};
   // A record route (#/round/<id>): a second segment on a name that is not one of this app's pages.
-  const record = route.seg1 && !views[route.seg0] && !shops.owns(route.seg0) ? { kind: route.seg0, id: route.seg1 } : null;
-  const tab = record ? (lastTab.current || start) : (route.seg0 || start);
+  // An invite link (#/<invite>/<code>, the page the role file names) opens the host it is to.
+  const invite = roles.invite && route.seg0 === roles.invite ? route.seg1 : null;
+  const record = route.seg1 && !invite && !views[route.seg0] && !shops.owns(route.seg0) ? { kind: route.seg0, id: route.seg1 } : null;
+  // A record the app's own data holds (a token of one of its grids) is a page of its own; any other is Phiora's.
+  const held = record ? ownItem(views, record.kind, record.id) : null;
+  // A card opens over the page it was opened from (or, reached by its address, the grid that holds it).
+  const tab = record ? (lastTab.current || held?.view || start) : (route.seg0 || start);
   if (!record) lastTab.current = tab;
   const cur = tab;
   const go = (x: string) => { const h = x.replace(/^#/, ''); window.location.hash = h.startsWith('/') ? h : '/' + h; setOpen(null); };
@@ -70,7 +89,8 @@ export const PhiApp: React.FC<{ appKey: string }> = ({ appKey }) => {
   const onAccount = ['_you', '_wallet', '_account'].includes(cur) || cur.startsWith('_you_');
 
   let page: React.ReactNode;
-  if (cur === '_welcome') page = data ? <AppLanding data={data} go={go} /> : <Spinner />;
+  if (invite) page = <InvitePage app={appKey} code={invite} hosts={hosts} nav={nav} go={go} />;
+  else if (cur === '_welcome') page = data ? <AppLanding data={data} go={go} /> : <Spinner />;
   else if (onAccount) page = <Profile spec={data?.profile} section={section} mine={mine} onOpen={openItem} />;
   else if (cur === '_settings') page = <SettingsView />;
   else if (cur === '_hosts') page = <Hosts hosts={hosts} go={go} />;
@@ -78,6 +98,8 @@ export const PhiApp: React.FC<{ appKey: string }> = ({ appKey }) => {
   else if (cur === '_bag') page = <Bag app={appKey} />;
   else if (cur === '_people') page = <FindPeople app={appKey} people={people} go={go} />;
   else if (cur === '_friends') page = <Friends app={appKey} people={people} go={go} />;
+  else if (cur === '_inbox') page = <Inbox app={appKey} file={rooms} go={go} />;
+  else if (cur === '_saved') page = <Saved go={go} />;
   else if (err) page = <Text intent="secondary" maxWidth="60ch" marginTop={2}>{err}</Text>;
   else if (!data) page = <Spinner />;
   else if (!v) page = <Text intent="secondary" maxWidth="60ch" marginTop={2}>Nothing here yet.</Text>;
@@ -89,12 +111,25 @@ export const PhiApp: React.FC<{ appKey: string }> = ({ appKey }) => {
   );
 
   // A page that is the whole app (`"bare": true`), a show or a lookbook: no rail and no bar, the page alone.
-  if (data?.bare) return <Box as="main" style={{ minHeight: '100vh', padding: 'clamp(1rem, 3vw, 2.5rem)' }}>{page}</Box>;
+  // `width` keeps a bare page in one centred column (a product page), its blocks spaced like the shell's.
+  // A card of the app's own data opens over the page it is on, never as a page of its own.
+  const sheet = held ? <ItemSheet b={held.b} list={held.list} at={held.at} go={go} close={() => go('#/' + tab)} /> : null;
+  // Its `top` and `foot` stand round every page of it; the column is a container, so its parts lay themselves out by
+  // the width they have (one column on a phone).
+  if (data?.bare) {
+    const framed = <>{(data.top ?? []).map((b, i) => <Block key={'top' + i} b={b} onOpen={openItem} />)}{page}{(data.foot ?? []).map((b, i) => <Block key={'foot' + i} b={b} onOpen={openItem} />)}</>;
+    return (
+      <Box as="main" style={{ minHeight: '100vh', padding: 'clamp(1rem, 3vw, 2.5rem)' }}>
+        {data.width ? <Stack direction="column" gap={8} style={{ maxWidth: data.width, margin: '0 auto', containerType: 'inline-size' }}>{framed}</Stack> : framed}
+        {sheet}
+      </Box>);
+  }
 
   return (
-    <PhiShell app={app} nav={nav} side={data?.side} view={cur} onView={go} onRecord={openItem} account={account} people={people} right={open ? <ItemPanel it={open} onClose={() => setOpen(null)} /> : null}>
+    <PhiShell app={app} nav={nav} side={data?.side} view={cur} onView={go} onRecord={openItem} account={account} people={shown} right={open ? <ItemPanel it={open} onClose={() => setOpen(null)} /> : null}>
       {page}
-      {record ? <RecordSheet kind={record.kind} id={record.id} onClose={() => go('#/' + cur)} go={go} formFor={formFor} /> : null}
+      {sheet}
+      {record && !held ? <RecordSheet kind={record.kind} id={record.id} onClose={() => go('#/' + cur)} go={go} formFor={formFor} /> : null}
     </PhiShell>
   );
 };

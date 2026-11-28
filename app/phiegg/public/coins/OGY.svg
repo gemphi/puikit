@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="OGY"><defs>
+<linearGradient id="rim" x1=".12" y1=".05" x2=".88" y2=".95"><stop offset="0" stop-color="#baf2e7"/><stop offset=".5" stop-color="#5ce0c6"/><stop offset="1" stop-color="#177865"/></linearGradient>
+<linearGradient id="bevel" x1=".88" y1=".95" x2=".12" y2=".05"><stop offset="0" stop-color="#baf2e7"/><stop offset=".55" stop-color="#5ce0c6"/><stop offset="1" stop-color="#177865"/></linearGradient>
+<radialGradient id="face" cx=".36" cy=".3" r=".95"><stop offset="0" stop-color="#90ead8"/><stop offset=".55" stop-color="#43dbbd"/><stop offset="1" stop-color="#1d9a81"/></radialGradient>
+<linearGradient id="gf" gradientUnits="userSpaceOnUse" x1="0" y1="64" x2="0" y2="-64"><stop offset="0" stop-color="#ccf5ed"/><stop offset=".55" stop-color="#6de3cc"/><stop offset="1" stop-color="#18816c"/></linearGradient>
+<linearGradient id="glare" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".45" stop-color="#fff" stop-opacity=".08"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<filter id="soft" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="7"/></filter><filter id="fine"><feGaussianBlur stdDeviation="1.2"/></filter>
+<clipPath id="disc"><circle cx="128" cy="122" r="101"/></clipPath></defs>
+<ellipse cx="128" cy="238" rx="84" ry="9" fill="#000" opacity=".3" filter="url(#soft)"/>
+<circle cx="128" cy="122" r="118" fill="url(#rim)"/>
+<circle cx="128" cy="122" r="116.5" fill="none" stroke="#177865" stroke-width="3" stroke-dasharray="1.6 2.4" opacity=".55"/>
+<circle cx="128" cy="122" r="111" fill="url(#bevel)"/>
+<circle cx="128" cy="122" r="104" fill="#177865" opacity=".5"/>
+<circle cx="128" cy="122" r="101" fill="url(#face)"/>
+<circle cx="128" cy="122" r="90" fill="none" stroke="#0f4d41" stroke-opacity=".38" stroke-width="2.2" transform="translate(1.2 1.4)"/><circle cx="128" cy="122" r="90" fill="none" stroke="#90ead8" stroke-width="2"/>
+<g transform="translate(128 122)"><g stroke-linecap="round" stroke-linejoin="round"><g transform="translate(8.5 10.5)"><circle cx="0" cy="-12" r="33" fill="none" stroke="#106a58" stroke-width="22"/>
+  <path d="M52 -62 L55 -53 L64 -50 L55 -47 L52 -38 L49 -47 L40 -50 L49 -53 Z" fill="#106a58" stroke="#106a58" stroke-width="2"/>
+  <text x="0" y="62" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="26" letter-spacing="3" fill="#106a58" stroke="#106a58" stroke-width="2">OGY</text></g><g transform="translate(6.8 8.4)"><circle cx="0" cy="-12" r="33" fill="none" stroke="#137c67" stroke-width="22"/>
+  <path d="M52 -62 L55 -53 L64 -50 L55 -47 L52 -38 L49 -47 L40 -50 L49 -53 Z" fill="#137c67" stroke="#137c67" stroke-width="2"/>
+  <text x="0" y="62" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="26" letter-spacing="3" fill="#137c67" stroke="#137c67" stroke-width="2">OGY</text></g><g transform="translate(5.1 6.300000000000001)"><circle cx="0" cy="-12" r="33" fill="none" stroke="#158e76" stroke-width="22"/>
+  <path d="M52 -62 L55 -53 L64 -50 L55 -47 L52 -38 L49 -47 L40 -50 L49 -53 Z" fill="#158e76" stroke="#158e76" stroke-width="2"/>
+  <text x="0" y="62" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="26" letter-spacing="3" fill="#158e76" stroke="#158e76" stroke-width="2">OGY</text></g><g transform="translate(3.4 4.2)"><circle cx="0" cy="-12" r="33" fill="none" stroke="#18a085" stroke-width="22"/>
+  <path d="M52 -62 L55 -53 L64 -50 L55 -47 L52 -38 L49 -47 L40 -50 L49 -53 Z" fill="#18a085" stroke="#18a085" stroke-width="2"/>
+  <text x="0" y="62" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="26" letter-spacing="3" fill="#18a085" stroke="#18a085" stroke-width="2">OGY</text></g><g transform="translate(1.7 2.1)"><circle cx="0" cy="-12" r="33" fill="none" stroke="#1bb193" stroke-width="22"/>
+  <path d="M52 -62 L55 -53 L64 -50 L55 -47 L52 -38 L49 -47 L40 -50 L49 -53 Z" fill="#1bb193" stroke="#1bb193" stroke-width="2"/>
+  <text x="0" y="62" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="26" letter-spacing="3" fill="#1bb193" stroke="#1bb193" stroke-width="2">OGY</text></g><circle cx="0" cy="-12" r="33" fill="none" stroke="url(#gf)" stroke-width="22"/>
+  <path d="M52 -62 L55 -53 L64 -50 L55 -47 L52 -38 L49 -47 L40 -50 L49 -53 Z" fill="url(#gf)" stroke="url(#gf)" stroke-width="2"/>
+  <text x="0" y="62" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="26" letter-spacing="3" fill="url(#gf)" stroke="url(#gf)" stroke-width="2">OGY</text></g></g>
+<g clip-path="url(#disc)"><path d="M0 0 L256 0 L0 256 Z" fill="url(#glare)"/></g>
+<path d="M44 70 A92 92 0 0 1 150 18" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="3.5" stroke-linecap="round" filter="url(#fine)"/>
+<path d="M214 176 A92 92 0 0 1 118 226" fill="none" stroke="#fff" stroke-opacity=".18" stroke-width="3" stroke-linecap="round" filter="url(#fine)"/>
+</svg>

@@ -1,0 +1,8 @@
+# Sites waiting for their DNS. Each block moves into Caddyfile (and the server) only once its name, and its www,
+# answer 13.63.125.132 and nothing else: Caddy asks for a certificate at once, and a name still parked at GoDaddy
+# would fail and be retried. This file is never loaded by Caddy.
+
+# A city's domain opens its world in Phiegg (the Bold City of that name), as bozo.city does.
+acro.city, www.acro.city {
+	redir https://phiegg.com/phiegg/world/w_acro_city 302
+}

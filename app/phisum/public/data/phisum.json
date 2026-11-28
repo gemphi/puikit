@@ -1,1775 +1,199 @@
 {
   "app": "phisum",
+  "start": "home",
   "nav": [
-    {
-      "id": "home",
-      "label": "Home",
-      "icon": "home"
-    },
-    {
-      "id": "feed",
-      "label": "Feed",
-      "icon": "layers"
-    },
-    {
-      "id": "raise",
-      "label": "Raise",
-      "icon": "chart",
-      "items": [
-        {
-          "id": "portfolio",
-          "label": "Portfolio",
-          "icon": "layers",
-          "pull": {
-            "n": 5,
-            "kind": "pool",
-            "label": "name",
-            "sub": "category",
-            "body": "desc",
-            "sort": "supply",
-            "join": [
-              "worldId"
-            ],
-            "image": "world.image",
-            "fields": [
-              "supply",
-              "floorUsd",
-              "royaltyPct",
-              "drop"
-            ],
-            "art": [
-              "phiegg:worlds/w_oasis_nine.png",
-              "phiegg:worlds/w_petal_park.png",
-              "phiegg:worlds/w_ivory_tower.png",
-              "phiegg:worlds/w_midnight_mall.png",
-              "phiegg:worlds/w_zephyr.png",
-              "phiegg:worlds/gen/w_gx_amber_atelier.webp",
-              "phiegg:worlds/w_sable.png",
-              "phiegg:worlds/w_swanlake.png",
-              "phiegg:worlds/gen/w_gx_dune_salon.webp",
-              "phiegg:worlds/gen/w_gx_garnet_guild.webp",
-              "phiegg:worlds/gen/w_gx_willow_parlour.webp",
-              "phiegg:worlds/gen/w_gx_quill_works.webp"
-            ],
-            "act": {
-              "label": "Stake this pool",
-              "view": "stake-pool",
-              "param": "poolId"
-            }
-          },
-          "image": "phiegg:worlds/gen/w_gx_xanthe_mill.webp"
-        },
-        {
-          "id": "pools",
-          "label": "Pools",
-          "icon": "cube",
-          "pull": {
-            "n": 5,
-            "kind": "pool",
-            "label": "name",
-            "sub": "category",
-            "body": "desc",
-            "sort": "supply",
-            "join": [
-              "worldId"
-            ],
-            "image": "world.image",
-            "fields": [
-              "supply",
-              "floorUsd",
-              "royaltyPct",
-              "drop"
-            ],
-            "art": [
-              "phiegg:worlds/w_oasis_nine.png",
-              "phiegg:worlds/w_petal_park.png",
-              "phiegg:worlds/w_ivory_tower.png",
-              "phiegg:worlds/w_midnight_mall.png",
-              "phiegg:worlds/w_zephyr.png",
-              "phiegg:worlds/gen/w_gx_amber_atelier.webp",
-              "phiegg:worlds/w_sable.png",
-              "phiegg:worlds/w_swanlake.png",
-              "phiegg:worlds/gen/w_gx_dune_salon.webp",
-              "phiegg:worlds/gen/w_gx_garnet_guild.webp",
-              "phiegg:worlds/gen/w_gx_willow_parlour.webp",
-              "phiegg:worlds/gen/w_gx_quill_works.webp"
-            ],
-            "act": {
-              "label": "Stake this pool",
-              "view": "stake-pool",
-              "param": "poolId"
-            }
-          },
-          "image": "phiegg:worlds/w_quartz_quarter.png"
-        },
-        {
-          "id": "rounds",
-          "label": "Rounds",
-          "icon": "chart",
-          "pull": {
-            "n": 5,
-            "kind": "round",
-            "label": "name",
-            "sub": "roundType",
-            "body": "pitch",
-            "sort": "target",
-            "join": [
-              "poolId"
-            ],
-            "fields": [
-              "target",
-              "coin",
-              "minTicket",
-              "closesAt",
-              "status"
-            ],
-            "art": [
-              "phiegg:worlds/w_couture_coast.png",
-              "phiegg:worlds/w_gossamer.png",
-              "phiegg:worlds/gen/w_verbum.webp",
-              "phiegg:worlds/w_bijou.png",
-              "phiegg:worlds/w_organza.png",
-              "phiegg:worlds/w_ribbon_rise.png",
-              "phiegg:worlds/w_lustre.png",
-              "phiegg:worlds/w_nebula.png",
-              "phiegg:worlds/gen/w_gx_fable_guild.webp",
-              "phiegg:worlds/gen/w_gx_ivory_house.webp",
-              "phiegg:worlds/w_obsidian_bay.png",
-              "phiegg:worlds/w_moonlace.png"
-            ]
-          },
-          "image": "phiegg:worlds/gen/w_gx_garnet_society.webp"
-        },
-        {
-          "id": "nests",
-          "label": "Nests",
-          "icon": "grid",
-          "pull": {
-            "n": 5,
-            "kind": "nest",
-            "label": "name",
-            "sub": "kind",
-            "body": "topic",
-            "fields": [
-              "kind",
-              "topic"
-            ],
-            "art": [
-              "phiegg:worlds/gen/w_gx_delphine_house.webp",
-              "phiegg:worlds/gen/w_gx_fable_row.webp",
-              "phiegg:worlds/gen/w_gx_azalea_row.webp",
-              "phiegg:worlds/gen/w_gx_calla_society.webp",
-              "phiegg:worlds/gen/w_gx_saffron_mill.webp",
-              "phiegg:worlds/gen/w_gx_xanthe_mill.webp",
-              "phiegg:worlds/gen/w_gx_juniper_maison.webp",
-              "phiegg:worlds/gen/w_gx_marigold_society.webp",
-              "phiegg:worlds/w_brocade.png",
-              "phiegg:worlds/w_crystalline.png",
-              "phiegg:worlds/gen/w_loon.webp",
-              "phiegg:worlds/gen/w_gx_thistle_salon.webp"
-            ]
-          },
-          "image": "phiegg:worlds/w_lustre.png"
-        }
-      ]
-    },
-    {
-      "id": "make",
-      "label": "Make",
-      "icon": "rocket",
-      "gen": true,
-      "items": [
-        {
-          "id": "create-pool",
-          "label": "Create a pool",
-          "icon": "cube",
-          "gen": true
-        },
-        {
-          "id": "open-round",
-          "label": "Open a round",
-          "icon": "chart",
-          "gen": true
-        },
-        {
-          "id": "open-nest",
-          "label": "Open a nest",
-          "icon": "grid",
-          "gen": true
-        },
-        {
-          "id": "add-zone",
-          "label": "Add a zone",
-          "icon": "map",
-          "gen": true
-        },
-        {
-          "id": "add-area",
-          "label": "Add an area",
-          "icon": "pin",
-          "gen": true
-        }
-      ]
-    },
-    {
-      "id": "back",
-      "label": "Back",
-      "icon": "coin",
-      "gen": true,
-      "items": [
-        {
-          "id": "back-round",
-          "label": "Back a round",
-          "icon": "coin",
-          "gen": true
-        },
-        {
-          "id": "stake-pool",
-          "label": "Stake a pool",
-          "icon": "layers",
-          "gen": true
-        }
-      ]
-    },
-    {
-      "id": "learn",
-      "label": "Learn",
-      "icon": "compass",
-      "items": [
-        {
-          "id": "news",
-          "label": "News",
-          "icon": "chat",
-          "image": "phiegg:worlds/gen/w_gx_linden_row.webp"
-        },
-        {
-          "id": "about",
-          "label": "About",
-          "icon": "compass",
-          "image": "phiegg:worlds/w_loom.png"
-        },
-        {
-          "id": "faq",
-          "label": "FAQ",
-          "icon": "vote",
-          "image": "phiegg:worlds/w_paisley.png"
-        },
-        {
-          "id": "docs",
-          "label": "Docs",
-          "icon": "layers",
-          "image": "phiegg:worlds/gen/w_gx_delphine_atelier.webp"
-        }
-      ]
-    }
+    { "id": "home", "label": "Home", "icon": "home" },
+    { "id": "fund", "label": "Fund", "icon": "layers", "items": [
+      { "id": "programme", "label": "Programme", "icon": "rocket", "image": "phiegg:worlds/w_prism_port.png" },
+      { "id": "support", "label": "What a team gets", "icon": "grid", "image": "phiegg:worlds/w_lumen_gardens.png" },
+      { "id": "timeline", "label": "Timeline", "icon": "chart", "image": "phiegg:worlds/w_nebula.png" },
+      { "id": "terms", "label": "Terms", "icon": "file" }
+    ] },
+    { "id": "egg", "label": "EGG", "icon": "coin", "items": [
+      { "id": "token", "label": "EGG on NEAR", "icon": "coin", "image": "phiegg:worlds/w_crystalline.png" }
+    ] },
+    { "id": "join", "label": "Join", "icon": "clipboard", "items": [
+      { "id": "apply", "label": "Apply", "icon": "clipboard" },
+      { "id": "faq", "label": "FAQ", "icon": "vote" }
+    ] }
   ],
   "views": {
     "home": {
       "title": "",
-      "sub": "",
       "blocks": [
         {
           "kind": "hero",
-          "heading": "Phisum",
-          "subtitle": "The treasury that rewards what you do.",
-          "body": "Phisum holds the PFT function registry and the $UM treasury: every function you run is logged and rewarded. Fund cohorts and apply for support here.",
+          "heading": "The virtual world fund",
+          "subtitle": "100T EGG set aside for teams building virtual worlds.",
+          "body": "Phisum puts EGG, the Phiegg world's token, into small teams that build worlds people can walk into: cities, venues, games and the agents that live in them. Teams build together in twelve-week cohorts on Phipad and show their worlds at Demo Day.",
+          "image": "phiegg:worlds/w_prism_port.png",
           "actions": [
-            {
-              "label": "Open Phisum",
-              "view": "fund"
-            },
-            {
-              "label": "Read docs",
-              "view": "docs"
-            }
-          ],
-          "image": "phiegg:worlds/gen/w_ponte.webp",
-          "genImage": true
+            { "label": "Apply on Phipad", "app": "phipad" },
+            { "label": "How it works", "view": "programme" }
+          ]
         },
         {
           "kind": "stats",
-          "title": "At a glance",
-          "gen": true,
           "items": [
-            {
-              "label": "Pools in the portfolio",
-              "value": "",
-              "sub": "Live from Phiora",
-              "count": {
-                "kind": "pool"
-              }
-            },
-            {
-              "label": "Rounds",
-              "value": "",
-              "sub": "Live from Phiora",
-              "count": {
-                "kind": "round"
-              }
-            },
-            {
-              "label": "Nests",
-              "value": "",
-              "sub": "Live from Phiora",
-              "count": {
-                "kind": "nest"
-              }
-            },
-            {
-              "label": "Quests",
-              "value": "",
-              "sub": "Live from Phiora",
-              "count": {
-                "kind": "quest"
-              }
-            }
+            { "label": "Programme supply", "value": "100T EGG", "sub": "Set aside for teams, cohort by cohort" },
+            { "label": "A cohort", "value": "12 weeks", "sub": "Remote, run on Phipad" },
+            { "label": "Cohorts a year", "value": "2", "sub": "Each ends at Demo Day" },
+            { "label": "The token", "value": "EGG", "sub": "Planned as a NEAR token (NEP-141)" }
           ]
         },
         {
           "kind": "grid",
-          "title": "Rounds raising",
-          "sub": "Open rounds, biggest target first. Back one from its card.",
-          "pull": {
-            "kind": "round",
-            "label": "name",
-            "sub": "roundType",
-            "body": "pitch",
-            "sort": "target",
-            "join": [
-              "poolId"
-            ],
-            "fields": [
-              "target",
-              "coin",
-              "minTicket",
-              "closesAt",
-              "status"
-            ],
-            "n": 8,
-            "act": {
-              "label": "Back this round",
-              "view": "back-round",
-              "param": "roundId"
-            },
-            "art": [
-              "phiegg:worlds/w_couture_coast.png",
-              "phiegg:worlds/w_gossamer.png",
-              "phiegg:worlds/gen/w_verbum.webp",
-              "phiegg:worlds/w_bijou.png",
-              "phiegg:worlds/w_organza.png",
-              "phiegg:worlds/w_ribbon_rise.png",
-              "phiegg:worlds/w_lustre.png",
-              "phiegg:worlds/w_nebula.png",
-              "phiegg:worlds/gen/w_gx_fable_guild.webp",
-              "phiegg:worlds/gen/w_gx_ivory_house.webp",
-              "phiegg:worlds/w_obsidian_bay.png",
-              "phiegg:worlds/w_moonlace.png"
-            ]
-          },
-          "gen": true
-        },
-        {
-          "kind": "grid",
-          "title": "Pools",
-          "sub": "The portfolio: every pool in Phiora, by supply.",
-          "pull": {
-            "kind": "pool",
-            "sort": "supply",
-            "label": "name",
-            "sub": "category",
-            "body": "desc",
-            "join": [
-              "worldId"
-            ],
-            "image": "world.image",
-            "fields": [
-              "supply",
-              "floorUsd",
-              "royaltyPct",
-              "drop"
-            ],
-            "open": "phiegg",
-            "n": 8,
-            "art": [
-              "phiegg:worlds/w_oasis_nine.png",
-              "phiegg:worlds/w_petal_park.png",
-              "phiegg:worlds/w_ivory_tower.png",
-              "phiegg:worlds/w_midnight_mall.png",
-              "phiegg:worlds/w_zephyr.png",
-              "phiegg:worlds/gen/w_gx_amber_atelier.webp",
-              "phiegg:worlds/w_sable.png",
-              "phiegg:worlds/w_swanlake.png",
-              "phiegg:worlds/gen/w_gx_dune_salon.webp",
-              "phiegg:worlds/gen/w_gx_garnet_guild.webp",
-              "phiegg:worlds/gen/w_gx_willow_parlour.webp",
-              "phiegg:worlds/gen/w_gx_quill_works.webp"
-            ],
-            "act": {
-              "label": "Stake this pool",
-              "view": "stake-pool",
-              "param": "poolId"
-            }
-          },
-          "gen": true
-        },
-        {
-          "kind": "grid",
-          "title": "Quests",
-          "sub": "Paying out now, biggest rewards first.",
-          "pull": {
-            "kind": "quest",
-            "sort": "reward",
-            "label": "title",
-            "sub": "kind",
-            "join": [
-              "worldId"
-            ],
-            "image": "world.image",
-            "fields": [
-              "reward",
-              "rewardCoin",
-              "entrants",
-              "endsAt"
-            ],
-            "open": "phiegg",
-            "n": 8,
-            "art": [
-              "phiegg:worlds/w_zephyr.png",
-              "phiegg:worlds/gen/w_gx_amber_atelier.webp",
-              "phiegg:worlds/gen/w_gx_calla_atelier.webp",
-              "phiegg:worlds/gen/w_gx_cordelia_row.webp",
-              "phiegg:worlds/gen/w_gx_dune_salon.webp",
-              "phiegg:worlds/gen/w_gx_garnet_guild.webp",
-              "phiegg:worlds/gen/w_gx_linden_row.webp",
-              "phiegg:worlds/gen/w_gx_quill_house.webp",
-              "phiegg:worlds/gen/w_gx_delphine_house.webp",
-              "phiegg:worlds/gen/w_gx_fable_row.webp",
-              "phiegg:worlds/w_mosaic.png",
-              "phiegg:worlds/w_loom.png"
-            ]
-          },
-          "gen": true
-        },
-        {
-          "kind": "grid",
-          "title": "Coming up",
-          "sub": "Events and drops with the most people going.",
-          "pull": {
-            "kind": "event",
-            "sort": "rsvps",
-            "label": "title",
-            "sub": "kind",
-            "join": [
-              "worldId"
-            ],
-            "image": "world.image",
-            "fields": [
-              "startsAt",
-              "rsvps"
-            ],
-            "open": "phiegg",
-            "n": 4,
-            "art": [
-              "phiegg:worlds/gen/w_gx_bramble_salon.webp",
-              "phiegg:worlds/gen/w_gx_cobalt_studio.webp",
-              "phiegg:worlds/w_veranda.png",
-              "phiegg:worlds/gen/w_deer.webp",
-              "phiegg:worlds/gen/w_gx_kestrel_row.webp",
-              "phiegg:worlds/gen/w_gx_petal_works.webp",
-              "phiegg:worlds/gen/w_gx_dune_mill.webp",
-              "phiegg:worlds/gen/w_gx_fennel_atelier.webp",
-              "phiegg:worlds/w_halo.png",
-              "phiegg:worlds/w_marquee.png",
-              "phiegg:worlds/gen/w_gx_garnet_guild.webp",
-              "phiegg:worlds/gen/w_gx_dune_salon.webp"
-            ]
-          },
-          "gen": true
-        },
-        {
-          "kind": "grid",
-          "title": "Explore",
-          "from": "menus",
-          "gen": true
-        },
-        {
-          "kind": "news",
-          "title": "Latest",
-          "from": "page",
-          "page": "news",
-          "limit": 4,
-          "gen": true
-        }
-      ]
-    },
-    "pools": {
-      "title": "Pools",
-      "sub": "Every collection in the portfolio, live from Phiora.",
-      "blocks": [
-        {
-          "kind": "grid",
-          "pull": {
-            "kind": "pool",
-            "label": "name",
-            "sub": "category",
-            "body": "desc",
-            "sort": "supply",
-            "join": [
-              "worldId"
-            ],
-            "image": "world.image",
-            "fields": [
-              "supply",
-              "floorUsd",
-              "royaltyPct",
-              "drop"
-            ],
-            "n": 24,
-            "act": {
-              "label": "Stake this pool",
-              "view": "stake-pool",
-              "param": "poolId"
-            },
-            "art": [
-              "phiegg:worlds/w_oasis_nine.png",
-              "phiegg:worlds/w_petal_park.png",
-              "phiegg:worlds/w_ivory_tower.png",
-              "phiegg:worlds/w_midnight_mall.png",
-              "phiegg:worlds/w_zephyr.png",
-              "phiegg:worlds/gen/w_gx_amber_atelier.webp",
-              "phiegg:worlds/w_sable.png",
-              "phiegg:worlds/w_swanlake.png",
-              "phiegg:worlds/gen/w_gx_dune_salon.webp",
-              "phiegg:worlds/gen/w_gx_garnet_guild.webp",
-              "phiegg:worlds/gen/w_gx_willow_parlour.webp",
-              "phiegg:worlds/gen/w_gx_quill_works.webp"
-            ]
-          }
-        }
-      ]
-    },
-    "rounds": {
-      "title": "Rounds",
-      "sub": "Funding rounds raising now. Back one from its card.",
-      "blocks": [
-        {
-          "kind": "grid",
-          "pull": {
-            "kind": "round",
-            "label": "name",
-            "sub": "roundType",
-            "body": "pitch",
-            "sort": "target",
-            "join": [
-              "poolId"
-            ],
-            "fields": [
-              "target",
-              "coin",
-              "minTicket",
-              "closesAt",
-              "status"
-            ],
-            "n": 24,
-            "act": {
-              "label": "Back this round",
-              "view": "back-round",
-              "param": "roundId"
-            },
-            "art": [
-              "phiegg:worlds/w_couture_coast.png",
-              "phiegg:worlds/w_gossamer.png",
-              "phiegg:worlds/gen/w_verbum.webp",
-              "phiegg:worlds/w_bijou.png",
-              "phiegg:worlds/w_organza.png",
-              "phiegg:worlds/w_ribbon_rise.png",
-              "phiegg:worlds/w_lustre.png",
-              "phiegg:worlds/w_nebula.png",
-              "phiegg:worlds/gen/w_gx_fable_guild.webp",
-              "phiegg:worlds/gen/w_gx_ivory_house.webp",
-              "phiegg:worlds/w_obsidian_bay.png",
-              "phiegg:worlds/w_moonlace.png"
-            ]
-          }
-        }
-      ]
-    },
-    "nests": {
-      "title": "Nests",
-      "sub": "Collections that break into clubs.",
-      "blocks": [
-        {
-          "kind": "grid",
-          "pull": {
-            "kind": "nest",
-            "label": "name",
-            "sub": "kind",
-            "body": "topic",
-            "fields": [
-              "kind",
-              "topic"
-            ],
-            "n": 24,
-            "art": [
-              "phiegg:worlds/gen/w_gx_delphine_house.webp",
-              "phiegg:worlds/gen/w_gx_fable_row.webp",
-              "phiegg:worlds/gen/w_gx_azalea_row.webp",
-              "phiegg:worlds/gen/w_gx_calla_society.webp",
-              "phiegg:worlds/gen/w_gx_saffron_mill.webp",
-              "phiegg:worlds/gen/w_gx_xanthe_mill.webp",
-              "phiegg:worlds/gen/w_gx_juniper_maison.webp",
-              "phiegg:worlds/gen/w_gx_marigold_society.webp",
-              "phiegg:worlds/w_brocade.png",
-              "phiegg:worlds/w_crystalline.png",
-              "phiegg:worlds/gen/w_loon.webp",
-              "phiegg:worlds/gen/w_gx_thistle_salon.webp"
-            ]
-          }
-        }
-      ]
-    },
-    "news": {
-      "title": "News",
-      "sub": "Latest from Phisum.",
-      "blocks": [
-        {
-          "kind": "news",
+          "title": "What a team gets",
+          "toolbar": false,
+          "more": { "label": "All of it", "view": "support" },
           "items": [
-            {
-              "tag": "Cohorts",
-              "title": "Cohort 7 opens with twelve world builders",
-              "body": "Twelve teams join the autumn speedrun, from a floating bazaar in Aria to a night ferry that links three club cities.",
-              "gen": true,
-              "date": "Oct 12, 2026",
-              "image": "phiegg:worlds/gen/w_gx_moss_row.webp"
-            },
-            {
-              "tag": "Rounds",
-              "title": "Satin Swans close a 1.2M UM community round",
-              "body": "The club sold out its first round in four hours. Members voted to spend half on a new runway hall in Brocade.",
-              "gen": true,
-              "date": "Oct 8, 2026",
-              "image": "phiegg:worlds/gen/w_gx_saffron_mill.webp"
-            },
-            {
-              "tag": "Treasury",
-              "title": "Reward weights move toward hosting",
-              "body": "Hosting a meetup now earns more UM than flipping a PFT, after a Phidao vote passed with 71 percent.",
-              "gen": true,
-              "date": "Oct 4, 2026",
-              "image": "phiegg:worlds/gen/w_gx_juniper_maison.webp"
-            },
-            {
-              "date": "Oct 2, 2026",
-              "tag": "Treasury",
-              "title": "September rewards paid",
-              "body": "$UM rewards for logged functions were distributed to 18,240 members.",
-              "image": "phiegg:worlds/gen/w_gx_amber_atelier.webp",
-              "genImage": true
-            },
-            {
-              "tag": "Demo day",
-              "title": "Demo day returns to the Atelier Nine dome",
-              "body": "Nine teams pitch live to members on November 14. Every member can back a team with as little as 10 UM.",
-              "gen": true,
-              "date": "Sep 30, 2026",
-              "image": "phiegg:worlds/gen/w_deer.webp"
-            },
-            {
-              "tag": "Registry",
-              "title": "Forty new functions join the registry",
-              "body": "Quest scoring, ride booking and look fitting are now logged functions with their own rewards.",
-              "gen": true,
-              "date": "Sep 26, 2026",
-              "image": "phiegg:worlds/gen/w_gx_calla_society.webp"
-            },
-            {
-              "tag": "Stories",
-              "title": "How the Velvet Pack paid for its own city",
-              "body": "A club of ninety members turned weekly runway nights into a treasury large enough to fund a district.",
-              "gen": true,
-              "date": "Sep 22, 2026",
-              "image": "phiegg:worlds/gen/w_gx_quill_works.webp"
-            },
-            {
-              "date": "Sep 20, 2026",
-              "tag": "Cohorts",
-              "title": "Autumn cohort funded",
-              "body": "Nine clubs receive $UM support alongside their Phipad funding.",
-              "image": "phiegg:worlds/w_bijou.png",
-              "genImage": true
-            },
-            {
-              "tag": "Rounds",
-              "title": "Lantern Row raises for a market street",
-              "body": "The market team wants stalls that change with the season. Their round closes on October 30.",
-              "gen": true,
-              "date": "Sep 18, 2026",
-              "image": "phiegg:worlds/gen/w_gx_azalea_row.webp"
-            },
-            {
-              "tag": "Treasury",
-              "title": "Quarterly report: inflows up 18 percent",
-              "body": "Most new UM came from ride fees and hosted events. Spending stayed inside the budget the DAO set.",
-              "gen": true,
-              "date": "Sep 14, 2026",
-              "image": "phiegg:worlds/w_mesa.png"
-            },
-            {
-              "tag": "Cohorts",
-              "title": "Mentors announced for the speedrun",
-              "body": "Builders from Phipad, Phiora and four founding clubs will hold weekly office hours.",
-              "gen": true,
-              "date": "Sep 10, 2026",
-              "image": "phiegg:worlds/gen/w_gx_ivory_house.webp"
-            },
-            {
-              "date": "Sep 4, 2026",
-              "tag": "Registry",
-              "title": "New functions registered",
-              "body": "Fitting and runway-seat functions are now in the registry.",
-              "image": "phiegg:worlds/w_ember_coast.png",
-              "genImage": true
-            }
+            { "title": "EGG", "mark": "1", "tone": "accent", "body": "A share of the programme supply, sized per cohort and released in stages." },
+            { "title": "A world to build in", "mark": "2", "tone": "sage", "body": "A place on the Phiegg map, with hosts, drops and the shared wallet already there." },
+            { "title": "Mentors and players", "mark": "3", "tone": "ink", "body": "Builders of live worlds each week, and Phiegg's clubs to playtest with." }
           ]
+        },
+        {
+          "kind": "grid",
+          "title": "How it works",
+          "toolbar": false,
+          "more": { "label": "The timeline", "view": "timeline" },
+          "items": [
+            { "title": "Apply", "mark": "1", "tone": "accent", "body": "Tell Phipad about the team and the world. Applying is free and reviewed on a rolling basis." },
+            { "title": "Meet", "mark": "2", "tone": "accent", "body": "A short video from the team, then a call with the fund." },
+            { "title": "Build", "mark": "3", "tone": "accent", "body": "Twelve weeks in a cohort, with weekly office hours and playtests." },
+            { "title": "Show", "mark": "4", "tone": "accent", "body": "Demo Day: every world shown live to the Phiegg community and partners." }
+          ]
+        },
+        {
+          "kind": "prose",
+          "lead": "EGG is the token of the Phiegg world, made for use inside it. Nothing on this site is an offer of securities or investment advice, and no return is promised. The terms of each cohort are set by the fund and published before it opens."
         }
       ]
     },
-    "about": {
-      "title": "About Phisum",
-      "sub": "",
+    "programme": {
+      "title": "The programme",
+      "sub": "A fund for the people who build virtual worlds, paid in the token of the world they build in.",
       "blocks": [
         {
           "kind": "prose",
-          "lead": "Phisum is the mechanism behind the economy: the PFT function registry and the $UM treasury.",
+          "lead": "Phisum sets aside 100 trillion EGG for teams. It is spent cohort by cohort: each cohort gets its share, and each team in it an allocation released in stages as it builds.",
           "sections": [
-            {
-              "title": "Functions",
-              "body": "Every PFT function in the ecosystem is registered here, with its schema and rewards."
-            },
-            {
-              "title": "Rewards",
-              "body": "Running a function is logged to your profile and earns $UM from the treasury."
-            },
-            {
-              "title": "Cohorts",
-              "body": "Phisum funds cohorts of clubs alongside Phipad and executes what Phidao approves."
-            }
+            { "title": "Who it is for", "body": "Small teams, from one founder up, building a world people can enter: a city, a venue, a game, a shop, a show, or the agents that live in any of them. An idea with a prototype is enough; a world already live is welcome too." },
+            { "title": "Phisum and Phipad", "body": "Phisum is the fund: it holds the EGG and sets the terms. Phipad is the accelerator: it takes the applications, runs the cohorts and holds Demo Day. A team applies once, on Phipad." },
+            { "title": "Four tracks", "body": "Virtual worlds, agentic worlds, AR, and avatars and identity. Each track has its own mentors; Phipad sets them out." },
+            { "title": "EGG on NEAR", "body": "EGG is planned as a fungible token on NEAR. Until its contract is live, an allocation is a record kept by the fund; once it is live, EGG goes to the team's NEAR account." }
           ]
+        }
+      ]
+    },
+    "support": {
+      "title": "What a team gets",
+      "sub": "Everything a cohort has, for every team in it.",
+      "blocks": [
+        {
+          "kind": "grid",
+          "toolbar": false,
+          "items": [
+            { "title": "EGG", "tone": "accent", "body": "A share of the 100T programme supply. Its size is set per cohort and published before applications open.", "pointList": ["Sized per cohort", "Released in stages through the cohort", "Sent to a NEAR account once EGG is live"] },
+            { "title": "A world to build in", "tone": "sage", "body": "Space on the Phiegg map, with the parts every world shares already built.", "pointList": ["A place on the map", "Hosts, drops and events", "The shared wallet and shop"] },
+            { "title": "The Phiace kit", "tone": "ink", "body": "The tools the Phiegg world is made with, open to every team in the cohort.", "pointList": ["Phiora for records and state", "Phient for agents", "Phiber for 4D scenes", "puikit for the site"] },
+            { "title": "Mentors", "tone": "neutral", "body": "People who have built and run worlds, in weekly office hours and at each review.", "pointList": ["Weekly office hours", "A mentor per track", "Reviews at the midpoint and before Demo Day"] },
+            { "title": "Players", "tone": "sage", "body": "A first audience: Phiegg's clubs and Phiogy's community, for playtests while the world is still changing.", "pointList": ["Playtests from week two", "Feedback in Phiogy", "A launch in front of the clubs"] },
+            { "title": "Demo Day", "tone": "accent", "body": "The cohort's last day: each world shown live, online, to the community, partners and other funds.", "pointList": ["A live slot for every team", "Recorded and kept on Phipad", "Introductions afterwards"] }
+          ]
+        }
+      ]
+    },
+    "timeline": {
+      "title": "Timeline",
+      "sub": "From application to Demo Day. Dates for each cohort are announced on Phipad.",
+      "blocks": [
+        {
+          "kind": "table",
+          "cols": ["Stage", "When", "What happens"],
+          "rows": [
+            ["Applications", "Rolling", "Apply on Phipad. Applications are read every week."],
+            ["Video and call", "Within four weeks", "A two-minute video from the team, then a call with the fund."],
+            ["Decision", "About two weeks after the call", "The terms in writing. The team accepts or declines."],
+            ["Kick-off", "Week 1", "The cohort meets. Each team sets its milestones and the stages of its EGG release."],
+            ["Build", "Weeks 2 to 11", "Office hours, playtests with Phiegg players, a review at week six."],
+            ["Demo Day", "Week 12", "Every world shown live."],
+            ["After", "From week 13", "Teams keep their place on the map, their mentors and the community."]
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms",
+      "sub": "Set by the fund, published per cohort. Until they are published, nothing here is an offer.",
+      "blocks": [
+        {
+          "kind": "prose",
+          "sections": [
+            { "title": "What each cohort's terms set out", "body": "The size of a team's EGG allocation, the stages it is released in and what unlocks each one, what the fund asks of a team in return if anything, and the dates. They are the same for every team in a cohort." },
+            { "title": "Where they stand", "body": "The terms for the first cohort are being written. They will be published on Phipad before applications for it close." },
+            { "title": "What EGG is", "body": "EGG is the token of the Phiegg world, used inside it: to enter, to make, to host and to vote. It is not offered as an investment, carries no promise of a return, and may have no value outside the world." },
+            { "title": "No advice", "body": "Nothing on this site is legal, tax or investment advice. Teams should take their own advice before accepting any terms." }
+          ]
+        }
+      ]
+    },
+    "token": {
+      "title": "EGG on NEAR",
+      "sub": "EGG is planned as a fungible token on NEAR. Connect a NEAR wallet here; the balance shows once the contract is live.",
+      "blocks": [
+        {
+          "kind": "stats",
+          "items": [
+            { "label": "Programme supply", "value": "100T", "sub": "EGG for teams" },
+            { "label": "Standard", "value": "NEP-141", "sub": "NEAR's fungible token standard" },
+            { "label": "Decimals", "value": "18", "sub": "As planned" },
+            { "label": "Contract", "value": "Not live", "sub": "Planned, not deployed" }
+          ]
+        },
+        { "kind": "near", "title": "Your NEAR account" },
+        {
+          "kind": "prose",
+          "sections": [
+            { "title": "Why NEAR", "body": "Readable account names (yourname.near), wallets that work in the browser, and transfers that settle in a few seconds for a small fee." },
+            { "title": "What connecting does", "body": "It reads which account is yours. It sends nothing, signs nothing and adds no key. Teams give the same account on their Phipad application, so EGG has somewhere to go once it is live." }
+          ]
+        }
+      ]
+    },
+    "apply": {
+      "title": "",
+      "blocks": [
+        {
+          "kind": "hero",
+          "heading": "Apply on Phipad",
+          "subtitle": "One application, read every week.",
+          "body": "Phipad runs Phisum's cohorts, so applications go there: the team, the world, a link to see it and a short video. It is free.",
+          "image": "phiegg:worlds/w_lumen_gardens.png",
+          "actions": [{ "label": "Go to Phipad", "app": "phipad" }, { "label": "Read the FAQ", "view": "faq" }]
         }
       ]
     },
     "faq": {
       "title": "FAQ",
-      "sub": "Common questions.",
+      "sub": "About the fund and EGG. Questions about cohorts are answered on Phipad.",
       "blocks": [
         {
           "kind": "faq",
           "items": [
-            {
-              "q": "How do I earn $UM?",
-              "a": "By running PFT functions; each is logged to your profile and rewarded."
-            },
-            {
-              "q": "What is the registry?",
-              "a": "The canonical list of PFT functions and their schemas."
-            },
-            {
-              "q": "Who changes the rules?",
-              "a": "Phidao votes; Phisum executes the approved changes."
-            },
-            {
-              "q": "Can I back a cohort team?",
-              "a": "Yes. Open the team on demo day and pledge any amount of UM from your wallet.",
-              "gen": true
-            },
-            {
-              "q": "When are rewards paid?",
-              "a": "At the start of each month, for every function logged in the month before.",
-              "gen": true
-            },
-            {
-              "q": "Who reviews applications?",
-              "a": "The cohort team scores each project, then members vote on the shortlist.",
-              "gen": true
-            },
-            {
-              "q": "Can a club apply?",
-              "a": "Clubs apply the same way as teams. The club treasury signs the application.",
-              "gen": true
-            },
-            {
-              "q": "Is there a minimum pledge?",
-              "a": "Ten UM. There is no maximum, but rounds close when the target is met.",
-              "gen": true
-            }
+            { "q": "What is Phisum?", "a": "A fund for teams building virtual worlds. It sets aside 100 trillion EGG, the Phiegg world's token, and puts it into teams cohort by cohort." },
+            { "q": "How much EGG does a team get?", "a": "It is set per cohort and published with that cohort's terms, before applications close. Every team in a cohort gets the same terms." },
+            { "q": "What does the fund take in return?", "a": "That is set in each cohort's published terms. Read them, and take your own advice, before accepting." },
+            { "q": "Is EGG an investment?", "a": "No. EGG is the token of the Phiegg world, made for use inside it. It is not offered as an investment, no return is promised, and it may have no value outside the world." },
+            { "q": "Why NEAR?", "a": "Readable account names, wallets that work in a browser, and quick, cheap transfers. EGG is planned as a NEAR token under the NEP-141 standard." },
+            { "q": "Is EGG on NEAR yet?", "a": "Not yet. Until the contract is live, a team's allocation is a record kept by the fund." },
+            { "q": "Do I need a NEAR wallet to apply?", "a": "No. You can add a NEAR account to your application later; it is where EGG goes once the token is live." },
+            { "q": "Who can apply?", "a": "Any team, from one founder up, building a world people can enter. Apply on Phipad." },
+            { "q": "Does applying cost anything?", "a": "No." },
+            { "q": "How do Phisum and Phipad fit together?", "a": "Phisum is the fund and sets the terms. Phipad is the accelerator: applications, cohorts and Demo Day." }
           ]
-        }
-      ]
-    },
-    "docs": {
-      "title": "phisum docs",
-      "sub": "Phisum backs UM and runs speedrun cohorts for virtual cities.",
-      "blocks": [
-        {
-          "kind": "grid",
-          "title": "",
-          "items": [
-            {
-              "title": "Overview",
-              "sub": "The main fund",
-              "body": "Phisum backs UM and runs speedrun cohorts for virtual cities."
-            },
-            {
-              "title": "Getting started",
-              "sub": "First steps",
-              "body": "Apply through Phipad. Cohorts are picked by PFT function activity."
-            },
-            {
-              "title": "Phisum and UM",
-              "sub": "How it is funded",
-              "body": "Phisum is the fund itself: it reads PFT function records across every app.",
-              "action": "Open Phisum",
-              "done": "Opened",
-              "app": "phisum"
-            }
-          ]
-        },
-        {
-          "kind": "table",
-          "title": "PFT functions in phisum",
-          "cols": [
-            "Function",
-            "What it does here"
-          ],
-          "rows": [
-            [
-              "fund",
-              "count toward cohort signals"
-            ],
-            [
-              "every function",
-              "read to split UM rewards"
-            ]
-          ]
-        },
-        {
-          "kind": "grid",
-          "title": "Read more",
-          "items": [
-            {
-              "title": "PFTs 101",
-              "sub": "Profile Fungible Tokens",
-              "body": "What PFTs are, how functions work, how they link to Phisum.",
-              "action": "Read",
-              "done": "Open",
-              "href": "../Phiegg Papers.dc.html"
-            }
-          ]
-        }
-      ]
-    },
-    "portfolio": {
-      "title": "Portfolio",
-      "sub": "Every pool we back and the clubs they fund, live from Phiora.",
-      "gen": true,
-      "blocks": [
-        {
-          "kind": "stats",
-          "title": "",
-          "items": [
-            {
-              "label": "Pools",
-              "value": "",
-              "sub": "Live from Phiora",
-              "count": {
-                "kind": "pool"
-              }
-            },
-            {
-              "label": "Clubs",
-              "value": "",
-              "sub": "Live from Phiora",
-              "count": {
-                "kind": "club"
-              }
-            },
-            {
-              "label": "Worlds",
-              "value": "",
-              "sub": "Live from Phiora",
-              "count": {
-                "kind": "world"
-              }
-            },
-            {
-              "label": "Quests",
-              "value": "",
-              "sub": "Live from Phiora",
-              "count": {
-                "kind": "quest"
-              }
-            }
-          ]
-        },
-        {
-          "kind": "grid",
-          "title": "Pools",
-          "pull": {
-            "kind": "pool",
-            "sort": "supply",
-            "label": "name",
-            "sub": "category",
-            "body": "desc",
-            "join": [
-              "worldId"
-            ],
-            "image": "world.image",
-            "fields": [
-              "supply",
-              "floorUsd",
-              "royaltyPct",
-              "drop"
-            ],
-            "open": "phiegg",
-            "n": 24,
-            "art": [
-              "phiegg:worlds/w_oasis_nine.png",
-              "phiegg:worlds/w_petal_park.png",
-              "phiegg:worlds/w_ivory_tower.png",
-              "phiegg:worlds/w_midnight_mall.png",
-              "phiegg:worlds/w_zephyr.png",
-              "phiegg:worlds/gen/w_gx_amber_atelier.webp",
-              "phiegg:worlds/w_sable.png",
-              "phiegg:worlds/w_swanlake.png",
-              "phiegg:worlds/gen/w_gx_dune_salon.webp",
-              "phiegg:worlds/gen/w_gx_garnet_guild.webp",
-              "phiegg:worlds/gen/w_gx_willow_parlour.webp",
-              "phiegg:worlds/gen/w_gx_quill_works.webp"
-            ],
-            "act": {
-              "label": "Stake this pool",
-              "view": "stake-pool",
-              "param": "poolId"
-            }
-          }
-        },
-        {
-          "kind": "grid",
-          "title": "Clubs they fund",
-          "pull": {
-            "kind": "club",
-            "sort": "holders",
-            "label": "name",
-            "sub": "ticker",
-            "body": "description",
-            "fields": [
-              "supply",
-              "holders",
-              "floor",
-              "chain"
-            ],
-            "open": "phiegg",
-            "n": 12,
-            "art": [
-              "phiegg:worlds/w_sable.png",
-              "phiegg:worlds/w_swanlake.png",
-              "phiegg:worlds/w_zephyr.png",
-              "phiegg:worlds/gen/w_gx_amber_atelier.webp",
-              "phiegg:worlds/gen/w_gx_calla_atelier.webp",
-              "phiegg:worlds/gen/w_gx_cordelia_row.webp",
-              "phiegg:worlds/gen/w_gx_dune_salon.webp",
-              "phiegg:worlds/gen/w_gx_garnet_guild.webp",
-              "phiegg:worlds/gen/w_ponte.webp",
-              "phiegg:worlds/w_acro_world.png",
-              "phiegg:worlds/w_saffron_sands.png",
-              "phiegg:worlds/w_plume.png"
-            ]
-          }
-        }
-      ]
-    },
-    "create-pool": {
-      "title": "Create a pool",
-      "sub": "Mint a collection of PFTs. It joins the portfolio and clubs can raise rounds on it.",
-      "gen": true,
-      "blocks": [
-        {
-          "kind": "form",
-          "createKind": "pool",
-          "set": {
-            "drop": "allowlist"
-          },
-          "submitLabel": "Create pool",
-          "doneTitle": "Pool created",
-          "done": "Your pool is in the portfolio. Open a round on it to raise.",
-          "againLabel": "Create another pool",
-          "steps": [
-            {
-              "id": "c",
-              "label": "Collection",
-              "icon": "cube",
-              "lede": "What it is.",
-              "fields": [
-                {
-                  "id": "name",
-                  "label": "Pool name",
-                  "control": "text",
-                  "required": true,
-                  "placeholder": "Night Ferry",
-                  "full": true
-                },
-                {
-                  "id": "category",
-                  "label": "Category",
-                  "control": "radio",
-                  "options": [
-                    "fashion",
-                    "art",
-                    "game",
-                    "film",
-                    "music"
-                  ],
-                  "required": true
-                },
-                {
-                  "id": "chain",
-                  "label": "Chain",
-                  "control": "radio",
-                  "options": [
-                    "EGG",
-                    "ETH"
-                  ],
-                  "required": true
-                },
-                {
-                  "id": "desc",
-                  "label": "Story",
-                  "control": "textarea",
-                  "placeholder": "Ten thousand lanterns, one per crossing."
-                }
-              ]
-            },
-            {
-              "id": "s",
-              "label": "Supply",
-              "icon": "coin",
-              "lede": "Mint and price.",
-              "fields": [
-                {
-                  "id": "supply",
-                  "label": "Supply of PFTs",
-                  "control": "number",
-                  "min": 1,
-                  "required": true,
-                  "placeholder": "10000"
-                },
-                {
-                  "id": "floorUsd",
-                  "label": "Floor (USD)",
-                  "control": "number",
-                  "min": 0,
-                  "placeholder": "48"
-                },
-                {
-                  "id": "royaltyPct",
-                  "label": "Royalty %",
-                  "control": "number",
-                  "min": 0,
-                  "placeholder": "5"
-                },
-                {
-                  "id": "worldId",
-                  "label": "Home world",
-                  "control": "link",
-                  "required": false,
-                  "pull": {
-                    "kind": "world",
-                    "label": "name"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "review",
-              "label": "Review",
-              "icon": "check",
-              "title": "Review and submit",
-              "lede": "Check it once. You can change any step before you submit.",
-              "review": true
-            }
-          ]
-        }
-      ]
-    },
-    "open-round": {
-      "title": "Open a funding round",
-      "sub": "Raise for a pool. Backers place orders that settle through Phidao when the round closes.",
-      "gen": true,
-      "blocks": [
-        {
-          "kind": "form",
-          "createKind": "round",
-          "set": {
-            "status": "active"
-          },
-          "submitLabel": "Open round",
-          "doneTitle": "Round open",
-          "done": "Your round is live on the Rounds page and on your profile, with what it has raised.",
-          "againLabel": "Open another round",
-          "steps": [
-            {
-              "id": "r",
-              "label": "Round",
-              "icon": "chart",
-              "lede": "Which pool raises and how.",
-              "fields": [
-                {
-                  "id": "name",
-                  "label": "Round name",
-                  "control": "text",
-                  "required": true,
-                  "placeholder": "Night Ferry community round",
-                  "full": true
-                },
-                {
-                  "id": "poolId",
-                  "label": "Pool",
-                  "control": "link",
-                  "required": true,
-                  "pull": {
-                    "kind": "pool",
-                    "label": "name",
-                    "sub": "category",
-                    "sort": "supply"
-                  }
-                },
-                {
-                  "id": "roundType",
-                  "label": "Type",
-                  "control": "radio",
-                  "options": [
-                    "Community",
-                    "Lead",
-                    "Grant match"
-                  ],
-                  "required": true
-                }
-              ]
-            },
-            {
-              "id": "t",
-              "label": "Terms",
-              "icon": "coin",
-              "lede": "Target and window.",
-              "fields": [
-                {
-                  "id": "target",
-                  "label": "Target",
-                  "control": "number",
-                  "min": 1,
-                  "required": true,
-                  "placeholder": "1200000"
-                },
-                {
-                  "id": "coin",
-                  "label": "Coin",
-                  "control": "radio",
-                  "options": [
-                    "EGG",
-                    "UM",
-                    "USD"
-                  ],
-                  "required": true
-                },
-                {
-                  "id": "minTicket",
-                  "label": "Smallest pledge",
-                  "control": "number",
-                  "min": 1,
-                  "placeholder": "10"
-                },
-                {
-                  "id": "closesAt",
-                  "label": "Closes on",
-                  "control": "date",
-                  "required": true
-                },
-                {
-                  "id": "pitch",
-                  "label": "What backers get",
-                  "control": "textarea",
-                  "placeholder": "Rewards, rights and how the money is used."
-                }
-              ]
-            },
-            {
-              "id": "review",
-              "label": "Review",
-              "icon": "check",
-              "title": "Review and submit",
-              "lede": "Check it once. You can change any step before you submit.",
-              "review": true
-            }
-          ]
-        }
-      ]
-    },
-    "open-nest": {
-      "title": "Open a nest",
-      "sub": "A collection that breaks into clubs. Pools and clubs can belong to it.",
-      "gen": true,
-      "blocks": [
-        {
-          "kind": "form",
-          "createKind": "nest",
-          "set": {
-            "kind": "collection"
-          },
-          "submitLabel": "Open nest",
-          "doneTitle": "Nest open",
-          "done": "Your nest is open. Add pools and clubs to it.",
-          "againLabel": "Open another nest",
-          "steps": [
-            {
-              "id": "n",
-              "label": "Nest",
-              "icon": "grid",
-              "lede": "Name the collection.",
-              "fields": [
-                {
-                  "id": "name",
-                  "label": "Nest name",
-                  "control": "text",
-                  "required": true,
-                  "placeholder": "The Opal Family",
-                  "full": true
-                },
-                {
-                  "id": "topic",
-                  "label": "Topic",
-                  "control": "text",
-                  "placeholder": "Couture houses cut from one mark."
-                },
-                {
-                  "id": "parentId",
-                  "label": "Parent nest",
-                  "control": "link",
-                  "required": false,
-                  "pull": {
-                    "kind": "nest",
-                    "label": "name"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "review",
-              "label": "Review",
-              "icon": "check",
-              "title": "Review and submit",
-              "lede": "Check it once. You can change any step before you submit.",
-              "review": true
-            }
-          ]
-        }
-      ]
-    },
-    "add-zone": {
-      "title": "Add a zone",
-      "sub": "A district of a world. Areas sit inside it.",
-      "gen": true,
-      "blocks": [
-        {
-          "kind": "form",
-          "createKind": "zone",
-          "submitLabel": "Add zone",
-          "doneTitle": "Zone added",
-          "done": "Your zone is on the world. Add areas inside it.",
-          "againLabel": "Add another zone",
-          "steps": [
-            {
-              "id": "z",
-              "label": "Zone",
-              "icon": "map",
-              "lede": "Where and what.",
-              "fields": [
-                {
-                  "id": "name",
-                  "label": "Zone name",
-                  "control": "text",
-                  "required": true,
-                  "placeholder": "Marquee Row",
-                  "full": true
-                },
-                {
-                  "id": "worldId",
-                  "label": "World",
-                  "control": "link",
-                  "required": true,
-                  "pull": {
-                    "kind": "world",
-                    "label": "name"
-                  }
-                },
-                {
-                  "id": "kind",
-                  "label": "Kind",
-                  "control": "radio",
-                  "options": [
-                    "district",
-                    "market",
-                    "harbour",
-                    "park",
-                    "quarter"
-                  ],
-                  "required": true
-                },
-                {
-                  "id": "desc",
-                  "label": "About",
-                  "control": "textarea",
-                  "placeholder": "The runway strip, lit after dark."
-                }
-              ]
-            },
-            {
-              "id": "review",
-              "label": "Review",
-              "icon": "check",
-              "title": "Review and submit",
-              "lede": "Check it once. You can change any step before you submit.",
-              "review": true
-            }
-          ]
-        }
-      ]
-    },
-    "add-area": {
-      "title": "Add an area",
-      "sub": "A place inside a zone: a plaza, a hall, a stall.",
-      "gen": true,
-      "blocks": [
-        {
-          "kind": "form",
-          "createKind": "area",
-          "submitLabel": "Add area",
-          "doneTitle": "Area added",
-          "done": "Your area is on the zone.",
-          "againLabel": "Add another area",
-          "steps": [
-            {
-              "id": "a",
-              "label": "Area",
-              "icon": "pin",
-              "lede": "Where and what.",
-              "fields": [
-                {
-                  "id": "name",
-                  "label": "Area name",
-                  "control": "text",
-                  "required": true,
-                  "placeholder": "The Lantern Stall",
-                  "full": true
-                },
-                {
-                  "id": "zoneId",
-                  "label": "Zone",
-                  "control": "link",
-                  "required": true,
-                  "pull": {
-                    "kind": "zone",
-                    "label": "name"
-                  }
-                },
-                {
-                  "id": "worldId",
-                  "label": "World",
-                  "control": "link",
-                  "required": false,
-                  "pull": {
-                    "kind": "world",
-                    "label": "name"
-                  }
-                },
-                {
-                  "id": "kind",
-                  "label": "Kind",
-                  "control": "radio",
-                  "options": [
-                    "plaza",
-                    "hall",
-                    "stall",
-                    "gallery",
-                    "stage"
-                  ],
-                  "required": true
-                },
-                {
-                  "id": "desc",
-                  "label": "About",
-                  "control": "textarea"
-                }
-              ]
-            },
-            {
-              "id": "review",
-              "label": "Review",
-              "icon": "check",
-              "title": "Review and submit",
-              "lede": "Check it once. You can change any step before you submit.",
-              "review": true
-            }
-          ]
-        }
-      ]
-    },
-    "back-round": {
-      "title": "Back a round",
-      "sub": "Place an order against a round that is raising. It settles from your wallet when the round closes.",
-      "gen": true,
-      "blocks": [
-        {
-          "kind": "form",
-          "createKind": "order",
-          "set": {
-            "title": "Round backing",
-            "shipping": "none"
-          },
-          "nameFrom": "roundId",
-          "namePrefix": "Backing",
-          "submitLabel": "Place order",
-          "doneTitle": "Order placed",
-          "done": "Your order is recorded against the round and shows on your profile under Orders. It settles when the round closes.",
-          "againLabel": "Back another round",
-          "steps": [
-            {
-              "id": "r",
-              "label": "Round",
-              "icon": "chart",
-              "lede": "Pick a round that is open.",
-              "fields": [
-                {
-                  "id": "roundId",
-                  "label": "Round",
-                  "control": "link",
-                  "required": true,
-                  "pull": {
-                    "kind": "round",
-                    "label": "name",
-                    "sub": "roundType",
-                    "sort": "target",
-                    "where": {
-                      "status": "active"
-                    }
-                  }
-                }
-              ]
-            },
-            {
-              "id": "a",
-              "label": "Amount",
-              "icon": "coin",
-              "lede": "How much.",
-              "fields": [
-                {
-                  "id": "totalUsd",
-                  "label": "Amount (USD)",
-                  "control": "number",
-                  "min": 1,
-                  "required": true,
-                  "placeholder": "250"
-                },
-                {
-                  "id": "note",
-                  "label": "Note to the team",
-                  "control": "textarea",
-                  "placeholder": "Why you back them."
-                },
-                {
-                  "id": "terms",
-                  "label": "Rules",
-                  "control": "consent",
-                  "required": true,
-                  "placeholder": "I understand an order settles through Phidao when the round closes."
-                }
-              ]
-            },
-            {
-              "id": "review",
-              "label": "Review",
-              "icon": "check",
-              "title": "Review and submit",
-              "lede": "Check it once. You can change any step before you submit.",
-              "review": true
-            }
-          ]
-        }
-      ]
-    },
-    "stake-pool": {
-      "title": "Stake a pool",
-      "sub": "Put coins behind a pool from the portfolio. Stakers share its fees; the stake locks.",
-      "gen": true,
-      "blocks": [
-        {
-          "kind": "form",
-          "createKind": "offer",
-          "set": {
-            "status": "staked"
-          },
-          "nameFrom": "poolId",
-          "namePrefix": "Stake",
-          "submitLabel": "Stake",
-          "doneTitle": "Staked",
-          "done": "Your stake is an offer on the pool and shows on your profile. It unlocks when the lock ends.",
-          "againLabel": "Stake another pool",
-          "steps": [
-            {
-              "id": "p",
-              "label": "Pool",
-              "icon": "layers",
-              "lede": "Pick a pool.",
-              "fields": [
-                {
-                  "id": "poolId",
-                  "label": "Pool",
-                  "control": "link",
-                  "required": true,
-                  "pull": {
-                    "kind": "pool",
-                    "label": "name",
-                    "sub": "category",
-                    "sort": "supply"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "s",
-              "label": "Stake",
-              "icon": "coin",
-              "lede": "Amount and lock.",
-              "fields": [
-                {
-                  "id": "amount",
-                  "label": "Amount",
-                  "control": "number",
-                  "min": 1,
-                  "required": true,
-                  "placeholder": "500"
-                },
-                {
-                  "id": "coin",
-                  "label": "Coin",
-                  "control": "radio",
-                  "options": [
-                    "EGG",
-                    "UM",
-                    "USD"
-                  ],
-                  "required": true
-                },
-                {
-                  "id": "lock",
-                  "label": "Lock",
-                  "control": "radio",
-                  "options": [
-                    "30 days",
-                    "90 days",
-                    "180 days"
-                  ],
-                  "required": true
-                },
-                {
-                  "id": "terms",
-                  "label": "Rules",
-                  "control": "consent",
-                  "required": true,
-                  "placeholder": "I understand a stake is locked until the lock ends."
-                }
-              ]
-            },
-            {
-              "id": "review",
-              "label": "Review",
-              "icon": "check",
-              "title": "Review and submit",
-              "lede": "Check it once. You can change any step before you submit.",
-              "review": true
-            }
-          ]
-        }
-      ]
-    },
-    "feed": {
-      "title": "Feed",
-      "sub": "What the clubs behind the pools are showing.",
-      "blocks": [
-        {
-          "kind": "feed",
-          "columns": {
-            "xs": 2,
-            "sm": 3,
-            "md": 4
-          },
-          "pull": {
-            "kind": "shot",
-            "n": 12,
-            "sort": "likes",
-            "join": [
-              "clubId",
-              "worldId"
-            ]
-          },
-          "map": {
-            "author": "club.name",
-            "image": "world.image"
-          }
         }
       ]
     }
-  },
-  "profile": {
-    "sections": [
-      {
-        "title": "Your pools",
-        "kind": "pool",
-        "fields": [
-          "name",
-          "category",
-          "supply",
-          "floorUsd"
-        ],
-        "empty": "No pools yet.",
-        "action": {
-          "label": "Create a pool",
-          "view": "create-pool",
-          "app": "phisum"
-        }
-      },
-      {
-        "title": "Your rounds",
-        "kind": "round",
-        "fields": [
-          "name",
-          "target",
-          "coin",
-          "closesAt",
-          "status"
-        ],
-        "empty": "No rounds yet.",
-        "action": {
-          "label": "Open a round",
-          "view": "open-round",
-          "app": "phisum"
-        }
-      },
-      {
-        "title": "Your orders",
-        "kind": "order",
-        "fields": [
-          "name",
-          "totalUsd",
-          "at"
-        ],
-        "empty": "No orders yet.",
-        "action": {
-          "label": "Back a round",
-          "view": "back-round",
-          "app": "phisum"
-        }
-      },
-      {
-        "title": "Your stakes",
-        "kind": "offer",
-        "fields": [
-          "name",
-          "amount",
-          "coin",
-          "lock",
-          "status"
-        ],
-        "empty": "No stakes yet.",
-        "action": {
-          "label": "Stake a pool",
-          "view": "stake-pool",
-          "app": "phisum"
-        }
-      },
-      {
-        "title": "Your nests",
-        "kind": "nest",
-        "fields": [
-          "name",
-          "kind",
-          "topic"
-        ],
-        "empty": "No nests yet.",
-        "action": {
-          "label": "Open a nest",
-          "view": "open-nest",
-          "app": "phisum"
-        }
-      },
-      {
-        "title": "Your zones",
-        "kind": "zone",
-        "fields": [
-          "name",
-          "kind"
-        ],
-        "empty": "No zones yet.",
-        "action": {
-          "label": "Add a zone",
-          "view": "add-zone",
-          "app": "phisum"
-        }
-      },
-      {
-        "title": "Your areas",
-        "kind": "area",
-        "fields": [
-          "name",
-          "kind"
-        ],
-        "empty": "No areas yet.",
-        "action": {
-          "label": "Add an area",
-          "view": "add-area",
-          "app": "phisum"
-        }
-      }
-    ],
-    "totals": [
-      {
-        "label": "Backed",
-        "kind": "order",
-        "sum": "totalUsd",
-        "sub": "Your orders, USD"
-      },
-      {
-        "label": "Staked",
-        "kind": "offer",
-        "sum": "amount",
-        "sub": "Across your pools"
-      },
-      {
-        "label": "Raised for your rounds",
-        "kind": "order",
-        "sum": "totalUsd",
-        "via": {
-          "kind": "round",
-          "field": "roundId"
-        },
-        "sub": "Backed by others"
-      },
-      {
-        "label": "Round targets",
-        "kind": "round",
-        "sum": "target",
-        "sub": "USD you are raising"
-      }
-    ]
   }
 }

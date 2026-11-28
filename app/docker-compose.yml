@@ -39,6 +39,8 @@ services:
       # Who may create which kinds. Editors (handles or ids) may create anything; everyone signed in may create
       # the kinds in PHI_CREATE_KINDS (comment/order let people talk and back rounds; unset = all kinds open).
       PHI_EDITORS: ${PHI_EDITORS:-}
+      # Work sync: who may see and manage the work machines (handles or ids, comma-separated).
+      PHI_ADMINS: ${PHI_ADMINS:-}
       PHI_CREATE_KINDS: ${PHI_CREATE_KINDS:-comment,order}
       # Mail (account verification / password reset) via Resend.
       RESEND_API_KEY: ${RESEND_API_KEY:-}
@@ -88,6 +90,8 @@ services:
       PHI_DEMO_LOGIN: "0"
       PHI_SECURE_COOKIES: "1"
       PHI_EDITORS: ${PHI_EDITORS:-}
+      # Work sync: who may see and manage the work machines (handles or ids, comma-separated).
+      PHI_ADMINS: ${PHI_ADMINS:-}
       PHI_CREATE_KINDS: ${PHI_CREATE_KINDS:-comment,order}
     restart: unless-stopped
 

@@ -61,7 +61,7 @@ export const trailOfItem = (itemId: ID) => D.trail.sales.filter((x) => x.itemId 
 /** Items a person holds now: the last owner of each item in the sales ledger, plus pieces marked as theirs. */
 export function itemsOfPerson(personId: ID): { kind: 'piece' | 'look'; id: ID }[] {
   const last = new Map<string, { kind: 'piece' | 'look'; owner: string }>();
-  for (const x of [...D.sales.sales].reverse()) if (x.event === 'mint' || x.event === 'sale' || x.event === 'transfer') last.set(x.itemId, { kind: x.itemKind, owner: x.toId! });
+  for (const x of [...D.sales.sales].reverse()) if (x.event === 'mint' || x.event === 'sale' || x.event === 'transfer' || x.event === 'swap') last.set(x.itemId, { kind: x.itemKind, owner: x.toId! });
   const out = [...last.entries()].filter(([, v]) => v.owner === personId).map(([id, v]) => ({ kind: v.kind, id }));
   for (const p of D.club.pieces) if (p.ownerId === personId && !last.has(p.id)) out.push({ kind: 'piece', id: p.id });
   return out;

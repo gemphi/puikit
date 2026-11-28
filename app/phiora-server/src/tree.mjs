@@ -135,9 +135,24 @@ export function themeRows(all, catalog, idmap = {}) {
   });
 }
 
-/** The tree: the stored sources, then the live ones; `kinds` keeps only those kinds. */
-export function treeOf(stored, live, kinds) {
+/**
+ * The tree: the stored sources, then the live ones; `kinds` keeps only those kinds. `where` ([field, value] pairs) keeps
+ * only the rows whose field is that value (all of the pairs), and `limit` the last that many rows of each source, so a
+ * client that wants one room's messages, or its own requests, does not take every one there is.
+ */
+export function treeOf(stored, live, kinds, { where = [], limit = 0 } = {}) {
   const all = [...stored.sources, ...live.map((s) => ({ ...s, live: true }))];
-  const sources = kinds?.length ? all.filter((s) => kinds.includes(s.kind)) : all;
+  const kept = kinds?.length ? all.filter((s) => kinds.includes(s.kind)) : all;
+  const narrow = (rows) => {
+    const some = where.length ? rows.filter((row) => where.every(([field, value]) => String(row?.[field]) === value)) : rows;
+    return limit > 0 && some.length > limit ? some.slice(-limit) : some;
+  };
+  const sources = where.length || limit > 0 ? kept.map((s) => (Array.isArray(s.rows) ? { ...s, rows: narrow(s.rows) } : s)) : kept;
   return { at: new Date().toISOString(), loadedAt: stored.loadedAt ? new Date(stored.loadedAt).toISOString() : null, live: live.map((s) => s.kind), sources };
+}
+
+/** What a request narrows the tree by: where=field:value (more than one: all must hold) and limit=N (at most 5000). */
+export function narrowOf(searchParams) {
+  const where = searchParams.getAll('where').map((x) => { const at = x.indexOf(':'); return at > 0 ? [x.slice(0, at), x.slice(at + 1)] : null; }).filter(Boolean);
+  return { where, limit: Math.max(0, Math.min(5000, Number(searchParams.get('limit')) || 0)) };
 }

@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { PARAM_OF } from './lib/route';
 import { usePuiTheme } from '@pui/hooks';
 import { RADIUS_ALIASES, RADIUS_PRESETS, type GradientLevel, type RadiusPreset } from '@pui/providers';
-import { AppShell, APPS_RAIL, Box, Stack, Title, columnStore, useColumnEntries } from '@pui/components';
+import { AppShell, APPS_RAIL, Box, Stack, Title, columnStore, useColumnEntries, usePartEntries } from '@pui/components';
 import { useStore } from '@pui/store';
 import { phieggStore } from './state/phieggStore';
 import { HeaderEnd } from './components/Shell/HeaderEnd';
-import { appsGlyph, appsItem, currentEntry, inShop, parseEntry, shellApps, shellGroups, shellPhoneRail, shellTabs, sideGroups } from './components/Shell/shellData';
+import { appsGlyph, appsItem, currentEntry, inShop, parseEntry, shellApps, shellGroups, shellPhoneRail, shellTabs, sideGroups, sideOn } from './components/Shell/shellData';
 import { Crumbs } from './components/Phiegg/Search';
 import { Icon, Wordmark } from './components/Phiegg/Marks';
 import { SignIn } from './components/Shell/SignIn';
@@ -17,9 +17,10 @@ import { AssetSheet } from './components/Phiegg/AssetSheet';
 import { WatchSheet } from './components/Phiegg/WatchSheet';
 import { PlacePage } from './components/Phiegg/Commerce';
 import { useListedLook } from './components/Shell/Appearance';
+import { chosenAppearance } from '@phi-kit/appearance';
 import {
   AgentsHubPage, ClubPage, CollectionPage, ListPage, CreatePage, ExplorePage, FeedPage, HostPage, JoinPage,
-  MessagesPage, PhipadPage, ProfilePage, ShowPage, WorldPage, ShopPage, PoolPage, SeriesPage, LeaguePage, CityPage, SearchPage, RecentPage, StudioPage, RidesPage, WelcomePage, PostPage,
+  MessagesPage, PhipadPage, ProfilePage, ShowPage, WorldPage, ShopPage, PoolPage, SeriesPage, LeaguePage, CityPage, SearchPage, RecentPage, StudioPage, RidesPage, WelcomePage, PostPage, AboutPage,
 } from './pages/phiegg';
 import { me, site, t } from './lib/data';
 import { MENUS } from './lib/menus';
@@ -47,6 +48,7 @@ const page = (tab: string, s: S): React.ReactNode => {
     case 'studio': return <StudioPage />;
     case 'rides': return <RidesPage />;
     case 'welcome': return <WelcomePage />;
+    case 'about': return <AboutPage />;
     case 'post': return <PostPage />;
     case 'look': return <ItemSheet id={s.lookId} />;
     case 'asset': return <AssetSheet id={s.assetId} />;
@@ -77,7 +79,8 @@ export const App: React.FC = () => {
   const ap = s.appearance;
   // The appearance gradient drives the puikit gradient system (providers/palette.ts) for every surface.
   const { gradientLevel, setGradientLevel, borderRadius, setBorderRadius } = usePuiTheme();
-  useEffect(() => { if (gradientLevel !== ap.gradient) setGradientLevel(ap.gradient as GradientLevel); }, [ap.gradient]);
+  // A theme picked in Settings sets its own gradient (the card it was picked from); Phiegg's old setting yields to it.
+  useEffect(() => { if (!chosenAppearance() && gradientLevel !== ap.gradient) setGradientLevel(ap.gradient as GradientLevel); }, [ap.gradient]);
   // The appearance radius drives the puikit radius scale, so every --phi-radius-* token (cards, decks, tabs, buttons) follows it.
   // A change of default (site.json appearance.rev) moves a saved appearance still on the old default once.
   useEffect(() => {
@@ -102,10 +105,12 @@ export const App: React.FC = () => {
   // In a shop the sidebar opens on the shop's own menu (shellData shopGroup); leaving it returns to Home's.
   const shopRail = Object.values(MENUS.rail).flat().find((r) => r.tab === 'shop')?.id;
   useEffect(() => { if (!shopRail) return; if (inShop(s)) { if (s.rail !== shopRail) s.setRail(shopRail); } else if (s.rail === shopRail) s.setRail('home'); }, [s.tab]); // eslint-disable-line react-hooks/exhaustive-deps
-  const columns = useColumnEntries();
+  const columns = useColumnEntries(); const parts = usePartEntries();
   const go = (id: string) => {
     // A column of the page, picked in the right sidebar: shown or hidden.
     if (id.startsWith('col:')) { columnStore.toggle(id.slice(4)); return; }
+    // A section of the page, picked in the right sidebar: brought into view.
+    if (id.startsWith('part:')) { document.querySelector(`[data-section="${id.slice(5)}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
     // A pick in a shop's own menu sets the shop's tab or category (state shopView), the page follows.
     if (id.startsWith('shopview:')) { const [, k, v] = id.split(':'); s.setShopView(k === 'tab' ? { tab: v, cat: '' } : { cat: v, tab: v ? 'looks' : s.shopView.tab }); return; }
     const [tab, params] = parseEntry(id); if (tab === 'profile' && !params) s.go('profile', { profileId: me().id }); else s.go(tab, params); };
@@ -115,7 +120,7 @@ export const App: React.FC = () => {
       data-ph-sidebar={ap.sidebar} data-ph-content={ap.content} data-ph-opacity={ap.opacity} className="ph-app" width="100vw" height="100vh" overflow="hidden">
       <AppShell
         brand={{ name: site.brand.name, glyph: <Icon size="100%" />, wordmark: <Title level={4} size="sm"><Wordmark /></Title> }}
-        groups={shellGroups(s)} view={currentEntry(s)} onView={go} side={{ label: t('pgExplore'), groups: sideGroups(s, columns) }}
+        groups={shellGroups(s)} view={currentEntry(s)} onView={go} side={{ label: t('pgExplore'), groups: sideGroups(s, columns, parts), on: sideOn(s) }}
         /* The page that is open, by its path and the record it shows: a new one folds both sidebars away. */
         collapseKey={s.tab + ':' + String((s as unknown as Record<string, unknown>)[PARAM_OF[s.tab] ?? ''] ?? '')}
         rail={s.rail === apps?.id ? APPS_RAIL : s.rail} onRail={(id) => s.setRail(id === APPS_RAIL && apps ? apps.id : id)}

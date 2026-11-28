@@ -38,6 +38,11 @@
 .soft .picture { inset: -4%; filter: blur(14px) saturate(1.2); }
 .soft::after { content: ''; position: absolute; inset: 0;
   background: linear-gradient(0deg, color-mix(in srgb, var(--phi-color-background) 78%, transparent) 0%, color-mix(in srgb, var(--phi-color-background) 30%, transparent) 60%, color-mix(in srgb, var(--phi-color-background) 12%, transparent) 100%); }
+/* A profile as it opens: the picture as it is; scrolling brings the soft blur and the page colour over it (--pui-hero-p,
+   0 on the first screen to 1 once the tabs are held). The blurred copy is drawn once and only its opacity moves. */
+.opening .veil { inset: -4%; filter: blur(14px) saturate(1.2); opacity: var(--pui-hero-p, 0); will-change: opacity; }
+.opening::after { content: ''; position: absolute; inset: 0; opacity: calc(0.3 + 0.7 * var(--pui-hero-p, 0));
+  background: linear-gradient(0deg, color-mix(in srgb, var(--phi-color-background) 78%, transparent) 0%, color-mix(in srgb, var(--phi-color-background) 30%, transparent) 60%, color-mix(in srgb, var(--phi-color-background) 12%, transparent) 100%); }
 .sharp::after { content: ''; position: absolute; inset: 0; background: radial-gradient(62% 58% at 50% 40%, color-mix(in srgb, var(--phi-color-background) 50%, transparent) 0%, transparent 100%); }
 @keyframes puiStageIn { from { opacity: 0; } to { opacity: 1; } }
 .open { --pui-shell-side: calc(var(--pui-shell-rail) + var(--pui-shell-panel)); }
@@ -58,7 +63,8 @@
 .brand { display: flex; align-items: center; gap: var(--phi-space-2); min-width: 0; cursor: pointer; padding: var(--phi-space-1) var(--phi-space-2); border-radius: var(--phi-radius-sm); }
 /* A long name ends in an ellipsis, which needs the box to clip; the room above and below (taken back by the margin, so
    the row keeps its height) keeps the clip clear of a letter's tail or rise: g, y, p in any face. */
-.brandName { margin: -0.5em 0; padding: 0.5em 0; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* An app's logo face (--phi-font-logo, its `logo` in the registry) wears the name; without one, the shell's face. */
+.brandName { font-family: var(--phi-font-logo, inherit); margin: -0.5em 0; padding: 0.5em 0; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 /* The logo in black and white: the theme's own ink, never the app's colour. */
 .brandGlyph { display: inline-flex; align-items: center; justify-content: center; flex: none; color: var(--phi-color-text-primary); filter: grayscale(1); }
 .pin { flex: none; display: grid; place-items: center; width: var(--pui-shell-control); height: var(--pui-shell-control); border-radius: var(--phi-radius-sm); color: var(--phi-color-text-secondary); cursor: pointer; }

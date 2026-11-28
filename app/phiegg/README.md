@@ -108,3 +108,8 @@ Every step is seeded and idempotent. Copy uses no em dashes: titles take a colon
 - Show cards and the show hero use `showLead(show)` (the first runway look with a render) for their picture and colour.
 - `pages/phiegg/CreatePage.tsx` reads `site.json createKinds`; the Search page's empty state reads `site.json searchPopular` and `landing.json featured`.
 
+
+## Coins: art, card, shared key
+- Each coin has a round 3D coin, `public/coins/<symbol>.svg` (`npm run data:coins`), shared under the key `assets/coins/<symbol>.svg` (`media-key.json`; `node scripts/media/fill_public.mjs` puts them in `media/phi-media`, so every app and the CDN read the same file).
+- Concerns are apart: glyphs drawn by hand in `scripts/coins/glyph/` (OGY ring O, SUM dollar S, EGG pound E, painted `currentColor`), platform coin records and metals in `scripts/coins/platform.json`, colour in `scripts/coins/metal.mjs`, drawing in `scripts/coins/strike.mjs`, data in `scripts/coin-art.mjs` (writes `image` and `card` on every coin in `economy.json`).
+- The coin page lays each coin on puikit's `BankCard` (`components/Phiegg/CoinCard.tsx`); its words are `site.json` copy (`coinPlatform`, `coinClub`, `coinIssued`, `coinHolders`).

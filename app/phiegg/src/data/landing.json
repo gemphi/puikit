@@ -156,7 +156,32 @@
         "sub": "Zones to walk, hosts to join, shows on the runway and shops on every corner."
       }
     ],
-    "_lead": "The first slides on the Home stage, before the cities: finished renders the user chose (2026-11-19)."
+    "_lead": "The first slides on the Home stage, before the cities: finished renders the user chose (2026-11-19).",
+    "kinds": [
+      {
+        "id": "all",
+        "label": "All"
+      },
+      {
+        "id": "reel",
+        "label": "Reels"
+      },
+      {
+        "id": "show",
+        "label": "Shows"
+      },
+      {
+        "id": "drop",
+        "label": "Drops"
+      },
+      {
+        "id": "world",
+        "label": "Worlds"
+      }
+    ],
+    "kindsLabel": "What to show",
+    "most": 64,
+    "_kinds": "The stage at the top of Home (kit CardStage): only what Phiegg shows as pictures, reels, shows, drops and worlds, taken in turn (components/Phiegg/stageCards.ts), at most `most`; a pill a kind."
   },
   "ask": {
     "title": "Chat",
@@ -164,14 +189,23 @@
     "agentId": "ag_lora",
     "context": "the welcome page",
     "fan": [
-      "home/phi-bird/back.webp",
-      "home/phi-bird/violet-rain.webp",
-      "home/phi-bird/phantom-gold.webp",
-      "home/phi-bird/beach-day.webp",
-      "home/phi-bird/plain.webp",
-      "home/phi-bird/front.webp"
+      "home/dress/dress-01-pose-01-phantom-gold.webp",
+      "home/dress/dress-03-pose-02-orange-peel.webp",
+      "home/dress/dress-01-pose-01-violet-rain.webp",
+      "home/dress/dress-03-pose-01-bubblegum.webp",
+      "home/dress/dress-03-pose-02-ice.webp",
+      "home/dress/dress-01-pose-01-beach-day.webp",
+      "home/dress/dress-03-pose-03-watermelon.webp",
+      "home/dress/dress-03-pose-01-night-sky.webp",
+      "home/dress/dress-01-pose-01-phantom-grey.webp",
+      "home/dress/dress-03-pose-02-70s-carpet.webp",
+      "home/dress/dress-03-pose-01-quicksand.webp",
+      "home/dress/dress-03-pose-02-camo.webp",
+      "home/dress/dress-03-pose-03-blood-cacoon.webp",
+      "home/dress/dress-03-pose-01-phantom-black.webp"
     ],
-    "_fan": "The pictures fanned out either side of the chat, three a side from the left: finished renders of Lora's Spark's Phi Bird dress (scripts/media/home-pictures.json), 2026-11-19.",
+    "fanShown": 6,
+    "_fan": "The pictures fanned out either side of the chat: finished renders of Lora's Spark's dresses with their shoes and bags (scripts/media/home-pictures.json), 2026-11-22. `fanShown` of them are picked on each visit, half a side; the first of the list always stands.",
     "prompts": [
       "What should I wear in Lava City?",
       "Where is the next show?",
@@ -180,9 +214,67 @@
   },
   "step": {
     "before": "Step into",
-    "after": "sixteen cities",
+    "after": "virtual cities",
     "body": "Each city is its own world: zones to walk, hosts to join, shows on the runway and shops on every corner.",
-    "cta": "Step in"
+    "cta": "Step in",
+    "centre": "home/dress/design-06-seated.webp",
+    "_centre": "One picture standing large in the middle of the band, the pills (five then) around it.",
+    "picture": [
+      "home/dress/design-06-close.webp",
+      "home/dress/dress-01-pose-01-phantom-gold.webp",
+      "home/dress/dress-03-pose-01-bubblegum.webp",
+      "home/dress/dress-03-pose-02-ice.webp",
+      "home/dress/dress-01-pose-01-violet-rain.webp",
+      "home/dress/dress-03-pose-03-watermelon.webp"
+    ],
+    "_picture": "The pictures floating in this band, six at most. When the list is here they are shown whole in upright pills and are not pressed; without it the band shows the cities' posts (`post` below), each opening its post. 2026-11-22: the dress renders with their shoes, in place of the cities' duo posts."
+  },
+  "gallery": {
+    "_": "The finished renders on Home, in sets (scripts/media/home-pictures.json writes them): a tab per set and one for all of them; each set's pictures stand whole in cards of its `ratio`.",
+    "title": "Renders",
+    "all": "All",
+    "group": [
+      {
+        "id": "dress",
+        "label": "Dresses",
+        "ratio": "3 / 4",
+        "picture": [
+          "home/dress/design-06-seated.webp",
+          "home/dress/dress-01-pose-01-phantom-gold.webp",
+          "home/dress/dress-03-pose-02-orange-peel.webp",
+          "home/dress/dress-03-pose-03-watermelon.webp"
+        ]
+      },
+      {
+        "id": "animal",
+        "label": "Animals",
+        "ratio": "1",
+        "picture": [
+          "home/animal/animal-pose-06-rust.webp",
+          "home/animal/animal-pose-06-green.webp",
+          "home/animal/animal-pose-08-steel.webp"
+        ]
+      },
+      {
+        "id": "scene",
+        "label": "Scenes",
+        "ratio": "1",
+        "picture": [
+          "home/scene/ride-pink.webp",
+          "home/scene/boldroid-orange-peel.webp",
+          "home/scene/crew-close-up.webp"
+        ]
+      },
+      {
+        "id": "city",
+        "label": "Cities",
+        "ratio": "16 / 9",
+        "picture": [
+          "home/city/city-three-quarter.webp",
+          "home/city/city-side.webp"
+        ]
+      }
+    ]
   },
   "tour": [
     {

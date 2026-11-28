@@ -6,6 +6,8 @@ import { ensureWallet } from './ledger.mjs';
 import { resetMail } from './mail.mjs';
 
 /** Answer `route` when it is an account route; otherwise leave the response open for the next routes. */
+/** How many of the seeded people anyone may be, to try things (PHI_DEMO_USERS): the main accounts, 64 by default. */
+const DEMO_USERS = Math.max(1, Math.min(500, Number(process.env.PHI_DEMO_USERS) || 64));
 export async function accountRoute(route, { RESET_TTL, accountOf, browserOf, demoLogin, devLinks, fail, forgots, linkFor, loopback, mailer, me, readBody, req, res, seedHandles, seedUsers, send, sendVerify, sessionId, sid, signins, store, token, u }) {
     // Accounts. Registering upgrades the current guest in place, so its wallet, looks and saved state carry over.
     if (route === 'POST /auth/register') {
@@ -94,7 +96,7 @@ export async function accountRoute(route, { RESET_TTL, accountOf, browserOf, dem
       return send(res, 200, { ok: true });
     }
     // Demo sign-in as a seeded member (no password) — PHI_DEMO_LOGIN=0 turns it off.
-    if (route === 'GET /auth/demo-user') return demoLogin ? send(res, 200, seedUsers.slice(0, 24).map((x) => ({ id: x.id, name: x.name, handle: x.handle }))) : fail(res, 403, 'disabled', 'Demo sign-in is off.');
+    if (route === 'GET /auth/demo-user') return demoLogin ? send(res, 200, seedUsers.slice(0, DEMO_USERS).map((x) => ({ id: x.id, name: x.name, handle: x.handle }))) : fail(res, 403, 'disabled', 'Demo sign-in is off.');
     if (route === 'POST /auth/login' || route === 'POST /auth/demo') {
       if (!demoLogin) return fail(res, 403, 'disabled', 'Demo sign-in is off.');
       const { userId } = (await readBody(req)) || {};

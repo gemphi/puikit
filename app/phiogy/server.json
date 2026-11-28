@@ -18,16 +18,28 @@
     "gallery": "text",
     "voice": "voice",
     "stage": "voice",
-    "category": "head"
+    "category": "head",
+    "world": "text",
+    "city": "text",
+    "quest": "text"
   },
   "head": {
     "text": "Text",
     "voice": "Voice"
   },
+  "call": {
+    "id": "call",
+    "label": "Lounge",
+    "topic": "A room to call in. Join, talk, share a screen."
+  },
   "icon": {
     "text": "hash",
     "voice": "volume",
-    "host": "users"
+    "host": "users",
+    "world": "globe",
+    "gallery": "image",
+    "stage": "mic",
+    "quest": "star"
   },
   "day": "Today",
   "presence": [
@@ -99,7 +111,9 @@
         "label": "Moonbirds",
         "x": "https://x.com/moonbirds"
       }
-    ]
+    ],
+    "_": "Spaces for collections Phiegg has no host for: each its first room, the rooms of the template `template` names after it, and a room to call in; a mark from the portraits, as every host has.",
+    "template": "collection"
   },
   "collection": {
     "template": "collection",
@@ -359,5 +373,45 @@
         }
       ]
     }
-  ]
+  ],
+  "message": {
+    "_": "talk.py: every text room of a space says between least and most of Phiegg's comments, spread over these days, between these minutes of the day (from, until).",
+    "least": 16,
+    "most": 64,
+    "day": [
+      "Saturday",
+      "Sunday",
+      "Yesterday"
+    ],
+    "from": 480,
+    "until": 1320
+  },
+  "profile": {
+    "_": "What a person's profile carries from Phiegg: its counts (the word Phiogy names it by, and the field of Phiegg's person), how many of the pictures they posted, and their clubs.",
+    "count": [
+      [
+        "shot",
+        "postCount"
+      ],
+      [
+        "follower",
+        "followers"
+      ],
+      [
+        "following",
+        "following"
+      ],
+      [
+        "put",
+        "putCount"
+      ]
+    ],
+    "picture": 24
+  },
+  "key": "phiegg:",
+  "_key": "How a picture of Phiegg's own folder is named in Phiogy's files: this, then its path there.",
+  "rights": {
+    "_": "The file that says how hosts are governed (roles, rooms only some roles use, invites), written by hand, named in room.json as `role`.",
+    "file": "public/data/role.json"
+  }
 }

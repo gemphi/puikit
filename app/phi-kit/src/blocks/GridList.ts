@@ -14,7 +14,9 @@ export const LIST = words.list;
 export type GridRow = { it: GridItem; i: number };
 
 const label = (f: string) => (LIST.field as Record<string, string>)[f] ?? f;
-const valueOf = (r: GridRow, f: string): unknown => (r.it as Record<string, unknown>)[f];
+/** A card's value for a field: its own key, else the fact of that name in its `fields` (a token's traits), so a
+ *  block filters and sorts by any fact its cards list. */
+const valueOf = (r: GridRow, f: string): unknown => (r.it as Record<string, unknown>)[f] ?? r.it.fields?.find(([k]) => k === f)?.[1];
 const has = (v: unknown) => v != null && v !== '';
 /** Numbers by size, words by the alphabet (digits in them by size), a card without the field last. */
 const compare = (a: unknown, b: unknown) => (
@@ -23,10 +25,13 @@ const compare = (a: unknown, b: unknown) => (
       : String(a).localeCompare(String(b), undefined, { numeric: true, sensitivity: 'base' })
 );
 
-export const layoutOf = (b: { kind: string; layout?: string; layoutSet?: string[] }) => ({
-  mode: (b.layout ?? LIST.default.layout) as ViewMode,
-  modes: (b.layoutSet ?? LIST.default.layoutSet) as ViewMode[],
-});
+/** A block's layout: its own, else the one the person chose for feeds in Settings (`feed`, prefs.json), else the
+ *  kit's. The person's choice is offered among the layouts even where the block's list leaves it out. */
+export const layoutOf = (b: { kind: string; layout?: string; layoutSet?: string[] }, chosen?: string) => {
+  const mode = (b.layout ?? chosen ?? LIST.default.layout) as ViewMode;
+  const modes = (b.layoutSet ?? LIST.default.layoutSet) as ViewMode[];
+  return { mode, modes: modes.includes(mode) ? modes : [mode, ...modes] };
+};
 
 /** The sorts: the data's own order first, then every named field a card carries. */
 export const sortsFor = (rows: GridRow[], named?: string[]): ListSort<GridRow>[] => {
@@ -46,5 +51,5 @@ export const facetsFor = (rows: GridRow[], named?: string[], skip: string[] = []
 );
 
 /** What the search reads of a card. */
-export const textOf = ({ it }: GridRow) => [it.title, it.sub, it.body, it.meta, it.tag, it.note, it.value].filter(Boolean).join(' ');
+export const textOf = ({ it }: GridRow) => [it.title, it.sub, it.body, it.meta, it.tag, it.note, it.value, it.id].filter(Boolean).join(' ');
 export const countOf = (n: number) => (n === 1 ? LIST.one : LIST.many.replace('{n}', n.toLocaleString('en-US')));

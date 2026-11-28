@@ -1,0 +1,21 @@
+{
+  "_": "The themes a person picks in Settings (Theme): a theme is colours only, a palette the kit derives every colour and gradient from (src/providers/palette.ts): `seed` the dark ground's panel tone, `lightSeed` the light one, `accent` the first colour as [hue, saturation %, lightness %], `accent2` the other end of every two-colour gradient, `accent3` the middle of a three-colour sweep. Mode (dark, light, auto), Surface (surface.json), Corners and Spacing are chosen apart from it, so any theme wears any surface. A theme named for a product is in that product's colours; `swatch` is its picture in Settings. Themes the kit already has as palettes (apple, phiogy) keep the kit's values.",
+  "theme": [
+    { "id": "phiogy", "label": "Phiogy", "swatch": ["#0f1e46", "#2f6bff", "#1fb5e8"] },
+    { "id": "phiegg", "label": "Phiegg", "seed": "#2A1D16", "lightSeed": "#FBF4EE", "accent": [24, 56, 50], "accent2": [36, 80, 60], "accent3": [12, 60, 48], "swatch": ["#2a1d16", "#c67139", "#e8a64a"] },
+    { "id": "boldland", "label": "Boldland", "seed": "#1C1426", "lightSeed": "#F7F2FB", "accent": [284, 70, 62], "accent2": [36, 99, 52], "accent3": [330, 80, 60], "swatch": ["#1c1426", "#c25ee8", "#f99a0b"] },
+    { "id": "discord", "label": "Discord", "seed": "#313338", "lightSeed": "#F2F3F5", "accent": [235, 86, 65], "accent2": [328, 81, 60], "accent3": [245, 80, 70], "swatch": ["#313338", "#5865f2", "#eb459e"] },
+    { "id": "whatsapp", "label": "WhatsApp", "seed": "#111B21", "lightSeed": "#F0F2F5", "accent": [167, 100, 33], "accent2": [142, 70, 49], "accent3": [160, 80, 40], "swatch": ["#111b21", "#00a884", "#25d366"] },
+    { "id": "apple", "label": "Apple", "swatch": ["#1c1c1e", "#0a84ff", "#5e5ce6"] },
+    { "id": "telegram", "label": "Telegram", "seed": "#17212B", "lightSeed": "#F4F7FA", "accent": [200, 85, 55], "accent2": [190, 80, 50], "accent3": [210, 80, 60], "swatch": ["#17212b", "#2aabee", "#1fb6d1"] },
+    { "id": "slack", "label": "Slack", "seed": "#3F0E40", "lightSeed": "#F8F5F8", "accent": [194, 86, 58], "accent2": [342, 77, 50], "accent3": [42, 83, 55], "swatch": ["#3f0e40", "#36c5f0", "#e01e5a"] },
+    { "id": "spotify", "label": "Spotify", "seed": "#121212", "lightSeed": "#F6F6F6", "accent": [141, 73, 42], "accent2": [141, 60, 60], "accent3": [160, 60, 45], "swatch": ["#121212", "#1db954", "#57d688"] },
+    { "id": "notion", "label": "Notion", "seed": "#191919", "lightSeed": "#FFFFFF", "accent": [210, 77, 51], "accent2": [36, 70, 55], "accent3": [0, 0, 60], "swatch": ["#191919", "#2383e2", "#d9a03a"] },
+    { "id": "github", "label": "GitHub", "seed": "#0D1117", "lightSeed": "#F6F8FA", "accent": [215, 93, 58], "accent2": [262, 90, 70], "accent3": [128, 49, 49], "swatch": ["#0d1117", "#2f81f7", "#a371f7"] },
+    { "id": "twitch", "label": "Twitch", "seed": "#18181B", "lightSeed": "#F7F7F8", "accent": [264, 100, 64], "accent2": [290, 80, 60], "accent3": [250, 80, 70], "swatch": ["#18181b", "#9146ff", "#c44ee6"] },
+    { "id": "snapchat", "label": "Snapchat", "seed": "#141414", "lightSeed": "#FFFDE6", "accent": [52, 100, 50], "accent2": [200, 100, 50], "accent3": [330, 90, 60], "swatch": ["#141414", "#ffdd00", "#00aaff"] },
+    { "id": "instagram", "label": "Instagram", "seed": "#121212", "lightSeed": "#FAFAFA", "accent": [333, 69, 50], "accent2": [44, 98, 73], "accent3": [235, 61, 57], "swatch": ["#121212", "#d62976", "#feda75"] },
+    { "id": "linear", "label": "Linear", "seed": "#0F1011", "lightSeed": "#F7F8F8", "accent": [234, 56, 60], "accent2": [262, 60, 65], "accent3": [220, 60, 60], "swatch": ["#0f1011", "#5e6ad2", "#8f74d9"] },
+    { "id": "netflix", "label": "Netflix", "seed": "#141414", "lightSeed": "#F5F5F1", "accent": [357, 92, 47], "accent2": [20, 90, 50], "accent3": [345, 80, 40], "swatch": ["#141414", "#e50914", "#f2611b"] }
+  ]
+}

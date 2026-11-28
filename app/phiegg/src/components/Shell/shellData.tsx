@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, type AppShellApp, type AppShellGroup, type AppShellLeaf, type AppShellTab } from '@pui/components';
 import {
-  Bot, CalendarDays, Camera, ChevronDown, ChevronUp, Circle, Clapperboard, Clock, Film, Coins, Compass, Droplets, Flag, Gamepad2, Gem, Gift, Globe, Hash, Home, LayoutGrid, MessageCircle, Palette, Plus, Radio, Rocket, Search, Server, ShoppingBag, Sparkles, Tv, User, UserPlus,
+  Bot, CalendarDays, Camera, ChevronDown, ChevronUp, Circle, Clapperboard, Clock, Film, Coins, Compass, Droplets, Flag, Gamepad2, Gem, Gift, Globe, Hash, Home, Info, LayoutGrid, MessageCircle, Palette, Plus, Radio, Rocket, Search, Server, ShoppingBag, Sparkles, Tv, User, UserPlus,
   type LucideIcon,
 } from 'lucide-react';
 import { appMeta, appUrl, APPS } from '@phi-kit/data';
@@ -21,7 +21,7 @@ import { previews } from './previews';
 
 /** Icons named by the menus (data/phiegg.json). Named imports keep the rest of lucide out of the bundle; add a name here
  *  when the menus start using a new one. */
-const L: Record<string, LucideIcon> = { Bot, CalendarDays, Camera, ChevronDown, ChevronUp, Circle, Clapperboard, Clock, Film, Coins, Compass, Droplets, Flag, Gamepad2, Gem, Gift, Globe, Hash, Home, LayoutGrid, MessageCircle, Palette, Plus, Radio, Rocket, Search, Server, ShoppingBag, Sparkles, Tv, User, UserPlus };
+const L: Record<string, LucideIcon> = { Bot, CalendarDays, Camera, ChevronDown, ChevronUp, Circle, Clapperboard, Clock, Film, Coins, Compass, Droplets, Flag, Gamepad2, Gem, Gift, Globe, Hash, Home, Info, LayoutGrid, MessageCircle, Palette, Plus, Radio, Rocket, Search, Server, ShoppingBag, Sparkles, Tv, User, UserPlus };
 const TAB_ICON: Record<string, LucideIcon> = { home: Home, compass: Compass, server: Server, sparkles: Sparkles, user: User, globe: Globe, gem: Gem };
 type Glyph = React.FC<{ size?: string }>;
 const GLYPH: Record<string, Glyph> = { menu: MenuBars, host: HostPyramid, chat: ChatHex, home: HomeCut };
@@ -78,7 +78,7 @@ export const shellGroups = (s: PhieggState): AppShellGroup[] => rail().filter(([
 /** The right sidebar for where the app is (data/route.json `side`): each group's menu is the rows of a kind that belong
  *  to the record the path shows (other worlds, this world's zones, its club's shops), then its plain links. A group
  *  with nothing to show is left out. No path is named here. */
-export const sideGroups = (s: PhieggState, columns: { id: string; label: string; open: boolean }[] = []): AppShellGroup[] => {
+export const sideGroups = (s: PhieggState, columns: { id: string; label: string; open: boolean }[] = [], parts: { id: string; label: string }[] = []): AppShellGroup[] => {
   const route = routeOf(s.tab); const id = route.param ? (s as unknown as Record<string, string>)[route.param] : undefined;
   const own = [route.record ?? route.kind ?? []].flat(); const mine = id ? own.find((k) => itemOf(k, id)) : own[0]; const record = mine && id ? itemOf(mine, id) : undefined;
   const word = (k: string) => (k in site.copy ? t(k as keyof typeof site.copy) : k);
@@ -86,11 +86,27 @@ export const sideGroups = (s: PhieggState, columns: { id: string; label: string;
     const kind = g.kind === '@' ? mine : g.kind; const path = kind ? PATH_OF[kind] : undefined; const param = path ? PARAM_OF[path] : undefined;
     const rows = kind && path && param ? rowsOf({ id: g.id, label: g.label, kind, where: g.where }, record).filter((r) => r.id !== id).slice(0, g.limit ?? 16) : [];
     const shown = (Lucide as unknown as Record<string, LucideIcon>).Eye, hidden = (Lucide as unknown as Record<string, LucideIcon>).EyeOff;
-    const items: AppShellLeaf[] = [...(g.columns ? columns.map((c) => ({ id: 'col:' + c.id, label: c.label, icon: <Icon icon={c.open ? shown : hidden} size="sm" /> })) : []), ...rows.map((r) => ({ id: entryId({ tab: path!, params: { [param!]: r.id } }), label: titleOf(kind!, r) })), ...(g.link ?? []).map((l) => ({ id: l.path, label: word(l.label) }))];
+    // A named set of rows folded under its own entry (a world's zones, its hosts): open, a heading over its rows.
+    const pathOf = (k: string) => PATH_OF[k] ?? (routeOf(k).param ? k : undefined);
+    const subs: AppShellLeaf[] = (g.sub ?? []).flatMap((x) => {
+      const p = pathOf(x.kind); const q = p ? PARAM_OF[p] : undefined; if (!p || !q) return [];
+      const list = rowsOf({ id: x.id, label: x.label, kind: x.kind, where: x.where, not: x.not }, record).slice(0, x.limit ?? 16);
+      return list.length ? [{ id: 'sub:' + g.id + ':' + x.id, label: word(x.label), head: true, open: true, items: list.map((r) => ({ id: entryId({ tab: p, params: { [q]: r.id } }), label: titleOf(x.kind, r) })) }] : [];
+    });
+    const inPage: AppShellLeaf[] = g.parts ? parts.map((x) => ({ id: 'part:' + x.id, label: x.label })) : [];
+    const links: AppShellLeaf[] = (g.link ?? []).map((l) => ({ id: l.path, label: word(l.label) }));
+    // A group with the page's sections or named sets lays its menu in three runs: the page's own at the top, what the
+    // record holds in the middle, the lists it leads to at the foot.
+    const runs = g.parts || g.sub ? [{ id: g.id + ':top', place: 'top' as const, items: inPage }, { id: g.id + ':center', place: 'center' as const, items: subs }, { id: g.id + ':bottom', place: 'bottom' as const, items: links }].filter((x) => x.items.length) : undefined;
+    const items: AppShellLeaf[] = [...inPage, ...subs,
+      ...(g.columns ? columns.map((c) => ({ id: 'col:' + c.id, label: c.label, icon: <Icon icon={c.open ? shown : hidden} size="sm" /> })) : []), ...rows.map((r) => ({ id: entryId({ tab: path!, params: { [param!]: r.id } }), label: titleOf(kind!, r) })), ...links];
     const G = (Lucide as unknown as Record<string, LucideIcon>)[g.icon] ?? Circle;
-    return items.length ? [{ id: 'side:' + g.id, label: word(g.label), icon: <Icon icon={G} size="md" />, place: g.place, items }] : [];
+    return items.length ? [{ id: 'side:' + g.id, label: word(g.label), icon: <Icon icon={G} size="md" />, place: g.place, items, ...(runs ? { sections: runs } : {}) }] : [];
   });
 };
+
+/** The right sidebar's group whose menu is open as the path opens (data/route.json `open`), if it has one. */
+export const sideOn = (s: PhieggState): string | undefined => { const g = (routeOf(s.tab).side ?? []).find((x) => x.open); return g ? 'side:' + g.id : undefined; };
 
 /** The current entry: the one whose page and params match where the app is; the bare page otherwise. */
 export const currentEntry = (s: PhieggState): string => {

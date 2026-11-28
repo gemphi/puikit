@@ -185,8 +185,12 @@ export function shotPost(s: Shot): Post {
     comments: site.defaultComments.map((c, i) => ({ ...c, authorId: rid('person', c.authorId), id: `${s.id}_c${i}` })), // site.json keeps the written ids
   };
 }
+/** Posts made of what is no post (any record's pictures, a band's pictures: lib/picturePost.ts), asked last. */
+const MAKERS: ((id: ID) => Post | undefined)[] = [];
+export const postMaker = (make: (id: ID) => Post | undefined) => { MAKERS.push(make); };
 export const postById = (id: ID): Post | undefined =>
-  D.agents.posts.find((p) => p.id === id) ?? (() => { const s = D.feed.shots.find((x) => x.id === id); return s && shotPost(s); })();
+  D.agents.posts.find((p) => p.id === id) ?? (() => { const s = D.feed.shots.find((x) => x.id === id); return s && shotPost(s); })()
+  ?? MAKERS.reduce<Post | undefined>((found, make) => found ?? make(id), undefined);
 
 /** An agent's greeting addressed to whoever is signed in (the seed text names the prototype's member, Noor). */
 export const greetingOf = (a: { greeting: string }) => { const me = person(D.core.currentUserId).name.split(' ')[0]; return me && me !== 'Guest' ? a.greeting.replace(/\bNoor\b/g, me) : a.greeting.replace(/,? Noor\b/g, ''); };
@@ -213,12 +217,14 @@ export function storySets(uid: ID): Highlight[] {
 export const fmt = (n: number) =>
   n >= 1e6 ? (n / 1e6).toFixed(1).replace(/\.0$/, "") + "M" : n >= 1e4 ? Math.round(n / 1e3) + "k" : n >= 1e3 ? (n / 1e3).toFixed(1).replace(/\.0$/, "") + "k" : String(n);
 export const ago = (iso: string, now = Date.now()) => {
+  if (Number.isNaN(Date.parse(iso))) return ''; // a thing with no day of its own (a picture made a post) says none
   const h = Math.max(0, Math.round((now - Date.parse(iso)) / 36e5));
   return h < 1 ? t("now") : h < 24 ? `${h}h` : `${Math.round(h / 24)}d`;
 };
 
-/** Public path of a world's generated default image (assets/worlds → public/worlds). */
-export const worldImage = (w?: { image?: string }) => (w && w.image ? mediaUrl(w.image.replace(/^assets\//, '')) : undefined);
+/** A world's own picture (a real render, `assets/world/<slug>/...`), else undefined, and it is drawn live in the theme's
+ *  colours: `assets/worlds/` holds only flat renders of the old scene, one fixed colour with bars on its hills. */
+export const worldImage = (w?: { image?: string }) => (w && w.image && !/^assets\/worlds\//.test(w.image) ? mediaUrl(w.image.replace(/^assets\//, '')) : undefined);
 /** A world's picture for a card: its own small render when it has views (never the large file), else its scene. */
 export const worldThumb = (w?: World) => (w?.gallery?.length ? mediaUrl(w.gallery[0].sm) : worldImage(w));
 /** A world's own mark (public/cities/<slug>/logo.webp), when it has one. */

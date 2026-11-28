@@ -4,9 +4,13 @@ import { Box } from '../../layout/Box';
 import { Text } from '../../primitives/Text';
 import { Button } from '../../primitives/Button';
 import { Input } from '../Input';
+import { Player } from '../../display/Player';
 import styles from './styles.module.scss';
 
-export type ChoiceOption = { value: string; label: React.ReactNode; count?: number };
+/** An option; with `picture` it is chosen by what it looks like, as a system's first-run screens offer a layout: its
+ *  picture (a file, `image`, or something drawn, `preview`) over its name, as a Player, so it has depth and draws back
+ *  under the pointer. */
+export type ChoiceOption = { value: string; label: React.ReactNode; count?: number; picture?: { image?: string; preview?: React.ReactNode } };
 export type ChoiceRowProps = {
   options: ChoiceOption[];
   value?: string;
@@ -19,6 +23,8 @@ export type ChoiceRowProps = {
   /** More options than this and the row shows one line of them and a glass "All N" (default 8). */
   limit?: number;
   labels?: { filter?: string; all?: (n: number) => string; less?: string };
+  /** The pictures' shape, width to height, where the options have pictures. */
+  ratio?: string;
   className?: string;
 };
 
@@ -28,7 +34,7 @@ export type ChoiceRowProps = {
  * them (the chosen one first) and a glass "All N" at the end of the line; that opens every option, with a short filter
  * box beside it. One tap chooses; arrow keys move along.
  */
-export const ChoiceRow = ({ options: every, value, onChange, label, showLabel, minWidth = '8rem', limit = 8, labels = {}, className }: ChoiceRowProps) => {
+export const ChoiceRow = ({ options: every, value, onChange, label, showLabel, minWidth = '8rem', limit = 8, labels = {}, ratio = '4/3', className }: ChoiceRowProps) => {
   const [q, setQ] = useState(''); const [all, setAll] = useState(false);
   const long = every.length > limit, ql = q.trim().toLowerCase();
   const text = (o: ChoiceOption) => (typeof o.label === 'string' ? o.label : o.value).toLowerCase();
@@ -57,7 +63,8 @@ export const ChoiceRow = ({ options: every, value, onChange, label, showLabel, m
             const on = o.value === value;
             return (
               <Box as="button" {...({ type: 'button' } as object)} key={o.value} role="radio" aria-checked={on} tabIndex={on || (!value && i === 0) ? 0 : -1}
-                className={cn(styles.option, on && styles.on)} onClick={() => onChange(o.value)} onKeyDown={(e: React.KeyboardEvent) => move(e, i)}>
+                className={cn(styles.option, o.picture && styles.pictured, on && styles.on)} onClick={() => onChange(o.value)} onKeyDown={(e: React.KeyboardEvent) => move(e, i)}>
+                {o.picture && <Player image={o.picture.image} label={typeof o.label === 'string' ? o.label : o.value} ratio={ratio} selected={on}>{o.picture.preview}</Player>}
                 <Text as="span" size="xs" truncate>{o.label}</Text>
                 {o.count != null && <Text as="span" size="xs" intent="muted" numeric>{o.count}</Text>}
               </Box>

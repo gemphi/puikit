@@ -1,0 +1,284 @@
+{
+ "app": "epicpods",
+ "start": "home",
+ "nav": [
+  {
+   "id": "home",
+   "label": "Home",
+   "icon": "home"
+  },
+  {
+   "id": "collection",
+   "label": "Collection",
+   "icon": "grid"
+  },
+  {
+   "id": "lore",
+   "label": "Lore",
+   "icon": "file"
+  }
+ ],
+ "views": {
+  "home": {
+   "title": "",
+   "blocks": [
+    {
+     "kind": "hero",
+     "heading": "An athletic club built from escape pods.",
+     "body": "A ring of docked escape pods: tracks in zero gravity, a market in the cargo bays and a stadium in the biggest pod.",
+     "image": "cdn:token/epicpods-1.webp",
+     "ratio": "1/1",
+     "actions": [
+      {
+       "label": "See all 1,024",
+       "view": "collection"
+      },
+      {
+       "label": "Read the lore",
+       "view": "lore"
+      }
+     ]
+    },
+    {
+     "kind": "stats",
+     "items": [
+      {
+       "label": "Pods",
+       "value": "1,024"
+      },
+      {
+       "label": "Common",
+       "value": "417",
+       "sub": "40.7%"
+      },
+      {
+       "label": "Limited",
+       "value": "220",
+       "sub": "21.5%"
+      },
+      {
+       "label": "Rare",
+       "value": "160",
+       "sub": "15.6%"
+      },
+      {
+       "label": "Epic",
+       "value": "99",
+       "sub": "9.7%"
+      },
+      {
+       "label": "SuperRare",
+       "value": "95",
+       "sub": "9.3%"
+      },
+      {
+       "label": "Legendary",
+       "value": "33",
+       "sub": "3.2%"
+      },
+      {
+       "label": "Traits",
+       "value": "6",
+       "sub": "Rarity, Character, Hair style, Hat, Accessory, Hair colour"
+      },
+      {
+       "label": "Pictures online",
+       "value": "1,021",
+       "progress": 0.9970703125
+      }
+     ]
+    },
+    {
+     "kind": "grid",
+     "title": "Meet the club",
+     "items": [
+      {
+       "kind": "token",
+       "id": "epicpods-1",
+       "route": "token/epicpods-1",
+       "collection": "epicpods",
+       "number": 1,
+       "title": "EPICPODS #1",
+       "sub": "Epic",
+       "facet": "Epic",
+       "image": "cdn:token/epicpods-1.webp"
+      },
+      {
+       "kind": "token",
+       "id": "epicpods-128",
+       "route": "token/epicpods-128",
+       "collection": "epicpods",
+       "number": 128,
+       "title": "EPICPODS #128",
+       "sub": "Limited",
+       "facet": "Limited",
+       "image": "cdn:token/epicpods-128.webp"
+      },
+      {
+       "kind": "token",
+       "id": "epicpods-255",
+       "route": "token/epicpods-255",
+       "collection": "epicpods",
+       "number": 255,
+       "title": "EPICPODS #255",
+       "sub": "Rare",
+       "facet": "Rare",
+       "image": "cdn:token/epicpods-255.webp"
+      },
+      {
+       "kind": "token",
+       "id": "epicpods-383",
+       "route": "token/epicpods-383",
+       "collection": "epicpods",
+       "number": 383,
+       "title": "EPICPODS #383",
+       "sub": "Limited",
+       "facet": "Limited",
+       "image": "cdn:token/epicpods-383.webp"
+      },
+      {
+       "kind": "token",
+       "id": "epicpods-510",
+       "route": "token/epicpods-510",
+       "collection": "epicpods",
+       "number": 510,
+       "title": "EPICPODS #510",
+       "sub": "Limited",
+       "facet": "Limited",
+       "image": "cdn:token/epicpods-510.webp"
+      },
+      {
+       "kind": "token",
+       "id": "epicpods-638",
+       "route": "token/epicpods-638",
+       "collection": "epicpods",
+       "number": 638,
+       "title": "EPICPODS #638",
+       "sub": "Common",
+       "facet": "Common",
+       "image": "cdn:token/epicpods-638.webp"
+      },
+      {
+       "kind": "token",
+       "id": "epicpods-766",
+       "route": "token/epicpods-766",
+       "collection": "epicpods",
+       "number": 766,
+       "title": "EPICPODS #766",
+       "sub": "Common",
+       "facet": "Common",
+       "image": "cdn:token/epicpods-766.webp"
+      },
+      {
+       "kind": "token",
+       "id": "epicpods-893",
+       "route": "token/epicpods-893",
+       "collection": "epicpods",
+       "number": 893,
+       "title": "EPICPODS #893",
+       "sub": "SuperRare",
+       "facet": "SuperRare",
+       "image": "cdn:token/epicpods-893.webp"
+      }
+     ],
+     "toolbar": false,
+     "layout": "grid",
+     "ratio": "1/1",
+     "mosaic": false,
+     "cardFields": 0,
+     "cols": 4,
+     "minItemWidth": "12rem",
+     "more": {
+      "label": "See all 1,024",
+      "view": "collection"
+     }
+    },
+    {
+     "kind": "grid",
+     "title": "The Epics",
+     "toolbar": false,
+     "items": [
+      {
+       "title": "Epic 05",
+       "image": "cdn:epicpods/group/epic-05-group.webp"
+      },
+      {
+       "title": "Female Epic 07",
+       "image": "cdn:epicpods/group/female-epic-07-group.webp"
+      },
+      {
+       "title": "Male Epic 01",
+       "image": "cdn:epicpods/group/male-epic-01-group.webp"
+      },
+      {
+       "title": "Male Epic 03",
+       "image": "cdn:epicpods/group/male-epic-03-group.webp"
+      }
+     ],
+     "layout": "grid",
+     "ratio": "4/5",
+     "mosaic": false,
+     "cardFields": 0,
+     "cols": 4,
+     "minItemWidth": "13rem"
+    }
+   ]
+  },
+  "collection": {
+   "title": "The collection",
+   "sub": "Every pod, all 1,024 of them, from Common to Legendary. Filter by any trait, or search a number. Each pod also has a pixel twin.",
+   "blocks": [
+    {
+     "kind": "grid",
+     "source": "data/token.json",
+     "filter": [
+      "Rarity",
+      "Character",
+      "Hair style",
+      "Hat",
+      "Accessory",
+      "Hair colour"
+     ],
+     "sort": [
+      "title"
+     ],
+     "layout": "grid",
+     "layoutSet": [
+      "grid",
+      "list"
+     ],
+     "ratio": "1/1",
+     "mosaic": false,
+     "pageSize": 48,
+     "cardFields": 0,
+     "cols": 6,
+     "minItemWidth": "11rem"
+    }
+   ]
+  },
+  "lore": {
+   "title": "Pod Belt",
+   "sub": "An athletic club built from escape pods.",
+   "blocks": [
+    {
+     "kind": "prose",
+     "lead": "A ring of docked escape pods: tracks in zero gravity, a market in the cargo bays and a stadium in the biggest pod.",
+     "sections": [
+      {
+       "title": "Dock Nine",
+       "body": "The club house and the lockers."
+      },
+      {
+       "title": "Zero-G Track",
+       "body": "Laps without a floor."
+      },
+      {
+       "title": "Pod Market",
+       "body": "Kit, food and repairs in the bays."
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

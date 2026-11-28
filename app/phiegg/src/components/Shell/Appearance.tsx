@@ -4,6 +4,9 @@ import type { RadiusPreset } from '@pui/providers';
 import { usePuiTheme } from '@pui/hooks';
 import { useStore } from '@pui/store';
 import { LOOKS, useLook } from '@phi-kit/looks';
+import { SettingsView } from '@phi-kit/settings';
+import { PREFS } from '@phi-kit/prefs';
+import { chosenAppearance } from '@phi-kit/appearance';
 import { site, t } from '../../lib/data';
 import { phieggStore } from '../../state/phieggStore';
 
@@ -21,12 +24,14 @@ export const usePhieggLook = () => {
   return [look, set] as const;
 };
 
-/** Phiegg wears only the looks data/site.json lists (today the blue Muse look): a look saved from elsewhere, or from
- *  before, is swapped for the first listed one when the app opens. */
+/** Phiegg opens in the looks data/site.json lists (today the blue Muse look): a look saved from elsewhere, or from
+ *  before, is swapped for the first listed one when the app opens. Once open, a look the person picks (Apple, Glass,
+ *  any of the kit's) stands: it is checked once, not on every change, or a pick would be taken back at once. */
 export const useListedLook = () => {
   const [look, setLook] = usePhieggLook();
   const listed = site.appearance.looks;
-  React.useEffect(() => { if (listed.length && !listed.some((l) => l.id === look.id)) setLook(listed[0].id); }, [look.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  // A theme or surface the person chose in Settings stands: the listed look is only where they chose none.
+  React.useEffect(() => { if (!chosenAppearance() && listed.length && !listed.some((l) => l.id === look.id)) setLook(listed[0].id); }, []); // eslint-disable-line react-hooks/exhaustive-deps
 };
 
 /** Theme (Apple · SpaceX · Organic), palette (16 seeded), mode, accent, radius, gradients, shades, opacity and motion, options from data/site.json appearance. */
@@ -50,8 +55,12 @@ export const Appearance: React.FC = () => {
     opacity: <Row label={t('surfaceOpacity')} opts={ap.opacities} value={appearance.opacity} set={(v) => setAppearance('opacity', v)} />,
     motion: <Row label={t('motion')} opts={ap.motion} value={appearance.motion} set={(v) => setAppearance('motion', v)} />,
   };
-  const order = (ap as unknown as { order: { rows: string[] } }).order.rows;
+  // The rows the shared Settings below stand for (prefs.json `replaces`: look, palette, accent, gradient, mode, corners) are said there once.
+  const shared = new Set(PREFS.groups.flatMap((g) => (g.shared ? g.replaces ?? [] : [])));
+  const order = (ap as unknown as { order: { rows: string[] } }).order.rows.filter((id) => !shared.has(id));
   return (
-    <Stack direction="column" gap={3}>{order.map((id) => rows[id] ? <React.Fragment key={id}>{rows[id]}</React.Fragment> : null)}</Stack>
+    <Stack direction="column" gap={3}>{order.map((id) => rows[id] ? <React.Fragment key={id}>{rows[id]}</React.Fragment> : null)}
+      {/* The layout every Phi app shares (phi-kit prefs.json): the feed and the tabs, chosen by their pictures. */}
+      <SettingsView shared /></Stack>
   );
 };

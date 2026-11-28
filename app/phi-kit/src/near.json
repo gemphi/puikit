@@ -1,0 +1,9 @@
+{
+  "_": "NEAR for every app, in one place: the network a page signs in on, each network's RPC and explorer, and EGG's token contract on each (empty until the user deploys it; see app/phisum/NEAR-PLAN.md). module/near.tsx reads it.",
+  "network": "testnet",
+  "net": {
+    "testnet": { "rpc": "https://rpc.testnet.fastnear.com", "explorer": "https://testnet.nearblocks.io/address/" },
+    "mainnet": { "rpc": "https://rpc.mainnet.fastnear.com", "explorer": "https://nearblocks.io/address/" }
+  },
+  "token": { "symbol": "EGG", "testnet": "", "mainnet": "" }
+}

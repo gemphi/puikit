@@ -97,7 +97,9 @@
     "manage": "Open Phione",
     "open": "Open your account",
     "colour": "Colour",
-    "own": "The look's own"
+    "own": "The look's own",
+    "layout": "Layout",
+    "appearance": "Appearance"
   },
   "host": {
     "add": "Add a host",
@@ -236,5 +238,32 @@
     "download": "Download",
     "open": "Open in a new tab",
     "strip": "Pictures"
+  },
+  "item": {
+    "back": "Back",
+    "share": "{p} of {name} have it",
+    "full": "Full screen",
+    "fit": "Leave full screen",
+    "stripUpright": "Strip upright",
+    "stripAcross": "Strip across",
+    "rank": "Rank",
+    "facts": "Traits",
+    "rarest": "Rarest trait",
+    "related": "Related",
+    "tab": { "facts": "Traits", "stats": "Stats", "offers": "Offers", "trail": "Trail", "owners": "Owners", "sales": "Sales" },
+    "act": { "bag": "Add to bag", "inBag": "In the bag", "offer": "Make an offer", "like": "Like", "liked": "Liked", "comment": "Comment", "share": "Share", "shared": "Link copied" }
+  },
+  "near": {
+    "connect": "Connect a NEAR wallet",
+    "connecting": "Connecting...",
+    "disconnect": "Disconnect",
+    "signed": "Signed in as {account}",
+    "explore": "See the account",
+    "network": "NEAR {network}",
+    "note": "Connecting signs you in only: nothing is sent, nothing is signed and no key is added.",
+    "balance": "{symbol} on NEAR",
+    "reading": "Reading...",
+    "none": "{symbol} is not a NEAR token yet. Once its contract is live, your balance shows here.",
+    "failed": "The wallet did not connect. Try again."
   }
 }

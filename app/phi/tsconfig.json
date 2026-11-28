@@ -43,6 +43,9 @@
       ],
       "lucide-react": [
         "./node_modules/lucide-react"
+      ],
+      "@hot-labs/near-connect": [
+        "./node_modules/@hot-labs/near-connect"
       ]
     }
   },

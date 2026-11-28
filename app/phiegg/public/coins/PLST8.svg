@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="PLST8"><defs>
+<linearGradient id="rim" x1=".12" y1=".05" x2=".88" y2=".95"><stop offset="0" stop-color="#d0d0e7"/><stop offset=".5" stop-color="#8585c1"/><stop offset="1" stop-color="#323262"/></linearGradient>
+<linearGradient id="bevel" x1=".88" y1=".95" x2=".12" y2=".05"><stop offset="0" stop-color="#d0d0e7"/><stop offset=".55" stop-color="#8585c1"/><stop offset="1" stop-color="#323262"/></linearGradient>
+<radialGradient id="face" cx=".36" cy=".3" r=".95"><stop offset="0" stop-color="#aeaed6"/><stop offset=".55" stop-color="#7171b7"/><stop offset="1" stop-color="#3f3f7d"/></radialGradient>
+<linearGradient id="gf" gradientUnits="userSpaceOnUse" x1="0" y1="64" x2="0" y2="-64"><stop offset="0" stop-color="#ddddee"/><stop offset=".55" stop-color="#9292c8"/><stop offset="1" stop-color="#353569"/></linearGradient>
+<linearGradient id="glare" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".45" stop-color="#fff" stop-opacity=".08"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<filter id="soft" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="7"/></filter><filter id="fine"><feGaussianBlur stdDeviation="1.2"/></filter>
+<clipPath id="disc"><circle cx="128" cy="122" r="101"/></clipPath></defs>
+<ellipse cx="128" cy="238" rx="84" ry="9" fill="#000" opacity=".3" filter="url(#soft)"/>
+<circle cx="128" cy="122" r="118" fill="url(#rim)"/>
+<circle cx="128" cy="122" r="116.5" fill="none" stroke="#323262" stroke-width="3" stroke-dasharray="1.6 2.4" opacity=".55"/>
+<circle cx="128" cy="122" r="111" fill="url(#bevel)"/>
+<circle cx="128" cy="122" r="104" fill="#323262" opacity=".5"/>
+<circle cx="128" cy="122" r="101" fill="url(#face)"/>
+<circle cx="128" cy="122" r="90" fill="none" stroke="#1f1f3d" stroke-opacity=".38" stroke-width="2.2" transform="translate(1.2 1.4)"/><circle cx="128" cy="122" r="90" fill="none" stroke="#aeaed6" stroke-width="2"/>
+<g transform="translate(128 122)"><g stroke-linecap="round" stroke-linejoin="round"><g transform="translate(8.5 10.5)"><text x="0" y="15.399999999999999" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="44" fill="#272759" stroke="#272759" stroke-width="3">PLST8</text></g><g transform="translate(6.8 8.4)"><text x="0" y="15.399999999999999" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="44" fill="#2d2d67" stroke="#2d2d67" stroke-width="3">PLST8</text></g><g transform="translate(5.1 6.300000000000001)"><text x="0" y="15.399999999999999" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="44" fill="#333375" stroke="#333375" stroke-width="3">PLST8</text></g><g transform="translate(3.4 4.2)"><text x="0" y="15.399999999999999" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="44" fill="#3a3a83" stroke="#3a3a83" stroke-width="3">PLST8</text></g><g transform="translate(1.7 2.1)"><text x="0" y="15.399999999999999" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="44" fill="#404091" stroke="#404091" stroke-width="3">PLST8</text></g><text x="0" y="15.399999999999999" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="44" fill="url(#gf)" stroke="url(#gf)" stroke-width="3">PLST8</text></g></g>
+<g clip-path="url(#disc)"><path d="M0 0 L256 0 L0 256 Z" fill="url(#glare)"/></g>
+<path d="M44 70 A92 92 0 0 1 150 18" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="3.5" stroke-linecap="round" filter="url(#fine)"/>
+<path d="M214 176 A92 92 0 0 1 118 226" fill="none" stroke="#fff" stroke-opacity=".18" stroke-width="3" stroke-linecap="round" filter="url(#fine)"/>
+</svg>

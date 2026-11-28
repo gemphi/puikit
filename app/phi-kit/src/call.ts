@@ -7,7 +7,7 @@
  * (`peer.ts`); the line only introduces them. With no API there is no line and a call stays on its own page.
  */
 import { useEffect, useState, useSyncExternalStore } from 'react';
-import { apiSend, apiUrl, hasApi } from './api';
+import { callUrl, hasApi, sendTo } from './api';
 
 /** Someone in a call: the page they are on, and who Phiora says they are. */
 export type Caller = { peer: string; name: string; handle: string | null };
@@ -17,54 +17,60 @@ export type LineState = { roster: Caller[]; ice: RTCIceServer[];
   /** This page is in the call. */
   joined: boolean;
   /** The call service refused or did not answer. */
-  fault: boolean };
+  fault: boolean;
+  /** The other pages writing in the room now, and since when (`typing.ts`). */
+  typing: (Caller & { since: number })[] };
 export type Line = {
   /** This page's name in the room. */
   peer: string;
   get: () => LineState; subscribe: (f: () => void) => () => void;
   join: () => void; leave: () => void;
   send: (to: string, signal: Signal) => void;
+  /** Say to the room's other pages that this one is writing, or has stopped. */
+  type: (on: boolean) => void;
   /** Hear the signals sent to this page. */
   listen: (f: (from: string, signal: Signal) => void) => () => void;
   close: () => void;
 };
 
-const IDLE: LineState = { roster: [], ice: [], joined: false, fault: false };
+const IDLE: LineState = { roster: [], ice: [], joined: false, fault: false, typing: [] };
 
 const open = (store: string): Line => {
   const peer = crypto.randomUUID();
-  const path = '/call/' + store.split('/').map(encodeURIComponent).join('/');
+  const url = callUrl(store);
   let state = IDLE;
   const subs = new Set<() => void>(); const ears = new Set<(from: string, signal: Signal) => void>();
   const set = (next: Partial<LineState>) => { state = { ...state, ...next }; subs.forEach((f) => f()); };
-  const stream = new EventSource(apiUrl(path + '?peer=' + peer), { withCredentials: true });
+  const stream = new EventSource(url + '?peer=' + peer, { withCredentials: true });
   const ready = new Promise<void>((ok) => stream.addEventListener('open', () => ok(), { once: true }));
   // What waits to be posted: whether to be in the call, and the signals, sent together once the last post is back.
-  let want: boolean | undefined; let waiting: { to: string; signal: Signal }[] = []; let busy = false;
+  let want: boolean | undefined; let waiting: { to: string; signal: Signal }[] = []; let busy = false; let writing: boolean | undefined;
   const flush = async () => {
     if (busy) return; busy = true; await ready;
-    while (want !== undefined || waiting.length) {
-      const body = { peer, join: want, send: waiting }; want = undefined; waiting = [];
-      const r = await apiSend('POST', path, body);
+    while (want !== undefined || waiting.length || writing !== undefined) {
+      const body = { peer, join: want, send: waiting, typing: writing }; want = undefined; waiting = []; writing = undefined;
+      const r = await sendTo('POST', url, body);
       if (!r.ok && body.join) set({ joined: false, fault: true });
     }
     busy = false;
   };
   stream.onmessage = (e) => {
-    const d = JSON.parse(e.data) as { roster?: Caller[]; ice?: RTCIceServer[]; from?: string; signal?: Signal };
+    const d = JSON.parse(e.data) as { roster?: Caller[]; ice?: RTCIceServer[]; from?: string; signal?: Signal; typing?: Caller & { on: boolean } };
     if (d.roster) set({ roster: d.roster, ice: d.ice ?? state.ice });
+    if (d.typing) { const { on, ...who } = d.typing; set({ typing: [...state.typing.filter((t) => t.peer !== who.peer), ...(on ? [{ ...who, since: Date.now() }] : [])] }); }
     if (d.from && d.signal) ears.forEach((f) => f(d.from as string, d.signal as Signal));
   };
   // The line is up. After a drop the server has forgotten this page, so a page that was in the call joins again.
   stream.onopen = () => { set({ fault: false }); if (state.joined) { want = true; void flush(); } };
   // The line is down (the browser tries again by itself): nobody can be reached until it is back.
-  stream.onerror = () => set({ roster: [], fault: true });
+  stream.onerror = () => set({ roster: [], fault: true, typing: [] });
   return {
     peer, get: () => state,
     subscribe: (f) => { subs.add(f); return () => { subs.delete(f); }; },
     join: () => { want = true; set({ joined: true, fault: false }); void flush(); },
     leave: () => { want = false; waiting = []; set({ joined: false }); void flush(); },
     send: (to, signal) => { waiting.push({ to, signal }); void flush(); },
+    type: (on) => { writing = on; void flush(); },
     listen: (f) => { ears.add(f); return () => { ears.delete(f); }; },
     close: () => stream.close(),
   };

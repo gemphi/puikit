@@ -20,6 +20,9 @@ export interface CarouselProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   children: React.ReactNode;
   /** How many slides are visible at once on wide screens. Narrower viewports step down to 2, then 1. */
   slidesPerView?: ResponsiveValue<number>;
+  /** A fixed width for every slide ('3.5rem'), held at every screen width: a strip of thumbnails. Takes the place of
+   *  `slidesPerView`, which divides the track and steps down to 2, then 1, on narrow screens. */
+  slideWidth?: string;
   /** Space between slides, in the same 4px scale the rest of the system uses. */
   gap?: 1 | 2 | 3 | 4 | 6 | 8;
   /** Rendered above the track, opposite the arrows. */
@@ -44,6 +47,7 @@ export interface CarouselProps extends Omit<React.HTMLAttributes<HTMLDivElement>
 export const Carousel: React.FC<CarouselProps> = ({
   children,
   slidesPerView = 4,
+  slideWidth,
   gap = 4,
   header,
   labels,
@@ -84,13 +88,14 @@ export const Carousel: React.FC<CarouselProps> = ({
   const trackStyle: React.CSSProperties = {
     ...responsiveCSSVars('carousel-slides', slidesPerView, (v: number) => String(v)),
     '--carousel-gap': `${gap * 0.25}rem`,
+    ...(slideWidth ? { '--carousel-slide-width': slideWidth } : {}),
   } as React.CSSProperties;
 
   // With nothing to scroll past, the arrows would be permanently dead weight.
   const scrollable = !(atStart && atEnd);
 
   return (
-    <Box className={cn(styles.carousel, className)} style={style} {...props}>
+    <Box className={cn(styles.carousel, slideWidth && styles.fixed, className)} style={style} {...props}>
       {header && <Box className={styles.header}>{header}</Box>}
 
       <Box className={styles.viewport}>

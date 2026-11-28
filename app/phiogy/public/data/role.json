@@ -1,0 +1,31 @@
+{
+  "_": "How Phiogy's hosts are governed (phi-kit role.tsx): the role everyone holds, the roles a host with none of its own starts with (one the viewer makes), each host's owner, roles, who holds which, and the rooms only some roles see, write, call or pin in. The page an invite link opens is `invite` (invite.tsx). Written by hand; server.py names this file in room.json.",
+  "everyone": "everyone",
+  "invite": "invite",
+  "default": [
+    { "id": "everyone", "label": "Everyone", "can": ["see", "write", "call", "pin"] },
+    { "id": "mod", "label": "Moderators", "intent": "success", "can": ["see", "write", "call", "pin", "invite", "manage"] }
+  ],
+  "space": {
+    "Phiace": {
+      "owner": "lora",
+      "role": [
+        { "id": "everyone", "label": "Everyone", "can": ["see", "write", "call"] },
+        { "id": "host", "label": "Hosts", "intent": "primary", "can": ["see", "write", "call", "pin", "invite", "manage"] },
+        { "id": "maker", "label": "Makers", "intent": "success", "can": ["see", "write", "call", "pin", "invite"] }
+      ],
+      "give": { "kairo": ["host"], "you": ["maker"], "mina": ["maker"], "tavi": ["maker"] },
+      "room": { "show": { "write": ["host"] }, "stage": { "call": ["host", "maker"] } }
+    },
+    "Makers": {
+      "owner": "you",
+      "role": [
+        { "id": "everyone", "label": "Everyone", "can": ["see", "write", "call", "pin"] },
+        { "id": "mod", "label": "Moderators", "intent": "success", "can": ["see", "write", "call", "pin", "invite", "manage"] },
+        { "id": "crew", "label": "Crew", "intent": "info", "can": ["see", "write", "call", "pin", "invite"] }
+      ],
+      "give": { "lora": ["mod"], "sol": ["crew"], "wren": ["crew"] },
+      "room": { "build": { "see": ["mod", "crew"] } }
+    }
+  }
+}

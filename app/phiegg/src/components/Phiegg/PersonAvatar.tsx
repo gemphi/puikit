@@ -2,11 +2,18 @@ import React from 'react';
 import { Avatar } from '@pui/components';
 import { person, site } from '../../lib/data';
 import { portrait } from '../../lib/portraits';
+import { OpensPost } from './OpensPost';
 
 const GLYPHS: Record<string, string> = { ...(site.glyphs as Record<string, string>), ...((site as unknown as { glyphPaths?: Record<string, string> }).glyphPaths ?? {}) };
 
 /** People and agents wear their beta portrait (lib/portraits); without one, the puikit default profile icon (agents carry their glyph). */
-export const PersonAvatar: React.FC<{ id: string; size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' }> = ({ id, size = 'md' }) => {
+/** A face opens its person as a post of their pictures (OpensPost); `still` keeps it a picture alone. */
+export const PersonAvatar: React.FC<{ id: string; size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'; still?: boolean }> = ({ id, size = 'md', still }) => {
+  const face = <PersonFace id={id} size={size} />;
+  return still ? face : <OpensPost id={id} label={person(id).name}>{face}</OpensPost>;
+};
+
+const PersonFace: React.FC<{ id: string; size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' }> = ({ id, size }) => {
   const p = person(id);
   const d = p.isAgent && p.glyph ? GLYPHS[p.glyph] : undefined;
   const pic = portrait(p.id);

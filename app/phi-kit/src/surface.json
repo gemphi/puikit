@@ -1,0 +1,10 @@
+{
+  "_": "How the parts of a window are laid (Settings, Surface), the same words as the desktop apps (phikit appkit user.tsv: Solid, Gradient, Glass, Silver): each is one of the kit's theme styles with its gradient level, worn over whichever theme is picked. Sweep is Phiogy's: one gradient under the whole window. `swatch` is its picture in Settings.",
+  "surface": [
+    { "id": "solid", "label": "Solid", "style": "flat", "gradient": "flat", "swatch": ["#1c1c1e", "#1c1c1e"] },
+    { "id": "gradient", "label": "Gradient", "style": "gradient", "gradient": "vivid", "swatch": ["#2f6bff", "#8f74d9"] },
+    { "id": "glass", "label": "Glass", "style": "glass", "gradient": "soft", "swatch": ["#1b2140", "#3f7cff", "#1b2140"] },
+    { "id": "silver", "label": "Silver", "style": "spacex", "gradient": "soft", "swatch": ["#8a8d91", "#d8dadc", "#8a8d91"] },
+    { "id": "sweep", "label": "Sweep", "style": "jingle", "gradient": "flat", "swatch": ["#2f6bff", "#2a8fd6", "#1fb5e8"] }
+  ]
+}

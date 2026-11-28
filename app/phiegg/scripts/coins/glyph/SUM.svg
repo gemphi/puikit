@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-70 -70 140 140" stroke-linecap="round" stroke-linejoin="round">
+  <!-- $UM: the dollar letter, an S with its bar through it. Paint is currentColor; scripts/coins/strike.mjs raises it. -->
+  <path d="M30 -34 C30 -58 -30 -60 -30 -28 C-30 2 30 -4 30 28 C30 60 -30 58 -30 34" fill="none" stroke="currentColor" stroke-width="17"/>
+  <path d="M0 -66 V66" fill="none" stroke="currentColor" stroke-width="11"/>
+</svg>

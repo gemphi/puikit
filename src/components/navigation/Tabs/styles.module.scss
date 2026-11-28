@@ -12,3 +12,11 @@
 .panel {
   padding: 0;
 }
+
+/* The person's tab layout (Settings, `tabs`: providers/layout.ts writes data-phi-tabs on the root). Vertical: the
+   tabs stand in a column at the panel's left, the line between them and the panel upright; every app's Tabs follow. */
+:global(:root[data-phi-tabs='vertical']) {
+  .tabs { flex-direction: row; align-items: flex-start; gap: var(--phi-space-4, 1rem); }
+  .list { flex-direction: column; align-items: stretch; border-bottom: 0; border-right: 1px solid var(--phi-color-border); padding-right: var(--phi-space-2, 0.5rem); }
+  .panel { flex: 1; min-width: 0; }
+}

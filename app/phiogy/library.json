@@ -1,0 +1,15 @@
+{
+  "about": "Phiegg's collections and clubs, and each club's items, for Phiogy's asset library. Written by library.py from app/phiegg/src/data.",
+  "source": "../phiegg/src/data",
+  "sheet": "phiegg:portraits/",
+  "world": "phiegg:worlds/{id}.png",
+  "kind": "club",
+  "leave": [],
+  "most": 1000,
+  "trait": {
+    "background": "Background",
+    "outfit": "Outfit",
+    "collection": "Collection",
+    "edition": "Edition"
+  }
+}

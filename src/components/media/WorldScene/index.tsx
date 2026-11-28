@@ -27,7 +27,7 @@ const hill = (r: () => number, base: number, amp: number, n: number) => {
 };
 
 /**
- * A seeded world backdrop in SVG: sky, texture, layered hills, pillars — and a sun cut like every profile circle in
+ * A seeded world backdrop in SVG: sky, texture, layered hills (bare: no pillars stand on them) and a sun cut like every profile circle in
  * puikit: an outer ring, one shade on the top semicircle, and the bottom semicircle cut in half into two shades.
  * All colours are mixes of one base colour, so the scene follows the theme and palette.
  */
@@ -37,8 +37,7 @@ export const WorldScene = ({ seed, color = 'var(--phi-color-primary)', night = f
     const pat = pattern ?? (['dots', 'lines', 'rings', 'dots'] as const)[Math.floor(r() * 4)];
     const sun = { cx: 90 + r() * 220, cy: 135 + r() * 45, r: 42 + r() * 18 };
     const hills = [0, 1, 2, 3].map((i) => hill(r, 210 + i * 45, 70 - i * 8, 3 + Math.floor(r() * 3)));
-    const pillars = Array.from({ length: 3 + Math.floor(r() * 3) }, () => ({ x: 30 + r() * 580, w: 10 + r() * 12, h: 70 + r() * 90 }));
-    return { pat, sun, hills, pillars };
+    return { pat, sun, hills };
   }, [seed, pattern]);
   const toward = night ? '#ffffff' : '#000000';
   const mix = (pct: number, to = 'var(--phi-color-background, #fff)') => `color-mix(in srgb, ${color} ${pct}%, ${to})`;
@@ -65,9 +64,6 @@ export const WorldScene = ({ seed, color = 'var(--phi-color-primary)', night = f
         <path d={`M${cx} ${cy} L${cx} ${cy + ri} A${ri} ${ri} 0 0 0 ${cx + ri} ${cy} Z`} style={{ fill: night ? deep(48) : deep(24) }} />
       </g>
       <path d={s.hills[0]} style={{ fill: night ? deep(50) : mix(58) }} opacity="0.9" />
-      {s.pillars.map((p, i) => (
-        <path key={i} d={`M${p.x} ${H * 0.62} V${H * 0.62 - p.h + p.w / 2} a${p.w / 2} ${p.w / 2} 0 0 1 ${p.w} 0 V${H * 0.62} Z`} style={{ fill: night ? deep(38) : deep(30) }} opacity="0.7" />
-      ))}
       <path d={s.hills[1]} style={{ fill: night ? deep(42) : mix(80) }} opacity="0.92" />
       <path d={s.hills[2]} style={{ fill: night ? deep(30) : deep(18) }} opacity="0.95" />
       <path d={s.hills[3]} style={{ fill: night ? deep(18) : deep(34) }} />

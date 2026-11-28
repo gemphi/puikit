@@ -1,0 +1,9 @@
+{
+ "_": "The 64 cities of Phiegg (a world is a city: Bold Cities memory, 18 November 2026). The 16 main ones are the Bold Cities (origin bold-cities), which carry the content: residents, hosts, posts, events (city-life.json). The other 48 are worlds Phiegg already has: first those the original site on the D drive named (D:/Dowloads/Workspace/gemrepo/gemphi, worlds-data.ts) that are here under the same name, then Phiegg's own named worlds in the order core.json lists them, never a second world of a name already taken. app/phiegg/scripts/cities.py writes a `city` field on each: its number, `main` or `city`, and the set's name, so a tab can list them (data/route.json). A rerun clears every `city` field first.",
+ "count": 64,
+ "main": {"origin": "bold-cities"},
+ "set": "cities",
+ "first": ["Acro World", "Nebula", "Naimia", "Chatty Valley", "Gemium", "Boldland", "Zudaland", "Roidium", "Hero City", "Aurora Land", "Horizon World", "Iceberg Kingdom", "Rock Valley", "Ocean Realm", "Safari World"],
+ "skip": "^(.* )?(Galleria|Quay|Promenade|Pier|Lido|Arcade|Terrace|Courtyard|Conservatory|Gardens)$",
+ "_skip": "Names the earlier generators made in runs (Calla Galleria, Dune Quay...), some twice: not cities of their own."
+}

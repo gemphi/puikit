@@ -1,7 +1,7 @@
 {
  "_": "Where every kind's rows live: a path into the app's data (lib/data.ts D, plus `derived` for the sets the app builds from it), with `*` for each row of a list. A kind kept in several lists names each; reading it, the first row with an id wins, and a row removed leaves them all. Read by itemOf(kind, id) and itemsOf(kind): one lookup for every kind, never a function per kind.",
  "kind": {
-  "person": "core.users", "agent": "agents.agents", "club": "core.clubs", "world": "core.worlds", "city": "core.worlds.*.cities",
+  "person": "core.users", "agent": "agents.agents", "club": "core.clubs", "world": "core.worlds", "city": "core.worlds.*.cities", "brand": "core.brands", "brandShop": "core.brands.*.shops",
   "host": "hosts.hosts", "nest": "hosts.nests", "show": "shows.shows", "pose": "shows.poses", "series": "series.series",
   "quest": "economy.quests", "coin": "economy.coins", "liquidity": "economy.liquidity", "event": "events.events",
   "store": ["derived.store", "stores.stores"], "look": "derived.store.*.looks", "pool": "pools.pools", "lot": "pools.lots",

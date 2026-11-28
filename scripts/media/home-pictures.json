@@ -1,18 +1,174 @@
 {
-  "_": "Finished renders shown on Phiegg's home page. app/phiegg/scripts/home-pictures.py reads this: each picture is a render with a clear ground, set whole on a card of `ratio` (the figure with `margin` of the card's height above and below), `height` pixels tall, written to public/<out>/<name>.webp. {DL} is the Downloads folder. The home page reads the list it shows from src/data/landing.json (ask.fan), not from here.",
-  "source": "{DL}/SHOWCASE-2025/Laura's-Spark/LS-DRESS-PHI-BIRD",
-  "out": "home/phi-bird",
-  "ratio": [3, 4],
+  "_": "Finished renders shown on Phiegg's home page. app/phiegg/scripts/home-pictures.py reads this: each picture is a render with a clear ground, set whole on a card of `ratio` (the figure with `margin` of the card's height above and below), `height` pixels tall, written to public/<out>/<name>.webp. {DL} is the Downloads folder. The home page reads the list it shows from src/data/landing.json (ask.fan), not from here. `group` holds further sets, each with its own source, out folder and shape: `cut` (the default) crops to the figure and sets it on a card of `ratio`; `whole` keeps the picture as it is, only made `height` tall at most. The home page shows the sets named in landing.json (gallery), the About page those in about.json. The folder's interface-inspo pictures are other people's screens, kept as reference only and never written out.",
+  "source": "{DL}/NEW-PHIEGG-POSts/LS-welcome-screen",
+  "out": "home/dress",
+  "ratio": [
+    3,
+    4
+  ],
   "height": 1280,
   "margin": 0.04,
   "quality": 90,
   "picture": [
-    { "name": "violet-rain", "file": "LS-RENDER-01-OPTION-04-POSE-01-VIOLET-RAIN.png" },
-    { "name": "phantom-gold", "file": "LS-RENDER-01-OPTION-04-POSE-01-PHANTOM-GOLD.png" },
-    { "name": "beach-day", "file": "LS-RENDER-01-OPTION-04-POSE-01-BEACH-DAY.png" },
-    { "name": "plain", "file": "LS-RENDER-01-OPTION-04-POSE-01.png" },
-    { "name": "front", "file": "LS-RENDER-01-OPTION-04-A-POSE-FRONT.png" },
-    { "name": "side", "file": "LS-RENDER-01-OPTION-04-A-POSE-SIDE.png" },
-    { "name": "back", "file": "LS-RENDER-01-OPTION-04-A-POSE-BACK.png" }
+    {
+      "name": "dress-01-pose-01-beach-day",
+      "file": "DRESS-01-OPTION-04-POSE-01-BEACH-DAY.png"
+    },
+    {
+      "name": "dress-01-pose-01-phantom-gold",
+      "file": "DRESS-01-OPTION-04-POSE-01-PHANTOM-GOLD.png"
+    },
+    {
+      "name": "dress-01-pose-01-phantom-grey",
+      "file": "DRESS-01-OPTION-04-POSE-01-PHANTOM-GREY.png"
+    },
+    {
+      "name": "dress-01-pose-01-violet-rain",
+      "file": "DRESS-01-OPTION-04-POSE-01-VIOLET-RAIN.png"
+    },
+    {
+      "name": "dress-03-pose-01-bubblegum",
+      "file": "DRESS-03-POSE-01-BUBBLEGUM.png"
+    },
+    {
+      "name": "dress-03-pose-01-night-sky",
+      "file": "DRESS-03-POSE-01-NIGHT-SKY.png"
+    },
+    {
+      "name": "dress-03-pose-01-phantom-black",
+      "file": "DRESS-03-POSE-01-PHANTOM-BLACK.png"
+    },
+    {
+      "name": "dress-03-pose-01-quicksand",
+      "file": "DRESS-03-POSE-01-QUICKSAND.png"
+    },
+    {
+      "name": "dress-03-pose-02-70s-carpet",
+      "file": "DRESS-03-POSE-02-70S-CARPET.png"
+    },
+    {
+      "name": "dress-03-pose-02-camo",
+      "file": "DRESS-03-POSE-02-CAMO.png"
+    },
+    {
+      "name": "dress-03-pose-02-ice",
+      "file": "DRESS-03-POSE-02-ICE.png"
+    },
+    {
+      "name": "dress-03-pose-02-orange-peel",
+      "file": "DRESS-03-POSE-02-ORANGE-PEEL.png"
+    },
+    {
+      "name": "dress-03-pose-03-blood-cacoon",
+      "file": "DRESS-03-POSE-03-BLOOD-CACOON.png"
+    },
+    {
+      "name": "dress-03-pose-03-watermelon",
+      "file": "DRESS-03-POSE-03-WATERMELON.png"
+    },
+    {
+      "name": "design-06-seated",
+      "file": "DRESS-DESIGN-06-RENDER-01-B (1).png"
+    },
+    {
+      "name": "design-06-close",
+      "file": "DRESS-DESIGN-06-RENDER-01-A.png"
+    }
+  ],
+  "group": [
+    {
+      "id": "animal",
+      "source": "{DL}/NEW-PHIEGG-POSts/LS-welcome-screen/more",
+      "out": "home/animal",
+      "ratio": [
+        1,
+        1
+      ],
+      "height": 1080,
+      "picture": [
+        {
+          "name": "animal-pose-06-rust",
+          "file": "ANIMAL-POSE-06-OPTION-03.png"
+        },
+        {
+          "name": "animal-pose-06-green",
+          "file": "ANIMAL-POSE-06-OPTION-04.png"
+        },
+        {
+          "name": "animal-pose-08-steel",
+          "file": "ANIMAL-POSE-08-OPTION-03.png"
+        }
+      ]
+    },
+    {
+      "id": "scene",
+      "source": "{DL}/NEW-PHIEGG-POSts/LS-welcome-screen/more",
+      "out": "home/scene",
+      "fit": "whole",
+      "height": 1080,
+      "picture": [
+        {
+          "name": "ride-pink",
+          "file": "1.png"
+        },
+        {
+          "name": "boldroid-orange-peel",
+          "file": "BRONWYN-BOLDROID-SHOWCASE-POSE-012-V01-ORANGE-PEEL.png"
+        },
+        {
+          "name": "crew-close-up",
+          "file": "RENDER-CLOSE-UP-01.png"
+        }
+      ]
+    },
+    {
+      "id": "city",
+      "source": "{DL}/NEW-PHIEGG-POSts/LS-welcome-screen/more",
+      "out": "home/city",
+      "ratio": [
+        16,
+        9
+      ],
+      "height": 1080,
+      "picture": [
+        {
+          "name": "city-three-quarter",
+          "file": "RENDER-3Q.png"
+        },
+        {
+          "name": "city-side",
+          "file": "RENDER-SIDE (2).png"
+        }
+      ]
+    },
+    {
+      "id": "about",
+      "source": "{DL}/NEW-PHIEGG-POSts/LS-welcome-screen/more/about-phiegg",
+      "out": "about",
+      "fit": "whole",
+      "height": 1080,
+      "picture": [
+        {
+          "name": "phi-arena-view",
+          "file": "PHI-ARENA-VIEW.png"
+        },
+        {
+          "name": "phi-stage-view",
+          "file": "PHI-STAGE-VIEW.png"
+        },
+        {
+          "name": "phi-inner-view",
+          "file": "PHI-INNER-VIEW.png"
+        },
+        {
+          "name": "phi-outer-view",
+          "file": "PHI-OUTER-VIEW.png"
+        },
+        {
+          "name": "phi-close-view",
+          "file": "PHI-CLOSE-VIEW.png"
+        }
+      ]
+    }
   ]
 }

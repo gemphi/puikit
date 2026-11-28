@@ -1,0 +1,66 @@
+{
+  "_": "The numbers the kit's community parts work by: every app has them, an app's data may say otherwise. Times are minutes.",
+  "poll": {
+    "answer": 10,
+    "least": 2,
+    "question": 300,
+    "words": 55,
+    "minutes": [
+      60,
+      240,
+      480,
+      1440,
+      4320,
+      10080
+    ]
+  },
+  "mute": {
+    "minutes": [
+      15,
+      60,
+      480,
+      1440,
+      0
+    ]
+  },
+  "remind": {
+    "minutes": [
+      20,
+      60,
+      180,
+      1440
+    ]
+  },
+  "invite": {
+    "least": 3,
+    "most": 24,
+    "minutes": [
+      1440,
+      10080,
+      43200,
+      0
+    ],
+    "uses": [
+      0,
+      1,
+      10,
+      100
+    ]
+  },
+  "status": {
+    "words": 128,
+    "minutes": [
+      30,
+      240,
+      1440,
+      0
+    ]
+  },
+  "typing": {
+    "seconds": 6,
+    "every": 3
+  },
+  "mention": {
+    "most": 8
+  }
+}

@@ -1,13 +1,13 @@
-import { AppShell, type AppShellGroup, type AppShellLeaf, Avatar, Button, Stack, TabList, Text, columnStore, useColumnEntries } from '@pui/components';
-import { usePuiTheme } from '@pui/providers';
+import { AppShell, type AppShellGroup, type AppShellLeaf, Avatar, columnStore, useColumnEntries } from '@pui/components';
 import React from 'react';
-import { Columns3, Eye, EyeOff, Moon, Sun, User, Settings } from 'lucide-react';
+import { Columns3, Eye, EyeOff, User, Settings } from 'lucide-react';
 import { APPS, appUrl, assetUrl, type AppMeta, type NavItem } from './data';
 import type { GridItem } from './blocks/Grid';
 import { AppGlyph, NavIcon } from './icons';
-import { LOOKS, useLook } from './looks';
 import { Face, READ, crowdOf, waitingIn, type People } from './people';
 import { VoiceBar, VoiceLine, useInside } from './voice';
+import { counted, useNotice } from './notice';
+import { Reminder } from './keep';
 import { AccountDrawer } from './AccountDrawer';
 
 export type AccountItem = { id: string; label: string; previews?: { id: string; label: string; sub?: string }[] };
@@ -35,7 +35,7 @@ const toGroups = (nav: NavItem[], crowd?: Crowd): AppShellGroup[] => {
   // shows no icon and starts open; a voice room's entry always shows who is in it, and a press on one goes to the room.
   const leaf = (it: NavItem): AppShellLeaf => ({
     id: it.id, label: it.label, head: it.head, open: it.head, steady: !!it.crowd || undefined,
-    count: it.count ?? (people && crowd ? waitingIn(people, crowd.app, it.id, crowd.read) : undefined),
+    count: it.count ?? (people && crowd ? counted(crowd.notice, crowd.app, it.id, (people.room?.[it.id] as { space?: string } | undefined)?.space, waitingIn(people, crowd.app, it.id, crowd.read)) || undefined : undefined),
     icon: it.head ? undefined : it.who && people ? <Face file={people} m={people.member.find((m) => m.id === it.who)} size="sm" dot /> : <NavIcon name={it.icon} size={18} />,
     items: it.items?.length ? it.items.map(leaf) : undefined,
     previews: it.crowd && crowd && people
@@ -49,7 +49,7 @@ const toGroups = (nav: NavItem[], crowd?: Crowd): AppShellGroup[] => {
 };
 /** What the menu needs to show people: the app's people, the rooms the viewer joined and those they opened, and the
  *  way to a page. */
-type Crowd = { app: string; people?: People | null; joined: Record<string, boolean>; read: Record<string, boolean>; go: (id: string) => void };
+type Crowd = { app: string; people?: People | null; joined: Record<string, boolean>; read: Record<string, boolean>; notice: ReturnType<typeof useNotice>; go: (id: string) => void };
 
 /**
  * Every Phi app's shell is the puikit {@link AppShell}; this wrapper only feeds it the app's data — menu groups, the
@@ -58,7 +58,7 @@ type Crowd = { app: string; people?: People | null; joined: Record<string, boole
 export const PhiShell: React.FC<ShellProps> = ({ app, nav, side = [], view, onView, right, onRecord, account, people, children }) => {
   // The right sidebar, the same in every app: the page's own columns (shown or hidden by picking one, so no column
   // keeps a strip of its own), then whatever groups the app's data names.
-  const columns = useColumnEntries(); const joined = useInside(); const read = READ.use();
+  const columns = useColumnEntries(); const joined = useInside(); const read = READ.use(); const notice = useNotice();
   // The viewer in the foot: their own picture and presence where the person icon would be, once the app has people.
   const me = people ? <Face file={people} m={people.member.find((m) => m.id === people.me)} size="sm" dot /> : <User size={18} />;
   const panels: AppShellGroup[] = columns.length ? [{ id: '_panels', label: 'Panels', icon: <Columns3 size={20} />, items: columns.map((c) => ({ id: 'col:' + c.id, label: c.label, icon: c.open ? <Eye size={16} /> : <EyeOff size={16} /> })) }] : [];
@@ -81,29 +81,15 @@ export const PhiShell: React.FC<ShellProps> = ({ app, nav, side = [], view, onVi
   return (
     <AppShell
       brand={{ name: app.name, tagline: app.tagline, color: app.color, glyph: <AppGlyph paths={app.icon} size={22} /> }}
-      groups={toGroups(nav, { app: app.key, people, joined, read, go: onView })} view={view} onView={pick} side={{ label: app.name, groups: sideGroups }}
+      groups={toGroups(nav, { app: app.key, people, joined, read, notice, go: onView })} view={view} onView={pick} side={{ label: app.name, groups: sideGroups }}
       apps={apps} appsLabel="Apps"
       foot={foot}
-      tools={<><VoiceBar go={(store) => onView(store.slice(app.key.length + 1))} /><LookSwitch /></>} right={right} onPreview={(leafId, p) => pulled(leafId, p.id)}
+      tools={<VoiceBar go={(store) => onView(store.slice(app.key.length + 1))} />} right={right} onPreview={(leafId, p) => pulled(leafId, p.id)}
       headerRight={<AccountDrawer onProfile={() => onView('_you')} />}
     >
       {children}
       <VoiceLine />
+      <Reminder go={onView} />
     </AppShell>
-  );
-};
-
-/** The look (Apple, SpaceX, Organic) and light or dark, one tap away in every app; Settings has the fine controls. */
-const LookSwitch: React.FC = () => {
-  const [look, setLook] = useLook();
-  const { isDark, setTheme } = usePuiTheme();
-  return (
-    <Stack direction="column" gap={1} paddingX={2} paddingBottom={2}>
-      <Stack direction="row" gap={1} align="center" justify="between">
-        <Text as="span" size="xs" intent="muted">Look</Text>
-        <Button variant="glass" onClick={() => setTheme(isDark ? 'light' : 'dark')} iconLeft={isDark ? Sun : Moon}>{isDark ? 'Light' : 'Dark'}</Button>
-      </Stack>
-      <TabList size="sm" variant="pills" aria-label="Look" activeId={look.id} onChange={setLook} items={LOOKS.map((l) => ({ id: l.id, label: l.label }))} />
-    </Stack>
   );
 };

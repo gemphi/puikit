@@ -36,6 +36,8 @@ app/phiegg/art/
 app/phiegg/public/home/
 app/phiegg/public/look/
 app/phiegg/public/world/
+# The house brands' logos, copied from their folders on the D drive by app/phiegg/scripts/cities.py
+app/phiegg/public/brand/
 
 # Pictures in any app's public folder: kept on disk and sent to the server, never in git
 app/*/public/**/*.webp

@@ -1,0 +1,32 @@
+/* The band keeps its own layout; the pictures float against it as the band's classes place them. */
+.band { position: relative; }
+.layer { display: contents; }
+
+.item {
+  cursor: zoom-in;
+  transition: scale var(--phi-duration-slow, 0.45s) var(--phi-ease, ease), left 0.6s var(--phi-ease, ease), top 0.6s var(--phi-ease, ease),
+    width 0.6s var(--phi-ease, ease), height 0.6s var(--phi-ease, ease), opacity 0.4s ease;
+  &:hover, &:focus-visible { scale: 1.12; z-index: 3; }
+}
+
+/* Chosen: in the middle, half the band wide, its height the band's; it stops floating. Its words step back. */
+.chosen.chosen.chosen {
+  left: 25% !important; top: 4% !important; width: 50% !important; height: 92% !important; aspect-ratio: auto !important;
+  z-index: 4; scale: 1; animation: none; cursor: pointer;
+  &:hover { scale: 1.02; }
+  &[data-from='next'] { animation: puiFocusFromNext 0.5s var(--phi-ease, ease) both; }
+  &[data-from='prev'] { animation: puiFocusFromPrev 0.5s var(--phi-ease, ease) both; }
+}
+.gone.gone { opacity: 0; scale: 0.8; pointer-events: none; }
+.band[data-focused] > :not(.layer) { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+.band > :not(.layer) { transition: opacity 0.3s ease; }
+
+/* Only the way through and the way back stay. */
+.arrow { position: absolute; top: 50%; translate: 0 -50%; z-index: 5; }
+.prev { left: calc(25% - 4rem); }
+.next { right: calc(25% - 4rem); }
+.close { position: absolute; top: 4%; right: 4%; z-index: 5; }
+
+@keyframes puiFocusFromNext { from { translate: 40% 0; opacity: 0; } to { translate: 0 0; opacity: 1; } }
+@keyframes puiFocusFromPrev { from { translate: -40% 0; opacity: 0; } to { translate: 0 0; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .item, .chosen.chosen.chosen { transition: none; animation: none !important; } }

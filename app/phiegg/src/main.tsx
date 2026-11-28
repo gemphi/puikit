@@ -3,6 +3,7 @@ import { hasApi } from '@phi-kit/api';
 import './styles/phiegg.scss';
 import { App } from './App';
 import { D } from './lib/data';
+import './lib/picturePost'; // every picture opens as a post
 import { loadHeavy } from './lib/heavy';
 import { bootLive } from './lib/live';
 import { bootMenus } from './lib/menus';

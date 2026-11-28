@@ -132,5 +132,23 @@
         "source"
       ]
     ]
+  },
+  "ground": {
+    "_": "Grounds the house sells: each lays a ground under the whole window when worn (phi-kit tokens/_ground.scss names it). `given`: every person has it, priced, until it goes on sale.",
+    "list": [
+      {
+        "id": "ripple",
+        "name": "Ripple",
+        "usd": 24,
+        "given": true,
+        "swatch": [
+          "#9a9a9c",
+          "#f2f2f4",
+          "#c4c4c6",
+          "#dcdcde"
+        ],
+        "story": "Rings spreading from the window's left edge, a pale crest after each trough, on brushed grey. The house gives it to everybody until it goes on sale."
+      }
+    ]
   }
 }

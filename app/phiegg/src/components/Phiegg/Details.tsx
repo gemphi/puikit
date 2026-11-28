@@ -40,16 +40,19 @@ const itemThumb = (kind: 'piece' | 'look', id: string, s: S) => {
   return p ? <Tile key={id} tone={p.tone} ratio="1" deck={1} title={p.name} sub={p.tokenId} depth={{ clubId: p.clubId, personId: p.creatorId }} onClick={() => s.openDetails({ kind: 'piece', id })} /> : null;
 };
 
-const EVENT_INTENT: Record<string, 'success' | 'primary' | 'warning' | undefined> = { sale: 'success', mint: 'primary', offer: 'warning', list: undefined, transfer: undefined };
+const EVENT_INTENT: Record<string, 'success' | 'primary' | 'warning' | undefined> = { sale: 'success', mint: 'primary', swap: 'primary', offer: 'warning', bid: 'warning', list: undefined, transfer: undefined, cancel: undefined, price: undefined };
+const evLabel = (k: string) => t(('ev_' + k) as 'ev_buy');
 const itemName = (x: SaleEvent) => (x.itemKind === 'look' ? itemOf('look', x.itemId)?.name : itemOf('piece', x.itemId)?.name) ?? x.itemId;
+/** What an event cost: its price, or for a swap the item the holder gave for it. */
+const priceOf = (x: SaleEvent) => (x.event === 'swap' ? 'for ' + ((x.forItemId && (itemOf('look', x.forItemId)?.name ?? itemOf('piece', x.forItemId)?.name)) || 'another item') : usd(x.priceUsd));
 /** OpenSea-style activity table. */
 export const Activity: React.FC<{ rows: SaleEvent[]; s: S; hideItem?: boolean }> = ({ rows, s, hideItem }) => (
   <Stack direction="column" gap={0}>
     {rows.length === 0 && <Empty text="No activity yet." />}
     {rows.slice(0, 60).map((x) => (
       <Row key={x.id}
-        media={<Tag intent={EVENT_INTENT[x.event]} minimal round size="sm">{x.event}</Tag>}
-        title={hideItem ? usd(x.priceUsd) : <>{itemName(x)} · {usd(x.priceUsd)}</>}
+        media={<Tag intent={EVENT_INTENT[x.event]} minimal round size="sm">{evLabel(x.event)}</Tag>}
+        title={hideItem ? priceOf(x) : <>{itemName(x)} · {priceOf(x)}</>}
         sub={<>{x.fromId ? person(x.fromId).name : '·'} → {x.toId ? person(x.toId).name : '·'} · {new Date(x.at).toLocaleDateString()}</>}
         onClick={hideItem ? (x.toId ? () => s.openDetails({ kind: 'person', id: x.toId! }) : undefined) : () => s.openDetails({ kind: x.itemKind, id: x.itemId })} />
     ))}
@@ -116,7 +119,7 @@ export const Details: React.FC<{ at: DetailRef }> = ({ at }) => {
   }
   if (k === 'look' || k === 'piece') {
     const name = k === 'look' ? itemOf('look', id)?.name : itemOf('piece', id)?.name; const rows = salesOfItem(id);
-    const last = rows.find((x) => x.event === 'sale'); const owner = rows.find((x) => x.event !== 'list' && x.event !== 'offer')?.toId;
+    const last = rows.find((x) => x.event === 'sale'); const owner = rows.find((x) => x.toId && x.event !== 'list' && x.event !== 'offer')?.toId;
     return <Panel key={k + id} media={<Box width="5rem">{itemThumb(k, id, s)}</Box>} title={name ?? id} sub={owner ? <>Owned by {person(owner).name}</> : undefined}
       actions={<>{k === 'look' && <Button variant="glass" onClick={() => s.openLook(id)}>Buy / offer</Button>}{owner && <Button variant="glass" onClick={() => s.openDetails({ kind: 'person', id: owner })}>Owner</Button>}</>}
       tabs={[

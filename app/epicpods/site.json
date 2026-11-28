@@ -1,0 +1,168 @@
+{
+  "_": "The Epic Pods site (epicpods.xyz) as data. scripts/world-site.mjs fills the placeholders ($tokens, $teaser, $stats, $cities, {club.x}, {world.x}, {n}) from the trait sheet, Phiegg's club and world records and the media store, and writes public/data/epicpods.json. Edit here, then run: node scripts/world-site.mjs epicpods",
+  "key": "epicpods",
+  "club": "c_epac",
+  "sheet": "media/incoming/epac/non-pixel.tsv",
+  "token": {
+    "number": "NUMBER",
+    "title": "EPICPODS #{n}",
+    "sub": "Rarity",
+    "facet": "Rarity",
+    "lead": "picture"
+  },
+  "field": {
+    "BACKGROUND / RARTIRY": "Rarity",
+    "CHAR": "Character",
+    "HAIR": "Hair style",
+    "HAT": "Hat",
+    "ACCESSORY": "Accessory",
+    "HAIR COLOUR": "Hair colour"
+  },
+  "drop": [
+    "NUMBER"
+  ],
+  "correct": {
+    "Monacle": "Monocle"
+  },
+  "picture": {
+    "by": null,
+    "all": "collections/bold-ape-epic-club/images/{n5}.webp"
+  },
+  "teaser": 8,
+  "stat": {
+    "total": "Pods",
+    "traits": "Traits",
+    "pictured": "Pictures online"
+  },
+  "all": "All",
+  "app": {
+    "app": "epicpods",
+    "start": "home",
+    "nav": [
+      {
+        "id": "home",
+        "label": "Home",
+        "icon": "home"
+      },
+      {
+        "id": "collection",
+        "label": "Collection",
+        "icon": "grid"
+      },
+      {
+        "id": "lore",
+        "label": "Lore",
+        "icon": "file"
+      }
+    ],
+    "views": {
+      "home": {
+        "title": "",
+        "blocks": [
+          {
+            "kind": "hero",
+            "heading": "{club.tagline}",
+            "body": "{world.description}",
+            "image": "$hero",
+            "ratio": "1/1",
+            "actions": [
+              {
+                "label": "See all {n}",
+                "view": "collection"
+              },
+              {
+                "label": "Read the lore",
+                "view": "lore"
+              }
+            ]
+          },
+          {
+            "kind": "stats",
+            "items": "$stats"
+          },
+          {
+            "kind": "grid",
+            "title": "Meet the club",
+            "items": "$teaser",
+            "toolbar": false,
+            "layout": "grid",
+            "ratio": "1/1",
+            "mosaic": false,
+            "cardFields": 0,
+            "cols": 4,
+            "minItemWidth": "12rem",
+            "more": {
+              "label": "See all {n}",
+              "view": "collection"
+            }
+          },
+          {
+            "kind": "grid",
+            "title": "The Epics",
+            "toolbar": false,
+            "items": [
+              {
+                "title": "Epic 05",
+                "image": "cdn:epicpods/group/epic-05-group.webp"
+              },
+              {
+                "title": "Female Epic 07",
+                "image": "cdn:epicpods/group/female-epic-07-group.webp"
+              },
+              {
+                "title": "Male Epic 01",
+                "image": "cdn:epicpods/group/male-epic-01-group.webp"
+              },
+              {
+                "title": "Male Epic 03",
+                "image": "cdn:epicpods/group/male-epic-03-group.webp"
+              }
+            ],
+            "layout": "grid",
+            "ratio": "4/5",
+            "mosaic": false,
+            "cardFields": 0,
+            "cols": 4,
+            "minItemWidth": "13rem"
+          }
+        ]
+      },
+      "collection": {
+        "title": "The collection",
+        "sub": "Every pod, all {n} of them, from Common to Legendary. Filter by any trait, or search a number. Each pod also has a pixel twin.",
+        "blocks": [
+          {
+            "kind": "grid",
+            "source": "$tokens",
+            "filter": "$traits",
+            "sort": [
+              "title"
+            ],
+            "layout": "grid",
+            "layoutSet": [
+              "grid",
+              "list"
+            ],
+            "ratio": "1/1",
+            "mosaic": false,
+            "pageSize": 48,
+            "cardFields": 0,
+            "cols": 6,
+            "minItemWidth": "11rem"
+          }
+        ]
+      },
+      "lore": {
+        "title": "{world.name}",
+        "sub": "{club.tagline}",
+        "blocks": [
+          {
+            "kind": "prose",
+            "lead": "{world.description}",
+            "sections": "$cities"
+          }
+        ]
+      }
+    }
+  }
+}

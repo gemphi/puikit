@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Spinner } from '@pui/components';
 import { PhiShell } from '@phi-kit/PhiShell';
 import { appMeta } from '@phi-kit/data';
-import { SettingsView } from '@phi-kit/views';
+import { SettingsView } from '@phi-kit/settings';
 import k from '@phi-kit/kit.module.scss';
 import { useDB } from './data';
 import { Feed } from './pages/Feed';
