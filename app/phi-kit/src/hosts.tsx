@@ -2,7 +2,7 @@ import React from 'react';
 import { Avatar, Box, Button, Input, Label, Pressable, Stack, Text, Title } from '@pui/components';
 import { Search } from 'lucide-react';
 import { assetUrl, type AppData, type NavItem } from './data';
-import { persisted } from './api';
+import { apiSend, hasApi, served } from './api';
 import { NavIcon } from './icons';
 import words from './words.json';
 
@@ -18,17 +18,18 @@ export type Host = NavItem & { members?: number; online?: number };
 type HostFile = { template: Template[]; host: Host[] };
 /** A room of a host someone made: enough for the room block to draw it. */
 export type MadeRoom = { label: string; space: string; kind?: 'voice'; member: string[]; message: never[] };
-type Made = { group: NavItem; room: Record<string, MadeRoom> };
+type Made = { id: string; group: NavItem; room: Record<string, MadeRoom>; owner?: string };
 
-/** Which hosts the viewer joined or left (by `<app>/<host>`), and the hosts they made, kept like every user document. */
-const IN = persisted<Record<string, boolean>>('host-in', {});
-const MADE = persisted<Record<string, Made[]>>('host-made', {});
+/** The hosts of the catalogue the viewer joined or left, and those made by someone that they are in: Phiora's
+ *  (`app/phiora-server/src/host.mjs`), the same in every browser and in Phiogy for Windows. */
+type Mine = { in: string[]; out: string[]; made: Made[] };
+const MINE = (app: string) => served<Mine>('/host/' + encodeURIComponent(app), { in: [], out: [], made: [] });
 const files = new Map<string, Promise<HostFile>>();
 
-/** A room of a host the viewer made, by its id (the room block asks when the app's own file has no such room). */
-export const madeRoom = (app: string, id: string): MadeRoom | undefined => (MADE.get()[app] ?? []).map((m) => m.room[id]).find(Boolean);
-/** Whether the viewer made the host of that name: it is theirs (`role.tsx`). */
-export const madeHost = (app: string, space: string): boolean => (MADE.get()[app] ?? []).some((m) => m.group.label === space);
+/** A room of a host someone made, by its id (the room block asks when the app's own file has no such room). */
+export const madeRoom = (app: string, id: string): MadeRoom | undefined => MINE(app).get().made.map((m) => m.room[id]).find(Boolean);
+/** Read again the hosts the viewer is in (after an invite let them into one). */
+export const refreshHosts = (app: string) => MINE(app).refresh();
 
 /**
  * An app's hosts: the catalogue, the ones the viewer is in (as menu groups for the rail), and joining, leaving and
@@ -36,32 +37,37 @@ export const madeHost = (app: string, space: string): boolean => (MADE.get()[app
  */
 export const useHosts = (data: AppData | null) => {
   const [file, setFile] = React.useState<HostFile | null>(null);
-  const within = IN.use(); const made = MADE.use();
   const ref = data?.host; const app = data?.app ?? '';
+  const mine = MINE(app).use();
   React.useEffect(() => {
     if (!ref) return;
     const src = assetUrl(ref);
     if (!files.has(src)) files.set(src, fetch(src).then((r) => r.json()));
     void (files.get(src) as Promise<HostFile>).then(setFile);
   }, [ref]);
-  const joined = (id: string) => within[app + '/' + id] ?? !!data?.joined?.includes(id);
-  const mine = made[app] ?? [];
+  const joined = (id: string) => mine.in.includes(id) || (!!data?.joined?.includes(id) && !mine.out.includes(id));
+  /** Ask Phiora for a change to the hosts, and say what it now has; without Phiora the page keeps it until it closes. */
+  const ask = async (method: string, path: string, body: unknown, here: Mine) => {
+    if (!hasApi) return MINE(app).replace(here);
+    await apiSend(method, path, body); await MINE(app).refresh();
+  };
+  const at = '/host/' + encodeURIComponent(app);
   return {
-    on: !!ref, file, joined, made: mine,
-    nav: [...(file?.host.filter((h) => joined(h.id)) ?? []), ...mine.map((m) => m.group)] as NavItem[],
-    join: (id: string, on: boolean) => IN.set({ ...within, [app + '/' + id]: on }),
+    on: !!ref, file, joined, made: mine.made,
+    nav: [...(file?.host.filter((h) => joined(h.id)) ?? []), ...mine.made.map((m) => m.group)] as NavItem[],
+    join: (id: string, on: boolean) => void ask('PATCH', at + '/' + encodeURIComponent(id), { join: on }, { ...mine, in: on ? [...mine.in, id] : mine.in.filter((x) => x !== id), out: on ? mine.out.filter((x) => x !== id) : [...mine.out, id] }),
     /** Make a host from a template: its rooms under their headings, the first of them returned to go to. */
-    create: (name: string, t: Template): string => {
+    create: async (name: string, t: Template): Promise<string> => {
       const id = 'm' + Date.now().toString(36);
       const rooms = t.room.map((r, i) => ({ ...r, id: id + '-' + i }));
       const heads = [...new Set(rooms.map((r) => r.head))];
       const group: NavItem = { id, label: name, icon: t.icon, items: heads.map((h, i) => ({ id: id + '-h' + i, label: h, icon: 'hash', head: true,
         items: rooms.filter((r) => r.head === h).map((r) => ({ id: r.id, label: r.label, icon: r.kind ? 'volume' : 'hash', ...(r.kind ? { crowd: r.id } : {}) })) })) };
       const room = Object.fromEntries(rooms.map((r) => [r.id, { label: r.label, space: name, ...(r.kind ? { kind: r.kind } : {}), member: [], message: [] } as MadeRoom]));
-      MADE.set({ ...made, [app]: [...mine, { group, room }] });
+      await ask('POST', at, { group, room }, { ...mine, made: [...mine.made, { id, group, room }] });
       return rooms[0].id;
     },
-    remove: (id: string) => MADE.set({ ...made, [app]: mine.filter((m) => m.group.id !== id) }),
+    remove: (id: string) => void ask('DELETE', at + '/' + encodeURIComponent(id), undefined, { ...mine, made: mine.made.filter((m) => m.id !== id) }),
   };
 };
 
@@ -90,7 +96,7 @@ export const Hosts: React.FC<{ hosts: ReturnType<typeof useHosts>; go: (id: stri
           <Input value={name} placeholder={W.name} aria-label={W.name} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)} />
           <Stack direction="column" gap={1}>
             {file.template.map((t) => (
-              <Pressable key={t.id} row gap={2} fill hover pad="sm" disabled={!name.trim()} onClick={() => go(hosts.create(name.trim(), t))}>
+              <Pressable key={t.id} row gap={2} fill hover pad="sm" disabled={!name.trim()} onClick={() => void hosts.create(name.trim(), t).then(go)}>
                 <Label icon={<NavIcon name={t.icon} size={16} />}>{t.label}</Label>
                 <Text as="span" size="xs" intent="muted" truncate>{t.room.map((r) => r.label).join(' · ')}</Text>
               </Pressable>))}

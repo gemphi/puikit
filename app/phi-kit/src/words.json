@@ -141,7 +141,7 @@
     "nobody": "No friends here yet",
     "nothing": "No request waits",
     "unfound": "Nobody has that name",
-    "waits": "A request you send waits here. Nobody is on the other side to answer it yet."
+    "waits": "A request to someone without an account waits here: nobody is on the other side to answer it."
   },
   "list": {
     "layout": "Layout",

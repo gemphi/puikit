@@ -74,7 +74,7 @@ export async function accountRoute(route, { RESET_TTL, accountOf, browserOf, dem
     }
     // Signed-in browsers: list them, sign one (or all others) out.
     if (route === 'GET /auth/session') {
-      return send(res, 200, await store.userSessions(u.id).map((x) => ({ id: sessionId(x.sid), current: x.sid === sid, browser: browserOf(x.ua), created: x.created, lastSeen: x.at })));
+      return send(res, 200, (await store.userSessions(u.id)).map((x) => ({ id: sessionId(x.sid), current: x.sid === sid, browser: browserOf(x.ua), created: x.created, lastSeen: x.at })));
     }
     if (route === 'POST /auth/session/revoke') {
       const { id, others } = (await readBody(req)) || {}; let n = 0;

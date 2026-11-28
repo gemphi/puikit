@@ -62,5 +62,9 @@
   },
   "mention": {
     "most": 8
+  },
+  "room": {
+    "every": 3,
+    "list": 30
   }
 }

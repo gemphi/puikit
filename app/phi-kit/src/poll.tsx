@@ -1,13 +1,13 @@
 /**
  * A poll in a message: a question, its answers (`limit.json` `poll`: how many, how long the words), one pick or
- * several, and how long it is open. The app's data may hold polls with the votes they have (`count`); the viewer's
- * own picks are kept like every user document and added to them. A poll the viewer makes is posted from the
- * composer, open from that moment for the time chosen; once it is over nobody picks, and the shares stand.
+ * several, and how long it is open. The app's data may hold polls with the votes they have (`count`); the votes of
+ * the room's people are Phiora's (`room.ts`), added to them, the viewer's own picks among them. A poll the viewer
+ * makes is posted from the composer, open from that moment for the time chosen; once it is over nobody picks, and
+ * the shares stand.
  */
 import React from 'react';
 import { Button, Checkbox, Input, Popover, Pressable, ProgressBar, Select, Stack, Text } from '@pui/components';
 import { BarChart3, Check, Plus, X } from 'lucide-react';
-import { persisted } from './api';
 import { span } from './time';
 import words from './talk.json';
 import limit from './limit.json';
@@ -18,19 +18,19 @@ const say = (s: string, k: Record<string, string>) => Object.entries(k).reduce((
 
 /** A poll: when it was made and for how many minutes it is open (0, or neither, for as long as its data says). */
 export type Poll = { question: string; answer: string[]; count?: number[]; many?: boolean; made?: number; minutes?: number; over?: boolean };
-const VOTE = persisted<Record<string, number[]>>('room-vote', {});
 
 const overOf = (p: Poll) => !!p.over || (!!p.made && !!p.minutes && Date.now() > p.made + p.minutes * 60000);
 
-/** A poll as a message shows it: each answer a bar as long as its share, the viewer's picks marked, a press picking. */
-export const PollView: React.FC<{ poll: Poll; id: string }> = ({ poll, id }) => {
-  const vote = VOTE.use(); const mine = vote[id] ?? []; const over = overOf(poll);
-  const count = poll.answer.map((_, i) => (poll.count?.[i] ?? 0) + (mine.includes(i) ? 1 : 0));
+/** A poll as a message shows it: each answer a bar as long as its share, the viewer's picks marked, a press picking.
+ *  `vote` is what the room's people gave (each answer's count, and the viewer's own picks). */
+export const PollView: React.FC<{ poll: Poll; vote: { count: number[]; mine: number[] }; onPick: (pick: number[]) => void }> = ({ poll, vote, onPick }) => {
+  const mine = vote.mine; const over = overOf(poll);
+  const count = poll.answer.map((_, i) => (poll.count?.[i] ?? 0) + (vote.count[i] ?? 0));
   const total = count.reduce((a, b) => a + b, 0);
   const pick = (i: number) => {
     if (over) return;
     const next = poll.many ? (mine.includes(i) ? mine.filter((x) => x !== i) : [...mine, i]) : (mine.includes(i) ? [] : [i]);
-    VOTE.set({ ...VOTE.get(), [id]: next });
+    onPick(next);
   };
   const left = poll.made && poll.minutes ? poll.made + poll.minutes * 60000 - Date.now() : 0;
   return (

@@ -94,6 +94,23 @@ export function persisted<T>(name: string, init: T, merge: (init: T, server: T) 
   return api;
 }
 
+/**
+ * A document Phiora keeps for more than one person (a host's rule, the hosts the viewer is in), read from the route
+ * that owns it: the same get, use and subscribe as a user document, read again with `refresh` (and after sign-in or
+ * out, as those are), and changed only through its own routes, whose answer `replace`s it. `init` without Phiora.
+ */
+export function served<T>(path: string, init: T): Persisted<T> {
+  const name = '@' + path; const existing = registry.get(name); if (existing) return existing as Persisted<T>;
+  let v: T = init;
+  const subs = new Set<() => void>();
+  const put = (n: T) => { v = n; subs.forEach((f) => f()); };
+  const refresh = () => (hasApi ? apiGet<T>(path).then((got) => { if (got !== undefined) put(got); }) : Promise.resolve());
+  const api: Persisted<T> = { get: () => v, set: put, replace: put, refresh, subscribe: (f) => { subs.add(f); return () => { subs.delete(f); }; }, use: () => useSyncExternalStore(api.subscribe, api.get) };
+  registry.set(name, api as Persisted<unknown>);
+  void refresh();
+  return api;
+}
+
 function defaultMerge<T>(init: T, server: T): T {
   if (init && server && typeof init === 'object' && typeof server === 'object' && !Array.isArray(init) && !Array.isArray(server))
     return { ...(init as object), ...(server as object) } as T;

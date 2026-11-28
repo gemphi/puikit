@@ -52,12 +52,15 @@ function openStore(dir, kind, pgUrl) {
   if (kind === 'sqlite' && !sqlite) throw new Error('PHI_STORE=sqlite needs Node ≥ 22.5 (node:sqlite).');
   return sqlite ? sqliteStore(dir, sqlite) : jsonStore(dir);
 }
-/** `itemsOf(kinds)` → { kind: rows } for a few kinds; postgres answers it with one query, the local stores filter. */
+/** `itemsOf(kinds)` → { kind: rows } for a few kinds; postgres answers it with one query, the local stores filter.
+ *  `itemsWhere(kind, field, value)` → the rows of one kind whose field is that value (as text): one room's messages. */
+export const FIELD = /^[A-Za-z_]\w{0,63}$/;
 function withItemsOf(store) {
   if (!store.itemsOf) store.itemsOf = async (kinds) => {
     const all = (await store.itemSources())?.sources ?? [];
     return Object.fromEntries(kinds.map((k) => [k, all.find((s) => s.kind === k)?.rows ?? []]));
   };
+  if (!store.itemsWhere) store.itemsWhere = async (kind, field, value) => ((await store.itemsOf([kind]))[kind] ?? []).filter((r) => String(r?.[field]) === String(value));
   return store;
 }
 
@@ -249,6 +252,7 @@ function sqliteStore(dir, { DatabaseSync }) {
     putFile: db.prepare("INSERT INTO items (kind, id, slug, ord, doc, origin) VALUES (?, ?, ?, ?, ?, 'file') ON CONFLICT(kind, id) DO NOTHING"),
     kept: db.prepare("SELECT COUNT(*) AS n FROM items WHERE origin <> 'file' OR edited = 1"),
     all: db.prepare('SELECT kind, doc FROM items WHERE deleted = 0 ORDER BY ord'),
+    where: db.prepare("SELECT doc FROM items WHERE kind = ? AND deleted = 0 AND CAST(json_extract(doc, '$.' || ?) AS TEXT) = ? ORDER BY ord"),
     counts: db.prepare('SELECT kind, COUNT(*) AS n FROM items WHERE deleted = 0 GROUP BY kind'),
     one: db.prepare('SELECT doc, origin, edited, owner, updated_at AS updatedAt, updated_by AS updatedBy FROM items WHERE kind = ? AND id = ? AND deleted = 0'),
     any: db.prepare('SELECT origin FROM items WHERE kind = ? AND id = ?'),
@@ -315,6 +319,7 @@ function sqliteStore(dir, { DatabaseSync }) {
       itemCache = null;
     }),
     itemChanges: ({ kind, id, n = 50 } = {}) => iq.changes.all(kind ?? null, id ?? null, n).map((c) => ({ ...c, fields: c.fields ? JSON.parse(c.fields) : null })),
+    itemsWhere: (kind, field, value) => { if (!FIELD.test(field)) return []; return iq.where.all(kind, field, String(value)).map((r) => JSON.parse(r.doc)); },
   };
 
   const getGlobal = db.prepare('SELECT doc FROM globals WHERE name = ?');

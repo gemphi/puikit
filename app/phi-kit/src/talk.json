@@ -53,7 +53,8 @@
     "short": "A code is {least} to {most} letters, digits or -.",
     "remove": "Take back",
     "isPaused": "Paused",
-    "isOver": "Run out"
+    "isOver": "Run out",
+    "signIn": "Sign in to join {host}."
   },
   "notice": {
     "inbox": "Inbox",
@@ -135,7 +136,13 @@
     "hereSub": "Here now",
     "awaySub": "Away",
     "busySub": "You get no alerts",
-    "unseenSub": "You show as off, and see everything"
+    "unseenSub": "You show as off, and see everything",
+    "shown": {
+      "here": "Here now",
+      "away": "Away",
+      "busy": "Do not disturb",
+      "off": "Offline"
+    }
   },
   "time": {
     "minutes": "{n} minutes",
@@ -146,6 +153,15 @@
     "week": "1 week",
     "weeks": "{n} weeks",
     "left": "{when} left",
-    "in": "in {when}"
+    "in": "in {when}",
+    "today": "Today",
+    "yesterday": "Yesterday"
+  },
+  "room": {
+    "signIn": "Sign in to write in {room}. What you write is shared with the people of the room.",
+    "refused": "That did not go through: {why}",
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "muted": "You muted {name}. What they write is hidden from you until you unmute them."
   }
 }

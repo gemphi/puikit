@@ -1,0 +1,87 @@
+{
+  "_": "Rooms shared by their people (src/room.mjs, host.mjs, bond.mjs): the kinds Phiora keeps for them (named apart from the public kinds the data files seed, such as host and room), which no /tree read ever serves; how a direct room between two accounts is named; how much a room answers with; the bounds of what is written; and every word said when something is refused. Read once at start.",
+  "private": [
+    "message",
+    "mark",
+    "direct",
+    "hostState",
+    "invite",
+    "bond",
+    "follow"
+  ],
+  "direct": {
+    "prefix": "dm-",
+    "join": "."
+  },
+  "verb": [
+    "see",
+    "write",
+    "call",
+    "pin",
+    "invite",
+    "manage"
+  ],
+  "roomVerb": [
+    "see",
+    "write",
+    "call",
+    "pin"
+  ],
+  "default": [
+    "see",
+    "write",
+    "call"
+  ],
+  "most": {
+    "message": 200,
+    "text": 4000,
+    "image": 8,
+    "answer": 10,
+    "member": 2000,
+    "find": 20,
+    "people": 64,
+    "role": 24,
+    "question": 300,
+    "words": 55,
+    "label": 60,
+    "room": 32
+  },
+  "invite": {
+    "code": "^[a-z0-9-]{3,32}$",
+    "minutes": 525600,
+    "uses": 10000,
+    "made": 64
+  },
+  "here": 90,
+  "write": 60,
+  "word": {
+    "sign_in": "Sign in to do that.",
+    "bad_room": "That is not a room.",
+    "bad_ref": "A message needs its own id: letters, digits, dot and dash.",
+    "empty": "A message needs words, a picture or a poll.",
+    "too_long": "That message is too long.",
+    "bad_poll": "A poll needs a question and two to ten answers.",
+    "unseen": "Only some roles see this room.",
+    "read_only": "Only some roles write in this room.",
+    "no_pin": "Only some roles pin in this room.",
+    "no_message": "No such message here.",
+    "bad_icon": "A mark is the name of an icon.",
+    "rate": "Slow down a little.",
+    "no_host": "No such host.",
+    "not_in": "Join the host first.",
+    "no_join": "This host is joined with an invite.",
+    "owner_stays": "The owner hands the host on before leaving it.",
+    "manage": "Only those who manage this host can change that.",
+    "owner": "Only the owner can do that.",
+    "no_invite": "Only some roles make invites here.",
+    "bad_code": "An invite code is 3 to 32 small letters, numbers or dashes.",
+    "taken": "That code is taken.",
+    "no_code": "This invite is not one we know.",
+    "stopped": "Invites to this host are paused.",
+    "over": "This invite ran out.",
+    "bad_host": "A host needs a name and its rooms.",
+    "host_taken": "There is already a host with that id.",
+    "bad_bond": "A friend is someone with an account.",
+    "bad_step": "That is not a step from where you stand."
+  }
+}

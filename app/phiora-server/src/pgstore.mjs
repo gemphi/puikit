@@ -118,6 +118,9 @@ export function postgresStore(url) {
       for (const r of (await q('SELECT kind, doc FROM items WHERE kind = ANY($1) AND NOT deleted ORDER BY ord', [kinds])).rows) out[r.kind].push(doc(r.doc));
       return out;
     },
+    itemsWhere: async (kind, field, value) => { await ready; if (!/^[A-Za-z_]\w{0,63}$/.test(field)) return [];
+      return (await q('SELECT doc FROM items WHERE kind = $1 AND NOT deleted AND doc->>$2 = $3 ORDER BY ord', [kind, field, String(value)])).rows.map((r) => doc(r.doc));
+    },
     itemStamp: async () => { await ready; return (await one('SELECT stamp FROM item_meta'))?.stamp ?? null; },
     itemInfo: async () => { await ready; return metaOf(await one('SELECT * FROM item_meta')); },
     getItem: async (kind, id) => { await ready; const r = await one('SELECT doc, origin, edited, owner, updated_at, updated_by FROM items WHERE kind=$1 AND id=$2 AND NOT deleted', [kind, id]); return r ? { doc: doc(r.doc), origin: r.origin, edited: r.edited, owner: r.owner ?? null, updatedAt: num(r.updated_at), updatedBy: r.updated_by ?? null } : null; },

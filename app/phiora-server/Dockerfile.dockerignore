@@ -1,6 +1,8 @@
 *
 !phiora-server/package.json
 !phiora-server/src/**
+# Phiora's own data: the words and bounds of shared rooms (room.json), the account emails' words
+!phiora-server/data/*.json
 !phiegg/src/data/ls.json
 !phiegg/src/data/stores.json
 !phiegg/src/data/core.json

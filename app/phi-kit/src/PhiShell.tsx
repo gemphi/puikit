@@ -36,7 +36,7 @@ const toGroups = (nav: NavItem[], crowd?: Crowd): AppShellGroup[] => {
   const leaf = (it: NavItem): AppShellLeaf => ({
     id: it.id, label: it.label, head: it.head, open: it.head, steady: !!it.crowd || undefined,
     count: it.count ?? (people && crowd ? counted(crowd.notice, crowd.app, it.id, (people.room?.[it.id] as { space?: string } | undefined)?.space, waitingIn(people, crowd.app, it.id, crowd.read)) || undefined : undefined),
-    icon: it.head ? undefined : it.who && people ? <Face file={people} m={people.member.find((m) => m.id === it.who)} size="sm" dot /> : <NavIcon name={it.icon} size={18} />,
+    icon: it.head ? undefined : it.who && people ? <Face file={people} m={people.member.find((m) => m.id === it.who) ?? { id: it.who, name: it.label }} size="sm" dot /> : <NavIcon name={it.icon} size={18} />,
     items: it.items?.length ? it.items.map(leaf) : undefined,
     previews: it.crowd && crowd && people
       ? crowdOf(people, it.crowd, !!crowd.joined[crowd.app + '/' + it.crowd]).map((m) => ({ id: m.id, label: m.name, sub: m.state, avatar: <Face file={people} m={m} size="xs" dot />, onSelect: () => crowd.go(it.id) }))

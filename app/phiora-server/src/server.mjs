@@ -21,6 +21,9 @@ import { DelegationError, delegationSecret, signDelegation, verifyDelegation } f
 import { accountRoute } from './account.mjs';
 import { memberRoute } from './member.mjs';
 import { callRoute, createCalls } from './call.mjs';
+import { PRIVATE, RoomError, createRooms, roomRoute } from './room.mjs';
+import { createHosts, hostRoute } from './host.mjs';
+import { createBonds, bondRoute } from './bond.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const APPS = resolve(here, '..', '..');                       // puikit/app
@@ -59,6 +62,8 @@ export function createPhiora({
   /** Public handle for a session (never the cookie value). */
   const sessionId = (sid) => createHash('sha256').update(sid).digest('hex').slice(0, 16);
   const browserOf = (ua = '') => {
+    // The desktop app says what it is itself (phikit's Phiogy, data/phiora.tsv `agent`).
+    if (/Phiogy \(Windows\)/.test(ua)) return 'Phiogy for Windows';
     const b = /Edg\//.test(ua) ? 'Edge' : /OPR\//.test(ua) ? 'Opera' : /Firefox\//.test(ua) ? 'Firefox' : /Chrome\//.test(ua) ? 'Chrome' : /Safari\//.test(ua) ? 'Safari' : ua ? 'Browser' : 'Unknown';
     const os = /Windows/.test(ua) ? 'Windows' : /iPhone|iPad/.test(ua) ? 'iOS' : /Mac OS X/.test(ua) ? 'macOS' : /Android/.test(ua) ? 'Android' : /Linux/.test(ua) ? 'Linux' : '';
     return os ? b + ' on ' + os : b;
@@ -145,6 +150,12 @@ export function createPhiora({
   const writeHits = new Map();
   // Calls between the browsers in a room (call.mjs): who is in each, and their signals passed on.
   const calls = createCalls(env);
+  // Rooms, hosts and friends shared by their people (room.mjs, host.mjs, bond.mjs): private records, served only to
+  // the people of each room, never by a /tree read.
+  const rooms = createRooms({ store, appsDir, editors });
+  const hosts = createHosts(rooms, store);
+  const bonds = createBonds(rooms, store);
+  const open = (kind) => !PRIVATE.has(kind);
 
   const server = createServer(async (req, res) => {
     const origin = req.headers.origin;
@@ -180,14 +191,16 @@ export function createPhiora({
       }
 
       // Every record of every kind, public: the data files plus live designer themes. Clients index the links.
-      if (route === 'GET /tree/rows') { const r = await rowsOf(store, searchParams); return r ? send(res, 200, r) : fail(res, 400, 'no_kind', 'Name a kind: /tree/rows?kind=pool.'); }
+      if (route === 'GET /tree/rows') { if (!open(searchParams.get('kind'))) return fail(res, 404, 'no_kind', 'No such kind.'); const r = await rowsOf(store, searchParams); return r ? send(res, 200, r) : fail(res, 400, 'no_kind', 'Name a kind: /tree/rows?kind=pool.'); }
       if (route === 'GET /tree/info') return send(res, 200, (await store.itemInfo()) ?? { items: 0, kinds: [], loadedAt: null });
       if (route === 'GET /tree/change') {
         const n = Math.min(200, Math.max(1, Number(searchParams.get('n')) || 50));
-        return send(res, 200, { changes: await store.itemChanges({ kind: searchParams.get('kind') || undefined, id: searchParams.get('id') || undefined, n }) });
+        const kind = searchParams.get('kind') || undefined; if (kind && !open(kind)) return send(res, 200, { changes: [] });
+        return send(res, 200, { changes: (await store.itemChanges({ kind, id: searchParams.get('id') || undefined, n: kind ? n : n * 10 })).filter((c) => open(c.kind)).slice(0, n) });
       }
       if (route === 'GET /tree') {
-        const stored = (await store.itemSources()) ?? { sources: [], loadedAt: null };
+        const all = (await store.itemSources()) ?? { sources: [], loadedAt: null };
+        const stored = { ...all, sources: all.sources.filter((s) => open(s.kind)) };
         const kinds = (searchParams.get('kind') || '').split(',').map((x) => x.trim()).filter(Boolean);
         const idmap = (await store.global('items.idmap')) ?? {};
         return send(res, 200, treeOf(stored, [{ kind: 'theme', rows: themeRows(await themes(store), catalog, idmap) }], kinds, narrowOf(searchParams)));
@@ -209,7 +222,7 @@ export function createPhiora({
       if (route === 'GET /me') return send(res, 200, me(u));
       // What you made, across kinds: the records whose ownerId is you (a profile's projects, rounds, pledges …).
       if (route === 'GET /tree/mine') {
-        const kinds = (searchParams.get('kinds') || '').split(',').map((x) => x.trim()).filter((k) => /^[A-Za-z][A-Za-z0-9]{0,39}$/.test(k)).slice(0, 20);
+        const kinds = (searchParams.get('kinds') || '').split(',').map((x) => x.trim()).filter((k) => /^[A-Za-z][A-Za-z0-9]{0,39}$/.test(k) && open(k)).slice(0, 20);
         const got = u.guest ? {} : await store.itemsOf(kinds);
         return send(res, 200, { me: u.guest ? null : u.id, kinds: Object.fromEntries(kinds.map((k) => [k, (got[k] ?? []).filter((r) => r.ownerId === u.id)])) });
       }
@@ -227,11 +240,20 @@ export function createPhiora({
       // A member's own routes (member.mjs); one that answered has ended the response.
       await memberRoute(route, { SERVER_DOCS, catalog, designers, docRead, fail, money, pathname, readBody, req, res, searchParams, send, store, u });
       if (res.writableEnded) return;
+      // Rooms, hosts, invites and friends shared by their people; one that answered has ended the response.
+      await roomRoute(route, { rooms, pathname, readBody, req, res, searchParams, send, u });
+      if (res.writableEnded) return;
+      await hostRoute(route, { hosts, pathname, readBody, req, res, send, u });
+      if (res.writableEnded) return;
+      await bondRoute(route, { bonds, pathname, readBody, req, res, searchParams, send, u });
+      if (res.writableEnded) return;
       // A room's call (call.mjs); one it took has answered, or is held open as the room's line.
       await callRoute(route, { calls, fail, pathname, readBody, req, res, searchParams, send, u });
       if (res.headersSent) return;
       // Records in the items database: read with who may change them, create, edit, delete (30 changes a minute each).
       const rec = pathname.match(/^\/tree\/item\/([A-Za-z][A-Za-z0-9]{0,39})\/([\w.:-]{1,120})$/);
+      // The kinds of rooms are theirs alone: never read or written as plain records.
+      if (rec && !open(rec[1])) return fail(res, 404, 'no_record', 'No ' + rec[1] + ' ' + rec[2] + '.');
       if (rec && req.method === 'GET') return send(res, 200, await readRecord(store, u, editors, rec[1], decodeURIComponent(rec[2])));
       if ((rec && (req.method === 'PATCH' || req.method === 'DELETE')) || route === 'POST /tree/item') {
         const now = Date.now(); const hits = (writeHits.get(u.id) || []).filter((t) => now - t < 60000);
@@ -239,6 +261,7 @@ export function createPhiora({
         hits.push(now); writeHits.set(u.id, hits);
         if (route === 'POST /tree/item') {
           const bd = (await readBody(req)) || {};
+          if (!open(String(bd.kind))) return fail(res, 403, 'kind_closed', bd.kind + ' records are kept by their room.');
           // Backing a round: creating an order that names a round first moves the pledge from the backer's wallet to
           // the round (Phiora is the one place money moves), so an underfunded back is refused before any order is
           // written, and the round's raised total and backer count go up.
@@ -278,6 +301,7 @@ export function createPhiora({
       if (e instanceof AuthError) return fail(res, e.status, e.code, e.message);
       if (e instanceof ItemError) return fail(res, e.status, e.code, e.message);
       if (e instanceof RecordError) return fail(res, e.status, e.code, e.message);
+      if (e instanceof RoomError) return fail(res, e.status, e.code, e.message);
       if (e.code === 413) return fail(res, 413, 'too_large', 'Body over 256 KB.');
       if (e.code === 400) return fail(res, 400, 'bad_json', 'Body is not JSON.');
       console.error(e); return fail(res, 500, 'internal', 'Something went wrong.');

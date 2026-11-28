@@ -232,13 +232,14 @@
       {
        "head": "Who sees it",
        "list": [
-        "On the web, Phiogy keeps what you write with your account: you see it again in any browser where you sign in. The other people in the room do not see it.",
-        "In Phiogy for Windows, a message you write while signed in reaches everyone in the room who uses Phiogy for Windows, within a few seconds. The field and Send work the same way as on the web."
+        "On the web, a message you write while signed in goes to the room: its people read it with your name within a few seconds, on the web and in Phiogy for Windows. A conversation with one of Phiogy's own people, who have no account, is kept for you alone.",
+        "In Phiogy for Windows it is the same room: a message you write while signed in reaches its people on the web and in Phiogy for Windows within a few seconds. The field and Send work the same way as on the web."
        ]
       },
       {
        "head": "If you cannot write",
        "list": [
+        "If the box says Sign in to write, you are not signed in: you can read what the room has, and writing needs an account.",
         "Where the box is replaced by a line saying only some roles write in the room, you can read it but not write: the host keeps that room for some roles.",
         "Where a room says only some roles see it, your role is not one of them.",
         "If Enter does nothing, check that the box is not empty."
@@ -313,13 +314,13 @@
        "list": [
         "A quote shows the face and name of who wrote the message, and how it began. A message of pictures only shows Pictures.",
         "There is no picker of other marks: you give the heart, and you can add yours to any mark a message already has.",
-        "On the web, your replies and likes are kept with your account. The others in the room do not see them."
+        "Replies and likes are the room's: its people see them, on the web and in Phiogy for Windows."
        ]
       },
       {
        "head": "In Phiogy for Windows",
        "text": [
-        "Point at a message, or press it, to show Reply, Like and Pin. While you reply, Answer nobody or Escape stops it. A like you give while signed in is counted for everyone in the room who uses Phiogy for Windows, and taking it back takes it off for them too."
+        "Point at a message, or press it, to show Reply, Like and Pin. While you reply, Answer nobody or Escape stops it. A like you give while signed in is counted for everyone in the room, on the web too, and taking it back takes it off for them too."
        ]
       }
      ],
@@ -424,14 +425,14 @@
       {
        "head": "Good to know",
        "list": [
-        "Messages that came pinned with a room are pinned for everyone. A pin you add is kept with your account, and the others in the room do not see it.",
+        "Messages that came pinned with a room are pinned for everyone. A pin you add or take away is the room's too: its people see it, on the web and in Phiogy for Windows.",
         "Where nothing is pinned, the list says Nothing is pinned here yet."
        ]
       },
       {
        "head": "In Phiogy for Windows",
        "text": [
-        "Point at a message, or press it, and press Pin; Unpin takes it off. Pinned messages, in the room's title, lists them over the room, and a press on one brings it into sight. Pins you make there stay with you too."
+        "Point at a message, or press it, and press Pin; Unpin takes it off. Pinned messages, in the room's title, lists them over the room, and a press on one brings it into sight. A pin you make there while signed in is the room's, as on the web."
        ]
       }
      ],
@@ -542,7 +543,7 @@
       {
        "head": "Good to know",
        "list": [
-        "On the web, a poll you post and the votes you give are kept with your account. The others in the room do not see them.",
+        "A poll is the room's: its people see it, and every vote counts for all of them. Nobody is shown who voted for what.",
         "Phiogy for Windows has no poll button."
        ]
       }
@@ -901,8 +902,8 @@
        "list": [
         "Friends has four tabs: Here now (your friends who are about), All, Pending and Add a friend.",
         "Each row in Add a friend says how you stand: their handle, Request sent, Asked to be your friend, or Friends.",
-        "Search people finds Phiogy's members by name or handle. Someone who has only just made an account is not listed.",
-        "For now a request you send waits. Pending says: \"A request you send waits here. Nobody is on the other side to answer it yet.\""
+        "Search people finds Phiogy's members by name or handle, and anyone with a Phiace account when you type their whole handle.",
+        "A request to someone with an account reaches them: it waits under Pending in their Friends until they accept or decline it. Phiogy's own people have no account to answer, so a request to one of them waits, and Pending says: \"A request to someone without an account waits here: nobody is on the other side to answer it.\""
        ]
       },
       {
@@ -975,8 +976,8 @@
        "head": "Good to know",
        "list": [
         "The page shows how many people there are to find, and the first ones whose name or handle holds what you type.",
-        "Someone who has only just made an account is not listed.",
-        "For now, what you write in a direct room is kept with your account: Phiogy does not deliver it to the other person yet."
+        "Someone with a Phiace account is found by their whole handle: type it in Search people.",
+        "A direct room with someone who has an account is one room for the two of you: only you two read it, on the web and in Phiogy for Windows. A direct room someone starts with you shows under Direct within half a minute. A conversation with one of Phiogy's own people is kept for you alone."
        ]
       }
      ],
@@ -1050,8 +1051,8 @@
       {
        "head": "In Phiogy for Windows",
        "text": [
-        "Press Hosts in the bar. The page lists Your hosts, the hosts other people made under Published by people, and every host to join under Join a host. Search hosts, sort by Most members or Name, and choose how the cards are laid out.",
-        "Press a host to open it in a drawer: its name and members, About, its Rooms, and Open with Join or Leave. Joining a host under Published by people puts it in your rail with its rooms and opens it. The column beside a room also has Join or Leave for its host."
+        "Press Hosts in the bar. The page lists Your hosts, the hosts somebody made that you were let into under Hosts you were let into, and every host to join under Join a host. Search hosts, sort by Most members or Name, and choose how the cards are laid out.",
+        "Press a host to open it in a drawer: its name and members, About, its Rooms, and Open with Join or Leave. Joining a host under Hosts you were let into puts it in your rail with its rooms and opens it. The column beside a room also has Join or Leave for its host."
        ]
       }
      ],
@@ -1088,14 +1089,14 @@
        "list": [
         "You own the host, so you may do everything in it. It starts with two roles: Everyone, who may see, write, call and pin, and Moderators, who may also make invites and manage roles and rooms.",
         "Remove takes the host and its rooms away at once. Phiogy does not ask first.",
-        "On the web, a host you make is kept with your account. Other people cannot find it under Join a host yet."
+        "A host you make is shared: the people you let in with an invite read and write in its rooms with you, on the web and in Phiogy for Windows. Nobody else can find it under Join a host."
        ]
       },
       {
        "head": "In Phiogy for Windows",
        "text": [
         "Press Hosts in the bar, then Create a host. Type the name in Name your host, pick a start under How it starts, and press Create. You land in its first room.",
-        "When you are signed in, the host is also published, so other people find it under Published by people and can join it. A guest's host is kept for them alone: the drawer says Kept for you only. To remove a host you made, press it on the Hosts page, then Remove."
+        "When you are signed in, the host is made on Phiogy's server too, so the people you let in with an invite (made on the web) share its rooms with you. A host somebody let you into shows under Hosts you were let into, to add to your hosts. A guest's host is kept for them alone: the drawer says Kept for you only. To remove a host you made, press it on the Hosts page, then Remove."
        ]
       }
      ],
@@ -1177,13 +1178,13 @@
         "A new role starts with See this room, Write here and Call here.",
         "A role cannot be renamed or deleted yet. Clear its boxes to leave it doing nothing.",
         "Some hosts have no roles set. In those everyone may do everything, and Roles lists none.",
-        "For now, roles are kept with your account. You see your changes wherever you sign in, but other people do not see them yet."
+        "Roles are the host's: a change holds for everyone in it at once, wherever they are."
        ]
       },
       {
        "head": "In Phiogy for Windows",
        "text": [
-        "Phiogy for Windows has no Host settings yet, and its rooms do not follow roles. Do this in Phiogy on the web."
+        "Phiogy for Windows has no Host settings yet: do this in Phiogy on the web. Its rooms follow the roles all the same, since the server keeps them: a room your role may not see shows nothing new, and what you write where your role may not write stays in your window."
        ]
       }
      ],
@@ -1223,13 +1224,13 @@
        "list": [
         "The boxes start from what each role may do on the Roles tab. Once you change a row here, this room keeps its own ticks for that row, and later changes on the Roles tab no longer reach it.",
         "This room is the room you opened Host settings from. Voice rooms have no gear, so they cannot be set here, and Call here does not stop anyone joining one.",
-        "For now, room rights are kept with your account: other people do not see your changes yet."
+        "Room rights are the host's: Phiogy's server keeps everyone to them, and a change holds for everyone at once."
        ]
       },
       {
        "head": "In Phiogy for Windows",
        "text": [
-        "Phiogy for Windows has no Host settings yet, and its rooms do not follow roles. Do this in Phiogy on the web."
+        "Phiogy for Windows has no Host settings yet: do this in Phiogy on the web. Its rooms follow the roles all the same, since the server keeps them: a room your role may not see shows nothing new, and what you write where your role may not write stays in your window."
        ]
       }
      ],
@@ -1263,7 +1264,7 @@
         "Everybody holds the Everyone role, so it is not in the box.",
         "The list shows up to 48 people at a time. Search to find someone further down.",
         "The owner also finds Make owner in the box, to hand the host to that person: see Hand a host to someone else.",
-        "For now, the roles you give are kept with your account: the people you give them to do not see them yet."
+        "The roles you give are the host's: the people you give them to have them at once."
        ]
       },
       {
@@ -1304,13 +1305,13 @@
         "Phiogy does not ask you to confirm, so be sure before you press.",
         "You cannot take it back yourself: only the new owner can make you the owner again.",
         "The owner's own row has no Roles button. To keep managing after you hand the host on, ask the new owner to give you a role that manages.",
-        "For now, the change is kept with your account: other people do not see it yet."
+        "The change is the host's: everyone in it sees the new owner at once, and you are no longer the owner."
        ]
       },
       {
        "head": "In Phiogy for Windows",
        "text": [
-        "Phiogy for Windows has no Host settings yet, and its rooms do not follow roles. Do this in Phiogy on the web."
+        "Phiogy for Windows has no Host settings yet. Do this in Phiogy on the web."
        ]
       }
      ],
@@ -1360,13 +1361,13 @@
        "head": "Good to know",
        "list": [
         "Joining with a link counts one use.",
-        "For now, invites are kept with your own account. A link works for you wherever you sign in, but when someone else opens it, Phiogy tells them the invite is not one we know. Links do not reach other people's accounts yet."
+        "An invite is the host's: anyone who opens the link and is signed in can join with it, until it runs out, is taken back, or invites are paused."
        ]
       },
       {
        "head": "In Phiogy for Windows",
        "text": [
-        "Phiogy for Windows has no invites yet. Make them in Phiogy on the web."
+        "Phiogy for Windows has no invites yet. Make them in Phiogy on the web; a host you join with one is in Phiogy for Windows too, under Hosts you were let into."
        ]
       }
      ],
@@ -1476,7 +1477,7 @@
       {
        "head": "Good to know",
        "list": [
-        "For now, an invite is kept with the account that made it. A link made by someone else's account says it is not one we know, even when nothing is wrong with it.",
+        "To join with an invite you need to be signed in: the page says Sign in to join, and the host's name, until you are.",
         "Capitals in the code do not matter.",
         "Joining counts one use of the invite."
        ]
@@ -1773,7 +1774,8 @@
        "head": "Good to know",
        "list": [
         "Pressing Friends on a friend's profile ends the friendship.",
-        "Following is kept for you. For now nobody is shown who follows them.",
+        "Following is kept for you. Nobody is shown who follows them.",
+        "Mute, on someone else's profile, hides what they write from you, in every room, until you press Unmute. They are not told.",
         "The Note box at the foot is yours alone: see Notes only you see.",
         "Your picture at the top right opens the You panel, not your profile. Its Profile button opens your account page, with your name and handle."
        ]
@@ -1817,7 +1819,7 @@
        "head": "Good to know",
        "list": [
         "Your status is kept with your account, and Phiogy shows it wherever it draws you.",
-        "For now it shows only in your own Phiogy: other people do not see it yet."
+        "Others see it too: under your name in a room's list of people and on your profile, on the web."
        ]
       },
       {
@@ -1857,7 +1859,7 @@
        "head": "Good to know",
        "list": [
         "Your choice is kept with your account until you change it.",
-        "For now it shows only in your own Phiogy: other people do not see it yet.",
+        "Others see your dot as you chose it while you have Phiogy open. Unseen, or Phiogy closed for a while, shows you to them as off.",
         "Without status words of your own, the line under your name says your choice."
        ]
       },
@@ -2117,6 +2119,7 @@
       {
        "head": "Where they differ",
        "list": [
+        "Not a difference: a room's messages, likes, pins and polls are the same in both. What you write in one shows in the other within a few seconds.",
         "Only Phiogy for Windows has menus on a call's tiles and buttons: Focus, Stop watching, turning one person down, and choosing your microphone, sound out, camera and screen.",
         "Phiogy for Windows keeps a Calls tab beside each room you called in.",
         "On the web, opening another room leaves a call. In Phiogy for Windows the call goes on.",
@@ -2175,7 +2178,7 @@
       {
        "head": "Good to know",
        "list": [
-        "Deleting your account removes it, your wallet and what it keeps for good, and frees your handle and email. Messages written in Phiogy for Windows, and hosts or clubs you published, stay."
+        "Deleting your account removes it, your wallet and what it keeps for good, and frees your handle and email. Messages you wrote in rooms are the room's and stay there for its people, as do hosts or clubs you published. Save a copy does not hold them."
        ]
       },
       {
@@ -2194,7 +2197,7 @@
     {
      "id": "who",
      "title": "Who sees what you write",
-     "lead": "Who reads what you write depends on the room and on which Phiogy you use. This is how it works today.",
+     "lead": "Who reads what you write depends on the room: its people read it, and nobody else.",
      "step": [
       "To see who is in a room, look at the list of people beside it. The button in the room's head shows or hides it.",
       "To see which roles a host's room is set for, press the cog in its head and open This room. It shows which roles may See this room, Write here, Call here and Pin messages.",
@@ -2206,21 +2209,21 @@
       {
        "head": "On the web",
        "text": [
-        "For now, what you write in Phiogy on the web is kept with your account and shown to you. It is not yet sent to the other people in the room."
+        "What you write in a room goes to the people of that room: in a host's room, everyone in the host whose role may see it; in a direct room, the two of you. They read it within a few seconds, with your name. A conversation with one of Phiogy's own people, who have no account, is kept for you alone. As a guest you read what a room has, and writing needs an account."
        ]
       },
       {
        "head": "In Phiogy for Windows",
        "text": [
-        "When you are signed in, the words you write go to the room, and others who open it read them with your name. Pictures you post, pins and mutes stay on your side. As a guest, what you write stays with you."
+        "The same rooms: when you are signed in, your words, likes and pins go to the room, and its people read them on the web and in Phiogy for Windows. Pictures you post stay on your computer, and mutes are yours. As a guest, what you write stays with you."
        ]
       },
       {
        "head": "Good to know",
        "list": [
-        "Messages are not yet locked to a room's members, direct conversations included. Keep passwords, money details and anything private out of every room.",
+        "Only a room's people read it. Phiogy shows a room's messages to nobody outside it, direct conversations included, and to nobody who is not signed in. Still, keep passwords and money details out of every room.",
         "If your role may not see a room, it says Yours is not one of them in place of its messages. If you may not write there, it says You can read it.",
-        "Changes made in a host's settings are kept with your account and do not yet change what others see.",
+        "Changes made in a host's settings are the host's: they change what everyone in it may do, at once.",
         "Your notes, saved messages and mutes are yours: nobody else sees them in Phiogy.",
         "In a call, your microphone, camera and screen go to everyone who joins it."
        ]

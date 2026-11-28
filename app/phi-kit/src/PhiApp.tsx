@@ -89,7 +89,7 @@ export const PhiApp: React.FC<{ appKey: string }> = ({ appKey }) => {
   const onAccount = ['_you', '_wallet', '_account'].includes(cur) || cur.startsWith('_you_');
 
   let page: React.ReactNode;
-  if (invite) page = <InvitePage app={appKey} code={invite} hosts={hosts} nav={nav} go={go} />;
+  if (invite) page = <InvitePage app={appKey} code={invite} go={go} />;
   else if (cur === '_welcome') page = data ? <AppLanding data={data} go={go} /> : <Spinner />;
   else if (onAccount) page = <Profile spec={data?.profile} section={section} mine={mine} onOpen={openItem} />;
   else if (cur === '_settings') page = <SettingsView />;

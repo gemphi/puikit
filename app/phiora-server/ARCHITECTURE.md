@@ -42,6 +42,7 @@ flowchart TB
 | Reading | `/tree`, `/tree?kind=&where=&limit=`, `/tree/rows`, `/menu` | all records, or one kind narrowed; pages of a kind sorted and joined | built |
 | Accounts | `src/account.mjs`, `src/auth.mjs` | sign up, sign in, email confirm and reset, sessions, export, delete; JWT delegation for other services | built; emails wait in an outbox (no Resend key) |
 | Money | `src/ledger.mjs`, `src/shop.mjs` | the server owns wallets: swap, spend, earn (capped), buy, offer, sell, with prices from the data files | built (in-system coins only, no card payments) |
+| Rooms | `src/room.mjs`, `src/host.mjs`, `src/bond.mjs`, `src/place.mjs`, `src/rule.mjs`, `data/room.json` | rooms shared by their people: messages, marks, pins, votes, direct rooms between two accounts, hosts joined and made, roles and room rights, invites, friend requests. Private: only a room's people read it, and no `/tree` read serves these kinds | built (28 November 2026), not deployed |
 | Calls | `src/call.mjs` + the `phiogy` line | who is in a room's call, and passing WebRTC signals between peers; nothing stored | built, live at phiegg.com/wrt |
 | Chat | `src/model.mjs` | persona replies from an OpenAI-compatible or Anthropic model | built; no model set on the server, so replies are canned |
 | Uploads | `media/phi-media` → `scripts/media/sync.sh server` → `/srv/phi-cdn` | pictures and media records, by key, from the media scripts on this machine; Caddy serves them at `/cdn/<key>` | built as a pipeline only. **Phiora has no upload route**: nobody can send a file from a page |
@@ -62,7 +63,8 @@ flowchart TB
 
 ## Tests
 
-`npm test` runs 75 tests. On this Windows machine 72 pass. The other three fail only when they try to delete their
+`npm test` runs 87 tests (`test/room.test.mjs`: two accounts in one room, a direct room, invites, roles, friends, and
+no message to an unsigned `/tree` read). On this Windows machine 84 pass. The other three fail only when they try to delete their
 temporary folder while SQLite still holds it open (`EPERM` in `rmSync`); what they check passes before that point.
 
 ## Kinds and their paths (audited 27 November 2026)

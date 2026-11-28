@@ -9,7 +9,9 @@ export type Presence = 'here' | 'away' | 'busy' | 'off';
 export const PRESENCE: Presence[] = ['here', 'away', 'busy', 'off'];
 /** Someone of an app. `face` is their cell on a portrait sheet, the app's one or their own (`sheet`); `banner` a
  *  picture reference; `state` says in words what `presence` says as a dot; `link` is how many people they are linked to. */
-export type Member = { id: string; name: string; handle?: string; role?: string; bio?: string; state?: string; presence?: Presence; sheet?: string; face?: number; link?: number; banner?: string; since?: string; tag?: string[] };
+export type Member = { id: string; name: string; handle?: string; role?: string; bio?: string; state?: string; presence?: Presence; sheet?: string; face?: number; link?: number; banner?: string; since?: string; tag?: string[];
+  /** Someone with an account (Phiora's), not of the app's files: what they and the viewer share is Phiora's. */
+  live?: boolean };
 /** The people of an app: who the viewer is, the portrait sheet, and everyone. A file that holds more (an app's rooms)
  *  is still this; `room` is who is in each, where the file says. */
 export type People = { me: string; sheet?: { src: string; cols: number }; member: Member[]; room?: Record<string, { member?: string[]; unread?: number }>;
@@ -18,10 +20,17 @@ export type People = { me: string; sheet?: { src: string; cols: number }; member
   /** How the viewer's friends start: who they are friends with, and who has asked to be (`friends.tsx`). */
   friend?: { with?: string[]; asked?: string[] };
   /** Everyone in a space (a host), by the space's name, as places in `member`: the people of all its text rooms. */
-  space?: Record<string, number[]> };
+  space?: Record<string, number[]>;
+  /** The viewer's account, once their room is read (`room.ts`): them as surely as `me`. */
+  self?: string };
+
+/** Whether someone is the viewer: the file's `me`, or their account. */
+export const isMe = (file: Pick<People, 'me' | 'self'>, id: string) => id === file.me || (!!file.self && id === file.self);
 
 /** The rooms the viewer has joined (a voice room), by `<app>/<room>`, kept like every user document. */
 export const JOINED = persisted<Record<string, boolean>>('room-in', {});
+/** Whom the viewer muted, by id: what they write is not shown to the viewer until they are unmuted. */
+export const QUIET = persisted<Record<string, boolean>>('room-quiet', {});
 /** The rooms the viewer has opened, by `<app>/<room>`: what waited in them waits no more. */
 export const READ = persisted<Record<string, boolean>>('room-read', {});
 /** How many messages wait in a room: what its data says, until the viewer opens it. */
@@ -33,12 +42,12 @@ export const crowdOf = (file: People, room: string, joined: boolean): Member[] =
 /** The member a caller on a room's line is, by the handle or the name Phiora knows them by; never the viewer, who
  *  is shown as themself. */
 export const memberFor = (file: People, name: string, handle?: string | null): Member | undefined =>
-  file.member.find((m) => m.id !== file.me && ((!!handle && m.handle === handle) || m.name === name));
+  file.member.find((m) => !isMe(file, m.id) && ((!!handle && m.handle === handle) || m.name === name));
 
 /** The people whose name or handle holds what was typed, never the viewer; everyone when nothing was typed. */
 export const seekPeople = (file: People, find: string, most: number): Member[] => {
   const sought = find.trim().toLowerCase();
-  return file.member.filter((m) => m.id !== file.me && (!sought || m.name.toLowerCase().includes(sought) || (m.handle ?? '').toLowerCase().includes(sought))).slice(0, most);
+  return file.member.filter((m) => !isMe(file, m.id) && (!sought || m.name.toLowerCase().includes(sought) || (m.handle ?? '').toLowerCase().includes(sought))).slice(0, most);
 };
 
 /** The people of a space, when the file names them (`space`). */

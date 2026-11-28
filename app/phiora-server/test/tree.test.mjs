@@ -76,20 +76,21 @@ test('GET /tree serves every kind from the one database, md5 ids and slugs, filt
   assert.deepEqual(th.rows.map((r) => [r.id, r.slug, r.lookId, r.byId]), [['theme:' + md5('look:lk1'), 'indigo_tier_theme', md5('look:lk1'), md5('person:u_noor')]]);
 });
 
-test('GET /tree narrows by field (where=field:value, all of them) and by limit, so a client asks for one room, not every one', async () => {
+test('GET /tree narrows by field (where=field:value, all of them) and by limit, so a client asks for the rows it shows, not every one', async () => {
   const ck = (await call('GET', '/me')).cookie;
   await call('POST', '/auth/demo', { userId: 'u_noor' }, ck);
   for (const [room, text] of [['a/lobby', 'one'], ['a/lobby', 'two'], ['a/lobby', 'three'], ['a/stage', 'four']]) {
-    assert.equal((await call('POST', '/tree/item', { kind: 'message', fields: { room, text, ref: 'm' + text } }, ck)).status, 201);
+    assert.equal((await call('POST', '/tree/item', { kind: 'note', fields: { room, text, ref: 'm' + text } }, ck)).status, 201);
   }
-  const rows = async (query) => (await call('GET', '/tree?kind=message' + query)).body.sources.find((s) => s.kind === 'message')?.rows ?? [];
+  const rows = async (query) => (await call('GET', '/tree?kind=note' + query)).body.sources.find((s) => s.kind === 'note')?.rows ?? [];
   assert.equal((await rows('')).length, 4);
   assert.deepEqual((await rows('&where=room:a/lobby')).map((r) => r.text), ['one', 'two', 'three']);
   assert.deepEqual((await rows('&where=room:a/stage')).map((r) => r.text), ['four']);
   assert.deepEqual((await rows('&where=room:a/lobby&where=text:two')).map((r) => r.text), ['two']);
   assert.deepEqual((await rows('&where=room:a/lobby&limit=2')).map((r) => r.text), ['two', 'three']);
   assert.deepEqual(await rows('&where=room:nowhere'), []);
-  // a where with no value, and one that is no pair, are no filter at all
+  // a where with no value, and one that is no pair, are no filter at all (a room's messages are not here at all:
+  // they are private, served by /room to its people, test/room.test.mjs)
   assert.equal((await rows('&where=room')).length, 4);
 });
 for (const kind of ['sqlite', 'json']) {

@@ -23,15 +23,21 @@ kit's, driven by data, so every app with rooms has it:
 | Mutes, what is counted, @everyone, inbox | `phi-kit/src/notice.tsx` | - |
 | Mentions, suggestions | `phi-kit/src/mention.tsx`; the kit's `ChatComposer` (`suggest`, `onDraft`, `tools`) | - |
 | Typing | `phi-kit/src/typing.ts`, `call.ts`; Phiora `call.mjs` | - |
+| Rooms shared by their people | `phi-kit/src/room.ts`; Phiora `room.mjs`, `host.mjs`, `bond.mjs` | Phiora's private records |
 | Polls | `phi-kit/src/poll.tsx` | a message's `poll` |
 | Saved messages, reminders | `phi-kit/src/keep.tsx` | - |
 | Status | `phi-kit/src/status.tsx` | - |
 | Words, limits, spans of time | `phi-kit/src/talk.json`, `limit.json`, `time.ts` | - |
 
-Nobody is on the other side yet for most of these: like friends, what
-the viewer does is kept in their own documents (Phiora's `/state`), so
-roles, invites and polls are the viewer's until hosts are kept by the
-server.
+Since 28 November 2026 rooms are shared by their people and private to
+them (`phi-kit/src/room.ts`; Phiora `room.mjs`, `host.mjs`, `bond.mjs`):
+messages, replies, likes, pins, polls and votes, direct rooms between two
+accounts, hosts made and joined, roles, room rights, invites and friend
+requests between accounts are the same for everyone in a room or host,
+on the web and in Phiogy for Windows. What stays the viewer's own (their
+documents on Phiora's `/state`): saved messages, reminders, mutes,
+notes, follows and notification choices. `room-check.mjs` shows two
+browsers meeting.
 
 ## Server settings
 
