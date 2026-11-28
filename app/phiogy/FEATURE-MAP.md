@@ -36,8 +36,9 @@ accounts, hosts made and joined, roles, room rights, invites and friend
 requests between accounts are the same for everyone in a room or host,
 on the web and in Phiogy for Windows. What stays the viewer's own (their
 documents on Phiora's `/state`): saved messages, reminders, mutes,
-notes, follows and notification choices. `room-check.mjs` shows two
-browsers meeting.
+notes, follows and notification choices. The kit's
+`phi-kit/dev/room-check.mjs` shows two browsers meeting, for any app
+with rooms.
 
 ## Server settings
 
