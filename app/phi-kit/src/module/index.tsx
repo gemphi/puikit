@@ -13,6 +13,7 @@ import { Table } from '../blocks/Table';
 import { Terminal } from '../blocks/Terminal';
 import { Marquee, SiteBar, SiteFooter } from '../blocks/Site';
 import { Feed } from './feed';
+import { Help } from './help';
 import { Product } from './product';
 import { Query } from './query';
 import { Runway } from './runway';
@@ -35,6 +36,7 @@ const MODULE: Record<string, ModuleView> = {
   footer: ({ b }) => <SiteFooter b={b} />,
   form: ({ b }) => <Form b={b} />,
   grid: Grid,
+  help: ({ b }) => <Help b={b} />,
   hero: ({ b }) => <Hero b={b} />,
   marquee: ({ b }) => <Marquee b={b} />,
   news: ({ b }) => <News b={b} />,

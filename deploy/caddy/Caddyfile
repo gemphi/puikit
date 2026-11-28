@@ -105,7 +105,8 @@ phiecs.com, www.phiecs.com {
 phiogy.com {
 	rewrite / /phiogy-home/
 	# The landing's own pages (its views in phiogy-home.json) are paths of the domain: phiogy.com/help/safety opens it there.
-	@page path_regexp ^/(help|docs|news|about|terms|privacy|guidelines)(/.*)?$
+	# /signin is every app's one sign-in (phi-kit signin.tsx, sign.json): phiegg.com and the others send people here.
+	@page path_regexp ^/(download|help|docs|news|about|terms|privacy|guidelines|signin)(/.*)?$
 	rewrite @page /phiogy-home/
 	import cdn
 	import wrt

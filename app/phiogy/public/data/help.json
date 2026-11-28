@@ -1,0 +1,2272 @@
+{
+ "_": "Phiogy's help centre (phi-kit module/help.tsx): its sections, each with its icon (the house's icons, kept as media by help.py) and its articles. An article has a lead, its steps, where in the app it is (`where`, a page of the app), and `desk` when only Phiogy for Windows has it. The robot's pictures are robot.py's.",
+ "title": "Phiogy help",
+ "lead": "How Phiogy works: rooms, calls, hosts, friends and the rest. Search, or pick an area.",
+ "find": "Search the help",
+ "unfound": "Nothing in the help holds that. Try fewer words.",
+ "articles": "{n} articles",
+ "count": [
+  "No articles",
+  "One article",
+  "Two articles",
+  "Three articles",
+  "Four articles",
+  "Five articles",
+  "Six articles",
+  "Seven articles",
+  "Eight articles",
+  "Nine articles",
+  "Ten articles",
+  "Eleven articles",
+  "Twelve articles",
+  "Thirteen articles",
+  "Fourteen articles",
+  "Fifteen articles",
+  "Sixteen articles"
+ ],
+ "open": "Open it in Phiogy",
+ "desk": "In Phiogy for Windows",
+ "back": "Help",
+ "steps": "How",
+ "related": "More in {section}",
+ "robot": {
+  "home": "cdn:phiogy/robot/robot-wave.svg",
+  "section": "cdn:phiogy/robot/robot-point.svg",
+  "article": "cdn:phiogy/robot/robot-stand.svg",
+  "unfound": "cdn:phiogy/robot/robot-think.svg",
+  "empty": "cdn:phiogy/robot/robot-empty.svg",
+  "done": "cdn:phiogy/robot/robot-cheer.svg"
+ },
+ "category": [
+  {
+   "id": "basics",
+   "label": "Phiogy basics",
+   "lead": "Getting going, messages, calls, friends, and Phiogy on your desk.",
+   "section": [
+    "start",
+    "message",
+    "call",
+    "friend",
+    "desk"
+   ]
+  },
+  {
+   "id": "hosts",
+   "label": "Hosts",
+   "lead": "Hosts and how they are run: roles, rooms, invites, and the shops of the village.",
+   "section": [
+    "host",
+    "invite",
+    "shop"
+   ]
+  },
+  {
+   "id": "account",
+   "label": "Your account",
+   "lead": "Your account, what you are told of, your profile and status, and your safety.",
+   "section": [
+    "account",
+    "notice",
+    "profile",
+    "safety"
+   ]
+  }
+ ],
+ "section": [
+  {
+   "id": "start",
+   "label": "Getting started",
+   "icon": "cdn:phiogy/icon/flag.svg",
+   "lead": "Make your Phiace account, sign in and out, find your way round Phiogy, and write your first message.",
+   "article": [
+    {
+     "id": "account",
+     "title": "Make an account",
+     "lead": "Phiogy runs on Phiace: one account for every Phi app. On the web you can look round without one, but an account keeps what you write, save and buy in every browser where you sign in.",
+     "step": [
+      "Press Sign in at the top right. On phiogy.com the Your Phiace account window opens; from another Phi site, Phiogy takes you to phiogy.com and brings you back after.",
+      "Pick Create account at the top of the window.",
+      "Type a handle: 3 to 30 letters, numbers, dots or underscores, starting with a letter or a number. Capitals become small letters.",
+      "Type your name as others will see it, up to 60 characters.",
+      "Add an email if you like. It is optional, but it is the only way to reset a password you forget.",
+      "Choose a password of at least 8 characters.",
+      "Press Create account. You are signed in at once.",
+      "If you gave an email, press the link in the mail Phiogy sends to confirm it."
+     ],
+     "part": [
+      {
+       "head": "What happens",
+       "text": [
+        "The visit you are on becomes your account, so what you saved or chose before stays with you. Your wallet, looks and saved state then follow the account to every Phi app and browser."
+       ]
+      },
+      {
+       "head": "If it does not work",
+       "list": [
+        "That handle is taken: somebody has it already. Try another.",
+        "That email is already on an account: sign in with it instead.",
+        "A confirmation link lasts a day. If it ran out, open your account and press Resend link beside your email."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "Phiogy has no way to change your handle or name once the account is made, so choose them with care.",
+        "To add an email later, press your face at the top right, open Account, press Account, then Add email."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "The window opens on Sign in to Phiogy. Type a handle, a password and, in Your name (to make an account), your name, then press Make an account. There is no email box there: add one later from Phiogy on the web."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/start-account-dark.png",
+      "light": "cdn:phiogy/help/shot/start-account-light.png"
+     }
+    },
+    {
+     "id": "signin",
+     "title": "Sign in and out",
+     "lead": "Sign in with your handle or your email and your password. Every Phi app signs in at phiogy.com, so the one account opens them all.",
+     "step": [
+      "Press Sign in at the top right.",
+      "On phiogy.com the Your Phiace account window opens. On another Phi site, Phiogy takes you to phiogy.com first; if you are signed in there already, it sends you straight back with nothing to type.",
+      "Type your handle or your email in Handle or email.",
+      "Type your password, then press Sign in, or Enter.",
+      "If you came from another Phi site, Phiogy sends you back to the page you were on, signed in.",
+      "To sign out, press your face at the top right and press Sign out, under your name."
+     ],
+     "part": [
+      {
+       "head": "Forgot your password?",
+       "text": [
+        "Press Forgot password? beside Sign in, type your handle or email, and press Send reset link. If the account has an email, a link comes to it; it works for 30 minutes. It opens Choose a new password: type at least 8 characters and press Save and sign in. An account with no email cannot be reset this way."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "Sign out signs you out of the site you are on. Another Phi site stays signed in until you sign out there too.",
+        "What you wrote, saved and chose stays with your account, and is there again when you sign back in.",
+        "Phiogy keeps you signed in on a browser. One left unused for a long while is signed out."
+       ]
+      },
+      {
+       "head": "If it does not work",
+       "list": [
+        "Handle or password is wrong: check both. Capitals in a handle do not matter.",
+        "After 8 wrong tries in 10 minutes, Phiogy asks you to wait a few minutes."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "The window opens on Sign in to Phiogy and stays covered until you sign in. Type your handle or email and your password, then press Sign in or Enter. To sign out, open Menu, press Account, and press Sign out beside your name: the sign-in page comes back. If it says Phiora did not answer, Phiogy cannot reach its server: check your connection and try again."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/start-signin-dark.png",
+      "light": "cdn:phiogy/help/shot/start-signin-light.png"
+     }
+    },
+    {
+     "id": "around",
+     "title": "Find your way around",
+     "lead": "Phiogy has four parts side by side: a rail of places at the left, the rooms of the place you picked beside it, the room you are in at the middle, and who is in it at the right.",
+     "step": [
+      "The rail at the left holds Direct first, then a mark for each host you are in, Add a host, the shops you opened, and Shops.",
+      "Press a host's mark: the menu beside the rail lists its rooms under Text and Voice. A number by a room counts the new messages in it.",
+      "Press Direct for Friends, Inbox, Saved messages, the people you write to, and Find or start a conversation.",
+      "Press a room. Its messages fill the middle, the newest at the foot, over the box you write in.",
+      "Move the pointer over the messages to show the room's tools: Call, Call with the camera, the search, Pinned messages, the host's settings (the gear), the bell that mutes the room, and Show or hide who is here.",
+      "The column at the right is Members, grouped by how people are, such as Here now. Press a face to open that person's profile there.",
+      "At the top right is Sign in, or your face, which opens your wallet, appearance, font and account."
+     ],
+     "part": [
+      {
+       "head": "Good to know",
+       "list": [
+        "At the foot of the rail are You and Settings; Apps switches to another Phi app. At the right edge, Help opens Phiogy help.",
+        "On a narrow screen Phiogy shows one column at a time, and the room's tools are behind three dots."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "list": [
+        "The bar at the left has Rooms, Hosts, Shops and Library at the top, Menu in the middle, and a row for each host you are in.",
+        "Beside the bar, Start goes back to the room you begin in, and Rooms lists your places and their rooms, sifted by Recent, Favorites and Older.",
+        "Menu holds Start, Hosts, the looks, Account and Profile.",
+        "Beside the room stands its host, with Info, Rooms, Members and Rules. In a narrow window the room stands alone, over the bar."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/start-around-dark.png",
+      "light": "cdn:phiogy/help/shot/start-around-light.png"
+     },
+     "where": "lobby"
+    },
+    {
+     "id": "write",
+     "title": "Write your first message",
+     "lead": "Every room has a box at its foot. Type, press Enter, and what you wrote is in the room at once.",
+     "step": [
+      "Open a room from the menu, or a person under Direct.",
+      "Click the box at the bottom. It says what it is for, such as Message lobby.",
+      "Type what you want to say.",
+      "Press Enter, or the send button at the right of the box.",
+      "Your message joins the room at once, under your name, with today's time, and the box is empty again.",
+      "To answer one message in particular, press Reply on it first: see Reply and react."
+     ],
+     "part": [
+      {
+       "head": "What happens",
+       "text": [
+        "One person's messages in a row stand under one picture and name, and a line marks where each day begins. An empty box sends nothing. Beside the box, @ names someone (see Mention someone) and the chart makes a poll (see Make a poll)."
+       ]
+      },
+      {
+       "head": "Who sees it",
+       "list": [
+        "On the web, Phiogy keeps what you write with your account: you see it again in any browser where you sign in. The other people in the room do not see it.",
+        "In Phiogy for Windows, a message you write while signed in reaches everyone in the room who uses Phiogy for Windows, within a few seconds. The field and Send work the same way as on the web."
+       ]
+      },
+      {
+       "head": "If you cannot write",
+       "list": [
+        "Where the box is replaced by a line saying only some roles write in the room, you can read it but not write: the host keeps that room for some roles.",
+        "Where a room says only some roles see it, your role is not one of them.",
+        "If Enter does nothing, check that the box is not empty."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/start-write-dark.png",
+      "light": "cdn:phiogy/help/shot/start-write-light.png"
+     },
+     "where": "lobby"
+    },
+    {
+     "id": "keys",
+     "title": "Keys and shortcuts",
+     "lead": "A few keys do most of the work in Phiogy. These are all the keys it answers to.",
+     "step": [
+      "Enter sends what you wrote in a room's box.",
+      "Type @ and a name: Up and Down move through the people Phiogy offers, and Enter or Tab takes the one that is lit.",
+      "Escape puts away what is offered after @, and you go on typing.",
+      "In the picture viewer, Left and Right show the picture before or after.",
+      "Escape closes the picture viewer, and any window, drawer or menu that is open.",
+      "In the sign-in window, on the Sign in tab, Enter in the password box signs you in."
+     ],
+     "part": [
+      {
+       "head": "In Phiogy for Windows",
+       "list": [
+        "Enter sends what you wrote, and signs you in on the sign-in page.",
+        "Escape stops a reply you began, or leaves the search of a room.",
+        "Escape closes an open drawer or window, such as your account, and the picture viewer. The sign-in page does not close: only signing in puts it away.",
+        "Left and Right step through the pictures in the viewer.",
+        "Phiogy for Windows does not offer names after @."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "text": [
+        "Phiogy has no slash commands and no other shortcuts. The box is one line: Enter always sends, so a message has no line breaks."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/start-keys-dark.png",
+      "light": "cdn:phiogy/help/shot/start-keys-light.png"
+     }
+    }
+   ]
+  },
+  {
+   "id": "message",
+   "label": "Messages",
+   "icon": "cdn:phiogy/icon/message-circle.svg",
+   "lead": "Replies, likes, mentions, who is writing, pins, search, pictures, polls and saved messages.",
+   "article": [
+    {
+     "id": "reply",
+     "title": "Reply and react",
+     "lead": "Answer one message so everyone sees what you are replying to, or like it with a heart. Both are a press away on every message.",
+     "step": [
+      "Find the message. At its right end, beside its time, are Reply (the arrow), Like (the heart) and More (three dots).",
+      "Press Reply. A tag over the box says Replying to, with the person's name.",
+      "Write your answer and press Enter. The message you answered is quoted over yours.",
+      "Press a quote to go back to the message it answers.",
+      "Changed your mind? Press the cross on the Replying to tag, or press Reply again.",
+      "Press the heart to like a message. Press it again to take your like back.",
+      "Marks under a message show how many gave each one. Press a mark to add yours, and again to take it back."
+     ],
+     "part": [
+      {
+       "head": "Good to know",
+       "list": [
+        "A quote shows the face and name of who wrote the message, and how it began. A message of pictures only shows Pictures.",
+        "There is no picker of other marks: you give the heart, and you can add yours to any mark a message already has.",
+        "On the web, your replies and likes are kept with your account. The others in the room do not see them."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Point at a message, or press it, to show Reply, Like and Pin. While you reply, Answer nobody or Escape stops it. A like you give while signed in is counted for everyone in the room who uses Phiogy for Windows, and taking it back takes it off for them too."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/message-reply-dark.png",
+      "light": "cdn:phiogy/help/shot/message-reply-light.png"
+     },
+     "where": "lobby"
+    },
+    {
+     "id": "mention",
+     "title": "Mention someone",
+     "lead": "Type @ and a name to point a message at someone. The mention is lit in the message, and a mention of you is listed in your Inbox.",
+     "step": [
+      "In a room's box, type @ and the first letters of a name or handle.",
+      "Phiogy offers up to 8 people of the room over the box, each with their face and handle. It never offers you.",
+      "Press one, or move with Up and Down and take it with Enter or Tab. Their @handle goes into the box, with a space after it.",
+      "Press Escape to put the list away and go on typing.",
+      "To name the whole room, pick @everyone (everyone in this room) or @here (everyone here now).",
+      "Send the message. Mentions are lit, and a mention of you or of the whole room stands out most.",
+      "Press a lit name to open that person's profile."
+     ],
+     "part": [
+      {
+       "head": "When someone mentions you",
+       "list": [
+        "A message from someone else that mentions you is listed in Inbox, under Direct, on its Mentions tab. Unread ones are bold; Mark all read clears them.",
+        "@everyone and @here count as a mention of you, unless you turned them off for that host. Open the host's settings with the gear in a room's head, go to Notifications, and switch off Let @everyone and @here through. Setting Tell me of to Nothing stops them too."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "A handle that matches nobody in the room stays plain words.",
+        "On the web, the messages you write are not shown to others, so a person you mention does not get it in their Inbox."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Phiogy for Windows does not offer names after @ and does not light mentions: an @handle there is plain words."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/message-mention-dark.png",
+      "light": "cdn:phiogy/help/shot/message-mention-light.png"
+     },
+     "where": "lobby"
+    },
+    {
+     "id": "typing",
+     "title": "See who is writing",
+     "lead": "While someone else types in the room you have open, Phiogy says so over the box, so you know an answer is on its way.",
+     "step": [
+      "Open a room.",
+      "When another person types in it, a line over the box says who is typing.",
+      "With two people it names both; with more it says Several people are typing.",
+      "The line goes when they send, when they empty their box, or about 6 seconds after they stop typing.",
+      "Your own typing is never shown to you."
+     ],
+     "part": [
+      {
+       "head": "What others see",
+       "text": [
+        "When you type, the others who have the room open see your name in the same line. Phiogy tells them again every few seconds while you go on, and stops as soon as you send or pause."
+       ]
+      },
+      {
+       "head": "If it does not work",
+       "list": [
+        "Only people who have that room open at that moment are told.",
+        "The line travels over the same service as calls. Where that service is not running, nobody is shown as typing."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Phiogy for Windows does not show who is typing, and does not tell others when you type."
+       ]
+      }
+     ]
+    },
+    {
+     "id": "pin",
+     "title": "Pin a message",
+     "lead": "Pin a message to keep it at hand in a room. The room's pinned list takes you to it with one press.",
+     "step": [
+      "Find the message and press More, the three dots at its right end.",
+      "Press Pin. The message joins the room's pinned list.",
+      "To see every pinned message, press Pinned messages, the pin in the room's head. If the head's tools are hidden, move the pointer over the messages; on a phone they are behind three dots.",
+      "Press a message in the list to scroll to it.",
+      "To take a pin off, open the message's More again and press Unpin."
+     ],
+     "part": [
+      {
+       "head": "Who can pin",
+       "text": [
+        "Pin shows only to roles that may pin in that room. Those who manage the host set this in the host's settings (the gear in a room's head), with Pin messages under Roles, or under This room for one room alone."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "Messages that came pinned with a room are pinned for everyone. A pin you add is kept with your account, and the others in the room do not see it.",
+        "Where nothing is pinned, the list says Nothing is pinned here yet."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Point at a message, or press it, and press Pin; Unpin takes it off. Pinned messages, in the room's title, lists them over the room, and a press on one brings it into sight. Pins you make there stay with you too."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/message-pin-dark.png",
+      "light": "cdn:phiogy/help/shot/message-pin-light.png"
+     },
+     "where": "lobby"
+    },
+    {
+     "id": "search",
+     "title": "Search a room",
+     "lead": "Find a message in the room you are in, by its words or by the name of who wrote it.",
+     "step": [
+      "Open the room.",
+      "Press the search (the magnifying glass) in the room's head. If the tools are hidden, move the pointer over the messages; on a phone they are behind three dots.",
+      "A field opens over the messages. Type a word, or part of a name.",
+      "Only the messages that hold it stay, in order, with their days. Capitals do not matter.",
+      "If no message does, Phiogy says No message here holds that.",
+      "Press the search again to close the field and see the whole room."
+     ],
+     "part": [
+      {
+       "head": "Good to know",
+       "list": [
+        "The search looks in one room, the one you are in. It reads the words of each message and the name of the person who wrote it.",
+        "A poll's question is not searched. A message of pictures is found by the name of who posted it.",
+        "Pinned messages, beside the search, is the quicker way to the messages a room keeps at hand."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Press Search this room in the room's title and type: only the messages that hold it show, by their words or by who wrote them. Press Escape to leave the search. The other tool, Search, looks through all of Phiogy: rooms, people, hosts, worlds, clubs and shows."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/message-search-dark.png",
+      "light": "cdn:phiogy/help/shot/message-search-light.png"
+     },
+     "where": "lobby"
+    },
+    {
+     "id": "picture",
+     "title": "Post a picture",
+     "lead": "In Phiogy for Windows you post a picture from your computer into a room. On the web and on Windows alike, a press on a picture opens it large, and you can step through every picture of the room.",
+     "step": [
+      "In Phiogy for Windows, open the room and press Post a picture, just before Send.",
+      "Choose a picture file in the window that opens. A file that is not a picture is not posted.",
+      "The picture goes into the room as a message of yours, under your name.",
+      "Press any picture in a room to open it over the whole window. Who posted it and when stand at the top left.",
+      "Step to the picture before or after with the arrows at its sides, or with Left and Right. The strip at the foot holds every picture of the room; press one to show it.",
+      "Press the picture, or Zoom in, to see it larger; press again to fit it.",
+      "Close it with its close button, a press beside the picture, or Escape."
+     ],
+     "part": [
+      {
+       "head": "Good to know",
+       "list": [
+        "A picture you post stays on your computer: Phiogy does not upload it, so the others in the room do not see it.",
+        "Phiogy on the web shows pictures and opens them the same way, but it has no button to post one."
+       ]
+      },
+      {
+       "head": "The viewer's tools",
+       "list": [
+        "On the web: Share hands the picture's link to your device's share sheet, or copies it and says Link copied. Download saves the picture, and Open in a new tab opens it alone.",
+        "In Phiogy for Windows: Share copies where the picture's file is and says Path copied. Save a copy asks where to keep a copy, and Open in the system's viewer opens it in your usual picture program."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/message-picture-dark.png",
+      "light": "cdn:phiogy/help/shot/message-picture-light.png"
+     },
+     "desk": true
+    },
+    {
+     "id": "poll",
+     "title": "Make a poll",
+     "lead": "Ask the room a question with answers to pick from. Each answer shows its share of the votes as a bar.",
+     "step": [
+      "Press Make a poll, the chart between the box and the send button.",
+      "Type the question in Ask a question.",
+      "Fill in Answer 1 and Answer 2. Press Add an answer for more; the cross beside an answer takes it out.",
+      "Under Lasts, choose how long it is open: 1 hour, 4 hours, 8 hours, 1 day, 3 days or 1 week. It starts at 1 day.",
+      "Tick Let people pick more than one if one pick is not enough.",
+      "Press Post the poll. It goes into the room as a message of yours.",
+      "Press an answer to vote. Press it again to take your vote back."
+     ],
+     "part": [
+      {
+       "head": "What happens",
+       "text": [
+        "Under the question Phiogy says Pick one, or Pick one or more. Each answer shows its share in per cent and as a bar, and the foot says how many votes there are and how long is left. With one pick, a press on another answer moves your vote there.",
+        "When the time is up, the foot says The poll ended. Nobody can vote any more, and the shares stand."
+       ]
+      },
+      {
+       "head": "Limits",
+       "list": [
+        "A question holds up to 300 characters, an answer up to 55.",
+        "A poll has 2 to 10 answers. Empty answers are left out.",
+        "Post the poll stays greyed until there is a question and at least two answers."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "On the web, a poll you post and the votes you give are kept with your account. The others in the room do not see them.",
+        "Phiogy for Windows has no poll button."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/message-poll-dark.png",
+      "light": "cdn:phiogy/help/shot/message-poll-light.png"
+     },
+     "where": "lobby"
+    },
+    {
+     "id": "save",
+     "title": "Saved messages and reminders",
+     "lead": "Save a message to find it again later, or ask Phiogy to remind you of it. Your saved messages wait in one list.",
+     "step": [
+      "Press More, the three dots at the right end of a message.",
+      "Press Save to keep it. The button then reads Unsave.",
+      "Or, under Remind me, press In 20 minutes, In 1 hour, In 3 hours or In 1 day. That saves the message too, and the menu then says when it will remind you.",
+      "Open Saved messages, under Direct, to see them all: who wrote each one, in which room, and its words.",
+      "Press a saved message to go to its room.",
+      "When the time comes, a note shows wherever you are in Phiogy, with who wrote it, the room and the words. It stays until you close it, and closing it takes you to the room.",
+      "Press Done once you have dealt with it, or Unsave to take it off the list."
+     ],
+     "part": [
+      {
+       "head": "Good to know",
+       "list": [
+        "A reminder that has come stands first in the list, with its time marked; the rest follow, the newest saved first.",
+        "Press another time under Remind me to set the reminder again.",
+        "A reminder comes only while Phiogy is open. If it was closed at the time, the note shows the next time you open Phiogy.",
+        "Saved messages and reminders are kept with your account, so they follow you to every browser where you sign in."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Phiogy for Windows has no saved messages or reminders. Save and set reminders in Phiogy on the web."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/message-save-dark.png",
+      "light": "cdn:phiogy/help/shot/message-save-light.png"
+     },
+     "where": "_saved"
+    }
+   ]
+  },
+  {
+   "id": "call",
+   "label": "Calls and voice",
+   "icon": "cdn:phiogy/icon/phone.svg",
+   "lead": "Calls in any room, with your camera and your screen, and voice rooms you stay in while you look around.",
+   "article": [
+    {
+     "id": "start",
+     "title": "Start or join a call",
+     "lead": "Any room you write in can have a call. Start one, or join the one someone else began.",
+     "step": [
+      "Open the room. Its tools are at the top right: point at the room to see them, or press the three dots on a phone.",
+      "Press the phone (Call) to start with sound only, or the camera (Call with the camera) to start with your camera on.",
+      "Allow the microphone when your browser asks. The call opens over the messages, with a clock.",
+      "Your tile comes first, then one for each person who joins, saying In the call or Muted.",
+      "When someone else is already calling, the room's name says who, and Join stands beside it. Press Join to go in.",
+      "Press End the call to leave. Phiogy lets go of your microphone, camera and screen."
+     ],
+     "part": [
+      {
+       "head": "What happens",
+       "text": [
+        "Only people who have the room open see a call in it. Phiogy does not ring anyone elsewhere: on the web, people who have not joined show as Ringing on your side only.",
+        "You are in one call at a time. Joining one takes you out of a voice room."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "On the web, opening another room or closing the page leaves the call. A voice room keeps going.",
+        "On the web, if your connection drops, the page joins the call again once it is back.",
+        "On the web, a host can keep calls in a room to some roles: only they see the phone and camera there.",
+        "A call holds up to 8 callers. When it is full, nobody else can join.",
+        "On one network, callers connect straight to each other. Between networks, the call goes through Phiogy's relay."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "list": [
+        "Call and Call with the camera are in the room's title.",
+        "The call goes on when you open another room. Go back to its room to see it.",
+        "The column beside the room gets a Calls tab of the calls you were in there, with Join to call again.",
+        "If the connection drops, the room says The line let this window go. Press Call or Join again."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/call-start-dark.png",
+      "light": "cdn:phiogy/help/shot/call-start-light.png"
+     },
+     "where": "lobby"
+    },
+    {
+     "id": "camera",
+     "title": "Camera and screen",
+     "lead": "Turn your camera on to be seen, or share a screen to show what you are working on. Both work in any call, as often as you like.",
+     "step": [
+      "In a call, press Camera on. Allow the camera when your browser asks.",
+      "Your camera shows in your own tile, as a mirror shows you. The others see it the right way round.",
+      "Press Camera off to stop it. The others see your picture in its place again.",
+      "Press Share a screen. Your browser asks what to share: pick it and confirm.",
+      "What you share stands beside your tile, for you and for everyone in the call.",
+      "Press Stop sharing to end it. Stopping from your browser's own sharing bar ends it too."
+     ],
+     "part": [
+      {
+       "head": "What happens",
+       "text": [
+        "Everyone in the call sees your camera and your screen come and go at once. The line under the buttons says: \"Your microphone, camera and screen go to everyone who joins this call.\"",
+        "Each person's camera shows in their tile while it is on; while it is off, their picture is there. A screen someone shares stands beside their tile, wider than a camera."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "To begin a call with your camera already on, press the camera in the room's tools instead of the phone.",
+        "If the browser was not allowed the camera, the call says The camera was not allowed, and goes on without it.",
+        "Voice rooms are for sound only: they have no camera and no screen to share."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "list": [
+        "Camera on uses the camera Windows gives. The arrow beside it lists your cameras.",
+        "Share a screen shares your first screen at once. The arrow beside it chooses another screen or a window, how many pictures a second, and the size.",
+        "While somebody shares a screen, Streams stands beside the call's buttons, to choose which screens you watch."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/call-camera-dark.png",
+      "light": "cdn:phiogy/help/shot/call-camera-light.png"
+     }
+    },
+    {
+     "id": "voice",
+     "title": "Voice rooms",
+     "lead": "A voice room is a room you are in, not one you write in. Join it to talk with whoever is there, and stay in it while you read other rooms.",
+     "step": [
+      "Open a voice room from the menu: it has a speaker beside its name.",
+      "See who is in it before you go in: each person is a card with their face and name. An empty room says Nobody is in here yet.",
+      "Press Join. Allow the microphone when your browser asks.",
+      "Talk. The bar under the cards shows how loud you are.",
+      "Press Mute to stop your sound and Unmute to bring it back. Sound off stops you hearing the others, and Sound on brings them back.",
+      "Open any other room: the voice room stays at the foot of the menu, with its name, Mute, Sound off and Leave. Press its name to go back to it.",
+      "Press Leave to go out."
+     ],
+     "part": [
+      {
+       "head": "What happens",
+       "text": [
+        "While you are in, your microphone goes to everyone in the room, and you hear them. Each card says In the room, or Muted.",
+        "Press a card to see that person's profile."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "You are in one voice room at a time. Starting or joining a call in another room takes you out of the voice room.",
+        "Nobody is rung into a voice room: people come in by themselves.",
+        "A voice room has no camera and no screen sharing."
+       ]
+      },
+      {
+       "head": "Limits",
+       "text": [
+        "A voice room holds up to 8 people at once. If it is full, or Phiogy cannot reach its call service, the room says: \"The call service did not answer, or the room is full, so nobody hears you.\""
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "The voice room stays at the foot of the menu beside the bar, on every page. Your microphone opens when you join, and is closed while you are muted."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/call-voice-dark.png",
+      "light": "cdn:phiogy/help/shot/call-voice-light.png"
+     },
+     "where": "lounge"
+    },
+    {
+     "id": "streams",
+     "title": "Watch several screens",
+     "lead": "In Phiogy for Windows, every screen shared in a call is shown at once, side by side with the cameras. You choose which to watch, and which one to see large.",
+     "step": [
+      "In a call, press the three dots (More) at the right of a tile's foot.",
+      "Press Focus: that tile goes first, as wide as the call, and the other tiles stand smaller in a row under it.",
+      "Press Show every tile, in the same menu, to make them all alike again.",
+      "On someone's screen, press Stop watching: it turns into a card that says whose screen it is.",
+      "On that card, press Watch to see the screen again in focus, or the eye beside it to watch it alongside the one in focus.",
+      "While somebody shares a screen, Streams (the eye) stands beside the call's buttons. It lists each screen, watched or not, and Stop watching every stream.",
+      "The three dots at the call's head, by the clock, have Watch every stream, to bring every screen back at once."
+     ],
+     "part": [
+      {
+       "head": "Good to know",
+       "list": [
+        "What you watch is yours alone: nobody else is told.",
+        "The three dots at the call's head also have Show who has no camera, lit while faces are shown. Press it to leave out every face (yours, anyone without a camera, anyone ringing) and keep only cameras and screens. Press it again to bring them back.",
+        "With faces left out and no camera on, the call says Nobody here has a camera on."
+       ]
+      },
+      {
+       "head": "On the web",
+       "text": [
+        "The web shows every screen beside the tile of whoever shares it, and has no menu on a tile."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/call-streams-dark.png",
+      "light": "cdn:phiogy/help/shot/call-streams-light.png"
+     },
+     "desk": true
+    },
+    {
+     "id": "volume",
+     "title": "Mute someone or turn them down",
+     "lead": "In Phiogy for Windows you can mute one person in a call, or play them softer or louder. Only you hear the difference: they are not told, and nobody else hears a change.",
+     "step": [
+      "In a call, press the three dots (More) at the foot of the person's tile.",
+      "Press Mute to stop hearing them. It reads Unmute while they are muted for you; press it to hear them again.",
+      "Move Volume to play them softer or louder: 0, 25%, 50%, 75%, 100% (as they are), 125%, 150% or 200%.",
+      "The menu stays open while you move Volume, so you can try a few steps.",
+      "Press anywhere outside the menu to close it."
+     ],
+     "part": [
+      {
+       "head": "Good to know",
+       "list": [
+        "This is not the Mute button under the tiles, which stops your own microphone, nor Sound off, in the arrow beside Mute, which stops you hearing everyone.",
+        "A light goes around the tile of whoever is talking, so you can tell who to turn down.",
+        "A tile reads Muted when that person muted themselves."
+       ]
+      },
+      {
+       "head": "On the web",
+       "text": [
+        "On the web there is no way to turn one person down. In a voice room, Sound off at the foot of the menu stops everyone's sound at once, and Sound on brings it back."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/call-volume-dark.png",
+      "light": "cdn:phiogy/help/shot/call-volume-light.png"
+     },
+     "desk": true
+    },
+    {
+     "id": "devices",
+     "title": "Change your microphone, speakers or camera",
+     "lead": "In Phiogy for Windows you choose your microphone, sound out and camera during the call, with the arrow beside each of the call's buttons. A call begins with the system's own defaults.",
+     "step": [
+      "In a call, press the arrow beside Mute. It lists Microphone and Sound out, each with System default first, then the ones your system has.",
+      "Press one to use it. Phiogy switches to it in the call.",
+      "The same menu has Sound off, which stops you hearing everyone. It reads Sound on while your sound is off.",
+      "Press the arrow beside Camera on to choose a camera.",
+      "Press the arrow beside Share a screen to choose Pictures a second (15, 30 or 60 a second), Size (720p, 1080p or As the screen is), and, under Share, which screen or window to share. Choosing one shares it at once.",
+      "While you share, the same menu has Stop sharing."
+     ],
+     "part": [
+      {
+       "head": "Good to know",
+       "list": [
+        "The lists are what Windows offers when you open the menu. Plugged in a headset? Open the arrow again to find it.",
+        "A choice holds for the call you make it in. The next call starts with the system defaults again.",
+        "Unless you choose a size, a screen is sent as it is."
+       ]
+      },
+      {
+       "head": "On the web",
+       "text": [
+        "The web uses the microphone and camera your browser gives the page, and has no device menu in the call. Change them in your browser's settings for the site, then end the call and start it again."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/call-devices-dark.png",
+      "light": "cdn:phiogy/help/shot/call-devices-light.png"
+     },
+     "desk": true
+    },
+    {
+     "id": "nomic",
+     "title": "When there is no microphone or camera",
+     "lead": "A call works without a microphone, a camera or a screen to share. Phiogy says what is missing and why, and you still see and hear the others.",
+     "step": [
+      "Read the line under the call's buttons: it says what is missing.",
+      "In a browser, allow the microphone and camera when the browser asks. The microphone is asked for when the call starts, the camera when you turn it on.",
+      "If you said no, allow them in your browser's settings for the site, then end the call and start it again.",
+      "In Phiogy for Windows, check that a microphone or camera is plugged in, and that Windows lets desktop apps use them, in Windows Settings under Privacy & security.",
+      "Without a microphone you can still listen and watch. Mute cannot be pressed while there is none."
+     ],
+     "part": [
+      {
+       "head": "What the call says",
+       "list": [
+        "\"This browser gives the page no microphone or camera.\" The browser offers the page neither. Try a current browser.",
+        "\"The microphone was not allowed, so nobody would hear you.\"",
+        "\"The camera was not allowed.\"",
+        "In Phiogy for Windows: \"The system gave no microphone, so nobody hears you\", \"The system gave no camera\", \"The system gave no sound out, so you hear nobody\" or \"The system gave no screen to share\", each with the reason Windows gave."
+       ]
+      },
+      {
+       "head": "If nobody else can join",
+       "text": [
+        "\"The call service did not answer, so nobody else can join this call\" means Phiogy could not reach its call service. Your own microphone and camera still work on the page. End the call and try again in a moment.",
+        "In Phiogy for Windows the room says The call could not be joined, with the reason, or The call is full."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/call-nomic-dark.png",
+      "light": "cdn:phiogy/help/shot/call-nomic-light.png"
+     }
+    }
+   ]
+  },
+  {
+   "id": "friend",
+   "label": "Friends and direct",
+   "icon": "cdn:phiogy/icon/users.svg",
+   "lead": "Friends, friend requests, direct rooms, and following people.",
+   "article": [
+    {
+     "id": "add",
+     "title": "Add a friend",
+     "lead": "Ask someone to be your friend. Your friends are listed together, with who of them is about now, and a press on a friend opens your direct room with them.",
+     "step": [
+      "Under Direct in the menu, open Friends.",
+      "Press Add a friend.",
+      "Type part of their name or handle in Search people.",
+      "At the end of their row, press Add friend (the person with a plus).",
+      "Their row now reads Request sent, and the request waits under Pending.",
+      "To take it back, press Cancel request on their row."
+     ],
+     "part": [
+      {
+       "head": "Another way",
+       "text": [
+        "On the web, press their face anywhere to open their profile, and press Add friend there. The same button reads Cancel request while you wait, and Friends once you are friends."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "Friends has four tabs: Here now (your friends who are about), All, Pending and Add a friend.",
+        "Each row in Add a friend says how you stand: their handle, Request sent, Asked to be your friend, or Friends.",
+        "Search people finds Phiogy's members by name or handle. Someone who has only just made an account is not listed.",
+        "For now a request you send waits. Pending says: \"A request you send waits here. Nobody is on the other side to answer it yet.\""
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Friends has the same four tabs, with their counts. A profile there has no friend button: add and answer friends from Friends."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/friend-add-dark.png",
+      "light": "cdn:phiogy/help/shot/friend-add-light.png"
+     },
+     "where": "_friends"
+    },
+    {
+     "id": "answer",
+     "title": "Answer a request",
+     "lead": "When someone asks to be your friend, the request waits under Pending until you accept or decline it. A number beside Friends counts the requests waiting for you.",
+     "step": [
+      "Under Direct in the menu, open Friends. A number beside it means requests wait for you.",
+      "Press Pending.",
+      "A request to you reads Asked to be your friend.",
+      "Press Accept (the tick) to become friends, or Decline (the cross) to say no.",
+      "Your own requests are listed there too, reading You asked. Cancel request takes one back.",
+      "Once accepted, a friend is under All, and under Here now while they are about."
+     ],
+     "part": [
+      {
+       "head": "Good to know",
+       "list": [
+        "Press a person's row to open your direct room with them, before or after you answer.",
+        "On the web you can also answer from their profile: its friend button reads Accept while they wait for you.",
+        "When nothing waits, Pending says No request waits."
+       ]
+      },
+      {
+       "head": "Remove a friend",
+       "text": [
+        "Open Friends, then All, and press Remove friend (the cross) at the end of their row. On the web you can also press Friends on their profile."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/friend-answer-dark.png",
+      "light": "cdn:phiogy/help/shot/friend-answer-light.png"
+     },
+     "where": "_friends"
+    },
+    {
+     "id": "direct",
+     "title": "Write to anyone",
+     "lead": "A direct room is a conversation with one person, named after them. You can start one with anybody in Phiogy, friend or not.",
+     "step": [
+      "Under Direct in the menu, press Find or start a conversation.",
+      "Type part of their name or handle in Search people.",
+      "Press the person. Their room opens, under their name.",
+      "Write in the box at the foot of the room and press Enter.",
+      "The room stays under Direct from then on, so you find it again."
+     ],
+     "part": [
+      {
+       "head": "Other ways in",
+       "list": [
+        "Press Message on someone's profile.",
+        "In Friends, press a friend's row, or Message (the speech bubble) at its end."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "The page shows how many people there are to find, and the first ones whose name or handle holds what you type.",
+        "Someone who has only just made an account is not listed.",
+        "For now, what you write in a direct room is kept with your account: Phiogy does not deliver it to the other person yet."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/friend-direct-dark.png",
+      "light": "cdn:phiogy/help/shot/friend-direct-light.png"
+     },
+     "where": "_people"
+    },
+    {
+     "id": "follow",
+     "title": "Follow someone",
+     "lead": "Follow marks the people you want to keep track of. It is yours alone: the person is not told, and it needs no answer.",
+     "step": [
+      "Press their face, in a room's messages or in the list of who is here, to open their profile.",
+      "Press Follow (the star).",
+      "The button now reads Following, and stays lit while you follow them.",
+      "Press Following to stop following them."
+     ],
+     "part": [
+      {
+       "head": "What it does",
+       "text": [
+        "Phiogy keeps whom you follow with your account, so it is the same on the web and in Phiogy for Windows.",
+        "In Phiogy for Windows, your direct room with someone you follow is listed under Favorites, the tab over your rooms, beside the rooms you starred."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "Nobody sees whom you follow. It does not change anyone's Followers count, and nobody can see who follows them.",
+        "You can follow anyone, friend or not, and stop whenever you like.",
+        "Following is not being friends. To be friends, send a friend request from Friends."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/friend-follow-dark.png",
+      "light": "cdn:phiogy/help/shot/friend-follow-light.png"
+     }
+    }
+   ]
+  },
+  {
+   "id": "host",
+   "label": "Hosts",
+   "icon": "cdn:phiogy/icon/host.svg",
+   "lead": "Hosts are the places Phiogy is made of, each with its own rooms and people. Join them, make your own, and say who may do what in them.",
+   "article": [
+    {
+     "id": "join",
+     "title": "Join or leave a host",
+     "lead": "A host is a place with its own text rooms, voice rooms and people. Join one and it stands in your rail; leave it and it goes.",
+     "step": [
+      "Press Add a host, the plus in the rail just under the hosts you are in.",
+      "Under Join a host, type part of a name in Search hosts. Each host shows its mark and how many members it has.",
+      "Press Join beside the one you want. It stands in your rail at once.",
+      "Press its mark in the rail and pick a room from its menu.",
+      "To leave, open Add a host again, find the host and press Leave. It goes from your rail."
+     ],
+     "part": [
+      {
+       "head": "Good to know",
+       "list": [
+        "The list shows the first 24 hosts that match what you type. Type more of the name to narrow it; the line at the foot says how many hosts there are to join.",
+        "Some hosts are in your rail from the start. If they are in the Join a host list, you can leave them like any other.",
+        "The hosts Phiogy comes with, such as Phiace and Makers, are not in the list, so they stay in your rail.",
+        "An invite link someone sends you can join you to a host too: see Invites."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Press Hosts in the bar. The page lists Your hosts, the hosts other people made under Published by people, and every host to join under Join a host. Search hosts, sort by Most members or Name, and choose how the cards are laid out.",
+        "Press a host to open it in a drawer: its name and members, About, its Rooms, and Open with Join or Leave. Joining a host under Published by people puts it in your rail with its rooms and opens it. The column beside a room also has Join or Leave for its host."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/host-join-dark.png",
+      "light": "cdn:phiogy/help/shot/host-join-light.png"
+     },
+     "where": "_hosts"
+    },
+    {
+     "id": "make",
+     "title": "Make your own host",
+     "lead": "Start a place for your people. You name it, pick how it starts, and its rooms are ready at once. You are its owner.",
+     "step": [
+      "Press Add a host, the plus in the rail under your hosts.",
+      "Under Create your host, type its name in Name your host.",
+      "Pick how it starts. Each start lists the rooms it comes with, and can be pressed once the host has a name.",
+      "Phiogy makes the host at once and opens its first room. It stands in your rail with its rooms under their headings.",
+      "To take it away again, open Add a host and press Remove beside it, under Create your host."
+     ],
+     "part": [
+      {
+       "head": "How it can start",
+       "list": [
+        "Create my own: a lobby, under Text.",
+        "Collection: announcements under Start here; holders and gallery under Community; the Lounge voice room under Live.",
+        "Studio: brief, work and review under Work; the Bench voice room under Live.",
+        "Friends: a lobby under Text and the Lounge voice room under Voice.",
+        "Club: welcome under Start here; general and events under Community; the Stage voice room under Live."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "You own the host, so you may do everything in it. It starts with two roles: Everyone, who may see, write, call and pin, and Moderators, who may also make invites and manage roles and rooms.",
+        "Remove takes the host and its rooms away at once. Phiogy does not ask first.",
+        "On the web, a host you make is kept with your account. Other people cannot find it under Join a host yet."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Press Hosts in the bar, then Create a host. Type the name in Name your host, pick a start under How it starts, and press Create. You land in its first room.",
+        "When you are signed in, the host is also published, so other people find it under Published by people and can join it. A guest's host is kept for them alone: the drawer says Kept for you only. To remove a host you made, press it on the Hosts page, then Remove."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/host-make-dark.png",
+      "light": "cdn:phiogy/help/shot/host-make-light.png"
+     },
+     "where": "_hosts"
+    },
+    {
+     "id": "people",
+     "title": "See who is here",
+     "lead": "A room of a host has a column at its right that lists the host's people, grouped by how they are. Press anyone to see their profile.",
+     "step": [
+      "Open a text room of a host. The column at the right, Members, lists everyone of the host.",
+      "They stand in groups, each with how many are in it: Here now, Away, Do not disturb and Offline.",
+      "Press a group's name to fold it, and again to open it.",
+      "Press a face to see that person's profile in the column: their picture, name, handle and state, with Message and Follow.",
+      "Press the back arrow at the top of the column to return to the list.",
+      "To fold the whole column away, point at the room and press Show or hide who is here, the people button in the room's head. Press it again to bring the column back."
+     ],
+     "part": [
+      {
+       "head": "Good to know",
+       "list": [
+        "In a voice room the column lists only the people in that room.",
+        "In a direct room the column shows the person you are writing to.",
+        "You stand in the list as your status says. Set yourself Unseen and you are shown as offline.",
+        "On a phone the column stays hidden until you press a face."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "The column beside a room is the host's own page: its name, how many members it has and how many are here now, Join or Leave, and who is on the room's line, In the call or Has the room open. Its tabs are Info, Rooms, Members and Rules, and Calls once a call was held there. Press a face under Members to put that person beside the room."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/host-people-dark.png",
+      "light": "cdn:phiogy/help/shot/host-people-light.png"
+     },
+     "where": "lobby"
+    },
+    {
+     "id": "roles",
+     "title": "Roles and what they can do",
+     "lead": "Roles say who may do what in a host. Everybody holds the Everyone role; the other roles are given to some people.",
+     "step": [
+      "Open a text room of the host, point at the room and press the gear in its head. It is named after the host, such as Phiace settings: this is Host settings.",
+      "Open Roles. Each role shows a box for each thing it may do.",
+      "If you may manage, tick or clear a box to change what that role may do. It holds at once.",
+      "To make a new role, type its name in Name a new role at the foot of the list and press Add.",
+      "Give the role to people in Members: press Roles beside a person and tick it."
+     ],
+     "part": [
+      {
+       "head": "What a role can be allowed",
+       "list": [
+        "See this room: open the host's rooms and read them.",
+        "Write here: write in its rooms.",
+        "Call here: start a call from a text room's head.",
+        "Pin messages: pin and unpin messages.",
+        "Make invites: make invite links to the host.",
+        "Manage roles and rooms: change roles and who holds them, set each room's rights, and pause invites."
+       ]
+      },
+      {
+       "head": "Who can do this",
+       "text": [
+        "The owner, and anyone whose role has Manage roles and rooms. Everyone else sees the boxes greyed.",
+        "The owner may do everything in every room, whatever the boxes say. Someone with several roles may do whatever any of them allows."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "No gear? A room's head shows its buttons only while the pointer is over the room, and on a phone behind the three dots. Voice and direct rooms have none.",
+        "A new role starts with See this room, Write here and Call here.",
+        "A role cannot be renamed or deleted yet. Clear its boxes to leave it doing nothing.",
+        "Some hosts have no roles set. In those everyone may do everything, and Roles lists none.",
+        "For now, roles are kept with your account. You see your changes wherever you sign in, but other people do not see them yet."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Phiogy for Windows has no Host settings yet, and its rooms do not follow roles. Do this in Phiogy on the web."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/host-roles-dark.png",
+      "light": "cdn:phiogy/help/shot/host-roles-light.png"
+     }
+    },
+    {
+     "id": "rights",
+     "title": "Who can see and write in a room",
+     "lead": "A room can be for some roles only. Room by room, you choose which roles may see it, write in it, call in it and pin in it.",
+     "step": [
+      "Open the text room, point at it and press the gear in its head to open Host settings.",
+      "Open This room. It has four rows: See this room, Write here, Call here and Pin messages.",
+      "Each row has a box for every role of the host. Tick the roles that may do it, and clear the ones that may not.",
+      "The change holds at once, for this room alone. The host's other rooms keep what the Roles tab says."
+     ],
+     "part": [
+      {
+       "head": "What people without the role find",
+       "list": [
+        "See this room: the room stays in the menu, but opening it shows a line such as \"Only some roles see build. Yours is not one of them.\" in place of its messages.",
+        "Write here: they read the room, and the box at its foot is replaced by a line such as \"Only some roles write in show and tell. You can read it.\"",
+        "Call here: Call and Call with the camera are not in the room's head.",
+        "Pin messages: Pin is not in a message's menu."
+       ]
+      },
+      {
+       "head": "Who can do this",
+       "text": [
+        "The owner, and those whose role has Manage roles and rooms. Everyone else sees the boxes greyed. The owner may always see, write, call and pin, whatever the boxes say."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "The boxes start from what each role may do on the Roles tab. Once you change a row here, this room keeps its own ticks for that row, and later changes on the Roles tab no longer reach it.",
+        "This room is the room you opened Host settings from. Voice rooms have no gear, so they cannot be set here, and Call here does not stop anyone joining one.",
+        "For now, room rights are kept with your account: other people do not see your changes yet."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Phiogy for Windows has no Host settings yet, and its rooms do not follow roles. Do this in Phiogy on the web."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/host-rights-dark.png",
+      "light": "cdn:phiogy/help/shot/host-rights-light.png"
+     }
+    },
+    {
+     "id": "members",
+     "title": "The members page",
+     "lead": "Members lists everyone of a host, with their roles and the owner's crown. Those who manage give and take roles there.",
+     "step": [
+      "Open a text room of the host, point at it and press the gear in its head to open Host settings.",
+      "Open Members. The line under the search says how many members the host has.",
+      "Type in Search members to find someone by name or handle.",
+      "Each person shows their face and presence, their name, and a tag for each role they hold. The owner has a crown and the Owner tag.",
+      "If you may manage, press Roles beside a person. A box opens with their name, such as Roles of Lora Vale: tick a role to give it, and clear it to take it away. Their tags change at once."
+     ],
+     "part": [
+      {
+       "head": "Who can do this",
+       "text": [
+        "Anyone in the host can look. Only the owner and those whose role has Manage roles and rooms see Roles beside people; everyone else sees a line saying only the owner and those who manage the host change this.",
+        "Nobody gives roles to the owner, who may already do everything, so the owner's row has no Roles button."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "Everybody holds the Everyone role, so it is not in the box.",
+        "The list shows up to 48 people at a time. Search to find someone further down.",
+        "The owner also finds Make owner in the box, to hand the host to that person: see Hand a host to someone else.",
+        "For now, the roles you give are kept with your account: the people you give them to do not see them yet."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "There is no members page with roles yet. The column beside a room has a Members tab of faces: press one to see that person beside the room."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/host-members-dark.png",
+      "light": "cdn:phiogy/help/shot/host-members-light.png"
+     }
+    },
+    {
+     "id": "owner",
+     "title": "Hand a host to someone else",
+     "lead": "The owner can make another member the owner. The new owner may do everything in the host, and only they can hand it on again.",
+     "step": [
+      "Open a text room of the host, point at it and press the gear in its head to open Host settings.",
+      "Open Members and find the person, with Search members if you need to.",
+      "Press Roles beside them.",
+      "Press Make owner at the foot of the box.",
+      "The crown and the Owner tag move to them at once."
+     ],
+     "part": [
+      {
+       "head": "What happens",
+       "text": [
+        "They may do everything in every room of the host. You keep any roles you were given, and lose what only the owner could do.",
+        "If none of your roles has Manage roles and rooms, the Roles buttons go, and you see a line saying only the owner and those who manage the host change this."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "Only the owner sees Make owner.",
+        "Phiogy does not ask you to confirm, so be sure before you press.",
+        "You cannot take it back yourself: only the new owner can make you the owner again.",
+        "The owner's own row has no Roles button. To keep managing after you hand the host on, ask the new owner to give you a role that manages.",
+        "For now, the change is kept with your account: other people do not see it yet."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Phiogy for Windows has no Host settings yet, and its rooms do not follow roles. Do this in Phiogy on the web."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/host-owner-dark.png",
+      "light": "cdn:phiogy/help/shot/host-owner-light.png"
+     }
+    }
+   ]
+  },
+  {
+   "id": "invite",
+   "label": "Invites",
+   "icon": "cdn:phiogy/icon/ticket.svg",
+   "lead": "Invite links bring people into a host. Make them, choose their code, pause them, and read what a link says when it does not work.",
+   "article": [
+    {
+     "id": "make",
+     "title": "Make an invite",
+     "lead": "An invite is a link that opens your host, with Join on it. You choose how long it lasts and how many times it may be used.",
+     "step": [
+      "Open a text room of the host, point at the room and press the gear in its head. It is named after the host, such as Phiace settings: this is Host settings.",
+      "Open Invites.",
+      "Under Make an invite, leave Your own code empty for a code Phiogy makes up, or type your own: see Your own code.",
+      "Choose how long it lasts: 1 day, 1 week, 30 days or Never runs out. It starts on 1 week.",
+      "Choose how many times it may be used: No limit, 1, 10 or 100 uses. It starts on No limit.",
+      "Press Make an invite. The link stands in the list below.",
+      "Press the copy button beside it, Copy the link. Phiogy says \"The link is copied\"."
+     ],
+     "part": [
+      {
+       "head": "What the list shows",
+       "list": [
+        "Each link, with how many times it was used, out of how many when there is a limit, such as 0 used.",
+        "When it runs out, or Never runs out.",
+        "Paused or Run out, when it cannot be used now.",
+        "Take back, the bin beside it, which ends the link at once. Whoever opens it then is told it is not one we know."
+       ]
+      },
+      {
+       "head": "Who can do this",
+       "text": [
+        "The owner, and those whose role has Make invites. Without it, the Make an invite box is not there."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "Joining with a link counts one use.",
+        "For now, invites are kept with your own account. A link works for you wherever you sign in, but when someone else opens it, Phiogy tells them the invite is not one we know. Links do not reach other people's accounts yet."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Phiogy for Windows has no invites yet. Make them in Phiogy on the web."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/invite-make-dark.png",
+      "light": "cdn:phiogy/help/shot/invite-make-light.png"
+     }
+    },
+    {
+     "id": "code",
+     "title": "Your own code",
+     "lead": "Choose the words at the end of an invite link, such as phiace-friends, so it is easy to read and to type.",
+     "step": [
+      "In Host settings, open Invites.",
+      "Type the code in Your own code (letters, digits and -) before you make the invite.",
+      "Choose how long it lasts and how many times it may be used.",
+      "Press Make an invite. The link ends with invite/ and your code.",
+      "Press Copy the link beside it to copy the whole link."
+     ],
+     "part": [
+      {
+       "head": "What a code may be",
+       "list": [
+        "3 to 24 characters: letters, digits and -. No spaces or other signs.",
+        "Capitals are made small: Phiace-Friends becomes phiace-friends. A link opens whether its code is typed in capitals or not.",
+        "Leave the box empty and Phiogy makes a code up for you."
+       ]
+      },
+      {
+       "head": "If it does not work",
+       "list": [
+        "\"A code is 3 to 24 letters, digits or -.\" The code is too short, too long, or has a space or another sign in it. Change it and press Make an invite again.",
+        "\"That code is taken. Choose another.\" One of your invites already uses that code. Choose another, or take the old invite back first."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "text": [
+        "Take back frees a code: once the old invite is gone, you can use its code again."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/invite-code-dark.png",
+      "light": "cdn:phiogy/help/shot/invite-code-light.png"
+     }
+    },
+    {
+     "id": "pause",
+     "title": "Pause invites",
+     "lead": "Stop everyone joining your host with a link for a while, without taking the links back. Resume, and they work again.",
+     "step": [
+      "Open a text room of the host, point at it and press the gear in its head to open Host settings.",
+      "Open Invites and turn on Pause invites, the switch at the top.",
+      "Phiogy says, for example, \"Invites to Makers are paused. Nobody can join with a link until they resume.\" Each link of the host shows Paused.",
+      "To let the links work again, turn the switch off. While invites are paused it reads Resume invites."
+     ],
+     "part": [
+      {
+       "head": "What happens",
+       "text": [
+        "Whoever opens a link of the host while it is paused sees the invite, but no Join, and a line such as \"Invites to Makers are paused for now. Ask whoever sent it.\"",
+        "The pause holds for every invite of the host, and for any you make while it is on."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "Pausing does not stop the clock. An invite that runs out while invites are paused has run out when you resume.",
+        "Resuming does not reset how many times a link was used.",
+        "To end one link for good, press Take back beside it instead."
+       ]
+      },
+      {
+       "head": "Who can do this",
+       "text": [
+        "Only the owner and those whose role has Manage roles and rooms. For everyone else the switch is greyed. Phiogy for Windows has no invites yet."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/invite-pause-dark.png",
+      "light": "cdn:phiogy/help/shot/invite-pause-light.png"
+     }
+    },
+    {
+     "id": "broken",
+     "title": "When an invite does not work",
+     "lead": "The page an invite link opens says why it cannot be used. Here is what each message means and what to do.",
+     "step": [
+      "Open the link. The page shows the host with Join, or says why it cannot be used.",
+      "If it says the invite is not one we know, check the link against the one you were sent: it may be mistyped, or it was taken back.",
+      "If it says invites are paused, try again later, or ask whoever sent it.",
+      "If it says the invite ran out, ask whoever sent it for a new one.",
+      "When it works, press Join and the host's name, such as Join Phiace. The host stands in your rail and its first room opens."
+     ],
+     "part": [
+      {
+       "head": "What each message means",
+       "list": [
+        "\"This invite is not one we know. It may be mistyped, or it was taken back.\" Nobody made that code, or its maker took the invite back.",
+        "\"Invites to Phiace are paused for now. Ask whoever sent it.\" The host has paused its invites. The link works again when they resume, unless it has run out by then.",
+        "\"This invite ran out. Ask whoever sent it for a new one.\" It lasted its time, or it was used as many times as it may be.",
+        "\"You are in Phiace\": you are in the host already. Press Open and its name to go there."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "For now, an invite is kept with the account that made it. A link made by someone else's account says it is not one we know, even when nothing is wrong with it.",
+        "Capitals in the code do not matter.",
+        "Joining counts one use of the invite."
+       ]
+      },
+      {
+       "head": "If you sent it",
+       "text": [
+        "In Host settings, open Invites. The link's row says Paused or Run out, and how many times it was used. Make a new one, or resume invites if you paused them."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/invite-broken-dark.png",
+      "light": "cdn:phiogy/help/shot/invite-broken-light.png"
+     }
+    }
+   ]
+  },
+  {
+   "id": "shop",
+   "label": "Shops",
+   "icon": "cdn:phiogy/icon/bag.svg",
+   "lead": "The village's shops: open them in your rail, look round their departments, and pay for your bag from your wallet.",
+   "article": [
+    {
+     "id": "open",
+     "title": "Open a shop",
+     "lead": "Any shop of the village can stand in your rail. Open one and its menu sits beside it: its Home, its departments and your bag.",
+     "step": [
+      "Press Shops in the rail, after the shops you have open.",
+      "Type part of a name in Search shops, or look down the list. Each shop says what it sells and how many items it has.",
+      "Press Open beside a shop. It joins your rail and opens on its Home.",
+      "Use its menu: Home, then its departments, such as Women and Men, each with its pages, such as Ready-to-wear, Shoes and Accessories. Bag is at the foot.",
+      "Press a thing to open its own page: its pictures, its price, its facts, and More like this.",
+      "To take a shop off your rail, go back to Shops and press Close beside it."
+     ],
+     "part": [
+      {
+       "head": "Good to know",
+       "list": [
+        "Phiogy Shop is open from the start. It has themes and pictures for your profile, and a look from every shop of the village, under Women, Men, Themes and PFTs.",
+        "The list shows the first 32 shops that match what you type. The line at its foot says how many shops there are.",
+        "Open on a shop that is open already takes you to it.",
+        "Closing a shop does not empty your bag."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Press Shops in the bar. Open and Close work the same, and an open shop stands in your rail with its Home, its menu and the bag.",
+        "A thing's page holds its picture at the left with its views, and the tabs Info, Stats, Trail, Owners and Related. Press Like to mark it Liked, and see it In other colours where it has them."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/shop-open-dark.png",
+      "light": "cdn:phiogy/help/shot/shop-open-light.png"
+     },
+     "where": "_shops"
+    },
+    {
+     "id": "bag",
+     "title": "Your bag",
+     "lead": "What you mean to buy waits in the bag, one bag for every shop. You pay for all of it at once, from your wallet.",
+     "step": [
+      "On a thing's card or its own page, press Add to bag. It then reads In the bag; press that to take the thing out again.",
+      "Open Bag at the foot of an open shop's menu. The number beside it says how many things wait.",
+      "Check each line, with its picture and price, and the Subtotal, Delivery (At once) and Total.",
+      "To take a thing out, press the remove button at the end of its line.",
+      "Press Pay from wallet. The total is taken from your wallet, the bag empties, and what you bought stands under Yours.",
+      "A theme you own says Put on. Press it and Phiogy wears the theme; it then reads Wearing, and a press takes it off again."
+     ],
+     "part": [
+      {
+       "head": "Good to know",
+       "list": [
+        "The bag shows what your wallet holds, under the total: In your wallet and the sum.",
+        "The bag pays only from your wallet's dollars. No card or bank is asked for, and nothing real is paid.",
+        "The whole bag is paid, or none of it. If your wallet holds less than the total, Phiogy says \"Not enough in your wallet for this bag.\" and takes nothing. Take something out and try again.",
+        "Something you own says Owned, and cannot go in the bag again.",
+        "A theme you pay for is put on at once. A theme the house gives away says Put on without paying."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "The bag works the same. Each line has Take out of the bag at its end, and the bag shows In your wallet with the sum. On a thing's own page the bag is one of the round buttons on its picture."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/shop-bag-dark.png",
+      "light": "cdn:phiogy/help/shot/shop-bag-light.png"
+     },
+     "where": "_bag"
+    }
+   ]
+  },
+  {
+   "id": "notice",
+   "label": "Notifications",
+   "icon": "cdn:phiogy/icon/bell.svg",
+   "lead": "Mute rooms and hosts, choose what each host tells you of, let @everyone and @here through or not, and read your inbox.",
+   "article": [
+    {
+     "id": "mute",
+     "title": "Mute a room or a host",
+     "lead": "Muting quiets a room, or every room of a host, for a while or until you unmute it. A muted room shows no count on the menu, so it stops pulling at you.",
+     "step": [
+      "Open the room and point at its head, the bar at the top. Its tools show there.",
+      "Press the bell, Mute and the room's name.",
+      "Choose how long: 15 minutes, 1 hour, 8 hours, 1 day or Until I unmute.",
+      "The bell is crossed out, and its menu says Muted until and the time, or Muted until you unmute.",
+      "To mute a whole host, press the cog in the head of any of its rooms to open the host's settings, then open Notifications.",
+      "Under Mute and the host's name, choose how long.",
+      "To unmute early, open the same menu and press Unmute."
+     ],
+     "part": [
+      {
+       "head": "What happens",
+       "text": [
+        "A muted room counts nothing on the menu until the mute ends. When the time is up, it unmutes by itself.",
+        "Muting a host covers every one of its rooms. A room you muted on its own keeps its own time.",
+        "Mentions of you and replies to you still reach your Inbox."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "A mute is for you alone: nobody is told.",
+        "Your mutes are kept with your account, so they follow you to every browser you sign in on.",
+        "Direct conversations have the bell too.",
+        "Voice rooms have no bell. Press Sound off to stop hearing the others, or Leave."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Phiogy for Windows has no room or host mute yet. It can mute a person: press their face beside the room and press Mute, and what they say is no longer shown to you."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/notice-mute-dark.png",
+      "light": "cdn:phiogy/help/shot/notice-mute-light.png"
+     }
+    },
+    {
+     "id": "level",
+     "title": "Choose what you are told of",
+     "lead": "Each host has its own setting for what it tells you of: every message, only mentions, or nothing. Use it to keep a busy host from filling your menu with counts.",
+     "step": [
+      "Open any room of the host and point at the room's head.",
+      "Press the cog to open the host's settings.",
+      "Open the Notifications tab.",
+      "Under Tell me of, pick Every message, Only mentions or Nothing.",
+      "The choice holds at once for every room of that host. There is nothing to save."
+     ],
+     "part": [
+      {
+       "head": "What each choice does",
+       "list": [
+        "Every message: the host's rooms count what waits in them on the menu. Every host starts here.",
+        "Nothing: the host's rooms count nothing on the menu, and @everyone and @here in them no longer reach your Inbox. A mention of you by name, and a reply to you, still do.",
+        "Only mentions: Phiogy keeps your choice, but for now it counts the same as Every message."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "The setting is yours alone. Everyone else in the host keeps their own.",
+        "It is kept with your account, so it follows you to every browser you sign in on.",
+        "To quiet a host for a set time instead, use Mute at the top of the same tab."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Phiogy for Windows has no notification settings yet."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/notice-level-dark.png",
+      "light": "cdn:phiogy/help/shot/notice-level-light.png"
+     }
+    },
+    {
+     "id": "everyone",
+     "title": "@everyone and @here",
+     "lead": "@everyone and @here call on a whole room at once: @everyone for everyone in it, @here for everyone there now. Each host lets you choose whether they reach you.",
+     "step": [
+      "Open any room of the host and point at the room's head.",
+      "Press the cog to open the host's settings, then open Notifications.",
+      "Turn Let @everyone and @here through off to stop them reaching you from that host.",
+      "Turn it on again to let them through. Every host starts with it on.",
+      "To use them yourself, type @ in a message. The room's people come up, with @everyone and @here after them."
+     ],
+     "part": [
+      {
+       "head": "What happens",
+       "text": [
+        "With the switch off, a message with @everyone or @here in that host no longer counts as a mention of you in your Inbox. A mention of you by your handle still does, and so does a reply to you.",
+        "Setting Tell me of to Nothing for the host stops @everyone and @here too."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "The switch is set host by host, and only for you.",
+        "A mention of you, or of the whole room, is lit in the message. Press a lit name to open that person's profile.",
+        "Direct conversations have no host settings, so @everyone and @here always reach you there."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Phiogy for Windows has no mentions or Inbox yet."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/notice-everyone-dark.png",
+      "light": "cdn:phiogy/help/shot/notice-everyone-light.png"
+     }
+    },
+    {
+     "id": "inbox",
+     "title": "The inbox",
+     "lead": "Your Inbox gathers every message that mentions you and every reply to something you wrote, from all your rooms, so you do not miss what is meant for you.",
+     "step": [
+      "In the menu, open Inbox under Direct. The number beside it is how many are unread.",
+      "Pick Mentions or Replies at the top.",
+      "Unread ones are in bold. Each shows who wrote it, in which room, how it begins, and when.",
+      "Press one to go to its room. It is marked read.",
+      "Press Mark all read to mark everything in both tabs read at once."
+     ],
+     "part": [
+      {
+       "head": "What counts",
+       "list": [
+        "Mentions: a message that names you by your handle, or uses @everyone or @here where they reach you.",
+        "Replies: a message that answers one of yours.",
+        "Your own messages never count."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "Muting a room or a host does not stop its mentions and replies from reaching your Inbox.",
+        "Turning off Let @everyone and @here through, or setting Tell me of to Nothing, keeps whole-room mentions out. Mentions by name stay.",
+        "What you have read is kept with your account, so it stays read on every browser you sign in on.",
+        "Nothing for you here yet means nobody has mentioned or answered you.",
+        "Saved messages, just under Inbox, holds the messages you saved and their reminders."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Phiogy for Windows has no Inbox yet."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/notice-inbox-dark.png",
+      "light": "cdn:phiogy/help/shot/notice-inbox-light.png"
+     },
+     "where": "_inbox"
+    }
+   ]
+  },
+  {
+   "id": "profile",
+   "label": "Profile and status",
+   "icon": "cdn:phiogy/icon/smile.svg",
+   "lead": "Profiles, your status and how you show, and notes only you see.",
+   "article": [
+    {
+     "id": "profile",
+     "title": "Your profile",
+     "lead": "A profile shows who someone is and what you can do with them: write to them, add them as a friend, or follow them. Your own is where you set your status.",
+     "step": [
+      "In a room, press someone's picture or name: in the list of people beside the room, on a message, or in a lit mention.",
+      "Their profile opens beside the room. On a phone it takes the room's place.",
+      "At the top are their picture with its dot, name, handle, role, what they are up to, what they say of themself, and their tags.",
+      "Message opens a direct conversation with them.",
+      "The friend button shows where you stand: Add friend, Cancel request, Accept, or Friends.",
+      "Follow marks them as someone you follow. Press Following to stop.",
+      "Below are Member since and their tabs: Connections, Spaces and Pictures.",
+      "To see your own, press your picture on a message you wrote, or in a room's list of people. Yours has Set a status."
+     ],
+     "part": [
+      {
+       "head": "Good to know",
+       "list": [
+        "Pressing Friends on a friend's profile ends the friendship.",
+        "Following is kept for you. For now nobody is shown who follows them.",
+        "The Note box at the foot is yours alone: see Notes only you see.",
+        "Your picture at the top right opens the You panel, not your profile. Its Profile button opens your account page, with your name and handle."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Press a face to see that person's profile beside the room, with Message, Follow and Mute. Mute hides what they say from you until you press Unmute.",
+        "Its tabs follow Phiegg's profiles, such as Info, Shots, Posts, PFTs and Items; a tab with nothing in it is not shown. Expand makes it wider, and Back to who is here returns to the list.",
+        "Profile, at the bottom of the bar, opens your own window, with About and Appearance."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/profile-profile-dark.png",
+      "light": "cdn:phiogy/help/shot/profile-profile-light.png"
+     }
+    },
+    {
+     "id": "status",
+     "title": "Set a status",
+     "lead": "A status is a few words of your own, such as back at six, shown under your name for as long as you choose. Set it from your own profile.",
+     "step": [
+      "In a room, press your own picture, on a message you wrote or in the list of people. Your profile opens beside the room.",
+      "Press Set a status. The Your status window opens.",
+      "In What are you up to?, write a few words, up to 128 characters.",
+      "Under Clear after, pick 30 minutes, 4 hours, 1 day or Do not clear. Do not clear is where it starts.",
+      "Press Save. Your words show under your name.",
+      "To take them away early, open the window again and press Clear status."
+     ],
+     "part": [
+      {
+       "head": "What happens",
+       "text": [
+        "When the time you chose runs out, the words go by themselves. Saving with the box empty clears them too.",
+        "Without words of your own, the line under your name says how you show, such as Here now or Away.",
+        "Show me as, at the top of the same window, sets the dot on your picture: see Here, away, do not disturb, unseen."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "Your status is kept with your account, and Phiogy shows it wherever it draws you.",
+        "For now it shows only in your own Phiogy: other people do not see it yet."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Phiogy for Windows has no status yet."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/profile-status-dark.png",
+      "light": "cdn:phiogy/help/shot/profile-status-light.png"
+     }
+    },
+    {
+     "id": "presence",
+     "title": "Here, away, do not disturb, unseen",
+     "lead": "Show me as sets the dot on your picture: Here, Away, Do not disturb or Unseen. Pick the one that says how ready you are to talk.",
+     "step": [
+      "Open your own profile: in a room, press your picture on a message you wrote or in the list of people.",
+      "Press Set a status.",
+      "Under Show me as, press Here, Away, Do not disturb or Unseen. It takes at once, with no Save needed.",
+      "Close the window. The dot on your picture shows your choice in the menu, in rooms and on your profile.",
+      "In a room's list of people, you move to the group for your choice."
+     ],
+     "part": [
+      {
+       "head": "What each one says",
+       "list": [
+        "Here: you are here now. Everyone starts here.",
+        "Away: you are away.",
+        "Do not disturb: you would rather not be disturbed. The window says You get no alerts, but for now reminders and calls still come.",
+        "Unseen: you show as off, and you still see everything."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "Your choice is kept with your account until you change it.",
+        "For now it shows only in your own Phiogy: other people do not see it yet.",
+        "Without status words of your own, the line under your name says your choice."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Phiogy for Windows has no Show me as yet."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/profile-presence-dark.png",
+      "light": "cdn:phiogy/help/shot/profile-presence-light.png"
+     }
+    },
+    {
+     "id": "note",
+     "title": "Notes only you see",
+     "lead": "A note is something you want to remember about a person, such as where you met. It sits on their profile, and only you see it.",
+     "step": [
+      "In a room, press the person's picture or name to open their profile.",
+      "Find the box Note, only you see it, at the foot of the profile.",
+      "Click in Add a note and write.",
+      "Click anywhere outside the box. The note is kept as you leave it.",
+      "Open their profile again at any time to read or change it. Empty the box to remove it."
+     ],
+     "part": [
+      {
+       "head": "What happens",
+       "text": [
+        "Each person has one note of yours. It is kept with your account, so it is there on every browser you sign in on.",
+        "Nobody else sees it in Phiogy: not the person, and not the host."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "A note is kept when you click away from the box, so click away before you close the page.",
+        "Download my data, in your account window, includes your notes.",
+        "Deleting your account deletes your notes with it."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Phiogy for Windows has no notes yet. A note written on the web stays with your account."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/profile-note-dark.png",
+      "light": "cdn:phiogy/help/shot/profile-note-light.png"
+     }
+    }
+   ]
+  },
+  {
+   "id": "account",
+   "label": "Account and settings",
+   "icon": "cdn:phiogy/icon/key.svg",
+   "lead": "Your one Phiace account: its email, its password, the browsers signed in to it, and how Phiogy looks.",
+   "article": [
+    {
+     "id": "email",
+     "title": "Change your email",
+     "lead": "Your email is where a reset link goes when you forget your password, and you can sign in with it in place of your handle. Add one, change it or confirm it in your account window.",
+     "step": [
+      "Press your picture at the top right. The You panel opens.",
+      "Open Account and press Account. The Your Phiace account window opens.",
+      "Beside Email, press Change, or Add email if you have none yet.",
+      "Type the address under New email and press Save.",
+      "Open the email Phiogy sends and press its link.",
+      "The Email confirmation window says your email is confirmed. Press Continue.",
+      "Back in your account window, the tag beside your email says Confirmed in place of Not confirmed."
+     ],
+     "part": [
+      {
+       "head": "What happens",
+       "text": [
+        "The new email takes the old one's place at once. Signing in by email and every reset link use the new address; the old one gets nothing more.",
+        "Until you press the link, your email shows Not confirmed. Resend link sends a fresh one, and only the newest link works. A link works once and runs out after 24 hours."
+       ]
+      },
+      {
+       "head": "If it does not work",
+       "list": [
+        "That email is already on an account: another account has that address. Use another one, or sign in to that account.",
+        "That email address does not look right: check it for a typing mistake.",
+        "This link has expired or was already used: press Resend link in your account window for a new one.",
+        "No email came: look in your spam folder, then press Resend link."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "One Phiace account opens every Phi app, so your email is the same in all of them.",
+        "The email also holds a six-digit code. Phiogy has no place to type it yet, so press the link instead.",
+        "An account can be made without an email, but then a forgotten password cannot be reset. Add one while you can still sign in."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Phiogy for Windows has no email setting. Change your email in Phiogy on the web: it is the same account, so the Windows app needs nothing more."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/account-email-dark.png",
+      "light": "cdn:phiogy/help/shot/account-email-light.png"
+     }
+    },
+    {
+     "id": "password",
+     "title": "Change or reset your password",
+     "lead": "Change your password when you know it, or reset it by email when you do not. Either way, every other browser signed in to your account is signed out.",
+     "step": [
+      "To change it, press your picture at the top right, open Account and press Account.",
+      "Beside Password, press Change password.",
+      "Type your Current password, then a New password of at least 8 characters, and press Save password.",
+      "To reset it, open the account window while signed out and press Forgot password? under Sign in.",
+      "Type your handle or email and press Send reset link.",
+      "Open the email Reset your Phiogy password and press its link.",
+      "Under Choose a new password, type the new one and press Save and sign in."
+     ],
+     "part": [
+      {
+       "head": "What happens",
+       "text": [
+        "After a change the window says Password changed, and you stay signed in here. Every other browser, and Phiogy for Windows, is signed out.",
+        "After a reset every browser is signed out and this one is signed in with the new password. The reset also confirms the email it went to."
+       ]
+      },
+      {
+       "head": "Signed-in browsers",
+       "text": [
+        "In your account window, press Show beside Signed-in browsers to see each one, since when, and when it was last seen. Press Sign out beside one, or Sign out all other browsers. A browser not used for 30 days is signed out by itself."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "A reset link works once and runs out after 30 minutes. Asking again makes the earlier link stop working.",
+        "A link is sent only if your account has an email. The window says the same either way, so nobody can tell which accounts have one.",
+        "After several wrong tries, or many reset requests, Phiogy makes you wait a few minutes.",
+        "Signing in for every Phi app happens at phiogy.com. From another Phi site, Sign in takes you there and brings you back."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Phiogy for Windows signs in with your handle or email and password, but cannot change or reset a password: do that on the web, then sign in again. Its Account panel lists your Sessions and has Sign out the others."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/account-password-dark.png",
+      "light": "cdn:phiogy/help/shot/account-password-light.png"
+     }
+    },
+    {
+     "id": "look",
+     "title": "Change how Phiogy looks",
+     "lead": "Pick the colours, light or dark, the surface, the corners and spacing, the layout and the font. Every choice shows at once, with nothing to save.",
+     "step": [
+      "Press your picture at the top right. The You panel opens with Appearance open.",
+      "Under Theme, pick one, such as Phiogy, Phiegg, Discord or Slack. A theme comes in dark with its own gradient; change either after.",
+      "Under Mode, pick Dark, Light or Auto. Auto follows your computer's own light or dark.",
+      "Under Surface, pick Solid, Gradient, Glass, Silver or Sweep.",
+      "Set Corners for how round things are, and Spacing to Compact, Comfortable or Roomy.",
+      "Choose a feed layout, Headings only, Partial feed or Full page, and a tab layout, Horizontal or Vertical.",
+      "Open Font and pick a typeface. Theme font keeps the theme's own."
+     ],
+     "part": [
+      {
+       "head": "Good to know",
+       "list": [
+        "Settings, at the foot of the menu, shows the same choices on a page of their own, beside a live picture of the window.",
+        "Your choices are kept in this browser, not with your account. Another browser or computer starts with its own."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Open Account in the bar and pick a look under Look. Glass is the one Phiogy opens in; there are also Glass Light, Liquid Glass, Light, Dark, Plain, Silver and more.",
+        "Profile, at the bottom of the bar, has Appearance: Mode (Light, Dark or Auto), Surface and Glass, and Grounds, which sets which way the light runs, how strong it is, how far it reaches and its colour."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/account-look-dark.png",
+      "light": "cdn:phiogy/help/shot/account-look-light.png"
+     }
+    }
+   ]
+  },
+  {
+   "id": "desk",
+   "label": "Phiogy for Windows",
+   "icon": "cdn:phiogy/icon/monitor.svg",
+   "lead": "Phiogy for Windows: what it needs, how to open it, and how it meets the web.",
+   "article": [
+    {
+     "id": "needs",
+     "title": "What it needs",
+     "lead": "Phiogy for Windows runs on Windows 10 or 11 with a graphics card that has DirectX 11. It comes as a zip: nothing is installed.",
+     "step": [
+      "Save the Phiogy for Windows zip and unzip it: in File Explorer, right-click it and choose Extract All.",
+      "Keep the Phiogy folder wherever you like. Leave the asset folder beside phiogy.exe: the program needs it.",
+      "Open phiogy.exe.",
+      "If Windows shows Windows protected your PC, press More info, then Run anyway. Windows says the publisher is unknown because the program is not signed.",
+      "Sign in on the page that covers the window, with your handle or email and your password. New to Phiogy? Fill in Your name too, and press Make an account.",
+      "If Windows Firewall asks about Phiogy, allow it on private networks."
+     ],
+     "part": [
+      {
+       "head": "What is in the zip",
+       "list": [
+        "phiogy.exe, the program.",
+        "README.txt, a short note on what it needs.",
+        "The asset folder, with the icons and shapes the program uses."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "You need an internet connection: Phiogy for Windows meets the same server as the web.",
+        "Phiogy uses your microphone and camera only while you are in a call.",
+        "A microphone, a camera and speakers are not needed to open it: a call works without them."
+       ]
+      },
+      {
+       "head": "If it does not work",
+       "list": [
+        "After Run anyway, Phiogy's window opens in front of your other windows within a few seconds.",
+        "If the sign-in page says Signing in needs Phiora, which did not answer, Phiogy could not reach its server. Check that you are online, then close Phiogy and open it again."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/desk-needs-dark.png",
+      "light": "cdn:phiogy/help/shot/desk-needs-light.png"
+     }
+    },
+    {
+     "id": "same",
+     "title": "The same rooms everywhere",
+     "lead": "Phiogy for Windows and Phiogy on the web meet on one server. Sign in with the same account, and your hosts, rooms and calls are the same in both.",
+     "step": [
+      "Sign in to Phiogy for Windows with the handle or email and the password you use on the web. One account opens every Phi app.",
+      "Your hosts and their rooms are the ones the web shows.",
+      "A call is one call wherever you are: open the same room on the web and in Phiogy for Windows, and a call started in one shows Join in the other.",
+      "What you keep with your account, such as the hosts you joined, your friends, whom you follow, your direct rooms and your pins, is read by both.",
+      "Signing out of Phiogy for Windows brings its sign-in page back."
+     ],
+     "part": [
+      {
+       "head": "Where they differ",
+       "list": [
+        "Only Phiogy for Windows has menus on a call's tiles and buttons: Focus, Stop watching, turning one person down, and choosing your microphone, sound out, camera and screen.",
+        "Phiogy for Windows keeps a Calls tab beside each room you called in.",
+        "On the web, opening another room leaves a call. In Phiogy for Windows the call goes on.",
+        "On the web, a profile has a friend button. In Phiogy for Windows you add and answer friends from Friends.",
+        "There is no Mac app: on a Mac, use Phiogy on the web."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "text": [
+        "In a call, people on the same network connect straight to each other. Between different networks, the call passes through Phiogy's relay on the server. A browser and Phiogy for Windows call each other like any two callers."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/desk-same-dark.png",
+      "light": "cdn:phiogy/help/shot/desk-same-light.png"
+     }
+    }
+   ]
+  },
+  {
+   "id": "safety",
+   "label": "Safety and privacy",
+   "icon": "cdn:phiogy/icon/shield.svg",
+   "lead": "What is kept, who reads what you write, and how to stay in control.",
+   "article": [
+    {
+     "id": "kept",
+     "title": "What Phiogy keeps",
+     "lead": "Calls are never recorded. Phiogy keeps your account and what you do in the app, and you can take a copy of it or delete it.",
+     "step": [
+      "Press your picture at the top right, open Account and press Account.",
+      "Press Download my data. A file of everything your account keeps is saved.",
+      "Press Show beside Signed-in browsers to see where you are signed in, and Sign out beside any you do not know.",
+      "To delete it all, press Delete account, type your handle and password, and press Delete my account."
+     ],
+     "part": [
+      {
+       "head": "Calls",
+       "text": [
+        "Nothing of a call's sound or picture is kept. It goes between the people in the call; when two cannot reach each other directly, a relay passes it on and keeps none of it.",
+        "While a call runs, Phiogy knows who is in it so others can join, and stores none of it.",
+        "Your microphone and camera are on only while you are in a call or a voice room. In a voice room the microphone stays on while you look at other pages, until you leave."
+       ]
+      },
+      {
+       "head": "What your account keeps",
+       "list": [
+        "Your handle and name, and your password, scrambled so it cannot be read back.",
+        "Your email, only if you add one.",
+        "What you do: what you write, likes, pins, friends, hosts you join or make, mutes, notification choices, your status, notes, saved messages, bag and wallet.",
+        "Which browsers are signed in and when each was last seen. One unused for 30 days is signed out, and a guest's things go with it."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "Deleting your account removes it, your wallet and what it keeps for good, and frees your handle and email. Messages written in Phiogy for Windows, and hosts or clubs you published, stay."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Phiogy on the web keeps no list of calls. Phiogy for Windows keeps one: the room, when, who and how long, never the sound or picture. A room's Calls tab shows them.",
+        "It keeps what you do on your computer, and with your account when you are signed in. Save a copy, in Account, saves what your account keeps to a file."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/safety-kept-dark.png",
+      "light": "cdn:phiogy/help/shot/safety-kept-light.png"
+     }
+    },
+    {
+     "id": "who",
+     "title": "Who sees what you write",
+     "lead": "Who reads what you write depends on the room and on which Phiogy you use. This is how it works today.",
+     "step": [
+      "To see who is in a room, look at the list of people beside it. The button in the room's head shows or hides it.",
+      "To see which roles a host's room is set for, press the cog in its head and open This room. It shows which roles may See this room, Write here, Call here and Pin messages.",
+      "To write to one person, press Message on their profile.",
+      "Keep what is only for you in a note on a profile, not in a room.",
+      "Before you share your screen or turn your camera on in a call, remember it goes to everyone who joins."
+     ],
+     "part": [
+      {
+       "head": "On the web",
+       "text": [
+        "For now, what you write in Phiogy on the web is kept with your account and shown to you. It is not yet sent to the other people in the room."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "When you are signed in, the words you write go to the room, and others who open it read them with your name. Pictures you post, pins and mutes stay on your side. As a guest, what you write stays with you."
+       ]
+      },
+      {
+       "head": "Good to know",
+       "list": [
+        "Messages are not yet locked to a room's members, direct conversations included. Keep passwords, money details and anything private out of every room.",
+        "If your role may not see a room, it says Yours is not one of them in place of its messages. If you may not write there, it says You can read it.",
+        "Changes made in a host's settings are kept with your account and do not yet change what others see.",
+        "Your notes, saved messages and mutes are yours: nobody else sees them in Phiogy.",
+        "In a call, your microphone, camera and screen go to everyone who joins it."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/safety-who-dark.png",
+      "light": "cdn:phiogy/help/shot/safety-who-light.png"
+     }
+    },
+    {
+     "id": "quiet",
+     "title": "Keep things quiet",
+     "lead": "You choose what reaches you. Quiet a room or a host, turn the sound down in a call, and leave anything you no longer want.",
+     "step": [
+      "Mute a room: point at its head, press the bell and choose how long.",
+      "Mute a host: press the cog in one of its rooms, open Notifications and choose how long under Mute.",
+      "For a busy host, set Tell me of to Nothing, or turn off Let @everyone and @here through.",
+      "In a voice room, press Mute to turn your microphone off, or Sound off to stop hearing the others.",
+      "Leave a voice room with Leave, and a call with End the call.",
+      "Leave a host: open Add a host in the menu and press Leave beside it. A host you made has Remove.",
+      "On the Friends page, press Decline for a request you do not want, and Remove friend to end a friendship."
+     ],
+     "part": [
+      {
+       "head": "Good to know",
+       "list": [
+        "Mutes and notification choices are for you alone: nobody is told.",
+        "They are kept with your account, so they follow you to every browser you sign in on.",
+        "Mentions of you and replies to you still reach your Inbox from a muted room."
+       ]
+      },
+      {
+       "head": "In Phiogy for Windows",
+       "text": [
+        "Press a person's face beside the room and press Mute. In place of what they said, a line says they are muted, until you press Unmute.",
+        "In a call, the More button on a person's tile has Mute and Volume. They change only how you hear that person, and nobody else is told. Sound off in a voice room stops every sound."
+       ]
+      }
+     ],
+     "shot": {
+      "dark": "cdn:phiogy/help/shot/safety-quiet-dark.png",
+      "light": "cdn:phiogy/help/shot/safety-quiet-light.png"
+     }
+    }
+   ]
+  }
+ ]
+}

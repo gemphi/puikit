@@ -63,25 +63,117 @@
    "id": "desk",
    "label": "Phiogy for Windows",
    "icon": "cdn:phiogy/icon/monitor.svg",
-   "lead": "The Windows app: what it needs and where it connects.",
+   "lead": "The Windows app: what it needs, how to download and open it, and where it connects.",
    "article": [
     {
      "id": "need",
      "title": "What it needs",
-     "lead": "Windows 10 or 11 and a graphics card with DirectX 11.",
+     "lead": "Phiogy for Windows runs on Windows 10 or 11 with a graphics card that has DirectX 11. It is one folder: nothing is installed.",
      "step": [
-      "The first start can take half a minute while Windows checks the new program; later starts are quick.",
-      "Calls use the microphone and camera only while you are in a call."
+      "Windows 10 or Windows 11.",
+      "A graphics card with DirectX 11: Phiogy draws its window with it.",
+      "An internet connection. The window meets the same server as the web Phiogy, over HTTPS.",
+      "Room for one folder. phiogy-windows.zip unpacks to a Phiogy folder with phiogy.exe, README.txt and an asset folder.",
+      "No installer. You open phiogy.exe where it is.",
+      "A microphone, a camera and speakers, only if you want calls. They are used only while you are in a call."
+     ],
+     "part": [
+      {
+       "head": "What is in the zip",
+       "list": [
+        "phiogy.exe: the program.",
+        "README.txt: a short note on how to open it.",
+        "asset: Phiogy's icons, the Once City art and the shapes it draws. Keep this folder beside phiogy.exe."
+       ]
+      },
+      {
+       "head": "What it keeps on your PC",
+       "text": [
+        "Your account, rooms and messages live on the server, not on the PC.",
+        "What you choose in the window, such as the look and the room that was open, is kept in a phiogy folder in %APPDATA%. Pictures fetched from the server are kept in a Phiogy folder in %LOCALAPPDATA%, so each one is downloaded once.",
+        "To remove Phiogy, close it and delete its folder. Delete those two folders as well if you want nothing of it left behind."
+       ]
+      },
+      {
+       "head": "Not on Windows?",
+       "text": [
+        "Windows is the only desktop build so far. On a Mac or any other computer, Phiogy in your browser has the same hosts, rooms and calls."
+       ]
+      }
+     ]
+    },
+    {
+     "id": "start",
+     "title": "Download and open it",
+     "lead": "Download one zip, unpack it and open phiogy.exe. Windows warns you the first time, because the program is not signed yet.",
+     "step": [
+      "On phiogy.com, press Download for Windows. It saves phiogy-windows.zip to your Downloads folder.",
+      "Right-click the zip, choose Extract All, and pick where the Phiogy folder should live, for example Documents.",
+      "Open the Phiogy folder and double-click phiogy.exe.",
+      "If Windows SmartScreen shows \"Windows protected your PC\", press More info, check that the app is phiogy.exe, then press Run anyway.",
+      "After Run anyway, the window opens in front of your other windows within a few seconds, at the sign-in page.",
+      "Press the user button at the foot of the bar on the left. Account opens as a drawer at the right: sign in with your Phi handle and password, or make an account. Until then you are a guest.",
+      "To update, download the new zip and put its Phiogy folder in place of the old one. Your choices stay, because they are kept in your own user folders."
+     ],
+     "part": [
+      {
+       "head": "Why Windows warns you",
+       "text": [
+        "phiogy.exe is not signed with a code-signing certificate yet, so Windows cannot name its publisher and SmartScreen says \"Unknown publisher\". The only way past the warning is More info, then Run anyway.",
+        "Get the zip only from the Phi sites, phiogy.com or phiegg.com."
+       ]
+      },
+      {
+       "head": "Nothing is installed",
+       "text": [
+        "The folder is the whole program. You can move it, keep it on another drive or delete it. There is no uninstaller and no Start menu entry: pin phiogy.exe to the taskbar or to Start yourself if you want one."
+       ]
+      },
+      {
+       "head": "When it does not open",
+       "list": [
+        "Opened straight from inside the zip: extract it first, so the asset folder sits beside the program.",
+        "Split up: phiogy.exe reads its icons and art from the asset folder beside it. Keep the two together, or extract the zip again.",
+        "An older PC: check that its graphics card supports DirectX 11."
+       ]
+      }
      ]
     },
     {
      "id": "where",
      "title": "Where it connects",
-     "lead": "The app meets the same server as phiegg.com: your hosts, rooms and calls are the same in the app and in the browser.",
+     "lead": "Phiogy for Windows meets the same server as the web Phiogy, at phiegg.com, over HTTPS. Your account, hosts, rooms and calls are the same in the window and in the browser.",
      "step": [
-      "Accounts and data: phiegg.com/api.",
-      "Calls: phiegg.com/wrt.",
-      "Pictures: phiegg.com/cdn."
+      "Accounts and data: phiegg.com/api. This is Phiora, the server under every Phi app.",
+      "Calls: phiegg.com/wrt, the call line that introduces the people in a room's call.",
+      "Pictures: phiegg.com/cdn, the media store, where each picture has its key.",
+      "Phiogy's hosts and rooms: asked of Phiora first, and read from the web Phiogy's own file under phiegg.com/phiogy/ when Phiora does not answer.",
+      "Every connection is HTTPS. The window checks the server's certificate against the certificates Windows trusts."
+     ],
+     "part": [
+      {
+       "head": "What the window asks Phiora",
+       "list": [
+        "GET /app/phiogy: Phiogy's menus and pages, the same document the web Phiogy loads.",
+        "GET /me: who you are. You are a guest until you sign in.",
+        "GET and PUT /state/<name>: your own documents, such as whom you follow, the hosts you joined and made, your friends and your bag.",
+        "GET /tree?kind=message: what was said in the rooms, asked again every few seconds so the window shows what others wrote.",
+        "/auth/signin, /auth/register, /auth/session and /me/export: signing in, making an account, your sessions and a copy of your data."
+       ]
+      },
+      {
+       "head": "One account, a session each",
+       "text": [
+        "The window gets a session of its own from Phiora, as a browser does. Sign in with the same handle and password as on the web. Your account lists every session, the window's too, and the Account drawer signs the others out."
+       ]
+      },
+      {
+       "head": "Your own documents",
+       "text": [
+        "What you write, the marks you give, what you pin, whom you follow, the hosts you join and make, your friends, the shops you open and your bag are your own documents. They have the names the web pages give them, so a browser signed in as you sees the same.",
+        "Your profile in the window says whether the hosts and rooms came from Phiora or from the web Phiogy's file."
+       ]
+      }
      ]
     }
    ]
@@ -90,23 +182,107 @@
    "id": "web",
    "label": "Phiogy in your browser",
    "icon": "cdn:phiogy/icon/flag.svg",
-   "lead": "Rooms, calls, hosts and friends with nothing to download.",
+   "lead": "Phiogy in any browser: rooms, calls, hosts and friends with nothing to install, on one Phi account.",
    "article": [
     {
      "id": "open",
      "title": "Open Phiogy in your browser",
-     "lead": "Rooms, calls, hosts and friends run in the browser.",
+     "lead": "Go to phiogy.com and press Open Phiogy. The web Phiogy opens with your rooms, calls, hosts and friends, and there is nothing to download.",
      "step": [
-      "Go to phiogy.com and press Open Phiogy.",
-      "Sign in, or make an account: one account opens every Phi app."
+      "Go to phiogy.com and press Open Phiogy in the top bar, or anywhere else the page offers it.",
+      "The web Phiogy opens at phiogy.com/phiogy/. It is also at phiegg.com/phiogy/: the same app on the same server.",
+      "You arrive as a guest. You can look around at once, and what you do is kept for this browser.",
+      "Press Sign in to use your Phi account, or make one. A guest who makes an account keeps what they did as a guest.",
+      "Open a room to write in it, or a voice room to talk.",
+      "To call, open a room and start a call. The browser asks to use your microphone, and your camera for a video call: allow them.",
+      "A call holds up to 8 people, with camera, microphone and a shared screen."
+     ],
+     "part": [
+      {
+       "head": "What it needs",
+       "list": [
+        "A current browser with WebRTC, which calls run on.",
+        "Cookies on for the site. Your session is a cookie: without it, every visit starts again as a new guest.",
+        "A microphone and a camera, only for calls. They are taken when a call begins and let go when it ends."
+       ]
+      },
+      {
+       "head": "Every place has an address",
+       "text": [
+        "Each room, page and record has its own address, so a link opens the place it names and a reload keeps you there. Back and Forward walk the places you visited."
+       ]
+      },
+      {
+       "head": "The same as the Windows app",
+       "text": [
+        "The web Phiogy and Phiogy for Windows share one server. A host, a room or a call is the same in both, and one call can have people in the browser and in the window."
+       ]
+      }
+     ]
+    },
+    {
+     "id": "account",
+     "title": "Your Phi account",
+     "lead": "One account opens every Phi app and site: Phiogy, Phiegg, Phipad, Phisum, the world sites and the rest. You sign in on phiogy.com, and every other site is handed the sign-in.",
+     "step": [
+      "Press Sign in on any Phi site. On phiogy.com the account window opens where you are. On another site you go to phiogy.com, sign in, and come straight back, signed in there too.",
+      "To make an account, choose a handle, a name and a password.",
+      "A handle is 3 to 30 characters: letters, digits, dots and underscores, starting with a letter or a digit. It is kept in lowercase, and nobody else can have it.",
+      "A name is 1 to 60 characters. A password is at least 8 characters.",
+      "An email is optional. Without one, a forgotten password cannot be reset, so keep your password safe.",
+      "Sign in with your handle or your email, and your password. After 8 wrong tries in 10 minutes, sign-in waits a few minutes."
+     ],
+     "part": [
+      {
+       "head": "Guests",
+       "text": [
+        "Until you sign in you are a guest, with your own saved things on this browser. Making an account turns that guest into you, so nothing is lost. Signing in to an account you already have leaves the guest behind."
+       ]
+      },
+      {
+       "head": "Sessions",
+       "text": [
+        "Each browser or window you sign in on is a session. Your account lists them with the browser and system, when each began and when it was last used, and signs one out, or all the others.",
+        "A session left unused for 30 days signs itself out. Changing or resetting your password signs out every other session."
+       ]
+      },
+      {
+       "head": "Your data",
+       "list": [
+        "Download everything kept about you as one file. Your password is never in it.",
+        "Delete the account with your password, and your handle typed to confirm. The handle and the email become free again.",
+        "Sign out ends this session, and you are a guest again."
+       ]
+      }
      ]
     },
     {
      "id": "mac",
      "title": "On a Mac",
-     "lead": "There is no Mac app yet.",
+     "lead": "There is no Mac app yet. On a Mac, use Phiogy in your browser: the same account, hosts, rooms and calls.",
      "step": [
-      "Open Phiogy in your browser: your hosts, rooms and calls are the same there."
+      "Go to phiogy.com and press Open Phiogy.",
+      "Sign in with your Phi account, the same one as on Windows and on the web.",
+      "Keep phiogy.com/phiogy/ as a bookmark to open it in one step.",
+      "To call, allow the browser to use the microphone and camera when it asks. If macOS has blocked them, turn them on for your browser in System Settings, under Privacy & Security.",
+      "To share a screen, macOS has to let your browser record the screen. Allow it in System Settings, under Privacy & Security, then share again."
+     ],
+     "part": [
+      {
+       "head": "Why there is no Mac app yet",
+       "text": [
+        "Phiogy for Windows is a native program. A Mac build has to be made on a Mac, then signed and notarised with an Apple Developer ID so that other Macs will open it. Neither has been done yet.",
+        "Until then nothing is lost by using the browser: your account and everything in it live on the server, not in the app."
+       ]
+      },
+      {
+       "head": "The same in the browser",
+       "list": [
+        "Rooms to write in, and voice rooms to talk in.",
+        "Calls of up to 8 people with camera, microphone and a shared screen.",
+        "Hosts, friends, direct conversations and your account."
+       ]
+      }
      ]
     }
    ]
@@ -115,15 +291,135 @@
    "id": "server",
    "label": "The server",
    "icon": "cdn:phiogy/icon/host.svg",
-   "lead": "Phiora: the one server under every Phi app.",
+   "lead": "Phiora: the one server and database under every Phi app, its routes, and how to run your own.",
    "article": [
     {
      "id": "phiora",
      "title": "Phiora",
-     "lead": "Phiogy, Phiegg and the other Phi apps share one server, Phiora, at phiegg.com/api.",
+     "lead": "Phiora is the one API and database under every Phi app. Phiogy, Phiegg, Phipad and the world sites all read and write through it, so an account, a record or a room is the same everywhere.",
      "step": [
-      "Accounts are shared: one sign-in for every app.",
-      "An app's menus and pages come from Phiora, or from the app's own data file when Phiora has none."
+      "Each site reaches Phiora at its own /api, such as phiogy.com/api or phiegg.com/api, so its requests stay on the same site and carry the session cookie. ora.phiegg.com answers the same API at its root, for tools and scripts.",
+      "Phiora is one Node server, app/phiora-server/src/server.mjs, on port 4300 unless PORT says otherwise. It needs Node 22.5 or later.",
+      "Run it locally: cd app/phiora-server, then npm start. npm run seed loads the data files into the database, and npm test runs the tests.",
+      "The store is Postgres when DATABASE_URL is set (npm install brings its driver), SQLite through node:sqlite otherwise, or JSON files as the last fallback. PHI_STORE picks one.",
+      "Point an app at it with VITE_PHI_API, such as http://localhost:4300.",
+      "The whole stack is app/docker-compose.yml: Postgres, Phiora and nginx serving every built app on one origin, with /api passed to Phiora. Fill in .env from .env.example, run node build-all.mjs, then docker compose up -d --build. On the first start, run docker compose exec phiora npm run seed."
+     ],
+     "part": [
+      {
+       "head": "What it serves",
+       "list": [
+        "GET /health: the store, the mail transport and the chat model.",
+        "Apps: GET /app, and GET /app/<key> for an app's menus and pages.",
+        "Accounts: /me, /auth/*, /me/export, and /auth/sign/* for the sign-in shared between sites.",
+        "Records: GET /tree, /tree/rows, /tree/item/<kind>/<id>, /tree/mine and /tree/change.",
+        "Your own documents: GET and PUT /state/<name>.",
+        "Play money: /wallet/* and /shop/*. Prices come from the server's data, never from the page.",
+        "Calls: GET and POST /call/<app>/<room>. Chat: POST /chat."
+       ]
+      },
+      {
+       "head": "The one database",
+       "text": [
+        "Every record of every kind is one row of the items table: its kind, an md5 id, a slug and the record as JSON. A reference is a field ending in Id or Ids that holds another record's md5 id. Every change goes into a change log.",
+        "The data files only seed it. In development a changed file is loaded again on start; in production npm run seed brings changes in on purpose. A record changed or deleted through the API stays as it is."
+       ]
+      },
+      {
+       "head": "Settings worth knowing",
+       "list": [
+        "PHI_ENV: production turns off development links and warns about missing settings.",
+        "PHI_ORIGINS: the browser origins allowed to call the API. Unset, only localhost.",
+        "PHI_SECURE_COOKIES: makes the session cookie SameSite=None and Secure, for HTTPS.",
+        "PHI_DELEGATION_SECRET: the key that signs sign-in passes and delegations.",
+        "PHI_EDITORS and PHI_CREATE_KINDS: who may change any record, and which kinds anyone signed in may create.",
+        "RESEND_API_KEY or PHI_MAIL_WEBHOOK: how account email is sent. With neither, it goes to an outbox file."
+       ]
+      }
+     ]
+    },
+    {
+     "id": "signin",
+     "title": "One sign-in for every site",
+     "lead": "A Phi account works on every Phi site, but each domain has its own session cookie. phiogy.com keeps the one sign-in and hands it to other sites with a pass that lasts two minutes and works once.",
+     "step": [
+      "Every visitor gets a guest user and an HttpOnly phi_sid cookie on their first request to /api.",
+      "On a site other than phiogy.com, Sign in sends the person to phiogy.com/signin?back=<the address they were on>.",
+      "phiogy.com opens its account window. Once the person is signed in, it asks POST /auth/sign/pass for a pass: a signed token for the audience sign, naming the person. A guest gets 401.",
+      "phiogy.com sends the person back to the back address with the pass added as phi_sign.",
+      "The site takes the pass out of the address and posts it to its own /api, POST /auth/sign/take { token }.",
+      "Phiora checks it, signs that domain's session in as the person and answers as GET /me does. A used pass answers 401 used; an expired or altered one, 401 with the reason.",
+      "On localhost and <key>.localhost the apps share one Phiora and one cookie, so the account window opens in place."
+     ],
+     "part": [
+      {
+       "head": "Why a pass and not a shared cookie",
+       "text": [
+        "Each site calls its own /api, so the browser sends that site's cookie. A cookie set for phiogy.com never reaches boldpups.xyz, so the sign-in travels once in the address and is traded there for a session."
+       ]
+      },
+      {
+       "head": "The account routes",
+       "list": [
+        "POST /auth/register { handle, name, password, email? }: turns the current guest into an account, keeping its state.",
+        "POST /auth/signin { handle, password }: the handle may be the email. 8 wrong tries in 10 minutes answer 429.",
+        "POST /auth/logout: ends the session; the next request starts a new guest.",
+        "POST /auth/email { email }, then POST /auth/verify { token } or { code }: confirm an email with the mailed link or six-digit code, good once, for 24 hours.",
+        "POST /auth/forgot { login } and POST /auth/reset { token, password }: forgot always answers ok, so nobody can probe for accounts; the link lasts 30 minutes.",
+        "POST /auth/password { current, password }: other sessions are signed out.",
+        "GET /auth/session and POST /auth/session/revoke { id } or { others: true }: the sessions, and signing them out.",
+        "GET /me/export and POST /auth/delete { password, confirm }: everything kept about you, and deleting the account (confirm is the handle)."
+       ]
+      },
+      {
+       "head": "On your own copy",
+       "text": [
+        "app/phi-kit/src/sign.json names the site that keeps the sign-in (home, a registry key with a domain), the place it opens at, and the back and pass parameters.",
+        "Set PHI_DELEGATION_SECRET. Without it Phiora makes a new key at every start, and a pass issued before a restart no longer checks."
+       ]
+      }
+     ]
+    },
+    {
+     "id": "record",
+     "title": "Records and your documents",
+     "lead": "Every record of every kind lives once in Phiora's items table. GET /tree reads them, /tree/item changes one, and /state keeps each person's own documents.",
+     "step": [
+      "GET /tree: every record of every kind, public. ?kind=a,b keeps only those kinds.",
+      "Narrow it with where=field:value (give it more than once and all must hold) and limit=N, the last N rows of each kind, at most 5000. Ask for one room's messages, not for every record.",
+      "GET /tree/rows?kind=pool&n=8&sort=supply&dir=desc&where=status:live&join=worldId: one kind, filtered, sorted and joined. n is 1 to 500, and join adds the record a reference points at as { id, name, image }.",
+      "GET /tree/item/<kind>/<id>: one record, where it came from, its owner, whether you may change it and its last 20 changes.",
+      "POST /tree/item { kind, fields }: create a record, signed in. Phiora makes the md5 id and the slug, and sets ownerId to you.",
+      "PATCH /tree/item/<kind>/<id> { set, unset } changes it, and DELETE removes it. The id never changes.",
+      "GET /tree/change?kind=&id=&n=: the change log, newest first, with the action, the fields, who and when.",
+      "GET /tree/mine?kinds=a,b: the records of those kinds whose ownerId is you."
+     ],
+     "part": [
+      {
+       "head": "Who may change a record",
+       "list": [
+        "Its owner: whoever created it through the API.",
+        "The person it is, or the person it names in founderId, ownerId, creatorId, authorId, userId, holderId or createdBy.",
+        "An editor named in PHI_EDITORS.",
+        "Guests never write. When PHI_CREATE_KINDS is set, only the kinds it lists are open to everyone signed in, and the rest need an editor (403 kind_closed)."
+       ]
+      },
+      {
+       "head": "Limits",
+       "list": [
+        "A record is at most 32 KB and 80 fields.",
+        "A field name is letters, digits and underscores. A kind is a letter followed by up to 39 letters and digits.",
+        "30 changes a minute for each person. More answers 429.",
+        "A request body is at most 256 KB."
+       ]
+      },
+      {
+       "head": "A person's documents",
+       "text": [
+        "GET /state/<name> reads one of your own JSON documents, and PUT /state/<name> replaces it. A document never set answers 404. A name is letters, digits, dots, dashes and underscores, up to 64.",
+        "wallet, history, owned and activity are written by the server alone: a PUT answers 403 server_owned, and they change through /wallet, /shop and /activity. Guests have documents too, so nothing is lost when they make an account."
+       ]
+      }
      ]
     }
    ]
@@ -132,16 +428,133 @@
    "id": "site",
    "label": "Sites as data",
    "icon": "cdn:phiogy/icon/ticket.svg",
-   "lead": "A site is one data file of pages and blocks.",
+   "lead": "A Phi site is one data file of pages and blocks, run by the one app.",
    "article": [
     {
      "id": "file",
      "title": "A site is a data file",
-     "lead": "phiogy.com is one JSON file: its pages, each a list of blocks, with a top bar and a footer round every page.",
+     "lead": "phiogy.com is one JSON file: its pages, each a list of blocks, with a top bar and a footer round every page. The one app, app/phi, reads the file and draws it with the kit's blocks.",
      "step": [
-      "Blocks are the kit's: bar, hero, marquee, grid, help, prose, news, faq and footer.",
-      "A link names a page of the site (view), another app (app) or an address (href); off shows it without leading anywhere.",
-      "These docs are a help block reading their own file."
+      "A site's file is app/<key>/public/data/<key>.json.",
+      "On load the app asks Phiora for GET /app/<key>. When Phiora has no such app, or cannot be reached, the app reads its own file.",
+      "Phiora seeds each file as records of four kinds: app, menu, page and block. When an editor changes one (PATCH /tree/item/block/<id>), the site shows it on its next load.",
+      "In development a changed file is loaded again when Phiora starts. In production it reaches Phiora only through npm run seed.",
+      "A block names its kind and carries its props: { \"kind\": \"hero\", \"heading\": \"...\", \"actions\": [...] }. A block with a title gets a heading over it.",
+      "A link names a page of the site (view), another app (app) or an address (href). off shows it without leading anywhere.",
+      "These docs are a help block reading their own file: { \"kind\": \"help\", \"source\": \"data/docs.json\" }."
+     ],
+     "part": [
+      {
+       "head": "The shape of the file",
+       "list": [
+        "app: the site's key. start: the page it opens on.",
+        "nav: the menu, entries of id, label and icon. An entry with items is a group.",
+        "views: the pages by id, each { title, sub, blocks }.",
+        "bare and width: a site with no app menu, such as phiogy.com, and the width of its column.",
+        "top and foot: blocks round every page of a bare site, written once.",
+        "people, host, shop, direct, robot, side and profile: the app parts Phiogy and Phiegg use, each naming a file or a setting."
+       ]
+      },
+      {
+       "head": "The blocks",
+       "text": [
+        "Every block is the kit's, once, and a site turns one on by naming its kind: agent, bar, chat, faq, feed, figure, footer, form, grid, help, hero, marquee, news, product, prose, query, runway, stats, swap, table and terminal. A kind the kit does not have draws nothing.",
+        "A block can link instead of copying: from: \"menus\" makes a card for each menu entry, from: \"page\" takes the first items of another page's block, and source names a file whose cards load with the page."
+       ]
+      },
+      {
+       "head": "Pictures and the help file",
+       "text": [
+        "An image is a key. cdn:<path> is in the media store, <app>:<path> is a file another app serves, a full URL or /path is used as it is, and anything else is a file of this site.",
+        "A help file has categories (lists of section ids), sections (an icon, a lead, articles) and articles (a lead, steps, parts with paragraphs or a list, and optionally where, desk and a dark and light shot). Its places are <page>/<section>/<article>, and its search reads every word."
+       ]
+      }
+     ]
+    },
+    {
+     "id": "registry",
+     "title": "Add a site",
+     "lead": "A new site is an entry in the kit's registry and one data file. The one app, app/phi, runs every config site at /<key>/, or at the root of its own domain.",
+     "step": [
+      "Add an entry to app/phi-kit/src/registry.json with its key, name, tagline, desc, color, port, icon, built and config: true.",
+      "Write the site's file at app/<key>/public/data/<key>.json, with its own pictures and files beside it in app/<key>/public.",
+      "Give it a domain in the registry, such as phiogy.com, if it has one. There the site is the domain's root, and its places have no /<key>/.",
+      "Run it: in app/phi, npm run dev serves every config site on port 3100 at /<key>/, and the media store at /cdn.",
+      "On this machine <key>.localhost also opens a site at its root, the way its domain will.",
+      "Build it: in app/phi, PHI_BASE=/<key>/ VITE_PHI_API=/api VITE_PHI_MEDIA=/cdn npx vite build --outDir <out>/<key>, then copy app/<key>/public into the output."
+     ],
+     "part": [
+      {
+       "head": "Registry fields",
+       "list": [
+        "key: the site's name in every path, and its folder app/<key>.",
+        "name, tagline and desc: its name and the words that describe it.",
+        "color and icon: its colour, and its mark as SVG path rows (d, fill, stroke, sw).",
+        "port: the dev port of an app that has its own code.",
+        "config: true for a site the one app runs from its data file. built: true to list it in the app switcher.",
+        "look, mode and font: its theme, light or dark, and the face it reads in until a person picks one.",
+        "heading and logo: a display face for its headings, and one for the name in its logo.",
+        "domain: the domain whose root is this site."
+       ]
+      },
+      {
+       "head": "Addresses",
+       "text": [
+        "The site is the first segment of the path when that names a config site, else the domain, else <key>.localhost. The rest is the place: /<view>, or /<kind>/<id> for one record, with ?name=value for values a page is handed.",
+        "A click on a link to a place of the same site moves within the page, and Back and Forward walk the places. A link to another site goes to its domain."
+       ]
+      },
+      {
+       "head": "Settings the kit reads",
+       "list": [
+        "VITE_PHI_API: where Phiora is. Unset, values live in the browser only.",
+        "VITE_PHI_MEDIA: where the media store is, /cdn by default.",
+        "VITE_PHI_CALL: where the call line is, the API's /call by default.",
+        "VITE_PHI_APPS_BASE: the base of other apps' addresses, for an app built on its own."
+       ]
+      }
+     ]
+    },
+    {
+     "id": "world",
+     "title": "A collection site from a sheet",
+     "lead": "Bold Pups and Epic Pods are built from a spec and a trait sheet. scripts/world-site.mjs fills the spec's placeholders and writes the site's data file and its token file.",
+     "step": [
+      "Write app/<key>/site.json: the whole site under app, with placeholders where the collection goes.",
+      "Name the trait sheet in sheet: a TSV file, or a folder of them that share the first file's header.",
+      "Name the club in club, the id of one of Phiegg's club records. Its world and that world's cities come with it.",
+      "From the puikit folder, run node scripts/world-site.mjs <key>. It prints how many tokens it read, how many have pictures, the facets and the size of each file.",
+      "It writes app/<key>/public/data/<key>.json, the site, and token.json beside it, with every token.",
+      "With the site in registry.json as config: true, it runs like any other site."
+     ],
+     "part": [
+      {
+       "head": "What site.json holds",
+       "list": [
+        "key, club and sheet: the site, its club and its trait sheet.",
+        "token: the columns that give the number, the sub-title and the facet, and the title pattern, such as BOLDPUPS #{n}. lead: \"picture\" puts the tokens with a picture first.",
+        "field, drop and correct: rename columns, leave columns out, and mend a misspelt value without editing the sheet.",
+        "picture: each token's media key, by a column's value or for all, with {n5} as the number in five digits.",
+        "teaser, stat and all: how many teaser cards, the words of the stats, and the label of the all facet.",
+        "featured and world: the worlds to feature, and the labels of a world card's fields."
+       ]
+      },
+      {
+       "head": "Placeholders",
+       "list": [
+        "$tokens: the token file, data/token.json, for a grid's source.",
+        "$teaser and $hero: teaser tokens spread over the collection, and the first one's picture.",
+        "$stats, $facets and $traits: the counts, the facet row, and the trait names for the filters.",
+        "$cities, $worlds and $featured: the world's cities as prose sections, the club's other worlds as cards, and the featured ones.",
+        "{n}, {club.x} and {world.x} in any text: the total, and fields of the club and world records."
+       ]
+      },
+      {
+       "head": "One name for a token",
+       "text": [
+        "A token is kind token with the id <key>-<n>. Its address is /token/<id>, and its picture's key is token/<id>.webp, a hard link the script makes in the media store to the importer's file. Only pictures that are on disk are counted and linked."
+       ]
+      }
      ]
     }
    ]
@@ -150,15 +563,107 @@
    "id": "call",
    "label": "Calls",
    "icon": "cdn:phiogy/icon/phone.svg",
-   "lead": "How a call is set up.",
+   "lead": "How a call is set up: the line that introduces the callers, the WebRTC between them, and the relay.",
    "article": [
     {
      "id": "run",
      "title": "How calls run",
-     "lead": "Calls go between the people in them over WebRTC, met through the line at phiegg.com/wrt.",
+     "lead": "A call goes straight between the people in it, over WebRTC. The call line at /wrt only introduces them: it says who is in a room's call and passes their offers, answers and ICE candidates.",
      "step": [
-      "Up to 8 people with camera, microphone and screen.",
-      "The microphone and camera are used only while you are in a call."
+      "Opening a room opens its line: an event stream at /wrt/<app>/<room>?peer=<id>, one for each page. The page names itself with a random id.",
+      "The first event is the roster, who is in the call, and the ICE servers to use.",
+      "Press Call: the page posts join, and every page on the line gets the new roster.",
+      "Each caller opens one WebRTC connection to every other caller, a mesh, so a call holds at most 8.",
+      "Offers, answers and candidates travel as signals through the line, only between two callers who are both in the call, in the order they were sent.",
+      "Sound and picture then flow between the callers. Nothing of a call is stored, and a restart of the line empties every room.",
+      "Leave, or close the page, and everyone left gets a new roster.",
+      "The microphone and camera are taken when the call begins and let go when it ends."
+     ],
+     "part": [
+      {
+       "head": "What each connection carries",
+       "text": [
+        "A page sends its microphone and camera as one stream and a shared screen as a second, so the other end can tell a screen from a camera. It also tells each caller whether it is muted and which stream is its screen. Turning the camera or the screen on or off adds or removes a track, and the two ends agree again by themselves."
+       ]
+      },
+      {
+       "head": "When both ends offer at once",
+       "text": [
+        "The page with the lesser name gives way, WebRTC's perfect negotiation, so two callers never lock each other out. A connection that fails restarts its ICE. When the line drops, the browser opens it again, and a page that was in the call joins again."
+       ]
+      },
+      {
+       "head": "The Windows window as a caller",
+       "text": [
+        "Phiogy for Windows joins a call over the same line, as a page does, so browsers and the window meet in one call. When both offer at once, the browser gives way to the window."
+       ]
+      }
+     ]
+    },
+    {
+     "id": "line",
+     "title": "The call line",
+     "lead": "The call line is two routes for each room. Phiora answers them itself, or passes every request to Phiogy's line in Rust, which speaks the same routes.",
+     "step": [
+      "GET /call/<app>/<room>?peer=<id>: the room's line, a text/event-stream. A peer id is 8 to 64 letters, digits, underscores or dashes.",
+      "Its first event is { roster: [{ peer, name, handle }], ice }. Then come a new roster whenever someone joins or leaves, { from, signal } for each signal sent to this peer, and { typing: { peer, name, handle, on } } when another page is writing.",
+      "POST /call/<app>/<room> { peer, join?, send?: [{ to, signal }], typing? }: join or leave, pass up to 64 signals, or say you are writing. The answer is { roster }.",
+      "A peer belongs to whoever opened its line, and only they may post for it (403 not_yours). A post before the line is open answers 403 no_line.",
+      "8 may be in a call (409 full) and 256 pages may hold one room's line (429 full). A comment line every 20 seconds keeps proxies from closing a quiet stream.",
+      "The same peer opening its line again takes the place of its old line, so a page that lost its network comes back as itself.",
+      "On the public sites, /wrt/<app>/<room> is the same line: the server passes it to Phiora's /api/call/<app>/<room>. Pages use VITE_PHI_CALL, else the API's /call."
+     ],
+     "part": [
+      {
+       "head": "Phiogy's line",
+       "text": [
+        "With PHI_CALL_LINE (the line's address, such as http://localhost:4310) and PHI_CALL_KEY (a word the two share) both set, Phiora keeps no rooms of its own. It passes each /call request on, saying who the page belongs to in the heads x-phi-key, x-phi-user, x-phi-name and x-phi-handle, and passes back only the content-type, cache-control and x-accel-buffering heads. When the line does not answer, the page gets 502 no_line.",
+        "With either setting unset, Phiora's own rooms are used."
+       ]
+      },
+      {
+       "head": "Running the Rust line",
+       "list": [
+        "phiogy --line --port N runs the line alone, with no window.",
+        "Start it with the same PHI_CALL_KEY. With no key it believes nobody, and every page is a guest.",
+        "Its limits are rows of data/limit.tsv: 8 callers, 256 pages, a beat every 20 seconds, a page that took no beat for a minute dropped, and 64 signals a post.",
+        "In docker-compose.yml the phiogy service shares Phiora's network, so nothing of the line is open to the outside."
+       ]
+      }
+     ]
+    },
+    {
+     "id": "relay",
+     "title": "ICE servers and the relay",
+     "lead": "WebRTC needs a way through each caller's network. The ICE servers a page is told to use, STUN to find its address and TURN to relay, come from PHI_CALL_ICE.",
+     "step": [
+      "Set PHI_CALL_ICE to a JSON list of RTCIceServer objects: urls, and a username and credential where the server needs them.",
+      "Phiora hands the list to every page in the first event of a room's line, and each page gives it to its RTCPeerConnection.",
+      "With Phiogy's line in front, give the list to the line: it reads PHI_CALL_ICE, else the rows of its data/ice.tsv (urls, username, credential).",
+      "With no list, a call reaches the same machine and the same network only.",
+      "A STUN server lets callers learn their public address and connect directly where their networks allow it.",
+      "A TURN server relays the sound and picture where two callers cannot reach each other, such as behind strict routers or on phone networks."
+     ],
+     "part": [
+      {
+       "head": "Running a relay",
+       "text": [
+        "The repo's relay setup, in deploy/relay, is coturn. Its firewall must let in UDP and TCP on port 3478, where callers reach it, and the UDP range it relays on, 49152 to 49407 in that setup. Without them, calls work only between networks that let WebRTC through directly."
+       ]
+      },
+      {
+       "head": "Keep the relay's word apart",
+       "text": [
+        "Every page in a room receives the ICE list, so a TURN username and credential can be read by anyone who opens a room. Give the relay an account that opens nothing else, and limit what it carries. The repo's setup caps its bandwidth and refuses to relay to private addresses."
+       ]
+      },
+      {
+       "head": "Checking a call",
+       "list": [
+        "Open the same room in two browsers on different networks, one of them a phone hotspot, and call.",
+        "A call that connects on one network but not across two means the relay is missing, or its ports are closed."
+       ]
+      }
      ]
     }
    ]

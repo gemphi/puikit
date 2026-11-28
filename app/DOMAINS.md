@@ -253,7 +253,7 @@ WebRTC through directly; with them, any two people can call.
 
 | Build | File on the server | Address | State |
 |---|---|---|---|
-| Windows (zip, `phiogy.exe`, nothing installed; Windows 10 or 11, DirectX 11) | `/srv/phi-cdn/phiogy/phiogy-windows.zip` (19 MB, 25 Nov) | `https://phiegg.com/cdn/phiogy/phiogy-windows.zip`, and `https://phiogy.com/cdn/phiogy/phiogy-windows.zip` once the block is in | live on phiegg.com |
+| Windows (zip, `phiogy.exe`, nothing installed; Windows 10 or 11, DirectX 11) | `/srv/phi-cdn/phiogy/phiogy-windows.zip` (22.6 MB, 27 Nov); the two earlier zips are kept in `/srv/phi-withdrawn/phiogy/` | `https://cdn.phiogy.com/phiogy/phiogy-windows.zip` (phiogy.com's Download buttons and its /download page), also `https://phiegg.com/cdn/phiogy/phiogy-windows.zip` | **live** again since 28 Nov: the fixed build, tested from Downloads, opens in front about 3 s after Run anyway. `phiogy.exe` is still unsigned, so SmartScreen asks first ("Unknown publisher": More info, then Run anyway); the download page and the docs say so. Signing it ends that |
 | Mac | `/srv/phi-cdn/phiogy/phiogy-mac.zip` when there is one | `https://phiogy.com/cdn/phiogy/phiogy-mac.zip` | **not built**: it must be built on a Mac (`phikit/crates/appkit/app/phiogy/RUN.md`, macOS) and signed with an Apple Developer ID to open on other Macs. Until then the landing's Mac button opens the web Phiogy |
 
 A new Windows build is copied over the same file (no script sends it yet: it went up by hand on 25 Nov); the `cdn` snippet caches zips
@@ -278,6 +278,6 @@ section 4 (files kept once, by their hash).
 | Clients refresh expired attachment links on their own | Phiogy asks Phiora's change log (`/tree/change?after=<seq>`) for what is new, fetches a file only when opened, keeps it in a local cache by hash, and asks for a fresh signed link when one has expired |
 
 **Built today:** the store (`/srv/phi-cdn`), its cache rules, and cdn.phiogy.com serving it (section 3's file:
-`deploy/caddy/Caddyfile`). The Windows download is at `cdn.phiogy.com/phiogy/phiogy-windows.zip` once it is live.
+`deploy/caddy/Caddyfile`). The Windows download is at `cdn.phiogy.com/phiogy/phiogy-windows.zip`, where phiogy.com's Download buttons lead.
 **Not built:** `POST /file`, the sizes, signing and `/api/file/check`, the `attachment` and `asset` kinds, the change
 log's `after=`, and the `lib/` to `asset/` rename.
