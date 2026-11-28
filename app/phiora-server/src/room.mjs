@@ -70,13 +70,19 @@ const said = (x) => ({ id: x.ref, by: x.ownerId, at: x.at, ...Object.fromEntries
 export function createRooms({ store, appsDir, editors }) {
   const places = createPlaces(appsDir);
   const lock = serial();
-  const boot = Date.now(); const stamps = new Map(); const seen = new Map(); const hits = new Map();
+  const boot = Date.now(); const stamps = new Map(); const seen = new Map(); const hits = new Map(); let rules = 0;
   const bump = (key) => stamps.set(key, (stamps.get(key) ?? boot) + 1);
-  const stampOf = (key) => String(stamps.get(key) ?? boot);
+  /** A room's stamp: what was said and done in it, what any host's rule became (what one may do changes with it),
+   *  and the minute, so people's status and presence are answered afresh at least that often. */
+  const stampOf = (key) => [stamps.get(key) ?? boot, rules, Math.floor(Date.now() / 60000)].join('.');
   const editor = (u) => isEditor(u, editors);
   const guard = (u) => { if (!u || u.guest) no(401, 'sign_in'); seen.set(u.id, Date.now()); };
   const rate = (u) => { const now = Date.now(); const h = (hits.get(u.id) ?? []).filter((t) => now - t < 60000); if (h.length >= ROOM_DATA.write) no(429, 'rate'); h.push(now); hits.set(u.id, h); };
-  const save = (kind, doc, u, action, fields) => store.saveItem(kind, doc.id, doc, { origin: 'api', owner: doc.ownerId ?? u.id, by: u.id }, { action, fields, byId: u.id, byHandle: u.handle ?? null });
+  const save = (kind, doc, u, action, fields) => {
+    if (Buffer.byteLength(JSON.stringify(doc)) > ROOM_DATA.bytes) no(413, 'too_long');
+    if (kind === 'hostState') rules++;
+    return store.saveItem(kind, doc.id, doc, { origin: 'api', owner: doc.ownerId ?? u.id, by: u.id }, { action, fields, byId: u.id, byHandle: u.handle ?? null });
+  };
 
   /** A host by its id: what the app's files say of it with its record's changes, or one somebody made. */
   async function hostOf(app, id) {

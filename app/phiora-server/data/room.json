@@ -59,7 +59,7 @@
     "bad_room": "That is not a room.",
     "bad_ref": "A message needs its own id: letters, digits, dot and dash.",
     "empty": "A message needs words, a picture or a poll.",
-    "too_long": "That message is too long.",
+    "too_long": "That is too long.",
     "bad_poll": "A poll needs a question and two to ten answers.",
     "unseen": "Only some roles see this room.",
     "read_only": "Only some roles write in this room.",
@@ -83,5 +83,6 @@
     "host_taken": "There is already a host with that id.",
     "bad_bond": "A friend is someone with an account.",
     "bad_step": "That is not a step from where you stand."
-  }
+  },
+  "bytes": 262144
 }

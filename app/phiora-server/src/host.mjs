@@ -27,7 +27,10 @@ const stateOf = (inv, h) => {
   if (h.rec?.paused) return 'stopped';
   return (inv.minutes > 0 && Date.now() > inv.made + inv.minutes * 60000) || (inv.uses > 0 && inv.used >= inv.uses) ? 'over' : 'ok';
 };
-const card = (h) => ({ id: h.id, label: h.label, kind: h.kind, mark: h.mark, first: h.first, ...(h.kind === 'made' ? { group: h.rec.group, room: h.rec.room, owner: h.rec.owner ?? h.rec.ownerId } : {}) });
+/** A host as an invite shows it to anyone with the link: its name, its mark and the room it opens on. */
+const brief = (h) => ({ id: h.id, label: h.label, kind: h.kind, mark: h.mark, first: h.first });
+/** A host as its people read it: one somebody made with its menu group, rooms and owner. */
+const card = (h) => ({ ...brief(h), ...(h.kind === 'made' ? { group: h.rec.group, room: h.rec.room, owner: h.rec.owner ?? h.rec.ownerId } : {}) });
 const shown = (inv) => ({ code: inv.code, host: inv.host, space: inv.space, made: inv.made, minutes: inv.minutes, uses: inv.uses, used: inv.used, by: inv.ownerId });
 
 export function createHosts(rooms, store) {
@@ -156,7 +159,7 @@ export function createHosts(rooms, store) {
     if (!APP.test(app) || !CODE.test(String(code).toLowerCase())) return { state: 'unknown' };
     const inv = (await store.getItem('invite', idOf('invite', app + '/' + String(code).toLowerCase())))?.doc;
     const h = inv ? await rooms.hostOf(app, inv.host) : null; const state = stateOf(inv, h);
-    return state === 'unknown' ? { state } : { state, host: card(h), inside: rooms.inHost(u, h) };
+    return state === 'unknown' ? { state } : { state, host: brief(h), inside: rooms.inHost(u, h) };
   }
   /** Join a host by an invite; joining counts one use. */
   async function join(u, app, code) {

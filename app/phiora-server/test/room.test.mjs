@@ -141,6 +141,7 @@ test('a host one makes is theirs; an invite they make works for another account'
   assert.equal((await ana.post('/host/club/mclub/invite', { code: 'read-with-us' })).status, 409);
   const seen = (await ben.get('/invite/club/read-with-us')).body;
   assert.equal(seen.state, 'ok'); assert.equal(seen.host.label, 'Book club'); assert.equal(seen.inside, false);
+  assert.equal(seen.host.room, undefined, 'a link shows the host, not its rooms');
   const joined = (await ben.post('/invite/club/read-with-us')).body;
   assert.equal(joined.host.first, 'mclub-0');
   assert.deepEqual((await ben.get('/room/club/mclub-0')).body.message.map((x) => x.text), ['Chapter one tonight']);
@@ -163,7 +164,11 @@ test('roles given, rights set and the host handed on are the same for everyone',
   await ana.patch('/host/club/mclub', { give: { who: ben.id, role: 'mod', on: true } });
   const asBen = (await ben.get('/host/club/mclub')).body.host;
   assert.ok(asBen.can.host.includes('manage')); assert.deepEqual(asBen.rule.give[ben.id], ['mod']);
+  // A page that asks again is told what it may do now, though nothing was said in the room since.
+  const before = (await cai.get('/room/club/mclub-0')).body;
   await ben.patch('/host/club/mclub', { allow: { room: 'mclub-0', verb: 'write', role: 'everyone', on: false } });
+  const after = (await cai.get('/room/club/mclub-0?seen=' + before.stamp)).body;
+  assert.equal(after.same, undefined); assert.ok(!after.can.includes('write'));
   assert.equal((await cai.post('/room/club/mclub-0', { ref: 'c1', text: 'hello?' })).status, 403);
   assert.ok((await ben.post('/room/club/mclub-0', { ref: 'b2', text: 'Mods only for now' })).status === 201);
   assert.equal((await ben.patch('/host/club/mclub', { owner: ben.id })).status, 403);
